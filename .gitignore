@@ -26,9 +26,9 @@ raw-sources/
 data/provita/
 GEOjson files/
 
-# Documentos de referencia
-*.html
-*_files/
+# Documento de referencia que dejé en la carpeta (no parte del proyecto)
+/Anexo_Municipios*.html
+/Anexo_Municipios*_files/
 
 # Big GeoJSON kept only locally (deforestación 388MB etc.)
 *.tif
