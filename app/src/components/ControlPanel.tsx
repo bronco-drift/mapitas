@@ -11,8 +11,6 @@ import { ThematicLayersList } from './ThematicLayers'
 export function ControlPanel() {
   const level = useStore(s => s.level)
   const setLevel = useStore(s => s.setLevel)
-  const palette = useStore(s => s.palette)
-  const setPalette = useStore(s => s.setPalette)
   const selected = useStore(s => s.selected)
   const source = useStore(s => s.source)
   const stats = useStore(s => s.stats)
