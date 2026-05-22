@@ -34,6 +34,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const source = useStore(s => s.source)
   const stats = useStore(s => s.stats)
   const clearSource = useStore(s => s.clearSource)
+  const resetSettings = useStore(s => s.resetSettings)
   const isMobile = useIsMobile()
 
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
@@ -212,7 +213,20 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
       </div>
 
       <footer className="border-t border-slate-100 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
-        Base: IGVSB / Provita (CC BY 4.0). Datos: INE, OVV, estimaciones 2026.
+        <div className="flex items-baseline justify-between gap-2">
+          <span className="min-w-0">
+            Base: IGVSB / Provita. Datos: INE, OVV, estimaciones 2026.
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              if (confirm('¿Resetear todos los ajustes guardados?')) resetSettings()
+            }}
+            className="shrink-0 underline-offset-2 hover:text-slate-700 hover:underline"
+          >
+            Resetear
+          </button>
+        </div>
       </footer>
       </aside>
     </>

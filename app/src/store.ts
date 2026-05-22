@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import type {
   Adm0Props,
   Adm1Props,
@@ -79,6 +80,9 @@ type State = {
   } | null
   mapStyle: MapStyle
   thematic: Record<string, ThematicState>
+  // Restaurar después de cargar data — guarda el id del source persistido
+  _persistedSourceId: string | null
+  _persistedThematicIds: string[]
 }
 
 type Actions = {
@@ -97,6 +101,7 @@ type Actions = {
   setCountry: (code: 'VE') => void
   loadThematicManifest: () => Promise<void>
   toggleThematic: (id: string) => Promise<void>
+  resetSettings: () => void
 }
 
 export const DEFAULT_MAP_STYLE: MapStyle = {
@@ -123,7 +128,11 @@ function clearAll<P extends Adm0Props | Adm1Props | Adm2Props>(geo: AdmGeoJSON<P
   }
 }
 
-export const useStore = create<State & Actions>((set, get) => ({
+const STORAGE_KEY = 'mapitas-v1'
+
+export const useStore = create<State & Actions>()(
+  persist(
+    (set, get) => ({
   level: 'adm1',
   country: 'VE',
   adm0: null,
@@ -137,6 +146,8 @@ export const useStore = create<State & Actions>((set, get) => ({
   selected: null,
   mapStyle: DEFAULT_MAP_STYLE,
   thematic: {},
+  _persistedSourceId: null,
+  _persistedThematicIds: [],
 
   async loadGeoData() {
     set({ loading: true, loadError: null })
@@ -152,6 +163,12 @@ export const useStore = create<State & Actions>((set, get) => ({
       const adm1 = (await r1.json()) as AdmGeoJSON<Adm1Props>
       const adm2 = (await r2.json()) as AdmGeoJSON<Adm2Props>
       set({ adm0, adm1, adm2, loading: false })
+      // Restaurar indicador persistido (sólo cuando se cargó la data base)
+      const sourceId = get()._persistedSourceId
+      if (sourceId) {
+        get().selectIndicator(sourceId)
+        set({ _persistedSourceId: null })
+      }
     } catch (err) {
       set({ loading: false, loadError: String(err) })
     }
@@ -257,6 +274,13 @@ export const useStore = create<State & Actions>((set, get) => ({
     set({ country: code })
   },
 
+  resetSettings() {
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {}
+    window.location.reload()
+  },
+
   async loadThematicManifest() {
     if (Object.keys(get().thematic).length > 0) return
     try {
@@ -271,6 +295,14 @@ export const useStore = create<State & Actions>((set, get) => ({
         initial[meta.id] = { meta: { ...meta, file }, enabled: false, loading: false, data: null }
       }
       set({ thematic: initial })
+      // Restaurar capas que estaban habilitadas la última vez
+      const persistedIds = get()._persistedThematicIds
+      if (persistedIds.length > 0) {
+        for (const id of persistedIds) {
+          if (initial[id]) await get().toggleThematic(id)
+        }
+        set({ _persistedThematicIds: [] })
+      }
     } catch (err) {
       console.warn('No se pudo cargar manifest de capas temáticas', err)
     }
@@ -313,4 +345,21 @@ export const useStore = create<State & Actions>((set, get) => ({
       thematic: { ...get().thematic, [id]: { ...entry, enabled: true } },
     })
   },
-}))
+    }),
+    {
+      name: STORAGE_KEY,
+      storage: createJSONStorage(() => localStorage),
+      // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
+      partialize: state => ({
+        level: state.level,
+        palette: state.palette,
+        mapStyle: state.mapStyle,
+        _persistedSourceId:
+          state.source?.kind === 'indicator' ? state.source.indicator.id : null,
+        _persistedThematicIds: Object.entries(state.thematic)
+          .filter(([, t]) => t.enabled)
+          .map(([id]) => id),
+      }),
+    },
+  ),
+)
