@@ -113,7 +113,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   transparentBg: false,
 }
 
-function clearAll<P extends Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {
+function clearAll<P extends Adm0Props | Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {
   return {
     ...geo,
     features: geo.features.map(f => ({
