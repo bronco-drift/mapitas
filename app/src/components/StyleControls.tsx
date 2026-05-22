@@ -54,6 +54,38 @@ export function StyleControls() {
         />
       </div>
 
+      <div>
+        <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+          <span>Opacidad relleno</span>
+          <span className="font-normal text-slate-400">{Math.round(style.fillOpacity * 100)}%</span>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.05}
+          value={style.fillOpacity}
+          onChange={e => setMapStyle({ fillOpacity: parseFloat(e.target.value) })}
+          className="w-full accent-slate-900"
+        />
+      </div>
+
+      <div>
+        <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+          <span>Opacidad borde</span>
+          <span className="font-normal text-slate-400">{Math.round(style.borderOpacity * 100)}%</span>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={1}
+          step={0.05}
+          value={style.borderOpacity}
+          onChange={e => setMapStyle({ borderOpacity: parseFloat(e.target.value) })}
+          className="w-full accent-slate-900"
+        />
+      </div>
+
       <div className="flex items-center gap-3">
         <ColorField
           label="Borde"

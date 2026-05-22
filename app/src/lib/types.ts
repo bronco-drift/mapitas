@@ -1,6 +1,17 @@
 import type { FeatureCollection, Polygon, MultiPolygon } from 'geojson'
 
-export type AdmLevel = 'adm1' | 'adm2'
+export type AdmLevel = 'adm0' | 'adm1' | 'adm2'
+
+export type Adm0Props = {
+  name: string
+  nombreOficial?: string
+  iso: string
+  nameKey: string
+  sourceID: string
+  _value?: number | null
+  _color?: string | null
+  _matched?: boolean
+}
 
 export type Adm1Props = {
   name: string

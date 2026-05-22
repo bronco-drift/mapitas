@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import type {
+  Adm0Props,
   Adm1Props,
   Adm2Props,
   AdmGeoJSON,
@@ -9,10 +10,10 @@ import type {
 } from './lib/types'
 import {
   mergeUserDataIntoGeo,
-  recolorWithPalette,
   type MergeStats,
 } from './lib/merge-data'
 import {
+  applyIndicatorToAdm0,
   applyIndicatorToAdm1,
   applyIndicatorToAdm2,
   type IndicatorStats,
@@ -35,6 +36,8 @@ export type MapStyle = {
   customStart: string
   customEnd: string
   basemap: import('./lib/basemaps').BasemapId
+  fillOpacity: number
+  borderOpacity: number
 }
 
 export type ThematicMeta = {
@@ -58,6 +61,7 @@ export type ThematicState = {
 type State = {
   level: AdmLevel
   country: 'VE'
+  adm0: AdmGeoJSON<Adm0Props> | null
   adm1: AdmGeoJSON<Adm1Props> | null
   adm2: AdmGeoJSON<Adm2Props> | null
   loading: boolean
@@ -103,6 +107,8 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   customStart: '#fde68a',
   customEnd: '#7c2d12',
   basemap: 'carto-light',
+  fillOpacity: 0.85,
+  borderOpacity: 1,
 }
 
 function clearAll<P extends Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {
@@ -118,6 +124,7 @@ function clearAll<P extends Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJS
 export const useStore = create<State & Actions>((set, get) => ({
   level: 'adm1',
   country: 'VE',
+  adm0: null,
   adm1: null,
   adm2: null,
   loading: false,
@@ -133,14 +140,16 @@ export const useStore = create<State & Actions>((set, get) => ({
     set({ loading: true, loadError: null })
     try {
       const base = import.meta.env.BASE_URL
-      const [r1, r2] = await Promise.all([
+      const [r0, r1, r2] = await Promise.all([
+        fetch(`${base}data/venezuela-adm0-enriched.geojson`),
         fetch(`${base}data/venezuela-adm1-enriched.geojson`),
         fetch(`${base}data/venezuela-adm2-enriched.geojson`),
       ])
       if (!r1.ok || !r2.ok) throw new Error('No se pudo cargar el mapa base')
+      const adm0 = r0.ok ? ((await r0.json()) as AdmGeoJSON<Adm0Props>) : null
       const adm1 = (await r1.json()) as AdmGeoJSON<Adm1Props>
       const adm2 = (await r2.json()) as AdmGeoJSON<Adm2Props>
-      set({ adm1, adm2, loading: false })
+      set({ adm0, adm1, adm2, loading: false })
     } catch (err) {
       set({ loading: false, loadError: String(err) })
     }
@@ -152,13 +161,9 @@ export const useStore = create<State & Actions>((set, get) => ({
   },
 
   setPalette(palette) {
-    const { adm1, adm2, mapStyle } = get()
-    const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
-    set({
-      palette,
-      adm1: adm1 ? recolorWithPalette(adm1, palette, custom) : null,
-      adm2: adm2 ? recolorWithPalette(adm2, palette, custom) : null,
-    })
+    set({ palette })
+    // Recalcular merge para que todos los niveles tengan colores nuevos
+    get().applyMerge()
   },
 
   selectIndicator(id) {
@@ -186,12 +191,13 @@ export const useStore = create<State & Actions>((set, get) => ({
   },
 
   applyMerge() {
-    const { level, adm1, adm2, source, palette, mapStyle } = get()
+    const { level, adm0, adm1, adm2, source, palette, mapStyle } = get()
     if (!adm1 || !adm2) return
     const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
 
     if (!source) {
       set({
+        adm0: adm0 ? clearAll(adm0) : null,
         adm1: clearAll(adm1),
         adm2: clearAll(adm2),
         stats: null,
@@ -200,10 +206,13 @@ export const useStore = create<State & Actions>((set, get) => ({
     }
 
     if (source.kind === 'indicator') {
-      if (level === 'adm1') {
+      if (level === 'adm0' && adm0) {
+        const { geo, stats } = applyIndicatorToAdm0(adm0, source.indicator, palette, custom)
+        set({ adm0: geo, stats })
+      } else if (level === 'adm1') {
         const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom)
         set({ adm1: geo, stats })
-      } else {
+      } else if (level === 'adm2') {
         const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom)
         set({ adm2: geo, stats })
       }
@@ -211,10 +220,14 @@ export const useStore = create<State & Actions>((set, get) => ({
     }
 
     if (source.kind === 'upload') {
-      if (level === 'adm1') {
+      // Para CSV con level=adm0 todavía no hay merge específico (futuro).
+      // Por ahora, en adm0 con upload, simplemente clear.
+      if (level === 'adm0' && adm0) {
+        set({ adm0: clearAll(adm0), stats: null })
+      } else if (level === 'adm1') {
         const { geo, stats } = mergeUserDataIntoGeo(adm1, 'adm1', source.dataset, palette, custom)
         set({ adm1: geo, stats })
-      } else {
+      } else if (level === 'adm2') {
         const { geo, stats } = mergeUserDataIntoGeo(adm2, 'adm2', source.dataset, palette, custom)
         set({ adm2: geo, stats })
       }

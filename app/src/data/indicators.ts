@@ -23,6 +23,10 @@ export type Indicator = {
   data: Record<string, number>
   // Solo para aggregation='municipality': agregado por ISO, precomputado.
   stateAggregate?: Record<string, number>
+  // Para nivel país: cómo agregar los valores estatales.
+  // 'sum' (default): suma — sirve para Población, Área, PIB total
+  // 'mean': promedio — sirve para IDH, tasas, ratios
+  nationalAggregation?: 'sum' | 'mean'
 }
 
 // ---- Indicadores estatales (legacy, aproximaciones) ----
@@ -57,6 +61,7 @@ const HOMICIDIOS: Indicator = {
   source: 'OVV (Observatorio Venezolano de Violencia)',
   note: 'Datos ilustrativos · referencia OVV 2023',
   aggregation: 'state',
+  nationalAggregation: 'mean',
   data: {
     'VE-A': 36, 'VE-B': 27, 'VE-C': 25, 'VE-D': 41, 'VE-E': 18, 'VE-F': 49,
     'VE-G': 32, 'VE-H': 16, 'VE-Y': 23, 'VE-W': 5, 'VE-I': 20, 'VE-J': 28,
@@ -125,6 +130,7 @@ const PIB_PER_CAPITA: Indicator = {
   source: 'Estimaciones municipales 2026',
   note: 'Datos estimados · validar contra fuente oficial',
   aggregation: 'municipality',
+  nationalAggregation: 'mean',
   data: muni.indicators.pib_per_capita_usd,
   stateAggregate: muni.stateAggregates.pib_per_capita_usd,
 }
@@ -139,6 +145,7 @@ const IDH_2026: Indicator = {
   source: 'Estimaciones municipales 2026',
   note: 'Datos estimados · validar contra fuente oficial',
   aggregation: 'municipality',
+  nationalAggregation: 'mean',
   data: muni.indicators.idh_2026,
   stateAggregate: muni.stateAggregates.idh_2026,
 }

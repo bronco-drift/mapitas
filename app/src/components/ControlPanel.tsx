@@ -87,6 +87,17 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
             <button
               type="button"
+              onClick={() => setLevel('adm0')}
+              className={`flex-1 rounded px-2.5 py-1 transition ${
+                level === 'adm0'
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              País
+            </button>
+            <button
+              type="button"
               onClick={() => setLevel('adm1')}
               className={`flex-1 rounded px-2.5 py-1 transition ${
                 level === 'adm1'
@@ -140,11 +151,11 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           </div>
         </Section>
 
-        <Section title="Capas">
+        <Section title="Capas" collapsible defaultCollapsed>
           <ThematicLayersList />
         </Section>
 
-        <Section title="Estilo">
+        <Section title="Estilo" collapsible defaultCollapsed>
           <div className="space-y-4">
             <PaletteSelector />
             <StyleControls />

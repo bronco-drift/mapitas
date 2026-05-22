@@ -5,7 +5,7 @@ import L from 'leaflet'
 import type { Feature } from 'geojson'
 import { useStore } from '../store'
 import type { MapStyle } from '../store'
-import type { Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
+import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
 import { formatIndicatorValue } from '../data/indicators'
 import { getBasemap } from '../lib/basemaps'
 
@@ -50,8 +50,8 @@ function fillStyleFor(style: MapStyle): (feature?: Feature) => PathOptions {
       fillColor,
       color: style.borderColor,
       weight: style.lineWidth,
-      fillOpacity: props?._matched ? 0.85 : 0.5,
-      opacity: 1,
+      fillOpacity: (props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)),
+      opacity: style.borderOpacity,
     }
   }
 }
@@ -76,6 +76,7 @@ function hoverStyle(style: MapStyle): PathOptions {
 
 export function MapView() {
   const level = useStore(s => s.level)
+  const adm0 = useStore(s => s.adm0)
   const adm1 = useStore(s => s.adm1)
   const adm2 = useStore(s => s.adm2)
   const palette = useStore(s => s.palette)
@@ -87,7 +88,7 @@ export function MapView() {
 
   const activeThematic = Object.values(thematic).filter(t => t.enabled && t.data)
 
-  const data = (level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<Adm1Props | Adm2Props> | null
+  const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<Adm0Props | Adm1Props | Adm2Props> | null
 
   const layerKey = useMemo(() => {
     if (!data) return 'empty'

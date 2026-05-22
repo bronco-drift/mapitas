@@ -1,4 +1,4 @@
-import type { AdmGeoJSON, Adm1Props, Adm2Props, PaletteId } from './types'
+import type { AdmGeoJSON, Adm0Props, Adm1Props, Adm2Props, PaletteId } from './types'
 import type { Indicator } from '../data/indicators'
 import { colorScale, type CustomStops } from './color-scale'
 
@@ -122,7 +122,7 @@ export function applyIndicatorToAdm2(
   }
 }
 
-export function clearIndicatorData<P extends Adm1Props | Adm2Props>(
+export function clearIndicatorData<P extends Adm0Props | Adm1Props | Adm2Props>(
   geo: AdmGeoJSON<P>,
 ): AdmGeoJSON<P> {
   return {
@@ -131,5 +131,48 @@ export function clearIndicatorData<P extends Adm1Props | Adm2Props>(
       ...f,
       properties: { ...f.properties, _value: null, _color: null, _matched: false } as P,
     })),
+  }
+}
+
+// Agregado nacional: combina los valores de los estados/agregados en uno solo.
+export function nationalAggregate(indicator: Indicator): number | null {
+  const source = indicator.aggregation === 'municipality'
+    ? indicator.stateAggregate ?? {}
+    : indicator.data
+  const values = Object.values(source).filter(v => typeof v === 'number') as number[]
+  if (values.length === 0) return null
+  const mode = indicator.nationalAggregation ?? 'sum'
+  if (mode === 'mean') return values.reduce((a, b) => a + b, 0) / values.length
+  return values.reduce((a, b) => a + b, 0)
+}
+
+export function applyIndicatorToAdm0(
+  geo: AdmGeoJSON<Adm0Props>,
+  indicator: Indicator,
+  palette: PaletteId,
+  custom?: CustomStops,
+): { geo: AdmGeoJSON<Adm0Props>; stats: IndicatorStats } {
+  const value = nationalAggregate(indicator)
+  const features = geo.features.map(f => ({
+    ...f,
+    properties: {
+      ...f.properties,
+      _value: value,
+      // Para 1 sola feature, el color sale del extremo de la paleta (valor "máximo")
+      _color: value != null ? colorScale(1, 0, 1, palette, custom) : null,
+      _matched: value != null,
+    },
+  }))
+  return {
+    geo: { ...geo, features },
+    stats: {
+      matched: value != null ? 1 : 0,
+      unmatched: value != null ? 0 : 1,
+      totalFeatures: 1,
+      totalRows: 1,
+      unmatchedRows: [],
+      min: value ?? 0,
+      max: value ?? 0,
+    },
   }
 }
