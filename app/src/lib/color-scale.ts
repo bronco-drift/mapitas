@@ -32,6 +32,11 @@ function stopsFor(palette: PaletteId, custom?: CustomStops): [string, string] {
   return PALETTES[palette]
 }
 
+// Exposed: devuelve los 2 colores actuales de la paleta para mostrarlos en UI
+export function getPaletteStops(palette: PaletteId, custom?: CustomStops): [string, string] {
+  return stopsFor(palette, custom)
+}
+
 export function colorScale(
   value: number,
   min: number,

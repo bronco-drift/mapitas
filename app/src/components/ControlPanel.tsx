@@ -1,5 +1,5 @@
 import { useStore } from '../store'
-import { PALETTE_OPTIONS, paletteGradient } from '../lib/color-scale'
+import { PALETTE_OPTIONS, paletteGradient, getPaletteStops } from '../lib/color-scale'
 import { formatIndicatorValue } from '../data/indicators'
 import { Section } from './Section'
 import { IndicatorsList } from './IndicatorsList'
@@ -163,6 +163,28 @@ function PaletteSelector() {
   const setMapStyle = useStore(s => s.setMapStyle)
   const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
 
+  // Stops actuales de la paleta seleccionada (predefinida o custom)
+  const [currentStart, currentEnd] = getPaletteStops(palette, custom)
+
+  // Al cambiar un color desde los pickers, "convertimos" la paleta a custom
+  // usando esos colores. Si la paleta ya era custom, sólo updateamos el stop.
+  function onChangeStart(v: string) {
+    if (palette === 'custom') {
+      setMapStyle({ customStart: v })
+    } else {
+      setMapStyle({ customStart: v, customEnd: currentEnd })
+      setPalette('custom')
+    }
+  }
+  function onChangeEnd(v: string) {
+    if (palette === 'custom') {
+      setMapStyle({ customEnd: v })
+    } else {
+      setMapStyle({ customStart: currentStart, customEnd: v })
+      setPalette('custom')
+    }
+  }
+
   return (
     <div>
       <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-500">
@@ -185,28 +207,28 @@ function PaletteSelector() {
           />
         ))}
       </div>
-      {palette === 'custom' && (
-        <div className="mt-2 flex items-center gap-2">
-          <input
-            type="color"
-            value={mapStyle.customStart}
-            onChange={e => setMapStyle({ customStart: e.target.value })}
-            className="h-6 w-6 cursor-pointer rounded border border-slate-200 bg-white p-0"
-            aria-label="Color inicial"
-          />
-          <div
-            className="h-2 flex-1 rounded-sm"
-            style={{ background: paletteGradient('custom', custom) }}
-          />
-          <input
-            type="color"
-            value={mapStyle.customEnd}
-            onChange={e => setMapStyle({ customEnd: e.target.value })}
-            className="h-6 w-6 cursor-pointer rounded border border-slate-200 bg-white p-0"
-            aria-label="Color final"
-          />
-        </div>
-      )}
+      <div className="mt-2 flex items-center gap-2">
+        <input
+          type="color"
+          value={currentStart}
+          onChange={e => onChangeStart(e.target.value)}
+          className="h-6 w-6 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          aria-label="Color inicial"
+          title="Color inicial"
+        />
+        <div
+          className="h-2 flex-1 rounded-sm"
+          style={{ background: paletteGradient(palette, custom) }}
+        />
+        <input
+          type="color"
+          value={currentEnd}
+          onChange={e => onChangeEnd(e.target.value)}
+          className="h-6 w-6 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          aria-label="Color final"
+          title="Color final"
+        />
+      </div>
     </div>
   )
 }

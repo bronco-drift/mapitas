@@ -7,6 +7,7 @@ import { useStore } from '../store'
 import type { MapStyle } from '../store'
 import type { Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
 import { formatIndicatorValue } from '../data/indicators'
+import { getBasemap } from '../lib/basemaps'
 
 const VENEZUELA_BOUNDS = L.latLngBounds(L.latLng(0.5, -73.5), L.latLng(13.0, -58.0))
 
@@ -118,12 +119,17 @@ export function MapView() {
         className="h-full w-full"
         style={{ background: mapStyle.bgColor }}
       >
-        {!mapStyle.isolateCountry && (
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          />
-        )}
+        {!mapStyle.isolateCountry && (() => {
+          const bm = getBasemap(mapStyle.basemap)
+          return (
+            <TileLayer
+              key={bm.id}
+              attribution={bm.attribution}
+              url={bm.url}
+              maxZoom={bm.maxZoom}
+            />
+          )
+        })()}
         <MapBootstrap bgColor={mapStyle.bgColor} />
         {data && (
           <GeoJSON

@@ -1,4 +1,5 @@
 import { useStore } from '../store'
+import { BASEMAPS } from '../lib/basemaps'
 
 export function StyleControls() {
   const style = useStore(s => s.mapStyle)
@@ -7,6 +8,36 @@ export function StyleControls() {
 
   return (
     <div className="space-y-3">
+      <div>
+        <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-500">
+          Mapa base
+        </div>
+        <div className="grid grid-cols-3 gap-1">
+          {BASEMAPS.map(b => (
+            <button
+              key={b.id}
+              type="button"
+              onClick={() => setMapStyle({ basemap: b.id })}
+              disabled={style.isolateCountry}
+              title={b.label}
+              aria-label={b.label}
+              className={`group flex flex-col items-stretch overflow-hidden rounded-sm border text-[10px] transition ${
+                style.basemap === b.id
+                  ? 'border-slate-900 ring-1 ring-slate-900'
+                  : 'border-slate-200 hover:border-slate-400'
+              } ${style.isolateCountry ? 'opacity-40 cursor-not-allowed' : ''}`}
+            >
+              <span className="block h-5" style={{ background: b.preview }} />
+              <span className={`block px-1 py-0.5 text-center ${
+                style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+              }`}>
+                {b.short}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div>
         <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
           <span>Grosor borde</span>

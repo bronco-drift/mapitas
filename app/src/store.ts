@@ -34,6 +34,7 @@ export type MapStyle = {
   stateOverlayInMuni: boolean
   customStart: string
   customEnd: string
+  basemap: import('./lib/basemaps').BasemapId
 }
 
 export type ThematicMeta = {
@@ -101,6 +102,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   stateOverlayInMuni: false,
   customStart: '#fde68a',
   customEnd: '#7c2d12',
+  basemap: 'carto-light',
 }
 
 function clearAll<P extends Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {
