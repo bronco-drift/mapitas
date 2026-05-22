@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+app/node_modules/
+
+# Build outputs
+app/dist/
+app/.vite/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Heavy raw data — re-downloadable from https://geoportal.provita.org.ve/
+raw-sources/
+data/provita/
+GEOjson files/
+
+# Documentos de referencia
+*.html
+*_files/
+
+# Big GeoJSON kept only locally (deforestación 388MB etc.)
+*.tif
+*.tiff

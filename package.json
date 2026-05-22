@@ -1,0 +1,13 @@
+{
+  "name": "proyecto-mapitas-preprocessing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "enrich": "node scripts/enrich-geojson.mjs"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.1.0",
+    "shapefile": "^0.6.6"
+  }
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "id": "areas-protegidas",
+    "label": "Áreas protegidas",
+    "color": "#10b981",
+    "file": "/data/thematic/areas-protegidas.geojson",
+    "featureCount": 145,
+    "sizeKB": 482,
+    "geometryType": "MultiPolygon"
+  },
+  {
+    "id": "territorios-indigenas",
+    "label": "Territorios indígenas",
+    "color": "#f59e0b",
+    "file": "/data/thematic/territorios-indigenas.geojson",
+    "featureCount": 161,
+    "sizeKB": 205,
+    "geometryType": "Polygon"
+  },
+  {
+    "id": "centros-poblados",
+    "label": "Capitales municipales",
+    "color": "#1f2937",
+    "file": "/data/thematic/centros-poblados.geojson",
+    "featureCount": 1077,
+    "sizeKB": 214,
+    "geometryType": "MultiPoint"
+  },
+  {
+    "id": "cuencas-hidrograficas",
+    "label": "Cuencas hidrográficas",
+    "color": "#3b82f6",
+    "file": "/data/thematic/cuencas-hidrograficas.geojson",
+    "featureCount": 129,
+    "sizeKB": 331,
+    "geometryType": "Polygon"
+  },
+  {
+    "id": "vialidad",
+    "label": "Vialidad pavimentada",
+    "color": "#6b7280",
+    "file": "/data/thematic/vialidad.geojson",
+    "featureCount": 9697,
+    "sizeKB": 1856,
+    "geometryType": "LineString"
+  },
+  {
+    "id": "internacionales",
+    "label": "Límites internacionales",
+    "color": "#0f172a",
+    "file": "/data/thematic/internacionales.geojson",
+    "featureCount": 10,
+    "sizeKB": 111,
+    "geometryType": "MultiLineString"
+  },
+  {
+    "id": "formaciones-vegetales",
+    "label": "Formaciones vegetales",
+    "color": "#22c55e",
+    "file": "/data/thematic/formaciones-vegetales.geojson",
+    "featureCount": 23,
+    "sizeKB": 1225,
+    "geometryType": "MultiPolygon"
+  },
+  {
+    "id": "unidades-paisaje",
+    "label": "Unidades de paisaje",
+    "color": "#8b5cf6",
+    "file": "/data/thematic/unidades-paisaje.geojson",
+    "featureCount": 35,
+    "sizeKB": 374,
+    "geometryType": "MultiPolygon"
+  },
+  {
+    "id": "vegetacion-saxicola",
+    "label": "Vegetación saxícola",
+    "color": "#84cc16",
+    "file": "/data/thematic/vegetacion-saxicola.geojson",
+    "featureCount": 174,
+    "sizeKB": 37,
+    "geometryType": "Point"
+  },
+  {
+    "id": "lotes-petroleros",
+    "label": "Lotes petroleros",
+    "color": "#7c2d12",
+    "file": "/data/thematic/lotes-petroleros.geojson",
+    "featureCount": 255,
+    "sizeKB": 252,
+    "geometryType": "Polygon"
+  },
+  {
+    "id": "energia-electrica",
+    "label": "Energía eléctrica",
+    "color": "#eab308",
+    "file": "/data/thematic/energia-electrica.geojson",
+    "featureCount": 97,
+    "sizeKB": 20,
+    "geometryType": "Point"
+  }
+]
