@@ -38,6 +38,7 @@ export type MapStyle = {
   basemap: import('./lib/basemaps').BasemapId
   fillOpacity: number
   borderOpacity: number
+  transparentBg: boolean
 }
 
 export type ThematicMeta = {
@@ -109,6 +110,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   basemap: 'carto-light',
   fillOpacity: 0.85,
   borderOpacity: 1,
+  transparentBg: false,
 }
 
 function clearAll<P extends Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {

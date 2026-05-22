@@ -106,6 +106,13 @@ export function StyleControls() {
         onChange={v => setMapStyle({ isolateCountry: v })}
       />
 
+      <Toggle
+        label="Fondo transparente"
+        hint="Sin color de fondo (para exportar / combinar)"
+        checked={style.transparentBg}
+        onChange={v => setMapStyle({ transparentBg: v })}
+      />
+
       {level === 'adm2' && (
         <Toggle
           label="Bordes de estados arriba"

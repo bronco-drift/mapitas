@@ -37,6 +37,7 @@ function MapBootstrap({ bgColor }: { bgColor: string }) {
   // sincronizamos el background imperativamente cuando cambia desde el sidebar.
   useEffect(() => {
     map.getContainer().style.background = bgColor
+    // Sólo es 'transparent' si el caller ya lo seteó (cf. MapView).
   }, [map, bgColor])
 
   return null
@@ -111,14 +112,14 @@ export function MapView() {
   const showOverlay = level === 'adm2' && mapStyle.stateOverlayInMuni && adm1
 
   return (
-    <div className="relative h-full w-full" style={{ background: mapStyle.bgColor }}>
+    <div className="relative h-full w-full" style={{ background: mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor }}>
       <MapContainer
         center={[7, -66]}
         zoom={5}
         minZoom={4}
         maxZoom={12}
         className="h-full w-full"
-        style={{ background: mapStyle.bgColor }}
+        style={{ background: mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor }}
       >
         {!mapStyle.isolateCountry && (() => {
           const bm = getBasemap(mapStyle.basemap)
@@ -131,7 +132,7 @@ export function MapView() {
             />
           )
         })()}
-        <MapBootstrap bgColor={mapStyle.bgColor} />
+        <MapBootstrap bgColor={mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor} />
         {data && (
           <GeoJSON
             key={layerKey}
