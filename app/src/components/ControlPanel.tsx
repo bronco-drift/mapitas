@@ -45,13 +45,14 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
   return (
     <>
-      {/* Backdrop solo en mobile cuando está abierto */}
+      {/* Capa invisible solo en mobile: capta el tap fuera del panel para cerrar,
+          pero NO oscurece el mapa */}
       {mobileOpen && (
         <button
           type="button"
           aria-label="Cerrar panel"
           onClick={onMobileClose}
-          className="fixed inset-0 z-[1040] bg-black/30 md:hidden"
+          className="fixed inset-0 z-[1040] bg-transparent md:hidden"
         />
       )}
 
