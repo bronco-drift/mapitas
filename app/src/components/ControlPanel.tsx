@@ -72,7 +72,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             Cerrar
           </button>
         </div>
-      <header className="border-b border-slate-100 px-5 pt-5 pb-4">
+      <header className="hidden border-b border-slate-100 px-5 pt-5 pb-4 md:block">
         <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
           Mapitas
         </div>
