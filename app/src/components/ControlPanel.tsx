@@ -57,7 +57,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
       <aside
         style={inlineStyle}
-        className="flex shrink-0 flex-col overflow-hidden bg-white md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 fixed inset-x-0 bottom-0 z-[1050] max-h-[85vh] rounded-t-2xl border-t border-slate-200 shadow-2xl md:rounded-none md:shadow-none md:max-h-none"
+        className="flex shrink-0 flex-col overflow-hidden bg-white md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 fixed inset-x-0 bottom-0 z-[1050] h-[45vh] max-h-[45vh] rounded-t-2xl border-t border-slate-200 shadow-2xl md:rounded-none md:shadow-none md:h-full md:max-h-none"
       >
         {/* Handle + close visible solo mobile */}
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2 md:hidden">
