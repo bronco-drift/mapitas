@@ -34,8 +34,8 @@ export function TopBar() {
   const current = LATAM.find(c => c.code === country)
 
   return (
-    <div className="flex h-12 shrink-0 items-center gap-3 border-b border-slate-200 bg-white px-4">
-      <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-400">
+    <div className="flex h-11 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-3 md:h-12 md:gap-3 md:px-4">
+      <div className="hidden text-[10px] font-medium uppercase tracking-[0.14em] text-slate-400 sm:block">
         País
       </div>
       <div className="relative">
@@ -47,7 +47,7 @@ export function TopBar() {
               // por ahora solo VE; cuando habilitemos otros, cambiar país en store
             }
           }}
-          className="appearance-none rounded-md border border-slate-200 bg-white py-1 pl-2 pr-8 text-[13px] text-slate-800 focus:border-slate-900 focus:outline-none"
+          className="appearance-none rounded-md border border-slate-200 bg-white py-1 pl-2 pr-7 text-[12px] text-slate-800 focus:border-slate-900 focus:outline-none md:pr-8 md:text-[13px]"
         >
           {LATAM.map(c => (
             <option key={c.code} value={c.code} disabled={!c.enabled}>
@@ -60,12 +60,13 @@ export function TopBar() {
           ▾
         </span>
       </div>
-      <span className="text-[11px] text-slate-400">
+      <span className="hidden text-[11px] text-slate-400 md:inline">
         {current?.flag} {current?.name}
       </span>
-      <div className="ml-auto flex items-center gap-2 text-[10px] uppercase tracking-wider text-slate-400">
+      <div className="ml-auto flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-slate-400 md:gap-2">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-        Local · sin red
+        <span className="hidden sm:inline">Local · sin red</span>
+        <span className="sm:hidden">Local</span>
       </div>
     </div>
   )

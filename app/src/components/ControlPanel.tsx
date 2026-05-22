@@ -1,5 +1,19 @@
+import { useEffect, useState } from 'react'
 import { useStore } from '../store'
 import { PALETTE_OPTIONS, paletteGradient, getPaletteStops } from '../lib/color-scale'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false,
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return isMobile
+}
 import { formatIndicatorValue } from '../data/indicators'
 import { Section } from './Section'
 import { IndicatorsList } from './IndicatorsList'
@@ -8,18 +22,54 @@ import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
 
-export function ControlPanel() {
+type Props = {
+  mobileOpen?: boolean
+  onMobileClose?: () => void
+}
+
+export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const level = useStore(s => s.level)
   const setLevel = useStore(s => s.setLevel)
   const selected = useStore(s => s.selected)
   const source = useStore(s => s.source)
   const stats = useStore(s => s.stats)
   const clearSource = useStore(s => s.clearSource)
+  const isMobile = useIsMobile()
 
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
+  // Solo aplicamos transform inline cuando estamos en mobile; en desktop el
+  // aside ocupa su lugar normal por las clases md:relative.
+  const inlineStyle = isMobile
+    ? { transform: mobileOpen ? 'translateY(0)' : 'translateY(100%)' }
+    : undefined
 
   return (
-    <aside className="flex h-full w-[320px] shrink-0 flex-col overflow-hidden border-r border-slate-200 bg-white">
+    <>
+      {/* Backdrop solo en mobile cuando está abierto */}
+      {mobileOpen && (
+        <button
+          type="button"
+          aria-label="Cerrar panel"
+          onClick={onMobileClose}
+          className="fixed inset-0 z-[1040] bg-black/30 md:hidden"
+        />
+      )}
+
+      <aside
+        style={inlineStyle}
+        className="flex shrink-0 flex-col overflow-hidden bg-white md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 fixed inset-x-0 bottom-0 z-[1050] max-h-[85vh] rounded-t-2xl border-t border-slate-200 shadow-2xl md:rounded-none md:shadow-none md:max-h-none"
+      >
+        {/* Handle + close visible solo mobile */}
+        <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2 md:hidden">
+          <span className="h-1 w-10 rounded-full bg-slate-300" />
+          <button
+            type="button"
+            onClick={onMobileClose}
+            className="text-[12px] text-slate-500 hover:text-slate-900"
+          >
+            Cerrar
+          </button>
+        </div>
       <header className="border-b border-slate-100 px-5 pt-5 pb-4">
         <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
           Mapitas
@@ -152,7 +202,8 @@ export function ControlPanel() {
       <footer className="border-t border-slate-100 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
         Base: IGVSB / Provita (CC BY 4.0). Datos: INE, OVV, estimaciones 2026.
       </footer>
-    </aside>
+      </aside>
+    </>
   )
 }
 
