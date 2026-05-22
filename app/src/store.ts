@@ -130,9 +130,10 @@ export const useStore = create<State & Actions>((set, get) => ({
   async loadGeoData() {
     set({ loading: true, loadError: null })
     try {
+      const base = import.meta.env.BASE_URL
       const [r1, r2] = await Promise.all([
-        fetch('/data/venezuela-adm1-enriched.geojson'),
-        fetch('/data/venezuela-adm2-enriched.geojson'),
+        fetch(`${base}data/venezuela-adm1-enriched.geojson`),
+        fetch(`${base}data/venezuela-adm2-enriched.geojson`),
       ])
       if (!r1.ok || !r2.ok) throw new Error('No se pudo cargar el mapa base')
       const adm1 = (await r1.json()) as AdmGeoJSON<Adm1Props>
@@ -242,12 +243,15 @@ export const useStore = create<State & Actions>((set, get) => ({
   async loadThematicManifest() {
     if (Object.keys(get().thematic).length > 0) return
     try {
-      const res = await fetch('/data/thematic/manifest.json')
+      const base = import.meta.env.BASE_URL
+      const res = await fetch(`${base}data/thematic/manifest.json`)
       if (!res.ok) return
       const list = (await res.json()) as ThematicMeta[]
       const initial: Record<string, ThematicState> = {}
       for (const meta of list) {
-        initial[meta.id] = { meta, enabled: false, loading: false, data: null }
+        // El manifest guarda paths absolutos /data/thematic/x.geojson — convertir a relativos
+        const file = meta.file.startsWith('/') ? `${base.replace(/\/$/, '')}${meta.file}` : meta.file
+        initial[meta.id] = { meta: { ...meta, file }, enabled: false, loading: false, data: null }
       }
       set({ thematic: initial })
     } catch (err) {
