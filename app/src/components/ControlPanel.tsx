@@ -148,9 +148,6 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           }
         >
           <IndicatorsList />
-          <div className="mt-3 border-t border-slate-100 pt-3">
-            <DataUploader />
-          </div>
         </Section>
 
         <Section title="Capas" collapsible defaultCollapsed>
@@ -210,6 +207,11 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             )}
           </Section>
         )}
+      </div>
+
+      {/* Upload CSV/Excel — fijado al fondo, arriba del footer */}
+      <div className="border-t border-slate-100 px-5 py-3">
+        <DataUploader />
       </div>
 
       <footer className="border-t border-slate-100 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
