@@ -45,7 +45,7 @@ export function StyleControls() {
         </div>
         <input
           type="range"
-          min={0.3}
+          min={0}
           max={3}
           step={0.1}
           value={style.lineWidth}
