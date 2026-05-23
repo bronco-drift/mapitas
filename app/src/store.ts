@@ -21,7 +21,7 @@ import {
   applyIndicatorToAdm2,
   type IndicatorStats,
 } from './lib/apply-indicator'
-import { getIndicator, type Indicator } from './data/indicators'
+import { getIndicator, INDICATORS, type Indicator } from './data/indicators'
 
 export type DataSource =
   | { kind: 'indicator'; indicator: Indicator }
@@ -38,6 +38,9 @@ export type MapStyle = {
   stateOverlayInMuni: boolean
   customStart: string
   customEnd: string
+  // 0..1 — posición del centro del gradiente. 0.5 = lineal estándar.
+  // Mover hacia 0 = el lado izq del gradiente se comprime, el der se estira.
+  paletteMidpoint: number
   basemap: import('./lib/basemaps').BasemapId
   fillOpacity: number
   borderOpacity: number
@@ -63,9 +66,12 @@ export type ThematicState = {
   error?: string | null
 }
 
+export type PanelTab = 'datos' | 'capas' | 'estilo'
+
 type State = {
   level: AdmLevel
   country: 'VE'
+  tab: PanelTab
   adm0: AdmGeoJSON<Adm0Props> | null
   adm1: AdmGeoJSON<Adm1Props> | null
   adm2: AdmGeoJSON<Adm2Props> | null
@@ -104,6 +110,7 @@ type Actions = {
   clearSource: () => void
   setMapStyle: (patch: Partial<MapStyle>) => void
   setCountry: (code: 'VE') => void
+  setTab: (tab: PanelTab) => void
   loadThematicManifest: () => Promise<void>
   toggleThematic: (id: string) => Promise<void>
   resetSettings: () => void
@@ -117,8 +124,9 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   bgColor: '#f1f5f9',
   isolateCountry: false,
   stateOverlayInMuni: false,
-  customStart: '#fde68a',
-  customEnd: '#7c2d12',
+  customStart: '#f7fbff',
+  customEnd: '#08306b',
+  paletteMidpoint: 0.5,
   basemap: 'carto-light',
   fillOpacity: 0.85,
   borderOpacity: 1,
@@ -143,13 +151,14 @@ export const useStore = create<State & Actions>()(
     (set, get) => ({
   level: 'adm1',
   country: 'VE',
+  tab: 'datos',
   adm0: null,
   adm1: null,
   adm2: null,
   loading: false,
   loadError: null,
   source: null,
-  palette: 'reds',
+  palette: 'blues',
   stats: null,
   selected: null,
   mapStyle: DEFAULT_MAP_STYLE,
@@ -189,11 +198,14 @@ export const useStore = create<State & Actions>()(
       const adm2 = topoFeature(topo2, firstObj(topo2)) as unknown as AdmGeoJSON<Adm2Props>
 
       set({ adm0, adm1, adm2, loading: false })
-      // Restaurar indicador persistido (sólo cuando se cargó la data base)
+      // Restaurar indicador persistido o auto-seleccionar el primero
       const sourceId = get()._persistedSourceId
       if (sourceId) {
         get().selectIndicator(sourceId)
         set({ _persistedSourceId: null })
+      } else if (!get().source && INDICATORS[0]) {
+        // Primera carga: seleccionar el primer indicador disponible
+        get().selectIndicator(INDICATORS[0].id)
       }
     } catch (err) {
       set({ loading: false, loadError: String(err) })
@@ -256,15 +268,14 @@ export const useStore = create<State & Actions>()(
 
     if (source.kind === 'indicator') {
       const { customRange } = get()
-      const cr = { min: customRange.min, max: customRange.max }
       if (level === 'adm0' && adm0) {
         const { geo, stats } = applyIndicatorToAdm0(adm0, source.indicator, palette, custom)
         set({ adm0: geo, stats })
       } else if (level === 'adm1') {
-        const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom, cr)
+        const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom, customRange)
         set({ adm1: geo, stats })
       } else if (level === 'adm2') {
-        const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom, cr)
+        const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom, customRange)
         set({ adm2: geo, stats })
       }
       return
@@ -304,6 +315,10 @@ export const useStore = create<State & Actions>()(
 
   setCountry(code) {
     set({ country: code })
+  },
+
+  setTab(tab) {
+    set({ tab })
   },
 
   resetSettings() {
@@ -395,6 +410,7 @@ export const useStore = create<State & Actions>()(
       partialize: state => ({
         level: state.level,
         palette: state.palette,
+        tab: state.tab,
         mapStyle: state.mapStyle,
         customRange: state.customRange,
         _persistedSourceId:

@@ -47,19 +47,32 @@ function fillStyleFor(style: MapStyle): (feature?: Feature) => PathOptions {
   return feature => {
     const props = feature?.properties as Adm1Props | Adm2Props | undefined
     const fillColor = props?._color ?? '#e5e7eb'
-    // Sin bordes ON o grosor bajo: usar fillColor como stroke (invisible + tapa
-    // gaps geométricos entre polígonos vecinos).
-    const noBordersMode = style.noBorders || style.lineWidth < 0.5
-    const strokeColor = noBordersMode ? fillColor : style.borderColor
-    // Leaflet con weight 0 a veces no renderiza el path. Forzamos 0.5 mínimo
-    // (irrelevante visualmente porque matchea el fill).
-    const weight = noBordersMode ? 0.5 : style.lineWidth
+
+    // Cuando "Sin bordes" está ON: stroke grueso (1.7px) del mismo color del
+    // fill, ambos al 100% de opacidad. La opacidad < 1 + stroke superpuesto
+    // genera halos por alpha-compositing acumulado, así que en este modo
+    // ignoramos los sliders de opacidad y forzamos 1.
+    if (style.noBorders) {
+      const op = props?._matched ? 1 : 0.6
+      return {
+        fillColor,
+        color: fillColor,
+        weight: 1.7,
+        fillOpacity: op,
+        opacity: op,
+      }
+    }
+
+    // Grosor bajo: mismo truco pero con weight del slider (mínimo 0.5)
+    const useFillForStroke = style.lineWidth < 0.5
+    const strokeColor = useFillForStroke ? fillColor : style.borderColor
+    const weight = useFillForStroke ? Math.max(style.lineWidth, 0.5) : style.lineWidth
     return {
       fillColor,
       color: strokeColor,
       weight,
-      fillOpacity: (props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)),
-      opacity: style.noBorders ? 0 : style.borderOpacity,
+      fillOpacity: props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5),
+      opacity: style.borderOpacity,
     }
   }
 }
@@ -75,10 +88,10 @@ function stateOverlayStyle(style: MapStyle): PathOptions {
 }
 
 function hoverStyle(style: MapStyle): PathOptions {
+  // Sólo resalta el borde — NO toca fillOpacity para no pisar el slider del user
   return {
     weight: Math.max(style.lineWidth * 3, 1.8),
     color: '#0f172a',
-    fillOpacity: 0.92,
   }
 }
 
@@ -95,9 +108,19 @@ export function MapView() {
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
   const activeThematic = Object.values(thematic).filter(t => t.enabled && t.data)
+  // Cuando el basemap es "solid", usa el mismo bgColor del style (el color picker "Fondo").
+  // Cuando es "transparent", transparente. Si no, el bgColor solo se ve si el basemap real falla.
+  const isSolidBasemap = mapStyle.basemap === 'solid'
+  const effectiveBg = mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor
+  // Esconde tiles si "isolate" o si el basemap es solid (no hay tiles que cargar)
+  const hideBasemap = mapStyle.isolateCountry || isSolidBasemap
 
   const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<Adm0Props | Adm1Props | Adm2Props> | null
 
+  // Sólo incluimos cosas que afectan la *forma* de los datos (qué features
+  // hay, qué colores tiene cada uno por el indicador). Los cambios de estilo
+  // (border, opacities, width) se aplican imperativamente abajo vía setStyle,
+  // así NO desmontamos cientos de polígonos en cada tick del color picker.
   const layerKey = useMemo(() => {
     if (!data) return 'empty'
     const sourceKey =
@@ -106,29 +129,71 @@ export function MapView() {
         : source?.kind === 'upload'
           ? `u:${source.dataset.filename}:${source.dataset.valueColumn ?? ''}:${source.dataset.geoColumn ?? ''}`
           : 'none'
-    return `${level}-${palette}-${sourceKey}-${data.features.length}-${mapStyle.lineWidth}-${mapStyle.borderColor}`
-  }, [data, level, palette, source, mapStyle.lineWidth, mapStyle.borderColor])
+    return [level, palette, sourceKey, data.features.length].join('-')
+  }, [data, level, palette, source])
 
   const overlayKey = useMemo(() => {
     if (!adm1) return 'no-overlay'
-    return `overlay-${mapStyle.lineWidth}-${mapStyle.borderColor}-${level}`
-  }, [adm1, mapStyle.lineWidth, mapStyle.borderColor, level])
+    return `overlay-${level}`
+  }, [adm1, level])
 
   const layerRef = useRef<L.GeoJSON | null>(null)
+  const overlayRef = useRef<L.GeoJSON | null>(null)
+  // Marcador para distinguir "primera vez que veo esta layer" vs "data cambió
+  // dentro de la misma layer". react-leaflet sólo aplica data en mount.
+  const lastLayerRef = useRef<L.GeoJSON | null>(null)
+
+  // Cuando data cambia SIN que la key haga remount (cambia palette custom,
+  // colores start/end del custom, customRange), react-leaflet no propaga el
+  // nuevo data al Leaflet layer — los _color recién calculados nunca se ven.
+  // Fix: re-sincronizamos imperativamente con clearLayers + addData.
+  useEffect(() => {
+    const layer = layerRef.current
+    if (!layer || !data) return
+    if (lastLayerRef.current !== layer) {
+      // Layer recién montada o remontada via key: react-leaflet ya construyó
+      // la layer con el data correcto. No tocar.
+      lastLayerRef.current = layer
+      return
+    }
+    layer.clearLayers()
+    layer.addData(data as never)
+  }, [data])
+
+  // Re-aplicar estilos imperativamente cuando cambia mapStyle. Esto evita
+  // remount completo del GeoJSON en cada tick del color picker, que era lo
+  // que hacía "romper" visualmente al cambiar el color de borde.
+  // Importante: actualizamos también options.style para que el resetStyle()
+  // que dispara el hover-out vuelva al estilo nuevo, no al de cuando se montó.
+  useEffect(() => {
+    const layer = layerRef.current
+    if (!layer) return
+    const styleFn = fillStyleFor(mapStyle)
+    layer.options.style = styleFn
+    layer.setStyle(styleFn)
+  }, [mapStyle])
+
+  useEffect(() => {
+    const layer = overlayRef.current
+    if (!layer) return
+    const styleObj = stateOverlayStyle(mapStyle)
+    layer.options.style = styleObj
+    layer.setStyle(styleObj)
+  }, [mapStyle])
 
   const showOverlay = level === 'adm2' && mapStyle.stateOverlayInMuni && adm1
 
   return (
-    <div className="relative h-full w-full" style={{ background: mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor }}>
+    <div className="relative h-full w-full" style={{ background: effectiveBg }}>
       <MapContainer
         center={[7, -66]}
         zoom={5}
         minZoom={4}
         maxZoom={12}
         className="h-full w-full"
-        style={{ background: mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor }}
+        style={{ background: effectiveBg }}
       >
-        {!mapStyle.isolateCountry && (() => {
+        {!hideBasemap && (() => {
           const bm = getBasemap(mapStyle.basemap)
           return (
             <TileLayer
@@ -139,7 +204,7 @@ export function MapView() {
             />
           )
         })()}
-        <MapBootstrap bgColor={mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor} />
+        <MapBootstrap bgColor={effectiveBg} />
         {data && (
           <GeoJSON
             key={layerKey}
@@ -215,6 +280,7 @@ export function MapView() {
         {showOverlay && (
           <GeoJSON
             key={overlayKey}
+            ref={overlayRef}
             data={adm1 as never}
             style={stateOverlayStyle(mapStyle)}
             interactive={false}

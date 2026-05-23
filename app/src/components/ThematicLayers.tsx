@@ -6,11 +6,7 @@ export function ThematicLayersList() {
 
   const entries = Object.values(thematic)
   if (entries.length === 0) {
-    return (
-      <div className="text-[11px] italic text-slate-400">
-        Cargando catálogo…
-      </div>
-    )
+    return <div className="text-[11px] italic text-slate-400">Cargando catálogo…</div>
   }
 
   return (

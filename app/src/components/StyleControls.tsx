@@ -7,7 +7,26 @@ export function StyleControls() {
   const level = useStore(s => s.level)
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
+      {/* Orden pedido: Paleta (vive en PaletteSelector arriba) → Fondo → Borde → Mapa base → resto */}
+
+      {/* Colores Fondo + Borde en línea */}
+      <div className="grid grid-cols-2 gap-2">
+        <ColorField
+          label="Fondo"
+          value={style.bgColor}
+          onChange={v => setMapStyle({ bgColor: v })}
+          hint={style.basemap === 'solid' ? 'Color del mapa base sólido' : 'Se ve cuando no hay tiles'}
+        />
+        <ColorField
+          label="Borde"
+          value={style.borderColor}
+          onChange={v => setMapStyle({ borderColor: v })}
+          hint="Color de los bordes de los polígonos"
+        />
+      </div>
+
+      {/* Mapa base */}
       <div>
         <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-500">
           Mapa base
@@ -27,10 +46,15 @@ export function StyleControls() {
                   : 'border-slate-200 hover:border-slate-400'
               } ${style.isolateCountry ? 'opacity-40 cursor-not-allowed' : ''}`}
             >
-              <span className="block h-5" style={{ background: b.preview }} />
-              <span className={`block px-1 py-0.5 text-center ${
-                style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
-              }`}>
+              <span
+                className="block h-5"
+                style={{ background: b.id === 'solid' ? style.bgColor : b.preview }}
+              />
+              <span
+                className={`block px-1 py-0.5 text-center ${
+                  style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+                }`}
+              >
                 {b.short}
               </span>
             </button>
@@ -62,48 +86,41 @@ export function StyleControls() {
         />
       </div>
 
-      <div>
+      <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
         <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
           <span>Opacidad relleno</span>
-          <span className="font-normal text-slate-400">{Math.round(style.fillOpacity * 100)}%</span>
+          <span className="font-normal text-slate-400">
+            {style.noBorders ? '100%' : `${Math.round(style.fillOpacity * 100)}%`}
+          </span>
         </div>
         <input
           type="range"
           min={0}
           max={1}
           step={0.05}
-          value={style.fillOpacity}
+          value={style.noBorders ? 1 : style.fillOpacity}
+          disabled={style.noBorders}
           onChange={e => setMapStyle({ fillOpacity: parseFloat(e.target.value) })}
           className="w-full accent-slate-900"
         />
       </div>
 
-      <div>
+      <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
         <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
           <span>Opacidad borde</span>
-          <span className="font-normal text-slate-400">{Math.round(style.borderOpacity * 100)}%</span>
+          <span className="font-normal text-slate-400">
+            {style.noBorders ? '100%' : `${Math.round(style.borderOpacity * 100)}%`}
+          </span>
         </div>
         <input
           type="range"
           min={0}
           max={1}
           step={0.05}
-          value={style.borderOpacity}
+          value={style.noBorders ? 1 : style.borderOpacity}
+          disabled={style.noBorders}
           onChange={e => setMapStyle({ borderOpacity: parseFloat(e.target.value) })}
           className="w-full accent-slate-900"
-        />
-      </div>
-
-      <div className="flex items-center gap-3">
-        <ColorField
-          label="Borde"
-          value={style.borderColor}
-          onChange={v => setMapStyle({ borderColor: v })}
-        />
-        <ColorField
-          label="Fondo"
-          value={style.bgColor}
-          onChange={v => setMapStyle({ bgColor: v })}
         />
       </div>
 
@@ -137,25 +154,30 @@ function ColorField({
   label,
   value,
   onChange,
+  hint,
 }: {
   label: string
   value: string
   onChange: (v: string) => void
+  hint?: string
 }) {
+  // Compact: label arriba + hex abajo a la derecha del color swatch.
+  // El hint vive como tooltip (title) — el side-by-side no tiene ancho para
+  // mostrar texto descriptivo sin saturarse.
   return (
-    <label className="flex flex-1 items-center gap-2">
+    <label className="flex items-center gap-2" title={hint}>
       <input
         type="color"
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="h-7 w-7 cursor-pointer rounded border border-slate-200 bg-white p-0"
+        className="h-7 w-7 shrink-0 cursor-pointer rounded border border-slate-200 bg-white p-0"
         aria-label={label}
       />
-      <div className="min-w-0">
-        <div className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
+      <div className="min-w-0 flex-1 leading-tight">
+        <div className="truncate text-[10px] font-medium uppercase tracking-wider text-slate-500">
           {label}
         </div>
-        <div className="font-mono text-[10px] text-slate-400">{value.toUpperCase()}</div>
+        <div className="truncate font-mono text-[10px] text-slate-400">{value.toUpperCase()}</div>
       </div>
     </label>
   )

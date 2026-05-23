@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useStore } from '../store'
-import { PALETTE_OPTIONS, paletteGradient, getPaletteStops } from '../lib/color-scale'
+import { PALETTE_OPTIONS, PALETTE_EXTRA, paletteGradient, getPaletteStops } from '../lib/color-scale'
+import { RangeEditor } from './RangeEditor'
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(
@@ -21,7 +22,6 @@ import { DataUploader } from './DataUploader'
 import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
-import { ClassificationPanel } from './ClassificationPanel'
 
 type Props = {
   mobileOpen?: boolean
@@ -36,6 +36,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const stats = useStore(s => s.stats)
   const clearSource = useStore(s => s.clearSource)
   const resetSettings = useStore(s => s.resetSettings)
+  const tab = useStore(s => s.tab)
+  const setTab = useStore(s => s.setTab)
   const isMobile = useIsMobile()
 
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
@@ -85,88 +87,105 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </p>
       </header>
 
+      {/* Nivel siempre visible arriba — afecta todo */}
+      <div className="border-b border-slate-100 px-5 py-3">
+        <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
+          <button
+            type="button"
+            onClick={() => setLevel('adm0')}
+            className={`flex-1 rounded px-2.5 py-1 transition ${
+              level === 'adm0' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            País
+          </button>
+          <button
+            type="button"
+            onClick={() => setLevel('adm1')}
+            className={`flex-1 rounded px-2.5 py-1 transition ${
+              level === 'adm1' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            Estados
+          </button>
+          <button
+            type="button"
+            onClick={() => setLevel('adm2')}
+            className={`flex-1 rounded px-2.5 py-1 transition ${
+              level === 'adm2' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            Municipios
+          </button>
+        </div>
+      </div>
+
+      {/* Segmented toggle Datos / Capas / Estilo — mismo estilo que Nivel */}
+      <div className="border-b border-slate-100 px-5 pb-3">
+        <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
+          {(['datos', 'capas', 'estilo'] as const).map(t => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              className={`flex-1 rounded px-2.5 py-1 transition ${
+                tab === t
+                  ? 'bg-white text-slate-900 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              {t === 'datos' ? 'Datos' : t === 'capas' ? 'Capas' : 'Estilo'}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="flex-1 overflow-y-auto">
-        <Section title="Nivel">
-          <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
-            <button
-              type="button"
-              onClick={() => setLevel('adm0')}
-              className={`flex-1 rounded px-2.5 py-1 transition ${
-                level === 'adm0'
-                  ? 'bg-white text-slate-900 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
+        {tab === 'datos' && (
+          <>
+            {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'state' && (
+              <div className="border-b border-slate-100 px-5 py-2 text-[10px] text-slate-400">
+                Indicador estatal heredado a cada municipio
+              </div>
+            )}
+            {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'municipality' && (
+              <div className="border-b border-slate-100 px-5 py-2 text-[10px] text-slate-400">
+                Datos municipales · estados sin desglose usan agregado
+              </div>
+            )}
+            <Section
+              title="Indicadores"
+              action={
+                source ? (
+                  <button
+                    type="button"
+                    onClick={clearSource}
+                    className="text-[10px] uppercase tracking-wider text-slate-400 hover:text-slate-700"
+                  >
+                    limpiar
+                  </button>
+                ) : null
+              }
             >
-              País
-            </button>
-            <button
-              type="button"
-              onClick={() => setLevel('adm1')}
-              className={`flex-1 rounded px-2.5 py-1 transition ${
-                level === 'adm1'
-                  ? 'bg-white text-slate-900 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Estados
-            </button>
-            <button
-              type="button"
-              onClick={() => setLevel('adm2')}
-              className={`flex-1 rounded px-2.5 py-1 transition ${
-                level === 'adm2'
-                  ? 'bg-white text-slate-900 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Municipios
-            </button>
-          </div>
-          {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'state' && (
-            <div className="mt-2 text-[10px] text-slate-400">
-              Indicador estatal heredado a cada municipio
-            </div>
-          )}
-          {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'municipality' && (
-            <div className="mt-2 text-[10px] text-slate-400">
-              Datos municipales · estados sin desglose usan agregado
-            </div>
-          )}
-        </Section>
+              <IndicatorsList />
+            </Section>
+          </>
+        )}
 
-        <Section
-          title="Datos"
-          action={
-            source ? (
-              <button
-                type="button"
-                onClick={clearSource}
-                className="text-[10px] uppercase tracking-wider text-slate-400 hover:text-slate-700"
-              >
-                limpiar
-              </button>
-            ) : null
-          }
-        >
-          <IndicatorsList />
-        </Section>
-
-        {activeIndicator && (
-          <Section title="Ajuste visual">
-            <ClassificationPanel />
+        {tab === 'capas' && (
+          <Section title="Capas temáticas">
+            <ThematicLayersList />
           </Section>
         )}
 
-        <Section title="Capas" collapsible defaultCollapsed>
-          <ThematicLayersList />
-        </Section>
-
-        <Section title="Estilo" collapsible defaultCollapsed>
-          <div className="space-y-4">
-            <PaletteSelector />
-            <StyleControls />
-          </div>
-        </Section>
+        {tab === 'estilo' && (
+          <Section title="Apariencia">
+            <div className="space-y-4">
+              <PaletteSelector />
+              <StyleControls />
+            </div>
+          </Section>
+        )}
 
         {stats && stats.matched > 0 && (
           <Section title="Leyenda">
@@ -216,10 +235,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         )}
       </div>
 
-      {/* Upload CSV/Excel — fijado al fondo, arriba del footer */}
-      <div className="border-t border-slate-100 px-5 py-3">
-        <DataUploader />
-      </div>
+      {/* Upload CSV/Excel — sólo visible en tab Datos, fijado al fondo */}
+      {tab === 'datos' && (
+        <div className="border-t border-slate-100 px-5 py-3">
+          <DataUploader />
+        </div>
+      )}
 
       <footer className="border-t border-slate-100 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
         <div className="flex items-baseline justify-between gap-2">
@@ -248,28 +269,28 @@ function PaletteSelector() {
   const mapStyle = useStore(s => s.mapStyle)
   const setMapStyle = useStore(s => s.setMapStyle)
   const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
+  const [extraOpen, setExtraOpen] = useState(false)
 
-  // Stops actuales de la paleta seleccionada (predefinida o custom)
   const [currentStart, currentEnd] = getPaletteStops(palette, custom)
 
-  // Al cambiar un color desde los pickers, "convertimos" la paleta a custom
-  // usando esos colores. Si la paleta ya era custom, sólo updateamos el stop.
   function onChangeStart(v: string) {
-    if (palette === 'custom') {
-      setMapStyle({ customStart: v })
-    } else {
+    if (palette === 'custom') setMapStyle({ customStart: v })
+    else {
       setMapStyle({ customStart: v, customEnd: currentEnd })
       setPalette('custom')
     }
   }
   function onChangeEnd(v: string) {
-    if (palette === 'custom') {
-      setMapStyle({ customEnd: v })
-    } else {
+    if (palette === 'custom') setMapStyle({ customEnd: v })
+    else {
       setMapStyle({ customStart: currentStart, customEnd: v })
       setPalette('custom')
     }
   }
+
+  // Previews de paletas usan midpoint geométrico (0.5) — esos son thumbnails,
+  // no dependen del dominio de datos.
+  const previewMid = 0.5
 
   return (
     <div>
@@ -289,31 +310,66 @@ function PaletteSelector() {
                 ? 'border-slate-900 ring-1 ring-slate-900'
                 : 'border-slate-200 hover:border-slate-400'
             }`}
-            style={{ background: paletteGradient(p.id, custom) }}
+            style={{ background: paletteGradient(p.id, custom, previewMid) }}
           />
         ))}
+        <button
+          type="button"
+          onClick={() => setExtraOpen(o => !o)}
+          aria-label="Más paletas"
+          title="Más paletas"
+          className={`h-7 rounded-sm border border-slate-300 bg-white text-[14px] leading-none text-slate-500 transition hover:border-slate-500 ${
+            extraOpen ? 'border-slate-900 text-slate-900' : ''
+          }`}
+        >
+          {extraOpen ? '−' : '+'}
+        </button>
       </div>
-      <div className="mt-2 flex items-center gap-2">
+
+      {extraOpen && (
+        <div className="mt-1 grid grid-cols-6 gap-1">
+          {PALETTE_EXTRA.map(p => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => setPalette(p.id)}
+              title={p.label}
+              aria-label={p.label}
+              className={`h-7 rounded-sm border transition ${
+                palette === p.id
+                  ? 'border-slate-900 ring-1 ring-slate-900'
+                  : 'border-slate-200 hover:border-slate-400'
+              }`}
+              style={{ background: paletteGradient(p.id, custom, previewMid) }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Color pickers de start/end siempre visibles — editan la paleta.
+          El editor de rango con histograma + 3 handles vive abajo. */}
+      <div className="mt-3 flex items-center gap-2 px-2">
         <input
           type="color"
           value={currentStart}
           onChange={e => onChangeStart(e.target.value)}
-          className="h-6 w-6 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          className="h-6 w-6 shrink-0 cursor-pointer rounded border border-slate-200 bg-white p-0"
           aria-label="Color inicial"
-          title="Color inicial"
         />
-        <div
-          className="h-2 flex-1 rounded-sm"
-          style={{ background: paletteGradient(palette, custom) }}
-        />
+        <div className="flex-1 text-center text-[10px] uppercase tracking-wider text-slate-400">
+          rango y centro
+        </div>
         <input
           type="color"
           value={currentEnd}
           onChange={e => onChangeEnd(e.target.value)}
-          className="h-6 w-6 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          className="h-6 w-6 shrink-0 cursor-pointer rounded border border-slate-200 bg-white p-0"
           aria-label="Color final"
-          title="Color final"
         />
+      </div>
+
+      <div className="mt-2">
+        <RangeEditor />
       </div>
     </div>
   )

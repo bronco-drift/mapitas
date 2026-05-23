@@ -30,13 +30,18 @@ export function applyIndicatorToAdm1(
   indicator: Indicator,
   palette: PaletteId,
   custom?: CustomStops,
-  customRange?: { min: number | null; max: number | null },
+  customRange?: { min: number | null; mid: number | null; max: number | null },
 ): { geo: AdmGeoJSON<Adm1Props>; stats: IndicatorStats } {
   const values = valuesForRange(indicator, 'adm1')
   const autoMin = values.length > 0 ? Math.min(...values) : 0
   const autoMax = values.length > 0 ? Math.max(...values) : 0
   const min = customRange?.min ?? autoMin
   const max = customRange?.max ?? autoMax
+  // mid se interpreta como un valor absoluto del dominio. Lo convertimos al %
+  // que espera colorScale para reshape la curva del gradiente.
+  const midRatio = customRange?.mid != null && max > min
+    ? Math.max(0.05, Math.min(0.95, (customRange.mid - min) / (max - min)))
+    : 0.5
 
   const lookup = indicator.aggregation === 'municipality'
     ? indicator.stateAggregate ?? {}
@@ -51,7 +56,7 @@ export function applyIndicatorToAdm1(
       properties: {
         ...f.properties,
         _value: value ?? null,
-        _color: value != null ? colorScale(value, min, max, palette, custom) : null,
+        _color: value != null ? colorScale(value, min, max, palette, custom, midRatio) : null,
         _matched: value != null,
       },
     }
@@ -76,13 +81,16 @@ export function applyIndicatorToAdm2(
   indicator: Indicator,
   palette: PaletteId,
   custom?: CustomStops,
-  customRange?: { min: number | null; max: number | null },
+  customRange?: { min: number | null; mid: number | null; max: number | null },
 ): { geo: AdmGeoJSON<Adm2Props>; stats: IndicatorStats } {
   const values = valuesForRange(indicator, 'adm2')
   const autoMin = values.length > 0 ? Math.min(...values) : 0
   const autoMax = values.length > 0 ? Math.max(...values) : 0
   const min = customRange?.min ?? autoMin
   const max = customRange?.max ?? autoMax
+  const midRatio = customRange?.mid != null && max > min
+    ? Math.max(0.05, Math.min(0.95, (customRange.mid - min) / (max - min)))
+    : 0.5
 
   const stateAgg = indicator.stateAggregate ?? {}
 
@@ -108,7 +116,7 @@ export function applyIndicatorToAdm2(
       properties: {
         ...f.properties,
         _value: value ?? null,
-        _color: value != null ? colorScale(value, min, max, palette, custom) : null,
+        _color: value != null ? colorScale(value, min, max, palette, custom, midRatio) : null,
         _matched: value != null,
       },
     }

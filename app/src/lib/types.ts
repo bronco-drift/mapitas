@@ -59,4 +59,7 @@ export type UploadedDataset = {
   parentColumn: string | null
 }
 
-export type PaletteId = 'reds' | 'blues' | 'greens' | 'viridis' | 'rdbu' | 'custom'
+export type PaletteId =
+  | 'blues' | 'reds' | 'greens' | 'oranges' | 'purples' | 'teals' | 'pinks' | 'grays'
+  | 'viridis' | 'rdbu' | 'brbg' | 'piyg' | 'spectral'
+  | 'custom'

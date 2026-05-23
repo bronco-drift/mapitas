@@ -2,6 +2,7 @@
 // Si agregás Mapbox, Maptiler o similar más adelante, necesitan token.
 
 export type BasemapId =
+  | 'solid'
   | 'carto-light'
   | 'carto-light-nolabels'
   | 'carto-dark'
@@ -20,6 +21,15 @@ export type Basemap = {
 }
 
 export const BASEMAPS: Basemap[] = [
+  {
+    id: 'solid',
+    label: 'Color sólido',
+    short: 'Sólido',
+    url: '',
+    attribution: '',
+    maxZoom: 19,
+    preview: 'linear-gradient(135deg, #1f2937, #0f172a)',
+  },
   {
     id: 'carto-light',
     label: 'Claro',
