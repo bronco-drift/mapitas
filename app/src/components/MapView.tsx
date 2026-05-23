@@ -5,16 +5,11 @@ import L from 'leaflet'
 import type { Feature } from 'geojson'
 import { useStore } from '../store'
 import type { MapStyle } from '../store'
-import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON, DiasporaProps } from '../lib/types'
+import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
 import { formatIndicatorValue } from '../data/indicators'
 import { getBasemap } from '../lib/basemaps'
 
 const VENEZUELA_BOUNDS = L.latLngBounds(L.latLng(0.5, -73.5), L.latLng(13.0, -58.0))
-// Mundo entero con leve recorte de polos para que la vista no quede tan
-// vertical (Antártida y Groenlandia no se renderizan ya por el filtro del
-// build script). Lat -55 cubre desde Patagonia hasta el norte de Canadá
-// (75°). Lng -170 a 175 cubre todos los meridianos sin partir Asia oriental.
-const WORLD_BOUNDS = L.latLngBounds(L.latLng(-55, -170), L.latLng(75, 175))
 
 // Puente para sacar el zoom de Leaflet hacia React state Y exponer el map
 // hacia afuera vía ref. Necesitamos las dos cosas: leer el zoom para mostrarlo

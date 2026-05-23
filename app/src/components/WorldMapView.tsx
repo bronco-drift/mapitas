@@ -94,11 +94,11 @@ export function WorldMapView() {
   // - Para proyecciones planas (Equal Earth, etc.): fitExtent al rect con
   //   margen interno, para que el mapa entero entre con aire.
   const MARGIN = 24
-  const { proj, pathGen } = useMemo(() => {
+  const pathGen = useMemo(() => {
     const p = PROJECTIONS[projection].factory()
     if (p.rotate) p.rotate(rotation)
     if (!size) {
-      return { proj: p, pathGen: geoPath(p) }
+      return geoPath(p)
     }
 
     // En mobile, el área visible del mapa es lo que NO está cubierto por el
@@ -130,7 +130,7 @@ export function WorldMapView() {
     } else {
       p.translate([size.w / 2, (visibleTop + visibleBottom) / 2])
     }
-    return { proj: p, pathGen: geoPath(p) }
+    return geoPath(p)
   }, [projection, rotation, size, diaspora, isMobile, mobilePanelHeight])
 
   // ─── Interacción: drag + wheel + pinch ──────────────────────────────────

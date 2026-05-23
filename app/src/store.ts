@@ -278,8 +278,8 @@ export const useStore = create<State & Actions>()(
       if (!res.ok) throw new Error('No se pudo cargar el mapa mundial')
       const diaspora = (await res.json()) as AdmGeoJSON<DiasporaProps>
       set({ diaspora, diasporaLoading: false })
-      // Si el user ya cambió a la vista diáspora antes de que cargara, pintar
-      if (get().view === 'diaspora') get().applyMerge()
+      // Si el user ya cambió a la vista global antes de que cargara, pintar
+      if (get().view === 'global') get().applyMerge()
     } catch (err) {
       set({ diasporaLoading: false, loadError: String(err) })
     }
