@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import { useStore } from '../store'
 import { getIndicatorCoverage, type Indicator } from '../data/indicators'
 import type { Adm1Props, Adm2Props } from '../lib/types'
@@ -82,7 +83,12 @@ export function IndicatorCoverageModal({
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  return (
+  // Portal a document.body: el sidebar mobile tiene `transform` para animar
+  // entrada/salida, lo que rompe `position: fixed` de descendientes (queda
+  // posicionado relative al transformed parent, no al viewport). Renderizar
+  // afuera del DOM tree del sidebar fixea eso.
+  if (typeof document === 'undefined') return null
+  return createPortal(
     <div
       className="modal-backdrop fixed inset-0 z-[2000] flex items-center justify-center bg-slate-900/40 p-4"
       onClick={onClose}
@@ -168,6 +174,7 @@ export function IndicatorCoverageModal({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
