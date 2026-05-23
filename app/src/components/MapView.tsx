@@ -43,21 +43,35 @@ function MapBootstrap({ bgColor }: { bgColor: string }) {
   return null
 }
 
+// En modo noBorders, el stroke del mismo color del fill se usa para tapar
+// gaps geométricos entre polígonos. A opacidad 100% el efecto necesita
+// weight grueso (1.7); a opacidad baja el polígono ya está translúcido y
+// un stroke grueso se ve desproporcionado, así que se va achicando.
+//   opacity ≥ 0.9 → weight 1.7  (tapa-gaps al máximo)
+//   opacity ≤ 0.3 → weight 0.5  (mínimo útil)
+//   entre        → interpolación lineal
+function strokeWeightForOpacity(opacity: number): number {
+  if (opacity >= 0.9) return 1.7
+  if (opacity <= 0.3) return 0.5
+  const t = (opacity - 0.3) / (0.9 - 0.3)
+  return 0.5 + t * (1.7 - 0.5)
+}
+
 function fillStyleFor(style: MapStyle): (feature?: Feature) => PathOptions {
   return feature => {
     const props = feature?.properties as Adm1Props | Adm2Props | undefined
     const fillColor = props?._color ?? '#e5e7eb'
 
-    // Cuando "Sin bordes" está ON: stroke grueso (1.7px) del mismo color del
-    // fill. fillOpacity y opacity comparten valor para que TODO el polígono
-    // (relleno + stroke superpuesto) se atenúe parejo cuando el user mueve
-    // el slider de opacidad del relleno.
+    // Cuando "Sin bordes" está ON: stroke del mismo color del fill, weight
+    // que se ajusta a la opacidad. fillOpacity y opacity comparten valor para
+    // que TODO el polígono (relleno + stroke superpuesto) se atenúe parejo
+    // cuando el user mueve el slider.
     if (style.noBorders) {
       const op = props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)
       return {
         fillColor,
         color: fillColor,
-        weight: 1.7,
+        weight: strokeWeightForOpacity(style.fillOpacity),
         fillOpacity: op,
         opacity: op,
       }
