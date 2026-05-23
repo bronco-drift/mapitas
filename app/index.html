@@ -1,13 +1,81 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-VE">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>Mapitas — Mapas y datos abiertos de Venezuela</title>
+    <meta name="description" content="Visualiza indicadores territoriales sobre Venezuela. Mapas coropleticos al instante con datos pre-cargados o tu propio CSV. Funciona 100% en tu navegador, sin servidores." />
+    <meta name="keywords" content="mapas Venezuela, datos abiertos Venezuela, coropletico, choropleth, INE, OVV, Provita, IGVSB, estados, municipios, IDH, poblacion, visualizacion" />
+    <meta name="author" content="Mapitas" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mapitas.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mapitas" />
+    <meta property="og:title" content="Mapitas — Mapas y datos abiertos de Venezuela" />
+    <meta property="og:description" content="Mapas coropleticos al instante con datos pre-cargados o tu propio CSV. 100% en tu navegador." />
+    <meta property="og:url" content="https://mapitas.vercel.app/" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:image" content="https://mapitas.vercel.app/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mapitas — Mapas de Venezuela. Datos al instante." />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mapitas — Mapas y datos abiertos de Venezuela" />
+    <meta name="twitter:description" content="Mapas coropleticos al instante con datos pre-cargados o tu propio CSV. 100% en tu navegador." />
+    <meta name="twitter:image" content="https://mapitas.vercel.app/og-image.svg" />
+
+    <!-- Favicons + PWA -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>app</title>
+    <link rel="mask-icon" href="/favicon.svg" color="#0f172a" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mapitas" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Mapitas",
+        "alternateName": "Mapitas — Mapas de Venezuela",
+        "description": "Mapas coropleticos de Venezuela. Visualiza indicadores territoriales con datos pre-cargados o tu propio CSV.",
+        "url": "https://mapitas.vercel.app/",
+        "applicationCategory": "DataVisualization",
+        "applicationSubCategory": "Choropleth maps",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requires JavaScript. Requires modern browser (Chrome, Firefox, Safari, Edge).",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "inLanguage": "es-VE",
+        "isAccessibleForFree": true,
+        "creator": {
+          "@type": "Organization",
+          "name": "Bronco Drift"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding: 40px; font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h1>Mapitas necesita JavaScript</h1>
+        <p>Esta aplicacion renderiza mapas interactivos en tu navegador. Activa JavaScript para usarla.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

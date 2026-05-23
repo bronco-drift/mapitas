@@ -35,6 +35,28 @@ export function TopBar() {
 
   return (
     <div className="flex h-11 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-3 md:h-12 md:gap-3 md:px-4">
+      <a
+        href="#/"
+        className="flex items-center gap-1.5 text-slate-700 transition hover:text-slate-900"
+        aria-label="Volver al inicio"
+        title="Inicio"
+      >
+        <svg className="h-5 w-5" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg-topbar" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#dbeafe" />
+              <stop offset="100%" stopColor="#3b82f6" />
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="14" fill="#0f172a" />
+          <path
+            d="M14 48 V16 H22 L32 32 L42 16 H50 V48 H42 V28 L34 40 H30 L22 28 V48 Z"
+            fill="url(#lg-topbar)"
+          />
+        </svg>
+        <span className="hidden text-[13px] font-semibold tracking-tight md:inline">Mapitas</span>
+      </a>
+      <span className="hidden h-4 w-px bg-slate-200 sm:inline-block" aria-hidden="true" />
       <div className="hidden text-[10px] font-medium uppercase tracking-[0.14em] text-slate-400 sm:block">
         País
       </div>

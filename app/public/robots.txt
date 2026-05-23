@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mapitas.vercel.app/sitemap.xml
