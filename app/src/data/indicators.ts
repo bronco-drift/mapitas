@@ -68,7 +68,7 @@ export type Indicator = {
 
 const POBLACION_INE_2026: Indicator = {
   id: 'poblacion_ine_2026',
-  label: 'Población oficial 2026',
+  label: 'Población 2026 · INE',
   description: 'Proyección oficial INE basada en censo 2011',
   unit: 'habitantes',
   format: 'number',
@@ -82,7 +82,7 @@ const POBLACION_INE_2026: Indicator = {
 
 const POBLACION_INE_2050: Indicator = {
   id: 'poblacion_ine_2050',
-  label: 'Proyección 2050',
+  label: 'Proyección 2050 · INE',
   description: 'Proyección poblacional al año 2050 del INE',
   unit: 'habitantes',
   format: 'number',
@@ -92,6 +92,31 @@ const POBLACION_INE_2050: Indicator = {
   aggregation: 'municipality',
   data: ineMuniForYear(2050),
   stateAggregate: ineStateForYear(2050),
+}
+
+// ---- Indicadores estatales (legacy, aproximaciones hardcoded) ----
+// Mantenido para no perder data anterior — diferenciado por etiqueta "est. estatal".
+// Para data oficial 2024 ver POBLACION_INE_* (acceso a la serie completa 2000-2050).
+
+const POBLACION_2024: Indicator = {
+  id: 'poblacion_2024',
+  label: 'Población 2024 · est. estatal',
+  description: 'Aproximación estatal preexistente — números redondos',
+  unit: 'habitantes',
+  format: 'number',
+  year: 2024,
+  source: 'Estimaciones preexistentes (aproximación estatal)',
+  note: 'Aproximaciones redondas · ver Población 2026 INE para data oficial',
+  aggregation: 'state',
+  data: {
+    'VE-A': 1_900_000, 'VE-B': 1_500_000, 'VE-C': 550_000, 'VE-D': 1_500_000,
+    'VE-E': 850_000, 'VE-F': 1_400_000, 'VE-G': 2_300_000, 'VE-H': 350_000,
+    'VE-Y': 180_000, 'VE-W': 3_000, 'VE-I': 950_000, 'VE-J': 750_000,
+    'VE-X': 350_000, 'VE-K': 1_800_000, 'VE-L': 900_000, 'VE-M': 2_700_000,
+    'VE-N': 950_000, 'VE-O': 500_000, 'VE-P': 900_000, 'VE-R': 850_000,
+    'VE-S': 1_200_000, 'VE-T': 700_000, 'VE-U': 600_000, 'VE-V': 3_700_000,
+    'VE-Z': 180_000, 'VE-GE': 130_000,
+  },
 }
 
 const HOMICIDIOS: Indicator = {
@@ -124,7 +149,7 @@ const muni = municipalData as MunicipalJson
 
 const POBLACION_2026: Indicator = {
   id: 'poblacion_2026',
-  label: 'Población 2026',
+  label: 'Población 2026 · est. municipal',
   description: 'Población estimada por municipio',
   unit: 'habitantes',
   format: 'number',
@@ -197,6 +222,7 @@ export const INDICATORS: Indicator[] = [
   POBLACION_INE_2026,
   POBLACION_INE_2050,
   POBLACION_2026,
+  POBLACION_2024,
   IDH_2026,
   PIB_PER_CAPITA,
   PIB_TOTAL,
