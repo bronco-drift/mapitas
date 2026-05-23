@@ -25,6 +25,7 @@ npm-debug.log*
 raw-sources/
 data/provita/
 GEOjson files/
+*.zip
 
 # Documento de referencia que dejé en la carpeta (no parte del proyecto)
 /Anexo_Municipios*.html
