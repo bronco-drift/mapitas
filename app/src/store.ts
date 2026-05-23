@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
+import { feature as topoFeature } from 'topojson-client'
+import type { Topology, GeometryCollection } from 'topojson-specification'
 import type {
   Adm0Props,
   Adm1Props,
@@ -160,15 +162,32 @@ export const useStore = create<State & Actions>()(
     set({ loading: true, loadError: null })
     try {
       const base = import.meta.env.BASE_URL
+      // Cargamos TopoJSON (5x más chico) y lo decodificamos a GeoJSON.
+      // La clave: en TopoJSON las fronteras compartidas son arcs únicos;
+      // al decodificar, polígonos vecinos comparten exactamente las mismas
+      // coordenadas → cero gaps visuales.
       const [r0, r1, r2] = await Promise.all([
-        fetch(`${base}data/venezuela-adm0-enriched.geojson`),
-        fetch(`${base}data/venezuela-adm1-enriched.geojson`),
-        fetch(`${base}data/venezuela-adm2-enriched.geojson`),
+        fetch(`${base}data/venezuela-adm0.topojson`),
+        fetch(`${base}data/venezuela-adm1.topojson`),
+        fetch(`${base}data/venezuela-adm2.topojson`),
       ])
       if (!r1.ok || !r2.ok) throw new Error('No se pudo cargar el mapa base')
-      const adm0 = r0.ok ? ((await r0.json()) as AdmGeoJSON<Adm0Props>) : null
-      const adm1 = (await r1.json()) as AdmGeoJSON<Adm1Props>
-      const adm2 = (await r2.json()) as AdmGeoJSON<Adm2Props>
+      const topo0 = r0.ok ? ((await r0.json()) as Topology) : null
+      const topo1 = (await r1.json()) as Topology
+      const topo2 = (await r2.json()) as Topology
+
+      // El nombre del object dentro del topology es el del archivo input
+      // que mapshaper usó. Buscamos el primer GeometryCollection.
+      const firstObj = (topo: Topology) => {
+        const key = Object.keys(topo.objects)[0]
+        return topo.objects[key] as GeometryCollection
+      }
+      const adm0 = topo0
+        ? (topoFeature(topo0, firstObj(topo0)) as unknown as AdmGeoJSON<Adm0Props>)
+        : null
+      const adm1 = topoFeature(topo1, firstObj(topo1)) as unknown as AdmGeoJSON<Adm1Props>
+      const adm2 = topoFeature(topo2, firstObj(topo2)) as unknown as AdmGeoJSON<Adm2Props>
+
       set({ adm0, adm1, adm2, loading: false })
       // Restaurar indicador persistido (sólo cuando se cargó la data base)
       const sourceId = get()._persistedSourceId
