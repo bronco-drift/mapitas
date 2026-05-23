@@ -291,6 +291,69 @@ export function getIndicator(id: string): Indicator | undefined {
   return INDICATORS.find(i => i.id === canonical)
 }
 
+// ─── Cobertura del indicador a un nivel dado ──────────────────────────────
+// Sirve para mostrar en la UI si el indicador aplica al nivel actual y
+// cuántas entidades quedan sin data. Se calcula en O(N) sobre las keys del
+// indicator.data — barato porque son al sumo ~340 entradas.
+
+export type IndicatorCoverage = {
+  covered: number       // entidades con valor numérico
+  total: number         // total de entidades a ese nivel (estados=26 o munis=336)
+  missing: number       // total - covered
+  applies: boolean      // si el indicador es informativo al nivel actual
+  reason?: string       // si no aplica, explicación corta
+}
+
+export function getIndicatorCoverage(
+  indicator: Indicator,
+  level: 'adm0' | 'adm1' | 'adm2',
+  totals: { adm1Count: number; adm2Count: number },
+): IndicatorCoverage {
+  // País: siempre 1 valor (un agregado nacional), no tiene sentido medir
+  // cobertura. Aplica.
+  if (level === 'adm0') {
+    return { covered: 1, total: 1, missing: 0, applies: true }
+  }
+
+  if (level === 'adm1') {
+    // En vista estados, contamos contra los 26 estados.
+    // state aggregation -> usa indicator.data directo
+    // municipality aggregation -> usa stateAggregate precomputado
+    const data =
+      indicator.aggregation === 'state'
+        ? indicator.data
+        : (indicator.stateAggregate ?? {})
+    const covered = Object.values(data).filter(v => typeof v === 'number').length
+    return {
+      covered,
+      total: totals.adm1Count,
+      missing: totals.adm1Count - covered,
+      applies: true,
+    }
+  }
+
+  // level === 'adm2' (municipios)
+  if (indicator.aggregation === 'state') {
+    // Un indicador estatal puede heredarse a sus munis (todos del mismo
+    // estado quedan del mismo color), pero eso no es informativo a nivel muni.
+    // Lo marcamos como "no aplica" para que la UI lo deshabilite.
+    return {
+      covered: 0,
+      total: totals.adm2Count,
+      missing: totals.adm2Count,
+      applies: false,
+      reason: 'Solo a nivel estado',
+    }
+  }
+  const covered = Object.values(indicator.data).filter(v => typeof v === 'number').length
+  return {
+    covered,
+    total: totals.adm2Count,
+    missing: totals.adm2Count - covered,
+    applies: true,
+  }
+}
+
 export function formatIndicatorValue(value: number, indicator: Indicator): string {
   if (indicator.format === 'decimal') return value.toFixed(3)
   if (indicator.format === 'rate') return value.toFixed(1)
