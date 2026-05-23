@@ -1,0 +1,32 @@
+{
+  "type": "FeatureCollection",
+  "_doc": "Capitales de las 24 entidades federales de Venezuela + capital provisional del Esequibo. Coords aprox del centro de cada ciudad (Wikipedia / OSM). Para puntos de capitales municipales (1077 puntos), usar la capa 'centros-poblados'.",
+  "features": [
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-66.9036, 10.4806] }, "properties": { "nombre": "Caracas", "iso": "VE-A", "estado": "Distrito Capital" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-64.6863, 10.1314] }, "properties": { "nombre": "Barcelona", "iso": "VE-B", "estado": "Anzoátegui" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-67.4778, 7.8939] }, "properties": { "nombre": "San Fernando", "iso": "VE-C", "estado": "Apure" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-67.5911, 10.2353] }, "properties": { "nombre": "Maracay", "iso": "VE-D", "estado": "Aragua" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-70.2069, 8.6231] }, "properties": { "nombre": "Barinas", "iso": "VE-E", "estado": "Barinas" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-63.5497, 8.1234] }, "properties": { "nombre": "Ciudad Bolívar", "iso": "VE-F", "estado": "Bolívar" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-68.0078, 10.1620] }, "properties": { "nombre": "Valencia", "iso": "VE-G", "estado": "Carabobo" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-68.5839, 9.6595] }, "properties": { "nombre": "San Carlos", "iso": "VE-H", "estado": "Cojedes" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-69.6711, 11.4036] }, "properties": { "nombre": "Coro", "iso": "VE-I", "estado": "Falcón" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-67.3548, 9.9069] }, "properties": { "nombre": "San Juan de los Morros", "iso": "VE-J", "estado": "Guárico" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-69.3570, 10.0647] }, "properties": { "nombre": "Barquisimeto", "iso": "VE-K", "estado": "Lara" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-71.1561, 8.5897] }, "properties": { "nombre": "Mérida", "iso": "VE-L", "estado": "Mérida" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-67.0461, 10.3389] }, "properties": { "nombre": "Los Teques", "iso": "VE-M", "estado": "Miranda" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-63.1814, 9.7464] }, "properties": { "nombre": "Maturín", "iso": "VE-N", "estado": "Monagas" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-63.8908, 11.0344] }, "properties": { "nombre": "La Asunción", "iso": "VE-O", "estado": "Nueva Esparta" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-69.7378, 9.0420] }, "properties": { "nombre": "Guanare", "iso": "VE-P", "estado": "Portuguesa" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-64.1747, 10.4536] }, "properties": { "nombre": "Cumaná", "iso": "VE-R", "estado": "Sucre" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-72.2250, 7.7669] }, "properties": { "nombre": "San Cristóbal", "iso": "VE-S", "estado": "Táchira" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-70.4333, 9.3667] }, "properties": { "nombre": "Trujillo", "iso": "VE-T", "estado": "Trujillo" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-68.7406, 10.3375] }, "properties": { "nombre": "San Felipe", "iso": "VE-U", "estado": "Yaracuy" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-71.6125, 10.6427] }, "properties": { "nombre": "Maracaibo", "iso": "VE-V", "estado": "Zulia" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-66.6772, 11.9489] }, "properties": { "nombre": "Gran Roque", "iso": "VE-W", "estado": "Dep. Federales" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-66.9347, 10.6017] }, "properties": { "nombre": "La Guaira", "iso": "VE-X", "estado": "La Guaira" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-62.0489, 9.0639] }, "properties": { "nombre": "Tucupita", "iso": "VE-Y", "estado": "Delta Amacuro" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-67.6258, 5.6639] }, "properties": { "nombre": "Puerto Ayacucho", "iso": "VE-Z", "estado": "Amazonas" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-61.5031, 7.3014] }, "properties": { "nombre": "Tumeremo", "iso": "VE-GE", "estado": "Guayana Esequiba", "nota": "Capital provisional fuera del territorio reclamado" } }
+  ]
+}

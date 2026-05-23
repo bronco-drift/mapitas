@@ -96,6 +96,16 @@ export function StyleControls() {
             ))}
           </div>
         )}
+        {!isGlobal && (
+          <div className="mt-3 border-t border-slate-100 pt-3">
+            <Toggle
+              label="Etiquetas"
+              hint="Mostrar nombres de ciudades sobre el mapa"
+              checked={style.showLabels}
+              onChange={v => setMapStyle({ showLabels: v })}
+            />
+          </div>
+        )}
       </Disclosure>
 
       {/* Polígonos — disclosure default expandido (lo más usado después de Color) */}

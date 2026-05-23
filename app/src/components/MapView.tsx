@@ -7,7 +7,7 @@ import { useStore } from '../store'
 import type { MapStyle } from '../store'
 import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
 import { formatIndicatorValue } from '../data/indicators'
-import { getBasemap } from '../lib/basemaps'
+import { getBasemap, CARTO_LABELS_OVERLAY_URL } from '../lib/basemaps'
 
 const VENEZUELA_BOUNDS = L.latLngBounds(L.latLng(0.5, -73.5), L.latLng(13.0, -58.0))
 
@@ -287,6 +287,20 @@ export function MapView() {
             />
           )
         })()}
+        {/* Overlay de etiquetas: tile solo-labels de Carto encima del basemap.
+            Permite usar el basemap limpio (sin nombres) y prender los nombres
+            independiente. Pane "tooltipPane" para que quede sobre los
+            polígonos pero debajo de los markers/tooltips temáticos. */}
+        {mapStyle.showLabels && !mapStyle.isolateCountry && (
+          <TileLayer
+            key="labels-overlay"
+            url={CARTO_LABELS_OVERLAY_URL}
+            attribution=""
+            maxZoom={19}
+            pane="tooltipPane"
+            opacity={0.9}
+          />
+        )}
         <MapBootstrap bgColor={effectiveBg} bounds={VENEZUELA_BOUNDS} />
         <ZoomBridge onChange={setZoom} mapRef={mapRef} />
         {data && (
@@ -345,8 +359,24 @@ export function MapView() {
                 weight: 1,
               })
               const props = feature.properties as Record<string, string | undefined>
-              const label = props.nombre_cen ?? props.nombre ?? Object.values(props)[0]
-              if (label) m.bindTooltip(String(label), { sticky: true, direction: 'top' })
+              const labelKey = t.meta.labelKey
+              const label = labelKey
+                ? props[labelKey]
+                : props.nombre_cen ?? props.nombre ?? Object.values(props)[0]
+              if (label) {
+                // permanentLabels=true → tooltip siempre visible al lado del
+                // punto (capitales de estado). Sin permanent, solo en hover.
+                if (t.meta.permanentLabels) {
+                  m.bindTooltip(String(label), {
+                    permanent: true,
+                    direction: 'right',
+                    offset: [6, 0],
+                    className: 'thematic-label-permanent',
+                  })
+                } else {
+                  m.bindTooltip(String(label), { sticky: true, direction: 'top' })
+                }
+              }
               return m
             }}
             onEachFeature={(feature, layer: Layer) => {

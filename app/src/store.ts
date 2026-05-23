@@ -57,6 +57,9 @@ export type MapStyle = {
   // Mantenemos el type literal acá (no import) para que el bundler no
   // arrastre globe-themes al chunk del store.
   globeTheme: 'day' | 'night' | 'editorial'
+  // Toggle "Etiquetas": muestra overlay de labels (Carto only_labels) encima
+  // del basemap. Permite tener el mapa limpio por default y nombres a demanda.
+  showLabels: boolean
 }
 
 export type ThematicMeta = {
@@ -67,6 +70,12 @@ export type ThematicMeta = {
   featureCount: number
   sizeKB: number
   geometryType: string
+  // Si true (capa de puntos), muestra el label permanente al lado de cada
+  // punto en lugar de solo en hover. Útil para capitales con pocos features.
+  permanentLabels?: boolean
+  // Key del feature.properties que se usa como label visible.
+  // Si no se especifica, usa la primera property encontrada.
+  labelKey?: string
 }
 
 export type ThematicState = {
@@ -164,7 +173,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   customStart: '#f7fbff',
   customEnd: '#08306b',
   paletteMidpoint: 0.5,
-  basemap: 'carto-light',
+  basemap: 'carto-light-nolabels',
   fillOpacity: 0.95,
   borderOpacity: 1,
   transparentBg: false,
@@ -172,6 +181,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   countryBorder: true,
   autoClipExtremes: true,
   globeTheme: 'day',
+  showLabels: false,
 }
 
 function clearAll<P extends Adm0Props | Adm1Props | Adm2Props | DiasporaProps>(
@@ -526,14 +536,14 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
-      version: 4,
+      version: 5,
       // Migraciones:
       //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
       //   v2 → v3: projection default Orthographic + rotation centrada en VE
       //   v3 → v4: fix rotation a [66, -7, 0] para que phi compense la
       //   latitud de Caracas (7°N) y VE quede en el centro absoluto del globo.
-      //   Los users que ya habían cambiado rotation manualmente pierden la
-      //   customización (la mayoría no la tocó).
+      //   v4 → v5: basemap default "Sin nombres" + toggle showLabels en off.
+      //   El mapa arranca limpio; el user activa labels desde Estilo.
       migrate: (persisted, version) => {
         let obj = persisted as Record<string, unknown>
         if (version < 2 && obj?.view === 'diaspora') {
@@ -544,6 +554,19 @@ export const useStore = create<State & Actions>()(
         }
         if (version < 4) {
           obj = { ...obj, rotation: [66, -7, 0] }
+        }
+        if (version < 5) {
+          const ms = (obj.mapStyle as Record<string, unknown> | undefined) ?? {}
+          obj = {
+            ...obj,
+            mapStyle: {
+              ...ms,
+              // Solo cambiar si el user tenía el viejo default (carto-light).
+              // Si había elegido otro basemap (Dark, OSM, etc.), respetamos.
+              basemap: ms.basemap === 'carto-light' ? 'carto-light-nolabels' : ms.basemap,
+              showLabels: false,
+            },
+          }
         }
         return obj as unknown
       },

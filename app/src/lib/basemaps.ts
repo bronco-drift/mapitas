@@ -1,6 +1,13 @@
 // Tile providers gratuitos sin API key.
 // Si agregás Mapbox, Maptiler o similar más adelante, necesitan token.
 
+// Overlay tile de Carto que sólo tiene los nombres (sin polígonos de país,
+// océanos, etc.) y fondo transparente. Se monta encima de cualquier basemap
+// cuando el toggle "Etiquetas" está activo. Permite ver el choropleth limpio
+// con la opción de prender nombres sin elegir un basemap específico.
+export const CARTO_LABELS_OVERLAY_URL =
+  'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png'
+
 export type BasemapId =
   | 'solid'
   | 'carto-light'

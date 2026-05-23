@@ -97,5 +97,16 @@
     "featureCount": 97,
     "sizeKB": 20,
     "geometryType": "Point"
+  },
+  {
+    "id": "ve-state-capitals",
+    "label": "Capitales de estado",
+    "color": "#0f172a",
+    "file": "/data/thematic/ve-state-capitals.geojson",
+    "featureCount": 26,
+    "sizeKB": 3,
+    "geometryType": "Point",
+    "permanentLabels": true,
+    "labelKey": "nombre"
   }
 ]
