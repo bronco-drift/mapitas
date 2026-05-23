@@ -27,7 +27,7 @@ async function clean(filename) {
   const inputText = readFileSync(inputPath, 'utf8')
   const beforeSize = statSync(inputPath).size / 1024
 
-  const cmd = `-i ${filename} -snap interval=0.001 -clean gap-fill-area=200km2 rewind -o ${filename} format=geojson`
+  const cmd = `-i ${filename} -snap interval=0.005 -clean gap-fill-area=500km2 rewind -o ${filename} format=geojson`
   const out = await mapshaper.applyCommands(cmd, { [filename]: inputText })
   const cleanedText = out[filename].toString()
 

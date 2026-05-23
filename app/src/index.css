@@ -18,3 +18,11 @@ html, body, #root {
   border: 0;
 }
 
+/* Anti gaps: el browser hace anti-aliasing en bordes de paths SVG vecinos.
+   geometricPrecision le dice "respetá la geometría, no metas pixels
+   semi-transparentes en los bordes". Mantiene curvas suaves pero elimina
+   las líneas blancas entre polígonos coloreados. */
+.leaflet-overlay-pane svg path {
+  shape-rendering: geometricPrecision;
+}
+
