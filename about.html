@@ -1,0 +1,1804 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Manifiesto — Mapitas</title>
+<meta name="description" content="Mapas de Venezuela. Datos al instante. Por qué existe Mapitas, cómo está construido y hacia dónde va." />
+<meta name="color-scheme" content="light dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+/* ─────────────────────────────────────────────────────────────────
+   Mapitas — Manifiesto. Standalone HTML, sin JS de framework.
+   Estética editorial refined. Fraunces (display/body) + JetBrains Mono
+   (tabular/coordenadas). Slate primario + acentos blue/emerald muy
+   contenidos. Hero/footer slate-900, cuerpo paper-warm.
+───────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Palette */
+  --paper: #fafaf7;
+  --paper-rule: #ebe9e3;
+  --ink: #0d1424;
+  --ink-soft: #3e4860;
+  --ink-mute: #8a93a8;
+  --ink-faint: #c5c8d0;
+  --dark: #0b1120;
+  --dark-soft: #1a2235;
+  --dark-mute: #5a6379;
+  --dark-faint: rgba(255,255,255,0.12);
+  --accent: #2563eb;
+  --accent-soft: #93c5fd;
+  --emerald: #10b981;
+  --amber: #b45309;
+
+  /* Type */
+  --serif: 'Fraunces', 'Iowan Old Style', 'Charter', 'Georgia', serif;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', monospace;
+
+  /* Reading measure */
+  --measure: 38rem;
+  --measure-wide: 56rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-feature-settings: 'kern', 'liga', 'calt';
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 30;
+  font-weight: 380;
+  line-height: 1.6;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; transition: opacity .2s ease; }
+a:hover { opacity: 0.6; }
+
+img, svg { display: block; max-width: 100%; }
+
+::selection { background: #fde68a; color: var(--ink); }
+
+/* ─── Hero ─────────────────────────────────────────────────────── */
+
+.hero {
+  background: var(--dark);
+  color: #f3f4f6;
+  padding: clamp(2rem, 5vw, 4rem) var(--gutter) clamp(4rem, 10vw, 8rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  /* Marco cartográfico decorativo — coordenadas reales de Venezuela
+     (de MapView.tsx: 0.5°N–13°N, 73.5°W–58°W). Muy sutil. */
+  content: '';
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid var(--dark-faint);
+  pointer-events: none;
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dark-mute);
+  margin-bottom: clamp(4rem, 10vw, 8rem);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-top .brand-mark {
+  display: flex; align-items: center; gap: 0.6rem;
+  letter-spacing: 0.02em; text-transform: none; font-size: 13px;
+  color: #f3f4f6;
+}
+
+.hero-top .brand-mark span { font-weight: 500; }
+
+.hero-coords { display: flex; gap: 1.5rem; }
+
+.hero-content {
+  max-width: var(--measure-wide);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero .kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 2rem;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+}
+
+.hero .kicker::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.18);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 320;
+  font-variation-settings: 'SOFT' 100;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.5rem;
+  color: #fafafa;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 320;
+  color: var(--accent-soft);
+}
+
+.hero .lead {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.55;
+  color: #cbd5e1;
+  max-width: 38rem;
+  margin: 0 0 2.5rem;
+  font-weight: 380;
+}
+
+.hero .meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dark-mute);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--dark-faint);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.hero .meta strong { color: #f3f4f6; font-weight: 500; }
+
+.logomark {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--dark-soft);
+  flex-shrink: 0;
+}
+
+/* ─── Layout core: TOC sidebar + main column ────────────────────── */
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+  position: relative;
+}
+
+@media (min-width: 980px) {
+  .page {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    column-gap: 4rem;
+  }
+}
+
+/* TOC */
+.toc {
+  display: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+@media (min-width: 980px) {
+  .toc {
+    display: block;
+    position: sticky;
+    top: 3rem;
+    height: max-content;
+    padding-top: 0.25rem;
+  }
+}
+
+.toc-label {
+  color: var(--ink-faint);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--paper-rule);
+}
+
+.toc ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+.toc a {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: baseline;
+  color: var(--ink-soft);
+  padding: 0.2rem 0;
+}
+.toc a:hover { color: var(--ink); opacity: 1; }
+.toc a .num { color: var(--ink-faint); font-weight: 400; }
+
+/* Main content */
+.content { max-width: var(--measure); }
+
+/* Section */
+section {
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+  border-top: 1px solid var(--paper-rule);
+  position: relative;
+}
+
+section:first-of-type { border-top: 0; padding-top: 0; }
+
+.sect-marker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sect-marker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--paper-rule);
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.85rem, 4.5vw, 2.85rem);
+  font-weight: 360;
+  font-variation-settings: 'SOFT' 60;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 1.5rem;
+  max-width: 30ch;
+}
+
+h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-variation-settings: 'SOFT' 30;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 2.25rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+p { margin: 0 0 1.15rem; }
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+
+/* Drop cap — solo en la sección Misión */
+.dropcap p:first-of-type::first-letter {
+  font-family: var(--serif);
+  font-weight: 280;
+  font-variation-settings: 'SOFT' 100;
+  float: left;
+  font-size: 5.2em;
+  line-height: 0.82;
+  margin: 0.06em 0.08em 0 -0.05em;
+  color: var(--ink);
+}
+
+/* Lead paragraph */
+.lead-p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  font-weight: 380;
+  margin-bottom: 1.5rem;
+}
+
+/* Pull quote */
+.pull {
+  border-left: 2px solid var(--ink);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-variation-settings: 'SOFT' 70;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.pull cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.4rem; margin: 0 0 1.25rem; }
+li { margin-bottom: 0.5rem; line-height: 1.55; }
+li::marker { color: var(--ink-faint); }
+
+ol.numbered { list-style: none; padding: 0; counter-reset: item; }
+ol.numbered li {
+  counter-increment: item;
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.55;
+}
+ol.numbered li::before {
+  content: counter(item, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}
+
+/* Personas grid */
+.personas {
+  display: grid;
+  gap: 0;
+  margin: 2rem 0;
+  border-top: 1px solid var(--paper-rule);
+}
+
+.persona {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--paper-rule);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .persona {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+.persona-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-top: 0.3rem;
+}
+
+.persona-id strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 480;
+  font-variation-settings: 'SOFT' 30;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.persona-body p { margin: 0 0 0.4rem; font-size: 0.95rem; color: var(--ink-soft); }
+.persona-body .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 0.5em;
+}
+
+/* Stats inline */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1.5rem 2rem;
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--paper-rule);
+  border-bottom: 1px solid var(--paper-rule);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat .n {
+  font-family: var(--serif);
+  font-weight: 320;
+  font-variation-settings: 'SOFT' 60;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat .n small { font-size: 0.55em; color: var(--ink-mute); }
+
+.stat .l {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* Tables */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  font-size: 0.95rem;
+}
+.tbl th, .tbl td {
+  text-align: left;
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--paper-rule);
+  vertical-align: top;
+}
+.tbl th {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-bottom: 0.6rem;
+  border-bottom-color: var(--ink-faint);
+}
+.tbl td:first-child { color: var(--ink); }
+.tbl td.mono { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Algorithms — denser */
+.algos { margin: 1.5rem 0; }
+.algo {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--paper-rule);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 720px) {
+  .algo { grid-template-columns: 10rem minmax(0, 1fr); gap: 2rem; }
+}
+
+.algo-name {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  font-weight: 500;
+  padding-top: 0.15rem;
+}
+
+.algo-name small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 400;
+  margin-top: 0.2rem;
+}
+
+.algo-body { font-size: 0.95rem; color: var(--ink-soft); }
+.algo-body p { margin: 0 0 0.5rem; }
+.algo-body code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: rgba(13, 20, 36, 0.05);
+  padding: 0.05em 0.35em;
+  border-radius: 2px;
+  color: var(--ink);
+}
+
+/* Pipeline / ASCII art */
+pre.pipeline {
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  background: transparent;
+  padding: 1.5rem;
+  border: 1px solid var(--paper-rule);
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* Venezuela focus section */
+.venezuela {
+  background: var(--ink);
+  color: #e2e8f0;
+  padding: clamp(3rem, 7vw, 5rem) var(--gutter);
+  margin: 4rem calc(-1 * var(--gutter)) 0;
+  border-radius: 0;
+  position: relative;
+}
+
+@media (min-width: 980px) {
+  .venezuela { margin-right: calc(-1 * (var(--gutter) + 4rem + 14rem)); }
+}
+
+.venezuela .sect-marker { color: var(--dark-mute); }
+.venezuela .sect-marker::after { background: var(--dark-faint); }
+
+.venezuela h2 {
+  color: #fafafa;
+  font-weight: 320;
+  font-variation-settings: 'SOFT' 100;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.venezuela h2 em { font-style: italic; color: var(--accent-soft); }
+
+.venezuela p { color: #cbd5e1; }
+.venezuela strong { color: #fafafa; }
+
+.coord-frame {
+  margin: 2rem 0;
+  border: 1px solid var(--dark-faint);
+  padding: 1.5rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dark-mute);
+  letter-spacing: 0.08em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.coord-frame .ne { text-align: right; }
+.coord-frame .sw { color: #cbd5e1; }
+.coord-frame .se { text-align: right; }
+.coord-frame .center {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #fafafa;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+}
+
+/* Tag list (anti-features) */
+.tags {
+  display: flex; flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+.tags li {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--paper-rule);
+  border-radius: 2px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.tags li::before { content: '×  '; color: var(--ink-faint); }
+
+/* Principles */
+.principle {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--paper-rule);
+  align-items: baseline;
+}
+
+.principle-n {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+}
+
+.principle-name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.principle-body { font-size: 0.95rem; color: var(--ink-soft); }
+
+/* Roadmap */
+.horizon {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--paper-rule);
+}
+
+@media (min-width: 720px) {
+  .horizon { grid-template-columns: 10rem minmax(0, 1fr); gap: 2rem; }
+}
+
+.horizon-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.horizon-label strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 480;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.horizon ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.horizon li {
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--paper-rule);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.horizon li:last-child { border-bottom: 0; }
+.horizon li strong { color: var(--ink); font-weight: 500; }
+
+/* Footer */
+footer.foot {
+  background: var(--dark);
+  color: #94a3b8;
+  padding: clamp(3rem, 6vw, 5rem) var(--gutter) 3rem;
+  border-top: 0;
+  margin-top: 0;
+}
+
+footer.foot .foot-inner {
+  max-width: 86rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 720px) {
+  footer.foot .foot-inner {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+footer.foot h4 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dark-mute);
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+footer.foot p, footer.foot li { font-size: 0.92rem; line-height: 1.5; color: #cbd5e1; }
+footer.foot ul { list-style: none; padding: 0; }
+footer.foot li { margin: 0.4rem 0; }
+footer.foot a { color: #f3f4f6; border-bottom: 1px dotted var(--dark-mute); }
+footer.foot a:hover { border-bottom-color: var(--accent-soft); color: var(--accent-soft); opacity: 1; }
+
+footer.foot .colofon {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--dark-faint);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--dark-mute);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* CTA strip */
+.cta {
+  padding: 2.5rem 0 0;
+  margin-top: 1rem;
+}
+.cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 500;
+  font-variation-settings: 'SOFT' 30;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 0.2rem;
+}
+.cta a:hover { color: var(--accent); border-bottom-color: var(--accent); opacity: 1; }
+.cta a .arr { font-family: var(--mono); font-size: 0.9em; }
+
+/* Mobile TOC trigger replaced by anchor-jump headings; nothing to do */
+
+/* Casos históricos — sección Precedente */
+.cases { margin: 2rem 0 1.5rem; }
+.case {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--paper-rule);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 720px) {
+  .case { grid-template-columns: 9rem minmax(0, 1fr); gap: 2.5rem; }
+}
+
+.case-when {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-top: 0.35rem;
+  line-height: 1.45;
+}
+
+.case-when strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 380;
+  font-variation-settings: 'SOFT' 60;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.case-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.1rem;
+  font-variation-settings: 'SOFT' 30;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+  display: block;
+  letter-spacing: -0.005em;
+}
+
+.case-body p { margin: 0 0 0.6rem; font-size: 0.95rem; color: var(--ink-soft); }
+.case-body p:last-child { margin-bottom: 0; }
+.case-body em { font-style: italic; }
+
+.case-cite {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--paper-rule);
+  font-style: normal;
+}
+
+.case-cite em { font-style: italic; color: var(--ink-soft); }
+
+.methodology {
+  margin: 2.5rem 0 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.methodology h3 {
+  margin-top: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.methodology ol {
+  counter-reset: meth;
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+}
+.methodology ol li {
+  counter-increment: meth;
+  position: relative;
+  padding-left: 2rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+.methodology ol li::before {
+  content: counter(meth) ".";
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  top: 0.25em;
+}
+
+/* Print */
+@media print {
+  .hero, .venezuela, footer.foot { background: white; color: black; }
+  .hero::before, .coord-frame { border-color: #ccc; }
+  .hero h1, .hero h2, .hero h1 em, .venezuela h2, .venezuela h2 em { color: black; }
+  .hero .lead, .hero .meta, .venezuela p, footer.foot p, footer.foot li { color: #333; }
+  .toc { display: none; }
+  .page { grid-template-columns: 1fr; }
+  section { break-inside: avoid; }
+  a { color: black; border: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-top">
+    <a href="#/" class="brand-mark" aria-label="Mapitas">
+      <svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#dbeafe"/>
+            <stop offset="100%" stop-color="#3b82f6"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="14" fill="#0f172a"/>
+        <path d="M14 48 V16 H22 L32 32 L42 16 H50 V48 H42 V28 L34 40 H30 L22 28 V48 Z" fill="url(#lg)"/>
+      </svg>
+      <span>Mapitas</span>
+    </a>
+    <div class="hero-coords">
+      <span>10.50°N · 66.92°W</span>
+      <span>v0.1 · 2026</span>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="kicker">Manifiesto · Edición preliminar</div>
+    <h1>
+      Mapas de Venezuela.<br />
+      <em>Datos al instante.</em>
+    </h1>
+    <p class="lead">
+      Una herramienta web gratuita, sin servidor y sin cuenta, para que cualquier persona
+      —periodista, investigador, ONG, ciudadano— pueda ver datos territoriales pintados sobre
+      el mapa de Venezuela en menos de un minuto. Este documento explica por qué existe Mapitas,
+      cómo está construido y hacia dónde va.
+    </p>
+    <div class="meta">
+      <span><strong>Versión</strong> 0.1</span>
+      <span><strong>Última revisión</strong> 23.05.2026</span>
+      <span><strong>Mantenedor</strong> Mapitas Admin</span>
+      <span><strong>Licencia</strong> Open source</span>
+    </div>
+  </div>
+</header>
+
+<!-- ─── PAGE: TOC + CONTENT ──────────────────────────────────── -->
+<div class="page">
+
+  <nav class="toc" aria-label="Tabla de contenido">
+    <div class="toc-label">Contenido</div>
+    <ol>
+      <li><a href="#mision"><span class="num">I</span><span>Misión</span></a></li>
+      <li><a href="#vision"><span class="num">II</span><span>Visión</span></a></li>
+      <li><a href="#problema"><span class="num">III</span><span>El problema</span></a></li>
+      <li><a href="#quienes"><span class="num">IV</span><span>Quién lo usa</span></a></li>
+      <li><a href="#valor"><span class="num">V</span><span>Propuesta de valor</span></a></li>
+      <li><a href="#hace"><span class="num">VI</span><span>Qué hace hoy</span></a></li>
+      <li><a href="#algoritmos"><span class="num">VII</span><span>Cómo funciona</span></a></li>
+      <li><a href="#fuentes"><span class="num">VIII</span><span>Fuentes</span></a></li>
+      <li><a href="#principios"><span class="num">IX</span><span>Principios</span></a></li>
+      <li><a href="#precedente"><span class="num">X</span><span>Precedente</span></a></li>
+      <li><a href="#venezuela"><span class="num">XI</span><span>Venezuela primero</span></a></li>
+      <li><a href="#roadmap"><span class="num">XII</span><span>Roadmap</span></a></li>
+      <li><a href="#no"><span class="num">XIII</span><span>Qué NO es</span></a></li>
+    </ol>
+  </nav>
+
+  <main class="content">
+
+    <!-- §I MISIÓN ────────────────────────────────────────────── -->
+    <section id="mision" class="dropcap">
+      <div class="sect-marker">§ I · Misión</div>
+      <h2>Hacer la transparencia territorial accesible para cualquier persona.</h2>
+      <p class="lead-p">
+        Mapitas permite que cualquiera pueda subir un CSV o Excel y ver sus datos pintados
+        sobre el mapa de Venezuela en segundos. Sin pagar Datawrapper o Tableau, sin saber GIS,
+        sin instalar nada, sin backend.
+      </p>
+      <p>
+        La misión no se agota en pintar mapas. El objetivo de fondo es que los <strong>datos
+        relevantes para la ciudadanía</strong> —huecos en las calles, robos, alcabalas, puntos
+        de corrupción, indicadores oficiales dispersos— dejen de estar encerrados en PDFs,
+        planillas y silos institucionales, y pasen a ser visibles, comparables y públicos sobre
+        un mapa que todos entienden.
+      </p>
+    </section>
+
+    <!-- §II VISIÓN ───────────────────────────────────────────── -->
+    <section id="vision">
+      <div class="sect-marker">§ II · Visión</div>
+      <h2>Una herramienta que pueda crecer sin romperse.</h2>
+      <p>
+        La regla de oro detrás de cada decisión técnica:
+        <em>lo que se construye hoy tiene que poder soportar el próximo país sin reescribirse.</em>
+      </p>
+      <ol class="numbered">
+        <li><strong>Hoy.</strong> Resolver el caso Venezuela con calidad de producto serio —
+          datos limpios, geometrías validadas, UX simple.</li>
+        <li><strong>Mañana.</strong> Extender a LATAM con la misma base arquitectónica.
+          El selector de país ya está preparado en el código con 19 países en espera.</li>
+        <li><strong>Eventualmente.</strong> Volverse infraestructura genérica para cualquier país
+          con datos abiertos.</li>
+      </ol>
+    </section>
+
+    <!-- §III PROBLEMA ────────────────────────────────────────── -->
+    <section id="problema">
+      <div class="sect-marker">§ III · El problema</div>
+      <h2>Síntomas de un ecosistema fragmentado.</h2>
+      <p>Cuatro carencias concretas justifican que este proyecto exista:</p>
+      <ol class="numbered">
+        <li><strong>No hay mapas pintables públicos sobre Venezuela.</strong>
+          Datawrapper y Flourish cuestan; QGIS exige curva técnica; los mapas oficiales
+          son estáticos y desactualizados.</li>
+        <li><strong>Los datos oficiales están dispersos y en formatos incompatibles.</strong>
+          INE publica por su lado, OVV por el suyo, Provita/IGVSB por el suyo, Wikipedia agrega
+          lo que puede. Nadie los unifica.</li>
+        <li><strong>Periodistas y comunicadores hacen mapas a mano</strong> en Excel o PowerPoint
+          porque las herramientas profesionales son caras o complejas.</li>
+        <li><strong>La ciudadanía no tiene dónde reportar ni visualizar</strong> datos hiperlocales
+          relevantes —huecos, robos, alcabalas, irregularidades. Esa información existe en chats
+          de WhatsApp, en denuncias en redes, en cabezas. Pero no en un mapa.</li>
+      </ol>
+
+      <h3>La oportunidad</h3>
+      <p>
+        Si una persona puede subir su CSV y ver el resultado en treinta segundos, y si esa
+        visualización se puede combinar con capas oficiales —áreas protegidas, territorios
+        indígenas, lotes petroleros, cuencas, vialidad, energía— entonces el periodista publica
+        una nota con un mapa propio, la ONG documenta un patrón territorial sin contratar
+        consultoría GIS, el ciudadano entiende su país visualmente, y el investigador cruza
+        datos en minutos en lugar de días.
+      </p>
+      <p class="pull">
+        Mapitas es la capa de visualización que faltaba entre los datos crudos y la persona que
+        necesita entenderlos.
+      </p>
+    </section>
+
+    <!-- §IV QUIÉN LO USA ─────────────────────────────────────── -->
+    <section id="quienes">
+      <div class="sect-marker">§ IV · Quién lo usa</div>
+      <h2>La misma herramienta para cuatro tipos de lector.</h2>
+      <p>
+        Mapitas se construye con un principio de <strong>inclusión por niveles de profundidad</strong>:
+        la misma interfaz sirve al ciudadano curioso y al investigador especializado, simplemente
+        exponiendo distintos niveles de control.
+      </p>
+
+      <div class="personas">
+        <div class="persona">
+          <div class="persona-id">
+            <strong>Andrea</strong>
+            Periodista digital
+          </div>
+          <div class="persona-body">
+            <p>Tiene que ilustrar una nota sobre desigualdad regional. Hoy buscaría una imagen en
+            Google o pediría a un diseñador. Con Mapitas sube su CSV, elige paleta, screenshot, lo
+            mete en la nota.</p>
+            <p><span class="label">Mide éxito por</span>tiempo ahorrado, calidad visual del resultado.</p>
+          </div>
+        </div>
+
+        <div class="persona">
+          <div class="persona-id">
+            <strong>Luis</strong>
+            Investigador
+          </div>
+          <div class="persona-body">
+            <p>Estudia distribución territorial de algún fenómeno. Hoy usa QGIS o R, pero sólo cuando
+            el análisis lo justifica. Con Mapitas hace visualizaciones exploratorias rápidas antes
+            de irse al stack pesado.</p>
+            <p><span class="label">Mide éxito por</span>precisión de los datos, capacidad de ajustar
+            clasificación.</p>
+          </div>
+        </div>
+
+        <div class="persona">
+          <div class="persona-id">
+            <strong>María</strong>
+            ONG / sociedad civil
+          </div>
+          <div class="persona-body">
+            <p>Trabaja en territorio (Provita, observatorios, fundaciones). Necesita comunicar al
+            público con base territorial. Con Mapitas cruza sus reportes con capas oficiales —
+            territorios indígenas, áreas protegidas.</p>
+            <p><span class="label">Mide éxito por</span>poder superponer múltiples capas, exportar
+            con calidad.</p>
+          </div>
+        </div>
+
+        <div class="persona">
+          <div class="persona-id">
+            <strong>Carlos</strong>
+            Ciudadano curioso
+          </div>
+          <div class="persona-body">
+            <p>Lee una nota sobre Venezuela y quiere explorar más. Llega a Mapitas porque alguien
+            compartió un link. No sube nada: sólo navega indicadores, cambia paleta, hace zoom.</p>
+            <p><span class="label">Mide éxito por</span>que entienda algo nuevo sin sentir que
+            necesita un manual.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="pull">
+        El mantenedor encarna las cuatro categorías. El producto se diseña con esa empatía: lo que
+        es trivial para el experto no debe ser inaccesible para el ciudadano, y la simplicidad de
+        la portada no debe limitar al investigador.
+      </p>
+    </section>
+
+    <!-- §V PROPUESTA DE VALOR ────────────────────────────────── -->
+    <section id="valor">
+      <div class="sect-marker">§ V · Propuesta de valor</div>
+      <h2>Tres cosas que antes no eran fáciles, y ahora sí.</h2>
+      <ol class="numbered">
+        <li><strong>Pintar un mapa de Venezuela con datos propios en menos de un minuto.</strong>
+          Sin GIS, sin instalación, sin pago. CSV o Excel adentro, mapa afuera.</li>
+        <li><strong>Cruzar datos propios con capas oficiales</strong> de Provita / IGVSB —
+          áreas protegidas, territorios indígenas, vialidad, lotes petroleros, energía, cuencas.</li>
+        <li><strong>Acceder a una base normalizada y limpia</strong> de los 24 estados +
+          Distrito Capital + Dependencias Federales + Guayana Esequiba (27 entidades) y 337
+          municipios de Venezuela, con nombres oficiales, claves consistentes y geometrías
+          validadas.</li>
+      </ol>
+
+      <div class="stat-row">
+        <div class="stat"><div class="n">27</div><div class="l">Estados</div></div>
+        <div class="stat"><div class="n">337</div><div class="l">Municipios</div></div>
+        <div class="stat"><div class="n">7</div><div class="l">Indicadores oficiales</div></div>
+        <div class="stat"><div class="n">11</div><div class="l">Capas temáticas</div></div>
+        <div class="stat"><div class="n">12<small>+</small></div><div class="l">Paletas</div></div>
+        <div class="stat"><div class="n">0<small>kb</small></div><div class="l">Tracking</div></div>
+      </div>
+    </section>
+
+    <!-- §VI QUÉ HACE HOY ─────────────────────────────────────── -->
+    <section id="hace">
+      <div class="sect-marker">§ VI · Qué hace hoy</div>
+      <h2>El estado actual del producto.</h2>
+
+      <h3>Cobertura geográfica</h3>
+      <p>27 estados con nomenclatura oficial (Gaceta) y nombres cortos. 337 municipios con
+      <code>parentState</code>, <code>compoundKey</code> y normalización de nombres. Geometrías
+      base de <strong>geoBoundaries</strong> (William &amp; Mary, CC BY 4.0). Geometrías del
+      Esequibo vía <strong>Provita / IGVSB</strong>.</p>
+
+      <h3>Indicadores pre-cargados</h3>
+      <p>Siete indicadores listos para visualizar sin subir nada: población 2024 y 2026, IDH,
+      PIB total, PIB per cápita, área en km², tasa de homicidios del OVV.</p>
+
+      <h3>Capas temáticas</h3>
+      <p>Once capas opcionales del catálogo Provita / IGVSB — áreas protegidas, pueblos
+      indígenas, cuencas, vialidad, lotes petroleros, energía, etc. — todas con carga diferida
+      bajo demanda.</p>
+
+      <h3>Carga de datos del usuario</h3>
+      <p>Soporta CSV, TSV, Excel y ODS. Detección automática de columnas: intenta adivinar cuál
+      es el nombre del muni o estado y cuál es el valor. Fuzzy matching tolerante a tildes,
+      mayúsculas y abreviaciones. Reporte expandible de filas sin match.</p>
+
+      <h3>Personalización visual</h3>
+      <p>Doce paletas predefinidas más una paleta custom con dos color pickers. Range editor con
+      histograma y tres handles (min, mid, max). Auto-clip de outliers por percentiles 2/98,
+      toggleable. Múltiples basemaps, opción de color sólido, fondo transparente para exportar,
+      modo "aislar país", control de grosor y opacidad de bordes.</p>
+
+      <h3>Mobile</h3>
+      <p>Bottom-sheet con handle visible que <em>no</em> oscurece el mapa al abrirse — el mapa
+      sigue siendo el contenido principal. Botón flotante "Panel" para invocarlo desde cualquier
+      vista.</p>
+    </section>
+
+    <!-- §VII ALGORITMOS ──────────────────────────────────────── -->
+    <section id="algoritmos">
+      <div class="sect-marker">§ VII · Cómo funciona</div>
+      <h2>Algoritmos y decisiones técnicas que importan.</h2>
+      <p class="lead-p">
+        Mapitas no es una abstracción: cada decisión técnica tiene un trade-off documentado y
+        está pensada para que el resto del sistema no la sufra.
+      </p>
+
+      <pre class="pipeline" aria-label="Diagrama del pipeline de datos">
+[ CSV / Excel del usuario ]
+            ↓
+   [ Detección de columnas + fuzzy match ]
+            ↓
+[ Mapa Leaflet con GeoJSON enriquecido ]
+            ↑
+[ data/master/  ← estados + munis normalizados ]
+            ↑
+[ scripts/      ← enriquecen desde fuentes crudas ]
+            ↑
+[ raw-sources/  ← INE · OVV · Provita · Wikipedia ]</pre>
+
+      <div class="algos">
+        <div class="algo">
+          <div class="algo-name">TopoJSON
+            <small>Geometría compartida</small>
+          </div>
+          <div class="algo-body">
+            <p>Las fronteras se sirven como TopoJSON en lugar de GeoJSON. En TopoJSON las
+            fronteras compartidas son <em>arcs</em> únicos. Al decodificar, polígonos vecinos
+            comparten exactamente las mismas coordenadas, lo que elimina los gaps visuales
+            entre estados o municipios contiguos. Bonus: archivo unas cinco veces más liviano.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">shape-rendering
+            <small>Anti-gap CSS</small>
+          </div>
+          <div class="algo-body">
+            <p>Los paths SVG vecinos sufren anti-aliasing del browser, lo que mete pixels
+            semitransparentes en los bordes. La regla <code>shape-rendering: geometricPrecision</code>
+            le dice al browser <em>respetá la geometría, no metas pixels semitransparentes</em>.
+            Mantiene curvas suaves pero elimina las líneas blancas residuales entre polígonos
+            coloreados.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">Stroke same-color
+            <small>Tapa-gaps</small>
+          </div>
+          <div class="algo-body">
+            <p>En modo "sin bordes", el stroke se pinta del mismo color del fill para tapar gaps
+            geométricos residuales. El peso del stroke se interpola con la opacidad del fill:
+            <code>1.7px</code> cuando la opacidad es ≥ 0.9; <code>0.5px</code> cuando es ≤ 0.3.
+            Resultado: el polígono se atenúa parejo sin que el stroke se vea desproporcionado.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">Fuzzy matching
+            <small>Tolerancia de nombres</small>
+          </div>
+          <div class="algo-body">
+            <p>Cuando el usuario sube un CSV, los nombres rara vez coinciden carácter a carácter
+            con la base canónica. El matcher normaliza tildes, mayúsculas y abreviaciones comunes
+            (<em>Edo., Mcpio.</em>) y reporta las filas que no encontraron par. La columna
+            <code>parentState</code> opcional ayuda a desambiguar municipios con nombres repetidos
+            entre estados.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">Auto-clip 2/98
+            <small>Outliers</small>
+          </div>
+          <div class="algo-body">
+            <p>Por default, el rango de la paleta se comprime usando los percentiles 2 y 98 en
+            lugar del min/max raw. Esto evita que un outlier extremo aplane el resto del mapa
+            visualmente. El usuario puede desactivarlo para ver el rango sin recortar, o definir
+            min, mid y max manuales con el range editor que muestra histograma.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">Lazy-load
+            <small>Bundle del mapa</small>
+          </div>
+          <div class="algo-body">
+            <p>Leaflet, react-leaflet y dependencias suman unos 280 kb. La landing page no los
+            necesita, así que esos kb sólo se descargan cuando el usuario navega a
+            <code>#/app</code>. Mejora drásticamente el LCP de la home y permite que la landing
+            cargue casi al instante.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">Persist liviano
+            <small>localStorage</small>
+          </div>
+          <div class="algo-body">
+            <p>Zustand persiste preferencias en <code>localStorage</code>: indicador activo,
+            nivel, tab, estilo, capas temáticas habilitadas, range custom. <em>No</em> persiste
+            geo data, que se re-fetchea al cargar. El usuario que vuelve aterriza exactamente
+            donde dejó la sesión anterior.</p>
+          </div>
+        </div>
+
+        <div class="algo">
+          <div class="algo-name">Selección auto
+            <small>Primer impacto</small>
+          </div>
+          <div class="algo-body">
+            <p>En la primera carga, se selecciona automáticamente el primer indicador del array.
+            El usuario nunca se enfrenta a un mapa vacío y gris — entra al producto y ya hay algo
+            pintado para entender. El trade-off: el primer indicador define la "primera
+            impresión", así que debería ser uno relevante y bonito.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Stack</h3>
+      <table class="tbl">
+        <thead><tr><th>Capa</th><th>Tecnología</th></tr></thead>
+        <tbody>
+          <tr><td>Build</td><td class="mono">Vite</td></tr>
+          <tr><td>UI</td><td class="mono">React 19 + TypeScript</td></tr>
+          <tr><td>Estilos</td><td class="mono">Tailwind CSS v4</td></tr>
+          <tr><td>Mapa</td><td class="mono">Leaflet + React-Leaflet</td></tr>
+          <tr><td>Estado</td><td class="mono">Zustand (+ persist)</td></tr>
+          <tr><td>Parseo CSV</td><td class="mono">PapaParse</td></tr>
+          <tr><td>Parseo Excel</td><td class="mono">SheetJS (xlsx)</td></tr>
+          <tr><td>Topología</td><td class="mono">topojson-client</td></tr>
+          <tr><td>Geometría</td><td class="mono">Turf.js (preprocesamiento)</td></tr>
+          <tr><td>Despliegue</td><td class="mono">Vercel (static)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- §VIII FUENTES ────────────────────────────────────────── -->
+    <section id="fuentes">
+      <div class="sect-marker">§ VIII · Fuentes</div>
+      <h2>De dónde viene cada dato.</h2>
+      <p>
+        Toda fuente que entra a Mapitas está documentada con su licencia y su rol. Cuando un
+        indicador tiene cobertura incompleta, la UI lo dice explícitamente con un badge
+        <code>·N</code> en ámbar — nunca se infla un mapa con datos inventados.
+      </p>
+
+      <table class="tbl">
+        <thead>
+          <tr><th>Fuente</th><th>Aporta</th><th>Licencia</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>geoBoundaries</strong><br /><span class="mono" style="font-size:11px;color:var(--ink-mute)">William &amp; Mary</span></td>
+            <td>Geometrías base de estados y municipios</td>
+            <td class="mono">CC BY 4.0</td>
+          </tr>
+          <tr>
+            <td><strong>Provita / IGVSB</strong></td>
+            <td>Geometrías del Esequibo + 11 capas temáticas</td>
+            <td class="mono">CC BY 4.0</td>
+          </tr>
+          <tr>
+            <td><strong>INE Venezuela</strong></td>
+            <td>Población oficial 2010-2050</td>
+            <td class="mono">Pública</td>
+          </tr>
+          <tr>
+            <td><strong>OVV</strong><br /><span class="mono" style="font-size:11px;color:var(--ink-mute)">Obs. Venezolano de Violencia</span></td>
+            <td>Tasa de homicidios</td>
+            <td class="mono">Pública</td>
+          </tr>
+          <tr>
+            <td><strong>Source CV</strong></td>
+            <td>IDH histórico 1990-2020</td>
+            <td class="mono">Pública</td>
+          </tr>
+          <tr>
+            <td><strong>Wikipedia</strong></td>
+            <td>Datos auxiliares de municipios</td>
+            <td class="mono">CC BY-SA</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="pull">
+        Los datos marcados como ilustrativos en la UI deben tratarse como aproximaciones, no
+        como verdad oficial.
+        <cite>Convención del proyecto</cite>
+      </p>
+    </section>
+
+    <!-- §IX PRINCIPIOS ───────────────────────────────────────── -->
+    <section id="principios">
+      <div class="sect-marker">§ IX · Principios</div>
+      <h2>Las palabras que definen cómo se construye Mapitas.</h2>
+      <p>
+        Estos principios son <strong>la rúbrica</strong> contra la cual se evalúa cualquier
+        propuesta de cambio. Si una feature mejora algo pero rompe "escalable" o "sostenible",
+        se descarta o se rediseña.
+      </p>
+
+      <div>
+        <div class="principle">
+          <div class="principle-n">01</div>
+          <div>
+            <span class="principle-name">Escalable</span>
+            <div class="principle-body">Lo que funciona para Venezuela debe poder soportar
+            Colombia, Perú y eventualmente el mundo sin reescribir el core.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">02</div>
+          <div>
+            <span class="principle-name">Sostenible</span>
+            <div class="principle-body">Bajo costo de operación (static-first, sin backend),
+            bajo costo de mantenimiento (data versionada, scripts comentados).</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">03</div>
+          <div>
+            <span class="principle-name">Documentado</span>
+            <div class="principle-body">README, BACKLOG, este manifiesto, scripts comentados.
+            Nadie debería tener que adivinar.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">04</div>
+          <div>
+            <span class="principle-name">Claro</span>
+            <div class="principle-body">La UX no debe pedir explicación. Si hace falta un
+            tutorial, está mal diseñado.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">05</div>
+          <div>
+            <span class="principle-name">Óptimo</span>
+            <div class="principle-body">Geometrías simplificadas, lazy-loading de capas
+            temáticas, TopoJSON donde se puede.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">06</div>
+          <div>
+            <span class="principle-name">Eficiente</span>
+            <div class="principle-body">No agregar features hasta que un usuario las pida.
+            No agregar dependencias hasta que duelan no tenerlas.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-n">07</div>
+          <div>
+            <span class="principle-name">Estética: Apple / Anthropic</span>
+            <div class="principle-body">Minimalismo, espacios bien usados, tipografía como
+            protagonista, animaciones sutiles. Sin AI slop. Test rápido: <em>¿algo así existiría
+            en apple.com o anthropic.com?</em> Si la respuesta es "no" o "no sé", probablemente
+            sobra decoración.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §X PRECEDENTE ────────────────────────────────────────── -->
+    <section id="precedente">
+      <div class="sect-marker">§ X · Precedente</div>
+      <h2>Cuando los mapas mejoraron vidas reales.</h2>
+      <p class="lead-p">
+        Mapitas no es una apuesta a ciegas. Cuando los datos territoriales se visualizan bien
+        y se publican abiertamente, las consecuencias son medibles. Esta sección reúne seis
+        casos con evidencia académica o documentación institucional verificable que muestran
+        el patrón: una intervención cartográfica fue parte del sistema que mejoró la salud,
+        la política pública, la transparencia o la respuesta humanitaria de una región.
+      </p>
+      <p>
+        Cada caso atribuye al mapa una parte del resultado, nunca la totalidad. Las
+        políticas, los recursos y la voluntad institucional pesan tanto o más. La hipótesis
+        que sostiene a Mapitas es más modesta: <em>sin la visualización accesible nada de
+        eso entra en agenda</em>. El mapa es el ingreso al problema.
+      </p>
+
+      <div class="cases">
+
+        <div class="case">
+          <div class="case-when">
+            <strong>1854</strong>
+            Soho · Londres
+          </div>
+          <div class="case-body">
+            <div class="case-title">El mapa del cólera de John Snow.</div>
+            <p>
+              Durante el brote de cólera de 1854 en Soho, el médico John Snow cartografió la
+              ubicación de las muertes y trazó su distribución alrededor de los pozos
+              públicos. El mapa hizo visible que los casos se concentraban en torno a la
+              bomba de Broad Street, alimentada por una toma del Támesis contaminada por
+              aguas residuales. El consejo local removió la manija de la bomba; el brote,
+              ya en declive, cesó poco después.
+            </p>
+            <p>
+              Más allá del impacto inmediato —debatido, porque el pico del brote había
+              pasado antes de la intervención— la técnica fundó la epidemiología espacial
+              moderna y desplazó la teoría miasmática del cólera hacia el modelo de
+              transmisión hídrica.
+            </p>
+            <div class="case-cite">
+              Snow, J. (1855). <em>On the Mode of Communication of Cholera</em>, 2.ª ed. Londres: John Churchill.
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-when">
+            <strong>1858</strong>
+            Imperio Británico
+          </div>
+          <div class="case-body">
+            <div class="case-title">Los diagramas polares de Florence Nightingale.</div>
+            <p>
+              Tras la Guerra de Crimea, Nightingale presentó al Parlamento británico sus
+              <em>Diagrams of the Causes of Mortality in the Army in the East</em>: gráficos
+              polares que mostraban, mes a mes, que las muertes de soldados por
+              enfermedades evitables superaban ampliamente a las muertes en combate. La
+              visualización tradujo un argumento estadístico en una imagen que parlamentarios
+              y administradores podían leer en segundos.
+            </p>
+            <p>
+              Los diagramas fueron parte central de la presión que llevó a las reformas
+              sanitarias en hospitales militares. Nightingale se convirtió en la primera
+              mujer elegida miembro de la Royal Statistical Society en 1859.
+            </p>
+            <div class="case-cite">
+              Nightingale, F. (1858). <em>Notes on Matters Affecting the Health, Efficiency, and Hospital Administration of the British Army</em>. Londres: Harrison &amp; Sons.
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-when">
+            <strong>1900</strong>
+            París · Georgia (EE.UU.)
+          </div>
+          <div class="case-body">
+            <div class="case-title">Los retratos de datos de W.E.B. Du Bois.</div>
+            <p>
+              Para la <em>Exhibition of American Negroes</em> en la Exposición Universal de
+              París, W.E.B. Du Bois y sus estudiantes de la Universidad de Atlanta
+              produjeron alrededor de sesenta visualizaciones manuales de datos sobre la
+              vida de los afroamericanos en Georgia: ingresos, ocupación, alfabetización,
+              propiedad de tierras, distribución urbana. Cada gráfico fue dibujado a mano.
+            </p>
+            <p>
+              Las visualizaciones desmentían las narrativas raciales pseudocientíficas de la
+              época con evidencia agregada y comparable. El conjunto es citado hoy como uno
+              de los primeros usos modernos de visualización de datos al servicio explícito
+              de la justicia social.
+            </p>
+            <div class="case-cite">
+              Battle-Baptiste, W. &amp; Rusert, B. (eds.) (2018). <em>W.E.B. Du Bois's Data Portraits: Visualizing Black America</em>. Princeton Architectural Press.
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-when">
+            <strong>1995–2015</strong>
+            África Subsahariana
+          </div>
+          <div class="case-body">
+            <div class="case-title">REMO y el control de la oncocercosis (APOC).</div>
+            <p>
+              El Programa Africano para el Control de la Oncocercosis (APOC) aplicó el
+              método REMO —<em>Rapid Epidemiological Mapping of Onchocerciasis</em>—:
+              cientos de equipos cartografiaron la prevalencia de nódulos cutáneos
+              comunidad por comunidad en diecinueve países endémicos. El mapeo permitió
+              focalizar la distribución masiva de ivermectina sólo en las zonas donde era
+              costo-efectiva, en lugar de tratamiento indiscriminado.
+            </p>
+            <p>
+              Modelos publicados por la OMS y socios estiman que el programa evitó del
+              orden de 17,4 millones de años de vida ajustados por discapacidad (DALY) en
+              sus dos décadas de operación, a un costo aproximado de USD 27 por DALY
+              evitado. El mapa fue la pieza que hizo el programa logísticamente posible.
+            </p>
+            <div class="case-cite">
+              Coffeng, L. E., Stolk, W. A., Zouré, H. G. M. <em>et al.</em> (2013). "African Programme for Onchocerciasis Control 1995–2015: Model-Estimated Health Impact and Cost". <em>PLoS Neglected Tropical Diseases</em>, 7(1), e2032.
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-when">
+            <strong>2004–2012</strong>
+            Amazonía · Brasil
+          </div>
+          <div class="case-body">
+            <div class="case-title">PRODES, DETER y la caída de la deforestación amazónica.</div>
+            <p>
+              El sistema PRODES del Instituto Nacional de Pesquisas Espaciais (INPE)
+              publica desde 1988 mapas anuales de deforestación amazónica basados en
+              imágenes Landsat. A partir de 2004, esos mapas se integraron al Plano de Ação
+              para Prevenção e Controle do Desmatamento na Amazônia Legal (PPCDAm) y al
+              sistema DETER de alertas en tiempo casi real, que dispara fiscalización del
+              IBAMA en el terreno.
+            </p>
+            <p>
+              Entre 2004 y 2012, la tasa anual de deforestación cayó cerca del 80 %, de
+              27 772 km² a 4 571 km². El paper de Nepstad y colegas atribuye la caída a la
+              combinación de monitoreo satelital público, sanciones administrativas, y
+              presión de mercado sobre cadenas de carne y soja —ninguna de las tres habría
+              funcionado sin las otras dos.
+            </p>
+            <div class="case-cite">
+              Nepstad, D., McGrath, D., Stickler, C. <em>et al.</em> (2014). "Slowing Amazon Deforestation through Public Policy and Interventions in Beef and Soy Supply Chains". <em>Science</em>, 344(6188), 1118–1123.
+            </div>
+          </div>
+        </div>
+
+        <div class="case">
+          <div class="case-when">
+            <strong>2010</strong>
+            Puerto Príncipe · Haití
+          </div>
+          <div class="case-body">
+            <div class="case-title">OpenStreetMap y la respuesta humanitaria post-terremoto.</div>
+            <p>
+              En las cuarenta y ocho horas posteriores al terremoto del 12 de enero de 2010
+              en Puerto Príncipe, más de seiscientos voluntarios de OpenStreetMap
+              digitalizaron remotamente calles, edificios, campos de desplazados e
+              infraestructura crítica usando imágenes satelitales liberadas en
+              emergencia por GeoEye y DigitalGlobe. En menos de un mes, el mapa de
+              Puerto Príncipe pasó de ser uno de los menos cartografiados del Caribe al más
+              detallado.
+            </p>
+            <p>
+              La capa resultante se convirtió en el mapa de referencia de facto para OCHA,
+              Médicos Sin Fronteras, el Banco Mundial y otras agencias humanitarias durante
+              la respuesta. El caso consolidó el modelo del Humanitarian OpenStreetMap Team
+              (HOT), hoy estándar en respuesta global a desastres.
+            </p>
+            <div class="case-cite">
+              Zook, M., Graham, M., Shelton, T. &amp; Gorman, S. (2010). "Volunteered Geographic Information and Crowdsourcing Disaster Relief: A Case Study of the Haitian Earthquake". <em>World Medical &amp; Health Policy</em>, 2(2), 7–33.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="methodology">
+        <h3>Nota metodológica</h3>
+        <p>Los seis casos cumplen tres criterios de inclusión:</p>
+        <ol>
+          <li>Existe literatura revisada por pares o documentación institucional verificable
+            que describe la intervención.</li>
+          <li>La visualización o el dato abierto es identificable como pieza del mecanismo
+            causal, aun cuando no sea la única causa.</li>
+          <li>El resultado se midió con métricas externas al proyecto cartográfico mismo
+            (mortalidad, deforestación, DALY evitados, cobertura humanitaria).</li>
+        </ol>
+        <p>
+          Quedan deliberadamente fuera los casos donde el mapa es retrospectivo o
+          decorativo, donde el resultado depende casi enteramente de factores ajenos al
+          dato, o donde la evidencia se limita a notas de prensa y testimonios. La
+          inclusión no implica equivalencia entre los seis: el impacto de Snow (validación
+          de una teoría científica) y el de OpenStreetMap en Haití (coordinación de
+          emergencia) son fenómenos cualitativamente distintos. Lo que comparten —y lo que
+          Mapitas asume como hipótesis operativa— es que <em>sin la capa cartográfica
+          accesible, el resultado documentado habría sido improbable</em>.
+        </p>
+      </div>
+    </section>
+
+    <!-- §XI VENEZUELA PRIMERO ────────────────────────────────── -->
+    <section id="venezuela">
+      <div class="venezuela">
+        <div class="sect-marker">§ XI · Venezuela primero</div>
+        <h2>Esta es <em>una decisión estratégica</em>, no una limitación.</h2>
+        <p>
+          Mapitas existe porque Venezuela tenía un problema concreto, no porque el equipo quisiera
+          construir un mapper genérico. El selector de país que ya está en la UI deja ver 19
+          países latinoamericanos en gris, esperando turno. Pero cualquier de esos vendrá
+          <em>después</em> de que Venezuela esté resuelta con calidad de producto serio.
+        </p>
+        <p>
+          La razón es estructural. Resolver un país a fondo —limpiar las fuentes, normalizar
+          nombres, validar geometrías, escribir el pipeline, documentar las decisiones— obliga
+          a construir las abstracciones correctas para que el siguiente país sólo necesite
+          datos, no código nuevo. Atajar este paso significaría tener tres países a medias en
+          vez de uno completo. Mapitas elige lo segundo.
+        </p>
+        <div class="coord-frame" aria-hidden="true">
+          <div class="nw">↖ 13.0°N · 73.5°W</div>
+          <div class="ne">↗ 13.0°N · 58.0°W</div>
+          <div class="center">VENEZUELA · BOUNDS DEL MAPA</div>
+          <div class="sw">↙ 0.5°N · 73.5°W</div>
+          <div class="se">↘ 0.5°N · 58.0°W</div>
+        </div>
+        <p>
+          Cuando Venezuela esté completa y Colombia entre, el repositorio será exactamente el
+          mismo. La base de datos crecerá. El código no.
+        </p>
+      </div>
+    </section>
+
+    <!-- §XII ROADMAP ─────────────────────────────────────────── -->
+    <section id="roadmap">
+      <div class="sect-marker">§ XII · Roadmap</div>
+      <h2>Qué viene, en tres horizontes.</h2>
+
+      <div class="horizon">
+        <div class="horizon-label">
+          <strong>1–3 meses</strong>
+          Alto valor · esfuerzo bajo
+        </div>
+        <ul>
+          <li><strong>Vista de tabla</strong> del indicador activo, ordenable y exportable a CSV.</li>
+          <li><strong>Normalización Esequibo + Dep. Federales:</strong> espejo automático,
+          overrides explícitos, badge <code>≈</code> para estimaciones.</li>
+          <li><strong>Audit de inconsistencias de datos:</strong> consolidar conteos canónicos
+          de estados, municipios y paletas.</li>
+        </ul>
+      </div>
+
+      <div class="horizon">
+        <div class="horizon-label">
+          <strong>3–6 meses</strong>
+          Medio plazo
+        </div>
+        <ul>
+          <li><strong>Timeline slider</strong> para indicadores con serie temporal —
+          población 2010 / 2020 / 2026 / 2050, IDH 1990-2020.</li>
+          <li><strong>Pintar manual</strong> tocando subdivisiones, sin pasar por CSV.</li>
+          <li><strong>Export directo a PNG / SVG</strong> desde la UI.</li>
+          <li><strong>Documentación pública del esquema de datos</strong> para que terceros
+          aporten datasets.</li>
+        </ul>
+      </div>
+
+      <div class="horizon">
+        <div class="horizon-label">
+          <strong>Más allá</strong>
+          Decisiones grandes
+        </div>
+        <ul>
+          <li><strong>Formulario público de reportes ciudadanos</strong> — huecos, robos,
+          alcabalas. Requiere backend mínimo y moderación; rompe parcialmente el principio
+          "sin servidor" y exige conversación explícita.</li>
+          <li><strong>Expansión a Colombia, Perú y resto de LATAM.</strong></li>
+          <li><strong>Modelo de contribuciones abiertas</strong> para que otros países se sumen
+          sin depender del mantenedor original.</li>
+          <li><strong>API pública</strong> para terceros que quieran consumir la base normalizada.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- §XIII NO ES ──────────────────────────────────────────── -->
+    <section id="no">
+      <div class="sect-marker">§ XIII · Qué NO es Mapitas</div>
+      <h2>Los límites son parte del producto.</h2>
+      <p>
+        Definir lo que un producto no es protege su identidad tanto como definir lo que es.
+        Cualquier propuesta que rompa estos límites necesita conversación explícita, no se
+        acepta por inercia.
+      </p>
+      <ul class="tags">
+        <li>GIS profesional (QGIS, ArcGIS)</li>
+        <li>Red social (login, perfiles, comentarios)</li>
+        <li>Dashboard corporativo (Tableau, PowerBI)</li>
+        <li>SaaS comercial · paywall</li>
+        <li>Tracking de usuario</li>
+        <li>Backend propio (hoy)</li>
+        <li>Librerías de iconos (lucide-react, heroicons)</li>
+        <li>Gradientes ornamentales · sombras decorativas</li>
+        <li>Análisis espacial avanzado (buffers, raster)</li>
+      </ul>
+      <p>
+        La ausencia de cada una de estas categorías es una decisión, no un olvido. Mapitas no
+        compite con QGIS porque no quiere ser QGIS. No tiene login porque no quiere coleccionar
+        usuarios. No tiene backend porque la privacidad y el costo cero de operación valen más
+        que las features colaborativas que un backend permitiría.
+      </p>
+
+      <div class="cta">
+        <a href="#/" aria-label="Volver a la landing">
+          <span class="arr">←</span> Volver a Mapitas
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────── -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div>
+      <h4>Mapitas</h4>
+      <p>Plataforma de transparencia territorial estática para Venezuela. Construida con la
+      apuesta de que los datos públicos merecen una capa de visualización pública.</p>
+    </div>
+    <div>
+      <h4>Repositorio</h4>
+      <ul>
+        <li><a href="https://github.com/bronco-drift/mapitas" target="_blank" rel="noopener">Código fuente</a></li>
+        <li><a href="#/app">Abrir el mapa</a></li>
+        <li><a href="#mision">Volver al inicio del manifiesto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Fuentes</h4>
+      <ul>
+        <li><a href="https://geoportal.provita.org.ve/" target="_blank" rel="noopener">Provita · Geoportal</a></li>
+        <li><a href="https://www.ine.gob.ve/" target="_blank" rel="noopener">INE Venezuela</a></li>
+        <li><a href="https://www.geoboundaries.org/" target="_blank" rel="noopener">geoBoundaries</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-inner">
+    <div class="colofon" style="grid-column: 1 / -1;">
+      <span>Manifiesto · v0.1 · 23.05.2026</span>
+      <span>Mapitas Admin · bronco.drift@outlook.com</span>
+      <span>10.50°N · 66.92°W</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
