@@ -332,6 +332,6 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B15023517845906,ve_zulia_miranda,Miranda,Municipio Miranda,VE-V,Zulia,98185,113602,121795,145499,122233,67811,55.48,2255,54.2,Los Puertos de Altagracia,0.755,129.08,5989
 92452058B245358204852,ve_zulia_sucre,Sucre,Municipio Sucre,VE-V,Zulia,61201,68475,71948,79292,74618,7760,10.4,874,85.37,Bobures,0.754,191.26,5955
 92452058B30911467500490,ve_carabobo_san_joaquin,San Joaquín,Municipio San Joaquín,VE-G,Carabobo,62887,69894,73059,81198,75707,75707,100,127,596.11,San Joaquín,0.753,475.26,5916
-92452058B25675040918260_muni,ve_guayana_esequiba_guayana_esequiba,Guayana Esequiba,Estado Guayana Esequiba,VE-GE,Guayana Esequiba,,,,,,,,,,,0.5884049625,479.71,1998.7760833333334
+92452058B25675040918260_muni,ve_guayana_esequiba_guayana_esequiba,Guayana Esequiba,Estado Guayana Esequiba,VE-GE,Guayana Esequiba,115000,123500,130000,155000,125000,,,159500,0.78,Tumeremo,0.5884049625,479.71,1998.7760833333334
 42786344B94533756407676_muni,ve_la_guaira_vargas,Vargas,Municipio Vargas,VE-X,La Guaira,350553,382123,402905,540516,448894,21250,4.73,1171,383.34,La Guaira,0.75,2562.56,5824
-42786344B77541452473448_muni,ve_dependencias_federales_dependencias_federales,Dependencias Federales,Dependencias Federales,VE-W,Dependencias Federales,,,,,,,,,,,,,
+42786344B77541452473448_muni,ve_dependencias_federales_dependencias_federales,Dependencias Federales,Dependencias Federales,VE-W,Dependencias Federales,2155,2155,2200,2300,2155,1471,68.26,342.25,6.3,Gran Roque,0.65,12,5500

@@ -1,0 +1,155 @@
+{
+  "_doc": {
+    "purpose": "Overrides manuales para entidades especiales. Pisa todo lo que viene del pipeline (INE/Wiki/CSV/CV). Cada valor declara su fuente. Si agregás un campo nuevo, registralo también en SOURCES.md.",
+    "applied_by": "scripts/build-master.mjs al final del pipeline",
+    "schema": "{ <ISO>: { _meta?: {...}, <field>: { value: any, source: string, url?: string, note?: string } } }"
+  },
+  "VE-GE": {
+    "_meta": {
+      "type": "disputed_territory",
+      "note": "Territorio en disputa con Guyana. Reclamado por Venezuela. Sin administración venezolana efectiva. Valores oficiales venezolanos donde aplica, espejos demográficos donde no hay fuente directa."
+    },
+    "capital": {
+      "value": "Tumeremo",
+      "source": "Capital provisional designada por la Asamblea Nacional, ley marzo 2024",
+      "url": "https://efectococuyo.com/politica/tumeremo-la-capital-provisional-del-esequibo-ubicada-a-mas-de-90-kilometros-de-la-zona-en-reclamacion/",
+      "note": "Tumeremo está físicamente en Bolívar, a ~93km del territorio. Capital simbólica/administrativa, no geográfica."
+    },
+    "area_km2": {
+      "value": 159500,
+      "source": "Constitución de la República Bolivariana de Venezuela (1999), territorio reclamado",
+      "url": "https://en.wikipedia.org/wiki/Guayana_Esequiba"
+    },
+    "poblacion_2010": {
+      "value": 115000,
+      "source": "Estimación: retroproyección desde 125k @ tasa ~0.8%/año",
+      "note": "Sin censo INE; basado en cifras consensuadas para 2021"
+    },
+    "poblacion_2020": {
+      "value": 123500,
+      "source": "Estimación: proyección lineal desde 125k",
+      "note": "Sin censo INE"
+    },
+    "poblacion_2021": {
+      "value": 125000,
+      "source": "Consenso de fuentes (Wikipedia, swissinfo, Bloomberg Línea)",
+      "url": "https://venparasaber.com/la-poblacion-del-esequibo-venezolano/",
+      "note": "Una de las densidades poblacionales más bajas del mundo (~0.77 hab/km²)"
+    },
+    "poblacion_2026": {
+      "value": 130000,
+      "source": "Estimación: proyección lineal @ ~0.8%/año",
+      "note": "Sin proyección INE"
+    },
+    "poblacion_2050": {
+      "value": 155000,
+      "source": "Estimación: proyección lineal largo plazo",
+      "note": "Sin proyección INE"
+    },
+    "densidad": {
+      "value": 0.78,
+      "source": "Calculado: 125,000 / 159,500",
+      "url": "https://www.bloomberglinea.com/2023/04/11/quienes-son-y-de-que-viven-las-personas-que-habitan-el-esequibo/"
+    },
+    "poblacion_capital_2021": {
+      "value": null,
+      "source": "N/A — Tumeremo está fuera del territorio Esequibo",
+      "note": "No se reporta para evitar engañar: la capital administrativa no está dentro del territorio"
+    },
+    "porcentaje_urbano_2021": {
+      "value": null,
+      "source": "N/A — sin capital dentro del territorio",
+      "note": "Idem poblacion_capital_2021"
+    },
+    "idh_1990": {
+      "value": 0.601,
+      "source": "Espejado de Delta Amacuro (Source CV)",
+      "note": "Perfil demográfico similar: alta población indígena, baja densidad, fronterizo"
+    },
+    "idh_2000": {
+      "value": 0.628,
+      "source": "Espejado de Delta Amacuro (Source CV)"
+    },
+    "idh_2010": {
+      "value": 0.703,
+      "source": "Espejado de Delta Amacuro (Source CV)"
+    },
+    "idh_2020": {
+      "value": 0.640,
+      "source": "Espejado de Delta Amacuro (Source CV)"
+    },
+    "idh_cambio_2010_2020": {
+      "value": -0.063,
+      "source": "Calculado: idh_2020 - idh_2010"
+    }
+  },
+  "VE-W": {
+    "_meta": {
+      "type": "archipelago_group",
+      "note": "Archipiélagos venezolanos del Caribe (Los Roques, La Tortuga, La Blanquilla, etc.). Dependientes del gobierno federal, no de un estado. Población estable, sin crecimiento estructural."
+    },
+    "capital": {
+      "value": "Gran Roque",
+      "source": "INE Venezuela (capital oficial de las Dependencias Federales)",
+      "url": "http://iies.faces.ula.ve/Censo2011/dependenciasfederales.pdf",
+      "note": "Centro administrativo de facto en el archipiélago Los Roques"
+    },
+    "area_km2": {
+      "value": 342.25,
+      "source": "INE Venezuela / IGVSB",
+      "url": "https://es.wikipedia.org/wiki/Dependencias_federales_de_Venezuela"
+    },
+    "poblacion_2010": {
+      "value": 2155,
+      "source": "INE Venezuela, Censo 2011",
+      "url": "http://iies.faces.ula.ve/Censo2011/dependenciasfederales.pdf"
+    },
+    "poblacion_2020": {
+      "value": 2155,
+      "source": "INE Venezuela (estimación: población muy estable)",
+      "note": "Sin servicios públicos que motiven crecimiento"
+    },
+    "poblacion_2021": {
+      "value": 2155,
+      "source": "INE Venezuela, basado en Censo 2011"
+    },
+    "poblacion_2026": {
+      "value": 2200,
+      "source": "Estimación: proyección conservadora",
+      "note": "Población muy estable"
+    },
+    "poblacion_2050": {
+      "value": 2300,
+      "source": "Estimación: proyección largo plazo conservadora"
+    },
+    "poblacion_capital_2021": {
+      "value": 1471,
+      "source": "INE Venezuela, Censo 2011 (Gran Roque exacto)",
+      "url": "http://iies.faces.ula.ve/Censo2011/dependenciasfederales.pdf"
+    },
+    "porcentaje_urbano_2021": {
+      "value": 68.26,
+      "source": "Calculado: 1471 / 2155 × 100",
+      "note": "Gran Roque concentra ~68% de la población"
+    },
+    "densidad": {
+      "value": 6.3,
+      "source": "Calculado: 2155 / 342.25"
+    },
+    "idh": {
+      "value": 0.65,
+      "source": "Estimación interna: aproximación con descuento sobre media nacional",
+      "note": "Sin servicios públicos plenos, pero alta calidad de vida en Los Roques"
+    },
+    "pib_total_mm_usd": {
+      "value": 12,
+      "source": "Estimación interna: turismo Los Roques + pesca artesanal",
+      "note": "Total bajo en términos absolutos por población chica"
+    },
+    "pib_per_capita_usd": {
+      "value": 5500,
+      "source": "Estimación interna: per cápita medio-alto por turismo de élite",
+      "note": "12 MM USD / 2155 hab. No representativo de la media venezolana"
+    }
+  }
+}

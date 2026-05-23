@@ -31248,6 +31248,46 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "capital": {
+        "value": "Tumeremo",
+        "source": "Capital provisional designada por la Asamblea Nacional, ley marzo 2024",
+        "also": []
+      },
+      "area_km2": {
+        "value": 159500,
+        "source": "Constitución de la República Bolivariana de Venezuela (1999), territorio reclamado",
+        "also": []
+      },
+      "poblacion_2010": {
+        "value": 115000,
+        "source": "Estimación: retroproyección desde 125k @ tasa ~0.8%/año",
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 123500,
+        "source": "Estimación: proyección lineal desde 125k",
+        "also": []
+      },
+      "poblacion_2021": {
+        "value": 125000,
+        "source": "Consenso de fuentes (Wikipedia, swissinfo, Bloomberg Línea)",
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 130000,
+        "source": "Estimación: proyección lineal @ ~0.8%/año",
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 155000,
+        "source": "Estimación: proyección lineal largo plazo",
+        "also": []
+      },
+      "densidad": {
+        "value": 0.78,
+        "source": "Calculado: 125,000 / 159,500",
+        "also": []
       }
     }
   },
@@ -31364,6 +31404,72 @@
     "nombre_oficial": "Dependencias Federales",
     "parent_iso": "VE-W",
     "parent_state": "Dependencias Federales",
-    "indicators": {}
+    "indicators": {
+      "capital": {
+        "value": "Gran Roque",
+        "source": "INE Venezuela (capital oficial de las Dependencias Federales)",
+        "also": []
+      },
+      "area_km2": {
+        "value": 342.25,
+        "source": "INE Venezuela / IGVSB",
+        "also": []
+      },
+      "poblacion_2010": {
+        "value": 2155,
+        "source": "INE Venezuela, Censo 2011",
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 2155,
+        "source": "INE Venezuela (estimación: población muy estable)",
+        "also": []
+      },
+      "poblacion_2021": {
+        "value": 2155,
+        "source": "INE Venezuela, basado en Censo 2011",
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 2200,
+        "source": "Estimación: proyección conservadora",
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 2300,
+        "source": "Estimación: proyección largo plazo conservadora",
+        "also": []
+      },
+      "poblacion_capital_2021": {
+        "value": 1471,
+        "source": "INE Venezuela, Censo 2011 (Gran Roque exacto)",
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 68.26,
+        "source": "Calculado: 1471 / 2155 × 100",
+        "also": []
+      },
+      "densidad": {
+        "value": 6.3,
+        "source": "Calculado: 2155 / 342.25",
+        "also": []
+      },
+      "idh": {
+        "value": 0.65,
+        "source": "Estimación interna: aproximación con descuento sobre media nacional",
+        "also": []
+      },
+      "pib_total_mm_usd": {
+        "value": 12,
+        "source": "Estimación interna: turismo Los Roques + pesca artesanal",
+        "also": []
+      },
+      "pib_per_capita_usd": {
+        "value": 5500,
+        "source": "Estimación interna: per cápita medio-alto por turismo de élite",
+        "also": []
+      }
+    }
   }
 }

@@ -36,6 +36,7 @@ const INE_MUNI = join(ROOT, 'data', 'sources', 'ine-population-municipalities.js
 const INE_STATE = join(ROOT, 'data', 'sources', 'ine-population-states.json')
 const MUNICIPAL_CSV = join(ROOT, 'data', 'sources', 'municipal-indicators.json')
 const SOURCE_CV = join(ROOT, 'data', 'sources', 'sourcecv.json')
+const SPECIAL_OVERRIDES = join(ROOT, 'data', 'sources', 'special-entities-overrides.json')
 
 const OUT_DIR = join(ROOT, 'data', 'master')
 mkdirSync(OUT_DIR, { recursive: true })
@@ -251,8 +252,7 @@ try {
   console.log(`(source CV no disponible: ${err.message})`)
 }
 
-// ─── Cobertura por indicador (sobre los 336 munis del adm2) ────────────────
-
+// Campos manejados a nivel muni en el master flat.
 const FIELDS = [
   'poblacion_2010', 'poblacion_2020', 'poblacion_2026', 'poblacion_2050',
   'poblacion_2021', 'poblacion_capital_2021', 'porcentaje_urbano_2021',
@@ -261,18 +261,12 @@ const FIELDS = [
 ]
 
 // Campos que viven SOLO a nivel estado (no se agregan desde munis).
-// Vienen directos de Source CV.
+// Vienen directos de Source CV o de overrides.
 const STATE_ONLY_FIELDS = [
   'idh_1990', 'idh_2000', 'idh_2010', 'idh_2020', 'idh_cambio_2010_2020',
 ]
 
 const totalMunis = Object.keys(master).length
-const coverage = {}
-for (const field of FIELDS) {
-  let n = 0
-  for (const m of Object.values(master)) if (m.indicators[field]) n++
-  coverage[field] = { covered: n, total: totalMunis, pct: ((n / totalMunis) * 100).toFixed(1) }
-}
 
 // ─── Agregados estatales (suma para totales, mean ponderado para tasas) ────
 
@@ -333,6 +327,60 @@ if (sourcecv?.estados) {
       }
     }
   }
+}
+
+// ─── 6. Special entities overrides (Esequibo + Dep. Federales) ────────────
+// Para entidades que las fuentes regulares no cubren bien (territorio en
+// disputa, archipiélagos), aplicamos overrides manuales contrastados con
+// fuentes web. Cada valor declara su procedencia en el JSON.
+//
+// Estos overrides se aplican TANTO al state como al único muni de cada
+// entidad (ambos son 1:1 con su estado, así que comparten valores donde
+// corresponda). Override pisa cualquier valor previo del pipeline.
+try {
+  const overrides = JSON.parse(readFileSync(SPECIAL_OVERRIDES, 'utf8'))
+  let overrideCount = 0
+  for (const [iso, fields] of Object.entries(overrides)) {
+    if (iso.startsWith('_')) continue
+    // Asegurar que el state exista
+    if (!states[iso]) {
+      states[iso] = { iso, name: stateNames[iso] ?? iso, muni_count: 0, indicators: {} }
+    }
+    // Encontrar el muni espejo (parent_iso === iso) si existe — caso Esequibo
+    // y DepFed, donde estado y muni son la misma entidad geográfica.
+    const mirrorMuni = Object.values(master).find(m => m.parent_iso === iso)
+    for (const [field, payload] of Object.entries(fields)) {
+      if (field === '_meta') continue
+      if (!payload || typeof payload !== 'object') continue
+      const { value, source } = payload
+      if (value == null) continue
+      // Aplicar al state
+      states[iso].indicators[field] = { value, coverage: 1, override: true, source }
+      // Y al muni espejo, solo si el campo corresponde a nivel muni
+      // (no aplicar idh_1990 etc., que son state-only)
+      if (mirrorMuni && !STATE_ONLY_FIELDS.includes(field)) {
+        mirrorMuni.indicators[field] = {
+          value,
+          source: source ?? 'override',
+          year: undefined,
+          also: [],
+        }
+      }
+      overrideCount++
+    }
+  }
+  console.log(`\nOverrides aplicados: ${overrideCount} valores (Esequibo + Dep. Federales)`)
+} catch (err) {
+  console.log(`(special overrides no disponibles: ${err.message})`)
+}
+
+// ─── Cobertura por indicador (calculada después de TODOS los pasos del
+// pipeline, incluido el de overrides, para reflejar el estado final). ──────
+const coverage = {}
+for (const field of FIELDS) {
+  let n = 0
+  for (const m of Object.values(master)) if (m.indicators[field]) n++
+  coverage[field] = { covered: n, total: totalMunis, pct: ((n / totalMunis) * 100).toFixed(1) }
 }
 
 // ─── Escribir outputs ──────────────────────────────────────────────────────

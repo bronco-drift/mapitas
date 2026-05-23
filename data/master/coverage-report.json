@@ -1,71 +1,71 @@
 {
   "coverage": {
     "poblacion_2010": {
-      "covered": 310,
+      "covered": 312,
       "total": 336,
-      "pct": "92.3"
+      "pct": "92.9"
     },
     "poblacion_2020": {
-      "covered": 310,
+      "covered": 312,
       "total": 336,
-      "pct": "92.3"
+      "pct": "92.9"
     },
     "poblacion_2026": {
-      "covered": 310,
+      "covered": 312,
       "total": 336,
-      "pct": "92.3"
+      "pct": "92.9"
     },
     "poblacion_2050": {
-      "covered": 310,
+      "covered": 312,
       "total": 336,
-      "pct": "92.3"
+      "pct": "92.9"
     },
     "poblacion_2021": {
-      "covered": 334,
+      "covered": 336,
       "total": 336,
-      "pct": "99.4"
+      "pct": "100.0"
     },
     "poblacion_capital_2021": {
-      "covered": 334,
+      "covered": 335,
       "total": 336,
-      "pct": "99.4"
+      "pct": "99.7"
     },
     "porcentaje_urbano_2021": {
-      "covered": 327,
+      "covered": 328,
       "total": 336,
-      "pct": "97.3"
+      "pct": "97.6"
     },
     "area_km2": {
-      "covered": 334,
+      "covered": 336,
       "total": 336,
-      "pct": "99.4"
+      "pct": "100.0"
     },
     "densidad": {
-      "covered": 334,
+      "covered": 336,
       "total": 336,
-      "pct": "99.4"
+      "pct": "100.0"
     },
     "capital": {
-      "covered": 334,
+      "covered": 336,
       "total": 336,
-      "pct": "99.4"
+      "pct": "100.0"
     },
     "idh": {
-      "covered": 153,
+      "covered": 154,
       "total": 336,
-      "pct": "45.5"
+      "pct": "45.8"
     },
     "pib_total_mm_usd": {
-      "covered": 153,
+      "covered": 154,
       "total": 336,
-      "pct": "45.5"
+      "pct": "45.8"
     },
     "pib_per_capita_usd": {
-      "covered": 153,
+      "covered": 154,
       "total": 336,
-      "pct": "45.5"
+      "pct": "45.8"
     }
   },
   "excelUnmatched": [],
-  "generatedAt": "2026-05-23T04:54:44.369Z"
+  "generatedAt": "2026-05-23T17:31:00.603Z"
 }
