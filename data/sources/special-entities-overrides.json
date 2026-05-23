@@ -52,14 +52,15 @@
       "url": "https://www.bloomberglinea.com/2023/04/11/quienes-son-y-de-que-viven-las-personas-que-habitan-el-esequibo/"
     },
     "poblacion_capital_2021": {
-      "value": null,
-      "source": "N/A — Tumeremo está fuera del territorio Esequibo",
-      "note": "No se reporta para evitar engañar: la capital administrativa no está dentro del territorio"
+      "value": 15000,
+      "source": "Estimación: Bartica como mayor aglomeración dentro del territorio",
+      "url": "https://en.wikipedia.org/wiki/Bartica",
+      "note": "Bartica (~15k hab) es la única aglomeración relevante dentro del Esequibo. Tumeremo (capital administrativa designada por la AN) está físicamente en Bolívar, por eso no se usa acá. Estimación basada en censo Guyana 2012 (8,004) + crecimiento + servicios (GWI 2016: ~17k área urbana)."
     },
     "porcentaje_urbano_2021": {
-      "value": null,
-      "source": "N/A — sin capital dentro del territorio",
-      "note": "Idem poblacion_capital_2021"
+      "value": 12.0,
+      "source": "Calculado: 15,000 / 125,000 × 100 (Bartica / pob total)",
+      "note": "Refleja el perfil eminentemente rural del territorio (densidad 0.77 hab/km², comparable solo a Delta Amacuro)"
     },
     "idh_1990": {
       "value": 0.601,
@@ -150,6 +151,27 @@
       "value": 5500,
       "source": "Estimación interna: per cápita medio-alto por turismo de élite",
       "note": "12 MM USD / 2155 hab. No representativo de la media venezolana"
+    },
+    "idh_1990": {
+      "value": 0.627,
+      "source": "Espejado de Amazonas (Source CV)",
+      "note": "Perfil demográfico similar: baja densidad, servicios precarios, aislamiento geográfico. Turismo de élite (Los Roques) compensa déficit de servicios."
+    },
+    "idh_2000": {
+      "value": 0.658,
+      "source": "Espejado de Amazonas (Source CV)"
+    },
+    "idh_2010": {
+      "value": 0.737,
+      "source": "Espejado de Amazonas (Source CV)"
+    },
+    "idh_2020": {
+      "value": 0.675,
+      "source": "Espejado de Amazonas (Source CV)"
+    },
+    "idh_cambio_2010_2020": {
+      "value": -0.062,
+      "source": "Calculado: idh_2020 - idh_2010"
     }
   }
 }

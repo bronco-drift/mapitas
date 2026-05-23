@@ -22,31 +22,31 @@ const OUT_DIR = join(ROOT, 'data', 'sources')
 // permite correr el process aislado sin re-descargar.
 const FILES = [
   { file: 'Nacional-1.xls', iso: null, kind: 'national', name: 'Nacional' },
-  { file: 'Distrito-Capital-1.xls', iso: 'VE-A', name: 'Distrito Capital' },
-  { file: 'Estado-Amazonas-1.xls', iso: 'VE-Z', name: 'Amazonas' },
-  { file: 'Estado-Anzoategui-1.xls', iso: 'VE-B', name: 'Anzoátegui' },
-  { file: 'Estado-Apure-1.xls', iso: 'VE-C', name: 'Apure' },
-  { file: 'Estado-Aragua-1.xls', iso: 'VE-D', name: 'Aragua' },
-  { file: 'Estado-Barinas-1.xls', iso: 'VE-E', name: 'Barinas' },
-  { file: 'Estado-Bolivar-1.xls', iso: 'VE-F', name: 'Bolívar' },
-  { file: 'Estado-Carabobo-1.xls', iso: 'VE-G', name: 'Carabobo' },
-  { file: 'Estado-Cojedes-1.xls', iso: 'VE-H', name: 'Cojedes' },
-  { file: 'Estado-Delta-Amacuro-1.xls', iso: 'VE-Y', name: 'Delta Amacuro' },
-  { file: 'Estado-Falcon-1.xls', iso: 'VE-I', name: 'Falcón' },
-  { file: 'Estado-Guarico-1.xls', iso: 'VE-J', name: 'Guárico' },
-  { file: 'Estado-Lara-1.xls', iso: 'VE-K', name: 'Lara' },
-  { file: 'Estado-Merida-1.xls', iso: 'VE-L', name: 'Mérida' },
-  { file: 'Estado-Miranda-1.xls', iso: 'VE-M', name: 'Miranda' },
-  { file: 'Estado-Monagas-1.xls', iso: 'VE-N', name: 'Monagas' },
-  { file: 'Estado-Nueva-Esparta-1.xls', iso: 'VE-O', name: 'Nueva Esparta' },
-  { file: 'Estado-Portuguesa-1.xls', iso: 'VE-P', name: 'Portuguesa' },
-  { file: 'Estado-Sucre-1.xls', iso: 'VE-R', name: 'Sucre' },
-  { file: 'Estado-Tachira-1.xls', iso: 'VE-S', name: 'Táchira' },
-  { file: 'Estado-Trujillo-1.xls', iso: 'VE-T', name: 'Trujillo' },
-  { file: 'Estado-Yaracuy-1.xls', iso: 'VE-U', name: 'Yaracuy' },
-  { file: 'Estado-Zulia-1.xls', iso: 'VE-V', name: 'Zulia' },
-  { file: 'Estado-La-Guaira-1.xls', iso: 'VE-X', name: 'La Guaira' },
-  { file: 'Dependencias-Federales-1.xls', iso: 'VE-W', name: 'Dependencias Federales' },
+  { file: 'Distrito_Capital-3.xls', iso: 'VE-A', name: 'Distrito Capital' },
+  { file: 'Estado_Amazonas-3.xls', iso: 'VE-Z', name: 'Amazonas' },
+  { file: 'Estado_Anzoategui-3.xls', iso: 'VE-B', name: 'Anzoátegui' },
+  { file: 'Estado_Apure-3.xls', iso: 'VE-C', name: 'Apure' },
+  { file: 'Estado_Aragua-3.xls', iso: 'VE-D', name: 'Aragua' },
+  { file: 'Estado_Barinas-3.xls', iso: 'VE-E', name: 'Barinas' },
+  { file: 'Estado_Bolivar-4.xls', iso: 'VE-F', name: 'Bolívar' },
+  { file: 'Estado_Carabobo-4.xls', iso: 'VE-G', name: 'Carabobo' },
+  { file: 'Estado_Cojedes-5.xls', iso: 'VE-H', name: 'Cojedes' },
+  { file: 'Estado_DeltaAmacuro-4.xls', iso: 'VE-Y', name: 'Delta Amacuro' },
+  { file: 'Estado_Falcon-4.xls', iso: 'VE-I', name: 'Falcón' },
+  { file: 'Estado_Guarico-4.xls', iso: 'VE-J', name: 'Guárico' },
+  { file: 'Estado_Lara-3.xls', iso: 'VE-K', name: 'Lara' },
+  { file: 'Estado_Merida-4.xls', iso: 'VE-L', name: 'Mérida' },
+  { file: 'Estado_Miranda-5.xls', iso: 'VE-M', name: 'Miranda' },
+  { file: 'Estado_Monagas-4.xls', iso: 'VE-N', name: 'Monagas' },
+  { file: 'Estado_NuevaEsparta-4.xls', iso: 'VE-O', name: 'Nueva Esparta' },
+  { file: 'Estado_Portuguesa-4.xls', iso: 'VE-P', name: 'Portuguesa' },
+  { file: 'Estado_Sucre-6.xls', iso: 'VE-R', name: 'Sucre' },
+  { file: 'Estado_Tachira-8.xls', iso: 'VE-S', name: 'Táchira' },
+  { file: 'Estado_Trujillo-3.xls', iso: 'VE-T', name: 'Trujillo' },
+  { file: 'Estado_Yaracuy-4.xls', iso: 'VE-U', name: 'Yaracuy' },
+  { file: 'Estado_Zulia-6.xls', iso: 'VE-V', name: 'Zulia' },
+  { file: 'Estado_Vargas-4.xls', iso: 'VE-X', name: 'La Guaira' },
+  { file: 'Dependencias_Federales-3.xls', iso: 'VE-W', name: 'Dependencias Federales' },
 ]
 
 // Mapeo de nombres de estado del INE al ISO 3166-2:VE.
@@ -78,6 +78,36 @@ const STATE_NAME_TO_ISO = {
   'La Guaira': 'VE-X',
   Vargas: 'VE-X', // alias histórico
   'Dependencias Federales': 'VE-W',
+}
+
+/**
+ * Algunos archivos del INE traen 2+ hojas (ej. una con "Indice de Masculinidad"
+ * por entidad federal, otra con la proyección por municipios). Esta función
+ * preferiría la hoja municipal sobre la primera. Estrategia:
+ *   1. Si una hoja se llama "Estado X" o "Municipio X", esa.
+ *   2. Sino, la primera cuyo título (fila 0) mencione "municipio" o "parroquia".
+ *   3. Fallback: la primera hoja.
+ */
+function pickMunicipalSheet(wb) {
+  // Primer pase: nombres de hoja explícitos
+  for (const name of wb.SheetNames) {
+    const lower = name.toLowerCase()
+    if (lower.startsWith('estado ') || lower.startsWith('municipio ')) {
+      return { name, sheet: wb.Sheets[name] }
+    }
+  }
+  // Segundo pase: revisar fila 0 de cada hoja
+  for (const name of wb.SheetNames) {
+    const sheet = wb.Sheets[name]
+    const r = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' })
+    const title = String(r[0]?.[0] ?? '').toLowerCase()
+    if (title.includes('municipio') || title.includes('parroquia')) {
+      return { name, sheet }
+    }
+  }
+  // Fallback: primera hoja
+  const name = wb.SheetNames[0]
+  return { name, sheet: wb.Sheets[name] }
 }
 
 /**
@@ -117,7 +147,7 @@ function findYearHeader(rows) {
 function parseFile(filename) {
   const path = join(RAW_DIR, filename)
   const wb = XLSX.read(readFileSync(path))
-  const sheet = wb.Sheets[wb.SheetNames[0]]
+  const { sheet } = pickMunicipalSheet(wb)
   const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' })
 
   const header = findYearHeader(rows)
@@ -263,18 +293,28 @@ function main() {
   // Alias manual normalizado → nombre canónico del adm2 (también normalizado).
   // Cubre discrepancias entre INE y adm2 (typos en alguno de los dos, "Mc" vs
   // "Mac", "i" vs "y" en finales, capital de municipio en lugar del nombre del
-  // municipio). Los gaps reales del adm2 (Páez de Apure, Ocumare de la Costa,
-  // Angostura, Guajira) NO se resuelven acá — quedan sin match porque el adm2
-  // no tiene ese polígono.
-  const ALIASES = {
+  // municipio).
+  const ALIASES_GLOBAL = {
     'arthurmcgregor': 'arthurmacgregor', // Anzoátegui: Mc → Mac
     'mariobricenoiragorri': 'mariobricenoiragorry', // Aragua: -i → -y
     'anzoatequi': 'anzoategui', // Cojedes: typo INE
     'ricauter': 'ricaurte', // Cojedes: typo INE
     'paosanjuanbautista': 'paodesanjuanbautista', // Cojedes: "de" interior
     'tinaquillo': 'falcon', // Cojedes: el INE usa la capital, adm2 el muni
-    'panamericano': 'panamericanp', // Táchira: typo adm2
     'jesusmariasemprun': 'jesusmariasemprum', // Zulia: typo adm2 (n→m al final)
+  }
+
+  // Alias específicos por estado, para casos donde el mismo string normalizado
+  // tiene significado diferente en distintos estados. Ej: "Páez" existe en
+  // varios estados; en Zulia el muni se renombró oficialmente a "Guajira"
+  // (Indígena Bolivariano Guajira) pero adm2 sigue usando "Páez" por reconocibilidad.
+  const ALIASES_BY_ISO = {
+    'VE-H': {
+      'ezequielzamora': 'sancarlos', // Cojedes: INE usa nombre oficial del muni, adm2 usa nombre de la capital
+    },
+    'VE-V': {
+      'guajira': 'paez', // Zulia: muni renombrado oficialmente, adm2 mantiene "Páez"
+    },
   }
 
   // Algunos archivos del INE están mal publicados o corresponden a otra
@@ -283,12 +323,12 @@ function main() {
   for (const f of FILES) {
     if (f.kind === 'national') continue
 
-    // Pre-check: el archivo declara su contenido en la fila 0
+    // Pre-check: el archivo declara su contenido en la fila 0 de la hoja municipal
     const path = join(RAW_DIR, f.file)
     let titleRow0 = ''
     try {
       const wb = XLSX.read(readFileSync(path))
-      const sheet = wb.Sheets[wb.SheetNames[0]]
+      const { sheet } = pickMunicipalSheet(wb)
       const r = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' })
       titleRow0 = String(r[0]?.[0] ?? '').toLowerCase()
     } catch {}
@@ -317,7 +357,8 @@ function main() {
 
     for (const e of entries) {
       const norm = normalize(e.rawName)
-      const aliasNorm = ALIASES[norm] ?? norm
+      const aliasNorm =
+        ALIASES_BY_ISO[f.iso]?.[norm] ?? ALIASES_GLOBAL[norm] ?? norm
       let match = catalog.find(c => c.normalized === aliasNorm)
       if (!match) match = catalog.find(c => c.normalizedOficial === aliasNorm)
       // Match por contención (Atures matchea con "El Municipio Atures")

@@ -20,33 +20,40 @@ const BASE = 'https://ine.gob.ve/wp-content/uploads/2026/04'
 
 // El listado completo. El primero es el nacional (resumen por estado).
 // Los demás son por estado, conteniendo sus municipios.
+//
+// IMPORTANTE: los nombres de archivo cambiaron cuando el INE re-subió los
+// xls en 2024. WordPress agrega sufijos -2, -3, -4, etc. a cada re-upload
+// (los originales -1 quedaron con versiones desactualizadas que NO incluyen
+// los munis nuevos como Bolivariano Angostura o el renombrado Guajira).
+// Si volvieran a re-subirlos, los sufijos cambiarán; cotejar contra
+// https://ine.gob.ve/demograficos/
 const FILES = [
   { name: 'Nacional', file: 'Nacional-1.xls', iso: null, kind: 'national' },
-  { name: 'Distrito Capital', file: 'Distrito-Capital-1.xls', iso: 'VE-A' },
-  { name: 'Amazonas', file: 'Estado-Amazonas-1.xls', iso: 'VE-Z' },
-  { name: 'Anzoátegui', file: 'Estado-Anzoategui-1.xls', iso: 'VE-B' },
-  { name: 'Apure', file: 'Estado-Apure-1.xls', iso: 'VE-C' },
-  { name: 'Aragua', file: 'Estado-Aragua-1.xls', iso: 'VE-D' },
-  { name: 'Barinas', file: 'Estado-Barinas-1.xls', iso: 'VE-E' },
-  { name: 'Bolívar', file: 'Estado-Bolivar-1.xls', iso: 'VE-F' },
-  { name: 'Carabobo', file: 'Estado-Carabobo-1.xls', iso: 'VE-G' },
-  { name: 'Cojedes', file: 'Estado-Cojedes-1.xls', iso: 'VE-H' },
-  { name: 'Delta Amacuro', file: 'Estado-Delta-Amacuro-1.xls', iso: 'VE-Y' },
-  { name: 'Falcón', file: 'Estado-Falcon-1.xls', iso: 'VE-I' },
-  { name: 'Guárico', file: 'Estado-Guarico-1.xls', iso: 'VE-J' },
-  { name: 'Lara', file: 'Estado-Lara-1.xls', iso: 'VE-K' },
-  { name: 'Mérida', file: 'Estado-Merida-1.xls', iso: 'VE-L' },
-  { name: 'Miranda', file: 'Estado-Miranda-1.xls', iso: 'VE-M' },
-  { name: 'Monagas', file: 'Estado-Monagas-1.xls', iso: 'VE-N' },
-  { name: 'Nueva Esparta', file: 'Estado-Nueva-Esparta-1.xls', iso: 'VE-O' },
-  { name: 'Portuguesa', file: 'Estado-Portuguesa-1.xls', iso: 'VE-P' },
-  { name: 'Sucre', file: 'Estado-Sucre-1.xls', iso: 'VE-R' },
-  { name: 'Táchira', file: 'Estado-Tachira-1.xls', iso: 'VE-S' },
-  { name: 'Trujillo', file: 'Estado-Trujillo-1.xls', iso: 'VE-T' },
-  { name: 'Yaracuy', file: 'Estado-Yaracuy-1.xls', iso: 'VE-U' },
-  { name: 'Zulia', file: 'Estado-Zulia-1.xls', iso: 'VE-V' },
-  { name: 'La Guaira', file: 'Estado-La-Guaira-1.xls', iso: 'VE-X' },
-  { name: 'Dependencias Federales', file: 'Dependencias-Federales-1.xls', iso: 'VE-W' },
+  { name: 'Distrito Capital', file: 'Distrito_Capital-3.xls', iso: 'VE-A' },
+  { name: 'Amazonas', file: 'Estado_Amazonas-3.xls', iso: 'VE-Z' },
+  { name: 'Anzoátegui', file: 'Estado_Anzoategui-3.xls', iso: 'VE-B' },
+  { name: 'Apure', file: 'Estado_Apure-3.xls', iso: 'VE-C' },
+  { name: 'Aragua', file: 'Estado_Aragua-3.xls', iso: 'VE-D' },
+  { name: 'Barinas', file: 'Estado_Barinas-3.xls', iso: 'VE-E' },
+  { name: 'Bolívar', file: 'Estado_Bolivar-4.xls', iso: 'VE-F' },
+  { name: 'Carabobo', file: 'Estado_Carabobo-4.xls', iso: 'VE-G' },
+  { name: 'Cojedes', file: 'Estado_Cojedes-5.xls', iso: 'VE-H' },
+  { name: 'Delta Amacuro', file: 'Estado_DeltaAmacuro-4.xls', iso: 'VE-Y' },
+  { name: 'Falcón', file: 'Estado_Falcon-4.xls', iso: 'VE-I' },
+  { name: 'Guárico', file: 'Estado_Guarico-4.xls', iso: 'VE-J' },
+  { name: 'Lara', file: 'Estado_Lara-3.xls', iso: 'VE-K' },
+  { name: 'Mérida', file: 'Estado_Merida-4.xls', iso: 'VE-L' },
+  { name: 'Miranda', file: 'Estado_Miranda-5.xls', iso: 'VE-M' },
+  { name: 'Monagas', file: 'Estado_Monagas-4.xls', iso: 'VE-N' },
+  { name: 'Nueva Esparta', file: 'Estado_NuevaEsparta-4.xls', iso: 'VE-O' },
+  { name: 'Portuguesa', file: 'Estado_Portuguesa-4.xls', iso: 'VE-P' },
+  { name: 'Sucre', file: 'Estado_Sucre-6.xls', iso: 'VE-R' },
+  { name: 'Táchira', file: 'Estado_Tachira-8.xls', iso: 'VE-S' },
+  { name: 'Trujillo', file: 'Estado_Trujillo-3.xls', iso: 'VE-T' },
+  { name: 'Yaracuy', file: 'Estado_Yaracuy-4.xls', iso: 'VE-U' },
+  { name: 'Zulia', file: 'Estado_Zulia-6.xls', iso: 'VE-V' },
+  { name: 'La Guaira', file: 'Estado_Vargas-4.xls', iso: 'VE-X' },
+  { name: 'Dependencias Federales', file: 'Dependencias_Federales-3.xls', iso: 'VE-W' },
 ]
 
 async function downloadOne({ name, file }) {

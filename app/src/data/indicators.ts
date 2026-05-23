@@ -142,12 +142,12 @@ const POBLACION_INE_2050: Indicator = {
 
 const POBLACION_2021: Indicator = {
   id: 'poblacion_wiki_2021',
-  label: 'Población 2021 · INE/Wiki',
+  label: 'Población 2021 · Excel/INE',
   description: 'Población municipal según INE 2021',
   unit: 'habitantes',
   format: 'number',
   year: 2021,
-  source: 'INE 2021 (vía Wikipedia / planilla del proyecto)',
+  source: 'Excel del proyecto + INE 2021 (Wiki como respaldo)',
   aggregation: 'municipality',
   data: muniField('poblacion_2021'),
   stateAggregate: stateField('poblacion_2021'),
@@ -155,12 +155,12 @@ const POBLACION_2021: Indicator = {
 
 const AREA: Indicator = {
   id: 'area_wiki',
-  label: 'Área · INE/Wiki',
+  label: 'Área · Excel/INE',
   description: 'Superficie territorial en km²',
   unit: 'km²',
   format: 'number',
   year: 2021,
-  source: 'INE 2021 / IGVSB',
+  source: 'Excel del proyecto + INE/IGVSB (Wiki como respaldo)',
   aggregation: 'municipality',
   data: muniField('area_km2'),
   stateAggregate: stateField('area_km2'),
@@ -168,12 +168,12 @@ const AREA: Indicator = {
 
 const DENSIDAD: Indicator = {
   id: 'densidad_wiki',
-  label: 'Densidad · INE/Wiki',
+  label: 'Densidad · Excel/INE',
   description: 'Habitantes por km²',
   unit: 'hab/km²',
   format: 'rate',
   year: 2021,
-  source: 'INE 2021 (calculado pob / área)',
+  source: 'Excel del proyecto + INE 2021 (calculado pob/área)',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
   data: muniField('densidad'),

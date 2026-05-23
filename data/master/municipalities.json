@@ -831,6 +831,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 27371,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 35663,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 40882,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 48651,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 100,
         "source": "Source CV",
@@ -6063,6 +6087,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 52069,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 59568,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 63447,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 75465,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "idh": {
         "value": 0.724,
         "source": "sintético",
@@ -6602,6 +6650,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 69734,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 90387,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 103288,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 121328,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "porcentaje_urbano_2021": {
         "value": 59.29,
@@ -7743,6 +7815,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 66759,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 86166,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 98220,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 114245,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 27.23,
         "source": "Source CV",
@@ -7894,6 +7990,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 39903,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 52108,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 59814,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 71547,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "porcentaje_urbano_2021": {
         "value": 41.28,
@@ -8841,6 +8961,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 1053390,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 1168511,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 1221967,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 1350136,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "idh": {
         "value": 0.739,
         "source": "sintético",
@@ -9310,6 +9454,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 101938,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 117622,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 125934,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 152879,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "idh": {
         "value": 0.672,
@@ -10668,6 +10836,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 73.71,
+        "source": "Source CV (derivado pob_cap / pob_total)",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11614,6 +11788,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 62.33,
+        "source": "Source CV (derivado pob_cap / pob_total)",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12343,6 +12523,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 49495,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 64983,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 74831,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 90618,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 52.35,
         "source": "Source CV",
@@ -12812,6 +13016,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 35112,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 46098,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 53086,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 64314,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "porcentaje_urbano_2021": {
         "value": 59.56,
@@ -13792,6 +14020,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 123852,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 140879,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 149549,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 175479,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "idh": {
         "value": 0.654,
@@ -14826,6 +15078,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 179219,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 203183,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 215266,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 250545,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "idh": {
         "value": 0.707,
@@ -16125,6 +16401,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 25580,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 33422,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 38378,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 45979,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 44.52,
         "source": "Source CV",
@@ -17035,6 +17335,30 @@
         "year": 2021,
         "also": []
       },
+      "poblacion_2010": {
+        "value": 47590,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 55123,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 59198,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 66105,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 35.41,
         "source": "Source CV",
@@ -17748,6 +18072,36 @@
       "densidad": {
         "value": 76.1,
         "source": "Excel/INE",
+        "year": 2021,
+        "also": []
+      },
+      "poblacion_2010": {
+        "value": 103870,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 126784,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 140808,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 202738,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.33,
+        "source": "Source CV (derivado pob_cap / pob_total)",
         "year": 2021,
         "also": []
       }
@@ -20225,6 +20579,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 35504,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 41089,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 44066,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 53878,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "idh": {
         "value": 0.681,
         "source": "sintético",
@@ -20329,6 +20707,12 @@
         "value": 3325,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 88.51,
+        "source": "Source CV (derivado pob_cap / pob_total)",
+        "year": 2021,
         "also": []
       }
     }
@@ -20828,6 +21212,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 186086,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 211170,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 223849,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 261136,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "idh": {
         "value": 0.629,
@@ -22197,6 +22605,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 8678,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 11420,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 13171,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 16061,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 60.05,
         "source": "Source CV",
@@ -23195,6 +23627,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 47933,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 55071,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 58802,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 70663,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "idh": {
         "value": 0.685,
         "source": "sintético",
@@ -23364,6 +23820,30 @@
             "year": 2021
           }
         ]
+      },
+      "poblacion_2010": {
+        "value": 28118,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 36563,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 41864,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 49583,
+        "source": "INE",
+        "year": 2050,
+        "also": []
       },
       "porcentaje_urbano_2021": {
         "value": 100,
@@ -25496,6 +25976,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 63.85,
+        "source": "Source CV (derivado pob_cap / pob_total)",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25753,6 +26239,12 @@
         "value": 36192,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 51.24,
+        "source": "Source CV (derivado pob_cap / pob_total)",
+        "year": 2021,
         "also": []
       }
     }
@@ -26501,6 +26993,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 98436,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 130068,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 150323,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 184373,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 100,
         "source": "Source CV",
@@ -27110,6 +27626,36 @@
         "source": "Excel/INE",
         "year": 2021,
         "also": []
+      },
+      "poblacion_2010": {
+        "value": 68192,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 76526,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 80555,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 89422,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 22.37,
+        "source": "Source CV (derivado pob_cap / pob_total)",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27255,6 +27801,30 @@
         "value": 9.52,
         "source": "Excel/INE",
         "year": 2021,
+        "also": []
+      },
+      "poblacion_2010": {
+        "value": 105409,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 130503,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 145169,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 186914,
+        "source": "INE",
+        "year": 2050,
         "also": []
       },
       "porcentaje_urbano_2021": {
@@ -29985,6 +30555,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 62220,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 69823,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 73518,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 83510,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "idh": {
         "value": 0.679,
         "source": "sintético",
@@ -30791,6 +31385,30 @@
           }
         ]
       },
+      "poblacion_2010": {
+        "value": 35748,
+        "source": "INE",
+        "year": 2010,
+        "also": []
+      },
+      "poblacion_2020": {
+        "value": 46825,
+        "source": "INE",
+        "year": 2020,
+        "also": []
+      },
+      "poblacion_2026": {
+        "value": 53849,
+        "source": "INE",
+        "year": 2026,
+        "also": []
+      },
+      "poblacion_2050": {
+        "value": 64881,
+        "source": "INE",
+        "year": 2050,
+        "also": []
+      },
       "porcentaje_urbano_2021": {
         "value": 65.5,
         "source": "Source CV",
@@ -31287,6 +31905,16 @@
       "densidad": {
         "value": 0.78,
         "source": "Calculado: 125,000 / 159,500",
+        "also": []
+      },
+      "poblacion_capital_2021": {
+        "value": 15000,
+        "source": "Estimación: Bartica como mayor aglomeración dentro del territorio",
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 12,
+        "source": "Calculado: 15,000 / 125,000 × 100 (Bartica / pob total)",
         "also": []
       }
     }

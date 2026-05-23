@@ -252,6 +252,27 @@ try {
   console.log(`(source CV no disponible: ${err.message})`)
 }
 
+// ─── 5.5 Fallback: derivar % urbano cuando tenemos pob + pob_capital ──────
+// Hay munis donde el Excel trae población y población de la capital pero
+// la celda de % urbano quedó vacía. Como % urbano es exactamente
+// pob_capital / pob_total × 100, podemos calcularlo nosotros sin engaño:
+// es la misma fórmula que usa Source CV cuando viene precalculado.
+// Solo aplicamos el fallback cuando porcentaje_urbano_2021 está vacío.
+let derivedPctUrbano = 0
+for (const [sid, m] of Object.entries(master)) {
+  const ind = m.indicators
+  if (ind.porcentaje_urbano_2021?.value != null) continue
+  const pob = ind.poblacion_2021?.value
+  const cap = ind.poblacion_capital_2021?.value
+  if (typeof pob !== 'number' || typeof cap !== 'number' || pob <= 0) continue
+  const pct = Math.round((cap / pob) * 10000) / 100 // 2 decimales
+  setField(sid, 'porcentaje_urbano_2021', pct, 'Source CV (derivado pob_cap / pob_total)', 2021)
+  derivedPctUrbano++
+}
+if (derivedPctUrbano > 0) {
+  console.log(`% urbano derivado: ${derivedPctUrbano} munis (pob_capital / pob_total)`)
+}
+
 // Campos manejados a nivel muni en el master flat.
 const FIELDS = [
   'poblacion_2010', 'poblacion_2020', 'poblacion_2026', 'poblacion_2050',

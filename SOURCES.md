@@ -30,7 +30,7 @@ Estructura: por capa (geografía, indicadores, entidades especiales).
 ## 2. Indicadores
 
 ### INE Venezuela (Instituto Nacional de Estadística)
-- **URL:** https://ine.gob.ve/
+- **URL fuente:** https://ine.gob.ve/demograficos/
 - **Cobertura en Mapitas:** `poblacion_2010`, `poblacion_2020`,
   `poblacion_2026`, `poblacion_2050` (a nivel municipal y estatal).
 - **Origen:** proyecciones poblacionales con base censo 2011, publicadas
@@ -38,14 +38,27 @@ Estructura: por capa (geografía, indicadores, entidades especiales).
 - **Procesamiento:**
   - `scripts/fetch-ine-population.mjs` (descarga los 26 archivos)
   - `scripts/process-ine-population.mjs` (extrae + matchea con adm2)
-- **Gaps:** Lara, Nueva Esparta y Dependencias Federales no fueron
-  publicados con desglose municipal (slot ocupado por archivos de
-  edad/sexo).
+- **Naming caveat:** los archivos del INE se re-suben con sufijos numéricos
+  (`Estado_Lara-3.xls`, `Estado_NuevaEsparta-4.xls`, etc.). Si la página
+  del INE re-publica de nuevo, los nombres cambiarán y hay que actualizar
+  la tabla `FILES` en los dos scripts. Cotejar contra
+  https://ine.gob.ve/demograficos/.
+- **Aliases por estado** (en `process-ine-population.mjs`):
+  - `VE-H` Cojedes: INE publica `Ezequiel Zamora` (nombre oficial del
+    municipio); el adm2 lo tiene como `San Carlos` (nombre de la capital).
+  - `VE-V` Zulia: INE publica `Indígena Bolivariano Guajira` (nombre
+    actualizado tras renombramiento ~2015); el adm2 lo mantiene como `Páez`.
+- **Cobertura efectiva:** 336/336 municipios (100%). Ocumare de la Costa de
+  Oro (Aragua) sigue mereciendo una entrada propia en el adm2 — el INE sí
+  lo publica como muni separado pero geoBoundaries no lo dibuja. Tracked
+  en `BACKLOG.md`.
 
 ### Wikipedia (Anexo Municipios de Venezuela)
 - **URL:** https://es.wikipedia.org/wiki/Anexo:Municipios_de_Venezuela_por_población_y_área
-- **Cobertura en Mapitas:** `poblacion_2021`, `area_km2`, `densidad`,
-  `capital` (a nivel municipal).
+- **Cobertura en Mapitas:** valor de respaldo / verificación cruzada
+  para `poblacion_2021`, `area_km2`, `densidad`, `capital`. La fuente
+  primaria de estos 4 campos es el Excel del proyecto (ver Source CV);
+  Wiki queda almacenado como `also` en el master para auditoría.
 - **Origen primario:** Wikipedia recopila estimaciones poblacionales
   basadas en proyecciones INE 2021 y datos IGVSB para superficies.
 - **Procesamiento:** `scripts/process-wikipedia-municipios.mjs`
@@ -54,15 +67,29 @@ Estructura: por capa (geografía, indicadores, entidades especiales).
 
 ### Source CV (Excel del proyecto)
 - **Archivo:** `data/sourceCV-input.xlsx`
-- **Cobertura en Mapitas:**
-  - `porcentaje_urbano_2021` (municipal, derivado de pob_capital/pob_total)
+- **Cobertura en Mapitas (fuente primaria):**
+  - `capital` (municipal)
+  - `poblacion_2021` (municipal)
+  - `area_km2` (municipal)
+  - `densidad` (municipal)
+  - `poblacion_capital_2021` (municipal)
+  - `porcentaje_urbano_2021` (municipal): la celda del Excel cuando está
+    poblada; cuando está vacía pero tenemos `poblacion_capital_2021` y
+    `poblacion_2021`, `build-master.mjs` la deriva como
+    `(pob_capital / pob_total) × 100`. El registro queda con
+    `source: "Source CV (derivado pob_cap / pob_total)"` para trazabilidad.
   - `idh_1990`, `idh_2000`, `idh_2010`, `idh_2020`,
     `idh_cambio_2010_2020` (estatales)
-- **Origen primario:** recopilación histórica del IDH publicada por
-  PNUD Venezuela / observatorios académicos.
+- **Origen primario:**
+  - Para campos municipales: recopilación del proyecto sobre INE 2021.
+  - Para IDH histórico estatal: PNUD Venezuela / observatorios académicos.
+- **Precedencia:** los campos municipales del Excel pisan a Wikipedia
+  (que queda como `also` en el master para verificación cruzada).
 - **Procesamiento:** `scripts/process-sourcecv.mjs`
-- **Cobertura efectiva:** 24/26 estados con IDH histórico (faltan
-  Dep. Federales y Guayana Esequiba en la fuente original).
+- **Cobertura efectiva:** 24/26 estados directos en la fuente original
+  (faltan Dep. Federales y Guayana Esequiba). Los 2 restantes se
+  completan vía overrides espejados (Esequibo ← Delta Amacuro,
+  DepFed ← Amazonas) — sección 3.
 
 ### CSV sintético (estimaciones internas)
 - **Archivo:** `raw-sources/municipios_venezuela_2026.csv`
@@ -117,10 +144,17 @@ administración venezolana efectiva.
 - [Quiénes habitan el Esequibo · Bloomberg Línea](https://www.bloomberglinea.com/2023/04/11/quienes-son-y-de-que-viven-las-personas-que-habitan-el-esequibo/)
 
 **Notas importantes:**
-- Tumeremo NO está dentro del territorio Esequibo (está en Bolívar,
-  a ~93 km del límite). Por eso `poblacion_capital_2021` y
-  `porcentaje_urbano_2021` quedan en NULL (sería engañoso reportar
-  población de una ciudad fuera del territorio como "capital").
+- `capital` queda como "Tumeremo" (designación administrativa
+  venezolana de la Asamblea Nacional 2024), aunque físicamente está
+  en Bolívar, a ~93 km del límite del territorio.
+- `poblacion_capital_2021` se completa con la población de **Bartica**
+  (~15,000), la mayor aglomeración real DENTRO del territorio (capital
+  regional de Cuyuni-Mazaruni en la administración guyanesa actual).
+  Es una excepción intencional al naming del campo: aquí
+  pob_capital_2021 no es "población de la capital administrativa" sino
+  "población de la mayor aglomeración urbana del territorio".
+- `porcentaje_urbano_2021` se calcula con Bartica: ~12%, coherente con
+  el perfil rural (densidad 0.77 hab/km²).
 - IDH histórico se espeja de Delta Amacuro por similitud demográfica
   (alta población indígena, baja densidad, frontera). Marcar
   visualmente como estimación en el modal de cobertura cuando aplique.
@@ -148,8 +182,11 @@ etc.). Dependientes del gobierno federal, no de un estado.
 - Población muy estable a lo largo del tiempo (no hay servicios
   públicos que motiven crecimiento). Las proyecciones lineales no
   aplican como en otros estados.
-- IDH histórico estatal NULL (Source CV no incluye DepFed; no
-  inventamos).
+- IDH histórico se espeja de **Amazonas** (Source CV) por perfil
+  similar: baja densidad, aislamiento, servicios precarios. El turismo
+  de élite en Los Roques compensa parte del déficit de servicios pero
+  no llega a niveles de un estado urbanizado. Marcar visualmente como
+  estimación cuando aplique.
 - PIB estimado: turismo de élite (Los Roques) + pesca. PIB per cápita
   alto a pesar del total chico.
 

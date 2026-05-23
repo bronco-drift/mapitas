@@ -95,6 +95,11 @@ type State = {
   thematic: Record<string, ThematicState>
   // Rango custom para clasificación visual (null = usa min/max natural)
   customRange: { min: number | null; mid: number | null; max: number | null }
+  // IDs de indicadores que el usuario quiere ocultar de la lista principal.
+  // Aparecen plegados en la sección "Archivados" al fondo de Datos.
+  // Default: los 3 "estimado" (idh_2026, pib_total, pib_per_capita) porque
+  // no son fuente sólida. Persistido en localStorage.
+  archivedIndicators: string[]
   // Restaurar después de cargar data — guarda el id del source persistido
   _persistedSourceId: string | null
   _persistedThematicIds: string[]
@@ -120,7 +125,13 @@ type Actions = {
   resetSettings: () => void
   setCustomRange: (patch: Partial<{ min: number | null; mid: number | null; max: number | null }>) => void
   resetCustomRange: () => void
+  archiveIndicator: (id: string) => void
+  unarchiveIndicator: (id: string) => void
 }
+
+// Indicadores archivados por default — son los 3 estimados (sin fuente
+// oficial sólida). El usuario puede desarchivar si los necesita.
+const DEFAULT_ARCHIVED_INDICATORS = ['idh_2026', 'pib_total', 'pib_per_capita']
 
 export const DEFAULT_MAP_STYLE: MapStyle = {
   lineWidth: 0.6,
@@ -170,6 +181,7 @@ export const useStore = create<State & Actions>()(
   mapStyle: DEFAULT_MAP_STYLE,
   thematic: {},
   customRange: { min: null, mid: null, max: null },
+  archivedIndicators: DEFAULT_ARCHIVED_INDICATORS,
   _persistedSourceId: null,
   _persistedThematicIds: [],
 
@@ -349,6 +361,16 @@ export const useStore = create<State & Actions>()(
     get().applyMerge()
   },
 
+  archiveIndicator(id) {
+    const current = get().archivedIndicators
+    if (current.includes(id)) return
+    set({ archivedIndicators: [...current, id] })
+  },
+
+  unarchiveIndicator(id) {
+    set({ archivedIndicators: get().archivedIndicators.filter(x => x !== id) })
+  },
+
   async loadThematicManifest() {
     if (Object.keys(get().thematic).length > 0) return
     try {
@@ -424,6 +446,7 @@ export const useStore = create<State & Actions>()(
         tab: state.tab,
         mapStyle: state.mapStyle,
         customRange: state.customRange,
+        archivedIndicators: state.archivedIndicators,
         _persistedSourceId:
           state.source?.kind === 'indicator' ? state.source.indicator.id : null,
         _persistedThematicIds: Object.entries(state.thematic)

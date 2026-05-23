@@ -7,7 +7,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B22632362075175,ve_barinas_alberto_arvelo_torrealba,Alberto Arvelo Torrealba,Municipio Alberto Arvelo Torrealba,VE-E,Barinas,40152,47869,52108,62958,54133,45868,84.73,769,70.39,Sabaneta,,,
 92452058B38768688631563,ve_anzoategui_anaco,Anaco,Municipio Anaco,VE-B,Anzoátegui,130535,150478,161660,185719,162556,152672,93.92,795,204.47,Anaco,0.69,289.9,3886
 92452058B98875483329913,ve_sucre_andres_mata,Andrés Mata,Municipio Andrés Mata,VE-R,Sucre,20416,23811,25777,32031,24818,14409,58.06,454,54.66,San José de Aerocuar,,,
-92452058B1998456811231,ve_nueva_esparta_antolin_del_campo,Antolín del Campo,Municipio Antolín del Campo,VE-O,Nueva Esparta,,,,,35830,35830,100,72,497.63,La Plaza de Paraguachí,,,
+92452058B1998456811231,ve_nueva_esparta_antolin_del_campo,Antolín del Campo,Municipio Antolín del Campo,VE-O,Nueva Esparta,27371,35663,40882,48651,35830,35830,100,72,497.63,La Plaza de Paraguachí,,,
 92452058B74293045430698,ve_delta_amacuro_antonio_diaz,Antonio Díaz,Municipio Antonio Díaz,VE-Y,Delta Amacuro,26516,33388,38254,73444,42417,18681,44.04,22746,7.86,Curiapo,,,
 92452058B75275574170386,ve_barinas_antonio_jose_de_sucre,Antonio José de Sucre,Municipio Antonio José de Sucre,VE-E,Barinas,77712,90620,97339,111484,96337,77123,80.06,2975,32.38,Socopó,,,
 92452058B76772094645860,ve_merida_antonio_pinto_salinas,Antonio Pinto Salinas,Municipio Antonio Pinto Salinas,VE-L,Mérida,24277,29115,31810,37451,31073,22902,73.7,348,89.29,Santa Cruz de Mora,0.67,426.52,3416
@@ -61,13 +61,13 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B212448851474,ve_falcon_colina,Colina,Municipio Colina,VE-I,Falcón,42671,49295,52897,60297,48451,34498,71.2,582,83.24,La Vela de Coro,,,
 92452058B89776134514459,ve_zulia_colon,Colón,Municipio Colón,VE-V,Zulia,126359,145301,155203,182680,157067,14930,9.51,3368,46.63,San Carlos del Zulia,0.746,1357.14,5649
 92452058B51720127769836,ve_tachira_cordoba,Córdoba,Municipio Córdoba,VE-S,Táchira,32992,35452,36808,43002,38372,38372,100,619,61.99,Santa Ana,,,
-92452058B43990033715561,ve_lara_crespo,Crespo,Municipio Crespo,VE-K,Lara,,,,,58960,38849,65.89,875,67.38,Duaca,0.724,833.91,4896
+92452058B43990033715561,ve_lara_crespo,Crespo,Municipio Crespo,VE-K,Lara,52069,59568,63447,75465,58960,38849,65.89,875,67.38,Duaca,0.724,833.91,4896
 92452058B19007337502862,ve_miranda_cristobal_rojas,Cristóbal Rojas,Municipio Cristóbal Rojas,VE-M,Miranda,131622,147149,153953,161829,140596,111469,79.28,120,1171.63,Charallave,0.761,879.72,6244
 92452058B3115924902263,ve_barinas_cruz_paredes,Cruz Paredes,Municipio Cruz Paredes,VE-E,Barinas,24929,29642,32216,38680,32648,26960,82.58,778,41.96,Barrancas,,,
 92452058B32391304036894,ve_sucre_cruz_salmeron_acosta,Cruz Salmerón Acosta,Municipio Cruz Salmerón Acosta,VE-R,Sucre,36975,42390,45421,54163,44811,26395,58.9,612,73.22,Araya,,,
 92452058B15505529275902,ve_falcon_dabajuro,Dabajuro,Municipio Dabajuro,VE-I,Falcón,23810,28117,30571,36729,28009,28009,100,1144,24.48,Dabajuro,,,
 92452058B27987332660152,ve_falcon_democracia,Democracia,Municipio Democracia,VE-I,Falcón,10392,11894,12692,14156,12415,8869,71.44,2602,4.77,Pedregal,,,
-92452058B72966397381157,ve_nueva_esparta_diaz,Díaz,Municipio Díaz,VE-O,Nueva Esparta,,,,,88696,52587,59.29,166,534.31,San Juan Bautista,,,
+92452058B72966397381157,ve_nueva_esparta_diaz,Díaz,Municipio Díaz,VE-O,Nueva Esparta,69734,90387,103288,121328,88696,52587,59.29,166,534.31,San Juan Bautista,,,
 92452058B45156381863749,ve_carabobo_diego_ibarra,Diego Ibarra,Municipio Diego Ibarra,VE-G,Carabobo,101875,116142,123257,145494,130961,130961,100,79,1657.73,Mariara,0.714,1033.59,4576
 92452058B65625562328801,ve_bolivar_el_callao,El Callao,Municipio El Callao,VE-F,Bolívar,22957,26863,29026,33219,26963,26963,100,2223,12.12,El Callao,0.644,424.6,2858
 92452058B59483171465423,ve_miranda_el_hatillo,EL Hatillo,Municipio EL Hatillo,VE-M,Miranda,84362,93970,98100,102221,82439,82439,100,81,1017.76,El Hatillo,0.706,742.26,4322
@@ -79,9 +79,9 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B62931079063514,ve_anzoategui_francisco_del_carmen_carvajal,Francisco del Carmen Carvajal,Municipio Francisco del Carmen Carvajal,VE-B,Anzoátegui,14526,16388,17381,18975,20804,19275,92.65,125,166.43,Valle de Guanape,0.665,90.91,3305
 92452058B43821030143886,ve_zulia_francisco_javier_pulgar,Francisco Javier Pulgar,Municipio Francisco Javier Pulgar,VE-V,Zulia,33236,38051,40537,47216,42259,21573,51.05,800,52.82,Pueblo Nuevo El Chivo,0.717,709.57,4659
 92452058B79162136428337,ve_aragua_francisco_linares_alcantara,Francisco Linares Alcántara,Municipio Francisco Linares Alcántara,VE-D,Aragua,127459,141351,148044,167392,149360,111242,74.48,24,6223.33,Santa Rita,0.683,317.03,3712
-92452058B94720386415889,ve_nueva_esparta_garcia,García,Municipio García,VE-O,Nueva Esparta,,,,,80441,21905,27.23,85,946.36,El Valle del Espíritu Santo,,,
+92452058B94720386415889,ve_nueva_esparta_garcia,García,Municipio García,VE-O,Nueva Esparta,66759,86166,98220,114245,80441,21905,27.23,85,946.36,El Valle del Espíritu Santo,,,
 92452058B38365579478512,ve_tachira_garcia_de_hevia,García de Hevia,Municipio García de Hevia,VE-S,Táchira,47694,52407,55141,67890,63736,54702,85.83,911,69.96,La Fría,,,
-92452058B72866558471416,ve_nueva_esparta_gomez,Gómez,Municipio Gómez,VE-O,Nueva Esparta,,,,,49814,20561,41.28,96,518.89,Santa Ana,,,
+92452058B72866558471416,ve_nueva_esparta_gomez,Gómez,Municipio Gómez,VE-O,Nueva Esparta,39903,52108,59814,71547,49814,20561,41.28,96,518.89,Santa Ana,,,
 92452058B73629823948973,ve_bolivar_gran_sabana,Gran Sabana,Municipio Gran Sabana,VE-F,Bolívar,34302,40263,43585,50251,34309,32000,93.27,32990,1.03,Santa Elena de Uairén,0.671,341.47,3430
 92452058B76847227335777,ve_carabobo_guacara,Guacara,Municipio Guacara,VE-G,Carabobo,176658,198883,209477,239905,213815,185776,86.89,165,1295.84,Guacara,0.708,800.74,4390
 92452058B8376465303279,ve_miranda_guaicaipuro,Guaicaipuro,Municipio Bolivariano Guaicaipuro,VE-M,Miranda,267654,302006,317722,341404,287664,221985,77.17,661,435.19,Los Teques,0.76,3476.73,6214
@@ -91,12 +91,12 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B8560426021820,ve_merida_guaraque,Guaraque,Municipio Guaraque,VE-L,Mérida,9087,10872,11863,13891,11533,5386,46.7,533,21.63,Guaraque,0.62,81.01,2448
 92452058B12619730938493,ve_tachira_guasimos,Guasimos,Municipio Guasimos,VE-S,Táchira,43677,48087,50654,62659,51029,51029,100,32,1594.65,Palmira,,,
 92452058B41510746407735,ve_bolivar_angostura_del_orinoco,Angostura del Orinoco,Municipio Angostura del Orinoco (ex Heres),VE-F,Bolívar,373572,440396,477970,556788,395176,387449,98.04,5851,67.36,Ciudad Bolívar,0.66,344.9,3177
-92452058B63992196257399,ve_lara_iribarren,Iribarren,Municipio Iribarren,VE-K,Lara,,,,,1225175,1173095,95.75,2760,443.9,Barquisimeto,0.739,5120.87,5407
+92452058B63992196257399,ve_lara_iribarren,Iribarren,Municipio Iribarren,VE-K,Lara,1053390,1168511,1221967,1350136,1225175,1173095,95.75,2760,443.9,Barquisimeto,0.739,5120.87,5407
 92452058B13526806799320,ve_falcon_jacura,Jacura,Municipio Jacura,VE-I,Falcón,11243,13353,14570,17755,13046,7088,54.33,1842,7.08,Jacura,,,
 92452058B82426430242133,ve_tachira_jauregui,Jáuregui,Municipio Jáuregui,VE-S,Táchira,40683,44762,47135,58224,48172,40521,84.12,444,108.49,La Grita,,,
 92452058B2023603244390,ve_zulia_jesus_enrique_lossada,Jesús Enrique Lossada,Municipio Jesús Enrique Lossada,VE-V,Zulia,119110,135586,143949,165356,147280,88536,60.11,3533,41.68,La Concepción,0.753,579.2,5910
 92452058B27709882446555,ve_zulia_jesus_maria_semprum,Jesús María Semprum,Municipio Jesús María Semprum,VE-V,Zulia,30569,34518,36469,41091,38671,26079,67.44,6003,6.44,Casigua El Cubo,0.759,676.47,6150
-92452058B9761229691883,ve_lara_jimenez,Jimenez,Municipio Jimenez,VE-K,Lara,,,,,113647,50368,44.32,768,147.97,Quibor,0.672,260.11,3458
+92452058B9761229691883,ve_lara_jimenez,Jimenez,Municipio Jimenez,VE-K,Lara,101938,117622,125934,152879,113647,50368,44.32,768,147.97,Quibor,0.672,260.11,3458
 92452058B12753025075780,ve_aragua_jose_angel_lamas,José Ángel Lamas,Municipio José Ángel Lamas,VE-D,Aragua,33605,36695,38076,41485,39191,39191,100,20,1959.55,Santa Cruz,0.635,69.94,2704
 92452058B17559996625330,ve_yaracuy_jose_antonio_paez,José Antonio Páez,Municipio José Antonio Páez,VE-U,Yaracuy,19985,24262,26773,33824,23806,23806,100,135,176.34,Sabana de Parra,,,
 92452058B50490503212565,ve_trujillo_jose_felipe_marquez_canizales,José Felipe Márquez Cañizales,Municipio José Felipe Márquez Cañizales,VE-T,Trujillo,4761,5748,6316,7816,6656,5715,85.86,648,10.27,El Paradero,,,
@@ -110,7 +110,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B78447057272703,ve_guarico_juan_german_roscio,Juan Germán Roscio,Municipio Juan Germán Roscio,VE-J,Guárico,136597,168459,187326,234101,159302,151418,95.05,1497,106.41,San Juan de los Morros,,,
 92452058B38139614361819,ve_carabobo_juan_jose_mora,Juan José Mora,Municipio Juan José Mora,VE-G,Carabobo,69332,77940,82023,93667,80496,70760,87.9,453,177.69,Morón,0.739,1219.57,5382
 92452058B8931930020089,ve_anzoategui_juan_manuel_cajigal,Juan Manuel Cajigal,Municipio Juan Manuel Cajigal,VE-B,Anzoátegui,13505,16218,17856,22636,18471,14831,80.29,1741,10.6,Onoto,0.629,79.42,2598
-92452058B66607033591065,ve_trujillo_juan_vicente_campo_elias,Juan Vicente Campo Elías,Municipio Juan Vicente Campo Elías,VE-T,Trujillo,5519,6514,7049,8142,7356,5422,,98,75.06,Campo Elías,,,
+92452058B66607033591065,ve_trujillo_juan_vicente_campo_elias,Juan Vicente Campo Elías,Municipio Juan Vicente Campo Elías,VE-T,Trujillo,5519,6514,7049,8142,7356,5422,73.71,98,75.06,Campo Elías,,,
 92452058B78980927741565,ve_guarico_julian_mellado,Julián Mellado,Municipio Julián Mellado,VE-J,Guárico,27996,34124,37682,45818,36572,34045,93.09,2983,12.26,El Sombrero,,,
 92452058B92522690941110,ve_merida_julio_cesar_salas,Julio César Salas,Municipio Julio César Salas,VE-L,Mérida,14662,17455,18986,21960,18389,15478,84.17,202,91.03,Arapuey,0.709,209.59,4421
 92452058B9885086190441,ve_tachira_junin,Junín,Municipio Junín,VE-S,Táchira,87979,93197,95937,108295,96402,84242,87.39,208,463.47,Rubio,,,
@@ -120,7 +120,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B64371118688426,ve_yaracuy_la_trinidad,La Trinidad,Municipio La Trinidad,VE-U,Yaracuy,17944,21588,23695,29297,20392,20392,100,62,328.9,Boraure,,,
 92452058B81914214166984,ve_zulia_lagunillas,Lagunillas,Municipio Lagunillas,VE-V,Zulia,203563,227902,239551,264326,271289,224758,82.85,1024,264.93,Ciudad Ojeda,0.747,1002.65,5695
 92452058B34599827545063,ve_miranda_lander,Lander,Municipio Lander,VE-M,Miranda,157816,178093,187376,201420,215445,167558,77.77,478,450.72,Ocumare del Tuy,0.745,320.69,5598
-92452058B67436429291477,ve_guarico_las_mercedes,Las Mercedes,Municipio Las Mercedes,VE-J,Guárico,35019,42017,45963,53819,41106,25623,,7691,5.34,Las Mercedes,,,
+92452058B67436429291477,ve_guarico_las_mercedes,Las Mercedes,Municipio Las Mercedes,VE-J,Guárico,35019,42017,45963,53819,41106,25623,62.33,7691,5.34,Las Mercedes,,,
 92452058B88324768545293,ve_guarico_leonardo_infante,Leonardo Infante,Municipio Leonardo Infante,VE-J,Guárico,129740,159483,177004,219535,154684,149027,96.34,10613,14.57,Valle de La Pascua,,,
 92452058B80910187087135,ve_cojedes_lima_blanco,Lima Blanco,Municipio Lima Blanco,VE-H,Cojedes,9287,10551,11235,13757,14377,8817,61.33,127,113.2,Macapo,,,
 92452058B92766796026281,ve_tachira_lobatera,Lobatera,Municipio Lobatera,VE-S,Táchira,13203,14041,14488,16516,16654,9325,55.99,216,77.1,Lobatera,,,
@@ -128,12 +128,12 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B35086054619694,ve_miranda_los_salias,Los Salias,Municipio Los Salias,VE-M,Miranda,70630,79056,82770,87255,75166,75166,100,51,1473.84,San Antonio de los Altos,0.728,467.9,5022
 92452058B87386897899112,ve_falcon_los_taques,Los Taques,Municipio Los Taques,VE-I,Falcón,41881,48229,51655,58440,54132,27317,50.46,231,234.33,Santa Cruz de Los Taques,,,
 92452058B61168539952553,ve_zulia_machiques_de_perija,Machiques de Perijá,Municipio Machiques de Perijá,VE-V,Zulia,124600,141976,150820,173659,147627,92127,62.41,9493,15.55,Machiques,0.769,1181.01,6602
-92452058B84467790604965,ve_nueva_esparta_maneiro,Maneiro,Municipio Maneiro,VE-O,Nueva Esparta,,,,,54828,28701,52.35,35,1566.51,Pampatar,,,
+92452058B84467790604965,ve_nueva_esparta_maneiro,Maneiro,Municipio Maneiro,VE-O,Nueva Esparta,49495,64983,74831,90618,54828,28701,52.35,35,1566.51,Pampatar,,,
 92452058B81602658617496,ve_anzoategui_manuel_ezequiel_bruzual,Manuel Ezequiel Bruzual,Municipio Manuel Ezequiel Bruzual,VE-B,Anzoátegui,32673,36751,38908,42171,39609,23457,59.22,1566,25.29,Clarines,0.71,259.02,4454
 92452058B96786834235834,ve_yaracuy_manuel_monge,Manuel Monge,Municipio Manuel Monge,VE-U,Yaracuy,13186,15661,17057,20447,18017,18017,100,474,38.01,Yumare,,,
 92452058B70966506034681,ve_zulia_mara,Mara,Municipio Mara,VE-V,Zulia,207492,230409,240997,260701,252988,65133,25.75,3588,70.5,San Rafael de El Moján,0.776,13660.02,6899
 92452058B74108168136268,ve_zulia_maracaibo,Maracaibo,Municipio Maracaibo,VE-V,Zulia,1522765,1776686,1914382,2333285,1624210,1585357,97.61,419,3876.39,Maracaibo,0.75,127.79,5816
-92452058B26998381958141,ve_nueva_esparta_marcano,Marcano,Municipio Marcano,VE-O,Nueva Esparta,,,,,45782,27268,59.56,40,1144.55,Juan Griego,,,
+92452058B26998381958141,ve_nueva_esparta_marcano,Marcano,Municipio Marcano,VE-O,Nueva Esparta,35112,46098,53086,64314,45782,27268,59.56,40,1144.55,Juan Griego,,,
 92452058B60789568646042,ve_aragua_mario_briceno_iragorry,Mario Briceño Iragorry,Municipio Mario Briceño Iragorry,VE-D,Aragua,104241,115950,121658,138550,136784,41153,30.09,53,2580.83,El Limón,0.708,209.79,4377
 92452058B57031672069031,ve_monagas_maturin,Maturín,Municipio Maturín,VE-N,Monagas,538627,623400,663302,785900,655423,576335,87.93,13042,50.25,Maturín,,,
 92452058B8049854825221,ve_falcon_mauroa,Mauroa,Municipio Mauroa,VE-I,Falcón,24689,29420,32161,39475,30438,20422,67.09,1904,15.98,Mene de Mauroa,,,
@@ -144,7 +144,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B69792739078610,ve_carabobo_montalban,Montalbán,Municipio Montalbán,VE-G,Carabobo,24987,29451,31886,40783,29977,29977,100,107,280.15,Montalbán,0.718,541.82,4697
 92452058B96264628893767,ve_trujillo_monte_carmelo,Monte Carmelo,Municipio Monte Carmelo,VE-T,Trujillo,13563,15930,17188,19620,17381,7786,44.8,386,45.02,Monte Carmelo,,,
 92452058B41395444182143,ve_sucre_montes,Montes,Municipio Montes,VE-R,Sucre,55471,64312,69377,84982,69696,32139,46.11,1080,64.53,Cumanacoa,,,
-92452058B54957724737366,ve_lara_moran,Morán,Municipio Morán,VE-K,Lara,,,,,141556,74424,52.58,2231,63.44,El Tocuyo,0.654,238.28,3060
+92452058B54957724737366,ve_lara_moran,Morán,Municipio Morán,VE-K,Lara,123852,140879,149549,175479,141556,74424,52.58,2231,63.44,El Tocuyo,0.654,238.28,3060
 92452058B76648483747073,ve_trujillo_motatan,Motatán,Municipio Motatán,VE-T,Trujillo,21625,25437,27473,31476,38383,23823,62.07,115,333.76,Motatán,,,
 92452058B76694277740413,ve_apure_munoz,Muñoz,Municipio Muñoz,VE-C,Apure,28929,35742,39710,50908,34703,8733,25.16,7925,4.37,Bruzual,0.546,140.8,1492
 92452058B81521575667263,ve_carabobo_naguanagua,Naguanagua,Municipio Naguanagua,VE-G,Carabobo,171105,191093,200315,225123,178413,178413,100,188,949,Naguanagua,0.741,694.31,5451
@@ -155,7 +155,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B37394705502377,ve_portuguesa_ospino,Ospino,Municipio Ospino,VE-P,Portuguesa,49678,57363,61644,72366,58127,35133,60.44,1675,34.7,Ospino,,,
 92452058B20589241231515,ve_merida_padre_noguera,Padre Noguera,Municipio Padre Noguera,VE-L,Mérida,3186,3864,4250,5137,4628,4628,100,206,22.46,Santa María de Caparo,0.7,41.36,4156
 92452058B54674524555313,ve_bolivar_padre_pedro_chien,Padre Pedro Chien,Municipio Padre Pedro Chien,VE-F,Bolívar,16732,19415,20873,23408,20031,20031,100,2275,8.8,El Palmar,,,
-92452058B2415433423645,ve_lara_palavecino,Palavecino,Municipio Palavecino,VE-K,Lara,,,,,207494,86610,41.74,440,471.57,Cabudare,0.707,366.19,4356
+92452058B2415433423645,ve_lara_palavecino,Palavecino,Municipio Palavecino,VE-K,Lara,179219,203183,215266,250545,207494,86610,41.74,440,471.57,Cabudare,0.707,366.19,4356
 92452058B80542411245757,ve_falcon_palmasola,Palmasola,Municipio Palmasola,VE-I,Falcón,7566,8808,9495,11030,8816,8816,100,194,45.44,Palmasola,,,
 92452058B93497297495940,ve_trujillo_pampan,Pampán,Municipio Pampán,VE-T,Trujillo,51039,59657,64186,72427,65296,10148,15.54,431,151.49,Pampán,,,
 92452058B5298065984570,ve_trujillo_pampanito,Pampanito,Municipio Pampanito,VE-T,Trujillo,29944,35847,39123,46740,37528,17848,47.56,93,403.52,Pampanito,,,
@@ -169,7 +169,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B80975086584779,ve_miranda_pedro_gual,Pedro Gual,Municipio Pedro Gual,VE-M,Miranda,22293,24745,25777,26634,27151,25876,95.3,925,29.35,Cúpira,0.752,376.92,5900
 92452058B2929237041778,ve_anzoategui_pedro_maria_freites,Pedro María Freites,Municipio Pedro María Freites,VE-B,Anzoátegui,79432,86001,88986,87996,88795,70221,79.08,7153,12.41,Cantaura,0.646,100.96,2893
 92452058B18404635880934,ve_tachira_pedro_maria_urena,Pedro María Ureña,Municipio Pedro María Ureña,VE-S,Táchira,52130,56509,58977,70322,61930,49537,79.99,184,336.57,Ureña,,,
-92452058B42535057202540,ve_nueva_esparta_peninsula_de_macanao,Península de Macanao,Municipio Península de Macanao,VE-O,Nueva Esparta,,,,,33597,14959,44.52,331,101.5,Boca de Río,,,
+92452058B42535057202540,ve_nueva_esparta_peninsula_de_macanao,Península de Macanao,Municipio Península de Macanao,VE-O,Nueva Esparta,25580,33422,38378,45979,33597,14959,44.52,331,101.5,Boca de Río,,,
 92452058B84020445528897,ve_yaracuy_pena,Peña,Municipio Peña,VE-U,Yaracuy,104229,126935,140332,178592,122942,111714,90.87,510,241.06,Yaritagua,,,
 92452058B76742860274923,ve_falcon_petit,Petit,Municipio Petit,VE-I,Falcón,13659,16471,18134,22909,17471,8421,48.2,1025,17.04,Cabure,,,
 92452058B28042998253075,ve_miranda_plaza,Plaza,Municipio Plaza,VE-M,Miranda,221308,248588,260820,277276,248945,248945,100,180,1383.02,Guarenas,0.744,390.52,5596
@@ -179,7 +179,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B22086674211008,ve_trujillo_rafael_rangel,Rafael Rangel,Municipio Rafael Rangel,VE-T,Trujillo,23423,28178,30845,37288,28489,7019,24.64,120,237.4,Betijoque,,,
 92452058B16072820149055,ve_tachira_rafael_urdaneta,Rafael Urdaneta,Municipio Rafael Urdaneta,VE-S,Táchira,5843,6263,6493,7543,7720,7720,100,176,43.86,Delicias,,,
 92452058B37520710637751,ve_merida_rangel,Rangel,Municipio Rangel,VE-L,Mérida,19287,23312,25591,30698,25243,10508,41.63,517,48.82,Mucuchíes,0.698,18.06,4117
-92452058B20928146308063,ve_bolivar_bolivariano_angostura,Bolivariano Angostura,Municipio Bolivariano Angostura (ex Raúl Leoni),VE-F,Bolívar,,,,,49070,17375,35.41,56916,0.86,Ciudad Piar,,,
+92452058B20928146308063,ve_bolivar_bolivariano_angostura,Bolivariano Angostura,Municipio Bolivariano Angostura (ex Raúl Leoni),VE-F,Bolívar,47590,55123,59198,66105,49070,17375,35.41,56916,0.86,Ciudad Piar,,,
 92452058B50148622636911,ve_sucre_ribero,Ribero,Municipio Ribero,VE-R,Sucre,63514,72982,78309,93896,67930,38215,56.26,1480,45.89,Cariaco,,,
 92452058B80982982494496,ve_cojedes_ricaurte,Ricaurte,Municipio Ricaurte,VE-H,Cojedes,12448,14020,14850,17804,18456,16416,88.95,905,20.39,Libertad,,,
 92452058B96512574408350,ve_merida_rivas_davila,Rivas Dávila,Municipio Rivas Dávila,VE-L,Mérida,20407,24858,27413,33502,24264,19809,81.64,182,133.31,Bailadores,0.703,45.81,4237
@@ -187,7 +187,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B8421162175114,ve_zulia_rosario_de_perija,Rosario de Perijá,Municipio Rosario de Perijá,VE-V,Zulia,84945,99190,106929,130584,106879,88775,83.06,3914,27.3,La Villa del Rosario,0.772,135.19,6701
 92452058B73572326911249,ve_bolivar_roscio,Roscio,Municipio Roscio,VE-F,Bolívar,24584,28931,31365,36386,27788,26968,97.05,6182,4.49,Guasipati,0.658,133.12,3143
 92452058B70531962129306,ve_tachira_samuel_dario_maldonado,Samuel Darío Maldonado,Municipio Samuel Darío Maldonado,VE-S,Táchira,18275,19933,20882,25287,22051,13294,60.29,548,40.23,La Tendida,,,
-92452058B56896825974617,ve_cojedes_san_carlos,San Carlos,Municipio San Carlos,VE-H,Cojedes,,,,,140256,133708,,1843,76.1,San Carlos,,,
+92452058B56896825974617,ve_cojedes_san_carlos,San Carlos,Municipio San Carlos,VE-H,Cojedes,103870,126784,140808,202738,140256,133708,95.33,1843,76.1,San Carlos,,,
 92452058B7770981704076,ve_aragua_san_casimiro,San Casimiro,Municipio San Casimiro,VE-D,Aragua,25885,28514,29744,33098,35103,27613,78.66,498,70.48,San Casimiro,0.67,52.54,3397
 92452058B43927171867078,ve_tachira_san_cristobal,San Cristóbal,Municipio San Cristóbal,VE-S,Táchira,272862,289852,298816,338872,302203,300846,99.55,241,1253.95,San Cristóbal,,,
 92452058B11643433355356,ve_carabobo_san_diego,San Diego,Municipio San Diego,VE-G,Carabobo,109969,124191,131056,151267,126101,126101,100,106,1189.63,San Diego,0.74,359.73,5436
@@ -213,14 +213,14 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B21195677528356,ve_tachira_seboruco,Seboruco,Municipio Seboruco,VE-S,Táchira,10233,11084,11564,13773,13348,13348,100,162,82.39,Seboruco,,,
 92452058B7239791888120,ve_bolivar_sifontes,Sifontes,Municipio Sifontes,VE-F,Bolívar,57120,66406,71471,80517,57943,33849,58.42,24393,2.37,Tumeremo,0.676,108.89,3534
 92452058B11105078455090,ve_falcon_silva,Silva,Municipio Silva,VE-I,Falcón,37984,44440,48050,56446,39546,28704,72.58,537,73.64,Tucacas,,,
-92452058B90039962099382,ve_lara_simon_planas,Simón Planas,Municipio Simón Planas,VE-K,Lara,,,,,48535,24184,49.83,808,60.06,Sarare,0.681,348.05,3667
-92452058B50271348468988,ve_anzoategui_sir_arthur_mac_gregor,Sir Arthur Mac Gregor,Municipio Sir Arthur Mac Gregor,VE-B,Anzoátegui,9824,11973,13300,17468,12243,10836,,1115,10.98,El Chaparro,0.666,99.55,3325
+92452058B90039962099382,ve_lara_simon_planas,Simón Planas,Municipio Simón Planas,VE-K,Lara,35504,41089,44066,53878,48535,24184,49.83,808,60.06,Sarare,0.681,348.05,3667
+92452058B50271348468988,ve_anzoategui_sir_arthur_mac_gregor,Sir Arthur Mac Gregor,Municipio Sir Arthur Mac Gregor,VE-B,Anzoátegui,9824,11973,13300,17468,12243,10836,88.51,1115,10.98,El Chaparro,0.666,99.55,3325
 92452058B73243248124437,ve_barinas_sosa,Sosa,Municipio Sosa,VE-E,Barinas,23304,27799,30271,36629,29822,8171,27.4,3546,8.41,Ciudad de Nutrias,,,
 92452058B70146576395550,ve_monagas_sotillo,Sotillo,Municipio Sotillo,VE-N,Monagas,23861,26791,28012,31114,31189,22770,73.01,1061,29.39,Barrancas,,,
 92452058B53950788580310,ve_cojedes_tinaco,Tinaco,Municipio Tinaco,VE-H,Cojedes,31747,38172,42049,58919,43336,43336,100,1098,39.46,Tinaco,,,
 92452058B57428725290546,ve_falcon_tocopero,Tocopero,Municipio Tocopero,VE-I,Falcón,5499,6354,6818,7778,8109,8109,100,83,97.69,Tocópero,,,
 92452058B65560769402967,ve_tachira_torbes,Torbes,Municipio Torbes,VE-S,Táchira,50427,54669,57060,68055,58322,58322,100,110,530.2,San Josecito,,,
-92452058B22596665360768,ve_lara_torres,Torres,Municipio Torres,VE-K,Lara,,,,,211806,123082,58.11,6954,30.45,Carora,0.629,115.83,2586
+92452058B22596665360768,ve_lara_torres,Torres,Municipio Torres,VE-K,Lara,186086,211170,223849,261136,211806,123082,58.11,6954,30.45,Carora,0.629,115.83,2586
 92452058B29326197328098,ve_trujillo_trujillo,Trujillo,Municipio Trujillo,VE-T,Trujillo,59097,71362,78288,95437,70426,63662,90.4,413,170.52,Trujillo,0.649,946.79,2971
 92452058B80404447780707,ve_delta_amacuro_tucupita,Tucupita,Municipio Tucupita,VE-Y,Delta Amacuro,101794,128332,146806,275072,149845,6873,4.59,10996,13.62,Tucupita,,,
 92452058B99464633299903,ve_portuguesa_turen,Turén,Municipio Turén,VE-P,Portuguesa,66380,75898,81075,92881,76409,53750,70.35,1324,57.71,Villa Bruzual,,,
@@ -235,7 +235,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B50396237528900,ve_trujillo_valera,Valera,Municipio Valera,VE-T,Trujillo,151067,171854,181910,192259,176961,150869,85.26,240,737.33,Valera,,,
 92452058B93255664897858,ve_zulia_valmore_rodriguez,Valmore Rodríguez,Municipio Valmore Rodríguez,VE-V,Zulia,52014,59828,63919,75297,65840,46036,69.92,1292,50.95,Bachaquero,0.772,2684.5,6727
 92452058B35881959392947,ve_yaracuy_veroes,Veroes,Municipio Veroes,VE-U,Yaracuy,28163,32683,35103,39792,35365,14566,41.19,1059,33.39,Farriar,,,
-92452058B87556418523140,ve_nueva_esparta_villalba,Villalba,Municipio Villalba,VE-O,Nueva Esparta,,,,,11894,7142,60.05,55,216.25,San Pedro de Coche,,,
+92452058B87556418523140,ve_nueva_esparta_villalba,Villalba,Municipio Villalba,VE-O,Nueva Esparta,8678,11420,13171,16061,11894,7142,60.05,55,216.25,San Pedro de Coche,,,
 92452058B83118913216781,ve_guarico_zaraza,Zaraza,Municipio Zaraza,VE-J,Guárico,63800,77190,84859,101366,75808,72315,95.39,2410,31.45,Zaraza,,,
 92452058B34699715340940,ve_merida_zea,Zea,Municipio Zea,VE-L,Mérida,11388,13572,14773,17124,14092,9207,65.33,122,115.5,Zea,0.68,26.39,3650
 92452058B66612082158993,ve_falcon_acosta,Acosta,Municipio Acosta,VE-I,Falcón,19076,22791,24955,30828,23323,9734,41.74,757,30.8,San Juan de los Cayos,,,
@@ -246,9 +246,9 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B69461621653352,ve_miranda_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-M,Miranda,21322,23688,24690,25564,24526,23287,94.95,114,215.14,San José de Barlovento,0.78,927.9,7070
 92452058B83235361555221,ve_barinas_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-E,Barinas,15175,18037,19599,23509,19920,8094,40.63,1493,13.34,El Cantón,,,
 92452058B18977618770055,ve_sucre_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-R,Sucre,27539,31766,34164,41345,30981,19660,63.46,721,42.96,Casanay,,,
-92452058B34095123389968,ve_lara_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-K,Lara,,,,,56076,37168,66.28,708,79.2,Sanare,0.685,1287.89,3755
+92452058B34095123389968,ve_lara_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-K,Lara,47933,55071,58802,70663,56076,37168,66.28,708,79.2,Sanare,0.685,1287.89,3755
 92452058B15677212765732,ve_sucre_arismendi,Arismendi,Municipio Arismendi,VE-R,Sucre,48949,56756,61229,75022,54735,29900,54.63,769,71.17,Río Caribe,,,
-92452058B71215590710272,ve_nueva_esparta_arismendi,Arismendi,Municipio Arismendi,VE-O,Nueva Esparta,,,,,35986,35986,100,52,692.03,La Asunción,,,
+92452058B71215590710272,ve_nueva_esparta_arismendi,Arismendi,Municipio Arismendi,VE-O,Nueva Esparta,28118,36563,41864,49583,35986,35986,100,52,692.03,La Asunción,,,
 92452058B99527238900768,ve_barinas_arismendi,Arismendi,Municipio Arismendi,VE-E,Barinas,26147,31249,34066,41404,27544,11072,40.2,7209,3.82,Arismendi,,,
 92452058B10882972052933,ve_monagas_bolivar,Bolívar,Municipio Bolívar,VE-N,Monagas,37683,43448,46157,54652,47609,47609,100,345,137.99,Caripito,,,
 92452058B68095023694670,ve_aragua_bolivar,Bolívar,Municipio Bolívar,VE-D,Aragua,38430,42012,43623,47659,44733,44733,100,58,771.25,San Mateo,0.668,566.1,3355
@@ -271,10 +271,10 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B62779861524453,ve_aragua_girardot,Girardot,Municipio Girardot,VE-D,Aragua,431547,475175,495544,550785,469371,460380,98.08,302,1554.2,Maracay,0.724,5079.93,4892
 92452058B82042298353727,ve_miranda_independencia,Independencia,Municipio Independencia,VE-M,Miranda,145361,165268,174662,191132,173685,81938,47.18,284,611.56,Santa Teresa del Tuy,0.741,612.24,5453
 92452058B61290497369270,ve_anzoategui_independencia,Independencia,Municipio Independencia,VE-B,Anzoátegui,31904,38991,43381,57306,41745,30941,74.12,5929,7.04,Soledad,0.64,85.7,2787
-92452058B61414933124472,ve_tachira_independencia,Independencia,Municipio Independencia,VE-S,Táchira,36521,40169,42289,52205,43065,27497,,80,538.31,Capacho Nuevo,,,
+92452058B61414933124472,ve_tachira_independencia,Independencia,Municipio Independencia,VE-S,Táchira,36521,40169,42289,52205,43065,27497,63.85,80,538.31,Capacho Nuevo,,,
 92452058B35610022203869,ve_yaracuy_independencia,Independencia,Municipio Independencia,VE-U,Yaracuy,63774,75851,82676,99434,72788,72788,100,98,742.73,Independencia,,,
 92452058B50204709100098,ve_anzoategui_libertad,Libertad,Municipio Libertad,VE-B,Anzoátegui,16191,18036,18983,20101,20278,14050,69.29,2043,9.92,San Mateo,0.683,97.99,3721
-92452058B23217711082732,ve_tachira_libertad,Libertad,Municipio Libertad,VE-S,Táchira,27405,29545,30736,36192,31967,16381,,166,192.57,Capacho Viejo,,,
+92452058B23217711082732,ve_tachira_libertad,Libertad,Municipio Libertad,VE-S,Táchira,27405,29545,30736,36192,31967,16381,51.24,166,192.57,Capacho Viejo,,,
 92452058B71261275194510,ve_carabobo_libertador,Libertador,Municipio Libertador,VE-G,Carabobo,172121,191817,200816,224542,207247,207247,100,558,371.41,Tocuyito,0.729,548.18,5040
 92452058B74442038912920,ve_sucre_libertador,Libertador,Municipio Libertador,VE-R,Sucre,9932,11534,12456,15321,12713,11023,86.71,237,53.64,Tunapuy,,,
 92452058B90473537969965,ve_aragua_libertador,Libertador,Municipio Libertador,VE-D,Aragua,117677,130517,136705,154607,158616,72578,45.76,52,3050.3,Palo Negro,0.625,86.97,2531
@@ -282,16 +282,16 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B13345815126611,ve_distrito_capital_libertador,Libertador,Municipio Bolivariano Libertador,VE-A,Distrito Capital,2070927,2090479,2099223,2066367,2277972,2277972,100,433,5260.9,Caracas,0.788,16493.4,7497
 92452058B22657240029689,ve_tachira_libertador,Libertador,Municipio Libertador,VE-S,Táchira,21847,23709,24762,29622,27016,11488,42.52,1139,23.71,Abejales,,,
 92452058B64772493971985,ve_monagas_libertador,Libertador,Municipio Libertador,VE-N,Monagas,43692,49934,52767,61157,54373,40325,74.16,3447,15.77,Temblador,,,
-92452058B95168979191,ve_nueva_esparta_marino,Mariño,Municipio Mariño,VE-O,Nueva Esparta,,,,,118649,118649,100,39,3042.28,Porlamar,,,
+92452058B95168979191,ve_nueva_esparta_marino,Mariño,Municipio Mariño,VE-O,Nueva Esparta,98436,130068,150323,184373,118649,118649,100,39,3042.28,Porlamar,,,
 92452058B36519834610261,ve_sucre_marino,Mariño,Municipio Mariño,VE-R,Sucre,24978,28993,31300,38453,28217,15011,53.2,469,60.16,Irapa,,,
 92452058B11824178609180,ve_carabobo_miranda,Miranda,Municipio Miranda,VE-G,Carabobo,28388,32907,35276,43360,34809,34809,100,161,216.2,Miranda,0.775,647.18,6875
 92452058B99639061411506,ve_merida_miranda,Miranda,Municipio Miranda,VE-L,Mérida,22654,27261,29845,35420,27977,20094,71.82,408,68.57,Timotes,0.666,46.39,3314
 92452058B1546334358138,ve_trujillo_miranda,Miranda,Municipio Miranda,VE-T,Trujillo,23299,27714,30124,35349,26177,13828,52.82,374,69.99,El Dividive,,,
 92452058B40555810306039,ve_falcon_miranda,Miranda,Municipio Miranda,VE-I,Falcón,218965,254106,273312,313525,268862,251459,93.53,1805,148.95,Santa Ana de Coro,,,
 92452058B50002149731912,ve_portuguesa_paez,Páez,Municipio Páez,VE-P,Portuguesa,182507,215938,234917,283969,219524,189716,86.42,425,516.52,Acarigua,,,
-92452058B91932726489103,ve_zulia_paez,Páez,Municipio Páez,VE-V,Zulia,,,,,91162,20397,,2370,38.46,Sinamaica,,,
+92452058B91932726489103,ve_zulia_paez,Páez,Municipio Páez,VE-V,Zulia,68192,76526,80555,89422,91162,20397,22.37,2370,38.46,Sinamaica,,,
 92452058B72828901186947,ve_miranda_paez,Páez,Municipio Páez,VE-M,Miranda,39303,43671,45522,47154,46005,25218,54.82,963,47.77,Río Chico,0.731,345.06,5099
-92452058B68065976769542,ve_apure_paez,Páez,Municipio Páez,VE-C,Apure,,,,,122130,61180,50.09,12820,9.52,Guasdualito,,,
+92452058B68065976769542,ve_apure_paez,Páez,Municipio Páez,VE-C,Apure,105409,130503,145169,186914,122130,61180,50.09,12820,9.52,Guasdualito,,,
 92452058B74978111878407,ve_monagas_piar,Piar,Municipio Piar,VE-N,Monagas,45140,51147,53769,61030,58886,14788,25.11,1074,54.82,Aragua,,,
 92452058B47549156675396,ve_bolivar_piar,Piar,Municipio Piar,VE-F,Bolívar,112638,132081,142894,164348,123242,106060,86.06,15900,7.75,Upata,0.71,378.26,4435
 92452058B36429563491132,ve_falcon_piritu,Píritu,Municipio Píritu,VE-I,Falcón,10638,12396,13370,15563,13152,9957,75.71,1168,11.26,Píritu,,,
@@ -319,7 +319,7 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B76146617843422,ve_merida_tovar,Tovar,Municipio Tovar,VE-L,Mérida,39514,46051,49459,54364,45438,45438,100,184,246.94,Tovar,0.677,20.83,3578
 92452058B98233245594574,ve_aragua_urdaneta,Urdaneta,Municipio Urdaneta,VE-D,Aragua,21469,23956,25182,28895,34074,19558,57.4,2024,16.83,Barbacoas,0.645,56.31,2874
 92452058B66787265555701,ve_trujillo_urdaneta,Urdaneta,Municipio Urdaneta,VE-T,Trujillo,35464,42658,46690,56415,39738,8275,20.82,497,79.95,La Quebrada,,,
-92452058B69956206553200,ve_lara_urdaneta,Urdaneta,Municipio Urdaneta,VE-K,Lara,,,,,69956,27120,38.77,4256,16.43,Siquisique,0.679,1384.04,3616
+92452058B69956206553200,ve_lara_urdaneta,Urdaneta,Municipio Urdaneta,VE-K,Lara,62220,69823,73518,83510,69956,27120,38.77,4256,16.43,Siquisique,0.679,1384.04,3616
 92452058B23947748286776,ve_miranda_urdaneta,Urdaneta,Municipio Urdaneta,VE-M,Miranda,155709,174534,182890,193454,176326,142967,81.08,273,645.88,Cúa,0.762,163.14,6296
 92452058B44429853731382,ve_falcon_zamora,Zamora,Municipio Zamora,VE-I,Falcón,34227,40362,43853,52512,38897,29952,77,619,62.83,Puerto Cumarebo,,,
 92452058B49597531088827,ve_miranda_zamora,Zamora,Municipio Zamora,VE-M,Miranda,203278,227666,238450,251738,216276,175705,81.24,378,572.15,Guatire,0.777,6873.79,6950
@@ -327,11 +327,11 @@ id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblac
 92452058B76868797395121,ve_anzoategui_fernando_de_penalver,Fernando de Peñalver,Municipio Fernando de Peñalver,VE-B,Anzoátegui,36792,44720,49592,64658,40729,33410,82.03,643,63.34,Puerto Píritu,0.665,76.4,3303
 92452058B40300597364264,ve_carabobo_carlos_arvelo,Carlos Arvelo,Municipio Carlos Arvelo,VE-G,Carabobo,149264,165266,172349,189775,175908,85514,48.61,835,210.66,Güigüe,0.725,1147.86,4926
 92452058B48736670242482,ve_merida_tulio_febres_cordero,Tulio Febres Cordero,Municipio Tulio Febres Cordero,VE-L,Mérida,34649,40082,42856,46269,42276,21326,50.44,560,75.49,Nueva Bolivia,0.675,22.36,3517
-92452058B74295605734614,ve_nueva_esparta_tubores,Tubores,Municipio Tubores,VE-O,Nueva Esparta,,,,,46597,30521,65.5,180,258.87,Punta de Piedras,,,
+92452058B74295605734614,ve_nueva_esparta_tubores,Tubores,Municipio Tubores,VE-O,Nueva Esparta,35748,46825,53849,64881,46597,30521,65.5,180,258.87,Punta de Piedras,,,
 92452058B26241339003056,ve_zulia_almirante_padilla,Almirante Padilla,Municipio Almirante Padilla,VE-V,Zulia,12108,14325,15564,19616,16004,10305,64.39,151,105.98,El Toro,0.763,2117.72,6317
 92452058B15023517845906,ve_zulia_miranda,Miranda,Municipio Miranda,VE-V,Zulia,98185,113602,121795,145499,122233,67811,55.48,2255,54.2,Los Puertos de Altagracia,0.755,129.08,5989
 92452058B245358204852,ve_zulia_sucre,Sucre,Municipio Sucre,VE-V,Zulia,61201,68475,71948,79292,74618,7760,10.4,874,85.37,Bobures,0.754,191.26,5955
 92452058B30911467500490,ve_carabobo_san_joaquin,San Joaquín,Municipio San Joaquín,VE-G,Carabobo,62887,69894,73059,81198,75707,75707,100,127,596.11,San Joaquín,0.753,475.26,5916
-92452058B25675040918260_muni,ve_guayana_esequiba_guayana_esequiba,Guayana Esequiba,Estado Guayana Esequiba,VE-GE,Guayana Esequiba,115000,123500,130000,155000,125000,,,159500,0.78,Tumeremo,0.5884049625,479.71,1998.7760833333334
+92452058B25675040918260_muni,ve_guayana_esequiba_guayana_esequiba,Guayana Esequiba,Estado Guayana Esequiba,VE-GE,Guayana Esequiba,115000,123500,130000,155000,125000,15000,12,159500,0.78,Tumeremo,0.5884049625,479.71,1998.7760833333334
 42786344B94533756407676_muni,ve_la_guaira_vargas,Vargas,Municipio Vargas,VE-X,La Guaira,350553,382123,402905,540516,448894,21250,4.73,1171,383.34,La Guaira,0.75,2562.56,5824
 42786344B77541452473448_muni,ve_dependencias_federales_dependencias_federales,Dependencias Federales,Dependencias Federales,VE-W,Dependencias Federales,2155,2155,2200,2300,2155,1471,68.26,342.25,6.3,Gran Roque,0.65,12,5500

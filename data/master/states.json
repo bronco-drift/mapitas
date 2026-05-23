@@ -96,20 +96,20 @@
         "coverage": 7
       },
       "poblacion_2010": {
-        "value": 402012,
-        "coverage": 6
+        "value": 507421,
+        "coverage": 7
       },
       "poblacion_2020": {
-        "value": 500065,
-        "coverage": 6
+        "value": 630568,
+        "coverage": 7
       },
       "poblacion_2026": {
-        "value": 557857,
-        "coverage": 6
+        "value": 703026,
+        "coverage": 7
       },
       "poblacion_2050": {
-        "value": 726620,
-        "coverage": 6
+        "value": 913534,
+        "coverage": 7
       },
       "idh": {
         "value": 0.61,
@@ -475,8 +475,8 @@
         "coverage": 20
       },
       "porcentaje_urbano_2021": {
-        "value": 85.06,
-        "coverage": 20
+        "value": 85.08,
+        "coverage": 21
       },
       "idh_1990": {
         "value": 0.654,
@@ -594,6 +594,22 @@
       },
       "densidad": {
         "value": 1178.17,
+        "coverage": 11
+      },
+      "poblacion_2010": {
+        "value": 484934,
+        "coverage": 11
+      },
+      "poblacion_2020": {
+        "value": 633703,
+        "coverage": 11
+      },
+      "poblacion_2026": {
+        "value": 727706,
+        "coverage": 11
+      },
+      "poblacion_2050": {
+        "value": 871580,
         "coverage": 11
       },
       "porcentaje_urbano_2021": {
@@ -723,8 +739,8 @@
         "coverage": 29
       },
       "porcentaje_urbano_2021": {
-        "value": 86.19,
-        "coverage": 27
+        "value": 84.68,
+        "coverage": 29
       },
       "idh_1990": {
         "value": 0.645,
@@ -770,24 +786,24 @@
         "coverage": 9
       },
       "poblacion_2010": {
-        "value": 211566,
-        "coverage": 8
+        "value": 315436,
+        "coverage": 9
       },
       "poblacion_2020": {
-        "value": 249313,
-        "coverage": 8
+        "value": 376097,
+        "coverage": 9
       },
       "poblacion_2026": {
-        "value": 271442,
-        "coverage": 8
+        "value": 412250,
+        "coverage": 9
       },
       "poblacion_2050": {
-        "value": 364107,
-        "coverage": 8
+        "value": 566845,
+        "coverage": 9
       },
       "porcentaje_urbano_2021": {
-        "value": 91.42,
-        "coverage": 8
+        "value": 92.69,
+        "coverage": 9
       },
       "idh_1990": {
         "value": 0.626,
@@ -971,20 +987,20 @@
         "coverage": 21
       },
       "poblacion_2010": {
-        "value": 3711293,
-        "coverage": 20
+        "value": 3779485,
+        "coverage": 21
       },
       "poblacion_2020": {
-        "value": 4290108,
-        "coverage": 20
+        "value": 4366634,
+        "coverage": 21
       },
       "poblacion_2026": {
-        "value": 4597538,
-        "coverage": 20
+        "value": 4678093,
+        "coverage": 21
       },
       "poblacion_2050": {
-        "value": 5488545,
-        "coverage": 20
+        "value": 5577967,
+        "coverage": 21
       },
       "idh": {
         "value": 0.75,
@@ -999,8 +1015,8 @@
         "coverage": 20
       },
       "porcentaje_urbano_2021": {
-        "value": 68.04,
-        "coverage": 20
+        "value": 67.1,
+        "coverage": 21
       },
       "idh_1990": {
         "value": 0.632,
@@ -1137,8 +1153,8 @@
         "coverage": 20
       },
       "porcentaje_urbano_2021": {
-        "value": 50.96,
-        "coverage": 19
+        "value": 51.15,
+        "coverage": 20
       },
       "idh": {
         "value": 0.65,
@@ -1287,8 +1303,8 @@
         "coverage": 15
       },
       "porcentaje_urbano_2021": {
-        "value": 89.2,
-        "coverage": 14
+        "value": 88.01,
+        "coverage": 15
       },
       "idh_1990": {
         "value": 0.615,
@@ -1409,20 +1425,20 @@
         "coverage": 11
       },
       "poblacion_2010": {
-        "value": 1559768,
-        "coverage": 10
+        "value": 1607358,
+        "coverage": 11
       },
       "poblacion_2020": {
-        "value": 1837864,
-        "coverage": 10
+        "value": 1892987,
+        "coverage": 11
       },
       "poblacion_2026": {
-        "value": 1994099,
-        "coverage": 10
+        "value": 2053297,
+        "coverage": 11
       },
       "poblacion_2050": {
-        "value": 2320525,
-        "coverage": 10
+        "value": 2386630,
+        "coverage": 11
       },
       "idh": {
         "value": 0.69,
@@ -1481,6 +1497,22 @@
       },
       "densidad": {
         "value": 321.78,
+        "coverage": 9
+      },
+      "poblacion_2010": {
+        "value": 1842211,
+        "coverage": 9
+      },
+      "poblacion_2020": {
+        "value": 2066916,
+        "coverage": 9
+      },
+      "poblacion_2026": {
+        "value": 2176398,
+        "coverage": 9
+      },
+      "poblacion_2050": {
+        "value": 2473691,
         "coverage": 9
       },
       "idh": {
@@ -1660,6 +1692,18 @@
         "coverage": 1,
         "override": true,
         "source": "Calculado: 125,000 / 159,500"
+      },
+      "poblacion_capital_2021": {
+        "value": 15000,
+        "coverage": 1,
+        "override": true,
+        "source": "Estimación: Bartica como mayor aglomeración dentro del territorio"
+      },
+      "porcentaje_urbano_2021": {
+        "value": 12,
+        "coverage": 1,
+        "override": true,
+        "source": "Calculado: 15,000 / 125,000 × 100 (Bartica / pob total)"
       },
       "idh_1990": {
         "value": 0.601,
@@ -1850,6 +1894,36 @@
         "coverage": 1,
         "override": true,
         "source": "Estimación interna: per cápita medio-alto por turismo de élite"
+      },
+      "idh_1990": {
+        "value": 0.627,
+        "coverage": 1,
+        "override": true,
+        "source": "Espejado de Amazonas (Source CV)"
+      },
+      "idh_2000": {
+        "value": 0.658,
+        "coverage": 1,
+        "override": true,
+        "source": "Espejado de Amazonas (Source CV)"
+      },
+      "idh_2010": {
+        "value": 0.737,
+        "coverage": 1,
+        "override": true,
+        "source": "Espejado de Amazonas (Source CV)"
+      },
+      "idh_2020": {
+        "value": 0.675,
+        "coverage": 1,
+        "override": true,
+        "source": "Espejado de Amazonas (Source CV)"
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
+        "coverage": 1,
+        "override": true,
+        "source": "Calculado: idh_2020 - idh_2010"
       }
     }
   }

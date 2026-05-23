@@ -1,24 +1,24 @@
 {
   "coverage": {
     "poblacion_2010": {
-      "covered": 312,
+      "covered": 336,
       "total": 336,
-      "pct": "92.9"
+      "pct": "100.0"
     },
     "poblacion_2020": {
-      "covered": 312,
+      "covered": 336,
       "total": 336,
-      "pct": "92.9"
+      "pct": "100.0"
     },
     "poblacion_2026": {
-      "covered": 312,
+      "covered": 336,
       "total": 336,
-      "pct": "92.9"
+      "pct": "100.0"
     },
     "poblacion_2050": {
-      "covered": 312,
+      "covered": 336,
       "total": 336,
-      "pct": "92.9"
+      "pct": "100.0"
     },
     "poblacion_2021": {
       "covered": 336,
@@ -26,14 +26,14 @@
       "pct": "100.0"
     },
     "poblacion_capital_2021": {
-      "covered": 335,
+      "covered": 336,
       "total": 336,
-      "pct": "99.7"
+      "pct": "100.0"
     },
     "porcentaje_urbano_2021": {
-      "covered": 328,
+      "covered": 336,
       "total": 336,
-      "pct": "97.6"
+      "pct": "100.0"
     },
     "area_km2": {
       "covered": 336,
@@ -67,5 +67,5 @@
     }
   },
   "excelUnmatched": [],
-  "generatedAt": "2026-05-23T17:31:00.603Z"
+  "generatedAt": "2026-05-23T18:30:24.345Z"
 }
