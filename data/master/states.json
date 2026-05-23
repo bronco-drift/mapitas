@@ -1,0 +1,1123 @@
+{
+  "VE-M": {
+    "iso": "VE-M",
+    "name": "Miranda",
+    "muni_count": 21,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 3208636,
+        "coverage": 21
+      },
+      "poblacion_capital_2021": {
+        "value": 2409826,
+        "coverage": 21
+      },
+      "area_km2": {
+        "value": 7950,
+        "coverage": 21
+      },
+      "densidad": {
+        "value": 1734.41,
+        "coverage": 21
+      },
+      "poblacion_2010": {
+        "value": 2965006,
+        "coverage": 21
+      },
+      "poblacion_2020": {
+        "value": 3323073,
+        "coverage": 21
+      },
+      "poblacion_2026": {
+        "value": 3481983,
+        "coverage": 21
+      },
+      "poblacion_2050": {
+        "value": 3682564,
+        "coverage": 21
+      },
+      "idh": {
+        "value": 0.75,
+        "coverage": 21
+      },
+      "pib_total_mm_usd": {
+        "value": 22752.05,
+        "coverage": 21
+      },
+      "pib_per_capita_usd": {
+        "value": 5923.08,
+        "coverage": 21
+      }
+    }
+  },
+  "VE-C": {
+    "iso": "VE-C",
+    "name": "Apure",
+    "muni_count": 7,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 582694,
+        "coverage": 7
+      },
+      "poblacion_capital_2021": {
+        "value": 382906,
+        "coverage": 7
+      },
+      "area_km2": {
+        "value": 76500,
+        "coverage": 7
+      },
+      "densidad": {
+        "value": 22.76,
+        "coverage": 7
+      },
+      "poblacion_2010": {
+        "value": 402012,
+        "coverage": 6
+      },
+      "poblacion_2020": {
+        "value": 500065,
+        "coverage": 6
+      },
+      "poblacion_2026": {
+        "value": 557857,
+        "coverage": 6
+      },
+      "poblacion_2050": {
+        "value": 726620,
+        "coverage": 6
+      },
+      "idh": {
+        "value": 0.61,
+        "coverage": 6
+      },
+      "pib_total_mm_usd": {
+        "value": 1235.73,
+        "coverage": 6
+      },
+      "pib_per_capita_usd": {
+        "value": 2455.88,
+        "coverage": 6
+      }
+    }
+  },
+  "VE-P": {
+    "iso": "VE-P",
+    "name": "Portuguesa",
+    "muni_count": 14,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1078934,
+        "coverage": 14
+      },
+      "poblacion_capital_2021": {
+        "value": 879937,
+        "coverage": 14
+      },
+      "area_km2": {
+        "value": 15200,
+        "coverage": 14
+      },
+      "densidad": {
+        "value": 206.38,
+        "coverage": 14
+      },
+      "poblacion_2010": {
+        "value": 913369,
+        "coverage": 14
+      },
+      "poblacion_2020": {
+        "value": 1070599,
+        "coverage": 14
+      },
+      "poblacion_2026": {
+        "value": 1159398,
+        "coverage": 14
+      },
+      "poblacion_2050": {
+        "value": 1388222,
+        "coverage": 14
+      }
+    }
+  },
+  "VE-N": {
+    "iso": "VE-N",
+    "name": "Monagas",
+    "muni_count": 13,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1112541,
+        "coverage": 13
+      },
+      "poblacion_capital_2021": {
+        "value": 880120,
+        "coverage": 13
+      },
+      "area_km2": {
+        "value": 28900,
+        "coverage": 13
+      },
+      "densidad": {
+        "value": 83.79,
+        "coverage": 13
+      },
+      "poblacion_2010": {
+        "value": 895726,
+        "coverage": 13
+      },
+      "poblacion_2020": {
+        "value": 1031761,
+        "coverage": 13
+      },
+      "poblacion_2026": {
+        "value": 1095009,
+        "coverage": 13
+      },
+      "poblacion_2050": {
+        "value": 1287326,
+        "coverage": 13
+      }
+    }
+  },
+  "VE-L": {
+    "iso": "VE-L",
+    "name": "Mérida",
+    "muni_count": 23,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1018219,
+        "coverage": 23
+      },
+      "poblacion_capital_2021": {
+        "value": 795265,
+        "coverage": 23
+      },
+      "area_km2": {
+        "value": 11300,
+        "coverage": 23
+      },
+      "densidad": {
+        "value": 187.61,
+        "coverage": 23
+      },
+      "poblacion_2010": {
+        "value": 885169,
+        "coverage": 23
+      },
+      "poblacion_2020": {
+        "value": 1059925,
+        "coverage": 23
+      },
+      "poblacion_2026": {
+        "value": 1157090,
+        "coverage": 23
+      },
+      "poblacion_2050": {
+        "value": 1358428,
+        "coverage": 23
+      },
+      "idh": {
+        "value": 0.69,
+        "coverage": 23
+      },
+      "pib_total_mm_usd": {
+        "value": 3845.39,
+        "coverage": 23
+      },
+      "pib_per_capita_usd": {
+        "value": 3910.71,
+        "coverage": 23
+      }
+    }
+  },
+  "VE-E": {
+    "iso": "VE-E",
+    "name": "Barinas",
+    "muni_count": 12,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1063351,
+        "coverage": 12
+      },
+      "poblacion_capital_2021": {
+        "value": 792764,
+        "coverage": 12
+      },
+      "area_km2": {
+        "value": 35200,
+        "coverage": 12
+      },
+      "densidad": {
+        "value": 86.65,
+        "coverage": 12
+      },
+      "poblacion_2010": {
+        "value": 799807,
+        "coverage": 12
+      },
+      "poblacion_2020": {
+        "value": 961181,
+        "coverage": 12
+      },
+      "poblacion_2026": {
+        "value": 1051372,
+        "coverage": 12
+      },
+      "poblacion_2050": {
+        "value": 1295717,
+        "coverage": 12
+      },
+      "idh": {
+        "value": 0.66,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 1563.72,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 3265,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-B": {
+    "iso": "VE-B",
+    "name": "Anzoátegui",
+    "muni_count": 21,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1819517,
+        "coverage": 21
+      },
+      "poblacion_capital_2021": {
+        "value": 1548049,
+        "coverage": 21
+      },
+      "area_km2": {
+        "value": 43300,
+        "coverage": 21
+      },
+      "densidad": {
+        "value": 455,
+        "coverage": 21
+      },
+      "poblacion_2010": {
+        "value": 1539920,
+        "coverage": 21
+      },
+      "poblacion_2020": {
+        "value": 1777816,
+        "coverage": 21
+      },
+      "poblacion_2026": {
+        "value": 1912719,
+        "coverage": 21
+      },
+      "poblacion_2050": {
+        "value": 2219110,
+        "coverage": 21
+      },
+      "idh": {
+        "value": 0.68,
+        "coverage": 20
+      },
+      "pib_total_mm_usd": {
+        "value": 8456.21,
+        "coverage": 20
+      },
+      "pib_per_capita_usd": {
+        "value": 3796.58,
+        "coverage": 20
+      }
+    }
+  },
+  "VE-R": {
+    "iso": "VE-R",
+    "name": "Sucre",
+    "muni_count": 15,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1117917,
+        "coverage": 15
+      },
+      "poblacion_capital_2021": {
+        "value": 881124,
+        "coverage": 15
+      },
+      "area_km2": {
+        "value": 11800,
+        "coverage": 15
+      },
+      "densidad": {
+        "value": 271.85,
+        "coverage": 15
+      },
+      "poblacion_2010": {
+        "value": 950915,
+        "coverage": 15
+      },
+      "poblacion_2020": {
+        "value": 1107108,
+        "coverage": 15
+      },
+      "poblacion_2026": {
+        "value": 1197179,
+        "coverage": 15
+      },
+      "poblacion_2050": {
+        "value": 1479359,
+        "coverage": 15
+      },
+      "idh": {
+        "value": 0.65,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 1029.08,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 2974,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-O": {
+    "iso": "VE-O",
+    "name": "Nueva Esparta",
+    "muni_count": 11,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 602114,
+        "coverage": 11
+      },
+      "poblacion_capital_2021": {
+        "value": 394109,
+        "coverage": 11
+      },
+      "area_km2": {
+        "value": 1151,
+        "coverage": 11
+      },
+      "densidad": {
+        "value": 1178.17,
+        "coverage": 11
+      }
+    }
+  },
+  "VE-Y": {
+    "iso": "VE-Y",
+    "name": "Delta Amacuro",
+    "muni_count": 4,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 240264,
+        "coverage": 4
+      },
+      "poblacion_capital_2021": {
+        "value": 45696,
+        "coverage": 4
+      },
+      "area_km2": {
+        "value": 40200,
+        "coverage": 4
+      },
+      "densidad": {
+        "value": 12.13,
+        "coverage": 4
+      },
+      "poblacion_2010": {
+        "value": 167247,
+        "coverage": 4
+      },
+      "poblacion_2020": {
+        "value": 210408,
+        "coverage": 4
+      },
+      "poblacion_2026": {
+        "value": 240605,
+        "coverage": 4
+      },
+      "poblacion_2050": {
+        "value": 453259,
+        "coverage": 4
+      }
+    }
+  },
+  "VE-S": {
+    "iso": "VE-S",
+    "name": "Táchira",
+    "muni_count": 29,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1376292,
+        "coverage": 29
+      },
+      "poblacion_capital_2021": {
+        "value": 1165460,
+        "coverage": 29
+      },
+      "area_km2": {
+        "value": 10812,
+        "coverage": 29
+      },
+      "densidad": {
+        "value": 529.72,
+        "coverage": 29
+      },
+      "poblacion_2010": {
+        "value": 1186016,
+        "coverage": 29
+      },
+      "poblacion_2020": {
+        "value": 1279248,
+        "coverage": 29
+      },
+      "poblacion_2026": {
+        "value": 1331187,
+        "coverage": 29
+      },
+      "poblacion_2050": {
+        "value": 1569196,
+        "coverage": 29
+      }
+    }
+  },
+  "VE-H": {
+    "iso": "VE-H",
+    "name": "Cojedes",
+    "muni_count": 9,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 432739,
+        "coverage": 9
+      },
+      "poblacion_capital_2021": {
+        "value": 401099,
+        "coverage": 9
+      },
+      "area_km2": {
+        "value": 14800,
+        "coverage": 9
+      },
+      "densidad": {
+        "value": 87.9,
+        "coverage": 9
+      },
+      "poblacion_2010": {
+        "value": 211566,
+        "coverage": 8
+      },
+      "poblacion_2020": {
+        "value": 249313,
+        "coverage": 8
+      },
+      "poblacion_2026": {
+        "value": 271442,
+        "coverage": 8
+      },
+      "poblacion_2050": {
+        "value": 364107,
+        "coverage": 8
+      }
+    }
+  },
+  "VE-U": {
+    "iso": "VE-U",
+    "name": "Yaracuy",
+    "muni_count": 14,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 756550,
+        "coverage": 14
+      },
+      "poblacion_capital_2021": {
+        "value": 626595,
+        "coverage": 14
+      },
+      "area_km2": {
+        "value": 7100,
+        "coverage": 14
+      },
+      "densidad": {
+        "value": 262.96,
+        "coverage": 14
+      },
+      "poblacion_2010": {
+        "value": 629674,
+        "coverage": 14
+      },
+      "poblacion_2020": {
+        "value": 752895,
+        "coverage": 14
+      },
+      "poblacion_2026": {
+        "value": 823385,
+        "coverage": 14
+      },
+      "poblacion_2050": {
+        "value": 1004670,
+        "coverage": 14
+      }
+    }
+  },
+  "VE-Z": {
+    "iso": "VE-Z",
+    "name": "Amazonas",
+    "muni_count": 7,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 176680,
+        "coverage": 7
+      },
+      "poblacion_capital_2021": {
+        "value": 176680,
+        "coverage": 7
+      },
+      "area_km2": {
+        "value": 183500,
+        "coverage": 7
+      },
+      "densidad": {
+        "value": 20.75,
+        "coverage": 7
+      },
+      "poblacion_2010": {
+        "value": 154519,
+        "coverage": 7
+      },
+      "poblacion_2020": {
+        "value": 202893,
+        "coverage": 7
+      },
+      "poblacion_2026": {
+        "value": 234308,
+        "coverage": 7
+      },
+      "poblacion_2050": {
+        "value": 360653,
+        "coverage": 7
+      },
+      "idh": {
+        "value": 0.64,
+        "coverage": 7
+      },
+      "pib_total_mm_usd": {
+        "value": 461.82,
+        "coverage": 7
+      },
+      "pib_per_capita_usd": {
+        "value": 2813.25,
+        "coverage": 7
+      }
+    }
+  },
+  "VE-V": {
+    "iso": "VE-V",
+    "name": "Zulia",
+    "muni_count": 21,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 4432419,
+        "coverage": 21
+      },
+      "poblacion_capital_2021": {
+        "value": 2973957,
+        "coverage": 21
+      },
+      "area_km2": {
+        "value": 50230,
+        "coverage": 21
+      },
+      "densidad": {
+        "value": 1852.78,
+        "coverage": 21
+      },
+      "poblacion_2010": {
+        "value": 3711293,
+        "coverage": 20
+      },
+      "poblacion_2020": {
+        "value": 4290108,
+        "coverage": 20
+      },
+      "poblacion_2026": {
+        "value": 4597538,
+        "coverage": 20
+      },
+      "poblacion_2050": {
+        "value": 5488545,
+        "coverage": 20
+      },
+      "idh": {
+        "value": 0.75,
+        "coverage": 20
+      },
+      "pib_total_mm_usd": {
+        "value": 29695.06,
+        "coverage": 20
+      },
+      "pib_per_capita_usd": {
+        "value": 5960.7,
+        "coverage": 20
+      }
+    }
+  },
+  "VE-G": {
+    "iso": "VE-G",
+    "name": "Carabobo",
+    "muni_count": 14,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 2665080,
+        "coverage": 14
+      },
+      "poblacion_capital_2021": {
+        "value": 2497898,
+        "coverage": 14
+      },
+      "area_km2": {
+        "value": 4369,
+        "coverage": 14
+      },
+      "densidad": {
+        "value": 1203.84,
+        "coverage": 14
+      },
+      "poblacion_2010": {
+        "value": 2299125,
+        "coverage": 14
+      },
+      "poblacion_2020": {
+        "value": 2566822,
+        "coverage": 14
+      },
+      "poblacion_2026": {
+        "value": 2690095,
+        "coverage": 14
+      },
+      "poblacion_2050": {
+        "value": 3020367,
+        "coverage": 14
+      },
+      "idh": {
+        "value": 0.76,
+        "coverage": 14
+      },
+      "pib_total_mm_usd": {
+        "value": 18660.06,
+        "coverage": 14
+      },
+      "pib_per_capita_usd": {
+        "value": 6651.54,
+        "coverage": 14
+      }
+    }
+  },
+  "VE-T": {
+    "iso": "VE-T",
+    "name": "Trujillo",
+    "muni_count": 20,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 886582,
+        "coverage": 20
+      },
+      "poblacion_capital_2021": {
+        "value": 453476,
+        "coverage": 20
+      },
+      "area_km2": {
+        "value": 7400,
+        "coverage": 20
+      },
+      "densidad": {
+        "value": 316.74,
+        "coverage": 20
+      },
+      "poblacion_2010": {
+        "value": 744874,
+        "coverage": 20
+      },
+      "poblacion_2020": {
+        "value": 880815,
+        "coverage": 20
+      },
+      "poblacion_2026": {
+        "value": 954472,
+        "coverage": 20
+      },
+      "poblacion_2050": {
+        "value": 1109799,
+        "coverage": 20
+      },
+      "idh": {
+        "value": 0.65,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 946.79,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 2971,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-I": {
+    "iso": "VE-I",
+    "name": "Falcón",
+    "muni_count": 25,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1137315,
+        "coverage": 25
+      },
+      "poblacion_capital_2021": {
+        "value": 746476,
+        "coverage": 25
+      },
+      "area_km2": {
+        "value": 24800,
+        "coverage": 25
+      },
+      "densidad": {
+        "value": 187.92,
+        "coverage": 25
+      },
+      "poblacion_2010": {
+        "value": 938503,
+        "coverage": 25
+      },
+      "poblacion_2020": {
+        "value": 1093346,
+        "coverage": 25
+      },
+      "poblacion_2026": {
+        "value": 1179004,
+        "coverage": 25
+      },
+      "poblacion_2050": {
+        "value": 1369065,
+        "coverage": 25
+      },
+      "idh": {
+        "value": 0.68,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 1652.95,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 3719,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-J": {
+    "iso": "VE-J",
+    "name": "Guárico",
+    "muni_count": 15,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 927775,
+        "coverage": 15
+      },
+      "poblacion_capital_2021": {
+        "value": 816574,
+        "coverage": 15
+      },
+      "area_km2": {
+        "value": 64986,
+        "coverage": 15
+      },
+      "densidad": {
+        "value": 31.56,
+        "coverage": 15
+      },
+      "poblacion_2010": {
+        "value": 783996,
+        "coverage": 15
+      },
+      "poblacion_2020": {
+        "value": 959618,
+        "coverage": 15
+      },
+      "poblacion_2026": {
+        "value": 1062368,
+        "coverage": 15
+      },
+      "poblacion_2050": {
+        "value": 1304983,
+        "coverage": 15
+      }
+    }
+  },
+  "VE-D": {
+    "iso": "VE-D",
+    "name": "Aragua",
+    "muni_count": 17,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 2006315,
+        "coverage": 17
+      },
+      "poblacion_capital_2021": {
+        "value": 1368061,
+        "coverage": 17
+      },
+      "area_km2": {
+        "value": 6580,
+        "coverage": 17
+      },
+      "densidad": {
+        "value": 1575.09,
+        "coverage": 17
+      },
+      "poblacion_2010": {
+        "value": 1696690,
+        "coverage": 17
+      },
+      "poblacion_2020": {
+        "value": 1870926,
+        "coverage": 17
+      },
+      "poblacion_2026": {
+        "value": 1952859,
+        "coverage": 17
+      },
+      "poblacion_2050": {
+        "value": 2178668,
+        "coverage": 17
+      },
+      "idh": {
+        "value": 0.68,
+        "coverage": 17
+      },
+      "pib_total_mm_usd": {
+        "value": 8859.06,
+        "coverage": 17
+      },
+      "pib_per_capita_usd": {
+        "value": 3748,
+        "coverage": 17
+      }
+    }
+  },
+  "VE-F": {
+    "iso": "VE-F",
+    "name": "Bolívar",
+    "muni_count": 11,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 1674642,
+        "coverage": 11
+      },
+      "poblacion_capital_2021": {
+        "value": 1497351,
+        "coverage": 11
+      },
+      "area_km2": {
+        "value": 240528,
+        "coverage": 11
+      },
+      "densidad": {
+        "value": 273.04,
+        "coverage": 11
+      },
+      "poblacion_2010": {
+        "value": 1559768,
+        "coverage": 10
+      },
+      "poblacion_2020": {
+        "value": 1837864,
+        "coverage": 10
+      },
+      "poblacion_2026": {
+        "value": 1994099,
+        "coverage": 10
+      },
+      "poblacion_2050": {
+        "value": 2320525,
+        "coverage": 10
+      },
+      "idh": {
+        "value": 0.69,
+        "coverage": 9
+      },
+      "pib_total_mm_usd": {
+        "value": 4122.16,
+        "coverage": 9
+      },
+      "pib_per_capita_usd": {
+        "value": 3968.32,
+        "coverage": 9
+      }
+    }
+  },
+  "VE-K": {
+    "iso": "VE-K",
+    "name": "Lara",
+    "muni_count": 9,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 2133205,
+        "coverage": 9
+      },
+      "poblacion_capital_2021": {
+        "value": 1634900,
+        "coverage": 9
+      },
+      "area_km2": {
+        "value": 19800,
+        "coverage": 9
+      },
+      "densidad": {
+        "value": 321.78,
+        "coverage": 9
+      },
+      "idh": {
+        "value": 0.71,
+        "coverage": 9
+      },
+      "pib_total_mm_usd": {
+        "value": 9955.17,
+        "coverage": 9
+      },
+      "pib_per_capita_usd": {
+        "value": 4609.22,
+        "coverage": 9
+      }
+    }
+  },
+  "VE-A": {
+    "iso": "VE-A",
+    "name": "Distrito Capital",
+    "muni_count": 1,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 2277972,
+        "coverage": 1
+      },
+      "poblacion_capital_2021": {
+        "value": 2277972,
+        "coverage": 1
+      },
+      "area_km2": {
+        "value": 433,
+        "coverage": 1
+      },
+      "densidad": {
+        "value": 5260.9,
+        "coverage": 1
+      },
+      "poblacion_2010": {
+        "value": 2070927,
+        "coverage": 1
+      },
+      "poblacion_2020": {
+        "value": 2090479,
+        "coverage": 1
+      },
+      "poblacion_2026": {
+        "value": 2099223,
+        "coverage": 1
+      },
+      "poblacion_2050": {
+        "value": 2066367,
+        "coverage": 1
+      },
+      "idh": {
+        "value": 0.79,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 16493.4,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 7497,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-GE": {
+    "iso": "VE-GE",
+    "name": "Guayana Esequiba",
+    "muni_count": 1,
+    "indicators": {
+      "idh": {
+        "value": 0.59,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 479.71,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 1998.78,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-X": {
+    "iso": "VE-X",
+    "name": "La Guaira",
+    "muni_count": 1,
+    "indicators": {
+      "poblacion_2021": {
+        "value": 448894,
+        "coverage": 1
+      },
+      "poblacion_capital_2021": {
+        "value": 21250,
+        "coverage": 1
+      },
+      "area_km2": {
+        "value": 1171,
+        "coverage": 1
+      },
+      "densidad": {
+        "value": 383.34,
+        "coverage": 1
+      },
+      "poblacion_2010": {
+        "value": 350553,
+        "coverage": 1
+      },
+      "poblacion_2020": {
+        "value": 382123,
+        "coverage": 1
+      },
+      "poblacion_2026": {
+        "value": 402905,
+        "coverage": 1
+      },
+      "poblacion_2050": {
+        "value": 540516,
+        "coverage": 1
+      },
+      "idh": {
+        "value": 0.75,
+        "coverage": 1
+      },
+      "pib_total_mm_usd": {
+        "value": 2562.56,
+        "coverage": 1
+      },
+      "pib_per_capita_usd": {
+        "value": 5824,
+        "coverage": 1
+      }
+    }
+  },
+  "VE-W": {
+    "iso": "VE-W",
+    "name": "Dependencias Federales",
+    "muni_count": 1,
+    "indicators": {}
+  }
+}

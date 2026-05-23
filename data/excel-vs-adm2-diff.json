@@ -1,0 +1,216 @@
+{
+  "Amazonas": {
+    "excel_total": 7,
+    "adm2_total": 7,
+    "matched": 7,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Anzoátegui": {
+    "excel_total": 21,
+    "adm2_total": 21,
+    "matched": 20,
+    "excel_only": [
+      "Sir Arthur Mc Gregor"
+    ],
+    "adm2_only": [
+      "Sir Arthur Mac Gregor"
+    ]
+  },
+  "Apure": {
+    "excel_total": 7,
+    "adm2_total": 6,
+    "matched": 6,
+    "excel_only": [
+      "Páez - Apure"
+    ],
+    "adm2_only": []
+  },
+  "Aragua": {
+    "excel_total": 17,
+    "adm2_total": 17,
+    "matched": 16,
+    "excel_only": [
+      "Mario Briceño Iragorri"
+    ],
+    "adm2_only": [
+      "Mario Briceño Iragorry"
+    ]
+  },
+  "Barinas": {
+    "excel_total": 12,
+    "adm2_total": 13,
+    "matched": 12,
+    "excel_only": [],
+    "adm2_only": [
+      "Páez"
+    ]
+  },
+  "Bolívar": {
+    "excel_total": 11,
+    "adm2_total": 11,
+    "matched": 9,
+    "excel_only": [
+      "Angostura del Orinoco",
+      "Bolivariano Angostura"
+    ],
+    "adm2_only": [
+      "Heres",
+      "Raúl Leoni"
+    ]
+  },
+  "Carabobo": {
+    "excel_total": 14,
+    "adm2_total": 14,
+    "matched": 14,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Cojedes": {
+    "excel_total": 9,
+    "adm2_total": 9,
+    "matched": 9,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Delta Amacuro": {
+    "excel_total": 4,
+    "adm2_total": 4,
+    "matched": 4,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Dependencias Federales": {
+    "excel_total": 0,
+    "adm2_total": 1,
+    "matched": 0,
+    "excel_only": [],
+    "adm2_only": [
+      "Dependencias Federales"
+    ]
+  },
+  "Distrito Capital": {
+    "excel_total": 1,
+    "adm2_total": 1,
+    "matched": 1,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Falcón": {
+    "excel_total": 25,
+    "adm2_total": 25,
+    "matched": 25,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Guayana Esequiba": {
+    "excel_total": 0,
+    "adm2_total": 1,
+    "matched": 0,
+    "excel_only": [],
+    "adm2_only": [
+      "Guayana Esequiba"
+    ]
+  },
+  "Guárico": {
+    "excel_total": 15,
+    "adm2_total": 15,
+    "matched": 15,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "La Guaira": {
+    "excel_total": 1,
+    "adm2_total": 1,
+    "matched": 1,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Lara": {
+    "excel_total": 9,
+    "adm2_total": 9,
+    "matched": 9,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Miranda": {
+    "excel_total": 21,
+    "adm2_total": 22,
+    "matched": 21,
+    "excel_only": [],
+    "adm2_only": [
+      "Vargas"
+    ]
+  },
+  "Monagas": {
+    "excel_total": 13,
+    "adm2_total": 13,
+    "matched": 12,
+    "excel_only": [
+      "Santa Babara"
+    ],
+    "adm2_only": [
+      "Santa Bárbara"
+    ]
+  },
+  "Mérida": {
+    "excel_total": 23,
+    "adm2_total": 23,
+    "matched": 23,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Nueva Esparta": {
+    "excel_total": 11,
+    "adm2_total": 11,
+    "matched": 11,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Portuguesa": {
+    "excel_total": 14,
+    "adm2_total": 14,
+    "matched": 14,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Sucre": {
+    "excel_total": 15,
+    "adm2_total": 15,
+    "matched": 15,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Trujillo": {
+    "excel_total": 20,
+    "adm2_total": 20,
+    "matched": 20,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Táchira": {
+    "excel_total": 29,
+    "adm2_total": 29,
+    "matched": 28,
+    "excel_only": [
+      "Panamericano"
+    ],
+    "adm2_only": [
+      "Panamericanp"
+    ]
+  },
+  "Yaracuy": {
+    "excel_total": 14,
+    "adm2_total": 14,
+    "matched": 14,
+    "excel_only": [],
+    "adm2_only": []
+  },
+  "Zulia": {
+    "excel_total": 21,
+    "adm2_total": 21,
+    "matched": 21,
+    "excel_only": [],
+    "adm2_only": []
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "coverage": {
+    "poblacion_2010": {
+      "covered": 310,
+      "total": 336,
+      "pct": "92.3"
+    },
+    "poblacion_2020": {
+      "covered": 310,
+      "total": 336,
+      "pct": "92.3"
+    },
+    "poblacion_2026": {
+      "covered": 310,
+      "total": 336,
+      "pct": "92.3"
+    },
+    "poblacion_2050": {
+      "covered": 310,
+      "total": 336,
+      "pct": "92.3"
+    },
+    "poblacion_2021": {
+      "covered": 334,
+      "total": 336,
+      "pct": "99.4"
+    },
+    "area_km2": {
+      "covered": 334,
+      "total": 336,
+      "pct": "99.4"
+    },
+    "densidad": {
+      "covered": 334,
+      "total": 336,
+      "pct": "99.4"
+    },
+    "capital": {
+      "covered": 334,
+      "total": 336,
+      "pct": "99.4"
+    },
+    "idh": {
+      "covered": 153,
+      "total": 336,
+      "pct": "45.5"
+    },
+    "pib_total_mm_usd": {
+      "covered": 153,
+      "total": 336,
+      "pct": "45.5"
+    },
+    "pib_per_capita_usd": {
+      "covered": 153,
+      "total": 336,
+      "pct": "45.5"
+    }
+  },
+  "excelUnmatched": [],
+  "generatedAt": "2026-05-23T03:57:31.063Z"
+}
