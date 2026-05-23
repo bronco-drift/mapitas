@@ -199,10 +199,10 @@ export function RangeEditor() {
             onClick={() => setCustomRange({ min: null, mid: null, max: null })}
             className="text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
           >
-            reset rango
+            volver a auto
           </button>
         ) : (
-          <span className="truncate text-slate-400">doble click en un punto = auto</span>
+          <span className="truncate text-slate-400">doble click en un círculo lo reinicia</span>
         )}
       </div>
     </div>

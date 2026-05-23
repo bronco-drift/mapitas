@@ -70,8 +70,9 @@ export function IndicatorsList() {
                   >
                     {indicator.label}
                   </div>
-                  {/* Badge -NN: cantidad de entidades sin data al nivel actual.
-                      Click abre el modal con la lista. */}
+                  {/* Badge "·N": cantidad de entidades sin data al nivel actual.
+                      Click abre el modal con la lista. Color amber (warning
+                      sutil), no rose (alarma). */}
                   {cov.applies && cov.missing > 0 && (
                     <button
                       type="button"
@@ -79,13 +80,13 @@ export function IndicatorsList() {
                         e.stopPropagation()
                         setCoverageModalFor(indicator)
                       }}
-                      className={`shrink-0 rounded text-[10px] font-semibold tabular-nums transition hover:underline ${
-                        active ? 'text-rose-200 hover:text-rose-100' : 'text-rose-600 hover:text-rose-700'
+                      className={`shrink-0 rounded text-[10px] font-medium tabular-nums transition hover:underline ${
+                        active ? 'text-amber-200 hover:text-amber-100' : 'text-amber-600 hover:text-amber-700'
                       }`}
-                      title={`${cov.missing} de ${cov.total} ${level === 'adm1' ? 'estados' : 'municipios'} sin datos · click para ver detalles`}
-                      aria-label={`Ver detalles de cobertura (${cov.missing} sin datos)`}
+                      title={`Faltan ${cov.missing} de ${cov.total} ${level === 'adm1' ? 'estados' : 'municipios'}. Click para ver cuáles`}
+                      aria-label={`Ver cobertura (${cov.missing} sin datos)`}
                     >
-                      −{cov.missing}
+                      ·{cov.missing}
                     </button>
                   )}
                 </div>

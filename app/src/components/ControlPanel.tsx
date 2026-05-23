@@ -145,12 +145,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <>
             {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'state' && (
               <div className="border-b border-slate-100 px-5 py-2 text-[10px] text-slate-400">
-                Indicador estatal heredado a cada municipio
-              </div>
-            )}
-            {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'municipality' && (
-              <div className="border-b border-slate-100 px-5 py-2 text-[10px] text-slate-400">
-                Datos municipales · estados sin desglose usan agregado
+                Cada municipio toma el valor de su estado
               </div>
             )}
             <Section

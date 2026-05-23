@@ -164,7 +164,7 @@ export const useStore = create<State & Actions>()(
   loading: false,
   loadError: null,
   source: null,
-  palette: 'blues',
+  palette: 'viridis',
   stats: null,
   selected: null,
   mapStyle: DEFAULT_MAP_STYLE,

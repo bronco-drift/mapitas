@@ -1,5 +1,12 @@
+import { useState, type ReactNode } from 'react'
 import { useStore } from '../store'
 import { BASEMAPS } from '../lib/basemaps'
+
+// Organización del tab Estilo en 3 disclosures colapsables, jerarquía clara:
+//   Color   (Fondo, Borde)              — siempre visible arriba
+//   Mapa base                            — disclosure
+//   Polígonos                            — disclosure (sin bordes, opacidades, grosor, contornos)
+//   Vista                                — disclosure (modos especiales: aislar, transparente)
 
 export function StyleControls() {
   const style = useStore(s => s.mapStyle)
@@ -7,16 +14,14 @@ export function StyleControls() {
   const level = useStore(s => s.level)
 
   return (
-    <div className="space-y-4">
-      {/* Orden pedido: Paleta (vive en PaletteSelector arriba) → Fondo → Borde → Mapa base → resto */}
-
-      {/* Colores Fondo + Borde en línea */}
+    <div className="space-y-3">
+      {/* Color (Fondo + Borde) — siempre visible, son los más tocados */}
       <div className="grid grid-cols-2 gap-2">
         <ColorField
           label="Fondo"
           value={style.bgColor}
           onChange={v => setMapStyle({ bgColor: v })}
-          hint={style.basemap === 'solid' ? 'Color del mapa base sólido' : 'Se ve cuando no hay tiles'}
+          hint={style.basemap === 'solid' ? 'Color del mapa base sólido' : 'Visible cuando no hay tiles'}
         />
         <ColorField
           label="Borde"
@@ -26,11 +31,8 @@ export function StyleControls() {
         />
       </div>
 
-      {/* Mapa base */}
-      <div>
-        <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-slate-500">
-          Mapa base
-        </div>
+      {/* Mapa base — disclosure default colapsado */}
+      <Disclosure title="Mapa base">
         <div className="grid grid-cols-3 gap-1">
           {BASEMAPS.map(b => (
             <button
@@ -60,102 +62,145 @@ export function StyleControls() {
             </button>
           ))}
         </div>
-      </div>
+      </Disclosure>
 
-      <Toggle
-        label="Sin bordes"
-        hint="Oculta todos los bordes de los polígonos"
-        checked={style.noBorders}
-        onChange={v => setMapStyle({ noBorders: v })}
-      />
+      {/* Polígonos — disclosure default expandido (lo más usado después de Color) */}
+      <Disclosure title="Polígonos" defaultOpen>
+        <div className="space-y-3">
+          <Toggle
+            label="Sin bordes"
+            hint="Oculta los bordes internos"
+            checked={style.noBorders}
+            onChange={v => setMapStyle({ noBorders: v })}
+          />
 
-      <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
-        <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
-          <span>Grosor borde</span>
-          <span className="font-normal text-slate-400">{style.lineWidth.toFixed(1)}</span>
+          <Toggle
+            label="Borde de país"
+            hint="Contorno del país en grosor fino"
+            checked={style.countryBorder}
+            onChange={v => setMapStyle({ countryBorder: v })}
+          />
+
+          {level === 'adm2' && (
+            <Toggle
+              label="Bordes de estados arriba"
+              hint="Resalta jerarquía estado/municipio"
+              checked={style.stateOverlayInMuni}
+              onChange={v => setMapStyle({ stateOverlayInMuni: v })}
+            />
+          )}
+
+          <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
+            <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+              <span>Grosor borde</span>
+              <span className="font-normal text-slate-400">{style.lineWidth.toFixed(1)}</span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={3}
+              step={0.1}
+              value={style.lineWidth}
+              disabled={style.noBorders}
+              onChange={e => setMapStyle({ lineWidth: parseFloat(e.target.value) })}
+              className="w-full accent-slate-900"
+            />
+          </div>
+
+          {/* Opacidad de relleno: SIEMPRE editable. En modo noBorders su valor
+              también atenúa el stroke (mismo color del fill) para que todo el
+              polígono se mueva junto. */}
+          <div>
+            <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+              <span>Opacidad relleno</span>
+              <span className="font-normal text-slate-400">
+                {`${Math.round(style.fillOpacity * 100)}%`}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.05}
+              value={style.fillOpacity}
+              onChange={e => setMapStyle({ fillOpacity: parseFloat(e.target.value) })}
+              className="w-full accent-slate-900"
+            />
+          </div>
+
+          <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
+            <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+              <span>Opacidad borde</span>
+              <span className="font-normal text-slate-400">
+                {style.noBorders ? '100%' : `${Math.round(style.borderOpacity * 100)}%`}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.05}
+              value={style.noBorders ? 1 : style.borderOpacity}
+              disabled={style.noBorders}
+              onChange={e => setMapStyle({ borderOpacity: parseFloat(e.target.value) })}
+              className="w-full accent-slate-900"
+            />
+          </div>
         </div>
-        <input
-          type="range"
-          min={0}
-          max={3}
-          step={0.1}
-          value={style.lineWidth}
-          disabled={style.noBorders}
-          onChange={e => setMapStyle({ lineWidth: parseFloat(e.target.value) })}
-          className="w-full accent-slate-900"
-        />
-      </div>
+      </Disclosure>
 
-      {/* Opacidad de relleno: SIEMPRE editable. En modo noBorders su valor
-          también atenúa el stroke (que es del mismo color del fill), así todo
-          el polígono se mueve junto. */}
-      <div>
-        <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
-          <span>Opacidad relleno</span>
-          <span className="font-normal text-slate-400">
-            {`${Math.round(style.fillOpacity * 100)}%`}
-          </span>
+      {/* Vista — modos especiales, default colapsado */}
+      <Disclosure title="Vista">
+        <div className="space-y-3">
+          <Toggle
+            label="Aislar país"
+            hint="Oculta el mapa base, deja solo el país"
+            checked={style.isolateCountry}
+            onChange={v => setMapStyle({ isolateCountry: v })}
+          />
+          <Toggle
+            label="Fondo transparente"
+            hint="Sin color de fondo, útil para exportar"
+            checked={style.transparentBg}
+            onChange={v => setMapStyle({ transparentBg: v })}
+          />
         </div>
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step={0.05}
-          value={style.fillOpacity}
-          onChange={e => setMapStyle({ fillOpacity: parseFloat(e.target.value) })}
-          className="w-full accent-slate-900"
-        />
-      </div>
-
-      <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
-        <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
-          <span>Opacidad borde</span>
-          <span className="font-normal text-slate-400">
-            {style.noBorders ? '100%' : `${Math.round(style.borderOpacity * 100)}%`}
-          </span>
-        </div>
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step={0.05}
-          value={style.noBorders ? 1 : style.borderOpacity}
-          disabled={style.noBorders}
-          onChange={e => setMapStyle({ borderOpacity: parseFloat(e.target.value) })}
-          className="w-full accent-slate-900"
-        />
-      </div>
-
-      <Toggle
-        label="Aislar país"
-        hint="Oculta basemap, deja solo el país"
-        checked={style.isolateCountry}
-        onChange={v => setMapStyle({ isolateCountry: v })}
-      />
-
-      <Toggle
-        label="Borde de país"
-        hint="Resalta el contorno (grosor fijo 0.5)"
-        checked={style.countryBorder}
-        onChange={v => setMapStyle({ countryBorder: v })}
-      />
-
-      <Toggle
-        label="Fondo transparente"
-        hint="Sin color de fondo (para exportar / combinar)"
-        checked={style.transparentBg}
-        onChange={v => setMapStyle({ transparentBg: v })}
-      />
-
-      {level === 'adm2' && (
-        <Toggle
-          label="Bordes de estados arriba"
-          hint="Resalta jerarquía estado / municipio"
-          checked={style.stateOverlayInMuni}
-          onChange={v => setMapStyle({ stateOverlayInMuni: v })}
-        />
-      )}
+      </Disclosure>
     </div>
+  )
+}
+
+// Disclosure simple con estado local. Usamos <details>/<summary> nativos para
+// accesibilidad gratis (Enter/Space, screen readers), con estilos custom.
+function Disclosure({
+  title,
+  defaultOpen = false,
+  children,
+}: {
+  title: string
+  defaultOpen?: boolean
+  children: ReactNode
+}) {
+  const [open, setOpen] = useState(defaultOpen)
+  return (
+    <details
+      open={open}
+      onToggle={e => setOpen((e.currentTarget as HTMLDetailsElement).open)}
+      className="group rounded-md border border-slate-100"
+    >
+      <summary className="flex cursor-pointer items-center justify-between rounded-md px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-600 hover:bg-slate-50 marker:hidden">
+        <span>{title}</span>
+        <svg
+          className={`h-3 w-3 text-slate-400 transition-transform ${open ? 'rotate-90' : ''}`}
+          viewBox="0 0 12 12"
+          fill="none"
+          aria-hidden
+        >
+          <path d="M4 3l4 3-4 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </summary>
+      <div className="px-2.5 pb-2.5 pt-1">{children}</div>
+    </details>
   )
 }
 
@@ -170,9 +215,6 @@ function ColorField({
   onChange: (v: string) => void
   hint?: string
 }) {
-  // Compact: label arriba + hex abajo a la derecha del color swatch.
-  // El hint vive como tooltip (title) — el side-by-side no tiene ancho para
-  // mostrar texto descriptivo sin saturarse.
   return (
     <label className="flex items-center gap-2" title={hint}>
       <input

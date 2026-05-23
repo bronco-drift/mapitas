@@ -114,13 +114,13 @@ export type Indicator = {
 
 const POBLACION_INE_2026: Indicator = {
   id: 'poblacion_ine_2026',
-  label: 'Población 2026',
+  label: 'Población 2026 · INE',
   description: 'Proyección oficial INE basada en censo 2011',
   unit: 'habitantes',
   format: 'number',
   year: 2026,
   source: 'INE Venezuela (proyecciones)',
-  note: 'Lara, Nueva Esparta y Dep. Federales sin desglose municipal en la publicación INE',
+  note: 'Faltan los municipios de Lara, Nueva Esparta y Dep. Federales',
   aggregation: 'municipality',
   data: muniField('poblacion_2026'),
   stateAggregate: stateField('poblacion_2026'),
@@ -128,13 +128,13 @@ const POBLACION_INE_2026: Indicator = {
 
 const POBLACION_INE_2050: Indicator = {
   id: 'poblacion_ine_2050',
-  label: 'Proyección 2050',
+  label: 'Población 2050 · INE',
   description: 'Proyección poblacional al año 2050 del INE',
   unit: 'habitantes',
   format: 'number',
   year: 2050,
   source: 'INE Venezuela (proyecciones)',
-  note: 'Proyección de largo plazo · referencia censo 2011',
+  note: 'Proyección de largo plazo, base censo 2011',
   aggregation: 'municipality',
   data: muniField('poblacion_2050'),
   stateAggregate: stateField('poblacion_2050'),
@@ -142,7 +142,7 @@ const POBLACION_INE_2050: Indicator = {
 
 const POBLACION_2021: Indicator = {
   id: 'poblacion_wiki_2021',
-  label: 'Población 2021',
+  label: 'Población 2021 · INE/Wiki',
   description: 'Población municipal según INE 2021',
   unit: 'habitantes',
   format: 'number',
@@ -155,8 +155,8 @@ const POBLACION_2021: Indicator = {
 
 const AREA: Indicator = {
   id: 'area_wiki',
-  label: 'Área',
-  description: 'Superficie territorial',
+  label: 'Área · INE/Wiki',
+  description: 'Superficie territorial en km²',
   unit: 'km²',
   format: 'number',
   year: 2021,
@@ -168,7 +168,7 @@ const AREA: Indicator = {
 
 const DENSIDAD: Indicator = {
   id: 'densidad_wiki',
-  label: 'Densidad',
+  label: 'Densidad · INE/Wiki',
   description: 'Habitantes por km²',
   unit: 'hab/km²',
   format: 'rate',
@@ -186,13 +186,13 @@ const DENSIDAD: Indicator = {
 
 const IDH: Indicator = {
   id: 'idh_2026',
-  label: 'IDH (estimado)',
-  description: 'Índice de Desarrollo Humano municipal estimado',
+  label: 'IDH 2026 · estimado',
+  description: 'Índice de Desarrollo Humano municipal',
   unit: 'índice 0–1',
   format: 'decimal',
   year: 2026,
-  source: 'Estimaciones del proyecto (sintético)',
-  note: 'Cobertura parcial · no hay fuente oficial pública de IDH municipal en Venezuela',
+  source: 'Estimaciones del proyecto',
+  note: 'No hay fuente oficial pública de IDH municipal en Venezuela. Para data oficial estatal usá IDH 2020 · CV',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
   data: muniField('idh'),
@@ -201,13 +201,13 @@ const IDH: Indicator = {
 
 const PIB_TOTAL: Indicator = {
   id: 'pib_total',
-  label: 'PIB total (estimado)',
-  description: 'Producto Interno Bruto total estimado',
+  label: 'PIB total · estimado',
+  description: 'Producto Interno Bruto total',
   unit: 'MM USD',
   format: 'number',
   year: 2026,
-  source: 'Estimaciones del proyecto (sintético)',
-  note: 'Cobertura parcial · BCV no publica cuentas regionales municipales',
+  source: 'Estimaciones del proyecto',
+  note: 'El BCV no publica cuentas regionales municipales. Usar como referencia, no como dato oficial',
   aggregation: 'municipality',
   data: muniField('pib_total_mm_usd'),
   stateAggregate: stateField('pib_total_mm_usd'),
@@ -215,13 +215,13 @@ const PIB_TOTAL: Indicator = {
 
 const PIB_PER_CAPITA: Indicator = {
   id: 'pib_per_capita',
-  label: 'PIB per cápita (estimado)',
-  description: 'PIB por habitante estimado',
+  label: 'PIB per cápita · estimado',
+  description: 'PIB por habitante',
   unit: 'USD',
   format: 'currency',
   year: 2026,
-  source: 'Estimaciones del proyecto (sintético)',
-  note: 'Cobertura parcial · no hay fuente oficial pública de PIB municipal',
+  source: 'Estimaciones del proyecto',
+  note: 'El BCV no publica PIB municipal. Usar como referencia, no como dato oficial',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
   data: muniField('pib_per_capita_usd'),
@@ -232,8 +232,8 @@ const PIB_PER_CAPITA: Indicator = {
 
 const PCT_URBANO: Indicator = {
   id: 'porcentaje_urbano_2021',
-  label: '% Población urbana - Source CV',
-  description: 'Porcentaje de la población municipal viviendo en la capital del municipio',
+  label: '% en cabecera · CV',
+  description: 'Población viviendo en la capital del municipio (sobre el total municipal)',
   unit: '%',
   format: 'rate',
   year: 2021,
@@ -246,7 +246,7 @@ const PCT_URBANO: Indicator = {
 
 const IDH_1990_CV: Indicator = {
   id: 'idh_1990_cv',
-  label: 'IDH 1990 - Source CV',
+  label: 'IDH 1990 · CV',
   description: 'Índice de Desarrollo Humano por entidad federal en 1990',
   unit: 'índice 0–1',
   format: 'decimal',
@@ -259,7 +259,7 @@ const IDH_1990_CV: Indicator = {
 
 const IDH_2000_CV: Indicator = {
   id: 'idh_2000_cv',
-  label: 'IDH 2000 - Source CV',
+  label: 'IDH 2000 · CV',
   description: 'Índice de Desarrollo Humano por entidad federal en 2000',
   unit: 'índice 0–1',
   format: 'decimal',
@@ -272,7 +272,7 @@ const IDH_2000_CV: Indicator = {
 
 const IDH_2010_CV: Indicator = {
   id: 'idh_2010_cv',
-  label: 'IDH 2010 - Source CV',
+  label: 'IDH 2010 · CV',
   description: 'Índice de Desarrollo Humano por entidad federal en 2010',
   unit: 'índice 0–1',
   format: 'decimal',
@@ -285,13 +285,13 @@ const IDH_2010_CV: Indicator = {
 
 const IDH_2020_CV: Indicator = {
   id: 'idh_2020_cv',
-  label: 'IDH 2020 - Source CV',
+  label: 'IDH 2020 · CV',
   description: 'Índice de Desarrollo Humano oficial por entidad federal en 2020',
   unit: 'índice 0–1',
   format: 'decimal',
   year: 2020,
   source: 'Source CV (PNUD / recopilación histórica)',
-  note: 'Data oficial 2020 · vs IDH (estimado) que es sintético a nivel muni',
+  note: 'Data oficial 2020. Para versión municipal usá IDH 2026 · estimado',
   aggregation: 'state',
   nationalAggregation: 'mean',
   data: stateField('idh_2020'),
@@ -299,8 +299,8 @@ const IDH_2020_CV: Indicator = {
 
 const IDH_CAMBIO: Indicator = {
   id: 'idh_cambio_2010_2020_cv',
-  label: 'Cambio IDH 2010-2020 - Source CV',
-  description: 'Variación del IDH entre 2010 y 2020 (negativo = deterioro)',
+  label: 'Cambio IDH 2010–2020 · CV',
+  description: 'Variación del IDH entre 2010 y 2020 (negativo = retroceso)',
   unit: 'Δ índice',
   format: 'decimal',
   year: 2020,
@@ -315,13 +315,13 @@ const IDH_CAMBIO: Indicator = {
 
 const POBLACION_2024: Indicator = {
   id: 'poblacion_2024',
-  label: 'Población 2024 · est. estatal',
-  description: 'Aproximación estatal preexistente — números redondos',
+  label: 'Población 2024 · aprox. estatal',
+  description: 'Aproximación estatal preexistente, números redondeados',
   unit: 'habitantes',
   format: 'number',
   year: 2024,
-  source: 'Estimaciones preexistentes (aproximación estatal)',
-  note: 'Aproximaciones redondas · ver Población 2026 para data oficial',
+  source: 'Aproximación del proyecto (no oficial)',
+  note: 'Para data oficial usá Población 2026 · INE',
   aggregation: 'state',
   data: {
     'VE-A': 1_900_000, 'VE-B': 1_500_000, 'VE-C': 550_000, 'VE-D': 1_500_000,
@@ -336,13 +336,13 @@ const POBLACION_2024: Indicator = {
 
 const HOMICIDIOS: Indicator = {
   id: 'homicidios',
-  label: 'Tasa de homicidios',
+  label: 'Tasa homicidios · OVV',
   description: 'Homicidios por cada 100.000 habitantes',
   unit: 'por 100k',
   format: 'rate',
   year: 2023,
   source: 'OVV (Observatorio Venezolano de Violencia)',
-  note: 'Datos ilustrativos · referencia OVV 2023',
+  note: 'Cifras ilustrativas con referencia OVV 2023',
   aggregation: 'state',
   nationalAggregation: 'mean',
   data: {
