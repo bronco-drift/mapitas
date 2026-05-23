@@ -164,6 +164,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             >
               <IndicatorsList />
             </Section>
+
+            {/* Subir CSV al fondo del tab Datos, no fijo: scrollea con el
+                resto del contenido. */}
+            <Section title="Tus datos">
+              <DataUploader />
+            </Section>
           </>
         )}
 
@@ -232,13 +238,6 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           </Section>
         )}
       </div>
-
-      {/* Upload CSV/Excel — sólo visible en tab Datos, fijado al fondo */}
-      {tab === 'datos' && (
-        <div className="border-t border-slate-100 px-5 py-3">
-          <DataUploader />
-        </div>
-      )}
 
       <footer className="border-t border-slate-100 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
         <div className="flex items-baseline justify-between gap-2">
