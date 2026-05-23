@@ -9,6 +9,7 @@
   "dependencies": {
     "@turf/turf": "^7.1.0",
     "mapshaper": "^0.7.19",
-    "shapefile": "^0.6.6"
+    "shapefile": "^0.6.6",
+    "xlsx": "^0.18.5"
   }
 }

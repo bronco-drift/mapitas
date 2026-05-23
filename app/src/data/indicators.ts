@@ -1,4 +1,39 @@
 import municipalData from './municipal-indicators.json'
+import ineStatesRaw from './ine-population-states.json'
+import ineMunisRaw from './ine-population-municipalities.json'
+
+// JSONs INE — proyecciones poblacionales 2000-2050. Estructura:
+//   states:    { iso → { name, byYear: { '2026': number, ... } } }
+//   municipios: { sourceID → { name, parentISO, ineName, byYear: { '2026': ..., ... } } }
+type IneStateRecord = { name: string; byYear: Record<string, number> }
+type IneMuniRecord = {
+  name: string
+  parentISO: string
+  ineName: string
+  byYear: Record<string, number>
+}
+const ineStates = ineStatesRaw as Record<string, IneStateRecord>
+const ineMunis = ineMunisRaw as Record<string, IneMuniRecord>
+
+// Extrae { iso → valor } para un año específico del JSON estatal del INE
+function ineStateForYear(year: number): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const [iso, rec] of Object.entries(ineStates)) {
+    const v = rec.byYear[String(year)]
+    if (typeof v === 'number') out[iso] = v
+  }
+  return out
+}
+
+// Extrae { sourceID → valor } para un año específico del JSON municipal
+function ineMuniForYear(year: number): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const [sid, rec] of Object.entries(ineMunis)) {
+    const v = rec.byYear[String(year)]
+    if (typeof v === 'number') out[sid] = v
+  }
+  return out
+}
 
 // Indicadores pre-cargados. Pueden ser:
 //   - 'state': data keyed por código ISO 3166-2. Estado-nivel; al ver municipios
@@ -29,26 +64,34 @@ export type Indicator = {
   nationalAggregation?: 'sum' | 'mean'
 }
 
-// ---- Indicadores estatales (legacy, aproximaciones) ----
+// ---- Indicadores INE oficiales (proyecciones censo 2011, datos 2000-2050) ----
 
-const POBLACION_2024: Indicator = {
-  id: 'poblacion_2024',
-  label: 'Población (estado)',
-  description: 'Población total estimada por entidad',
+const POBLACION_INE_2026: Indicator = {
+  id: 'poblacion_ine_2026',
+  label: 'Población oficial 2026',
+  description: 'Proyección oficial INE basada en censo 2011',
   unit: 'habitantes',
   format: 'number',
-  year: 2024,
-  source: 'INE Venezuela (proyecciones)',
-  aggregation: 'state',
-  data: {
-    'VE-A': 1_900_000, 'VE-B': 1_500_000, 'VE-C': 550_000, 'VE-D': 1_500_000,
-    'VE-E': 850_000, 'VE-F': 1_400_000, 'VE-G': 2_300_000, 'VE-H': 350_000,
-    'VE-Y': 180_000, 'VE-W': 3_000, 'VE-I': 950_000, 'VE-J': 750_000,
-    'VE-X': 350_000, 'VE-K': 1_800_000, 'VE-L': 900_000, 'VE-M': 2_700_000,
-    'VE-N': 950_000, 'VE-O': 500_000, 'VE-P': 900_000, 'VE-R': 850_000,
-    'VE-S': 1_200_000, 'VE-T': 700_000, 'VE-U': 600_000, 'VE-V': 3_700_000,
-    'VE-Z': 180_000, 'VE-GE': 130_000,
-  },
+  year: 2026,
+  source: 'INE Venezuela (proyecciones poblacionales)',
+  note: 'Lara, Nueva Esparta y Dep. Federales sin desglose municipal en la publicación INE',
+  aggregation: 'municipality',
+  data: ineMuniForYear(2026),
+  stateAggregate: ineStateForYear(2026),
+}
+
+const POBLACION_INE_2050: Indicator = {
+  id: 'poblacion_ine_2050',
+  label: 'Proyección 2050',
+  description: 'Proyección poblacional al año 2050 del INE',
+  unit: 'habitantes',
+  format: 'number',
+  year: 2050,
+  source: 'INE Venezuela (proyecciones poblacionales)',
+  note: 'Proyección de largo plazo · referencia censo 2011',
+  aggregation: 'municipality',
+  data: ineMuniForYear(2050),
+  stateAggregate: ineStateForYear(2050),
 }
 
 const HOMICIDIOS: Indicator = {
@@ -151,12 +194,13 @@ const IDH_2026: Indicator = {
 }
 
 export const INDICATORS: Indicator[] = [
+  POBLACION_INE_2026,
+  POBLACION_INE_2050,
   POBLACION_2026,
   IDH_2026,
   PIB_PER_CAPITA,
   PIB_TOTAL,
   AREA,
-  POBLACION_2024,
   HOMICIDIOS,
 ]
 

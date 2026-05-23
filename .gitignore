@@ -27,6 +27,9 @@ data/provita/
 GEOjson files/
 *.zip
 
+# INE raw sources — re-descargables con `node scripts/fetch-ine-population.mjs`
+data/ine-raw/
+
 # Documento de referencia que dejé en la carpeta (no parte del proyecto)
 /Anexo_Municipios*.html
 /Anexo_Municipios*_files/
