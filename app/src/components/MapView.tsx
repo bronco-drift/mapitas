@@ -47,10 +47,19 @@ function fillStyleFor(style: MapStyle): (feature?: Feature) => PathOptions {
   return feature => {
     const props = feature?.properties as Adm1Props | Adm2Props | undefined
     const fillColor = props?._color ?? '#e5e7eb'
+    // Cuando el grosor del borde es bajo, los gaps geométricos entre polígonos
+    // vecinos (sub-pixel mismatches en el GeoJSON) se ven como líneas blancas.
+    // Para mitigarlo, en grosores chicos usamos el mismo color del fill como
+    // stroke — así el "borde" tapa el gap con el color del polígono.
+    const useFillForStroke = style.lineWidth < 0.5
+    const strokeColor = useFillForStroke ? fillColor : style.borderColor
+    // Con weight 0 Leaflet a veces no renderiza el path — forzamos al menos 0.5
+    // si el stroke matchea el fill (es "invisible" igual).
+    const weight = useFillForStroke ? Math.max(style.lineWidth, 0.5) : style.lineWidth
     return {
       fillColor,
-      color: style.borderColor,
-      weight: style.lineWidth,
+      color: strokeColor,
+      weight,
       fillOpacity: (props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)),
       opacity: style.borderOpacity,
     }
