@@ -1,4 +1,39 @@
+# Mapitas — robots.txt
+# https://mapitas.vercel.app/
+
 User-agent: *
+Allow: /
+
+# Bots de buscadores tradicionales
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Bots de IA — Mapitas es contenido publico pensado para ser citado e indexado
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://mapitas.vercel.app/sitemap.xml

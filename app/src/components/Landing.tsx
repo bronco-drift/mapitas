@@ -1,10 +1,16 @@
 // Landing page de Mapitas. Estructura:
-//   - <header> con logo + link a GitHub
-//   - <main> con hero + grid de features + CTA secundaria
+//   - <header> con logo + link a GitHub + link a FAQ
+//   - <main> con hero + grid de features + sources + FAQ + CTA secundaria
 //   - <footer> con créditos y atribuciones
 //
 // Diseño Apple/Anthropic: mucho whitespace, jerarquía tipográfica clara,
 // sin imágenes pesadas, sólo SVG inline. HTML semántico para SEO y a11y.
+//
+// Las FAQ viven en data/faq.ts (single source of truth). El JSON-LD de
+// FAQPage que las refleja para Google está en index.html — si cambia el
+// listado, hay que actualizar ambos.
+
+import { FAQ } from '../data/faq'
 
 export function Landing() {
   return (
@@ -15,6 +21,12 @@ export function Landing() {
           <span className="text-[15px] font-semibold tracking-tight">Mapitas</span>
         </a>
         <nav className="flex items-center gap-5 text-[13px] text-slate-500">
+          <a
+            href="#faq"
+            className="hidden hover:text-slate-900 sm:inline"
+          >
+            FAQ
+          </a>
           <a
             href="https://github.com/bronco-drift/mapitas"
             target="_blank"
@@ -161,6 +173,38 @@ export function Landing() {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section
+          id="faq"
+          aria-labelledby="faq-title"
+          className="border-t border-slate-100 pt-16 pb-20 sm:pt-24"
+        >
+          <h2
+            id="faq-title"
+            className="max-w-2xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
+          >
+            Preguntas frecuentes.
+          </h2>
+          <p className="mt-4 max-w-[55ch] text-[15px] leading-relaxed text-slate-500 sm:text-[16px]">
+            Lo esencial sobre cómo funciona Mapitas, de dónde vienen los datos y qué viene después.
+          </p>
+
+          <div className="mt-12 space-y-12">
+            {FAQ.map(cat => (
+              <div key={cat.id}>
+                <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                  {cat.label}
+                </h3>
+                <div className="border-t border-slate-100">
+                  {cat.items.map((item, i) => (
+                    <FAQItem key={i} q={item.q} a={item.a} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* CTA final */}
         <section
           aria-labelledby="cta-title"
@@ -219,6 +263,33 @@ export function Landing() {
         </div>
       </footer>
     </div>
+  )
+}
+
+// FAQ item con <details>/<summary> nativos para accesibilidad gratis
+// (Enter/Space, screen readers). El ::-webkit-details-marker se oculta para
+// usar el plus animado custom que rota 45deg al expandir (group-open).
+function FAQItem({ q, a }: { q: string; a: string }) {
+  return (
+    <details className="group border-b border-slate-100 [&::-webkit-details-marker]:hidden [&_summary::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer items-start justify-between gap-4 py-4 marker:hidden">
+        <span className="text-[15px] font-medium leading-snug text-slate-900">{q}</span>
+        <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center text-slate-400 transition-transform duration-200 group-open:rotate-45">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            className="h-3.5 w-3.5"
+            aria-hidden="true"
+          >
+            <path d="M8 3v10M3 8h10" />
+          </svg>
+        </span>
+      </summary>
+      <p className="pb-5 pr-9 text-[14px] leading-relaxed text-slate-600">{a}</p>
+    </details>
   )
 }
 

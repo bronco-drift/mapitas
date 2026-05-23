@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!--
+    Mapitas - sitemap.xml
+    Solo la URL raiz porque /#/app es una hash route (los buscadores no
+    indexan fragmentos). El contenido de la SPA queda accesible via la
+    landing, que tambien contiene 50 FAQ con FAQPage schema.
+  -->
   <url>
     <loc>https://mapitas.vercel.app/</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="es-VE" href="https://mapitas.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://mapitas.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mapitas.vercel.app/" />
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>
