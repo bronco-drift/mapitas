@@ -1,46 +1,78 @@
-import municipalData from './municipal-indicators.json'
-import ineStatesRaw from './ine-population-states.json'
-import ineMunisRaw from './ine-population-municipalities.json'
-import wikiData from './wiki-municipios.json'
+// Catálogo de indicadores que la app muestra como opciones de mapeo.
+//
+// La data viene del master consolidado en data/master/, exportado en versión
+// flat a app/src/data/master-municipalities.json y master-states.json.
+//
+// Regenerar: `node scripts/build-master.mjs` (consolida 4 fuentes con
+// precedencia explícita por campo). El master tiene los valores ya elegidos
+// por calidad — INE para serie 2010-2050, Excel/Wiki para 2021, sintético
+// solo donde es la única fuente (IDH, PIB).
+//
+// Los 2 indicadores `aggregation: 'state'` (Población 2024 legacy y Homicidios
+// OVV) no viven en el master porque son data hardcoded a nivel estado.
 
-// JSONs INE — proyecciones poblacionales 2000-2050. Estructura:
-//   states:    { iso → { name, byYear: { '2026': number, ... } } }
-//   municipios: { sourceID → { name, parentISO, ineName, byYear: { '2026': ..., ... } } }
-type IneStateRecord = { name: string; byYear: Record<string, number> }
-type IneMuniRecord = {
+import masterMunisRaw from './master-municipalities.json'
+import masterStatesRaw from './master-states.json'
+
+type MasterMuniRecord = {
+  id: string
+  external_id: string
   name: string
-  parentISO: string
-  ineName: string
-  byYear: Record<string, number>
+  parent_iso: string
+  parent_state: string
+  poblacion_2010?: number
+  poblacion_2020?: number
+  poblacion_2026?: number
+  poblacion_2050?: number
+  poblacion_2021?: number
+  area_km2?: number
+  densidad?: number
+  capital?: string
+  idh?: number
+  pib_total_mm_usd?: number
+  pib_per_capita_usd?: number
 }
-const ineStates = ineStatesRaw as Record<string, IneStateRecord>
-const ineMunis = ineMunisRaw as Record<string, IneMuniRecord>
-
-// Extrae { iso → valor } para un año específico del JSON estatal del INE
-function ineStateForYear(year: number): Record<string, number> {
-  const out: Record<string, number> = {}
-  for (const [iso, rec] of Object.entries(ineStates)) {
-    const v = rec.byYear[String(year)]
-    if (typeof v === 'number') out[iso] = v
-  }
-  return out
+type MasterStateRecord = {
+  iso: string
+  name: string
+  muni_count: number
+  poblacion_2010?: number
+  poblacion_2020?: number
+  poblacion_2026?: number
+  poblacion_2050?: number
+  poblacion_2021?: number
+  area_km2?: number
+  densidad?: number
+  idh?: number
+  pib_total_mm_usd?: number
+  pib_per_capita_usd?: number
 }
 
-// Extrae { sourceID → valor } para un año específico del JSON municipal
-function ineMuniForYear(year: number): Record<string, number> {
+const munis = masterMunisRaw as Record<string, MasterMuniRecord>
+const states = masterStatesRaw as Record<string, MasterStateRecord>
+
+type NumericMuniField = keyof Omit<MasterMuniRecord, 'id' | 'external_id' | 'name' | 'parent_iso' | 'parent_state' | 'capital'>
+type NumericStateField = keyof Omit<MasterStateRecord, 'iso' | 'name' | 'muni_count'>
+
+function muniField(field: NumericMuniField): Record<string, number> {
   const out: Record<string, number> = {}
-  for (const [sid, rec] of Object.entries(ineMunis)) {
-    const v = rec.byYear[String(year)]
+  for (const [sid, m] of Object.entries(munis)) {
+    const v = m[field]
     if (typeof v === 'number') out[sid] = v
   }
   return out
 }
 
-// Indicadores pre-cargados. Pueden ser:
-//   - 'state': data keyed por código ISO 3166-2. Estado-nivel; al ver municipios
-//     se hereda al parentISO.
-//   - 'municipality': data keyed por sourceID del muni. Trae también
-//     stateAggregate por ISO (sum / promedio ponderado) para la vista estatal.
+function stateField(field: NumericStateField): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const [iso, s] of Object.entries(states)) {
+    const v = s[field]
+    if (typeof v === 'number') out[iso] = v
+  }
+  return out
+}
+
+// ─── Tipo público ─────────────────────────────────────────────────────────
 
 export type IndicatorAggregation = 'state' | 'municipality'
 
@@ -64,119 +96,129 @@ export type Indicator = {
   // 'mean': promedio — sirve para IDH, tasas, ratios
   nationalAggregation?: 'sum' | 'mean'
   // Si true, los munis sin data específica heredan el stateAggregate del
-  // estado padre. Sin esta flag, quedan gris (honestidad de datos: si no
-  // hay número, no inventes uno). Solo prendido en indicadores que sí
-  // tienen sentido heredar (ej. tasas estatales aplicadas a munis).
+  // estado padre. Sin esta flag, quedan gris (honestidad de datos).
   inheritFromState?: boolean
 }
 
-// ---- Indicadores INE oficiales (proyecciones censo 2011, datos 2000-2050) ----
+// ─── Indicadores del master (data trazada) ────────────────────────────────
 
 const POBLACION_INE_2026: Indicator = {
   id: 'poblacion_ine_2026',
-  label: 'Población 2026 · INE',
+  label: 'Población 2026',
   description: 'Proyección oficial INE basada en censo 2011',
   unit: 'habitantes',
   format: 'number',
   year: 2026,
-  source: 'INE Venezuela (proyecciones poblacionales)',
+  source: 'INE Venezuela (proyecciones)',
   note: 'Lara, Nueva Esparta y Dep. Federales sin desglose municipal en la publicación INE',
   aggregation: 'municipality',
-  data: ineMuniForYear(2026),
-  stateAggregate: ineStateForYear(2026),
+  data: muniField('poblacion_2026'),
+  stateAggregate: stateField('poblacion_2026'),
 }
 
 const POBLACION_INE_2050: Indicator = {
   id: 'poblacion_ine_2050',
-  label: 'Proyección 2050 · INE',
+  label: 'Proyección 2050',
   description: 'Proyección poblacional al año 2050 del INE',
   unit: 'habitantes',
   format: 'number',
   year: 2050,
-  source: 'INE Venezuela (proyecciones poblacionales)',
+  source: 'INE Venezuela (proyecciones)',
   note: 'Proyección de largo plazo · referencia censo 2011',
   aggregation: 'municipality',
-  data: ineMuniForYear(2050),
-  stateAggregate: ineStateForYear(2050),
+  data: muniField('poblacion_2050'),
+  stateAggregate: stateField('poblacion_2050'),
 }
 
-// ---- Indicadores Wikipedia (proyecciones INE 2021 recopiladas) ----
-// Fuente: Anexo:Municipios de Venezuela por población y área en Wikipedia es.
-// Cobertura: 324 de 335 municipios (11 son gaps reales del adm2: Páez de Apure,
-// Ocumare Aragua, Angostura Bolívar, Guajira Zulia, etc.).
-type WikiData = {
-  municipios: Record<
-    string,
-    {
-      name: string
-      parentISO: string
-      wikiName: string
-      poblacion2021: number | null
-      areaKm2: number | null
-      densidad: number | null
-    }
-  >
-  stateAggregates: {
-    poblacion2021: Record<string, number>
-    areaKm2: Record<string, number>
-    densidad: Record<string, number>
-  }
-}
-const wiki = wikiData as WikiData
-
-function wikiMuniField(field: 'poblacion2021' | 'areaKm2' | 'densidad'): Record<string, number> {
-  const out: Record<string, number> = {}
-  for (const [sid, m] of Object.entries(wiki.municipios)) {
-    const v = m[field]
-    if (typeof v === 'number') out[sid] = v
-  }
-  return out
-}
-
-const POBLACION_WIKI_2021: Indicator = {
+const POBLACION_2021: Indicator = {
   id: 'poblacion_wiki_2021',
-  label: 'Población 2021 · Wiki',
-  description: 'Población municipal según anexo de Wikipedia',
+  label: 'Población 2021',
+  description: 'Población municipal según INE 2021',
   unit: 'habitantes',
   format: 'number',
   year: 2021,
-  source: 'Wikipedia (recopilación INE 2021)',
-  note: '324/335 municipios · gaps del adm2 en Páez Apure, Ocumare, Angostura, etc.',
+  source: 'INE 2021 (vía Wikipedia / planilla del proyecto)',
   aggregation: 'municipality',
-  data: wikiMuniField('poblacion2021'),
-  stateAggregate: wiki.stateAggregates.poblacion2021,
+  data: muniField('poblacion_2021'),
+  stateAggregate: stateField('poblacion_2021'),
 }
 
-const AREA_WIKI: Indicator = {
+const AREA: Indicator = {
   id: 'area_wiki',
-  label: 'Área · Wiki',
-  description: 'Superficie territorial según anexo de Wikipedia',
+  label: 'Área',
+  description: 'Superficie territorial',
   unit: 'km²',
   format: 'number',
   year: 2021,
-  source: 'Wikipedia (INE)',
+  source: 'INE 2021 / IGVSB',
   aggregation: 'municipality',
-  data: wikiMuniField('areaKm2'),
-  stateAggregate: wiki.stateAggregates.areaKm2,
+  data: muniField('area_km2'),
+  stateAggregate: stateField('area_km2'),
 }
 
-const DENSIDAD_WIKI: Indicator = {
+const DENSIDAD: Indicator = {
   id: 'densidad_wiki',
-  label: 'Densidad · Wiki',
-  description: 'Habitantes por km² según anexo de Wikipedia',
+  label: 'Densidad',
+  description: 'Habitantes por km²',
   unit: 'hab/km²',
   format: 'rate',
   year: 2021,
-  source: 'Wikipedia (INE)',
+  source: 'INE 2021 (calculado pob / área)',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
-  data: wikiMuniField('densidad'),
-  stateAggregate: wiki.stateAggregates.densidad,
+  data: muniField('densidad'),
+  stateAggregate: stateField('densidad'),
 }
 
-// ---- Indicadores estatales (legacy, aproximaciones hardcoded) ----
-// Mantenido para no perder data anterior — diferenciado por etiqueta "est. estatal".
-// Para data oficial 2024 ver POBLACION_INE_* (acceso a la serie completa 2000-2050).
+// Los siguientes vienen del CSV sintético original — eran la única fuente
+// disponible para PIB/IDH municipal en Venezuela. Marcamos honestamente que
+// son estimaciones, y la cobertura es parcial (~46% de los munis).
+
+const IDH: Indicator = {
+  id: 'idh_2026',
+  label: 'IDH (estimado)',
+  description: 'Índice de Desarrollo Humano municipal estimado',
+  unit: 'índice 0–1',
+  format: 'decimal',
+  year: 2026,
+  source: 'Estimaciones del proyecto (sintético)',
+  note: 'Cobertura parcial · no hay fuente oficial pública de IDH municipal en Venezuela',
+  aggregation: 'municipality',
+  nationalAggregation: 'mean',
+  data: muniField('idh'),
+  stateAggregate: stateField('idh'),
+}
+
+const PIB_TOTAL: Indicator = {
+  id: 'pib_total',
+  label: 'PIB total (estimado)',
+  description: 'Producto Interno Bruto total estimado',
+  unit: 'MM USD',
+  format: 'number',
+  year: 2026,
+  source: 'Estimaciones del proyecto (sintético)',
+  note: 'Cobertura parcial · BCV no publica cuentas regionales municipales',
+  aggregation: 'municipality',
+  data: muniField('pib_total_mm_usd'),
+  stateAggregate: stateField('pib_total_mm_usd'),
+}
+
+const PIB_PER_CAPITA: Indicator = {
+  id: 'pib_per_capita',
+  label: 'PIB per cápita (estimado)',
+  description: 'PIB por habitante estimado',
+  unit: 'USD',
+  format: 'currency',
+  year: 2026,
+  source: 'Estimaciones del proyecto (sintético)',
+  note: 'Cobertura parcial · no hay fuente oficial pública de PIB municipal',
+  aggregation: 'municipality',
+  nationalAggregation: 'mean',
+  data: muniField('pib_per_capita_usd'),
+  stateAggregate: stateField('pib_per_capita_usd'),
+}
+
+// ─── Indicadores estatales (hardcoded, no viven en el master) ─────────────
 
 const POBLACION_2024: Indicator = {
   id: 'poblacion_2024',
@@ -186,7 +228,7 @@ const POBLACION_2024: Indicator = {
   format: 'number',
   year: 2024,
   source: 'Estimaciones preexistentes (aproximación estatal)',
-  note: 'Aproximaciones redondas · ver Población 2026 INE para data oficial',
+  note: 'Aproximaciones redondas · ver Población 2026 para data oficial',
   aggregation: 'state',
   data: {
     'VE-A': 1_900_000, 'VE-B': 1_500_000, 'VE-C': 550_000, 'VE-D': 1_500_000,
@@ -219,103 +261,34 @@ const HOMICIDIOS: Indicator = {
   },
 }
 
-// ---- Indicadores municipales (CSV 2026) ----
-
-type MunicipalJson = {
-  indicators: Record<string, Record<string, number>>
-  stateAggregates: Record<string, Record<string, number>>
-}
-const muni = municipalData as MunicipalJson
-
-const POBLACION_2026: Indicator = {
-  id: 'poblacion_2026',
-  label: 'Población 2026 · est. municipal',
-  description: 'Población estimada por municipio',
-  unit: 'habitantes',
-  format: 'number',
-  year: 2026,
-  source: 'Estimaciones municipales 2026',
-  note: 'Cobertura parcial · 9 estados sin desglose (Táchira, Cojedes, Guárico, Monagas, Nueva Esparta, Portuguesa, Yaracuy, Delta Amacuro, Dep. Federales). Usar Población · INE o · Wiki para data oficial',
-  aggregation: 'municipality',
-  data: muni.indicators.poblacion_2026,
-  stateAggregate: muni.stateAggregates.poblacion_2026,
-}
-
-const AREA: Indicator = {
-  id: 'area_km2',
-  label: 'Área · est. municipal',
-  description: 'Superficie territorial',
-  unit: 'km²',
-  format: 'number',
-  year: 2026,
-  source: 'Estimaciones municipales 2026',
-  note: 'Cobertura parcial · usar Área · Wiki para superficie oficial completa',
-  aggregation: 'municipality',
-  data: muni.indicators.area_km2,
-  stateAggregate: muni.stateAggregates.area_km2,
-}
-
-const PIB_TOTAL: Indicator = {
-  id: 'pib_total',
-  label: 'PIB total',
-  description: 'Producto Interno Bruto total estimado',
-  unit: 'MM USD',
-  format: 'number',
-  year: 2026,
-  source: 'Estimaciones municipales 2026',
-  note: 'Cobertura parcial · 9 estados sin desglose municipal. Datos estimados',
-  aggregation: 'municipality',
-  data: muni.indicators.pib_total_mm_usd,
-  stateAggregate: muni.stateAggregates.pib_total_mm_usd,
-}
-
-const PIB_PER_CAPITA: Indicator = {
-  id: 'pib_per_capita',
-  label: 'PIB per cápita',
-  description: 'PIB por habitante estimado',
-  unit: 'USD',
-  format: 'currency',
-  year: 2026,
-  source: 'Estimaciones municipales 2026',
-  note: 'Cobertura parcial · 9 estados sin desglose municipal. Datos estimados',
-  aggregation: 'municipality',
-  nationalAggregation: 'mean',
-  data: muni.indicators.pib_per_capita_usd,
-  stateAggregate: muni.stateAggregates.pib_per_capita_usd,
-}
-
-const IDH_2026: Indicator = {
-  id: 'idh_2026',
-  label: 'IDH 2026',
-  description: 'Índice de Desarrollo Humano municipal estimado',
-  unit: 'índice 0–1',
-  format: 'decimal',
-  year: 2026,
-  source: 'Estimaciones municipales 2026',
-  note: 'Cobertura parcial · 9 estados sin desglose municipal. Datos estimados',
-  aggregation: 'municipality',
-  nationalAggregation: 'mean',
-  data: muni.indicators.idh_2026,
-  stateAggregate: muni.stateAggregates.idh_2026,
-}
+// ─── Catálogo público ─────────────────────────────────────────────────────
 
 export const INDICATORS: Indicator[] = [
   POBLACION_INE_2026,
   POBLACION_INE_2050,
-  POBLACION_WIKI_2021,
-  POBLACION_2026,
-  POBLACION_2024,
-  IDH_2026,
+  POBLACION_2021,
+  AREA,
+  DENSIDAD,
+  IDH,
   PIB_PER_CAPITA,
   PIB_TOTAL,
-  AREA_WIKI,
-  AREA,
-  DENSIDAD_WIKI,
+  POBLACION_2024,
   HOMICIDIOS,
 ]
 
+// Mapeo de IDs deprecados → IDs canónicos. Mantiene retro-compatibilidad
+// con la persistencia (localStorage) de users que tenían seleccionados
+// indicadores que ya no existen como separados.
+//   poblacion_2026 era el sintético → ahora apunta a la versión INE
+//   area_km2 era el sintético       → ahora apunta a Área (Excel/Wiki)
+const LEGACY_ID_ALIAS: Record<string, string> = {
+  poblacion_2026: 'poblacion_ine_2026',
+  area_km2: 'area_wiki',
+}
+
 export function getIndicator(id: string): Indicator | undefined {
-  return INDICATORS.find(i => i.id === id)
+  const canonical = LEGACY_ID_ALIAS[id] ?? id
+  return INDICATORS.find(i => i.id === canonical)
 }
 
 export function formatIndicatorValue(value: number, indicator: Indicator): string {

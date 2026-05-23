@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const CSV_PATH = join(ROOT, 'raw-sources', 'municipios_venezuela_2026.csv')
 const ADM2_PATH = join(ROOT, 'data', 'venezuela-adm2-enriched.geojson')
-const OUT_PATH = join(ROOT, 'app', 'src', 'data', 'municipal-indicators.json')
+const OUT_PATH = join(ROOT, 'data', 'sources', 'municipal-indicators.json')
 
 function normalize(str) {
   if (!str) return ''

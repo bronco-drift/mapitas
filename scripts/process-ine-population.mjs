@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const RAW_DIR = join(ROOT, 'data', 'ine-raw')
-const OUT_DIR = join(ROOT, 'app', 'src', 'data')
+const OUT_DIR = join(ROOT, 'data', 'sources')
 
 // Mismo listado que el fetcher — tenerlo aquí también es duplicación pero
 // permite correr el process aislado sin re-descargar.
@@ -403,8 +403,8 @@ function main() {
   }
 
   console.log(`\nEscritos:`)
-  console.log(`  app/src/data/ine-population-states.json (${Object.keys(stateData).length} estados)`)
-  console.log(`  app/src/data/ine-population-municipalities.json (${Object.keys(muniData).length} municipios)`)
+  console.log(`  data/sources/ine-population-states.json (${Object.keys(stateData).length} estados)`)
+  console.log(`  data/sources/ine-population-municipalities.json (${Object.keys(muniData).length} municipios)`)
   if (unmatchedMunis.length) {
     console.log(`  data/ine-raw/unmatched-municipalities.json (${unmatchedMunis.length} sin match)`)
   }

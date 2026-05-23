@@ -16,7 +16,7 @@ const HTML_FILE = join(
   ROOT,
   'Anexo_Municipios de Venezuela por población y área - Wikipedia, la enciclopedia libre.html',
 )
-const OUT_DIR = join(ROOT, 'app', 'src', 'data')
+const OUT_DIR = join(ROOT, 'data', 'sources')
 
 // Estado label (Wikipedia) → ISO 3166-2:VE. Algunos vienen como
 // "Distrito Capital", "Vargas" (alias de La Guaira), etc.
@@ -304,7 +304,7 @@ function main() {
     )
   }
   console.log(
-    `\nEscrito: app/src/data/wiki-municipios.json (${Object.keys(result).length} munis · ${Object.keys(stateAggregates.poblacion2021).length} estados)`,
+    `\nEscrito: data/sources/wiki-municipios.json (${Object.keys(result).length} munis · ${Object.keys(stateAggregates.poblacion2021).length} estados)`,
   )
 }
 

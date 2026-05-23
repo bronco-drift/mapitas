@@ -31,10 +31,10 @@ const ADM2_PATH = join(ROOT, 'app', 'public', 'data', 'venezuela-adm2-enriched.g
 const ADM1_PATH = join(ROOT, 'app', 'public', 'data', 'venezuela-adm1-enriched.geojson')
 
 const EXCEL_TSV = join(ROOT, 'data', 'excel-municipios-2021.tsv')
-const WIKI_JSON = join(ROOT, 'app', 'src', 'data', 'wiki-municipios.json')
-const INE_MUNI = join(ROOT, 'app', 'src', 'data', 'ine-population-municipalities.json')
-const INE_STATE = join(ROOT, 'app', 'src', 'data', 'ine-population-states.json')
-const MUNICIPAL_CSV = join(ROOT, 'app', 'src', 'data', 'municipal-indicators.json')
+const WIKI_JSON = join(ROOT, 'data', 'sources', 'wiki-municipios.json')
+const INE_MUNI = join(ROOT, 'data', 'sources', 'ine-population-municipalities.json')
+const INE_STATE = join(ROOT, 'data', 'sources', 'ine-population-states.json')
+const MUNICIPAL_CSV = join(ROOT, 'data', 'sources', 'municipal-indicators.json')
 
 const OUT_DIR = join(ROOT, 'data', 'master')
 mkdirSync(OUT_DIR, { recursive: true })
@@ -324,6 +324,46 @@ for (const s of Object.values(states)) {
 writeFileSync(join(OUT_DIR, 'states.csv'), scsv)
 
 writeFileSync(join(OUT_DIR, 'coverage-report.json'), JSON.stringify({ coverage, excelUnmatched, generatedAt: new Date().toISOString() }, null, 2))
+
+// ─── Versión flat optimizada para runtime de la app ────────────────────────
+// El master completo lleva trace por campo. La app no lo necesita, solo
+// los valores. Generamos un JSON mucho más liviano que se importa en
+// indicators.ts via Vite.
+
+const APP_DATA = join(ROOT, 'app', 'src', 'data')
+
+const flatMunis = {}
+for (const m of Object.values(master)) {
+  const row = {
+    id: m.id,
+    external_id: m.external_id,
+    name: m.name,
+    parent_iso: m.parent_iso,
+    parent_state: m.parent_state,
+  }
+  for (const [field, v] of Object.entries(m.indicators)) {
+    row[field] = v.value
+  }
+  flatMunis[m.id] = row
+}
+
+const flatStates = {}
+for (const s of Object.values(states)) {
+  const row = {
+    iso: s.iso,
+    name: s.name,
+    muni_count: s.muni_count,
+  }
+  for (const [field, v] of Object.entries(s.indicators)) {
+    row[field] = v.value
+  }
+  flatStates[s.iso] = row
+}
+
+writeFileSync(join(APP_DATA, 'master-municipalities.json'), JSON.stringify(flatMunis))
+writeFileSync(join(APP_DATA, 'master-states.json'), JSON.stringify(flatStates))
+console.log(`  app/src/data/master-municipalities.json (flat, runtime)`)
+console.log(`  app/src/data/master-states.json          (flat, runtime)`)
 
 // ─── Reporte humano ────────────────────────────────────────────────────────
 
