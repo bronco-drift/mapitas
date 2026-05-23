@@ -80,6 +80,8 @@ type State = {
   } | null
   mapStyle: MapStyle
   thematic: Record<string, ThematicState>
+  // Rango custom para clasificación visual (null = usa min/max natural)
+  customRange: { min: number | null; mid: number | null; max: number | null }
   // Restaurar después de cargar data — guarda el id del source persistido
   _persistedSourceId: string | null
   _persistedThematicIds: string[]
@@ -102,6 +104,8 @@ type Actions = {
   loadThematicManifest: () => Promise<void>
   toggleThematic: (id: string) => Promise<void>
   resetSettings: () => void
+  setCustomRange: (patch: Partial<{ min: number | null; mid: number | null; max: number | null }>) => void
+  resetCustomRange: () => void
 }
 
 export const DEFAULT_MAP_STYLE: MapStyle = {
@@ -146,6 +150,7 @@ export const useStore = create<State & Actions>()(
   selected: null,
   mapStyle: DEFAULT_MAP_STYLE,
   thematic: {},
+  customRange: { min: null, mid: null, max: null },
   _persistedSourceId: null,
   _persistedThematicIds: [],
 
@@ -187,13 +192,17 @@ export const useStore = create<State & Actions>()(
 
   selectIndicator(id) {
     if (!id) {
-      set({ source: null })
+      set({ source: null, customRange: { min: null, mid: null, max: null } })
       get().applyMerge()
       return
     }
     const indicator = getIndicator(id)
     if (!indicator) return
-    set({ source: { kind: 'indicator', indicator } })
+    // Resetear customRange al cambiar de indicador (cada uno tiene su escala)
+    set({
+      source: { kind: 'indicator', indicator },
+      customRange: { min: null, mid: null, max: null },
+    })
     get().applyMerge()
   },
 
@@ -225,14 +234,16 @@ export const useStore = create<State & Actions>()(
     }
 
     if (source.kind === 'indicator') {
+      const { customRange } = get()
+      const cr = { min: customRange.min, max: customRange.max }
       if (level === 'adm0' && adm0) {
         const { geo, stats } = applyIndicatorToAdm0(adm0, source.indicator, palette, custom)
         set({ adm0: geo, stats })
       } else if (level === 'adm1') {
-        const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom)
+        const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom, cr)
         set({ adm1: geo, stats })
       } else if (level === 'adm2') {
-        const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom)
+        const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom, cr)
         set({ adm2: geo, stats })
       }
       return
@@ -279,6 +290,16 @@ export const useStore = create<State & Actions>()(
       localStorage.removeItem(STORAGE_KEY)
     } catch {}
     window.location.reload()
+  },
+
+  setCustomRange(patch) {
+    set({ customRange: { ...get().customRange, ...patch } })
+    get().applyMerge()
+  },
+
+  resetCustomRange() {
+    set({ customRange: { min: null, mid: null, max: null } })
+    get().applyMerge()
   },
 
   async loadThematicManifest() {
@@ -354,6 +375,7 @@ export const useStore = create<State & Actions>()(
         level: state.level,
         palette: state.palette,
         mapStyle: state.mapStyle,
+        customRange: state.customRange,
         _persistedSourceId:
           state.source?.kind === 'indicator' ? state.source.indicator.id : null,
         _persistedThematicIds: Object.entries(state.thematic)

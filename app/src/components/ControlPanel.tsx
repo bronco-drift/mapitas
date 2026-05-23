@@ -21,6 +21,7 @@ import { DataUploader } from './DataUploader'
 import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
+import { ClassificationPanel } from './ClassificationPanel'
 
 type Props = {
   mobileOpen?: boolean
@@ -149,6 +150,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         >
           <IndicatorsList />
         </Section>
+
+        {activeIndicator && (
+          <Section title="Ajuste visual">
+            <ClassificationPanel />
+          </Section>
+        )}
 
         <Section title="Capas" collapsible defaultCollapsed>
           <ThematicLayersList />
