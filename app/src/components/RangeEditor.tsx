@@ -190,22 +190,52 @@ export function RangeEditor() {
         />
       </div>
 
-      {/* Hint + reset */}
-      <div className="mt-1 flex items-center justify-between px-2 text-[10px] text-slate-400">
-        <span>
-          {hasCustom ? 'Rango ajustado' : 'Doble click en un punto para volver a auto'}
-        </span>
-        {hasCustom && (
+      {/* Toggle auto-rango + reset/hint */}
+      <div className="mt-1 flex items-center justify-between gap-2 px-2 text-[10px] text-slate-400">
+        <AutoRangeToggle />
+        {hasCustom ? (
           <button
             type="button"
             onClick={() => setCustomRange({ min: null, mid: null, max: null })}
             className="text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
           >
-            auto
+            reset rango
           </button>
+        ) : (
+          <span className="truncate text-slate-400">doble click en un punto = auto</span>
         )}
       </div>
     </div>
+  )
+}
+
+// Toggle pequeño que recorta outliers por percentiles 2/98 cuando está ON.
+// Apagado: el rango usa los valores raw min/max (los outliers tiran el contraste).
+function AutoRangeToggle() {
+  const checked = useStore(s => s.mapStyle.autoClipExtremes)
+  const setMapStyle = useStore(s => s.setMapStyle)
+  return (
+    <label
+      className="flex cursor-pointer select-none items-center gap-1.5"
+      title="Auto-recorta outliers (percentiles 2-98). Apagado = usa min/max raw"
+    >
+      <button
+        type="button"
+        role="switch"
+        aria-checked={checked}
+        onClick={() => setMapStyle({ autoClipExtremes: !checked })}
+        className={`relative inline-flex h-3 w-5 shrink-0 items-center rounded-full transition ${
+          checked ? 'bg-slate-900' : 'bg-slate-300'
+        }`}
+      >
+        <span
+          className={`inline-block h-2 w-2 transform rounded-full bg-white transition ${
+            checked ? 'translate-x-2.5' : 'translate-x-0.5'
+          }`}
+        />
+      </button>
+      <span className={checked ? 'text-slate-600' : 'text-slate-400'}>auto rango</span>
+    </label>
   )
 }
 

@@ -37,14 +37,15 @@ function quantile(sortedValues: number[], q: number): number {
   return sortedValues[lo] * (hi - pos) + sortedValues[hi] * (pos - lo)
 }
 
-// Rango automático del dominio para colorear el mapa. Por default usa los
-// percentiles 2 y 98 para evitar que outliers (ej. Libertador/Maracaibo en
-// población) aplasten el contraste del resto. Cuando hay pocos valores
-// (<10) no aplica el clipping porque los percentiles dejan de ser
-// estadísticamente útiles.
-function autoRange(values: number[]): { min: number; max: number } {
+// Rango automático del dominio para colorear el mapa.
+// - clipExtremes=true (default): usa percentiles 2/98 para que outliers
+//   queden saturados y el resto recupere contraste.
+// - clipExtremes=false: usa raw min/max (los outliers definen el rango).
+// Si hay <10 valores no aplica clipping porque los percentiles dejan de
+// ser estadísticamente útiles.
+function autoRange(values: number[], clipExtremes: boolean): { min: number; max: number } {
   if (values.length === 0) return { min: 0, max: 0 }
-  if (values.length < 10) {
+  if (!clipExtremes || values.length < 10) {
     return { min: Math.min(...values), max: Math.max(...values) }
   }
   const sorted = [...values].sort((a, b) => a - b)
@@ -57,9 +58,10 @@ export function applyIndicatorToAdm1(
   palette: PaletteId,
   custom?: CustomStops,
   customRange?: { min: number | null; mid: number | null; max: number | null },
+  opts: { clipExtremes?: boolean } = {},
 ): { geo: AdmGeoJSON<Adm1Props>; stats: IndicatorStats } {
   const values = valuesForRange(indicator, 'adm1')
-  const { min: autoMin, max: autoMax } = autoRange(values)
+  const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
   const min = customRange?.min ?? autoMin
   const max = customRange?.max ?? autoMax
   // mid se interpreta como un valor absoluto del dominio. Lo convertimos al %
@@ -107,9 +109,10 @@ export function applyIndicatorToAdm2(
   palette: PaletteId,
   custom?: CustomStops,
   customRange?: { min: number | null; mid: number | null; max: number | null },
+  opts: { clipExtremes?: boolean } = {},
 ): { geo: AdmGeoJSON<Adm2Props>; stats: IndicatorStats } {
   const values = valuesForRange(indicator, 'adm2')
-  const { min: autoMin, max: autoMax } = autoRange(values)
+  const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
   const min = customRange?.min ?? autoMin
   const max = customRange?.max ?? autoMax
   const midRatio = customRange?.mid != null && max > min

@@ -47,6 +47,9 @@ export type MapStyle = {
   transparentBg: boolean
   noBorders: boolean
   countryBorder: boolean
+  // Si true (default), el rango automático del color recorta outliers
+  // usando percentiles 2/98. Si false, usa el min/max raw.
+  autoClipExtremes: boolean
 }
 
 export type ThematicMeta = {
@@ -134,6 +137,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   transparentBg: false,
   noBorders: false,
   countryBorder: false,
+  autoClipExtremes: true,
 }
 
 function clearAll<P extends Adm0Props | Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {
@@ -270,14 +274,15 @@ export const useStore = create<State & Actions>()(
 
     if (source.kind === 'indicator') {
       const { customRange } = get()
+      const opts = { clipExtremes: mapStyle.autoClipExtremes }
       if (level === 'adm0' && adm0) {
         const { geo, stats } = applyIndicatorToAdm0(adm0, source.indicator, palette, custom)
         set({ adm0: geo, stats })
       } else if (level === 'adm1') {
-        const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom, customRange)
+        const { geo, stats } = applyIndicatorToAdm1(adm1, source.indicator, palette, custom, customRange, opts)
         set({ adm1: geo, stats })
       } else if (level === 'adm2') {
-        const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom, customRange)
+        const { geo, stats } = applyIndicatorToAdm2(adm2, source.indicator, palette, custom, customRange, opts)
         set({ adm2: geo, stats })
       }
       return
@@ -311,6 +316,10 @@ export const useStore = create<State & Actions>()(
     set({ mapStyle: { ...get().mapStyle, ...patch } })
     // Si cambiaron colores custom y la paleta activa es 'custom', re-aplicar
     if ((patch.customStart || patch.customEnd) && get().palette === 'custom') {
+      get().applyMerge()
+    }
+    // El toggle de auto-clip cambia min/max del autoRange → recolorear
+    if (patch.autoClipExtremes !== undefined) {
       get().applyMerge()
     }
   },
