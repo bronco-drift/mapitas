@@ -22,6 +22,7 @@ import { DataUploader } from './DataUploader'
 import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
+import { PROJECTION_OPTIONS, type ProjectionId } from '../lib/projections'
 
 type Props = {
   mobileOpen?: boolean
@@ -29,8 +30,10 @@ type Props = {
 }
 
 export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
+  const view = useStore(s => s.view)
   const level = useStore(s => s.level)
   const setLevel = useStore(s => s.setLevel)
+  const isDiaspora = view === 'global'
   const selected = useStore(s => s.selected)
   const source = useStore(s => s.source)
   const stats = useStore(s => s.stats)
@@ -38,6 +41,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const resetSettings = useStore(s => s.resetSettings)
   const tab = useStore(s => s.tab)
   const setTab = useStore(s => s.setTab)
+  const setMobilePanelHeight = useStore(s => s.setMobilePanelHeight)
   const isMobile = useIsMobile()
 
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
@@ -86,6 +90,14 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const baseVh = expanded ? EXPANDED_VH : COLLAPSED_VH
   const dragVh = draggingRef.current ? (dragOffset / (typeof window !== 'undefined' ? window.innerHeight : 800)) * 100 : 0
   const heightVh = Math.max(20, Math.min(95, baseVh - dragVh))
+
+  // Publicar la altura del drawer al store como fracción (0–1) cuando es
+  // mobile, para que WorldMapView pueda anclar el globo al área visible.
+  // En desktop no aplica (panel es sidebar lateral, mantenemos el default).
+  useEffect(() => {
+    if (!isMobile) return
+    setMobilePanelHeight(heightVh / 100)
+  }, [isMobile, heightVh, setMobilePanelHeight])
 
   const inlineStyle: CSSProperties | undefined = isMobile
     ? {
@@ -147,38 +159,42 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
       {/* Nivel + Tabs: segmented controls compactos. Mismos en desktop y mobile.
           Tamaño reducido vs versión anterior (text-[11px], padding más chico)
-          para ganar verticales sin cambiar el patrón visual. */}
-      <div className="px-4 pt-2 pb-1.5">
-        <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
-          <button
-            type="button"
-            onClick={() => setLevel('adm0')}
-            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === 'adm0' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            País
-          </button>
-          <button
-            type="button"
-            onClick={() => setLevel('adm1')}
-            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === 'adm1' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            Estados
-          </button>
-          <button
-            type="button"
-            onClick={() => setLevel('adm2')}
-            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === 'adm2' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            Municipios
-          </button>
+          para ganar verticales sin cambiar el patrón visual.
+          En vista Diáspora ocultamos el selector de nivel: no hay adm0/1/2,
+          el "nivel" es siempre el país receptor. */}
+      {!isDiaspora && (
+        <div className="px-4 pt-2 pb-1.5">
+          <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
+            <button
+              type="button"
+              onClick={() => setLevel('adm0')}
+              className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+                level === 'adm0' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              País
+            </button>
+            <button
+              type="button"
+              onClick={() => setLevel('adm1')}
+              className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+                level === 'adm1' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Estados
+            </button>
+            <button
+              type="button"
+              onClick={() => setLevel('adm2')}
+              className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+                level === 'adm2' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Municipios
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="border-b border-slate-100 px-4 pb-2">
         <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
@@ -242,6 +258,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <Section title="Apariencia">
             <div className="space-y-4">
               <PaletteSelector />
+              {isDiaspora && <ProjectionSelector />}
               <StyleControls />
             </div>
           </Section>
@@ -427,6 +444,115 @@ function PaletteSelector() {
       <div className="mt-2">
         <RangeEditor />
       </div>
+    </div>
+  )
+}
+
+// Selector de proyección para la vista Global. Solo se renderiza cuando
+// view='global' (montaje condicional en ControlPanel arriba). Las sliders
+// de rotación aparecen solo si la proyección activa es de tipo globo.
+function ProjectionSelector() {
+  const projection = useStore(s => s.projection)
+  const setProjection = useStore(s => s.setProjection)
+  const rotation = useStore(s => s.rotation)
+  const setRotation = useStore(s => s.setRotation)
+  const opt = PROJECTION_OPTIONS.find(p => p.id === projection)
+  const isGlobe = opt?.isGlobe ?? false
+
+  return (
+    <div className="space-y-3">
+      <div>
+        <label className="mb-1.5 block text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
+          Proyección
+        </label>
+        <select
+          value={projection}
+          onChange={e => setProjection(e.target.value as ProjectionId)}
+          className="w-full appearance-none rounded-md border border-slate-200 bg-white py-1.5 px-2 text-[13px] text-slate-800 focus:border-slate-900 focus:outline-none"
+        >
+          {PROJECTION_OPTIONS.map(p => (
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
+          ))}
+        </select>
+        <p className="mt-1 text-[10px] leading-snug text-slate-400">
+          {projection === 'equalEarth' && 'Equal Earth: áreas correctas. Recomendada para choropleth.'}
+          {projection === 'orthographic' && 'Globo terráqueo: se ve solo medio mundo a la vez. Usá la rotación.'}
+          {projection === 'naturalEarth' && 'Compromiso clásico entre área y forma.'}
+          {projection === 'mercator' && 'Web Mercator: deforma áreas en latitudes altas.'}
+          {projection === 'equirectangular' && 'Coordenadas lat/lng lineales.'}
+        </p>
+      </div>
+
+      {isGlobe && (
+        <div className="space-y-2 rounded-md border border-slate-200 bg-slate-50 p-2.5">
+          <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
+            Rotación del globo
+          </div>
+          <RotationSlider
+            label="Lambda (este/oeste)"
+            min={-180}
+            max={180}
+            value={rotation[0]}
+            onChange={v => setRotation([v, rotation[1], rotation[2]])}
+          />
+          <RotationSlider
+            label="Phi (norte/sur)"
+            min={-90}
+            max={90}
+            value={rotation[1]}
+            onChange={v => setRotation([rotation[0], v, rotation[2]])}
+          />
+          <RotationSlider
+            label="Gamma (giro)"
+            min={-180}
+            max={180}
+            value={rotation[2]}
+            onChange={v => setRotation([rotation[0], rotation[1], v])}
+          />
+          <button
+            type="button"
+            onClick={() => setRotation([66, -7, 0])}
+            className="text-[10px] uppercase tracking-wider text-slate-400 hover:text-slate-700"
+            title="Volver al centro inicial sobre Venezuela"
+          >
+            centrar en Venezuela
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function RotationSlider({
+  label,
+  min,
+  max,
+  value,
+  onChange,
+}: {
+  label: string
+  min: number
+  max: number
+  value: number
+  onChange: (v: number) => void
+}) {
+  return (
+    <div>
+      <div className="flex items-center justify-between text-[11px] text-slate-600">
+        <span>{label}</span>
+        <span className="tabular-nums text-slate-500">{Math.round(value)}°</span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onChange={e => onChange(Number(e.target.value))}
+        className="mt-0.5 w-full"
+        aria-label={label}
+      />
     </div>
   )
 }

@@ -2,6 +2,12 @@ import type { FeatureCollection, Polygon, MultiPolygon } from 'geojson'
 
 export type AdmLevel = 'adm0' | 'adm1' | 'adm2'
 
+// Vista del producto: Venezuela (mapa interno con Leaflet + tiles) vs
+// Global (mapa mundial con d3-geo + proyecciones elegibles). La vista
+// Global cubre tanto la diáspora venezolana como cualquier futuro indicador
+// comparativo entre países (IDH, esperanza de vida, etc.).
+export type ViewMode = 'venezuela' | 'global'
+
 export type Adm0Props = {
   name: string
   nombreOficial?: string
@@ -45,6 +51,20 @@ export type Adm2Props = {
 }
 
 export type AdmGeoJSON<P> = FeatureCollection<Polygon | MultiPolygon, P>
+
+// Features de la vista diáspora: países LATAM + ESP + USA con su cifra de
+// migrantes venezolanos recibidos. iso_a3 es el código ISO 3166-1 alpha-3
+// (Natural Earth lo usa como identidad estable).
+export type DiasporaProps = {
+  iso_a3: string
+  name: string
+  migrantes_ve: number | null
+  as_of?: string | null
+  source?: string | null
+  _value?: number | null
+  _color?: string | null
+  _matched?: boolean
+}
 
 export type UserRow = {
   [key: string]: string | number | null

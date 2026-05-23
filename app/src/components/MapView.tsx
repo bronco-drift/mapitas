@@ -5,11 +5,16 @@ import L from 'leaflet'
 import type { Feature } from 'geojson'
 import { useStore } from '../store'
 import type { MapStyle } from '../store'
-import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
+import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON, DiasporaProps } from '../lib/types'
 import { formatIndicatorValue } from '../data/indicators'
 import { getBasemap } from '../lib/basemaps'
 
 const VENEZUELA_BOUNDS = L.latLngBounds(L.latLng(0.5, -73.5), L.latLng(13.0, -58.0))
+// Mundo entero con leve recorte de polos para que la vista no quede tan
+// vertical (Antártida y Groenlandia no se renderizan ya por el filtro del
+// build script). Lat -55 cubre desde Patagonia hasta el norte de Canadá
+// (75°). Lng -170 a 175 cubre todos los meridianos sin partir Asia oriental.
+const WORLD_BOUNDS = L.latLngBounds(L.latLng(-55, -170), L.latLng(75, 175))
 
 // Puente para sacar el zoom de Leaflet hacia React state Y exponer el map
 // hacia afuera vía ref. Necesitamos las dos cosas: leer el zoom para mostrarlo
@@ -38,15 +43,18 @@ function ZoomBridge({
   return null
 }
 
-function MapBootstrap({ bgColor }: { bgColor: string }) {
+function MapBootstrap({ bgColor, bounds }: { bgColor: string; bounds: L.LatLngBounds }) {
   const map = useMap()
+  // boundsRef nos permite reaccionar a cambios de bounds (toggle de vista)
+  // sin perder el "fitted" inicial dentro del mismo bounds.
+  const lastBoundsRef = useRef<L.LatLngBounds>(bounds)
   useEffect(() => {
     const container = map.getContainer()
     let fitted = false
     const handleResize = () => {
       map.invalidateSize()
       if (!fitted && container.clientWidth > 50 && container.clientHeight > 50) {
-        map.fitBounds(VENEZUELA_BOUNDS, { padding: [16, 16] })
+        map.fitBounds(bounds, { padding: [16, 16] })
         fitted = true
       }
     }
@@ -58,7 +66,14 @@ function MapBootstrap({ bgColor }: { bgColor: string }) {
       ro.disconnect()
       window.removeEventListener('resize', handleResize)
     }
-  }, [map])
+  }, [map, bounds])
+
+  // Si los bounds cambian (toggle de vista), reposicionar el mapa.
+  useEffect(() => {
+    if (lastBoundsRef.current === bounds) return
+    lastBoundsRef.current = bounds
+    map.fitBounds(bounds, { padding: [16, 16] })
+  }, [map, bounds])
 
   // react-leaflet no actualiza el style del container en re-renders, así que
   // sincronizamos el background imperativamente cuando cambia desde el sidebar.
@@ -148,6 +163,8 @@ function hoverStyle(style: MapStyle): PathOptions {
 }
 
 export function MapView() {
+  // MapView solo se monta en view='venezuela'. La vista Global usa
+  // WorldMapView (d3-geo) y es un componente totalmente distinto.
   const level = useStore(s => s.level)
   const adm0 = useStore(s => s.adm0)
   const adm1 = useStore(s => s.adm1)
@@ -170,7 +187,9 @@ export function MapView() {
   // Esconde tiles si "isolate" o si el basemap es solid (no hay tiles que cargar)
   const hideBasemap = mapStyle.isolateCountry || isSolidBasemap
 
-  const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<Adm0Props | Adm1Props | Adm2Props> | null
+  const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<
+    Adm0Props | Adm1Props | Adm2Props
+  > | null
 
   // Sólo incluimos cosas que afectan la *forma* de los datos (qué features
   // hay, qué colores tiene cada uno por el indicador). Los cambios de estilo
@@ -273,7 +292,7 @@ export function MapView() {
             />
           )
         })()}
-        <MapBootstrap bgColor={effectiveBg} />
+        <MapBootstrap bgColor={effectiveBg} bounds={VENEZUELA_BOUNDS} />
         <ZoomBridge onChange={setZoom} mapRef={mapRef} />
         {data && (
           <GeoJSON

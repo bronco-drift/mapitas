@@ -41,3 +41,9 @@ data/ine-raw/
 # Excels y CSVs sueltos en la raíz (los oficiales viven en data/*)
 /*.xlsx
 /*.csv
+
+# Documentos privados de trabajo (no publicar)
+/revision.html
+
+# Descargas raw para vista global (Natural Earth + PDFs R4V, regenerables)
+data/diaspora-raw/

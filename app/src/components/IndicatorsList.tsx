@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../store'
 import { INDICATORS, getIndicatorCoverage, type Indicator, type IndicatorCoverage } from '../data/indicators'
 import { IndicatorCoverageModal } from './IndicatorCoverageModal'
+import diasporaReceivers from '../data/diaspora-receivers.json'
 
 // Defaults razonables si los geo todavía no cargaron (primer render).
 // 26 estados + Esequibo, 336 munis del adm2 post-fix.
@@ -16,6 +17,7 @@ type RowMeta = {
 }
 
 export function IndicatorsList() {
+  const view = useStore(s => s.view)
   const source = useStore(s => s.source)
   const selectIndicator = useStore(s => s.selectIndicator)
   const archivedIndicators = useStore(s => s.archivedIndicators)
@@ -27,6 +29,12 @@ export function IndicatorsList() {
   const activeId = source?.kind === 'indicator' ? source.indicator.id : null
   const [coverageModalFor, setCoverageModalFor] = useState<Indicator | null>(null)
   const [archiveOpen, setArchiveOpen] = useState(false)
+
+  // Vista Global: lista de indicadores VE no aplica. Mostramos un panel
+  // con el único indicador disponible + sumario por país.
+  if (view === 'global') {
+    return <DiasporaPanel />
+  }
 
   const totals = {
     adm1Count: adm1?.features.length ?? FALLBACK_TOTALS.adm1Count,
@@ -267,6 +275,90 @@ function ArchiveIcon({ variant }: { variant: 'in' | 'out' }) {
         <path d="M8 11V8m0 0-1.5 1.5M8 8l1.5 1.5" />
       )}
     </svg>
+  )
+}
+
+// ─── Panel de la vista Diáspora ───────────────────────────────────────────
+// La vista LATAM tiene un solo "indicador" (migrantes VE recibidos por país).
+// En lugar de la lista de indicadores VE, mostramos un sumario con totales y
+// breakdown por país receptor.
+
+type DiasporaRecord = {
+  name: string
+  total: number
+  as_of: string
+  source: string
+  url?: string
+  note?: string
+}
+
+function DiasporaPanel() {
+  const setSelected = useStore(s => s.setSelected)
+  const data = diasporaReceivers as Record<string, DiasporaRecord>
+  const entries = Object.entries(data).sort((a, b) => b[1].total - a[1].total)
+  const total = entries.reduce((acc, [, r]) => acc + r.total, 0)
+  const TOTAL_REGIONAL = 6_700_000 // R4V RMNA 2024
+  const TOTAL_GLOBAL = 7_900_000 // ACNUR 2024
+  const max = entries[0]?.[1].total ?? 1
+
+  return (
+    <div className="space-y-3">
+      <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5">
+        <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
+          Migrantes venezolanos · 2022–2025
+        </div>
+        <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
+          {(total / 1_000_000).toFixed(1)} M
+        </div>
+        <div className="mt-0.5 text-[11px] text-slate-500">
+          en {entries.length} países · R4V regional estima {(TOTAL_REGIONAL / 1_000_000).toFixed(1)} M
+          {' · '}ACNUR global {(TOTAL_GLOBAL / 1_000_000).toFixed(1)} M
+        </div>
+      </div>
+
+      <div className="space-y-0.5">
+        {entries.map(([iso, r]) => (
+          <button
+            key={iso}
+            type="button"
+            onClick={() => setSelected({ name: r.name, iso, value: r.total })}
+            className="group flex w-full items-center gap-2 rounded px-2 py-1.5 text-left transition outline-none hover:bg-slate-100 focus:ring-2 focus:ring-slate-400"
+          >
+            <div className="min-w-0 flex-1">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="truncate text-[13px] font-medium text-slate-800">{r.name}</span>
+                <span className="shrink-0 text-[13px] font-semibold tabular-nums text-slate-900">
+                  {r.total.toLocaleString('es-VE')}
+                </span>
+              </div>
+              <div className="mt-1 h-1 overflow-hidden rounded-full bg-slate-200">
+                <div
+                  className="h-full rounded-full bg-slate-900"
+                  style={{ width: `${(r.total / max) * 100}%` }}
+                />
+              </div>
+              <div className="mt-1 truncate text-[10px] text-slate-400">
+                {r.source}
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-[11px] leading-relaxed text-slate-500">
+        Cifras oficiales de gobiernos receptores agregadas por R4V (coordinada
+        por OIM + ACNUR). Subestiman porque no contemplan migrantes en
+        situación irregular.{' '}
+        <a
+          href="https://www.r4v.info/en/refugeeandmigrants"
+          target="_blank"
+          rel="noreferrer"
+          className="text-slate-700 underline hover:text-slate-900"
+        >
+          R4V
+        </a>
+      </div>
+    </div>
   )
 }
 

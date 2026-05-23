@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { useStore } from '../store'
 import { BASEMAPS } from '../lib/basemaps'
+import { GLOBE_THEMES } from '../lib/globe-themes'
 
 // Organización del tab Estilo en 3 disclosures colapsables, jerarquía clara:
 //   Color   (Fondo, Borde)              — siempre visible arriba
@@ -12,6 +13,8 @@ export function StyleControls() {
   const style = useStore(s => s.mapStyle)
   const setMapStyle = useStore(s => s.setMapStyle)
   const level = useStore(s => s.level)
+  const view = useStore(s => s.view)
+  const isGlobal = view === 'global'
 
   return (
     <div className="space-y-3">
@@ -31,37 +34,68 @@ export function StyleControls() {
         />
       </div>
 
-      {/* Mapa base — disclosure default colapsado */}
-      <Disclosure title="Mapa base">
-        <div className="grid grid-cols-3 gap-1">
-          {BASEMAPS.map(b => (
-            <button
-              key={b.id}
-              type="button"
-              onClick={() => setMapStyle({ basemap: b.id })}
-              disabled={style.isolateCountry}
-              title={b.label}
-              aria-label={b.label}
-              className={`group flex flex-col items-stretch overflow-hidden rounded-sm border text-[10px] transition ${
-                style.basemap === b.id
-                  ? 'border-slate-900 ring-1 ring-slate-900'
-                  : 'border-slate-200 hover:border-slate-400'
-              } ${style.isolateCountry ? 'opacity-40 cursor-not-allowed' : ''}`}
-            >
-              <span
-                className="block h-5"
-                style={{ background: b.id === 'solid' ? style.bgColor : b.preview }}
-              />
-              <span
-                className={`block px-1 py-0.5 text-center ${
-                  style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+      {/* Mapa base / Tema del globo — disclosure default colapsado.
+          En vista VE muestra los basemaps de Leaflet con tiles.
+          En vista Global muestra los temas visuales del globo (que reemplazan
+          al espacio + sphere + países sin data con un set coherente). */}
+      <Disclosure title={isGlobal ? 'Tema del globo' : 'Mapa base'}>
+        {isGlobal ? (
+          <div className="grid grid-cols-3 gap-1">
+            {GLOBE_THEMES.map(t => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setMapStyle({ globeTheme: t.id })}
+                title={t.label}
+                aria-label={t.label}
+                className={`group flex flex-col items-stretch overflow-hidden rounded-sm border text-[10px] transition ${
+                  style.globeTheme === t.id
+                    ? 'border-slate-900 ring-1 ring-slate-900'
+                    : 'border-slate-200 hover:border-slate-400'
                 }`}
               >
-                {b.short}
-              </span>
-            </button>
-          ))}
-        </div>
+                <span className="block h-5" style={{ background: t.preview }} />
+                <span
+                  className={`block px-1 py-0.5 text-center ${
+                    style.globeTheme === t.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+                  }`}
+                >
+                  {t.short}
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-3 gap-1">
+            {BASEMAPS.map(b => (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => setMapStyle({ basemap: b.id })}
+                disabled={style.isolateCountry}
+                title={b.label}
+                aria-label={b.label}
+                className={`group flex flex-col items-stretch overflow-hidden rounded-sm border text-[10px] transition ${
+                  style.basemap === b.id
+                    ? 'border-slate-900 ring-1 ring-slate-900'
+                    : 'border-slate-200 hover:border-slate-400'
+                } ${style.isolateCountry ? 'opacity-40 cursor-not-allowed' : ''}`}
+              >
+                <span
+                  className="block h-5"
+                  style={{ background: b.id === 'solid' ? style.bgColor : b.preview }}
+                />
+                <span
+                  className={`block px-1 py-0.5 text-center ${
+                    style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+                  }`}
+                >
+                  {b.short}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
       </Disclosure>
 
       {/* Polígonos — disclosure default expandido (lo más usado después de Color) */}

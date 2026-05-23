@@ -1,4 +1,4 @@
-import type { AdmGeoJSON, Adm0Props, Adm1Props, Adm2Props, PaletteId } from './types'
+import type { AdmGeoJSON, Adm0Props, Adm1Props, Adm2Props, DiasporaProps, PaletteId } from './types'
 import type { Indicator } from '../data/indicators'
 import { colorScale, type CustomStops } from './color-scale'
 
@@ -168,7 +168,57 @@ export function applyIndicatorToAdm2(
   }
 }
 
-export function clearIndicatorData<P extends Adm0Props | Adm1Props | Adm2Props>(
+// Vista diáspora: pinta el GeoJSON LATAM por cifra de migrantes VE
+// recibidos en cada país. Reusa la misma escala de color que las vistas
+// VE, pero el dominio sale de migrantes_ve (no de un Indicator).
+export function applyDiaspora(
+  geo: AdmGeoJSON<DiasporaProps>,
+  palette: PaletteId,
+  custom?: CustomStops,
+  customRange?: { min: number | null; mid: number | null; max: number | null },
+  opts: { clipExtremes?: boolean } = {},
+): { geo: AdmGeoJSON<DiasporaProps>; stats: IndicatorStats } {
+  const values = geo.features
+    .map(f => f.properties.migrantes_ve)
+    .filter((v): v is number => typeof v === 'number')
+  const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
+  const min = customRange?.min ?? autoMin
+  const max = customRange?.max ?? autoMax
+  const midRatio =
+    customRange?.mid != null && max > min
+      ? Math.max(0.05, Math.min(0.95, (customRange.mid - min) / (max - min)))
+      : 0.5
+
+  let matched = 0
+  const features = geo.features.map(f => {
+    const v = f.properties.migrantes_ve
+    if (v != null) matched++
+    return {
+      ...f,
+      properties: {
+        ...f.properties,
+        _value: v ?? null,
+        _color: v != null ? colorScale(v, min, max, palette, custom, midRatio) : null,
+        _matched: v != null,
+      },
+    }
+  })
+
+  return {
+    geo: { ...geo, features },
+    stats: {
+      matched,
+      unmatched: geo.features.length - matched,
+      totalFeatures: geo.features.length,
+      totalRows: values.length,
+      unmatchedRows: [],
+      min,
+      max,
+    },
+  }
+}
+
+export function clearIndicatorData<P extends Adm0Props | Adm1Props | Adm2Props | DiasporaProps>(
   geo: AdmGeoJSON<P>,
 ): AdmGeoJSON<P> {
   return {

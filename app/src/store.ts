@@ -8,14 +8,17 @@ import type {
   Adm2Props,
   AdmGeoJSON,
   AdmLevel,
+  DiasporaProps,
   PaletteId,
   UploadedDataset,
+  ViewMode,
 } from './lib/types'
 import {
   mergeUserDataIntoGeo,
   type MergeStats,
 } from './lib/merge-data'
 import {
+  applyDiaspora,
   applyIndicatorToAdm0,
   applyIndicatorToAdm1,
   applyIndicatorToAdm2,
@@ -50,6 +53,10 @@ export type MapStyle = {
   // Si true (default), el rango automático del color recorta outliers
   // usando percentiles 2/98. Si false, usa el min/max raw.
   autoClipExtremes: boolean
+  // Tema visual de la vista Global (d3-geo). No aplica a vista VE.
+  // Mantenemos el type literal acá (no import) para que el bundler no
+  // arrastre globe-themes al chunk del store.
+  globeTheme: 'day' | 'night' | 'editorial'
 }
 
 export type ThematicMeta = {
@@ -73,12 +80,22 @@ export type ThematicState = {
 export type PanelTab = 'datos' | 'capas' | 'estilo'
 
 type State = {
+  view: ViewMode
   level: AdmLevel
   country: 'VE'
   tab: PanelTab
   adm0: AdmGeoJSON<Adm0Props> | null
   adm1: AdmGeoJSON<Adm1Props> | null
   adm2: AdmGeoJSON<Adm2Props> | null
+  diaspora: AdmGeoJSON<DiasporaProps> | null
+  diasporaLoading: boolean
+  // Vista Global: proyección d3-geo activa + rotación [lambda, phi, gamma]
+  // que solo aplica a proyecciones tipo globo (Orthographic).
+  projection: 'equalEarth' | 'orthographic' | 'naturalEarth' | 'mercator' | 'equirectangular'
+  rotation: [number, number, number]
+  // Altura del drawer mobile (0 = cerrado, 0.5 = mitad, 0.88 = expandido).
+  // El WorldMapView lo lee para anclar el globo en el espacio visible.
+  mobilePanelHeight: number
   loading: boolean
   loadError: string | null
   source: DataSource
@@ -107,6 +124,11 @@ type State = {
 
 type Actions = {
   loadGeoData: () => Promise<void>
+  loadDiasporaData: () => Promise<void>
+  setView: (view: ViewMode) => void
+  setProjection: (p: State['projection']) => void
+  setRotation: (r: [number, number, number]) => void
+  setMobilePanelHeight: (h: number) => void
   setLevel: (level: AdmLevel) => void
   setPalette: (palette: PaletteId) => void
   selectIndicator: (id: string | null) => void
@@ -149,9 +171,12 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   noBorders: true,
   countryBorder: true,
   autoClipExtremes: true,
+  globeTheme: 'day',
 }
 
-function clearAll<P extends Adm0Props | Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {
+function clearAll<P extends Adm0Props | Adm1Props | Adm2Props | DiasporaProps>(
+  geo: AdmGeoJSON<P>,
+): AdmGeoJSON<P> {
   return {
     ...geo,
     features: geo.features.map(f => ({
@@ -172,6 +197,15 @@ export const useStore = create<State & Actions>()(
   adm0: null,
   adm1: null,
   adm2: null,
+  view: 'venezuela',
+  diaspora: null,
+  diasporaLoading: false,
+  // Default: Orthographic centrado en Venezuela (Caracas: -66, 7).
+  // En d3-geo, rotate([λ, φ, γ]) pone el punto (-λ, -φ) en el centro.
+  // Para centrar en VE → λ=66 (lng=-66), φ=-7 (lat=+7), γ=0.
+  projection: 'orthographic',
+  rotation: [66, -7, 0],
+  mobilePanelHeight: 0.5, // default cerrado: drawer ocupa 50% inferior
   loading: false,
   loadError: null,
   source: null,
@@ -225,9 +259,52 @@ export const useStore = create<State & Actions>()(
         // Primera carga: seleccionar el primer indicador disponible
         get().selectIndicator(INDICATORS[0].id)
       }
+      // Si la persistencia trae view='global', traer ese geo también.
+      // No bloqueamos el load principal — es lazy.
+      if (get().view === 'global') {
+        get().loadDiasporaData()
+      }
     } catch (err) {
       set({ loading: false, loadError: String(err) })
     }
+  },
+
+  async loadDiasporaData() {
+    if (get().diaspora || get().diasporaLoading) return
+    set({ diasporaLoading: true })
+    try {
+      const base = import.meta.env.BASE_URL
+      const res = await fetch(`${base}data/world-countries.geojson`)
+      if (!res.ok) throw new Error('No se pudo cargar el mapa mundial')
+      const diaspora = (await res.json()) as AdmGeoJSON<DiasporaProps>
+      set({ diaspora, diasporaLoading: false })
+      // Si el user ya cambió a la vista diáspora antes de que cargara, pintar
+      if (get().view === 'diaspora') get().applyMerge()
+    } catch (err) {
+      set({ diasporaLoading: false, loadError: String(err) })
+    }
+  },
+
+  setView(view) {
+    set({ view })
+    // Carga lazy la primera vez que se entra a la vista Global
+    if (view === 'global' && !get().diaspora) {
+      get().loadDiasporaData()
+    } else {
+      get().applyMerge()
+    }
+  },
+
+  setProjection(p) {
+    set({ projection: p })
+  },
+
+  setRotation(r) {
+    set({ rotation: r })
+  },
+
+  setMobilePanelHeight(h) {
+    set({ mobilePanelHeight: Math.max(0, Math.min(1, h)) })
   },
 
   setLevel(level) {
@@ -270,9 +347,19 @@ export const useStore = create<State & Actions>()(
   },
 
   applyMerge() {
-    const { level, adm0, adm1, adm2, source, palette, mapStyle } = get()
-    if (!adm1 || !adm2) return
+    const { view, level, adm0, adm1, adm2, diaspora, source, palette, mapStyle, customRange } = get()
     const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
+
+    // Vista Global: lógica aparte, no usa indicators ni level
+    if (view === 'global') {
+      if (!diaspora) return
+      const opts = { clipExtremes: mapStyle.autoClipExtremes }
+      const { geo, stats } = applyDiaspora(diaspora, palette, custom, customRange, opts)
+      set({ diaspora: geo, stats })
+      return
+    }
+
+    if (!adm1 || !adm2) return
 
     if (!source) {
       set({
@@ -285,7 +372,6 @@ export const useStore = create<State & Actions>()(
     }
 
     if (source.kind === 'indicator') {
-      const { customRange } = get()
       const opts = { clipExtremes: mapStyle.autoClipExtremes }
       if (level === 'adm0' && adm0) {
         const { geo, stats } = applyIndicatorToAdm0(adm0, source.indicator, palette, custom)
@@ -440,13 +526,37 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
+      version: 4,
+      // Migraciones:
+      //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
+      //   v2 → v3: projection default Orthographic + rotation centrada en VE
+      //   v3 → v4: fix rotation a [66, -7, 0] para que phi compense la
+      //   latitud de Caracas (7°N) y VE quede en el centro absoluto del globo.
+      //   Los users que ya habían cambiado rotation manualmente pierden la
+      //   customización (la mayoría no la tocó).
+      migrate: (persisted, version) => {
+        let obj = persisted as Record<string, unknown>
+        if (version < 2 && obj?.view === 'diaspora') {
+          obj = { ...obj, view: 'global' }
+        }
+        if (version < 3) {
+          obj = { ...obj, projection: 'orthographic', rotation: [66, -7, 0] }
+        }
+        if (version < 4) {
+          obj = { ...obj, rotation: [66, -7, 0] }
+        }
+        return obj as unknown
+      },
       partialize: state => ({
+        view: state.view,
         level: state.level,
         palette: state.palette,
         tab: state.tab,
         mapStyle: state.mapStyle,
         customRange: state.customRange,
         archivedIndicators: state.archivedIndicators,
+        projection: state.projection,
+        rotation: state.rotation,
         _persistedSourceId:
           state.source?.kind === 'indicator' ? state.source.indicator.id : null,
         _persistedThematicIds: Object.entries(state.thematic)

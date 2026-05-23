@@ -192,7 +192,43 @@ etc.). Dependientes del gobierno federal, no de un estado.
 
 ---
 
-## 4. Cómo agregar una fuente nueva
+## 4. Vista internacional · Diáspora venezolana
+
+Capa nueva para la "vista mundo" del producto: muestra dónde viven los
+migrantes/refugiados venezolanos. No es parte del master municipal (otra
+arquitectura).
+
+### R4V (Regional Inter-Agency Coordination Platform)
+- **URL fuente:** https://www.r4v.info/en/refugeeandmigrants
+- **Coordinadores:** OIM + ACNUR + ~230 organizaciones partner.
+- **Cobertura:** 17 países LATAM/Caribe + España como single major non-LATAM.
+- **Origen:** cifras oficiales de gobiernos receptores + estimaciones de
+  campo R4V. **Subestiman** porque no contemplan migrantes sin estatus.
+- **Datos en Mapitas:** `data/sources/diaspora-receivers.json` con 13
+  países que tienen cifras R4V (Nov 2022 como snapshot base, updates por
+  país cuando R4V publica — Colombia Mar 2025, Perú Dic 2023, Ecuador
+  Abr 2025).
+- **Procesamiento:** `scripts/build-diaspora.mjs` combina las cifras con
+  Natural Earth 110m countries y produce
+  `app/public/data/world-countries.geojson` (175 países, ~248KB).
+- **Estimados globales:** 6.7M en LATAM/Caribe (R4V RMNA 2024) ·
+  7.9M en el mundo (ACNUR 2024).
+
+### Natural Earth (geometrías de países)
+- **URL:** https://www.naturalearthdata.com/ (vía
+  https://github.com/nvkelso/natural-earth-vector)
+- **Resolución:** 1:110m (la más simplificada). Sirve para una vista
+  zoom-out continental.
+- **Cobertura:** 175 países (excluimos Antártida y Fiji porque cruzan
+  el antimeridiano y generan bandas largas en Leaflet).
+- **Por qué el mundo completo y no solo LATAM:** prepara la base para
+  futuros indicadores globales (IDH PNUD, ENCOVI internacional, métricas
+  OMS, etc.). Los países sin cifras quedan visualmente como referencia.
+- **Licencia:** Public Domain.
+
+---
+
+## 5. Cómo agregar una fuente nueva
 
 1. Conseguir el archivo (CSV / XLSX / JSON / HTML).
 2. Crear un script en `scripts/process-<nombre>.mjs` que:
@@ -207,7 +243,7 @@ etc.). Dependientes del gobierno federal, no de un estado.
 5. Si aporta indicadores nuevos: agregarlos a `app/src/data/indicators.ts`
    con su label, source, note y aggregation correctos.
 
-## 5. Cómo registrar un override manual
+## 6. Cómo registrar un override manual
 
 Si un valor específico debe pisarse (entidad especial, dato oficial
 hardcoded, etc.):

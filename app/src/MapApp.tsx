@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useStore } from './store'
 import { MapView } from './components/MapView'
 import { ControlPanel } from './components/ControlPanel'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { TopBar } from './components/TopBar'
 
+// Lazy load del WorldMapView: trae d3-geo + d3-zoom (~70KB) solo cuando
+// el user entra a vista Global. La vista Venezuela (default) no paga ese costo.
+const WorldMapView = lazy(() =>
+  import('./components/WorldMapView').then(m => ({ default: m.WorldMapView })),
+)
+
 export function MapApp() {
+  const view = useStore(s => s.view)
   const loading = useStore(s => s.loading)
   const loadError = useStore(s => s.loadError)
   const loadGeoData = useStore(s => s.loadGeoData)
@@ -18,13 +25,15 @@ export function MapApp() {
     loadThematicManifest()
   }, [loadGeoData, loadThematicManifest])
 
+  const isGlobal = view === 'global'
+
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden bg-slate-100 md:flex-row">
       <ControlPanel mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
       <main className="relative flex flex-1 flex-col">
         <TopBar />
         <div className="relative flex-1">
-          {loading && (
+          {loading && !isGlobal && (
             <div className="absolute inset-0 z-[1000] flex items-center justify-center bg-white/70 text-sm text-slate-600">
               Cargando mapa base…
             </div>
@@ -34,10 +43,18 @@ export function MapApp() {
               {loadError}
             </div>
           )}
-          {adm1 && (
+          {isGlobal ? (
             <ErrorBoundary>
-              <MapView />
+              <Suspense fallback={<div className="flex h-full w-full items-center justify-center text-sm text-slate-500">Cargando vista global…</div>}>
+                <WorldMapView />
+              </Suspense>
             </ErrorBoundary>
+          ) : (
+            adm1 && (
+              <ErrorBoundary>
+                <MapView />
+              </ErrorBoundary>
+            )
           )}
         </div>
       </main>

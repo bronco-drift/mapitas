@@ -1,0 +1,84 @@
+{
+  "COL": {
+    "name": "Colombia",
+    "total": 2810358,
+    "as_of": "2025-03",
+    "source": "R4V Population Update Marzo 2025",
+    "url": "https://www.r4v.info/en/refugeeandmigrants"
+  },
+  "PER": {
+    "name": "Perú",
+    "total": 1662889,
+    "as_of": "2023-12",
+    "source": "R4V Population Update Diciembre 2023",
+    "url": "https://www.r4v.info/en/refugeeandmigrants"
+  },
+  "USA": {
+    "name": "Estados Unidos",
+    "total": 505647,
+    "as_of": "2021-12",
+    "source": "USCIS / DHS, registros migratorios 2021",
+    "note": "Cifra de 2021. Comunidad creció significativamente post-2022 con apertura de TPS"
+  },
+  "ECU": {
+    "name": "Ecuador",
+    "total": 440450,
+    "as_of": "2025-04",
+    "source": "R4V Population Update Abril 2025"
+  },
+  "CHL": {
+    "name": "Chile",
+    "total": 448138,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "BRA": {
+    "name": "Brasil",
+    "total": 388120,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "ESP": {
+    "name": "España",
+    "total": 278159,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022",
+    "note": "Único país no-LATAM con presencia R4V significativa"
+  },
+  "ARG": {
+    "name": "Argentina",
+    "total": 171050,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "PAN": {
+    "name": "Panamá",
+    "total": 144902,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "DOM": {
+    "name": "República Dominicana",
+    "total": 115283,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "MEX": {
+    "name": "México",
+    "total": 87152,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "CRI": {
+    "name": "Costa Rica",
+    "total": 29906,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  },
+  "BOL": {
+    "name": "Bolivia",
+    "total": 13776,
+    "as_of": "2022-11",
+    "source": "R4V Population Map Noviembre 2022"
+  }
+}

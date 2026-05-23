@@ -7,7 +7,11 @@ type Country = {
   enabled: boolean
 }
 
-const LATAM: Country[] = [
+// La opción "Global" no es un país, es un modo de vista (mapa mundial con
+// d3-geo + proyecciones). Va al principio para que sea la primera opción
+// visible cuando el user abre el selector.
+const COUNTRIES: Country[] = [
+  { code: 'GLOBAL', name: 'Global', flag: '🌍', enabled: true },
   { code: 'VE', name: 'Venezuela', flag: '🇻🇪', enabled: true },
   { code: 'AR', name: 'Argentina', flag: '🇦🇷', enabled: false },
   { code: 'BO', name: 'Bolivia', flag: '🇧🇴', enabled: false },
@@ -30,8 +34,13 @@ const LATAM: Country[] = [
 ]
 
 export function TopBar() {
-  const country = useStore(s => s.country)
-  const current = LATAM.find(c => c.code === country)
+  const view = useStore(s => s.view)
+  const setView = useStore(s => s.setView)
+  // El selector unifica vista (Global) + país. "Global" mapea a view='global'.
+  // Cualquier código de país concreto mapea a view='venezuela' (por ahora
+  // solo VE está habilitado; los demás están como próximamente).
+  const currentCode = view === 'global' ? 'GLOBAL' : 'VE'
+  const current = COUNTRIES.find(c => c.code === currentCode)
 
   return (
     <div className="flex h-11 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-3 md:h-12 md:gap-3 md:px-4">
@@ -58,20 +67,23 @@ export function TopBar() {
       </a>
       <span className="hidden h-4 w-px bg-slate-200 sm:inline-block" aria-hidden="true" />
       <div className="hidden text-[10px] font-medium uppercase tracking-[0.14em] text-slate-400 sm:block">
-        País
+        Vista
       </div>
       <div className="relative">
         <select
-          value={country}
+          value={currentCode}
           onChange={e => {
-            const next = LATAM.find(c => c.code === e.target.value)
-            if (next?.enabled) {
-              // por ahora solo VE; cuando habilitemos otros, cambiar país en store
+            const code = e.target.value
+            if (code === 'GLOBAL') {
+              setView('global')
+            } else if (code === 'VE') {
+              setView('venezuela')
             }
+            // otros países están disabled, no llegan acá
           }}
           className="appearance-none rounded-md border border-slate-200 bg-white py-1 pl-2 pr-7 text-[12px] text-slate-800 focus:border-slate-900 focus:outline-none md:pr-8 md:text-[13px]"
         >
-          {LATAM.map(c => (
+          {COUNTRIES.map(c => (
             <option key={c.code} value={c.code} disabled={!c.enabled}>
               {c.flag} {c.name}
               {!c.enabled ? ' · próximamente' : ''}
@@ -84,6 +96,11 @@ export function TopBar() {
       </div>
       <span className="hidden text-[11px] text-slate-400 md:inline">
         {current?.flag} {current?.name}
+        {view === 'global' && (
+          <span className="ml-2 rounded-sm bg-amber-100 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-amber-800">
+            beta
+          </span>
+        )}
       </span>
       <div className="ml-auto flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-slate-400 md:gap-2">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
