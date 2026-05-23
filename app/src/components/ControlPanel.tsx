@@ -88,7 +88,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
       </header>
 
       {/* Nivel siempre visible arriba — afecta todo */}
-      <div className="border-b border-slate-100 px-5 py-3">
+      <div className="px-5 py-3">
         <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
           <button
             type="button"
