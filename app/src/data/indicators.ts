@@ -63,6 +63,11 @@ export type Indicator = {
   // 'sum' (default): suma — sirve para Población, Área, PIB total
   // 'mean': promedio — sirve para IDH, tasas, ratios
   nationalAggregation?: 'sum' | 'mean'
+  // Si true, los munis sin data específica heredan el stateAggregate del
+  // estado padre. Sin esta flag, quedan gris (honestidad de datos: si no
+  // hay número, no inventes uno). Solo prendido en indicadores que sí
+  // tienen sentido heredar (ej. tasas estatales aplicadas a munis).
+  inheritFromState?: boolean
 }
 
 // ---- Indicadores INE oficiales (proyecciones censo 2011, datos 2000-2050) ----
@@ -230,7 +235,7 @@ const POBLACION_2026: Indicator = {
   format: 'number',
   year: 2026,
   source: 'Estimaciones municipales 2026',
-  note: 'Datos estimados · validar contra fuente oficial',
+  note: 'Cobertura parcial · 9 estados sin desglose (Táchira, Cojedes, Guárico, Monagas, Nueva Esparta, Portuguesa, Yaracuy, Delta Amacuro, Dep. Federales). Usar Población · INE o · Wiki para data oficial',
   aggregation: 'municipality',
   data: muni.indicators.poblacion_2026,
   stateAggregate: muni.stateAggregates.poblacion_2026,
@@ -244,6 +249,7 @@ const AREA: Indicator = {
   format: 'number',
   year: 2026,
   source: 'Estimaciones municipales 2026',
+  note: 'Cobertura parcial · usar Área · Wiki para superficie oficial completa',
   aggregation: 'municipality',
   data: muni.indicators.area_km2,
   stateAggregate: muni.stateAggregates.area_km2,
@@ -257,7 +263,7 @@ const PIB_TOTAL: Indicator = {
   format: 'number',
   year: 2026,
   source: 'Estimaciones municipales 2026',
-  note: 'Datos estimados · validar contra fuente oficial',
+  note: 'Cobertura parcial · 9 estados sin desglose municipal. Datos estimados',
   aggregation: 'municipality',
   data: muni.indicators.pib_total_mm_usd,
   stateAggregate: muni.stateAggregates.pib_total_mm_usd,
@@ -271,7 +277,7 @@ const PIB_PER_CAPITA: Indicator = {
   format: 'currency',
   year: 2026,
   source: 'Estimaciones municipales 2026',
-  note: 'Datos estimados · validar contra fuente oficial',
+  note: 'Cobertura parcial · 9 estados sin desglose municipal. Datos estimados',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
   data: muni.indicators.pib_per_capita_usd,
@@ -286,7 +292,7 @@ const IDH_2026: Indicator = {
   format: 'decimal',
   year: 2026,
   source: 'Estimaciones municipales 2026',
-  note: 'Datos estimados · validar contra fuente oficial',
+  note: 'Cobertura parcial · 9 estados sin desglose municipal. Datos estimados',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
   data: muni.indicators.idh_2026,

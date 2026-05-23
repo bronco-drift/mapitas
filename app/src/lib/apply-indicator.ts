@@ -103,10 +103,15 @@ export function applyIndicatorToAdm2(
     if (indicator.aggregation === 'municipality') {
       // 1) data específica del municipio
       value = indicator.data[sourceID]
-      // 2) fallback al agregado estatal (para munis con nombre placeholder en CSV)
-      if (value == null && parentISO) value = stateAgg[parentISO]
+      // 2) fallback opt-in al agregado estatal. Sin el flag, el muni queda
+      // sin data (gris) — más honesto que pintar todo el estado del mismo
+      // color cuando la fuente original tiene cobertura parcial.
+      if (value == null && parentISO && indicator.inheritFromState) {
+        value = stateAgg[parentISO]
+      }
     } else {
-      // Estado-nivel → heredar al muni vía parentISO
+      // Estado-nivel → heredar al muni vía parentISO (es la naturaleza del
+      // indicador, no un fallback de cobertura)
       if (parentISO) value = indicator.data[parentISO]
     }
 
