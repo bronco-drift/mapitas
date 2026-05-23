@@ -28,6 +28,21 @@ const csvEscape = v => {
   if (/[",\n]/.test(s)) return `"${s.replace(/"/g, '""')}"`
   return s
 }
+
+// Normaliza un nombre para usar como slug en external_id:
+//   "Distrito Capital" → "distrito_capital"
+//   "Delta Amacuro"    → "delta_amacuro"
+//   "Mérida"           → "merida"
+//   "La Guaira"        → "la_guaira"
+// Sin tildes, lowercase, espacios → underscore, sin caracteres especiales.
+const slug = s =>
+  String(s ?? '')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_|_$/g, '')
 const writeCSV = (path, headers, rows) => {
   const lines = [headers.join(',')]
   for (const row of rows) {
@@ -53,6 +68,7 @@ const municipal = readJSON(join(DATA_DIR, 'municipal-indicators.json'))
   const rows = [
     {
       id: p.sourceID,
+      external_id: slug(p.iso), // "ve"
       iso: p.iso,
       name: p.name,
       nombre_oficial: p.nombreOficial,
@@ -60,7 +76,7 @@ const municipal = readJSON(join(DATA_DIR, 'municipal-indicators.json'))
   ]
   writeCSV(
     join(OUT_DIR, 'country.csv'),
-    ['id', 'iso', 'name', 'nombre_oficial'],
+    ['id', 'external_id', 'iso', 'name', 'nombre_oficial'],
     rows,
   )
   console.log(`country.csv: ${rows.length} fila`)
@@ -74,6 +90,7 @@ const municipal = readJSON(join(DATA_DIR, 'municipal-indicators.json'))
     const ine = ineStates[iso]?.byYear ?? {}
     return {
       id: p.sourceID,
+      external_id: `ve_${slug(p.name)}`, // ve_miranda, ve_delta_amacuro
       iso,
       name: p.name,
       nombre_oficial: p.nombreOficial ?? '',
@@ -104,6 +121,7 @@ const municipal = readJSON(join(DATA_DIR, 'municipal-indicators.json'))
     join(OUT_DIR, 'states.csv'),
     [
       'id',
+      'external_id',
       'iso',
       'name',
       'nombre_oficial',
@@ -146,6 +164,7 @@ const municipal = readJSON(join(DATA_DIR, 'municipal-indicators.json'))
 
     return {
       id: sid,
+      external_id: `ve_${slug(p.parentState ?? '')}_${slug(p.name)}`,
       name: p.name,
       nombre_oficial: p.nombreOficial ?? '',
       parent_iso: p.parentISO ?? '',
@@ -172,10 +191,23 @@ const municipal = readJSON(join(DATA_DIR, 'municipal-indicators.json'))
     }
   })
 
+  // Validar unicidad del external_id antes de escribir. Si hay colisiones,
+  // tenemos un bug semántico que debemos atender (homónimos no resueltos).
+  const eidCounts = {}
+  for (const r of rows) eidCounts[r.external_id] = (eidCounts[r.external_id] ?? 0) + 1
+  const dupes = Object.entries(eidCounts).filter(([, n]) => n > 1)
+  if (dupes.length) {
+    console.log(`\n⚠ ${dupes.length} external_id duplicados:`)
+    for (const [eid, n] of dupes) console.log(`   ${eid}  (×${n})`)
+  } else {
+    console.log(`  external_id único en los ${rows.length} municipios ✓`)
+  }
+
   writeCSV(
     join(OUT_DIR, 'municipalities.csv'),
     [
       'id',
+      'external_id',
       'name',
       'nombre_oficial',
       'parent_iso',
