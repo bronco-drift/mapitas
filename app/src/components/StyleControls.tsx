@@ -86,11 +86,14 @@ export function StyleControls() {
         />
       </div>
 
-      <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
+      {/* Opacidad de relleno: SIEMPRE editable. En modo noBorders su valor
+          también atenúa el stroke (que es del mismo color del fill), así todo
+          el polígono se mueve junto. */}
+      <div>
         <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
           <span>Opacidad relleno</span>
           <span className="font-normal text-slate-400">
-            {style.noBorders ? '100%' : `${Math.round(style.fillOpacity * 100)}%`}
+            {`${Math.round(style.fillOpacity * 100)}%`}
           </span>
         </div>
         <input
@@ -98,8 +101,7 @@ export function StyleControls() {
           min={0}
           max={1}
           step={0.05}
-          value={style.noBorders ? 1 : style.fillOpacity}
-          disabled={style.noBorders}
+          value={style.fillOpacity}
           onChange={e => setMapStyle({ fillOpacity: parseFloat(e.target.value) })}
           className="w-full accent-slate-900"
         />
@@ -129,6 +131,13 @@ export function StyleControls() {
         hint="Oculta basemap, deja solo el país"
         checked={style.isolateCountry}
         onChange={v => setMapStyle({ isolateCountry: v })}
+      />
+
+      <Toggle
+        label="Borde de país"
+        hint="Resalta el contorno (grosor fijo 0.5)"
+        checked={style.countryBorder}
+        onChange={v => setMapStyle({ countryBorder: v })}
       />
 
       <Toggle

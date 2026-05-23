@@ -49,11 +49,11 @@ function fillStyleFor(style: MapStyle): (feature?: Feature) => PathOptions {
     const fillColor = props?._color ?? '#e5e7eb'
 
     // Cuando "Sin bordes" está ON: stroke grueso (1.7px) del mismo color del
-    // fill, ambos al 100% de opacidad. La opacidad < 1 + stroke superpuesto
-    // genera halos por alpha-compositing acumulado, así que en este modo
-    // ignoramos los sliders de opacidad y forzamos 1.
+    // fill. fillOpacity y opacity comparten valor para que TODO el polígono
+    // (relleno + stroke superpuesto) se atenúe parejo cuando el user mueve
+    // el slider de opacidad del relleno.
     if (style.noBorders) {
-      const op = props?._matched ? 1 : 0.6
+      const op = props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)
       return {
         fillColor,
         color: fillColor,
@@ -84,6 +84,17 @@ function stateOverlayStyle(style: MapStyle): PathOptions {
     color: style.borderColor,
     weight: Math.max(style.lineWidth * 2, 1.2),
     opacity: 0.85,
+  }
+}
+
+// Contorno del país (adm0) — grosor fijo 0.5, color del borderColor del style.
+// Va por encima de los polígonos para que se vea siempre el contorno completo.
+function countryBorderStyle(style: MapStyle): PathOptions {
+  return {
+    fillOpacity: 0,
+    color: style.borderColor,
+    weight: 0.5,
+    opacity: 1,
   }
 }
 
@@ -139,6 +150,7 @@ export function MapView() {
 
   const layerRef = useRef<L.GeoJSON | null>(null)
   const overlayRef = useRef<L.GeoJSON | null>(null)
+  const countryBorderRef = useRef<L.GeoJSON | null>(null)
   // Marcador para distinguir "primera vez que veo esta layer" vs "data cambió
   // dentro de la misma layer". react-leaflet sólo aplica data en mount.
   const lastLayerRef = useRef<L.GeoJSON | null>(null)
@@ -181,7 +193,16 @@ export function MapView() {
     layer.setStyle(styleObj)
   }, [mapStyle])
 
+  useEffect(() => {
+    const layer = countryBorderRef.current
+    if (!layer) return
+    const styleObj = countryBorderStyle(mapStyle)
+    layer.options.style = styleObj
+    layer.setStyle(styleObj)
+  }, [mapStyle])
+
   const showOverlay = level === 'adm2' && mapStyle.stateOverlayInMuni && adm1
+  const showCountryBorder = mapStyle.countryBorder && adm0
 
   return (
     <div className="relative h-full w-full" style={{ background: effectiveBg }}>
@@ -283,6 +304,15 @@ export function MapView() {
             ref={overlayRef}
             data={adm1 as never}
             style={stateOverlayStyle(mapStyle)}
+            interactive={false}
+          />
+        )}
+        {showCountryBorder && (
+          <GeoJSON
+            key="country-border"
+            ref={countryBorderRef}
+            data={adm0 as never}
+            style={countryBorderStyle(mapStyle)}
             interactive={false}
           />
         )}
