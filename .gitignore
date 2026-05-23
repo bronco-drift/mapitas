@@ -37,3 +37,7 @@ data/ine-raw/
 # Big GeoJSON kept only locally (deforestación 388MB etc.)
 *.tif
 *.tiff
+
+# Excels y CSVs sueltos en la raíz (los oficiales viven en data/*)
+/*.xlsx
+/*.csv
