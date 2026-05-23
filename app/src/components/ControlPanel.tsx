@@ -45,7 +45,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   // ── Drawer expandible (solo mobile) ──────────────────────────────────────
   // Dos snap points: collapsed (45vh) y expanded (88vh). El user puede
   // arrastrar el handle hacia arriba/abajo, o tocarlo para alternar.
-  const COLLAPSED_VH = 45
+  const COLLAPSED_VH = 50
   const EXPANDED_VH = 88
   const SNAP_MID = (COLLAPSED_VH + EXPANDED_VH) / 2
   const [expanded, setExpanded] = useState(false)
@@ -100,16 +100,9 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
   return (
     <>
-      {/* Capa invisible solo en mobile: capta el tap fuera del panel para cerrar,
-          pero NO oscurece el mapa */}
-      {mobileOpen && (
-        <button
-          type="button"
-          aria-label="Cerrar panel"
-          onClick={onMobileClose}
-          className="fixed inset-0 z-[1040] bg-transparent md:hidden"
-        />
-      )}
+      {/* Sin backdrop: el área de mapa arriba del drawer queda totalmente
+          interactiva (pan, zoom, click en munis) aunque el panel esté abierto.
+          Para cerrar: botón "Cerrar" o drag down del handle. */}
 
       <aside
         style={inlineStyle}
@@ -120,7 +113,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             para no disparar el drag al tap. touch-none evita que el browser
             haga scroll de la página mientras arrastrás. */}
         <div
-          className="flex items-center justify-between border-b border-slate-100 px-4 py-3 md:hidden touch-none cursor-grab active:cursor-grabbing select-none"
+          className="flex items-center justify-between border-b border-slate-100 px-4 py-1.5 md:hidden touch-none cursor-grab active:cursor-grabbing select-none"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -130,12 +123,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           aria-label={expanded ? 'Colapsar panel' : 'Expandir panel'}
         >
           <span aria-hidden className="block w-10" />
-          <span className="h-1 w-10 rounded-full bg-slate-300" aria-hidden />
+          <span className="h-[3px] w-8 rounded-full bg-slate-300" aria-hidden />
           <button
             type="button"
             onClick={onMobileClose}
             onPointerDown={e => e.stopPropagation()}
-            className="text-[12px] text-slate-500 hover:text-slate-900"
+            className="text-[11px] text-slate-500 hover:text-slate-900"
           >
             Cerrar
           </button>
@@ -152,16 +145,16 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </p>
       </header>
 
-      {/* Nivel + Tabs: segmented controls full-width, igual en desktop y mobile.
-          En mobile ahorramos espacio con el drawer expandible, no con
-          controles diferentes. */}
-      <div className="px-5 py-3">
-        <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
+      {/* Nivel + Tabs: segmented controls compactos. Mismos en desktop y mobile.
+          Tamaño reducido vs versión anterior (text-[11px], padding más chico)
+          para ganar verticales sin cambiar el patrón visual. */}
+      <div className="px-4 pt-2 pb-1.5">
+        <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
           <button
             type="button"
             onClick={() => setLevel('adm0')}
-            className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === 'adm0' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              level === 'adm0' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             País
@@ -169,8 +162,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <button
             type="button"
             onClick={() => setLevel('adm1')}
-            className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === 'adm1' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              level === 'adm1' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             Estados
@@ -178,8 +171,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <button
             type="button"
             onClick={() => setLevel('adm2')}
-            className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === 'adm2' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              level === 'adm2' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             Municipios
@@ -187,16 +180,16 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </div>
       </div>
 
-      <div className="border-b border-slate-100 px-5 pb-3">
-        <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
+      <div className="border-b border-slate-100 px-4 pb-2">
+        <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
           {(['datos', 'capas', 'estilo'] as const).map(t => (
             <button
               key={t}
               type="button"
               onClick={() => setTab(t)}
-              className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
                 tab === t
-                  ? 'bg-white text-slate-900 shadow-sm'
+                  ? 'bg-white text-slate-900 shadow-sm font-medium'
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >

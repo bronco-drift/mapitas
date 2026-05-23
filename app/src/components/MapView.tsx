@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet'
 import type { Layer, PathOptions } from 'leaflet'
 import L from 'leaflet'
@@ -10,6 +10,23 @@ import { formatIndicatorValue } from '../data/indicators'
 import { getBasemap } from '../lib/basemaps'
 
 const VENEZUELA_BOUNDS = L.latLngBounds(L.latLng(0.5, -73.5), L.latLng(13.0, -58.0))
+
+// Puente para sacar el zoom de Leaflet hacia React state. El badge se
+// renderiza FUERA del MapContainer (no podemos meter UI HTML que reaccione
+// limpiamente dentro), pero necesitamos useMap() para leer el zoom y
+// suscribirnos al evento `zoomend`.
+function ZoomBridge({ onChange }: { onChange: (z: number) => void }) {
+  const map = useMap()
+  useEffect(() => {
+    onChange(map.getZoom())
+    const handler = () => onChange(map.getZoom())
+    map.on('zoomend', handler)
+    return () => {
+      map.off('zoomend', handler)
+    }
+  }, [map, onChange])
+  return null
+}
 
 function MapBootstrap({ bgColor }: { bgColor: string }) {
   const map = useMap()
@@ -132,6 +149,8 @@ export function MapView() {
   const thematic = useStore(s => s.thematic)
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
+  const [zoom, setZoom] = useState<number | null>(null)
+
   const activeThematic = Object.values(thematic).filter(t => t.enabled && t.data)
   // Cuando el basemap es "solid", usa el mismo bgColor del style (el color picker "Fondo").
   // Cuando es "transparent", transparente. Si no, el bgColor solo se ve si el basemap real falla.
@@ -240,6 +259,7 @@ export function MapView() {
           )
         })()}
         <MapBootstrap bgColor={effectiveBg} />
+        <ZoomBridge onChange={setZoom} />
         {data && (
           <GeoJSON
             key={layerKey}
@@ -331,6 +351,14 @@ export function MapView() {
           />
         )}
       </MapContainer>
+
+      {/* Badge de zoom: top-right del mapa, no captura pointer (pointer-events-none)
+          para que pan/zoom siga funcionando si toco encima. */}
+      {zoom != null && (
+        <div className="pointer-events-none absolute right-3 top-3 z-[500] rounded-md bg-white/95 px-2 py-1 text-[10px] font-medium uppercase tracking-wider tabular-nums text-slate-600 shadow-sm ring-1 ring-slate-200/80">
+          Zoom <span className="ml-0.5 text-slate-900">{Math.round(zoom * 10) / 10}</span>
+        </div>
+      )}
     </div>
   )
 }
