@@ -132,11 +132,11 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   customEnd: '#08306b',
   paletteMidpoint: 0.5,
   basemap: 'carto-light',
-  fillOpacity: 0.85,
+  fillOpacity: 0.95,
   borderOpacity: 1,
   transparentBg: false,
-  noBorders: false,
-  countryBorder: false,
+  noBorders: true,
+  countryBorder: true,
   autoClipExtremes: true,
 }
 
