@@ -76,13 +76,13 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           </button>
         </div>
       <header className="hidden border-b border-slate-100 px-5 pt-5 pb-4 md:block">
-        <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
           Mapitas
         </div>
-        <h1 className="mt-1 text-[15px] font-semibold leading-tight text-slate-900">
+        <h1 className="mt-1.5 text-[18px] font-semibold leading-[1.1] tracking-tight text-slate-900">
           Transparencia territorial
         </h1>
-        <p className="mt-1 text-[11px] leading-snug text-slate-500">
+        <p className="mt-1.5 text-[11px] leading-snug text-slate-500">
           Venezuela · datos abiertos · 100% local
         </p>
       </header>
@@ -200,7 +200,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               </div>
             )}
             <Legend />
-            <div className="mt-2 text-[10px] text-slate-400">
+            <div className="mt-2 text-[10px] tabular-nums text-slate-400">
               {stats.matched} de {stats.totalFeatures} pintados
             </div>
           </Section>
@@ -208,21 +208,23 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
         {selected && (
           <Section title="Seleccionado">
-            <div className="text-[13px] font-medium text-slate-900">{selected.name}</div>
+            <div className="text-[15px] font-semibold leading-tight text-slate-900">{selected.name}</div>
             {selected.nombreOficial && selected.nombreOficial !== selected.name && (
-              <div className="text-[11px] italic text-slate-500">{selected.nombreOficial}</div>
+              <div className="mt-0.5 text-[11px] italic leading-snug text-slate-500">{selected.nombreOficial}</div>
             )}
-            <div className="mt-0.5 text-[10px] text-slate-400">
+            <div className="mt-1 text-[10px] tracking-wide text-slate-400">
               {selected.parentState && <span>{selected.parentState} · </span>}
               {selected.iso}
             </div>
             {selected.value != null && (
-              <div className="mt-2 text-[13px] font-medium text-slate-800">
-                {activeIndicator
-                  ? formatIndicatorValue(selected.value, activeIndicator)
-                  : selected.value.toLocaleString('es-VE')}
+              <div className="mt-3 flex items-baseline gap-1.5">
+                <span className="text-[22px] font-semibold leading-none tracking-tight tabular-nums text-slate-900">
+                  {activeIndicator
+                    ? formatIndicatorValue(selected.value, activeIndicator)
+                    : selected.value.toLocaleString('es-VE')}
+                </span>
                 {activeIndicator && (
-                  <span className="ml-1 text-[11px] font-normal text-slate-500">{activeIndicator.unit}</span>
+                  <span className="text-[11px] font-normal text-slate-500">{activeIndicator.unit}</span>
                 )}
               </div>
             )}

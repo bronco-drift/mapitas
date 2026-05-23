@@ -97,13 +97,15 @@ export function IndicatorCoverageModal({
         {/* Header pegajoso */}
         <div className="flex items-start justify-between border-b border-slate-100 px-5 py-4">
           <div className="min-w-0">
-            <div id="cov-modal-title" className="truncate text-[15px] font-semibold text-slate-900">
+            <div id="cov-modal-title" className="truncate text-[17px] font-semibold leading-tight tracking-tight text-slate-900">
               {indicator.label}
             </div>
-            <div className="mt-0.5 text-[12px] text-slate-500">
-              {cov.covered} de {cov.total} {entityLabel} con datos
+            <div className="mt-1 text-[12px] tabular-nums text-slate-500">
+              <span className="text-slate-800">{cov.covered}</span>
+              <span className="text-slate-400"> de {cov.total} </span>
+              <span>{entityLabel} con datos</span>
               {cov.missing > 0 && (
-                <span className="ml-1.5 font-medium text-rose-600">· {cov.missing} sin datos</span>
+                <span className="ml-1.5 font-medium text-amber-600">· {cov.missing} sin datos</span>
               )}
             </div>
           </div>

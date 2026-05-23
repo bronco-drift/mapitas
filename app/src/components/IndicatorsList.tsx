@@ -64,7 +64,7 @@ export function IndicatorsList() {
               <div className="min-w-0">
                 <div className="flex items-baseline gap-1.5">
                   <div
-                    className={`text-[13px] font-medium ${
+                    className={`text-[14px] font-medium leading-snug tracking-tight ${
                       active ? 'text-white' : 'text-slate-800'
                     }`}
                   >

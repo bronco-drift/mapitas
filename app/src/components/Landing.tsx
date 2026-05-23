@@ -41,7 +41,7 @@ export function Landing() {
           </div>
           <h1
             id="hero-title"
-            className="max-w-3xl text-[44px] font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-6xl"
+            className="max-w-3xl text-[44px] font-bold leading-[0.98] tracking-[-0.025em] text-slate-900 sm:text-[68px]"
           >
             Mapas de Venezuela.
             <br />
@@ -49,7 +49,7 @@ export function Landing() {
               Datos al instante.
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-7 max-w-[58ch] text-[17px] leading-[1.55] text-slate-600 sm:text-[19px]">
             Visualizá indicadores territoriales sobre Venezuela. Usá los datos
             pre-cargados o subí tu propio CSV. Todo corre en tu navegador, sin
             servidores ni cuentas.
@@ -78,11 +78,11 @@ export function Landing() {
         >
           <h2
             id="features-title"
-            className="max-w-2xl text-[28px] font-semibold tracking-tight text-slate-900 sm:text-4xl"
+            className="max-w-2xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
           >
             Hecho para periodistas, investigadores y curiosos.
           </h2>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-500 sm:text-base">
+          <p className="mt-4 max-w-[55ch] text-[15px] leading-relaxed text-slate-500 sm:text-[16px]">
             Sin instalación. Sin curva de aprendizaje. Solo abrís y mapeás.
           </p>
 
@@ -117,7 +117,7 @@ export function Landing() {
         >
           <h2
             id="sources-title"
-            className="text-[24px] font-semibold tracking-tight text-slate-900 sm:text-3xl"
+            className="text-[24px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[32px]"
           >
             Datos confiables, abiertos.
           </h2>
@@ -168,7 +168,7 @@ export function Landing() {
         >
           <h2
             id="cta-title"
-            className="text-[32px] font-bold tracking-tight text-slate-900 sm:text-5xl"
+            className="text-[32px] font-bold leading-[1.05] tracking-[-0.025em] text-slate-900 sm:text-[56px]"
           >
             Listo cuando vos.
           </h2>
