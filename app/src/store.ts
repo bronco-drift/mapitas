@@ -40,6 +40,7 @@ export type MapStyle = {
   fillOpacity: number
   borderOpacity: number
   transparentBg: boolean
+  noBorders: boolean
 }
 
 export type ThematicMeta = {
@@ -120,6 +121,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   fillOpacity: 0.85,
   borderOpacity: 1,
   transparentBg: false,
+  noBorders: false,
 }
 
 function clearAll<P extends Adm0Props | Adm1Props | Adm2Props>(geo: AdmGeoJSON<P>): AdmGeoJSON<P> {

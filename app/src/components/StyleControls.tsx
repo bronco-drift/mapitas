@@ -38,7 +38,14 @@ export function StyleControls() {
         </div>
       </div>
 
-      <div>
+      <Toggle
+        label="Sin bordes"
+        hint="Oculta todos los bordes de los polígonos"
+        checked={style.noBorders}
+        onChange={v => setMapStyle({ noBorders: v })}
+      />
+
+      <div className={style.noBorders ? 'pointer-events-none opacity-40' : ''}>
         <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
           <span>Grosor borde</span>
           <span className="font-normal text-slate-400">{style.lineWidth.toFixed(1)}</span>
@@ -49,6 +56,7 @@ export function StyleControls() {
           max={3}
           step={0.1}
           value={style.lineWidth}
+          disabled={style.noBorders}
           onChange={e => setMapStyle({ lineWidth: parseFloat(e.target.value) })}
           className="w-full accent-slate-900"
         />
