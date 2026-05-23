@@ -11,20 +11,30 @@ import { getBasemap } from '../lib/basemaps'
 
 const VENEZUELA_BOUNDS = L.latLngBounds(L.latLng(0.5, -73.5), L.latLng(13.0, -58.0))
 
-// Puente para sacar el zoom de Leaflet hacia React state. El badge se
-// renderiza FUERA del MapContainer (no podemos meter UI HTML que reaccione
-// limpiamente dentro), pero necesitamos useMap() para leer el zoom y
-// suscribirnos al evento `zoomend`.
-function ZoomBridge({ onChange }: { onChange: (z: number) => void }) {
+// Puente para sacar el zoom de Leaflet hacia React state Y exponer el map
+// hacia afuera vía ref. Necesitamos las dos cosas: leer el zoom para mostrarlo
+// y poder llamar map.setZoom(z) desde un slider que vive fuera del MapContainer.
+// Suscribimos a `zoom` (no `zoomend`) para que el slider se sienta vivo durante
+// el drag (sino solo updateamos al soltar).
+function ZoomBridge({
+  onChange,
+  mapRef,
+}: {
+  onChange: (z: number) => void
+  mapRef: { current: L.Map | null }
+}) {
   const map = useMap()
   useEffect(() => {
+    mapRef.current = map
     onChange(map.getZoom())
     const handler = () => onChange(map.getZoom())
+    map.on('zoom', handler)
     map.on('zoomend', handler)
     return () => {
+      map.off('zoom', handler)
       map.off('zoomend', handler)
     }
-  }, [map, onChange])
+  }, [map, onChange, mapRef])
   return null
 }
 
@@ -150,6 +160,7 @@ export function MapView() {
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
   const [zoom, setZoom] = useState<number | null>(null)
+  const mapRef = useRef<L.Map | null>(null)
 
   const activeThematic = Object.values(thematic).filter(t => t.enabled && t.data)
   // Cuando el basemap es "solid", usa el mismo bgColor del style (el color picker "Fondo").
@@ -244,6 +255,10 @@ export function MapView() {
         zoom={5}
         minZoom={4}
         maxZoom={12}
+        zoomSnap={0.1}
+        zoomDelta={0.5}
+        wheelDebounceTime={40}
+        wheelPxPerZoomLevel={120}
         className="h-full w-full"
         style={{ background: effectiveBg }}
       >
@@ -259,7 +274,7 @@ export function MapView() {
           )
         })()}
         <MapBootstrap bgColor={effectiveBg} />
-        <ZoomBridge onChange={setZoom} />
+        <ZoomBridge onChange={setZoom} mapRef={mapRef} />
         {data && (
           <GeoJSON
             key={layerKey}
@@ -352,11 +367,86 @@ export function MapView() {
         )}
       </MapContainer>
 
-      {/* Badge de zoom: top-right del mapa, no captura pointer (pointer-events-none)
-          para que pan/zoom siga funcionando si toco encima. */}
+      {/* Badge de zoom: click abre un slider para ajuste fino (step 0.1). */}
       {zoom != null && (
-        <div className="pointer-events-none absolute right-3 top-3 z-[500] rounded-md bg-white/95 px-2 py-1 text-[10px] font-medium uppercase tracking-wider tabular-nums text-slate-600 shadow-sm ring-1 ring-slate-200/80">
-          Zoom <span className="ml-0.5 text-slate-900">{Math.round(zoom * 10) / 10}</span>
+        <ZoomControl
+          zoom={zoom}
+          minZoom={4}
+          maxZoom={12}
+          onChange={z => mapRef.current?.setZoom(z)}
+        />
+      )}
+    </div>
+  )
+}
+
+function ZoomControl({
+  zoom,
+  minZoom,
+  maxZoom,
+  onChange,
+}: {
+  zoom: number
+  minZoom: number
+  maxZoom: number
+  onChange: (z: number) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  // Click fuera del control cierra el slider.
+  useEffect(() => {
+    if (!open) return
+    const onDocClick = (e: MouseEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onDocClick)
+    document.addEventListener('keydown', onEsc)
+    return () => {
+      document.removeEventListener('mousedown', onDocClick)
+      document.removeEventListener('keydown', onEsc)
+    }
+  }, [open])
+
+  return (
+    <div ref={rootRef} className="absolute right-3 top-3 z-[500]">
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className={`flex items-center gap-1.5 rounded-md bg-white/95 px-2 py-1 text-[10px] font-medium uppercase tracking-wider tabular-nums shadow-sm ring-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+          open
+            ? 'text-slate-900 ring-slate-400'
+            : 'text-slate-600 ring-slate-200/80 hover:text-slate-900'
+        }`}
+        aria-expanded={open}
+        aria-label="Ajustar zoom"
+      >
+        Zoom <span className="text-slate-900">{zoom.toFixed(1)}</span>
+      </button>
+
+      {open && (
+        <div
+          className="absolute right-0 top-full mt-1.5 w-48 rounded-md bg-white p-3 shadow-lg ring-1 ring-slate-200"
+          onMouseDown={e => e.stopPropagation()}
+        >
+          <input
+            type="range"
+            min={minZoom}
+            max={maxZoom}
+            step={0.1}
+            value={zoom}
+            onChange={e => onChange(parseFloat(e.target.value))}
+            className="w-full accent-slate-900"
+            aria-label="Nivel de zoom"
+          />
+          <div className="mt-1 flex items-baseline justify-between text-[10px] tabular-nums text-slate-400">
+            <span>{minZoom}</span>
+            <span className="font-medium text-slate-700">{zoom.toFixed(1)}</span>
+            <span>{maxZoom}</span>
+          </div>
         </div>
       )}
     </div>
