@@ -87,8 +87,50 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </p>
       </header>
 
-      {/* Nivel siempre visible arriba — afecta todo */}
-      <div className="px-5 py-3">
+      {/* Mobile: pills compactos en 2 filas para ahorrar altura del drawer.
+          Desktop: segmented controls full-width (los originales). */}
+
+      {/* MOBILE — Nivel + Tabs en pills compactos */}
+      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 border-b border-slate-100 px-4 py-2 md:hidden">
+        {(
+          [
+            { key: 'adm0', label: 'País' },
+            { key: 'adm1', label: 'Estados' },
+            { key: 'adm2', label: 'Municipios' },
+          ] as const
+        ).map(item => (
+          <button
+            key={item.key}
+            type="button"
+            onClick={() => setLevel(item.key)}
+            className={`shrink-0 rounded-full px-2.5 py-1 text-[12px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              level === item.key
+                ? 'bg-slate-900 text-white'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+            }`}
+          >
+            {item.label}
+          </button>
+        ))}
+        <span className="mx-0.5 h-4 w-px bg-slate-200" aria-hidden />
+        {(['datos', 'capas', 'estilo'] as const).map(t => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTab(t)}
+            className={`shrink-0 rounded-full px-2.5 py-1 text-[12px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              tab === t
+                ? 'bg-slate-900 text-white'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+            }`}
+          >
+            {t === 'datos' ? 'Datos' : t === 'capas' ? 'Capas' : 'Estilo'}
+          </button>
+        ))}
+      </div>
+
+      {/* DESKTOP — Nivel segmented full-width */}
+      <div className="hidden px-5 py-3 md:block">
         <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
           <button
             type="button"
@@ -120,8 +162,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </div>
       </div>
 
-      {/* Segmented toggle Datos / Capas / Estilo — mismo estilo que Nivel */}
-      <div className="border-b border-slate-100 px-5 pb-3">
+      {/* DESKTOP — Tabs segmented full-width */}
+      <div className="hidden border-b border-slate-100 px-5 pb-3 md:block">
         <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
           {(['datos', 'capas', 'estilo'] as const).map(t => (
             <button
