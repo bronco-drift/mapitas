@@ -105,7 +105,7 @@ export function IndicatorCoverageModal({
               <span className="text-slate-400"> de {cov.total} </span>
               <span>{entityLabel} con datos</span>
               {cov.missing > 0 && (
-                <span className="ml-1.5 font-medium text-amber-600">· {cov.missing} sin datos</span>
+                <span className="ml-1.5 font-medium text-rose-600">· {cov.missing} sin datos</span>
               )}
             </div>
           </div>
