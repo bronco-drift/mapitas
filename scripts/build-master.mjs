@@ -35,6 +35,7 @@ const WIKI_JSON = join(ROOT, 'data', 'sources', 'wiki-municipios.json')
 const INE_MUNI = join(ROOT, 'data', 'sources', 'ine-population-municipalities.json')
 const INE_STATE = join(ROOT, 'data', 'sources', 'ine-population-states.json')
 const MUNICIPAL_CSV = join(ROOT, 'data', 'sources', 'municipal-indicators.json')
+const SOURCE_CV = join(ROOT, 'data', 'sources', 'sourcecv.json')
 
 const OUT_DIR = join(ROOT, 'data', 'master')
 mkdirSync(OUT_DIR, { recursive: true })
@@ -233,12 +234,36 @@ for (const sid of Object.keys(master)) {
     setField(sid, 'pib_per_capita_usd', muni.indicators.pib_per_capita_usd[sid], 'sintético', 2026)
 }
 
+// ─── 5. Source CV (Excel del user) — % urbano por muni + IDH histórico ────
+// Para munis: porcentaje de población viviendo en la capital del muni.
+// Para estados (se aplica más abajo): IDH 1990/2000/2010/2020 + cambio.
+// La data del user viene de fuentes oficiales (UCAB/PNUD recopilados).
+let sourcecv = null
+try {
+  sourcecv = JSON.parse(readFileSync(SOURCE_CV, 'utf8'))
+  for (const [sid, rec] of Object.entries(sourcecv.municipios ?? {})) {
+    if (!master[sid]) continue
+    if (rec.porcentaje_urbano_2021 != null) {
+      setField(sid, 'porcentaje_urbano_2021', rec.porcentaje_urbano_2021, 'Source CV', 2021)
+    }
+  }
+} catch (err) {
+  console.log(`(source CV no disponible: ${err.message})`)
+}
+
 // ─── Cobertura por indicador (sobre los 336 munis del adm2) ────────────────
 
 const FIELDS = [
   'poblacion_2010', 'poblacion_2020', 'poblacion_2026', 'poblacion_2050',
-  'poblacion_2021', 'area_km2', 'densidad', 'capital',
+  'poblacion_2021', 'poblacion_capital_2021', 'porcentaje_urbano_2021',
+  'area_km2', 'densidad', 'capital',
   'idh', 'pib_total_mm_usd', 'pib_per_capita_usd',
+]
+
+// Campos que viven SOLO a nivel estado (no se agregan desde munis).
+// Vienen directos de Source CV.
+const STATE_ONLY_FIELDS = [
+  'idh_1990', 'idh_2000', 'idh_2010', 'idh_2020', 'idh_cambio_2010_2020',
 ]
 
 const totalMunis = Object.keys(master).length
@@ -272,7 +297,9 @@ for (const m of Object.values(master)) {
 }
 
 // Aplicar regla por indicador (sum vs weighted mean)
-const WEIGHTED_MEAN_FIELDS = new Set(['densidad', 'idh', 'pib_per_capita_usd'])
+const WEIGHTED_MEAN_FIELDS = new Set([
+  'densidad', 'idh', 'pib_per_capita_usd', 'porcentaje_urbano_2021',
+])
 const states = {}
 for (const [iso, acc] of Object.entries(stateAcc)) {
   states[iso] = {
@@ -290,6 +317,21 @@ for (const [iso, acc] of Object.entries(stateAcc)) {
       value = a.sum
     }
     states[iso].indicators[field] = { value: Math.round(value * 100) / 100, coverage: a.count }
+  }
+}
+
+// Inyectar campos state-only del Source CV (no son agregados desde munis,
+// son data directa a nivel estado: IDH histórico oficial).
+if (sourcecv?.estados) {
+  for (const [iso, rec] of Object.entries(sourcecv.estados)) {
+    if (!states[iso]) {
+      states[iso] = { iso, name: rec.name, muni_count: 0, indicators: {} }
+    }
+    for (const field of STATE_ONLY_FIELDS) {
+      if (rec[field] != null) {
+        states[iso].indicators[field] = { value: rec[field], coverage: 1 }
+      }
+    }
   }
 }
 
@@ -314,11 +356,14 @@ for (const m of Object.values(master)) {
 }
 writeFileSync(join(OUT_DIR, 'municipalities.csv'), csv)
 
-const stateCsvCols = ['iso', 'name', 'muni_count', ...FIELDS]
+// El CSV de estados incluye TANTO los agregados de munis (FIELDS) como
+// los campos state-only directos (STATE_ONLY_FIELDS, ej. IDH histórico).
+const STATE_FIELDS = [...FIELDS, ...STATE_ONLY_FIELDS]
+const stateCsvCols = ['iso', 'name', 'muni_count', ...STATE_FIELDS]
 let scsv = stateCsvCols.join(',') + '\n'
 for (const s of Object.values(states)) {
   const row = [s.iso, s.name, s.muni_count]
-  for (const f of FIELDS) row.push(s.indicators[f]?.value ?? '')
+  for (const f of STATE_FIELDS) row.push(s.indicators[f]?.value ?? '')
   scsv += row.map(csvEscape).join(',') + '\n'
 }
 writeFileSync(join(OUT_DIR, 'states.csv'), scsv)

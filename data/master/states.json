@@ -47,6 +47,30 @@
       "pib_per_capita_usd": {
         "value": 5923.08,
         "coverage": 21
+      },
+      "porcentaje_urbano_2021": {
+        "value": 75.1,
+        "coverage": 21
+      },
+      "idh_1990": {
+        "value": 0.67,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.704,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.789,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.728,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.061,
+        "coverage": 1
       }
     }
   },
@@ -98,6 +122,30 @@
       "pib_per_capita_usd": {
         "value": 2455.88,
         "coverage": 6
+      },
+      "porcentaje_urbano_2021": {
+        "value": 65.71,
+        "coverage": 7
+      },
+      "idh_1990": {
+        "value": 0.585,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.612,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.685,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.622,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -137,6 +185,30 @@
       "poblacion_2050": {
         "value": 1388222,
         "coverage": 14
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.55,
+        "coverage": 14
+      },
+      "idh_1990": {
+        "value": 0.6,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.627,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.7030000000000001,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.641,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
+        "coverage": 1
       }
     }
   },
@@ -176,6 +248,30 @@
       "poblacion_2050": {
         "value": 1287326,
         "coverage": 13
+      },
+      "porcentaje_urbano_2021": {
+        "value": 79.11,
+        "coverage": 13
+      },
+      "idh_1990": {
+        "value": 0.637,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.667,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.748,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.686,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
+        "coverage": 1
       }
     }
   },
@@ -227,6 +323,30 @@
       "pib_per_capita_usd": {
         "value": 3910.71,
         "coverage": 23
+      },
+      "porcentaje_urbano_2021": {
+        "value": 78.1,
+        "coverage": 23
+      },
+      "idh_1990": {
+        "value": 0.639,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.667,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.747,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.683,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.064,
+        "coverage": 1
       }
     }
   },
@@ -267,6 +387,10 @@
         "value": 1295717,
         "coverage": 12
       },
+      "porcentaje_urbano_2021": {
+        "value": 74.56,
+        "coverage": 12
+      },
       "idh": {
         "value": 0.66,
         "coverage": 1
@@ -277,6 +401,26 @@
       },
       "pib_per_capita_usd": {
         "value": 3265,
+        "coverage": 1
+      },
+      "idh_1990": {
+        "value": 0.601,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.628,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.7030000000000001,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.641,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
         "coverage": 1
       }
     }
@@ -329,6 +473,30 @@
       "pib_per_capita_usd": {
         "value": 3796.58,
         "coverage": 20
+      },
+      "porcentaje_urbano_2021": {
+        "value": 85.06,
+        "coverage": 20
+      },
+      "idh_1990": {
+        "value": 0.654,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.686,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.769,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.707,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
+        "coverage": 1
       }
     }
   },
@@ -369,6 +537,10 @@
         "value": 1479359,
         "coverage": 15
       },
+      "porcentaje_urbano_2021": {
+        "value": 78.82,
+        "coverage": 15
+      },
       "idh": {
         "value": 0.65,
         "coverage": 1
@@ -379,6 +551,26 @@
       },
       "pib_per_capita_usd": {
         "value": 2974,
+        "coverage": 1
+      },
+      "idh_1990": {
+        "value": 0.623,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.65,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.728,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.663,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.065,
         "coverage": 1
       }
     }
@@ -403,6 +595,30 @@
       "densidad": {
         "value": 1178.17,
         "coverage": 11
+      },
+      "porcentaje_urbano_2021": {
+        "value": 65.45,
+        "coverage": 11
+      },
+      "idh_1990": {
+        "value": 0.66,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.6930000000000001,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.777,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.716,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.061,
+        "coverage": 1
       }
     }
   },
@@ -442,6 +658,30 @@
       "poblacion_2050": {
         "value": 453259,
         "coverage": 4
+      },
+      "porcentaje_urbano_2021": {
+        "value": 19.02,
+        "coverage": 4
+      },
+      "idh_1990": {
+        "value": 0.632,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.662,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.742,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.679,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -481,6 +721,30 @@
       "poblacion_2050": {
         "value": 1569196,
         "coverage": 29
+      },
+      "porcentaje_urbano_2021": {
+        "value": 86.19,
+        "coverage": 27
+      },
+      "idh_1990": {
+        "value": 0.645,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.675,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.756,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.6920000000000001,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.064,
+        "coverage": 1
       }
     }
   },
@@ -520,6 +784,30 @@
       "poblacion_2050": {
         "value": 364107,
         "coverage": 8
+      },
+      "porcentaje_urbano_2021": {
+        "value": 91.42,
+        "coverage": 8
+      },
+      "idh_1990": {
+        "value": 0.626,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.655,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.734,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.671,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -559,6 +847,30 @@
       "poblacion_2050": {
         "value": 1004670,
         "coverage": 14
+      },
+      "porcentaje_urbano_2021": {
+        "value": 82.82,
+        "coverage": 14
+      },
+      "idh_1990": {
+        "value": 0.617,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.646,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.724,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.661,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -610,6 +922,30 @@
       "pib_per_capita_usd": {
         "value": 2813.25,
         "coverage": 7
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "coverage": 7
+      },
+      "idh_1990": {
+        "value": 0.627,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.658,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.737,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.675,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
+        "coverage": 1
       }
     }
   },
@@ -661,6 +997,30 @@
       "pib_per_capita_usd": {
         "value": 5960.7,
         "coverage": 20
+      },
+      "porcentaje_urbano_2021": {
+        "value": 68.04,
+        "coverage": 20
+      },
+      "idh_1990": {
+        "value": 0.632,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.662,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.743,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.681,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
+        "coverage": 1
       }
     }
   },
@@ -712,6 +1072,30 @@
       "pib_per_capita_usd": {
         "value": 6651.54,
         "coverage": 14
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.73,
+        "coverage": 14
+      },
+      "idh_1990": {
+        "value": 0.661,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.6950000000000001,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.779,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.716,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -752,6 +1136,10 @@
         "value": 1109799,
         "coverage": 20
       },
+      "porcentaje_urbano_2021": {
+        "value": 50.96,
+        "coverage": 19
+      },
       "idh": {
         "value": 0.65,
         "coverage": 1
@@ -762,6 +1150,26 @@
       },
       "pib_per_capita_usd": {
         "value": 2971,
+        "coverage": 1
+      },
+      "idh_1990": {
+        "value": 0.622,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.649,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.727,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.663,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.064,
         "coverage": 1
       }
     }
@@ -803,6 +1211,10 @@
         "value": 1369065,
         "coverage": 25
       },
+      "porcentaje_urbano_2021": {
+        "value": 65.63,
+        "coverage": 25
+      },
       "idh": {
         "value": 0.68,
         "coverage": 1
@@ -813,6 +1225,26 @@
       },
       "pib_per_capita_usd": {
         "value": 3719,
+        "coverage": 1
+      },
+      "idh_1990": {
+        "value": 0.637,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.667,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.748,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.684,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.064,
         "coverage": 1
       }
     }
@@ -853,6 +1285,30 @@
       "poblacion_2050": {
         "value": 1304983,
         "coverage": 15
+      },
+      "porcentaje_urbano_2021": {
+        "value": 89.2,
+        "coverage": 14
+      },
+      "idh_1990": {
+        "value": 0.615,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.642,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.72,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.656,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.064,
+        "coverage": 1
       }
     }
   },
@@ -904,6 +1360,30 @@
       "pib_per_capita_usd": {
         "value": 3748,
         "coverage": 17
+      },
+      "porcentaje_urbano_2021": {
+        "value": 68.19,
+        "coverage": 17
+      },
+      "idh_1990": {
+        "value": 0.667,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.7000000000000001,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.784,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.721,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -955,6 +1435,30 @@
       "pib_per_capita_usd": {
         "value": 3968.32,
         "coverage": 9
+      },
+      "porcentaje_urbano_2021": {
+        "value": 89.41,
+        "coverage": 11
+      },
+      "idh_1990": {
+        "value": 0.645,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.678,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.76,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.6990000000000001,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.061,
+        "coverage": 1
       }
     }
   },
@@ -990,6 +1494,30 @@
       "pib_per_capita_usd": {
         "value": 4609.22,
         "coverage": 9
+      },
+      "porcentaje_urbano_2021": {
+        "value": 76.64,
+        "coverage": 9
+      },
+      "idh_1990": {
+        "value": 0.629,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.658,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.737,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.674,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.063,
+        "coverage": 1
       }
     }
   },
@@ -1040,6 +1568,30 @@
       },
       "pib_per_capita_usd": {
         "value": 7497,
+        "coverage": 1
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "coverage": 1
+      },
+      "idh_1990": {
+        "value": 0.682,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.717,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.8,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.741,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.059,
         "coverage": 1
       }
     }
@@ -1110,6 +1662,30 @@
       },
       "pib_per_capita_usd": {
         "value": 5824,
+        "coverage": 1
+      },
+      "porcentaje_urbano_2021": {
+        "value": 4.73,
+        "coverage": 1
+      },
+      "idh_1990": {
+        "value": 0.661,
+        "coverage": 1
+      },
+      "idh_2000": {
+        "value": 0.6940000000000001,
+        "coverage": 1
+      },
+      "idh_2010": {
+        "value": 0.778,
+        "coverage": 1
+      },
+      "idh_2020": {
+        "value": 0.716,
+        "coverage": 1
+      },
+      "idh_cambio_2010_2020": {
+        "value": -0.062,
         "coverage": 1
       }
     }

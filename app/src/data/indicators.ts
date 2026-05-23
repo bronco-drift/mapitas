@@ -25,6 +25,8 @@ type MasterMuniRecord = {
   poblacion_2026?: number
   poblacion_2050?: number
   poblacion_2021?: number
+  poblacion_capital_2021?: number
+  porcentaje_urbano_2021?: number
   area_km2?: number
   densidad?: number
   capital?: string
@@ -41,11 +43,19 @@ type MasterStateRecord = {
   poblacion_2026?: number
   poblacion_2050?: number
   poblacion_2021?: number
+  poblacion_capital_2021?: number
+  porcentaje_urbano_2021?: number
   area_km2?: number
   densidad?: number
   idh?: number
   pib_total_mm_usd?: number
   pib_per_capita_usd?: number
+  // State-only (no se agregan desde munis): IDH histórico oficial
+  idh_1990?: number
+  idh_2000?: number
+  idh_2010?: number
+  idh_2020?: number
+  idh_cambio_2010_2020?: number
 }
 
 const munis = masterMunisRaw as Record<string, MasterMuniRecord>
@@ -218,6 +228,89 @@ const PIB_PER_CAPITA: Indicator = {
   stateAggregate: stateField('pib_per_capita_usd'),
 }
 
+// ─── Source CV: indicadores municipales y estatales del Excel del user ──
+
+const PCT_URBANO: Indicator = {
+  id: 'porcentaje_urbano_2021',
+  label: '% Población urbana - Source CV',
+  description: 'Porcentaje de la población municipal viviendo en la capital del municipio',
+  unit: '%',
+  format: 'rate',
+  year: 2021,
+  source: 'Source CV (INE 2021 · capital del muni / población total)',
+  aggregation: 'municipality',
+  nationalAggregation: 'mean',
+  data: muniField('porcentaje_urbano_2021'),
+  stateAggregate: stateField('porcentaje_urbano_2021'),
+}
+
+const IDH_1990_CV: Indicator = {
+  id: 'idh_1990_cv',
+  label: 'IDH 1990 - Source CV',
+  description: 'Índice de Desarrollo Humano por entidad federal en 1990',
+  unit: 'índice 0–1',
+  format: 'decimal',
+  year: 1990,
+  source: 'Source CV (PNUD / recopilación histórica)',
+  aggregation: 'state',
+  nationalAggregation: 'mean',
+  data: stateField('idh_1990'),
+}
+
+const IDH_2000_CV: Indicator = {
+  id: 'idh_2000_cv',
+  label: 'IDH 2000 - Source CV',
+  description: 'Índice de Desarrollo Humano por entidad federal en 2000',
+  unit: 'índice 0–1',
+  format: 'decimal',
+  year: 2000,
+  source: 'Source CV (PNUD / recopilación histórica)',
+  aggregation: 'state',
+  nationalAggregation: 'mean',
+  data: stateField('idh_2000'),
+}
+
+const IDH_2010_CV: Indicator = {
+  id: 'idh_2010_cv',
+  label: 'IDH 2010 - Source CV',
+  description: 'Índice de Desarrollo Humano por entidad federal en 2010',
+  unit: 'índice 0–1',
+  format: 'decimal',
+  year: 2010,
+  source: 'Source CV (PNUD / recopilación histórica)',
+  aggregation: 'state',
+  nationalAggregation: 'mean',
+  data: stateField('idh_2010'),
+}
+
+const IDH_2020_CV: Indicator = {
+  id: 'idh_2020_cv',
+  label: 'IDH 2020 - Source CV',
+  description: 'Índice de Desarrollo Humano oficial por entidad federal en 2020',
+  unit: 'índice 0–1',
+  format: 'decimal',
+  year: 2020,
+  source: 'Source CV (PNUD / recopilación histórica)',
+  note: 'Data oficial 2020 · vs IDH (estimado) que es sintético a nivel muni',
+  aggregation: 'state',
+  nationalAggregation: 'mean',
+  data: stateField('idh_2020'),
+}
+
+const IDH_CAMBIO: Indicator = {
+  id: 'idh_cambio_2010_2020_cv',
+  label: 'Cambio IDH 2010-2020 - Source CV',
+  description: 'Variación del IDH entre 2010 y 2020 (negativo = deterioro)',
+  unit: 'Δ índice',
+  format: 'decimal',
+  year: 2020,
+  source: 'Source CV (calculado IDH 2020 - IDH 2010)',
+  note: 'Todos los estados muestran retroceso entre 2010 y 2020',
+  aggregation: 'state',
+  nationalAggregation: 'mean',
+  data: stateField('idh_cambio_2010_2020'),
+}
+
 // ─── Indicadores estatales (hardcoded, no viven en el master) ─────────────
 
 const POBLACION_2024: Indicator = {
@@ -269,6 +362,12 @@ export const INDICATORS: Indicator[] = [
   POBLACION_2021,
   AREA,
   DENSIDAD,
+  PCT_URBANO,
+  IDH_2020_CV,
+  IDH_2010_CV,
+  IDH_2000_CV,
+  IDH_1990_CV,
+  IDH_CAMBIO,
   IDH,
   PIB_PER_CAPITA,
   PIB_TOTAL,

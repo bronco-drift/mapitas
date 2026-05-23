@@ -1,0 +1,2814 @@
+{
+  "municipios": {
+    "92452058B13345815126611": {
+      "name": "Libertador",
+      "parent_iso": "VE-A",
+      "capital": "Caracas",
+      "poblacion_2021": 2277972,
+      "poblacion_capital_2021": 2277972,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B74108168136268": {
+      "name": "Maracaibo",
+      "parent_iso": "VE-V",
+      "capital": "Maracaibo",
+      "poblacion_2021": 1624210,
+      "poblacion_capital_2021": 1585357,
+      "porcentaje_urbano_2021": 97.61
+    },
+    "92452058B63992196257399": {
+      "name": "Iribarren",
+      "parent_iso": "VE-K",
+      "capital": "Barquisimeto",
+      "poblacion_2021": 1225175,
+      "poblacion_capital_2021": 1173095,
+      "porcentaje_urbano_2021": 95.75
+    },
+    "92452058B422414995593": {
+      "name": "Valencia",
+      "parent_iso": "VE-G",
+      "capital": "Valencia",
+      "poblacion_2021": 980277,
+      "poblacion_capital_2021": 968991,
+      "porcentaje_urbano_2021": 98.85
+    },
+    "92452058B19178625121823": {
+      "name": "Caroní",
+      "parent_iso": "VE-F",
+      "capital": "Ciudad Guayana",
+      "poblacion_2021": 831264,
+      "poblacion_capital_2021": 792635,
+      "porcentaje_urbano_2021": 95.35
+    },
+    "92452058B12777305429441": {
+      "name": "Sucre",
+      "parent_iso": "VE-M",
+      "capital": "Petare",
+      "poblacion_2021": 682718,
+      "poblacion_capital_2021": 420610,
+      "porcentaje_urbano_2021": 61.61
+    },
+    "92452058B57031672069031": {
+      "name": "Maturín",
+      "parent_iso": "VE-N",
+      "capital": "Maturín",
+      "poblacion_2021": 655423,
+      "poblacion_capital_2021": 576335,
+      "porcentaje_urbano_2021": 87.93
+    },
+    "92452058B36126847225490": {
+      "name": "San Francisco",
+      "parent_iso": "VE-V",
+      "capital": "San Francisco",
+      "poblacion_2021": 541009,
+      "poblacion_capital_2021": 156218,
+      "porcentaje_urbano_2021": 28.88
+    },
+    "92452058B340100748175": {
+      "name": "Simón Bolívar",
+      "parent_iso": "VE-B",
+      "capital": "Barcelona",
+      "poblacion_2021": 516904,
+      "poblacion_capital_2021": 472023,
+      "porcentaje_urbano_2021": 91.32
+    },
+    "92452058B44291856842988": {
+      "name": "Barinas",
+      "parent_iso": "VE-E",
+      "capital": "Barinas",
+      "poblacion_2021": 495578,
+      "poblacion_capital_2021": 421128,
+      "porcentaje_urbano_2021": 84.98
+    },
+    "92452058B62779861524453": {
+      "name": "Girardot",
+      "parent_iso": "VE-D",
+      "capital": "Maracay",
+      "poblacion_2021": 469371,
+      "poblacion_capital_2021": 460380,
+      "porcentaje_urbano_2021": 98.08
+    },
+    "92452058B50415523485502": {
+      "name": "Sucre",
+      "parent_iso": "VE-R",
+      "capital": "Cumaná",
+      "poblacion_2021": 451794,
+      "poblacion_capital_2021": 401482,
+      "porcentaje_urbano_2021": 88.86
+    },
+    "42786344B94533756407676_muni": {
+      "name": "Vargas",
+      "parent_iso": "VE-X",
+      "capital": "La Guaira",
+      "poblacion_2021": 448894,
+      "poblacion_capital_2021": 21250,
+      "porcentaje_urbano_2021": 4.73
+    },
+    "92452058B41510746407735": {
+      "name": "Angostura del Orinoco",
+      "parent_iso": "VE-F",
+      "capital": "Ciudad Bolívar",
+      "poblacion_2021": 395176,
+      "poblacion_capital_2021": 387449,
+      "porcentaje_urbano_2021": 98.04
+    },
+    "92452058B12886197889450": {
+      "name": "Cabimas",
+      "parent_iso": "VE-V",
+      "capital": "Cabimas",
+      "poblacion_2021": 326738,
+      "poblacion_capital_2021": 304728,
+      "porcentaje_urbano_2021": 93.26
+    },
+    "92452058B62251986707273": {
+      "name": "Carirubana",
+      "parent_iso": "VE-I",
+      "capital": "Punto Fijo",
+      "poblacion_2021": 310730,
+      "poblacion_capital_2021": 148005,
+      "porcentaje_urbano_2021": 47.63
+    },
+    "92452058B43927171867078": {
+      "name": "San Cristóbal",
+      "parent_iso": "VE-S",
+      "capital": "San Cristóbal",
+      "poblacion_2021": 302203,
+      "poblacion_capital_2021": 300846,
+      "porcentaje_urbano_2021": 99.55
+    },
+    "92452058B55780217800828": {
+      "name": "Juan Antonio Sotillo",
+      "parent_iso": "VE-B",
+      "capital": "Puerto La Cruz",
+      "poblacion_2021": 296899,
+      "poblacion_capital_2021": 189943,
+      "porcentaje_urbano_2021": 63.98
+    },
+    "92452058B8376465303279": {
+      "name": "Guaicaipuro",
+      "parent_iso": "VE-M",
+      "capital": "Los Teques",
+      "poblacion_2021": 287664,
+      "poblacion_capital_2021": 221985,
+      "porcentaje_urbano_2021": 77.17
+    },
+    "92452058B98941669377363": {
+      "name": "Baruta",
+      "parent_iso": "VE-M",
+      "capital": "Baruta",
+      "poblacion_2021": 273755,
+      "poblacion_capital_2021": 183320,
+      "porcentaje_urbano_2021": 66.96
+    },
+    "92452058B81914214166984": {
+      "name": "Lagunillas",
+      "parent_iso": "VE-V",
+      "capital": "Ciudad Ojeda",
+      "poblacion_2021": 271289,
+      "poblacion_capital_2021": 224758,
+      "porcentaje_urbano_2021": 82.85
+    },
+    "92452058B40555810306039": {
+      "name": "Miranda",
+      "parent_iso": "VE-I",
+      "capital": "Santa Ana de Coro",
+      "poblacion_2021": 268862,
+      "poblacion_capital_2021": 251459,
+      "porcentaje_urbano_2021": 93.53
+    },
+    "92452058B98840878188065": {
+      "name": "Santiago Mariño",
+      "parent_iso": "VE-D",
+      "capital": "Turmero",
+      "poblacion_2021": 266945,
+      "poblacion_capital_2021": 75218,
+      "porcentaje_urbano_2021": 28.18
+    },
+    "92452058B63201291940851": {
+      "name": "Libertador",
+      "parent_iso": "VE-L",
+      "capital": "Mérida",
+      "poblacion_2021": 261076,
+      "poblacion_capital_2021": 258836,
+      "porcentaje_urbano_2021": 99.14
+    },
+    "92452058B70966506034681": {
+      "name": "Mara",
+      "parent_iso": "VE-V",
+      "capital": "San Rafael de El Moján",
+      "poblacion_2021": 252988,
+      "poblacion_capital_2021": 65133,
+      "porcentaje_urbano_2021": 25.75
+    },
+    "92452058B28042998253075": {
+      "name": "Plaza",
+      "parent_iso": "VE-M",
+      "capital": "Guarenas",
+      "poblacion_2021": 248945,
+      "poblacion_capital_2021": 248945,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B33473960581249": {
+      "name": "Guanare",
+      "parent_iso": "VE-P",
+      "capital": "Guanare",
+      "poblacion_2021": 244050,
+      "poblacion_capital_2021": 206671,
+      "porcentaje_urbano_2021": 84.68
+    },
+    "92452058B50002149731912": {
+      "name": "Páez",
+      "parent_iso": "VE-P",
+      "capital": "Acarigua",
+      "poblacion_2021": 219524,
+      "poblacion_capital_2021": 189716,
+      "porcentaje_urbano_2021": 86.42
+    },
+    "92452058B92725802185650": {
+      "name": "San Fernando",
+      "parent_iso": "VE-C",
+      "capital": "San Fernando de Apure",
+      "poblacion_2021": 218583,
+      "poblacion_capital_2021": 164489,
+      "porcentaje_urbano_2021": 75.25
+    },
+    "92452058B49597531088827": {
+      "name": "Zamora",
+      "parent_iso": "VE-M",
+      "capital": "Guatire",
+      "poblacion_2021": 216276,
+      "poblacion_capital_2021": 175705,
+      "porcentaje_urbano_2021": 81.24
+    },
+    "92452058B74376664002472": {
+      "name": "Simón Rodríguez",
+      "parent_iso": "VE-B",
+      "capital": "El Tigre",
+      "poblacion_2021": 216175,
+      "poblacion_capital_2021": 216175,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B34599827545063": {
+      "name": "Lander",
+      "parent_iso": "VE-M",
+      "capital": "Ocumare del Tuy",
+      "poblacion_2021": 215445,
+      "poblacion_capital_2021": 167558,
+      "porcentaje_urbano_2021": 77.77
+    },
+    "92452058B76847227335777": {
+      "name": "Guacara",
+      "parent_iso": "VE-G",
+      "capital": "Guacara",
+      "poblacion_2021": 213815,
+      "poblacion_capital_2021": 185776,
+      "porcentaje_urbano_2021": 86.89
+    },
+    "92452058B22596665360768": {
+      "name": "Torres",
+      "parent_iso": "VE-K",
+      "capital": "Carora",
+      "poblacion_2021": 211806,
+      "poblacion_capital_2021": 123082,
+      "porcentaje_urbano_2021": 58.11
+    },
+    "92452058B2415433423645": {
+      "name": "Palavecino",
+      "parent_iso": "VE-K",
+      "capital": "Cabudare",
+      "poblacion_2021": 207494,
+      "poblacion_capital_2021": 86610,
+      "porcentaje_urbano_2021": 41.74
+    },
+    "92452058B71261275194510": {
+      "name": "Libertador",
+      "parent_iso": "VE-G",
+      "capital": "Tocuyito",
+      "poblacion_2021": 207247,
+      "poblacion_capital_2021": 207247,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B64111630674136": {
+      "name": "Los Guayos",
+      "parent_iso": "VE-G",
+      "capital": "Los Guayos",
+      "poblacion_2021": 192582,
+      "poblacion_capital_2021": 192582,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B49984819466798": {
+      "name": "Puerto Cabello",
+      "parent_iso": "VE-G",
+      "capital": "Puerto Cabello",
+      "poblacion_2021": 182512,
+      "poblacion_capital_2021": 173500,
+      "porcentaje_urbano_2021": 95.06
+    },
+    "92452058B8973005468773": {
+      "name": "Araure",
+      "parent_iso": "VE-P",
+      "capital": "Araure",
+      "poblacion_2021": 180812,
+      "poblacion_capital_2021": 166116,
+      "porcentaje_urbano_2021": 91.87
+    },
+    "92452058B81521575667263": {
+      "name": "Naguanagua",
+      "parent_iso": "VE-G",
+      "capital": "Naguanagua",
+      "poblacion_2021": 178413,
+      "poblacion_capital_2021": 178413,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B50396237528900": {
+      "name": "Valera",
+      "parent_iso": "VE-T",
+      "capital": "Valera",
+      "poblacion_2021": 176961,
+      "poblacion_capital_2021": 150869,
+      "porcentaje_urbano_2021": 85.26
+    },
+    "92452058B23947748286776": {
+      "name": "Urdaneta",
+      "parent_iso": "VE-M",
+      "capital": "Cúa",
+      "poblacion_2021": 176326,
+      "poblacion_capital_2021": 142967,
+      "porcentaje_urbano_2021": 81.08
+    },
+    "92452058B40300597364264": {
+      "name": "Carlos Arvelo",
+      "parent_iso": "VE-G",
+      "capital": "Güigüe",
+      "poblacion_2021": 175908,
+      "poblacion_capital_2021": 85514,
+      "porcentaje_urbano_2021": 48.61
+    },
+    "92452058B25382681816620": {
+      "name": "José Félix Ribas",
+      "parent_iso": "VE-D",
+      "capital": "La Victoria",
+      "poblacion_2021": 175108,
+      "poblacion_capital_2021": 64185,
+      "porcentaje_urbano_2021": 36.65
+    },
+    "92452058B82042298353727": {
+      "name": "Independencia",
+      "parent_iso": "VE-M",
+      "capital": "Santa Teresa del Tuy",
+      "poblacion_2021": 173685,
+      "poblacion_capital_2021": 81938,
+      "porcentaje_urbano_2021": 47.18
+    },
+    "92452058B58412499983511": {
+      "name": "Zamora",
+      "parent_iso": "VE-D",
+      "capital": "Villa de Cura",
+      "poblacion_2021": 173014,
+      "poblacion_capital_2021": 108507,
+      "porcentaje_urbano_2021": 62.72
+    },
+    "92452058B25789635219154": {
+      "name": "Bermúdez",
+      "parent_iso": "VE-R",
+      "capital": "Carúpano",
+      "poblacion_2021": 170052,
+      "poblacion_capital_2021": 170052,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B17363739467274": {
+      "name": "Francisco de Miranda",
+      "parent_iso": "VE-J",
+      "capital": "Calabozo",
+      "poblacion_2021": 165539,
+      "poblacion_capital_2021": 153924,
+      "porcentaje_urbano_2021": 92.98
+    },
+    "92452058B83946856745535": {
+      "name": "Alberto Adriani",
+      "parent_iso": "VE-L",
+      "capital": "El Vigía",
+      "poblacion_2021": 164330,
+      "poblacion_capital_2021": 107836,
+      "porcentaje_urbano_2021": 65.62
+    },
+    "92452058B38768688631563": {
+      "name": "Anaco",
+      "parent_iso": "VE-B",
+      "capital": "Anaco",
+      "poblacion_2021": 162556,
+      "poblacion_capital_2021": 152672,
+      "porcentaje_urbano_2021": 93.92
+    },
+    "92452058B78447057272703": {
+      "name": "Juan Germán Roscio",
+      "parent_iso": "VE-J",
+      "capital": "San Juan de los Morros",
+      "poblacion_2021": 159302,
+      "poblacion_capital_2021": 151418,
+      "porcentaje_urbano_2021": 95.05
+    },
+    "92452058B90473537969965": {
+      "name": "Libertador",
+      "parent_iso": "VE-D",
+      "capital": "Palo Negro",
+      "poblacion_2021": 158616,
+      "poblacion_capital_2021": 72578,
+      "porcentaje_urbano_2021": 45.76
+    },
+    "92452058B89776134514459": {
+      "name": "Colón",
+      "parent_iso": "VE-V",
+      "capital": "San Carlos del Zulia",
+      "poblacion_2021": 157067,
+      "poblacion_capital_2021": 14930,
+      "porcentaje_urbano_2021": 9.51
+    },
+    "92452058B88324768545293": {
+      "name": "Leonardo Infante",
+      "parent_iso": "VE-J",
+      "capital": "Valle de La Pascua",
+      "poblacion_2021": 154684,
+      "poblacion_capital_2021": 149027,
+      "porcentaje_urbano_2021": 96.34
+    },
+    "92452058B80404447780707": {
+      "name": "Tucupita",
+      "parent_iso": "VE-Y",
+      "capital": "Tucupita",
+      "poblacion_2021": 149845,
+      "poblacion_capital_2021": 6873,
+      "porcentaje_urbano_2021": 4.59
+    },
+    "92452058B79162136428337": {
+      "name": "Francisco Linares Alcántara",
+      "parent_iso": "VE-D",
+      "capital": "Santa Rita",
+      "poblacion_2021": 149360,
+      "poblacion_capital_2021": 111242,
+      "porcentaje_urbano_2021": 74.48
+    },
+    "92452058B61168539952553": {
+      "name": "Machiques de Perijá",
+      "parent_iso": "VE-V",
+      "capital": "Machiques",
+      "poblacion_2021": 147627,
+      "poblacion_capital_2021": 92127,
+      "porcentaje_urbano_2021": 62.41
+    },
+    "92452058B2023603244390": {
+      "name": "Jesús Enrique Lossada",
+      "parent_iso": "VE-V",
+      "capital": "La Concepción",
+      "poblacion_2021": 147280,
+      "poblacion_capital_2021": 88536,
+      "porcentaje_urbano_2021": 60.11
+    },
+    "92452058B12167323137967": {
+      "name": "San Felipe",
+      "parent_iso": "VE-U",
+      "capital": "San Felipe",
+      "poblacion_2021": 145783,
+      "poblacion_capital_2021": 80127,
+      "porcentaje_urbano_2021": 54.96
+    },
+    "92452058B54957724737366": {
+      "name": "Morán",
+      "parent_iso": "VE-K",
+      "capital": "El Tocuyo",
+      "poblacion_2021": 141556,
+      "poblacion_capital_2021": 74424,
+      "porcentaje_urbano_2021": 52.58
+    },
+    "92452058B19007337502862": {
+      "name": "Cristóbal Rojas",
+      "parent_iso": "VE-M",
+      "capital": "Charallave",
+      "poblacion_2021": 140596,
+      "poblacion_capital_2021": 111469,
+      "porcentaje_urbano_2021": 79.28
+    },
+    "92452058B54071015831659": {
+      "name": "Cárdenas",
+      "parent_iso": "VE-S",
+      "capital": "Táriba",
+      "poblacion_2021": 139002,
+      "poblacion_capital_2021": 111355,
+      "porcentaje_urbano_2021": 80.11
+    },
+    "92452058B78508752034039": {
+      "name": "Sucre",
+      "parent_iso": "VE-D",
+      "capital": "Cagua",
+      "poblacion_2021": 138437,
+      "poblacion_capital_2021": 129113,
+      "porcentaje_urbano_2021": 93.26
+    },
+    "92452058B60789568646042": {
+      "name": "Mario Briceño Iragorry",
+      "parent_iso": "VE-D",
+      "capital": "El Limón",
+      "poblacion_2021": 136784,
+      "poblacion_capital_2021": 41153,
+      "porcentaje_urbano_2021": 30.09
+    },
+    "92452058B74472117393048": {
+      "name": "Paz Castillo",
+      "parent_iso": "VE-M",
+      "capital": "Santa Lucía",
+      "poblacion_2021": 132876,
+      "poblacion_capital_2021": 132876,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B45156381863749": {
+      "name": "Diego Ibarra",
+      "parent_iso": "VE-G",
+      "capital": "Mariara",
+      "poblacion_2021": 130961,
+      "poblacion_capital_2021": 130961,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B12581966052082": {
+      "name": "Autónomo Atures",
+      "parent_iso": "VE-Z",
+      "capital": "Puerto Ayacucho",
+      "poblacion_2021": 128153,
+      "poblacion_capital_2021": 128153,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B11643433355356": {
+      "name": "San Diego",
+      "parent_iso": "VE-G",
+      "capital": "San Diego",
+      "poblacion_2021": 126101,
+      "poblacion_capital_2021": 126101,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B50868019184012": {
+      "name": "Falcón",
+      "parent_iso": "VE-H",
+      "capital": "Tinaquillo",
+      "poblacion_2021": 124919,
+      "poblacion_capital_2021": 124919,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B47549156675396": {
+      "name": "Piar",
+      "parent_iso": "VE-F",
+      "capital": "Upata",
+      "poblacion_2021": 123242,
+      "poblacion_capital_2021": 106060,
+      "porcentaje_urbano_2021": 86.06
+    },
+    "92452058B84020445528897": {
+      "name": "Peña",
+      "parent_iso": "VE-U",
+      "capital": "Yaritagua",
+      "poblacion_2021": 122942,
+      "poblacion_capital_2021": 111714,
+      "porcentaje_urbano_2021": 90.87
+    },
+    "92452058B15023517845906": {
+      "name": "Miranda",
+      "parent_iso": "VE-V",
+      "capital": "Los Puertos de Altagracia",
+      "poblacion_2021": 122233,
+      "poblacion_capital_2021": 67811,
+      "porcentaje_urbano_2021": 55.48
+    },
+    "92452058B68065976769542": {
+      "name": "Páez",
+      "parent_iso": "VE-C",
+      "capital": "Guasdualito",
+      "poblacion_2021": 122130,
+      "poblacion_capital_2021": 61180,
+      "porcentaje_urbano_2021": 50.09
+    },
+    "92452058B73225783388147": {
+      "name": "Campo Elías",
+      "parent_iso": "VE-L",
+      "capital": "Ejido",
+      "poblacion_2021": 119614,
+      "poblacion_capital_2021": 107897,
+      "porcentaje_urbano_2021": 90.2
+    },
+    "92452058B95168979191": {
+      "name": "Mariño",
+      "parent_iso": "VE-O",
+      "capital": "Porlamar",
+      "poblacion_2021": 118649,
+      "poblacion_capital_2021": 118649,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B9761229691883": {
+      "name": "Jimenez",
+      "parent_iso": "VE-K",
+      "capital": "Quibor",
+      "poblacion_2021": 113647,
+      "poblacion_capital_2021": 50368,
+      "porcentaje_urbano_2021": 44.32
+    },
+    "92452058B6439374620840": {
+      "name": "Baralt",
+      "parent_iso": "VE-V",
+      "capital": "San Timoteo",
+      "poblacion_2021": 112432,
+      "poblacion_capital_2021": 6964,
+      "porcentaje_urbano_2021": 6.19
+    },
+    "92452058B38977236110472": {
+      "name": "Acevedo",
+      "parent_iso": "VE-M",
+      "capital": "Caucagua",
+      "poblacion_2021": 108299,
+      "poblacion_capital_2021": 32356,
+      "porcentaje_urbano_2021": 29.88
+    },
+    "92452058B8421162175114": {
+      "name": "Rosario de Perijá",
+      "parent_iso": "VE-V",
+      "capital": "La Villa del Rosario",
+      "poblacion_2021": 106879,
+      "poblacion_capital_2021": 88775,
+      "porcentaje_urbano_2021": 83.06
+    },
+    "92452058B23774185756617": {
+      "name": "La Cañada de Urdaneta",
+      "parent_iso": "VE-V",
+      "capital": "Concepción",
+      "poblacion_2021": 106819,
+      "poblacion_capital_2021": 47844,
+      "porcentaje_urbano_2021": 44.79
+    },
+    "92452058B89474674930128": {
+      "name": "Boconó",
+      "parent_iso": "VE-T",
+      "capital": "Boconó",
+      "poblacion_2021": 103717,
+      "poblacion_capital_2021": 32840,
+      "porcentaje_urbano_2021": 31.66
+    },
+    "92452058B39139174954008": {
+      "name": "San José de Guanipa",
+      "parent_iso": "VE-B",
+      "capital": "San José de Guanipa",
+      "poblacion_2021": 98940,
+      "poblacion_capital_2021": 98940,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B9885086190441": {
+      "name": "Junín",
+      "parent_iso": "VE-S",
+      "capital": "Rubio",
+      "poblacion_2021": 96402,
+      "poblacion_capital_2021": 84242,
+      "porcentaje_urbano_2021": 87.39
+    },
+    "92452058B75275574170386": {
+      "name": "Antonio José de Sucre",
+      "parent_iso": "VE-E",
+      "capital": "Socopó",
+      "poblacion_2021": 96337,
+      "poblacion_capital_2021": 77123,
+      "porcentaje_urbano_2021": 80.06
+    },
+    "92452058B4495474982112": {
+      "name": "José Tadeo Monagas",
+      "parent_iso": "VE-J",
+      "capital": "Altagracia de Orituco",
+      "poblacion_2021": 92032,
+      "poblacion_capital_2021": 66520,
+      "porcentaje_urbano_2021": 72.28
+    },
+    "92452058B2929237041778": {
+      "name": "Pedro María Freites",
+      "parent_iso": "VE-B",
+      "capital": "Cantaura",
+      "poblacion_2021": 88795,
+      "poblacion_capital_2021": 70221,
+      "porcentaje_urbano_2021": 79.08
+    },
+    "92452058B72966397381157": {
+      "name": "Díaz",
+      "parent_iso": "VE-O",
+      "capital": "San Juan Bautista",
+      "poblacion_2021": 88696,
+      "poblacion_capital_2021": 52587,
+      "porcentaje_urbano_2021": 59.29
+    },
+    "92452058B76566791733610": {
+      "name": "Bruzual",
+      "parent_iso": "VE-U",
+      "capital": "Chivacoa",
+      "poblacion_2021": 83862,
+      "poblacion_capital_2021": 68108,
+      "porcentaje_urbano_2021": 81.21
+    },
+    "92452058B88295948802008": {
+      "name": "Ezequiel Zamora",
+      "parent_iso": "VE-N",
+      "capital": "Punta de Mata",
+      "poblacion_2021": 82480,
+      "poblacion_capital_2021": 67682,
+      "porcentaje_urbano_2021": 82.06
+    },
+    "92452058B59483171465423": {
+      "name": "EL Hatillo",
+      "parent_iso": "VE-M",
+      "capital": "El Hatillo",
+      "poblacion_2021": 82439,
+      "poblacion_capital_2021": 82439,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B45585815377737": {
+      "name": "Cedeño",
+      "parent_iso": "VE-F",
+      "capital": "Caicara del Orinoco",
+      "poblacion_2021": 82179,
+      "poblacion_capital_2021": 48581,
+      "porcentaje_urbano_2021": 59.12
+    },
+    "92452058B38139614361819": {
+      "name": "Juan José Mora",
+      "parent_iso": "VE-G",
+      "capital": "Morón",
+      "poblacion_2021": 80496,
+      "poblacion_capital_2021": 70760,
+      "porcentaje_urbano_2021": 87.9
+    },
+    "92452058B94720386415889": {
+      "name": "García",
+      "parent_iso": "VE-O",
+      "capital": "El Valle del Espíritu Santo",
+      "poblacion_2021": 80441,
+      "poblacion_capital_2021": 21905,
+      "porcentaje_urbano_2021": 27.23
+    },
+    "92452058B9002130030249": {
+      "name": "Pedraza",
+      "parent_iso": "VE-E",
+      "capital": "Ciudad Bolivia",
+      "poblacion_2021": 79815,
+      "poblacion_capital_2021": 56001,
+      "porcentaje_urbano_2021": 70.16
+    },
+    "92452058B66316473888275": {
+      "name": "Santa Rita",
+      "parent_iso": "VE-V",
+      "capital": "Santa Rita",
+      "poblacion_2021": 78107,
+      "poblacion_capital_2021": 45478,
+      "porcentaje_urbano_2021": 58.23
+    },
+    "92452058B99464633299903": {
+      "name": "Turén",
+      "parent_iso": "VE-P",
+      "capital": "Villa Bruzual",
+      "poblacion_2021": 76409,
+      "poblacion_capital_2021": 53750,
+      "porcentaje_urbano_2021": 70.35
+    },
+    "92452058B83118913216781": {
+      "name": "Zaraza",
+      "parent_iso": "VE-J",
+      "capital": "Zaraza",
+      "poblacion_2021": 75808,
+      "poblacion_capital_2021": 72315,
+      "porcentaje_urbano_2021": 95.39
+    },
+    "92452058B30911467500490": {
+      "name": "San Joaquín",
+      "parent_iso": "VE-G",
+      "capital": "San Joaquín",
+      "poblacion_2021": 75707,
+      "poblacion_capital_2021": 75707,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B35086054619694": {
+      "name": "Los Salias",
+      "parent_iso": "VE-M",
+      "capital": "San Antonio de los Altos",
+      "poblacion_2021": 75166,
+      "poblacion_capital_2021": 75166,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B245358204852": {
+      "name": "Sucre",
+      "parent_iso": "VE-V",
+      "capital": "Bobures",
+      "poblacion_2021": 74618,
+      "poblacion_capital_2021": 7760,
+      "porcentaje_urbano_2021": 10.4
+    },
+    "92452058B57596479619194": {
+      "name": "Achaguas",
+      "parent_iso": "VE-C",
+      "capital": "Achaguas",
+      "poblacion_2021": 72802,
+      "poblacion_capital_2021": 41738,
+      "porcentaje_urbano_2021": 57.33
+    },
+    "92452058B35610022203869": {
+      "name": "Independencia",
+      "parent_iso": "VE-U",
+      "capital": "Independencia",
+      "poblacion_2021": 72788,
+      "poblacion_capital_2021": 72788,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B25759098564616": {
+      "name": "Brión",
+      "parent_iso": "VE-M",
+      "capital": "Higuerote",
+      "poblacion_2021": 72520,
+      "poblacion_capital_2021": 42699,
+      "porcentaje_urbano_2021": 58.88
+    },
+    "92452058B29326197328098": {
+      "name": "Trujillo",
+      "parent_iso": "VE-T",
+      "capital": "Trujillo",
+      "poblacion_2021": 70426,
+      "poblacion_capital_2021": 63662,
+      "porcentaje_urbano_2021": 90.4
+    },
+    "92452058B93734391596245": {
+      "name": "Bolívar",
+      "parent_iso": "VE-S",
+      "capital": "San Antonio del Táchira",
+      "poblacion_2021": 70124,
+      "poblacion_capital_2021": 54247,
+      "porcentaje_urbano_2021": 77.36
+    },
+    "92452058B69956206553200": {
+      "name": "Urdaneta",
+      "parent_iso": "VE-K",
+      "capital": "Siquisique",
+      "poblacion_2021": 69956,
+      "poblacion_capital_2021": 27120,
+      "porcentaje_urbano_2021": 38.77
+    },
+    "92452058B41395444182143": {
+      "name": "Montes",
+      "parent_iso": "VE-R",
+      "capital": "Cumanacoa",
+      "poblacion_2021": 69696,
+      "poblacion_capital_2021": 32139,
+      "porcentaje_urbano_2021": 46.11
+    },
+    "92452058B15586506098632": {
+      "name": "Sucre",
+      "parent_iso": "VE-L",
+      "capital": "Lagunillas",
+      "poblacion_2021": 69240,
+      "poblacion_capital_2021": 29265,
+      "porcentaje_urbano_2021": 42.27
+    },
+    "92452058B92934117405956": {
+      "name": "Chacao",
+      "parent_iso": "VE-M",
+      "capital": "Chacao",
+      "poblacion_2021": 68985,
+      "poblacion_capital_2021": 68985,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B44788675020047": {
+      "name": "Nirgua",
+      "parent_iso": "VE-U",
+      "capital": "Nirgua",
+      "poblacion_2021": 68341,
+      "poblacion_capital_2021": 51823,
+      "porcentaje_urbano_2021": 75.83
+    },
+    "92452058B50148622636911": {
+      "name": "Ribero",
+      "parent_iso": "VE-R",
+      "capital": "Cariaco",
+      "poblacion_2021": 67930,
+      "poblacion_capital_2021": 38215,
+      "porcentaje_urbano_2021": 56.26
+    },
+    "92452058B12744919392555": {
+      "name": "Ayacucho",
+      "parent_iso": "VE-S",
+      "capital": "Colón",
+      "poblacion_2021": 67590,
+      "poblacion_capital_2021": 57446,
+      "porcentaje_urbano_2021": 84.99
+    },
+    "92452058B20804490373380": {
+      "name": "Biruaca",
+      "parent_iso": "VE-C",
+      "capital": "Biruaca",
+      "poblacion_2021": 66782,
+      "poblacion_capital_2021": 66782,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B93532552722104": {
+      "name": "San Rafael de Carvajal",
+      "parent_iso": "VE-T",
+      "capital": "Carvajal",
+      "poblacion_2021": 65882,
+      "poblacion_capital_2021": 22273,
+      "porcentaje_urbano_2021": 33.81
+    },
+    "92452058B93255664897858": {
+      "name": "Valmore Rodríguez",
+      "parent_iso": "VE-V",
+      "capital": "Bachaquero",
+      "poblacion_2021": 65840,
+      "poblacion_capital_2021": 46036,
+      "porcentaje_urbano_2021": 69.92
+    },
+    "92452058B93497297495940": {
+      "name": "Pampán",
+      "parent_iso": "VE-T",
+      "capital": "Pampán",
+      "poblacion_2021": 65296,
+      "poblacion_capital_2021": 10148,
+      "porcentaje_urbano_2021": 15.54
+    },
+    "92452058B41519808204677": {
+      "name": "Bolívar",
+      "parent_iso": "VE-E",
+      "capital": "Barinitas",
+      "poblacion_2021": 64780,
+      "poblacion_capital_2021": 54072,
+      "porcentaje_urbano_2021": 83.47
+    },
+    "92452058B98091189447786": {
+      "name": "Ezequiel Zamora",
+      "parent_iso": "VE-E",
+      "capital": "Santa Bárbara",
+      "poblacion_2021": 64426,
+      "poblacion_capital_2021": 49741,
+      "porcentaje_urbano_2021": 77.21
+    },
+    "92452058B98714042459160": {
+      "name": "José Rafael Revenga",
+      "parent_iso": "VE-D",
+      "capital": "El Consejo",
+      "poblacion_2021": 64200,
+      "poblacion_capital_2021": 64200,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B38365579478512": {
+      "name": "García de Hevia",
+      "parent_iso": "VE-S",
+      "capital": "La Fría",
+      "poblacion_2021": 63736,
+      "poblacion_capital_2021": 54702,
+      "porcentaje_urbano_2021": 85.83
+    },
+    "92452058B18404635880934": {
+      "name": "Pedro María Ureña",
+      "parent_iso": "VE-S",
+      "capital": "Ureña",
+      "poblacion_2021": 61930,
+      "poblacion_capital_2021": 49537,
+      "porcentaje_urbano_2021": 79.99
+    },
+    "92452058B7204279738521": {
+      "name": "Simón Bolívar",
+      "parent_iso": "VE-M",
+      "capital": "San Francisco de Yare",
+      "poblacion_2021": 60664,
+      "poblacion_capital_2021": 51832,
+      "porcentaje_urbano_2021": 85.44
+    },
+    "92452058B35839392546530": {
+      "name": "Carrizal",
+      "parent_iso": "VE-M",
+      "capital": "Carrizal",
+      "poblacion_2021": 60392,
+      "poblacion_capital_2021": 60392,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B72837046286909": {
+      "name": "Simón Bolívar",
+      "parent_iso": "VE-V",
+      "capital": "Tía Juana",
+      "poblacion_2021": 60070,
+      "poblacion_capital_2021": 25436,
+      "porcentaje_urbano_2021": 42.34
+    },
+    "92452058B43990033715561": {
+      "name": "Crespo",
+      "parent_iso": "VE-K",
+      "capital": "Duaca",
+      "poblacion_2021": 58960,
+      "poblacion_capital_2021": 38849,
+      "porcentaje_urbano_2021": 65.89
+    },
+    "92452058B74978111878407": {
+      "name": "Piar",
+      "parent_iso": "VE-N",
+      "capital": "Aragua",
+      "poblacion_2021": 58886,
+      "poblacion_capital_2021": 14788,
+      "porcentaje_urbano_2021": 25.11
+    },
+    "92452058B65560769402967": {
+      "name": "Torbes",
+      "parent_iso": "VE-S",
+      "capital": "San Josecito",
+      "poblacion_2021": 58322,
+      "poblacion_capital_2021": 58322,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B37394705502377": {
+      "name": "Ospino",
+      "parent_iso": "VE-P",
+      "capital": "Ospino",
+      "poblacion_2021": 58127,
+      "poblacion_capital_2021": 35133,
+      "porcentaje_urbano_2021": 60.44
+    },
+    "92452058B7239791888120": {
+      "name": "Sifontes",
+      "parent_iso": "VE-F",
+      "capital": "Tumeremo",
+      "poblacion_2021": 57943,
+      "poblacion_capital_2021": 33849,
+      "porcentaje_urbano_2021": 58.42
+    },
+    "92452058B13726471401889": {
+      "name": "Bejuma",
+      "parent_iso": "VE-G",
+      "capital": "Bejuma",
+      "poblacion_2021": 56275,
+      "poblacion_capital_2021": 37560,
+      "porcentaje_urbano_2021": 66.74
+    },
+    "92452058B34095123389968": {
+      "name": "Andrés Eloy Blanco",
+      "parent_iso": "VE-K",
+      "capital": "Sanare",
+      "poblacion_2021": 56076,
+      "poblacion_capital_2021": 37168,
+      "porcentaje_urbano_2021": 66.28
+    },
+    "92452058B34280729247629": {
+      "name": "Falcón",
+      "parent_iso": "VE-I",
+      "capital": "Pueblo Nuevo",
+      "poblacion_2021": 55014,
+      "poblacion_capital_2021": 16428,
+      "porcentaje_urbano_2021": 29.86
+    },
+    "92452058B84467790604965": {
+      "name": "Maneiro",
+      "parent_iso": "VE-O",
+      "capital": "Pampatar",
+      "poblacion_2021": 54828,
+      "poblacion_capital_2021": 28701,
+      "porcentaje_urbano_2021": 52.35
+    },
+    "92452058B15677212765732": {
+      "name": "Arismendi",
+      "parent_iso": "VE-R",
+      "capital": "Río Caribe",
+      "poblacion_2021": 54735,
+      "poblacion_capital_2021": 29900,
+      "porcentaje_urbano_2021": 54.63
+    },
+    "92452058B64772493971985": {
+      "name": "Libertador",
+      "parent_iso": "VE-N",
+      "capital": "Temblador",
+      "poblacion_2021": 54373,
+      "poblacion_capital_2021": 40325,
+      "porcentaje_urbano_2021": 74.16
+    },
+    "92452058B46678467131598": {
+      "name": "Esteller",
+      "parent_iso": "VE-P",
+      "capital": "Píritu",
+      "poblacion_2021": 54303,
+      "poblacion_capital_2021": 46218,
+      "porcentaje_urbano_2021": 85.11
+    },
+    "92452058B22632362075175": {
+      "name": "Alberto Arvelo Torrealba",
+      "parent_iso": "VE-E",
+      "capital": "Sabaneta",
+      "poblacion_2021": 54133,
+      "poblacion_capital_2021": 45868,
+      "porcentaje_urbano_2021": 84.73
+    },
+    "92452058B87386897899112": {
+      "name": "Los Taques",
+      "parent_iso": "VE-I",
+      "capital": "Santa Cruz de Los Taques",
+      "poblacion_2021": 54132,
+      "poblacion_capital_2021": 27317,
+      "porcentaje_urbano_2021": 50.46
+    },
+    "92452058B4465653427750": {
+      "name": "Fernández Feo",
+      "parent_iso": "VE-S",
+      "capital": "San Rafael del Piñal",
+      "poblacion_2021": 53939,
+      "poblacion_capital_2021": 22278,
+      "porcentaje_urbano_2021": 41.3
+    },
+    "92452058B26692301480200": {
+      "name": "Cocorote",
+      "parent_iso": "VE-U",
+      "capital": "Cocorote",
+      "poblacion_2021": 52444,
+      "poblacion_capital_2021": 52444,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B12619730938493": {
+      "name": "Guasimos",
+      "parent_iso": "VE-S",
+      "capital": "Palmira",
+      "poblacion_2021": 51029,
+      "poblacion_capital_2021": 51029,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B13672560993609": {
+      "name": "Valdez",
+      "parent_iso": "VE-R",
+      "capital": "Güiria",
+      "poblacion_2021": 50862,
+      "poblacion_capital_2021": 41407,
+      "porcentaje_urbano_2021": 81.41
+    },
+    "92452058B9282611745030": {
+      "name": "Francisco de Miranda",
+      "parent_iso": "VE-B",
+      "capital": "Pariaguán",
+      "poblacion_2021": 50181,
+      "poblacion_capital_2021": 43177,
+      "porcentaje_urbano_2021": 86.04
+    },
+    "92452058B72866558471416": {
+      "name": "Gómez",
+      "parent_iso": "VE-O",
+      "capital": "Santa Ana",
+      "poblacion_2021": 49814,
+      "poblacion_capital_2021": 20561,
+      "porcentaje_urbano_2021": 41.28
+    },
+    "92452058B50017946052118": {
+      "name": "Rojas",
+      "parent_iso": "VE-E",
+      "capital": "Libertad",
+      "poblacion_2021": 49747,
+      "poblacion_capital_2021": 13531,
+      "porcentaje_urbano_2021": 27.2
+    },
+    "92452058B12262203467904": {
+      "name": "Catatumbo",
+      "parent_iso": "VE-V",
+      "capital": "Encontrados",
+      "poblacion_2021": 49117,
+      "poblacion_capital_2021": 27712,
+      "porcentaje_urbano_2021": 56.42
+    },
+    "92452058B20928146308063": {
+      "name": "Bolivariano Angostura",
+      "parent_iso": "VE-F",
+      "capital": "Ciudad Piar",
+      "poblacion_2021": 49070,
+      "poblacion_capital_2021": 17375,
+      "porcentaje_urbano_2021": 35.41
+    },
+    "92452058B71126113854602": {
+      "name": "José Félix Ribas",
+      "parent_iso": "VE-J",
+      "capital": "Tucupido",
+      "poblacion_2021": 48731,
+      "poblacion_capital_2021": 44689,
+      "porcentaje_urbano_2021": 91.71
+    },
+    "92452058B50645357968703": {
+      "name": "Obispos",
+      "parent_iso": "VE-E",
+      "capital": "Obispos",
+      "poblacion_2021": 48601,
+      "poblacion_capital_2021": 21003,
+      "porcentaje_urbano_2021": 43.22
+    },
+    "92452058B90039962099382": {
+      "name": "Simón Planas",
+      "parent_iso": "VE-K",
+      "capital": "Sarare",
+      "poblacion_2021": 48535,
+      "poblacion_capital_2021": 24184,
+      "porcentaje_urbano_2021": 49.83
+    },
+    "92452058B212448851474": {
+      "name": "Colina",
+      "parent_iso": "VE-I",
+      "capital": "La Vela de Coro",
+      "poblacion_2021": 48451,
+      "poblacion_capital_2021": 34498,
+      "porcentaje_urbano_2021": 71.2
+    },
+    "92452058B82426430242133": {
+      "name": "Jáuregui",
+      "parent_iso": "VE-S",
+      "capital": "La Grita",
+      "poblacion_2021": 48172,
+      "poblacion_capital_2021": 40521,
+      "porcentaje_urbano_2021": 84.12
+    },
+    "92452058B74462864631262": {
+      "name": "Guanarito",
+      "parent_iso": "VE-P",
+      "capital": "Guanarito",
+      "poblacion_2021": 47667,
+      "poblacion_capital_2021": 40376,
+      "porcentaje_urbano_2021": 84.7
+    },
+    "92452058B10882972052933": {
+      "name": "Bolívar",
+      "parent_iso": "VE-N",
+      "capital": "Caripito",
+      "poblacion_2021": 47609,
+      "poblacion_capital_2021": 47609,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B14540922264670": {
+      "name": "Sucre",
+      "parent_iso": "VE-P",
+      "capital": "Biscucuy",
+      "poblacion_2021": 47196,
+      "poblacion_capital_2021": 24671,
+      "porcentaje_urbano_2021": 52.27
+    },
+    "92452058B74295605734614": {
+      "name": "Tubores",
+      "parent_iso": "VE-O",
+      "capital": "Punta de Piedras",
+      "poblacion_2021": 46597,
+      "poblacion_capital_2021": 30521,
+      "porcentaje_urbano_2021": 65.5
+    },
+    "92452058B72828901186947": {
+      "name": "Páez",
+      "parent_iso": "VE-M",
+      "capital": "Río Chico",
+      "poblacion_2021": 46005,
+      "poblacion_capital_2021": 25218,
+      "porcentaje_urbano_2021": 54.82
+    },
+    "92452058B26998381958141": {
+      "name": "Marcano",
+      "parent_iso": "VE-O",
+      "capital": "Juan Griego",
+      "poblacion_2021": 45782,
+      "poblacion_capital_2021": 27268,
+      "porcentaje_urbano_2021": 59.56
+    },
+    "92452058B76146617843422": {
+      "name": "Tovar",
+      "parent_iso": "VE-L",
+      "capital": "Tovar",
+      "poblacion_2021": 45438,
+      "poblacion_capital_2021": 45438,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B40538109508806": {
+      "name": "Santos Michelena",
+      "parent_iso": "VE-D",
+      "capital": "Las Tejerías",
+      "poblacion_2021": 45436,
+      "poblacion_capital_2021": 41920,
+      "porcentaje_urbano_2021": 92.26
+    },
+    "92452058B32391304036894": {
+      "name": "Cruz Salmerón Acosta",
+      "parent_iso": "VE-R",
+      "capital": "Araya",
+      "poblacion_2021": 44811,
+      "poblacion_capital_2021": 26395,
+      "porcentaje_urbano_2021": 58.9
+    },
+    "92452058B68095023694670": {
+      "name": "Bolívar",
+      "parent_iso": "VE-D",
+      "capital": "San Mateo",
+      "poblacion_2021": 44733,
+      "poblacion_capital_2021": 44733,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B21405103946028": {
+      "name": "Diego Bautista Urbanejo",
+      "parent_iso": "VE-B",
+      "capital": "Lecherías",
+      "poblacion_2021": 43907,
+      "poblacion_capital_2021": 43907,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B53950788580310": {
+      "name": "Tinaco",
+      "parent_iso": "VE-H",
+      "capital": "Tinaco",
+      "poblacion_2021": 43336,
+      "poblacion_capital_2021": 43336,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B74293045430698": {
+      "name": "Antonio Díaz",
+      "parent_iso": "VE-Y",
+      "capital": "Curiapo",
+      "poblacion_2021": 42417,
+      "poblacion_capital_2021": 18681,
+      "porcentaje_urbano_2021": 44.04
+    },
+    "92452058B49980742384962": {
+      "name": "Cedeño",
+      "parent_iso": "VE-N",
+      "capital": "Caicara",
+      "poblacion_2021": 42397,
+      "poblacion_capital_2021": 25655,
+      "porcentaje_urbano_2021": 60.51
+    },
+    "92452058B48736670242482": {
+      "name": "Tulio Febres Cordero",
+      "parent_iso": "VE-L",
+      "capital": "Nueva Bolivia",
+      "poblacion_2021": 42276,
+      "poblacion_capital_2021": 21326,
+      "porcentaje_urbano_2021": 50.44
+    },
+    "92452058B43821030143886": {
+      "name": "Francisco Javier Pulgar",
+      "parent_iso": "VE-V",
+      "capital": "Pueblo Nuevo El Chivo",
+      "poblacion_2021": 42259,
+      "poblacion_capital_2021": 21573,
+      "porcentaje_urbano_2021": 51.05
+    },
+    "92452058B61290497369270": {
+      "name": "Independencia",
+      "parent_iso": "VE-B",
+      "capital": "Soledad",
+      "poblacion_2021": 41745,
+      "poblacion_capital_2021": 30941,
+      "porcentaje_urbano_2021": 74.12
+    },
+    "92452058B25550874950140": {
+      "name": "Caripe",
+      "parent_iso": "VE-N",
+      "capital": "Caripe",
+      "poblacion_2021": 40965,
+      "poblacion_capital_2021": 11017,
+      "porcentaje_urbano_2021": 26.89
+    },
+    "92452058B76868797395121": {
+      "name": "Fernando de Peñalver",
+      "parent_iso": "VE-B",
+      "capital": "Puerto Píritu",
+      "poblacion_2021": 40729,
+      "poblacion_capital_2021": 33410,
+      "porcentaje_urbano_2021": 82.03
+    },
+    "92452058B66787265555701": {
+      "name": "Urdaneta",
+      "parent_iso": "VE-T",
+      "capital": "La Quebrada",
+      "poblacion_2021": 39738,
+      "poblacion_capital_2021": 8275,
+      "porcentaje_urbano_2021": 20.82
+    },
+    "92452058B81602658617496": {
+      "name": "Manuel Ezequiel Bruzual",
+      "parent_iso": "VE-B",
+      "capital": "Clarines",
+      "poblacion_2021": 39609,
+      "poblacion_capital_2021": 23457,
+      "porcentaje_urbano_2021": 59.22
+    },
+    "92452058B11105078455090": {
+      "name": "Silva",
+      "parent_iso": "VE-I",
+      "capital": "Tucacas",
+      "poblacion_2021": 39546,
+      "poblacion_capital_2021": 28704,
+      "porcentaje_urbano_2021": 72.58
+    },
+    "92452058B12753025075780": {
+      "name": "José Ángel Lamas",
+      "parent_iso": "VE-D",
+      "capital": "Santa Cruz",
+      "poblacion_2021": 39191,
+      "poblacion_capital_2021": 39191,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B44429853731382": {
+      "name": "Zamora",
+      "parent_iso": "VE-I",
+      "capital": "Puerto Cumarebo",
+      "poblacion_2021": 38897,
+      "poblacion_capital_2021": 29952,
+      "porcentaje_urbano_2021": 77
+    },
+    "92452058B8554820713404": {
+      "name": "Casacoima",
+      "parent_iso": "VE-Y",
+      "capital": "Sierra Imataca",
+      "poblacion_2021": 38839,
+      "poblacion_capital_2021": 13604,
+      "porcentaje_urbano_2021": 35.03
+    },
+    "92452058B27709882446555": {
+      "name": "Jesús María Semprum",
+      "parent_iso": "VE-V",
+      "capital": "Casigua El Cubo",
+      "poblacion_2021": 38671,
+      "poblacion_capital_2021": 26079,
+      "porcentaje_urbano_2021": 67.44
+    },
+    "92452058B70878488170331": {
+      "name": "Sucre",
+      "parent_iso": "VE-T",
+      "capital": "Sabana de Mendoza",
+      "poblacion_2021": 38595,
+      "poblacion_capital_2021": 12380,
+      "porcentaje_urbano_2021": 32.08
+    },
+    "92452058B36691786068251": {
+      "name": "Benítez",
+      "parent_iso": "VE-R",
+      "capital": "El Pilar",
+      "poblacion_2021": 38501,
+      "poblacion_capital_2021": 20520,
+      "porcentaje_urbano_2021": 53.3
+    },
+    "92452058B76648483747073": {
+      "name": "Motatán",
+      "parent_iso": "VE-T",
+      "capital": "Motatán",
+      "poblacion_2021": 38383,
+      "poblacion_capital_2021": 23823,
+      "porcentaje_urbano_2021": 62.07
+    },
+    "92452058B51720127769836": {
+      "name": "Córdoba",
+      "parent_iso": "VE-S",
+      "capital": "Santa Ana",
+      "poblacion_2021": 38372,
+      "poblacion_capital_2021": 38372,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B94128330205113": {
+      "name": "Guanta",
+      "parent_iso": "VE-B",
+      "capital": "Guanta",
+      "poblacion_2021": 38200,
+      "poblacion_capital_2021": 21921,
+      "porcentaje_urbano_2021": 57.38
+    },
+    "92452058B46129601263202": {
+      "name": "Bolívar",
+      "parent_iso": "VE-U",
+      "capital": "Aroa",
+      "poblacion_2021": 37664,
+      "poblacion_capital_2021": 37664,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B5298065984570": {
+      "name": "Pampanito",
+      "parent_iso": "VE-T",
+      "capital": "Pampanito",
+      "poblacion_2021": 37528,
+      "poblacion_capital_2021": 17848,
+      "porcentaje_urbano_2021": 47.56
+    },
+    "92452058B52691376316443": {
+      "name": "Panamericano",
+      "parent_iso": "VE-S",
+      "capital": "Coloncito",
+      "poblacion_2021": 37198,
+      "poblacion_capital_2021": 28765,
+      "porcentaje_urbano_2021": 77.33
+    },
+    "92452058B78980927741565": {
+      "name": "Julián Mellado",
+      "parent_iso": "VE-J",
+      "capital": "El Sombrero",
+      "poblacion_2021": 36572,
+      "poblacion_capital_2021": 34045,
+      "porcentaje_urbano_2021": 93.09
+    },
+    "92452058B71215590710272": {
+      "name": "Arismendi",
+      "parent_iso": "VE-O",
+      "capital": "La Asunción",
+      "poblacion_2021": 35986,
+      "poblacion_capital_2021": 35986,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B33564894721572": {
+      "name": "Pedro Camejo",
+      "parent_iso": "VE-C",
+      "capital": "San Juan de Payara",
+      "poblacion_2021": 35931,
+      "poblacion_capital_2021": 13752,
+      "porcentaje_urbano_2021": 38.27
+    },
+    "92452058B1998456811231": {
+      "name": "Antolín del Campo",
+      "parent_iso": "VE-O",
+      "capital": "La Plaza de Paraguachí",
+      "poblacion_2021": 35830,
+      "poblacion_capital_2021": 35830,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B9406045296169": {
+      "name": "Caracciolo Parra Olmedo",
+      "parent_iso": "VE-L",
+      "capital": "Tucaní",
+      "poblacion_2021": 35714,
+      "poblacion_capital_2021": 26659,
+      "porcentaje_urbano_2021": 74.65
+    },
+    "92452058B83392643498369": {
+      "name": "Aragua",
+      "parent_iso": "VE-B",
+      "capital": "Aragua de Barcelona",
+      "poblacion_2021": 35659,
+      "poblacion_capital_2021": 34416,
+      "porcentaje_urbano_2021": 96.51
+    },
+    "92452058B35881959392947": {
+      "name": "Veroes",
+      "parent_iso": "VE-U",
+      "capital": "Farriar",
+      "poblacion_2021": 35365,
+      "poblacion_capital_2021": 14566,
+      "porcentaje_urbano_2021": 41.19
+    },
+    "92452058B41516758992982": {
+      "name": "Federación",
+      "parent_iso": "VE-I",
+      "capital": "Churuguara",
+      "poblacion_2021": 35135,
+      "poblacion_capital_2021": 18299,
+      "porcentaje_urbano_2021": 52.08
+    },
+    "92452058B7770981704076": {
+      "name": "San Casimiro",
+      "parent_iso": "VE-D",
+      "capital": "San Casimiro",
+      "poblacion_2021": 35103,
+      "poblacion_capital_2021": 27613,
+      "porcentaje_urbano_2021": 78.66
+    },
+    "92452058B11824178609180": {
+      "name": "Miranda",
+      "parent_iso": "VE-G",
+      "capital": "Miranda",
+      "poblacion_2021": 34809,
+      "poblacion_capital_2021": 34809,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B62434885375481": {
+      "name": "Punceres",
+      "parent_iso": "VE-N",
+      "capital": "Quiriquire",
+      "poblacion_2021": 34760,
+      "poblacion_capital_2021": 17515,
+      "porcentaje_urbano_2021": 50.39
+    },
+    "92452058B76694277740413": {
+      "name": "Muñoz",
+      "parent_iso": "VE-C",
+      "capital": "Bruzual",
+      "poblacion_2021": 34703,
+      "poblacion_capital_2021": 8733,
+      "porcentaje_urbano_2021": 25.16
+    },
+    "92452058B73629823948973": {
+      "name": "Gran Sabana",
+      "parent_iso": "VE-F",
+      "capital": "Santa Elena de Uairén",
+      "poblacion_2021": 34309,
+      "poblacion_capital_2021": 32000,
+      "porcentaje_urbano_2021": 93.27
+    },
+    "92452058B89590794968656": {
+      "name": "Buroz",
+      "parent_iso": "VE-M",
+      "capital": "Mamporal",
+      "poblacion_2021": 34203,
+      "poblacion_capital_2021": 34203,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B98233245594574": {
+      "name": "Urdaneta",
+      "parent_iso": "VE-D",
+      "capital": "Barbacoas",
+      "poblacion_2021": 34074,
+      "poblacion_capital_2021": 19558,
+      "porcentaje_urbano_2021": 57.4
+    },
+    "92452058B42535057202540": {
+      "name": "Península de Macanao",
+      "parent_iso": "VE-O",
+      "capital": "Boca de Río",
+      "poblacion_2021": 33597,
+      "poblacion_capital_2021": 14959,
+      "porcentaje_urbano_2021": 44.52
+    },
+    "92452058B32887557209533": {
+      "name": "Candelaria",
+      "parent_iso": "VE-T",
+      "capital": "Chejendé",
+      "poblacion_2021": 33348,
+      "poblacion_capital_2021": 16044,
+      "porcentaje_urbano_2021": 48.11
+    },
+    "92452058B55958295548986": {
+      "name": "Escuque",
+      "parent_iso": "VE-T",
+      "capital": "Escuque",
+      "poblacion_2021": 33031,
+      "poblacion_capital_2021": 17459,
+      "porcentaje_urbano_2021": 52.86
+    },
+    "92452058B3115924902263": {
+      "name": "Cruz Paredes",
+      "parent_iso": "VE-E",
+      "capital": "Barrancas",
+      "poblacion_2021": 32648,
+      "poblacion_capital_2021": 26960,
+      "porcentaje_urbano_2021": 82.58
+    },
+    "92452058B98251546128304": {
+      "name": "Carache",
+      "parent_iso": "VE-T",
+      "capital": "Carache",
+      "poblacion_2021": 32160,
+      "poblacion_capital_2021": 13754,
+      "porcentaje_urbano_2021": 42.77
+    },
+    "92452058B83653348343735": {
+      "name": "Obispo Ramos de Lora",
+      "parent_iso": "VE-L",
+      "capital": "Santa Elena de Arenales",
+      "poblacion_2021": 31919,
+      "poblacion_capital_2021": 17556,
+      "porcentaje_urbano_2021": 55
+    },
+    "92452058B89555253536357": {
+      "name": "Rómulo Gallegos",
+      "parent_iso": "VE-C",
+      "capital": "Elorza",
+      "poblacion_2021": 31763,
+      "poblacion_capital_2021": 26232,
+      "porcentaje_urbano_2021": 82.59
+    },
+    "92452058B52538048181152": {
+      "name": "San Sebastián",
+      "parent_iso": "VE-D",
+      "capital": "San Sebastián de Los Reyes",
+      "poblacion_2021": 31567,
+      "poblacion_capital_2021": 31567,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B70146576395550": {
+      "name": "Sotillo",
+      "parent_iso": "VE-N",
+      "capital": "Barrancas",
+      "poblacion_2021": 31189,
+      "poblacion_capital_2021": 22770,
+      "porcentaje_urbano_2021": 73.01
+    },
+    "92452058B76772094645860": {
+      "name": "Antonio Pinto Salinas",
+      "parent_iso": "VE-L",
+      "capital": "Santa Cruz de Mora",
+      "poblacion_2021": 31073,
+      "poblacion_capital_2021": 22902,
+      "porcentaje_urbano_2021": 73.7
+    },
+    "92452058B18977618770055": {
+      "name": "Andrés Eloy Blanco",
+      "parent_iso": "VE-R",
+      "capital": "Casanay",
+      "poblacion_2021": 30981,
+      "poblacion_capital_2021": 19660,
+      "porcentaje_urbano_2021": 63.46
+    },
+    "92452058B8049854825221": {
+      "name": "Mauroa",
+      "parent_iso": "VE-I",
+      "capital": "Mene de Mauroa",
+      "poblacion_2021": 30438,
+      "poblacion_capital_2021": 20422,
+      "porcentaje_urbano_2021": 67.09
+    },
+    "92452058B35367180068237": {
+      "name": "Píritu",
+      "parent_iso": "VE-B",
+      "capital": "Píritu",
+      "poblacion_2021": 30146,
+      "poblacion_capital_2021": 28978,
+      "porcentaje_urbano_2021": 96.13
+    },
+    "92452058B96430954073814": {
+      "name": "Camaguán",
+      "parent_iso": "VE-J",
+      "capital": "Camaguán",
+      "poblacion_2021": 30122,
+      "poblacion_capital_2021": 20716,
+      "porcentaje_urbano_2021": 68.77
+    },
+    "92452058B69792739078610": {
+      "name": "Montalbán",
+      "parent_iso": "VE-G",
+      "capital": "Montalbán",
+      "poblacion_2021": 29977,
+      "poblacion_capital_2021": 29977,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B73243248124437": {
+      "name": "Sosa",
+      "parent_iso": "VE-E",
+      "capital": "Ciudad de Nutrias",
+      "poblacion_2021": 29822,
+      "poblacion_capital_2021": 8171,
+      "porcentaje_urbano_2021": 27.4
+    },
+    "92452058B46833609539382": {
+      "name": "San Genaro de Boconoito",
+      "parent_iso": "VE-P",
+      "capital": "Boconoito",
+      "poblacion_2021": 29480,
+      "poblacion_capital_2021": 19709,
+      "porcentaje_urbano_2021": 66.86
+    },
+    "92452058B86432153938912": {
+      "name": "Ortíz",
+      "parent_iso": "VE-J",
+      "capital": "Ortiz",
+      "poblacion_2021": 29461,
+      "poblacion_capital_2021": 13509,
+      "porcentaje_urbano_2021": 45.85
+    },
+    "92452058B41252647262147": {
+      "name": "Monseñor José Vicente de Unda",
+      "parent_iso": "VE-P",
+      "capital": "Paraíso de Chabasquén",
+      "poblacion_2021": 29282,
+      "poblacion_capital_2021": 26553,
+      "porcentaje_urbano_2021": 90.68
+    },
+    "92452058B22086674211008": {
+      "name": "Rafael Rangel",
+      "parent_iso": "VE-T",
+      "capital": "Betijoque",
+      "poblacion_2021": 28489,
+      "poblacion_capital_2021": 7019,
+      "porcentaje_urbano_2021": 24.64
+    },
+    "92452058B36519834610261": {
+      "name": "Mariño",
+      "parent_iso": "VE-R",
+      "capital": "Irapa",
+      "poblacion_2021": 28217,
+      "poblacion_capital_2021": 15011,
+      "porcentaje_urbano_2021": 53.2
+    },
+    "92452058B15505529275902": {
+      "name": "Dabajuro",
+      "parent_iso": "VE-I",
+      "capital": "Dabajuro",
+      "poblacion_2021": 28009,
+      "poblacion_capital_2021": 28009,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B18446749128605": {
+      "name": "Camatagua",
+      "parent_iso": "VE-D",
+      "capital": "Camatagua",
+      "poblacion_2021": 27991,
+      "poblacion_capital_2021": 20518,
+      "porcentaje_urbano_2021": 73.3
+    },
+    "92452058B99639061411506": {
+      "name": "Miranda",
+      "parent_iso": "VE-L",
+      "capital": "Timotes",
+      "poblacion_2021": 27977,
+      "poblacion_capital_2021": 20094,
+      "porcentaje_urbano_2021": 71.82
+    },
+    "92452058B24669849330150": {
+      "name": "Buchivacoa",
+      "parent_iso": "VE-I",
+      "capital": "Capatárida",
+      "poblacion_2021": 27932,
+      "poblacion_capital_2021": 10678,
+      "porcentaje_urbano_2021": 38.23
+    },
+    "92452058B73572326911249": {
+      "name": "Roscio",
+      "parent_iso": "VE-F",
+      "capital": "Guasipati",
+      "poblacion_2021": 27788,
+      "poblacion_capital_2021": 26968,
+      "porcentaje_urbano_2021": 97.05
+    },
+    "92452058B16204644970009": {
+      "name": "Bolívar",
+      "parent_iso": "VE-R",
+      "capital": "Marigüitar",
+      "poblacion_2021": 27594,
+      "poblacion_capital_2021": 27594,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B99527238900768": {
+      "name": "Arismendi",
+      "parent_iso": "VE-E",
+      "capital": "Arismendi",
+      "poblacion_2021": 27544,
+      "poblacion_capital_2021": 11072,
+      "porcentaje_urbano_2021": 40.2
+    },
+    "92452058B80975086584779": {
+      "name": "Pedro Gual",
+      "parent_iso": "VE-M",
+      "capital": "Cúpira",
+      "poblacion_2021": 27151,
+      "poblacion_capital_2021": 25876,
+      "porcentaje_urbano_2021": 95.3
+    },
+    "92452058B36515365287716": {
+      "name": "Cajigal",
+      "parent_iso": "VE-R",
+      "capital": "Yaguaraparo",
+      "poblacion_2021": 27069,
+      "poblacion_capital_2021": 15173,
+      "porcentaje_urbano_2021": 56.05
+    },
+    "92452058B22657240029689": {
+      "name": "Libertador",
+      "parent_iso": "VE-S",
+      "capital": "Abejales",
+      "poblacion_2021": 27016,
+      "poblacion_capital_2021": 11488,
+      "porcentaje_urbano_2021": 42.52
+    },
+    "92452058B75092813359951": {
+      "name": "Monseñor Iturriza",
+      "parent_iso": "VE-I",
+      "capital": "Chichiriviche",
+      "poblacion_2021": 26970,
+      "poblacion_capital_2021": 13025,
+      "porcentaje_urbano_2021": 48.29
+    },
+    "92452058B65625562328801": {
+      "name": "El Callao",
+      "parent_iso": "VE-F",
+      "capital": "El Callao",
+      "poblacion_2021": 26963,
+      "poblacion_capital_2021": 26963,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B63445948802308": {
+      "name": "Sucre",
+      "parent_iso": "VE-F",
+      "capital": "Maripa",
+      "poblacion_2021": 26677,
+      "poblacion_capital_2021": 5440,
+      "porcentaje_urbano_2021": 20.39
+    },
+    "92452058B63771518802825": {
+      "name": "Urachiche",
+      "parent_iso": "VE-U",
+      "capital": "Urachiche",
+      "poblacion_2021": 26674,
+      "poblacion_capital_2021": 26674,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B11954780234519": {
+      "name": "Agua Blanca",
+      "parent_iso": "VE-P",
+      "capital": "Agua Blanca",
+      "poblacion_2021": 26512,
+      "poblacion_capital_2021": 26512,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B21426676418020": {
+      "name": "Rómulo Gallegos",
+      "parent_iso": "VE-H",
+      "capital": "Las Vegas",
+      "poblacion_2021": 26270,
+      "poblacion_capital_2021": 26270,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B1546334358138": {
+      "name": "Miranda",
+      "parent_iso": "VE-T",
+      "capital": "El Dividive",
+      "poblacion_2021": 26177,
+      "poblacion_capital_2021": 13828,
+      "porcentaje_urbano_2021": 52.82
+    },
+    "92452058B64948290230997": {
+      "name": "Pao de San Juan Bautista",
+      "parent_iso": "VE-H",
+      "capital": "El Pao",
+      "poblacion_2021": 25300,
+      "poblacion_capital_2021": 25300,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B34439964520942": {
+      "name": "San Gerónimo de Guayabal",
+      "parent_iso": "VE-J",
+      "capital": "Guayabal",
+      "poblacion_2021": 25263,
+      "poblacion_capital_2021": 16691,
+      "porcentaje_urbano_2021": 66.07
+    },
+    "92452058B37520710637751": {
+      "name": "Rangel",
+      "parent_iso": "VE-L",
+      "capital": "Mucuchíes",
+      "poblacion_2021": 25243,
+      "poblacion_capital_2021": 10508,
+      "porcentaje_urbano_2021": 41.63
+    },
+    "92452058B45353491303676": {
+      "name": "Arístides Bastidas",
+      "parent_iso": "VE-U",
+      "capital": "San Pablo",
+      "poblacion_2021": 25234,
+      "poblacion_capital_2021": 25234,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B24105899820975": {
+      "name": "Uribante",
+      "parent_iso": "VE-S",
+      "capital": "Pregonero",
+      "poblacion_2021": 24888,
+      "poblacion_capital_2021": 16077,
+      "porcentaje_urbano_2021": 64.6
+    },
+    "92452058B98875483329913": {
+      "name": "Andrés Mata",
+      "parent_iso": "VE-R",
+      "capital": "San José de Aerocuar",
+      "poblacion_2021": 24818,
+      "poblacion_capital_2021": 14409,
+      "porcentaje_urbano_2021": 58.06
+    },
+    "92452058B69461621653352": {
+      "name": "Andrés Bello",
+      "parent_iso": "VE-M",
+      "capital": "San José de Barlovento",
+      "poblacion_2021": 24526,
+      "poblacion_capital_2021": 23287,
+      "porcentaje_urbano_2021": 94.95
+    },
+    "92452058B96512574408350": {
+      "name": "Rivas Dávila",
+      "parent_iso": "VE-L",
+      "capital": "Bailadores",
+      "poblacion_2021": 24264,
+      "poblacion_capital_2021": 19809,
+      "porcentaje_urbano_2021": 81.64
+    },
+    "92452058B60175540924522": {
+      "name": "Andrés Bello",
+      "parent_iso": "VE-S",
+      "capital": "Cordero",
+      "poblacion_2021": 24160,
+      "poblacion_capital_2021": 24160,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B17411594659204": {
+      "name": "La Ceiba",
+      "parent_iso": "VE-T",
+      "capital": "Santa Apolonia",
+      "poblacion_2021": 24032,
+      "poblacion_capital_2021": 6706,
+      "porcentaje_urbano_2021": 27.9
+    },
+    "92452058B17559996625330": {
+      "name": "José Antonio Páez",
+      "parent_iso": "VE-U",
+      "capital": "Sabana de Parra",
+      "poblacion_2021": 23806,
+      "poblacion_capital_2021": 23806,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B4017095457162": {
+      "name": "San Rafael de Onoto",
+      "parent_iso": "VE-P",
+      "capital": "San Rafael de Onoto",
+      "poblacion_2021": 23684,
+      "poblacion_capital_2021": 19225,
+      "porcentaje_urbano_2021": 81.17
+    },
+    "92452058B66612082158993": {
+      "name": "Acosta",
+      "parent_iso": "VE-I",
+      "capital": "San Juan de los Cayos",
+      "poblacion_2021": 23323,
+      "poblacion_capital_2021": 9734,
+      "porcentaje_urbano_2021": 41.74
+    },
+    "92452058B73017007286704": {
+      "name": "Sucre",
+      "parent_iso": "VE-U",
+      "capital": "Guama",
+      "poblacion_2021": 23238,
+      "poblacion_capital_2021": 23238,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B2608246233639": {
+      "name": "Anzoátegui",
+      "parent_iso": "VE-H",
+      "capital": "Cojedes",
+      "poblacion_2021": 23019,
+      "poblacion_capital_2021": 8945,
+      "porcentaje_urbano_2021": 38.86
+    },
+    "92452058B68094075186803": {
+      "name": "Michelena",
+      "parent_iso": "VE-S",
+      "capital": "Michelena",
+      "poblacion_2021": 22815,
+      "poblacion_capital_2021": 22815,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B3851867727254": {
+      "name": "Santa Rosalía",
+      "parent_iso": "VE-P",
+      "capital": "El Playón",
+      "poblacion_2021": 22669,
+      "poblacion_capital_2021": 18147,
+      "porcentaje_urbano_2021": 80.05
+    },
+    "92452058B59962143626105": {
+      "name": "Acosta",
+      "parent_iso": "VE-N",
+      "capital": "San Antonio",
+      "poblacion_2021": 22335,
+      "poblacion_capital_2021": 14300,
+      "porcentaje_urbano_2021": 64.03
+    },
+    "92452058B70531962129306": {
+      "name": "Samuel Darío Maldonado",
+      "parent_iso": "VE-S",
+      "capital": "La Tendida",
+      "poblacion_2021": 22051,
+      "poblacion_capital_2021": 13294,
+      "porcentaje_urbano_2021": 60.29
+    },
+    "92452058B23928909517794": {
+      "name": "El Socorro",
+      "parent_iso": "VE-J",
+      "capital": "El Socorro",
+      "poblacion_2021": 21809,
+      "poblacion_capital_2021": 21809,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B96669771674103": {
+      "name": "Andrés Bello",
+      "parent_iso": "VE-T",
+      "capital": "Santa Isabel",
+      "poblacion_2021": 21800,
+      "poblacion_capital_2021": 7874,
+      "porcentaje_urbano_2021": 36.12
+    },
+    "92452058B4239970506529": {
+      "name": "José Gregorio Monagas",
+      "parent_iso": "VE-B",
+      "capital": "Mapire",
+      "poblacion_2021": 21731,
+      "poblacion_capital_2021": 5125,
+      "porcentaje_urbano_2021": 23.58
+    },
+    "92452058B16352791962773": {
+      "name": "Santos Marquina",
+      "parent_iso": "VE-L",
+      "capital": "Tabay",
+      "poblacion_2021": 21638,
+      "poblacion_capital_2021": 21638,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B62931079063514": {
+      "name": "Francisco del Carmen Carvajal",
+      "parent_iso": "VE-B",
+      "capital": "Valle de Guanape",
+      "poblacion_2021": 20804,
+      "poblacion_capital_2021": 19275,
+      "porcentaje_urbano_2021": 92.65
+    },
+    "92452058B64371118688426": {
+      "name": "La Trinidad",
+      "parent_iso": "VE-U",
+      "capital": "Boraure",
+      "poblacion_2021": 20392,
+      "poblacion_capital_2021": 20392,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B50204709100098": {
+      "name": "Libertad",
+      "parent_iso": "VE-B",
+      "capital": "San Mateo",
+      "poblacion_2021": 20278,
+      "poblacion_capital_2021": 14050,
+      "porcentaje_urbano_2021": 69.29
+    },
+    "92452058B54674524555313": {
+      "name": "Padre Pedro Chien",
+      "parent_iso": "VE-F",
+      "capital": "El Palmar",
+      "poblacion_2021": 20031,
+      "poblacion_capital_2021": 20031,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B83235361555221": {
+      "name": "Andrés Eloy Blanco",
+      "parent_iso": "VE-E",
+      "capital": "El Cantón",
+      "poblacion_2021": 19920,
+      "poblacion_capital_2021": 8094,
+      "porcentaje_urbano_2021": 40.63
+    },
+    "92452058B14300572902451": {
+      "name": "Unión",
+      "parent_iso": "VE-I",
+      "capital": "Santa Cruz de Bucaral",
+      "poblacion_2021": 19638,
+      "poblacion_capital_2021": 11953,
+      "porcentaje_urbano_2021": 60.87
+    },
+    "92452058B3006076397116": {
+      "name": "Bolívar",
+      "parent_iso": "VE-T",
+      "capital": "Sabana Grande",
+      "poblacion_2021": 19626,
+      "poblacion_capital_2021": 9751,
+      "porcentaje_urbano_2021": 49.68
+    },
+    "92452058B42383806432363": {
+      "name": "Papelón",
+      "parent_iso": "VE-P",
+      "capital": "Papelón",
+      "poblacion_2021": 19219,
+      "poblacion_capital_2021": 7140,
+      "porcentaje_urbano_2021": 37.15
+    },
+    "92452058B8931930020089": {
+      "name": "Juan Manuel Cajigal",
+      "parent_iso": "VE-B",
+      "capital": "Onoto",
+      "poblacion_2021": 18471,
+      "poblacion_capital_2021": 14831,
+      "porcentaje_urbano_2021": 80.29
+    },
+    "92452058B80982982494496": {
+      "name": "Ricaurte",
+      "parent_iso": "VE-H",
+      "capital": "Libertad",
+      "poblacion_2021": 18456,
+      "poblacion_capital_2021": 16416,
+      "porcentaje_urbano_2021": 88.95
+    },
+    "92452058B92522690941110": {
+      "name": "Julio César Salas",
+      "parent_iso": "VE-L",
+      "capital": "Arapuey",
+      "poblacion_2021": 18389,
+      "poblacion_capital_2021": 15478,
+      "porcentaje_urbano_2021": 84.17
+    },
+    "92452058B9202349267506": {
+      "name": "Mejía",
+      "parent_iso": "VE-R",
+      "capital": "San Antonio del Golfo",
+      "poblacion_2021": 18144,
+      "poblacion_capital_2021": 18144,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B96786834235834": {
+      "name": "Manuel Monge",
+      "parent_iso": "VE-U",
+      "capital": "Yumare",
+      "poblacion_2021": 18017,
+      "poblacion_capital_2021": 18017,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B76742860274923": {
+      "name": "Petit",
+      "parent_iso": "VE-I",
+      "capital": "Cabure",
+      "poblacion_2021": 17471,
+      "poblacion_capital_2021": 8421,
+      "porcentaje_urbano_2021": 48.2
+    },
+    "92452058B96264628893767": {
+      "name": "Monte Carmelo",
+      "parent_iso": "VE-T",
+      "capital": "Monte Carmelo",
+      "poblacion_2021": 17381,
+      "poblacion_capital_2021": 7786,
+      "porcentaje_urbano_2021": 44.8
+    },
+    "92452058B19626943802375": {
+      "name": "Andrés Bello",
+      "parent_iso": "VE-L",
+      "capital": "La Azulita",
+      "poblacion_2021": 17294,
+      "poblacion_capital_2021": 17294,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B96684435366560": {
+      "name": "Chaguaramas",
+      "parent_iso": "VE-J",
+      "capital": "Chaguaramas",
+      "poblacion_2021": 17095,
+      "poblacion_capital_2021": 17095,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B30205634756293": {
+      "name": "Girardot",
+      "parent_iso": "VE-H",
+      "capital": "El Baúl",
+      "poblacion_2021": 16806,
+      "poblacion_capital_2021": 13388,
+      "porcentaje_urbano_2021": 79.66
+    },
+    "92452058B20734367983151": {
+      "name": "Aguasay",
+      "parent_iso": "VE-N",
+      "capital": "Aguasay",
+      "poblacion_2021": 16739,
+      "poblacion_capital_2021": 16739,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B92766796026281": {
+      "name": "Lobatera",
+      "parent_iso": "VE-S",
+      "capital": "Lobatera",
+      "poblacion_2021": 16654,
+      "poblacion_capital_2021": 9325,
+      "porcentaje_urbano_2021": 55.99
+    },
+    "92452058B74873434476019": {
+      "name": "Tovar",
+      "parent_iso": "VE-D",
+      "capital": "La Colonia Tovar",
+      "poblacion_2021": 16385,
+      "poblacion_capital_2021": 16385,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B26241339003056": {
+      "name": "Almirante Padilla",
+      "parent_iso": "VE-V",
+      "capital": "El Toro",
+      "poblacion_2021": 16004,
+      "poblacion_capital_2021": 10305,
+      "porcentaje_urbano_2021": 64.39
+    },
+    "92452058B50688374743402": {
+      "name": "Santa María de Ipire",
+      "parent_iso": "VE-J",
+      "capital": "Santa María de Ipire",
+      "poblacion_2021": 15957,
+      "poblacion_capital_2021": 14899,
+      "porcentaje_urbano_2021": 93.37
+    },
+    "92452058B11237040354260": {
+      "name": "Arzobispo Chacón",
+      "parent_iso": "VE-L",
+      "capital": "Canaguá",
+      "poblacion_2021": 15478,
+      "poblacion_capital_2021": 4227,
+      "porcentaje_urbano_2021": 27.31
+    },
+    "92452058B65922817978550": {
+      "name": "Autónomo Alto Orinoco",
+      "parent_iso": "VE-Z",
+      "capital": "La Esmeralda",
+      "poblacion_2021": 14492,
+      "poblacion_capital_2021": 14492,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B80910187087135": {
+      "name": "Lima Blanco",
+      "parent_iso": "VE-H",
+      "capital": "Macapo",
+      "poblacion_2021": 14377,
+      "poblacion_capital_2021": 8817,
+      "porcentaje_urbano_2021": 61.33
+    },
+    "92452058B33294183212252": {
+      "name": "San José de Guaribe",
+      "parent_iso": "VE-J",
+      "capital": "San José de Guaribe",
+      "poblacion_2021": 14294,
+      "poblacion_capital_2021": 14294,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B34699715340940": {
+      "name": "Zea",
+      "parent_iso": "VE-L",
+      "capital": "Zea",
+      "poblacion_2021": 14092,
+      "poblacion_capital_2021": 9207,
+      "porcentaje_urbano_2021": 65.33
+    },
+    "92452058B31160427054809": {
+      "name": "Cacique Manaure",
+      "parent_iso": "VE-I",
+      "capital": "Yaracal",
+      "poblacion_2021": 13918,
+      "poblacion_capital_2021": 13918,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B3899539267655": {
+      "name": "San Francisco",
+      "parent_iso": "VE-I",
+      "capital": "Mirimire",
+      "poblacion_2021": 13587,
+      "poblacion_capital_2021": 13587,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B29935113777127": {
+      "name": "José María Vargas",
+      "parent_iso": "VE-S",
+      "capital": "El Cobre",
+      "poblacion_2021": 13543,
+      "poblacion_capital_2021": 13543,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B21195677528356": {
+      "name": "Seboruco",
+      "parent_iso": "VE-S",
+      "capital": "Seboruco",
+      "poblacion_2021": 13348,
+      "poblacion_capital_2021": 13348,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B88247068668405": {
+      "name": "Antonio Rómulo Costa",
+      "parent_iso": "VE-S",
+      "capital": "Las Mesas",
+      "poblacion_2021": 13333,
+      "poblacion_capital_2021": 13333,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B87022428114391": {
+      "name": "Pueblo Llano",
+      "parent_iso": "VE-L",
+      "capital": "Pueblo Llano",
+      "poblacion_2021": 13185,
+      "poblacion_capital_2021": 13185,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B36429563491132": {
+      "name": "Píritu",
+      "parent_iso": "VE-I",
+      "capital": "Píritu",
+      "poblacion_2021": 13152,
+      "poblacion_capital_2021": 9957,
+      "porcentaje_urbano_2021": 75.71
+    },
+    "92452058B64727210967891": {
+      "name": "Santa Bárbara",
+      "parent_iso": "VE-N",
+      "capital": "Santa Bárbara",
+      "poblacion_2021": 13116,
+      "poblacion_capital_2021": 13116,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B13526806799320": {
+      "name": "Jacura",
+      "parent_iso": "VE-I",
+      "capital": "Jacura",
+      "poblacion_2021": 13046,
+      "poblacion_capital_2021": 7088,
+      "porcentaje_urbano_2021": 54.33
+    },
+    "92452058B1316533147896": {
+      "name": "San Juan de Capistrano",
+      "parent_iso": "VE-B",
+      "capital": "Boca de Uchire",
+      "poblacion_2021": 12886,
+      "poblacion_capital_2021": 11681,
+      "porcentaje_urbano_2021": 90.65
+    },
+    "92452058B74442038912920": {
+      "name": "Libertador",
+      "parent_iso": "VE-R",
+      "capital": "Tunapuy",
+      "poblacion_2021": 12713,
+      "poblacion_capital_2021": 11023,
+      "porcentaje_urbano_2021": 86.71
+    },
+    "92452058B10612874136761": {
+      "name": "Santa Ana",
+      "parent_iso": "VE-B",
+      "capital": "Santa Ana",
+      "poblacion_2021": 12659,
+      "poblacion_capital_2021": 12070,
+      "porcentaje_urbano_2021": 95.35
+    },
+    "92452058B27987332660152": {
+      "name": "Democracia",
+      "parent_iso": "VE-I",
+      "capital": "Pedregal",
+      "poblacion_2021": 12415,
+      "poblacion_capital_2021": 8869,
+      "porcentaje_urbano_2021": 71.44
+    },
+    "92452058B26508954861758": {
+      "name": "Uracoa",
+      "parent_iso": "VE-N",
+      "capital": "Uracoa",
+      "poblacion_2021": 12269,
+      "poblacion_capital_2021": 12269,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B87556418523140": {
+      "name": "Villalba",
+      "parent_iso": "VE-O",
+      "capital": "San Pedro de Coche",
+      "poblacion_2021": 11894,
+      "poblacion_capital_2021": 7142,
+      "porcentaje_urbano_2021": 60.05
+    },
+    "92452058B92131040648268": {
+      "name": "Cardenal Quintero",
+      "parent_iso": "VE-L",
+      "capital": "Santo Domingo",
+      "poblacion_2021": 11617,
+      "poblacion_capital_2021": 6876,
+      "porcentaje_urbano_2021": 59.19
+    },
+    "92452058B8560426021820": {
+      "name": "Guaraque",
+      "parent_iso": "VE-L",
+      "capital": "Guaraque",
+      "poblacion_2021": 11533,
+      "poblacion_capital_2021": 5386,
+      "porcentaje_urbano_2021": 46.7
+    },
+    "92452058B57727814013353": {
+      "name": "Bolívar",
+      "parent_iso": "VE-I",
+      "capital": "San Luis",
+      "poblacion_2021": 11345,
+      "poblacion_capital_2021": 5709,
+      "porcentaje_urbano_2021": 50.32
+    },
+    "92452058B96252003881726": {
+      "name": "Autónomo Atabapo",
+      "parent_iso": "VE-Z",
+      "capital": "San Fernando de Atabapo",
+      "poblacion_2021": 10667,
+      "poblacion_capital_2021": 10667,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B99499694826809": {
+      "name": "Urumaco",
+      "parent_iso": "VE-I",
+      "capital": "Urumaco",
+      "poblacion_2021": 10580,
+      "poblacion_capital_2021": 7741,
+      "porcentaje_urbano_2021": 73.17
+    },
+    "92452058B86499403972529": {
+      "name": "San Judas Tadeo",
+      "parent_iso": "VE-S",
+      "capital": "Umuquena",
+      "poblacion_2021": 9914,
+      "poblacion_capital_2021": 9914,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B59537518099621": {
+      "name": "Sucre",
+      "parent_iso": "VE-S",
+      "capital": "Queniquea",
+      "poblacion_2021": 9680,
+      "poblacion_capital_2021": 6784,
+      "porcentaje_urbano_2021": 70.08
+    },
+    "92452058B84571882758287": {
+      "name": "Autónomo Autana",
+      "parent_iso": "VE-Z",
+      "capital": "Isla Ratón",
+      "poblacion_2021": 9620,
+      "poblacion_capital_2021": 9620,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B28830683582357": {
+      "name": "Pedernales",
+      "parent_iso": "VE-Y",
+      "capital": "Pedernales",
+      "poblacion_2021": 9163,
+      "poblacion_capital_2021": 6538,
+      "porcentaje_urbano_2021": 71.35
+    },
+    "92452058B42172892239758": {
+      "name": "Autónomo Manapiare",
+      "parent_iso": "VE-Z",
+      "capital": "San Juan de Manapiare",
+      "poblacion_2021": 8841,
+      "poblacion_capital_2021": 8841,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B80542411245757": {
+      "name": "Palmasola",
+      "parent_iso": "VE-I",
+      "capital": "Palmasola",
+      "poblacion_2021": 8816,
+      "poblacion_capital_2021": 8816,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B57428725290546": {
+      "name": "Tocopero",
+      "parent_iso": "VE-I",
+      "capital": "Tocópero",
+      "poblacion_2021": 8109,
+      "poblacion_capital_2021": 8109,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B18295884568936": {
+      "name": "Sucre",
+      "parent_iso": "VE-I",
+      "capital": "La Cruz de Taratara",
+      "poblacion_2021": 7799,
+      "poblacion_capital_2021": 5778,
+      "porcentaje_urbano_2021": 74.09
+    },
+    "92452058B16072820149055": {
+      "name": "Rafael Urdaneta",
+      "parent_iso": "VE-S",
+      "capital": "Delicias",
+      "poblacion_2021": 7720,
+      "poblacion_capital_2021": 7720,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B50490503212565": {
+      "name": "José Felipe Márquez Cañizales",
+      "parent_iso": "VE-T",
+      "capital": "El Paradero",
+      "poblacion_2021": 6656,
+      "poblacion_capital_2021": 5715,
+      "porcentaje_urbano_2021": 85.86
+    },
+    "92452058B92699654861711": {
+      "name": "Aricagua",
+      "parent_iso": "VE-L",
+      "capital": "Aricagua",
+      "poblacion_2021": 6119,
+      "poblacion_capital_2021": 4680,
+      "porcentaje_urbano_2021": 76.48
+    },
+    "92452058B97313175950957": {
+      "name": "Justo Briceño",
+      "parent_iso": "VE-L",
+      "capital": "Torondoy",
+      "poblacion_2021": 6082,
+      "poblacion_capital_2021": 4540,
+      "porcentaje_urbano_2021": 74.65
+    },
+    "92452058B99053619460093": {
+      "name": "Francisco de Miranda",
+      "parent_iso": "VE-S",
+      "capital": "San José de Bolívar",
+      "poblacion_2021": 5169,
+      "poblacion_capital_2021": 5169,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B20589241231515": {
+      "name": "Padre Noguera",
+      "parent_iso": "VE-L",
+      "capital": "Santa María de Caparo",
+      "poblacion_2021": 4628,
+      "poblacion_capital_2021": 4628,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B83373837217774": {
+      "name": "Simón Rodríguez",
+      "parent_iso": "VE-S",
+      "capital": "San Simón",
+      "poblacion_2021": 2950,
+      "poblacion_capital_2021": 2950,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B35318903418648": {
+      "name": "Autónomo Río Negro",
+      "parent_iso": "VE-Z",
+      "capital": "San Carlos de Río Negro",
+      "poblacion_2021": 2581,
+      "poblacion_capital_2021": 2581,
+      "porcentaje_urbano_2021": 100
+    },
+    "92452058B1963066211404": {
+      "name": "Autónomo Maroa",
+      "parent_iso": "VE-Z",
+      "capital": "Maroa",
+      "poblacion_2021": 2326,
+      "poblacion_capital_2021": 2326,
+      "porcentaje_urbano_2021": 100
+    }
+  },
+  "estados": {
+    "VE-A": {
+      "name": "Distrito Capital",
+      "idh_1990": 0.682,
+      "idh_2000": 0.717,
+      "idh_2010": 0.8,
+      "idh_2020": 0.741,
+      "idh_cambio_2010_2020": -0.059
+    },
+    "VE-M": {
+      "name": "Miranda",
+      "idh_1990": 0.67,
+      "idh_2000": 0.704,
+      "idh_2010": 0.789,
+      "idh_2020": 0.728,
+      "idh_cambio_2010_2020": -0.061
+    },
+    "VE-D": {
+      "name": "Aragua",
+      "idh_1990": 0.667,
+      "idh_2000": 0.7000000000000001,
+      "idh_2010": 0.784,
+      "idh_2020": 0.721,
+      "idh_cambio_2010_2020": -0.063
+    },
+    "VE-G": {
+      "name": "Carabobo",
+      "idh_1990": 0.661,
+      "idh_2000": 0.6950000000000001,
+      "idh_2010": 0.779,
+      "idh_2020": 0.716,
+      "idh_cambio_2010_2020": -0.063
+    },
+    "VE-X": {
+      "name": "La Guaira",
+      "idh_1990": 0.661,
+      "idh_2000": 0.6940000000000001,
+      "idh_2010": 0.778,
+      "idh_2020": 0.716,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-O": {
+      "name": "Nueva Esparta",
+      "idh_1990": 0.66,
+      "idh_2000": 0.6930000000000001,
+      "idh_2010": 0.777,
+      "idh_2020": 0.716,
+      "idh_cambio_2010_2020": -0.061
+    },
+    "VE-B": {
+      "name": "Anzoátegui",
+      "idh_1990": 0.654,
+      "idh_2000": 0.686,
+      "idh_2010": 0.769,
+      "idh_2020": 0.707,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-F": {
+      "name": "Bolívar",
+      "idh_1990": 0.645,
+      "idh_2000": 0.678,
+      "idh_2010": 0.76,
+      "idh_2020": 0.6990000000000001,
+      "idh_cambio_2010_2020": -0.061
+    },
+    "VE-S": {
+      "name": "Táchira",
+      "idh_1990": 0.645,
+      "idh_2000": 0.675,
+      "idh_2010": 0.756,
+      "idh_2020": 0.6920000000000001,
+      "idh_cambio_2010_2020": -0.064
+    },
+    "VE-N": {
+      "name": "Monagas",
+      "idh_1990": 0.637,
+      "idh_2000": 0.667,
+      "idh_2010": 0.748,
+      "idh_2020": 0.686,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-I": {
+      "name": "Falcón",
+      "idh_1990": 0.637,
+      "idh_2000": 0.667,
+      "idh_2010": 0.748,
+      "idh_2020": 0.684,
+      "idh_cambio_2010_2020": -0.064
+    },
+    "VE-L": {
+      "name": "Mérida",
+      "idh_1990": 0.639,
+      "idh_2000": 0.667,
+      "idh_2010": 0.747,
+      "idh_2020": 0.683,
+      "idh_cambio_2010_2020": -0.064
+    },
+    "VE-V": {
+      "name": "Zulia",
+      "idh_1990": 0.632,
+      "idh_2000": 0.662,
+      "idh_2010": 0.743,
+      "idh_2020": 0.681,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-Y": {
+      "name": "Delta Amacuro",
+      "idh_1990": 0.632,
+      "idh_2000": 0.662,
+      "idh_2010": 0.742,
+      "idh_2020": 0.679,
+      "idh_cambio_2010_2020": -0.063
+    },
+    "VE-Z": {
+      "name": "Amazonas",
+      "idh_1990": 0.627,
+      "idh_2000": 0.658,
+      "idh_2010": 0.737,
+      "idh_2020": 0.675,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-K": {
+      "name": "Lara",
+      "idh_1990": 0.629,
+      "idh_2000": 0.658,
+      "idh_2010": 0.737,
+      "idh_2020": 0.674,
+      "idh_cambio_2010_2020": -0.063
+    },
+    "VE-H": {
+      "name": "Cojedes",
+      "idh_1990": 0.626,
+      "idh_2000": 0.655,
+      "idh_2010": 0.734,
+      "idh_2020": 0.671,
+      "idh_cambio_2010_2020": -0.063
+    },
+    "VE-R": {
+      "name": "Sucre",
+      "idh_1990": 0.623,
+      "idh_2000": 0.65,
+      "idh_2010": 0.728,
+      "idh_2020": 0.663,
+      "idh_cambio_2010_2020": -0.065
+    },
+    "VE-T": {
+      "name": "Trujillo",
+      "idh_1990": 0.622,
+      "idh_2000": 0.649,
+      "idh_2010": 0.727,
+      "idh_2020": 0.663,
+      "idh_cambio_2010_2020": -0.064
+    },
+    "VE-U": {
+      "name": "Yaracuy",
+      "idh_1990": 0.617,
+      "idh_2000": 0.646,
+      "idh_2010": 0.724,
+      "idh_2020": 0.661,
+      "idh_cambio_2010_2020": -0.063
+    },
+    "VE-J": {
+      "name": "Guárico",
+      "idh_1990": 0.615,
+      "idh_2000": 0.642,
+      "idh_2010": 0.72,
+      "idh_2020": 0.656,
+      "idh_cambio_2010_2020": -0.064
+    },
+    "VE-E": {
+      "name": "Barinas",
+      "idh_1990": 0.601,
+      "idh_2000": 0.628,
+      "idh_2010": 0.7030000000000001,
+      "idh_2020": 0.641,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-P": {
+      "name": "Portuguesa",
+      "idh_1990": 0.6,
+      "idh_2000": 0.627,
+      "idh_2010": 0.7030000000000001,
+      "idh_2020": 0.641,
+      "idh_cambio_2010_2020": -0.062
+    },
+    "VE-C": {
+      "name": "Apure",
+      "idh_1990": 0.585,
+      "idh_2000": 0.612,
+      "idh_2010": 0.685,
+      "idh_2020": 0.622,
+      "idh_cambio_2010_2020": -0.063
+    }
+  }
+}

@@ -96,6 +96,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 29.88,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -196,6 +202,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 57.33,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -278,6 +290,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -359,6 +377,12 @@
         "value": 16291,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -460,6 +484,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 65.62,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -541,6 +571,12 @@
         "value": 62958,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.73,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -642,6 +678,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.92,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -724,6 +766,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 58.06,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -782,6 +830,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -864,6 +918,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 44.04,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -945,6 +1005,12 @@
         "value": 111484,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 80.06,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -1046,6 +1112,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 73.7,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -1128,6 +1200,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -1209,6 +1287,12 @@
         "value": 23452,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 38.86,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -1310,6 +1394,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 96.51,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -1391,6 +1481,12 @@
         "value": 266775,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 91.87,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -1492,6 +1588,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 76.48,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -1573,6 +1675,12 @@
         "value": 35267,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -1674,6 +1782,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 27.31,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -1773,6 +1887,12 @@
         "value": 1858,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -1874,6 +1994,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -1973,6 +2099,12 @@
         "value": 3092,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -2074,6 +2206,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -2173,6 +2311,12 @@
         "value": 2045,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -2274,6 +2418,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -2374,6 +2524,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -2455,6 +2611,12 @@
         "value": 75961,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.99,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -2556,6 +2718,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 6.19,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -2655,6 +2823,12 @@
         "value": 3265,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.98,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -2756,6 +2930,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 66.96,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -2856,6 +3036,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 66.74,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -2938,6 +3124,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 53.3,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3019,6 +3211,12 @@
         "value": 213539,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -3120,6 +3318,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3201,6 +3405,12 @@
         "value": 140900,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 31.66,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -3302,6 +3512,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 58.88,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3384,6 +3600,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.21,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3465,6 +3687,12 @@
         "value": 35567,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 38.23,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -3566,6 +3794,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3666,6 +3900,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.26,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3747,6 +3987,12 @@
         "value": 16520,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -3830,6 +4076,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 56.05,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -3911,6 +4163,12 @@
         "value": 42909,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 68.77,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -4012,6 +4270,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 73.3,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -4112,6 +4376,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 90.2,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -4193,6 +4463,12 @@
         "value": 45142,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 48.11,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -4294,6 +4570,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 74.65,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -4375,6 +4657,12 @@
         "value": 43065,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 42.77,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -4476,6 +4764,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 59.19,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -4557,6 +4851,12 @@
         "value": 179733,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 80.11,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -4640,6 +4940,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 26.89,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -4721,6 +5027,12 @@
         "value": 359516,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 47.63,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -4822,6 +5134,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.35,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -4922,6 +5240,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5003,6 +5327,12 @@
         "value": 86391,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 35.03,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -5104,6 +5434,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 56.42,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5204,6 +5540,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5285,6 +5627,12 @@
         "value": 24921,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -5368,6 +5716,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5449,6 +5803,12 @@
         "value": 60297,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 71.2,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -5550,6 +5910,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 9.51,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5632,6 +5998,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5707,6 +6079,12 @@
         "value": 4896,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 65.89,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -5808,6 +6186,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 79.28,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -5889,6 +6273,12 @@
         "value": 38680,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 82.58,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -5972,6 +6362,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 58.9,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6053,6 +6449,12 @@
         "value": 36729,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -6136,6 +6538,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 71.44,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6194,6 +6602,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 59.29,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6293,6 +6707,12 @@
         "value": 4576,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -6394,6 +6814,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6494,6 +6920,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6575,6 +7007,12 @@
         "value": 27793,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -6658,6 +7096,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 52.86,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6739,6 +7183,12 @@
         "value": 67439,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 85.11,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -6822,6 +7272,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 52.08,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -6903,6 +7359,12 @@
         "value": 61775,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 41.3,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -7004,6 +7466,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 92.65,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7103,6 +7571,12 @@
         "value": 4659,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 51.05,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -7204,6 +7678,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 74.48,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7262,6 +7742,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 27.23,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7344,6 +7830,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 85.83,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7402,6 +7894,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 41.28,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7501,6 +7999,12 @@
         "value": 3430,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.27,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -7602,6 +8106,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 86.89,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7702,6 +8212,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 77.17,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7784,6 +8300,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.68,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -7865,6 +8387,12 @@
         "value": 58662,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.7,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -7966,6 +8494,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 57.38,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8066,6 +8600,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 46.7,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8147,6 +8687,12 @@
         "value": 62659,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -8230,6 +8776,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 98.04,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8305,6 +8857,12 @@
         "value": 5407,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.75,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -8388,6 +8946,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 54.33,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8469,6 +9033,12 @@
         "value": 58224,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.12,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -8570,6 +9140,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 60.11,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8670,6 +9246,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 67.44,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8745,6 +9327,12 @@
         "value": 3458,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 44.32,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -8846,6 +9434,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -8928,6 +9522,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -9009,6 +9609,12 @@
         "value": 7816,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 85.86,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -9110,6 +9716,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 36.65,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -9191,6 +9803,12 @@
         "value": 62875,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 91.71,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -9292,6 +9910,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 23.58,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -9373,6 +9997,12 @@
         "value": 13147,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -9474,6 +10104,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -9555,6 +10191,12 @@
         "value": 135551,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 72.28,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -9656,6 +10298,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 63.98,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -9737,6 +10385,12 @@
         "value": 234101,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.05,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -9838,6 +10492,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 87.9,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -9937,6 +10597,12 @@
         "value": 2598,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 80.29,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -10084,6 +10750,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.09,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -10184,6 +10856,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 84.17,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -10265,6 +10943,12 @@
         "value": 108295,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 87.39,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -10366,6 +11050,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 74.65,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -10466,6 +11156,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 44.79,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -10548,6 +11244,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 27.9,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -10629,6 +11331,12 @@
         "value": 29297,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -10730,6 +11438,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 82.85,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -10829,6 +11543,12 @@
         "value": 5598,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 77.77,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -10976,6 +11696,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 96.34,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11058,6 +11784,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 61.33,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11139,6 +11871,12 @@
         "value": 16516,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 55.99,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -11240,6 +11978,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11340,6 +12084,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11421,6 +12171,12 @@
         "value": 58440,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 50.46,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -11522,6 +12278,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 62.41,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11580,6 +12342,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 52.35,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11680,6 +12448,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 59.22,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11761,6 +12535,12 @@
         "value": 20447,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -11862,6 +12642,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 25.75,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -11962,6 +12748,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 97.61,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12020,6 +12812,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 59.56,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12120,6 +12918,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 30.09,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12201,6 +13005,12 @@
         "value": 785900,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 87.93,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -12284,6 +13094,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 67.09,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12365,6 +13181,12 @@
         "value": 22570,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -12448,6 +13270,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12530,6 +13358,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 48.29,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12611,6 +13445,12 @@
         "value": 36772,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 90.68,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -12712,6 +13552,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12793,6 +13639,12 @@
         "value": 19620,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 44.8,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -12876,6 +13728,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 46.11,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -12951,6 +13809,12 @@
         "value": 3060,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 52.58,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -13033,6 +13897,12 @@
         "value": 31476,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 62.07,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -13134,6 +14004,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 25.16,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -13234,6 +14110,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -13315,6 +14197,12 @@
         "value": 84525,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 75.83,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -13416,6 +14304,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 55,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -13497,6 +14391,12 @@
         "value": 54129,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 43.22,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -13580,6 +14480,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 45.85,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -13661,6 +14567,12 @@
         "value": 72366,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 60.44,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -13762,6 +14674,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -13844,6 +14762,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -13919,6 +14843,12 @@
         "value": 4356,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 41.74,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -14002,6 +14932,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -14083,6 +15019,12 @@
         "value": 72427,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 15.54,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -14166,6 +15108,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 47.56,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -14247,6 +15195,12 @@
         "value": 41707,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 77.33,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -14330,6 +15284,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -14411,6 +15371,12 @@
         "value": 25095,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 37.15,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -14512,6 +15478,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -14594,6 +15566,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 71.35,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -14675,6 +15653,12 @@
         "value": 104518,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 70.16,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -14776,6 +15760,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 38.27,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -14875,6 +15865,12 @@
         "value": 5900,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.3,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -14976,6 +15972,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 79.08,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15058,6 +16060,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 79.99,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15116,6 +16124,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 44.52,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15198,6 +16212,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 90.87,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15279,6 +16299,12 @@
         "value": 22909,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 48.2,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -15380,6 +16406,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15479,6 +16511,12 @@
         "value": 4225,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -15580,6 +16618,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.06,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15661,6 +16705,12 @@
         "value": 35154,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 50.39,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -15744,6 +16794,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 24.64,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15825,6 +16881,12 @@
         "value": 7543,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -15926,6 +16988,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 41.63,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -15964,6 +17032,12 @@
       "densidad": {
         "value": 0.86,
         "source": "Excel/INE",
+        "year": 2021,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 35.41,
+        "source": "Source CV",
         "year": 2021,
         "also": []
       }
@@ -16048,6 +17122,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 56.26,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -16129,6 +17209,12 @@
         "value": 17804,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 88.95,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -16230,6 +17316,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.64,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -16311,6 +17403,12 @@
         "value": 58733,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 27.2,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -16412,6 +17510,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 83.06,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -16512,6 +17616,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 97.05,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -16593,6 +17703,12 @@
         "value": 25287,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 60.29,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -16734,6 +17850,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 78.66,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -16815,6 +17937,12 @@
         "value": 338872,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 99.55,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -16916,6 +18044,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -16997,6 +18131,12 @@
         "value": 183502,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 54.96,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -17098,6 +18238,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 75.25,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -17180,6 +18326,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 66.86,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -17261,6 +18413,12 @@
         "value": 32240,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 66.07,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -17362,6 +18520,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -17443,6 +18607,12 @@
         "value": 18535,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -17544,6 +18714,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 90.65,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -17625,6 +18801,12 @@
         "value": 9381,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -17708,6 +18890,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 33.81,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -17789,6 +18977,12 @@
         "value": 27642,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.17,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -17890,6 +19084,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -17990,6 +19190,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.35,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18072,6 +19278,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18153,6 +19365,12 @@
         "value": 21856,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.37,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -18254,6 +19472,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 58.23,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18335,6 +19559,12 @@
         "value": 26671,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 80.05,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -18436,6 +19666,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 28.18,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18535,6 +19771,12 @@
         "value": 3579,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -18636,6 +19878,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 92.26,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18717,6 +19965,12 @@
         "value": 13773,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -18818,6 +20072,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 58.42,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18900,6 +20160,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 72.58,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -18975,6 +20241,12 @@
         "value": 3667,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 49.83,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -19140,6 +20412,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 27.4,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -19221,6 +20499,12 @@
         "value": 31114,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 73.01,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -19304,6 +20588,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -19385,6 +20675,12 @@
         "value": 7778,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -19468,6 +20764,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -19543,6 +20845,12 @@
         "value": 2586,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 58.11,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -19644,6 +20952,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 90.4,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -19725,6 +21039,12 @@
         "value": 275072,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 4.59,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -19808,6 +21128,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 70.35,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -19889,6 +21215,12 @@
         "value": 69324,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -19972,6 +21304,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 60.87,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20053,6 +21391,12 @@
         "value": 36123,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -20136,6 +21480,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20217,6 +21567,12 @@
         "value": 26365,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 64.6,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -20300,6 +21656,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 73.17,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20381,6 +21743,12 @@
         "value": 67220,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.41,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -20482,6 +21850,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 98.85,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20563,6 +21937,12 @@
         "value": 192259,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 85.26,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -20664,6 +22044,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 69.92,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20746,6 +22132,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 41.19,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20804,6 +22196,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 60.05,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -20885,6 +22283,12 @@
         "value": 101366,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 95.39,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -20986,6 +22390,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 65.33,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21067,6 +22477,12 @@
         "value": 30828,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 41.74,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -21150,6 +22566,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 64.03,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21231,6 +22653,12 @@
         "value": 26422,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -21332,6 +22760,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21413,6 +22847,12 @@
         "value": 26922,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 36.12,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -21514,6 +22954,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 94.95,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21595,6 +23041,12 @@
         "value": 23509,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 40.63,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -21678,6 +23130,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 63.46,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21753,6 +23211,12 @@
         "value": 3755,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 66.28,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -21836,6 +23300,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 54.63,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21894,6 +23364,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -21976,6 +23452,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 40.2,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -22057,6 +23539,12 @@
         "value": 54652,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -22158,6 +23646,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -22239,6 +23733,12 @@
         "value": 26720,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 49.68,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -22322,6 +23822,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -22403,6 +23909,12 @@
         "value": 12391,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 50.32,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -22486,6 +23998,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 83.47,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -22567,6 +24085,12 @@
         "value": 50359,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -22650,6 +24174,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 77.36,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -22731,6 +24261,12 @@
         "value": 50961,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 60.51,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -22832,6 +24368,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 59.12,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -22913,6 +24455,12 @@
         "value": 92168,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 82.06,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -22996,6 +24544,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 77.21,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -23077,6 +24631,12 @@
         "value": 185271,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -23178,6 +24738,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 29.86,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -23260,6 +24826,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 92.98,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -23341,6 +24913,12 @@
         "value": 5421,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -23442,6 +25020,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 86.04,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -23523,6 +25107,12 @@
         "value": 16624,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 79.66,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -23624,6 +25214,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 98.08,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -23724,6 +25320,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 47.18,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -23823,6 +25425,12 @@
         "value": 2787,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 74.12,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -23970,6 +25578,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -24069,6 +25683,12 @@
         "value": 3721,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 69.29,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -24234,6 +25854,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -24315,6 +25941,12 @@
         "value": 15321,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 86.71,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -24416,6 +26048,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 45.76,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -24515,6 +26153,12 @@
         "value": 4092,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 99.14,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -24616,6 +26260,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -24697,6 +26347,12 @@
         "value": 29622,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 42.52,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -24780,6 +26436,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 74.16,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -24838,6 +26500,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -24919,6 +26587,12 @@
         "value": 38453,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 53.2,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -25020,6 +26694,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25120,6 +26800,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 71.82,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25201,6 +26887,12 @@
         "value": 35349,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 52.82,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -25284,6 +26976,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.53,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25365,6 +27063,12 @@
         "value": 283969,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 86.42,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -25506,6 +27210,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 54.82,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25544,6 +27254,12 @@
       "densidad": {
         "value": 9.52,
         "source": "Excel/INE",
+        "year": 2021,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 50.09,
+        "source": "Source CV",
         "year": 2021,
         "also": []
       }
@@ -25627,6 +27343,12 @@
         "value": 61030,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 25.11,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -25728,6 +27450,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 86.06,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25809,6 +27537,12 @@
         "value": 15563,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 75.71,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -25910,6 +27644,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 96.13,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -25991,6 +27731,12 @@
         "value": 25197,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -26092,6 +27838,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 82.59,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -26173,6 +27925,12 @@
         "value": 16817,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -26274,6 +28032,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 28.88,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -26373,6 +28137,12 @@
         "value": 7045,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 85.44,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -26474,6 +28244,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 42.34,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -26574,6 +28350,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 91.32,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -26655,6 +28437,12 @@
         "value": 3174,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -26756,6 +28544,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -26838,6 +28632,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 74.09,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -26919,6 +28719,12 @@
         "value": 9564,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 70.08,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -27020,6 +28826,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 20.39,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27101,6 +28913,12 @@
         "value": 34456,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -27202,6 +29020,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 93.26,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27302,6 +29126,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 42.27,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27383,6 +29213,12 @@
         "value": 63742,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 52.27,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -27484,6 +29320,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 61.61,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27565,6 +29407,12 @@
         "value": 51638,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 32.08,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -27666,6 +29514,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 88.86,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27765,6 +29619,12 @@
         "value": 3917,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -27866,6 +29726,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -27966,6 +29832,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 57.4,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28048,6 +29920,12 @@
         "source": "INE",
         "year": 2050,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 20.82,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28123,6 +30001,12 @@
         "value": 3616,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 38.77,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -28224,6 +30108,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.08,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28305,6 +30195,12 @@
         "value": 52512,
         "source": "INE",
         "year": 2050,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 77,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -28406,6 +30302,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 81.24,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28505,6 +30407,12 @@
         "value": 3307,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 62.72,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -28606,6 +30514,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 82.03,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28705,6 +30619,12 @@
         "value": 4926,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 48.61,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -28806,6 +30726,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 50.44,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28864,6 +30790,12 @@
             "year": 2021
           }
         ]
+      },
+      "porcentaje_urbano_2021": {
+        "value": 65.5,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -28963,6 +30895,12 @@
         "value": 6317,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 64.39,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -29064,6 +31002,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 55.48,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -29164,6 +31108,12 @@
         "source": "sintético",
         "year": 2026,
         "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 10.4,
+        "source": "Source CV",
+        "year": 2021,
+        "also": []
       }
     }
   },
@@ -29263,6 +31213,12 @@
         "value": 5916,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 100,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }
@@ -29391,6 +31347,12 @@
         "value": 5824,
         "source": "sintético",
         "year": 2026,
+        "also": []
+      },
+      "porcentaje_urbano_2021": {
+        "value": 4.73,
+        "source": "Source CV",
+        "year": 2021,
         "also": []
       }
     }

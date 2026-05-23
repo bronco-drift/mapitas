@@ -1,337 +1,337 @@
-id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblacion_2020,poblacion_2026,poblacion_2050,poblacion_2021,area_km2,densidad,capital,idh,pib_total_mm_usd,pib_per_capita_usd
-92452058B38977236110472,ve_miranda_acevedo,Acevedo,Municipio Acevedo,VE-M,Miranda,89673,99810,104150,108329,108299,1879,57.63,Caucagua,0.765,1583.28,6423
-92452058B57596479619194,ve_apure_achaguas,Achaguas,Municipio Achaguas,VE-C,Apure,64856,80534,89748,116441,72802,15754,4.62,Achaguas,0.569,162.03,1742
-92452058B11954780234519,ve_portuguesa_agua_blanca,Agua Blanca,Municipio Agua Blanca,VE-P,Portuguesa,21012,24496,26481,31897,26512,199,133.22,Agua Blanca,,,
-92452058B20734367983151,ve_monagas_aguasay,Aguasay,Municipio Aguasay,VE-N,Monagas,11647,13308,14061,16291,16739,2504,6.68,Aguasay,,,
-92452058B83946856745535,ve_merida_alberto_adriani,Alberto Adriani,Municipio Alberto Adriani,VE-L,Mérida,136997,165458,181535,217249,164330,683,240.6,El Vigía,0.679,169.27,3605
-92452058B22632362075175,ve_barinas_alberto_arvelo_torrealba,Alberto Arvelo Torrealba,Municipio Alberto Arvelo Torrealba,VE-E,Barinas,40152,47869,52108,62958,54133,769,70.39,Sabaneta,,,
-92452058B38768688631563,ve_anzoategui_anaco,Anaco,Municipio Anaco,VE-B,Anzoátegui,130535,150478,161660,185719,162556,795,204.47,Anaco,0.69,289.9,3886
-92452058B98875483329913,ve_sucre_andres_mata,Andrés Mata,Municipio Andrés Mata,VE-R,Sucre,20416,23811,25777,32031,24818,454,54.66,San José de Aerocuar,,,
-92452058B1998456811231,ve_nueva_esparta_antolin_del_campo,Antolín del Campo,Municipio Antolín del Campo,VE-O,Nueva Esparta,,,,,35830,72,497.63,La Plaza de Paraguachí,,,
-92452058B74293045430698,ve_delta_amacuro_antonio_diaz,Antonio Díaz,Municipio Antonio Díaz,VE-Y,Delta Amacuro,26516,33388,38254,73444,42417,22746,7.86,Curiapo,,,
-92452058B75275574170386,ve_barinas_antonio_jose_de_sucre,Antonio José de Sucre,Municipio Antonio José de Sucre,VE-E,Barinas,77712,90620,97339,111484,96337,2975,32.38,Socopó,,,
-92452058B76772094645860,ve_merida_antonio_pinto_salinas,Antonio Pinto Salinas,Municipio Antonio Pinto Salinas,VE-L,Mérida,24277,29115,31810,37451,31073,348,89.29,Santa Cruz de Mora,0.67,426.52,3416
-92452058B88247068668405,ve_tachira_antonio_romulo_costa,Antonio Rómulo Costa,Municipio Antonio Rómulo Costa,VE-S,Táchira,10378,11288,11805,14202,13333,146,91.32,Las Mesas,,,
-92452058B2608246233639,ve_cojedes_anzoategui,Anzoátegui,Municipio Anzoátegui,VE-H,Cojedes,16762,18775,19820,23452,23019,831,27.7,Cojedes,,,
-92452058B83392643498369,ve_anzoategui_aragua,Aragua,Municipio Aragua,VE-B,Anzoátegui,28859,35409,39490,52667,35659,2624,13.58,Aragua de Barcelona,0.7,218.04,4166
-92452058B8973005468773,ve_portuguesa_araure,Araure,Municipio Araure,VE-P,Portuguesa,166288,198267,216694,266775,180812,640,282.51,Araure,,,
-92452058B92699654861711,ve_merida_aricagua,Aricagua,Municipio Aricagua,VE-L,Mérida,4259,5068,5512,6371,6119,790,7.74,Aricagua,0.634,62.01,2686
-92452058B45353491303676,ve_yaracuy_aristides_bastidas,Arístides Bastidas,Municipio Arístides Bastidas,VE-U,Yaracuy,21114,25548,28136,35267,25234,74,341,San Pablo,,,
-92452058B11237040354260,ve_merida_arzobispo_chacon,Arzobispo Chacón,Municipio Arzobispo Chacón,VE-L,Mérida,13206,15648,16975,19419,15478,1659,9.32,Canaguá,0.637,63.06,2736
-92452058B65922817978550,ve_amazonas_autonomo_alto_orinoco,Autónomo Alto Orinoco,Municipio Autónomo Alto Orinoco,VE-Z,Amazonas,12814,16074,18222,28127,14492,50850,0.28,La Esmeralda,0.579,59.36,1858
-92452058B96252003881726,ve_amazonas_autonomo_atabapo,Autónomo Atabapo,Municipio Autónomo Atabapo,VE-Z,Amazonas,9348,11929,13669,22083,10667,25900,0.41,San Fernando de Atabapo,0.591,54.65,2013
-92452058B12581966052082,ve_amazonas_autonomo_atures,Autónomo Atures,Municipio Autónomo Atures,VE-Z,Amazonas,111194,147924,171537,260628,128153,4500,28.47,Puerto Ayacucho,0.655,269.35,3092
-92452058B84571882758287,ve_amazonas_autonomo_autana,Autónomo Autana,Municipio Autónomo Autana,VE-Z,Amazonas,8821,11347,13066,21538,9620,15750,0.61,Isla Ratón,0.619,20.02,2418
-92452058B42172892239758,ve_amazonas_autonomo_manapiare,Autónomo Manapiare,Municipio Autónomo Manapiare,VE-Z,Amazonas,7966,10040,11418,17904,8841,33100,0.26,San Juan de Manapiare,0.593,4.69,2045
-92452058B1963066211404,ve_amazonas_autonomo_maroa,Autónomo Maroa,Municipio Autónomo Maroa,VE-Z,Amazonas,2050,2641,3046,5058,2326,14250,0.16,Maroa,0.599,10.79,2126
-92452058B35318903418648,ve_amazonas_autonomo_rio_negro,Autónomo Río Negro,Municipio Autónomo Río Negro,VE-Z,Amazonas,2326,2938,3350,5315,2581,39150,0.06,San Carlos de Río Negro,0.615,42.96,2368
-92452058B12744919392555,ve_tachira_ayacucho,Ayacucho,Municipio Ayacucho,VE-S,Táchira,58134,62513,64931,75961,67590,507,133.31,Colón,,,
-92452058B6439374620840,ve_zulia_baralt,Baralt,Municipio Baralt,VE-V,Zulia,90634,105877,114166,139560,112432,2211,50.85,San Timoteo,0.74,1662.47,5423
-92452058B44291856842988,ve_barinas_barinas,Barinas,Municipio Barinas,VE-E,Barinas,351036,427863,471914,600501,495578,3304,149.99,Barinas,0.664,1563.72,3265
-92452058B98941669377363,ve_miranda_baruta,Baruta,Municipio Baruta,VE-M,Miranda,335557,377558,396537,423229,273755,86,3183.19,Baruta,0.741,1280.41,5461
-92452058B13726471401889,ve_carabobo_bejuma,Bejuma,Municipio Bejuma,VE-G,Carabobo,47811,53496,56142,63409,56275,469,119.98,Bejuma,0.74,1437.41,5447
-92452058B36691786068251,ve_sucre_benitez,Benítez,Municipio Benítez,VE-R,Sucre,32735,37542,40236,48024,38501,2733,14.08,El Pilar,,,
-92452058B25789635219154,ve_sucre_bermudez,Bermúdez,Municipio Bermúdez,VE-R,Sucre,145850,167187,179131,213539,170052,203,837.69,Carúpano,,,
-92452058B20804490373380,ve_apure_biruaca,Biruaca,Municipio Biruaca,VE-C,Apure,61522,76553,85420,111391,66782,1281,52.13,Biruaca,0.546,75.33,1491
-92452058B89474674930128,ve_trujillo_bocono,Boconó,Municipio Boconó,VE-T,Trujillo,91387,109078,118833,140900,103717,1365,75.98,Boconó,,,
-92452058B25759098564616,ve_miranda_brion,Brión,Municipio Brión,VE-M,Miranda,62643,69938,73111,76604,72520,531,136.57,Higuerote,0.759,996.71,6157
-92452058B76566791733610,ve_yaracuy_bruzual,Bruzual,Municipio Bruzual,VE-U,Yaracuy,73039,86161,93451,110188,83862,417,201.1,Chivacoa,,,
-92452058B24669849330150,ve_falcon_buchivacoa,Buchivacoa,Municipio Buchivacoa,VE-I,Falcón,22991,27170,29554,35567,27932,2657,10.51,Capatárida,,,
-92452058B89590794968656,ve_miranda_buroz,Buroz,Municipio Buroz,VE-M,Miranda,27866,30918,32202,33240,34203,198,172.74,Mamporal,0.742,520.65,5515
-92452058B12886197889450,ve_zulia_cabimas,Cabimas,Municipio Cabimas,VE-V,Zulia,272995,312063,332141,385372,326738,655,498.83,Cabimas,0.744,1249.24,5597
-92452058B31160427054809,ve_falcon_cacique_manaure,Cacique Manaure,Municipio Cacique Manaure,VE-I,Falcón,11020,12919,13986,16520,13918,190,73.25,Yaracal,,,
-92452058B36515365287716,ve_sucre_cajigal,Cajigal,Municipio Cajigal,VE-R,Sucre,21796,25474,27613,34484,27069,365,74.16,Yaguaraparo,,,
-92452058B96430954073814,ve_guarico_camaguan,Camaguán,Municipio Camaguán,VE-J,Guárico,25580,31371,34771,42909,30122,1164,25.87,Camaguán,,,
-92452058B18446749128605,ve_aragua_camatagua,Camatagua,Municipio Camatagua,VE-D,Aragua,17232,19456,20597,24310,27991,780,35.88,Camatagua,0.652,489.77,3027
-92452058B73225783388147,ve_merida_campo_elias,Campo Elías,Municipio Campo Elías,VE-L,Mérida,108188,132332,146295,180398,119614,609,196.41,Ejido,0.7,87.95,4150
-92452058B32887557209533,ve_trujillo_candelaria,Candelaria,Municipio Candelaria,VE-T,Trujillo,29505,35144,38241,45142,33348,411,81.13,Chejendé,,,
-92452058B9406045296169,ve_merida_caracciolo_parra_olmedo,Caracciolo Parra Olmedo,Municipio Caracciolo Parra Olmedo,VE-L,Mérida,28206,33423,36254,41469,35714,689,51.83,Tucaní,0.698,153.2,4111
-92452058B98251546128304,ve_trujillo_carache,Carache,Municipio Carache,VE-T,Trujillo,29598,34814,37597,43065,32160,957,33.6,Carache,,,
-92452058B92131040648268,ve_merida_cardenal_quintero,Cardenal Quintero,Municipio Cardenal Quintero,VE-L,Mérida,9696,11480,12447,14213,11617,350,33.19,Santo Domingo,0.683,105.29,3722
-92452058B54071015831659,ve_tachira_cardenas,Cárdenas,Municipio Cárdenas,VE-S,Táchira,125702,138402,145757,179733,139002,262,530.54,Táriba,,,
-92452058B25550874950140,ve_monagas_caripe,Caripe,Municipio Caripe,VE-N,Monagas,33499,38586,40970,48400,40965,573,71.49,Caripe,,,
-92452058B62251986707273,ve_falcon_carirubana,Carirubana,Municipio Carirubana,VE-I,Falcón,252206,292427,314340,359516,310730,684,454.28,Punto Fijo,,,
-92452058B19178625121823,ve_bolivar_caroni,Caroní,Municipio Caroní,VE-F,Bolívar,803299,950012,1033036,1212615,831264,1612,515.67,Ciudad Guayana,0.71,708.42,4437
-92452058B35839392546530,ve_miranda_carrizal,Carrizal,Municipio Carrizal,VE-M,Miranda,52681,58821,61494,64443,60392,32,1887.25,Carrizal,0.727,740.18,4981
-92452058B8554820713404,ve_delta_amacuro_casacoima,Casacoima,Municipio Casacoima,VE-Y,Delta Amacuro,32669,40692,46309,86391,38839,2921,13.29,Sierra Imataca,,,
-92452058B12262203467904,ve_zulia_catatumbo,Catatumbo,Municipio Catatumbo,VE-V,Zulia,40346,47167,50882,62311,49117,5225,9.4,Encontrados,0.723,974.96,4848
-92452058B92934117405956,ve_miranda_chacao,Chacao,Municipio Chacao,VE-M,Miranda,71330,80011,83879,88880,68985,13,5306.53,Chacao,0.733,1025.39,5168
-92452058B96684435366560,ve_guarico_chaguaramas,Chaguaramas,Municipio Chaguaramas,VE-J,Guárico,14324,17728,19758,24921,17095,2069,8.15,Chaguaramas,,,
-92452058B26692301480200,ve_yaracuy_cocorote,Cocorote,Municipio Cocorote,VE-U,Yaracuy,44473,52803,57495,68864,52444,135,388.47,Cocorote,,,
-92452058B212448851474,ve_falcon_colina,Colina,Municipio Colina,VE-I,Falcón,42671,49295,52897,60297,48451,582,83.24,La Vela de Coro,,,
-92452058B89776134514459,ve_zulia_colon,Colón,Municipio Colón,VE-V,Zulia,126359,145301,155203,182680,157067,3368,46.63,San Carlos del Zulia,0.746,1357.14,5649
-92452058B51720127769836,ve_tachira_cordoba,Córdoba,Municipio Córdoba,VE-S,Táchira,32992,35452,36808,43002,38372,619,61.99,Santa Ana,,,
-92452058B43990033715561,ve_lara_crespo,Crespo,Municipio Crespo,VE-K,Lara,,,,,58960,875,67.38,Duaca,0.724,833.91,4896
-92452058B19007337502862,ve_miranda_cristobal_rojas,Cristóbal Rojas,Municipio Cristóbal Rojas,VE-M,Miranda,131622,147149,153953,161829,140596,120,1171.63,Charallave,0.761,879.72,6244
-92452058B3115924902263,ve_barinas_cruz_paredes,Cruz Paredes,Municipio Cruz Paredes,VE-E,Barinas,24929,29642,32216,38680,32648,778,41.96,Barrancas,,,
-92452058B32391304036894,ve_sucre_cruz_salmeron_acosta,Cruz Salmerón Acosta,Municipio Cruz Salmerón Acosta,VE-R,Sucre,36975,42390,45421,54163,44811,612,73.22,Araya,,,
-92452058B15505529275902,ve_falcon_dabajuro,Dabajuro,Municipio Dabajuro,VE-I,Falcón,23810,28117,30571,36729,28009,1144,24.48,Dabajuro,,,
-92452058B27987332660152,ve_falcon_democracia,Democracia,Municipio Democracia,VE-I,Falcón,10392,11894,12692,14156,12415,2602,4.77,Pedregal,,,
-92452058B72966397381157,ve_nueva_esparta_diaz,Díaz,Municipio Díaz,VE-O,Nueva Esparta,,,,,88696,166,534.31,San Juan Bautista,,,
-92452058B45156381863749,ve_carabobo_diego_ibarra,Diego Ibarra,Municipio Diego Ibarra,VE-G,Carabobo,101875,116142,123257,145494,130961,79,1657.73,Mariara,0.714,1033.59,4576
-92452058B65625562328801,ve_bolivar_el_callao,El Callao,Municipio El Callao,VE-F,Bolívar,22957,26863,29026,33219,26963,2223,12.12,El Callao,0.644,424.6,2858
-92452058B59483171465423,ve_miranda_el_hatillo,EL Hatillo,Municipio EL Hatillo,VE-M,Miranda,84362,93970,98100,102221,82439,81,1017.76,El Hatillo,0.706,742.26,4322
-92452058B23928909517794,ve_guarico_el_socorro,El Socorro,Municipio El Socorro,VE-J,Guárico,17217,20914,23046,27793,21809,2659,8.2,El Socorro,,,
-92452058B55958295548986,ve_trujillo_escuque,Escuque,Municipio Escuque,VE-T,Trujillo,28967,34560,37644,44616,33031,165,200.18,Escuque,,,
-92452058B46678467131598,ve_portuguesa_esteller,Esteller,Municipio Esteller,VE-P,Portuguesa,44726,52098,56277,67439,54303,754,72.01,Píritu,,,
-92452058B41516758992982,ve_falcon_federacion,Federación,Municipio Federación,VE-I,Falcón,29862,35390,38561,46716,35135,1084,32.41,Churuguara,,,
-92452058B4465653427750,ve_tachira_fernandez_feo,Fernández Feo,Municipio Fernández Feo,VE-S,Táchira,44876,48894,51184,61775,53939,1084,49.75,San Rafael del Piñal,,,
-92452058B62931079063514,ve_anzoategui_francisco_del_carmen_carvajal,Francisco del Carmen Carvajal,Municipio Francisco del Carmen Carvajal,VE-B,Anzoátegui,14526,16388,17381,18975,20804,125,166.43,Valle de Guanape,0.665,90.91,3305
-92452058B43821030143886,ve_zulia_francisco_javier_pulgar,Francisco Javier Pulgar,Municipio Francisco Javier Pulgar,VE-V,Zulia,33236,38051,40537,47216,42259,800,52.82,Pueblo Nuevo El Chivo,0.717,709.57,4659
-92452058B79162136428337,ve_aragua_francisco_linares_alcantara,Francisco Linares Alcántara,Municipio Francisco Linares Alcántara,VE-D,Aragua,127459,141351,148044,167392,149360,24,6223.33,Santa Rita,0.683,317.03,3712
-92452058B94720386415889,ve_nueva_esparta_garcia,García,Municipio García,VE-O,Nueva Esparta,,,,,80441,85,946.36,El Valle del Espíritu Santo,,,
-92452058B38365579478512,ve_tachira_garcia_de_hevia,García de Hevia,Municipio García de Hevia,VE-S,Táchira,47694,52407,55141,67890,63736,911,69.96,La Fría,,,
-92452058B72866558471416,ve_nueva_esparta_gomez,Gómez,Municipio Gómez,VE-O,Nueva Esparta,,,,,49814,96,518.89,Santa Ana,,,
-92452058B73629823948973,ve_bolivar_gran_sabana,Gran Sabana,Municipio Gran Sabana,VE-F,Bolívar,34302,40263,43585,50251,34309,32990,1.03,Santa Elena de Uairén,0.671,341.47,3430
-92452058B76847227335777,ve_carabobo_guacara,Guacara,Municipio Guacara,VE-G,Carabobo,176658,198883,209477,239905,213815,165,1295.84,Guacara,0.708,800.74,4390
-92452058B8376465303279,ve_miranda_guaicaipuro,Guaicaipuro,Municipio Bolivariano Guaicaipuro,VE-M,Miranda,267654,302006,317722,341404,287664,661,435.19,Los Teques,0.76,3476.73,6214
-92452058B33473960581249,ve_portuguesa_guanare,Guanare,Municipio Guanare,VE-P,Portuguesa,202281,235997,254645,298597,244050,2008,121.53,Guanare,,,
-92452058B74462864631262,ve_portuguesa_guanarito,Guanarito,Municipio Guanarito,VE-P,Portuguesa,37674,44234,48013,58662,47667,3103,15.36,Guanarito,,,
-92452058B94128330205113,ve_anzoategui_guanta,Guanta,Municipio Guanta,VE-B,Anzoátegui,31893,38605,42706,55145,38200,67,570.14,Guanta,0.672,103.23,3455
-92452058B8560426021820,ve_merida_guaraque,Guaraque,Municipio Guaraque,VE-L,Mérida,9087,10872,11863,13891,11533,533,21.63,Guaraque,0.62,81.01,2448
-92452058B12619730938493,ve_tachira_guasimos,Guasimos,Municipio Guasimos,VE-S,Táchira,43677,48087,50654,62659,51029,32,1594.65,Palmira,,,
-92452058B41510746407735,ve_bolivar_angostura_del_orinoco,Angostura del Orinoco,Municipio Angostura del Orinoco (ex Heres),VE-F,Bolívar,373572,440396,477970,556788,395176,5851,67.36,Ciudad Bolívar,0.66,344.9,3177
-92452058B63992196257399,ve_lara_iribarren,Iribarren,Municipio Iribarren,VE-K,Lara,,,,,1225175,2760,443.9,Barquisimeto,0.739,5120.87,5407
-92452058B13526806799320,ve_falcon_jacura,Jacura,Municipio Jacura,VE-I,Falcón,11243,13353,14570,17755,13046,1842,7.08,Jacura,,,
-92452058B82426430242133,ve_tachira_jauregui,Jáuregui,Municipio Jáuregui,VE-S,Táchira,40683,44762,47135,58224,48172,444,108.49,La Grita,,,
-92452058B2023603244390,ve_zulia_jesus_enrique_lossada,Jesús Enrique Lossada,Municipio Jesús Enrique Lossada,VE-V,Zulia,119110,135586,143949,165356,147280,3533,41.68,La Concepción,0.753,579.2,5910
-92452058B27709882446555,ve_zulia_jesus_maria_semprum,Jesús María Semprum,Municipio Jesús María Semprum,VE-V,Zulia,30569,34518,36469,41091,38671,6003,6.44,Casigua El Cubo,0.759,676.47,6150
-92452058B9761229691883,ve_lara_jimenez,Jimenez,Municipio Jimenez,VE-K,Lara,,,,,113647,768,147.97,Quibor,0.672,260.11,3458
-92452058B12753025075780,ve_aragua_jose_angel_lamas,José Ángel Lamas,Municipio José Ángel Lamas,VE-D,Aragua,33605,36695,38076,41485,39191,20,1959.55,Santa Cruz,0.635,69.94,2704
-92452058B17559996625330,ve_yaracuy_jose_antonio_paez,José Antonio Páez,Municipio José Antonio Páez,VE-U,Yaracuy,19985,24262,26773,33824,23806,135,176.34,Sabana de Parra,,,
-92452058B50490503212565,ve_trujillo_jose_felipe_marquez_canizales,José Felipe Márquez Cañizales,Municipio José Felipe Márquez Cañizales,VE-T,Trujillo,4761,5748,6316,7816,6656,648,10.27,El Paradero,,,
-92452058B25382681816620,ve_aragua_jose_felix_ribas,José Félix Ribas,Municipio José Félix Ribas,VE-D,Aragua,152639,167789,174806,193523,175108,419,417.91,La Victoria,0.669,200.09,3379
-92452058B71126113854602,ve_guarico_jose_felix_ribas,José Félix Ribas,Municipio José Félix Ribas,VE-J,Guárico,38259,46682,51582,62875,48731,2792,17.45,Tucupido,,,
-92452058B4239970506529,ve_anzoategui_jose_gregorio_monagas,José Gregorio Monagas,Municipio José Gregorio Monagas,VE-B,Anzoátegui,17808,19811,20835,21993,21731,9176,2.36,Mapire,0.67,104.34,3395
-92452058B29935113777127,ve_tachira_jose_maria_vargas,José María Vargas,Municipio José María Vargas,VE-S,Táchira,10134,10876,11283,13147,13543,85,159.32,El Cobre,,,
-92452058B98714042459160,ve_aragua_jose_rafael_revenga,José Rafael Revenga,Municipio José Rafael Revenga,VE-D,Aragua,51012,56604,59304,67150,64200,192,334.37,El Consejo,0.637,130.68,2733
-92452058B4495474982112,ve_guarico_jose_tadeo_monagas,José Tadeo Monagas,Municipio José Tadeo Monagas,VE-J,Guárico,77073,95664,106791,135551,92032,3455,26.63,Altagracia de Orituco,,,
-92452058B55780217800828,ve_anzoategui_juan_antonio_sotillo,Juan Antonio Sotillo,Municipio Juan Antonio Sotillo,VE-B,Anzoátegui,252794,306481,339116,435826,296899,244,1216.79,Puerto La Cruz,0.653,1321.46,3042
-92452058B78447057272703,ve_guarico_juan_german_roscio,Juan Germán Roscio,Municipio Juan Germán Roscio,VE-J,Guárico,136597,168459,187326,234101,159302,1497,106.41,San Juan de los Morros,,,
-92452058B38139614361819,ve_carabobo_juan_jose_mora,Juan José Mora,Municipio Juan José Mora,VE-G,Carabobo,69332,77940,82023,93667,80496,453,177.69,Morón,0.739,1219.57,5382
-92452058B8931930020089,ve_anzoategui_juan_manuel_cajigal,Juan Manuel Cajigal,Municipio Juan Manuel Cajigal,VE-B,Anzoátegui,13505,16218,17856,22636,18471,1741,10.6,Onoto,0.629,79.42,2598
-92452058B66607033591065,ve_trujillo_juan_vicente_campo_elias,Juan Vicente Campo Elías,Municipio Juan Vicente Campo Elías,VE-T,Trujillo,5519,6514,7049,8142,7356,98,75.06,Campo Elías,,,
-92452058B78980927741565,ve_guarico_julian_mellado,Julián Mellado,Municipio Julián Mellado,VE-J,Guárico,27996,34124,37682,45818,36572,2983,12.26,El Sombrero,,,
-92452058B92522690941110,ve_merida_julio_cesar_salas,Julio César Salas,Municipio Julio César Salas,VE-L,Mérida,14662,17455,18986,21960,18389,202,91.03,Arapuey,0.709,209.59,4421
-92452058B9885086190441,ve_tachira_junin,Junín,Municipio Junín,VE-S,Táchira,87979,93197,95937,108295,96402,208,463.47,Rubio,,,
-92452058B97313175950957,ve_merida_justo_briceno,Justo Briceño,Municipio Justo Briceño,VE-L,Mérida,4894,5921,6504,7820,6082,509,11.94,Torondoy,0.643,88.27,2840
-92452058B23774185756617,ve_zulia_la_canada_de_urdaneta,La Cañada de Urdaneta,Municipio La Cañada de Urdaneta,VE-V,Zulia,81924,95311,102520,124095,106819,2073,51.52,Concepción,0.708,641.89,4377
-92452058B17411594659204,ve_trujillo_la_ceiba,La Ceiba,Municipio La Ceiba,VE-T,Trujillo,20896,24574,26536,30384,24032,386,62.25,Santa Apolonia,,,
-92452058B64371118688426,ve_yaracuy_la_trinidad,La Trinidad,Municipio La Trinidad,VE-U,Yaracuy,17944,21588,23695,29297,20392,62,328.9,Boraure,,,
-92452058B81914214166984,ve_zulia_lagunillas,Lagunillas,Municipio Lagunillas,VE-V,Zulia,203563,227902,239551,264326,271289,1024,264.93,Ciudad Ojeda,0.747,1002.65,5695
-92452058B34599827545063,ve_miranda_lander,Lander,Municipio Lander,VE-M,Miranda,157816,178093,187376,201420,215445,478,450.72,Ocumare del Tuy,0.745,320.69,5598
-92452058B67436429291477,ve_guarico_las_mercedes,Las Mercedes,Municipio Las Mercedes,VE-J,Guárico,35019,42017,45963,53819,41106,7691,5.34,Las Mercedes,,,
-92452058B88324768545293,ve_guarico_leonardo_infante,Leonardo Infante,Municipio Leonardo Infante,VE-J,Guárico,129740,159483,177004,219535,154684,10613,14.57,Valle de La Pascua,,,
-92452058B80910187087135,ve_cojedes_lima_blanco,Lima Blanco,Municipio Lima Blanco,VE-H,Cojedes,9287,10551,11235,13757,14377,127,113.2,Macapo,,,
-92452058B92766796026281,ve_tachira_lobatera,Lobatera,Municipio Lobatera,VE-S,Táchira,13203,14041,14488,16516,16654,216,77.1,Lobatera,,,
-92452058B64111630674136,ve_carabobo_los_guayos,Los Guayos,Municipio Los Guayos,VE-G,Carabobo,151332,168525,176355,196867,192582,64,3009.09,Los Guayos,0.75,1032.99,5807
-92452058B35086054619694,ve_miranda_los_salias,Los Salias,Municipio Los Salias,VE-M,Miranda,70630,79056,82770,87255,75166,51,1473.84,San Antonio de los Altos,0.728,467.9,5022
-92452058B87386897899112,ve_falcon_los_taques,Los Taques,Municipio Los Taques,VE-I,Falcón,41881,48229,51655,58440,54132,231,234.33,Santa Cruz de Los Taques,,,
-92452058B61168539952553,ve_zulia_machiques_de_perija,Machiques de Perijá,Municipio Machiques de Perijá,VE-V,Zulia,124600,141976,150820,173659,147627,9493,15.55,Machiques,0.769,1181.01,6602
-92452058B84467790604965,ve_nueva_esparta_maneiro,Maneiro,Municipio Maneiro,VE-O,Nueva Esparta,,,,,54828,35,1566.51,Pampatar,,,
-92452058B81602658617496,ve_anzoategui_manuel_ezequiel_bruzual,Manuel Ezequiel Bruzual,Municipio Manuel Ezequiel Bruzual,VE-B,Anzoátegui,32673,36751,38908,42171,39609,1566,25.29,Clarines,0.71,259.02,4454
-92452058B96786834235834,ve_yaracuy_manuel_monge,Manuel Monge,Municipio Manuel Monge,VE-U,Yaracuy,13186,15661,17057,20447,18017,474,38.01,Yumare,,,
-92452058B70966506034681,ve_zulia_mara,Mara,Municipio Mara,VE-V,Zulia,207492,230409,240997,260701,252988,3588,70.5,San Rafael de El Moján,0.776,13660.02,6899
-92452058B74108168136268,ve_zulia_maracaibo,Maracaibo,Municipio Maracaibo,VE-V,Zulia,1522765,1776686,1914382,2333285,1624210,419,3876.39,Maracaibo,0.75,127.79,5816
-92452058B26998381958141,ve_nueva_esparta_marcano,Marcano,Municipio Marcano,VE-O,Nueva Esparta,,,,,45782,40,1144.55,Juan Griego,,,
-92452058B60789568646042,ve_aragua_mario_briceno_iragorry,Mario Briceño Iragorry,Municipio Mario Briceño Iragorry,VE-D,Aragua,104241,115950,121658,138550,136784,53,2580.83,El Limón,0.708,209.79,4377
-92452058B57031672069031,ve_monagas_maturin,Maturín,Municipio Maturín,VE-N,Monagas,538627,623400,663302,785900,655423,13042,50.25,Maturín,,,
-92452058B8049854825221,ve_falcon_mauroa,Mauroa,Municipio Mauroa,VE-I,Falcón,24689,29420,32161,39475,30438,1904,15.98,Mene de Mauroa,,,
-92452058B9202349267506,ve_sucre_mejia,Mejía,Municipio Mejía,VE-R,Sucre,14579,16947,18310,22570,18144,298,60.88,San Antonio del Golfo,,,
-92452058B68094075186803,ve_tachira_michelena,Michelena,Municipio Michelena,VE-S,Táchira,18929,20539,21451,25657,22815,128,178.24,Michelena,,,
-92452058B75092813359951,ve_falcon_monsenor_iturriza,Monseñor Iturriza,Municipio Monseñor Iturriza,VE-I,Falcón,19662,23495,25728,31800,26970,907,29.73,Chichiriviche,,,
-92452058B41252647262147,ve_portuguesa_monsenor_jose_vicente_de_unda,Monseñor José Vicente de Unda,Municipio Monseñor José Vicente de Unda,VE-P,Portuguesa,23853,27919,30253,36772,29282,222,131.9,Paraíso de Chabasquén,,,
-92452058B69792739078610,ve_carabobo_montalban,Montalbán,Municipio Montalbán,VE-G,Carabobo,24987,29451,31886,40783,29977,107,280.15,Montalbán,0.718,541.82,4697
-92452058B96264628893767,ve_trujillo_monte_carmelo,Monte Carmelo,Municipio Monte Carmelo,VE-T,Trujillo,13563,15930,17188,19620,17381,386,45.02,Monte Carmelo,,,
-92452058B41395444182143,ve_sucre_montes,Montes,Municipio Montes,VE-R,Sucre,55471,64312,69377,84982,69696,1080,64.53,Cumanacoa,,,
-92452058B54957724737366,ve_lara_moran,Morán,Municipio Morán,VE-K,Lara,,,,,141556,2231,63.44,El Tocuyo,0.654,238.28,3060
-92452058B76648483747073,ve_trujillo_motatan,Motatán,Municipio Motatán,VE-T,Trujillo,21625,25437,27473,31476,38383,115,333.76,Motatán,,,
-92452058B76694277740413,ve_apure_munoz,Muñoz,Municipio Muñoz,VE-C,Apure,28929,35742,39710,50908,34703,7925,4.37,Bruzual,0.546,140.8,1492
-92452058B81521575667263,ve_carabobo_naguanagua,Naguanagua,Municipio Naguanagua,VE-G,Carabobo,171105,191093,200315,225123,178413,188,949,Naguanagua,0.741,694.31,5451
-92452058B44788675020047,ve_yaracuy_nirgua,Nirgua,Municipio Nirgua,VE-U,Yaracuy,61811,71159,76057,84525,68341,2274,30.05,Nirgua,,,
-92452058B83653348343735,ve_merida_obispo_ramos_de_lora,Obispo Ramos de Lora,Municipio Obispo Ramos de Lora,VE-L,Mérida,24960,29852,32562,38085,31919,321,99.43,Santa Elena de Arenales,0.703,50.57,4235
-92452058B50645357968703,ve_barinas_obispos,Obispos,Municipio Obispos,VE-E,Barinas,35662,42171,45682,54129,48601,1753,27.72,Obispos,,,
-92452058B86432153938912,ve_guarico_ortiz,Ortíz,Municipio Ortíz,VE-J,Guárico,24406,29526,32460,38769,29461,4129,7.13,Ortiz,,,
-92452058B37394705502377,ve_portuguesa_ospino,Ospino,Municipio Ospino,VE-P,Portuguesa,49678,57363,61644,72366,58127,1675,34.7,Ospino,,,
-92452058B20589241231515,ve_merida_padre_noguera,Padre Noguera,Municipio Padre Noguera,VE-L,Mérida,3186,3864,4250,5137,4628,206,22.46,Santa María de Caparo,0.7,41.36,4156
-92452058B54674524555313,ve_bolivar_padre_pedro_chien,Padre Pedro Chien,Municipio Padre Pedro Chien,VE-F,Bolívar,16732,19415,20873,23408,20031,2275,8.8,El Palmar,,,
-92452058B2415433423645,ve_lara_palavecino,Palavecino,Municipio Palavecino,VE-K,Lara,,,,,207494,440,471.57,Cabudare,0.707,366.19,4356
-92452058B80542411245757,ve_falcon_palmasola,Palmasola,Municipio Palmasola,VE-I,Falcón,7566,8808,9495,11030,8816,194,45.44,Palmasola,,,
-92452058B93497297495940,ve_trujillo_pampan,Pampán,Municipio Pampán,VE-T,Trujillo,51039,59657,64186,72427,65296,431,151.49,Pampán,,,
-92452058B5298065984570,ve_trujillo_pampanito,Pampanito,Municipio Pampanito,VE-T,Trujillo,29944,35847,39123,46740,37528,93,403.52,Pampanito,,,
-92452058B52691376316443,ve_tachira_panamericano,Panamericano,Municipio Panamericano,VE-S,Táchira,31686,34132,35490,41707,37198,569,65.37,Coloncito,,,
-92452058B64948290230997,ve_cojedes_pao_de_san_juan_bautista,Pao de San Juan Bautista,Municipio Pao de San Juan Bautista,VE-H,Cojedes,16547,18520,19543,23083,25300,5089,4.97,El Pao,,,
-92452058B42383806432363,ve_portuguesa_papelon,Papelón,Municipio Papelón,VE-P,Portuguesa,16906,19596,21112,25095,19219,2203,8.72,Papelón,,,
-92452058B74472117393048,ve_miranda_paz_castillo,Paz Castillo,Municipio Paz Castillo,VE-M,Miranda,116360,129215,134646,139273,132876,408,325.67,Santa Lucía,0.75,355.89,5787
-92452058B28830683582357,ve_delta_amacuro_pedernales,Pedernales,Municipio Pedernales,VE-Y,Delta Amacuro,6268,7996,9236,18352,9163,3537,2.59,Pedernales,,,
-92452058B9002130030249,ve_barinas_pedraza,Pedraza,Municipio Pedraza,VE-E,Barinas,63854,76949,84303,104518,79815,6693,11.92,Ciudad Bolivia,,,
-92452058B33564894721572,ve_apure_pedro_camejo,Pedro Camejo,Municipio Pedro Camejo,VE-C,Apure,33082,41296,46169,60683,35931,20519,1.75,San Juan de Payara,0.608,62.47,2256
-92452058B80975086584779,ve_miranda_pedro_gual,Pedro Gual,Municipio Pedro Gual,VE-M,Miranda,22293,24745,25777,26634,27151,925,29.35,Cúpira,0.752,376.92,5900
-92452058B2929237041778,ve_anzoategui_pedro_maria_freites,Pedro María Freites,Municipio Pedro María Freites,VE-B,Anzoátegui,79432,86001,88986,87996,88795,7153,12.41,Cantaura,0.646,100.96,2893
-92452058B18404635880934,ve_tachira_pedro_maria_urena,Pedro María Ureña,Municipio Pedro María Ureña,VE-S,Táchira,52130,56509,58977,70322,61930,184,336.57,Ureña,,,
-92452058B42535057202540,ve_nueva_esparta_peninsula_de_macanao,Península de Macanao,Municipio Península de Macanao,VE-O,Nueva Esparta,,,,,33597,331,101.5,Boca de Río,,,
-92452058B84020445528897,ve_yaracuy_pena,Peña,Municipio Peña,VE-U,Yaracuy,104229,126935,140332,178592,122942,510,241.06,Yaritagua,,,
-92452058B76742860274923,ve_falcon_petit,Petit,Municipio Petit,VE-I,Falcón,13659,16471,18134,22909,17471,1025,17.04,Cabure,,,
-92452058B28042998253075,ve_miranda_plaza,Plaza,Municipio Plaza,VE-M,Miranda,221308,248588,260820,277276,248945,180,1383.02,Guarenas,0.744,390.52,5596
-92452058B87022428114391,ve_merida_pueblo_llano,Pueblo Llano,Municipio Pueblo Llano,VE-L,Mérida,11088,13103,14190,16127,13185,89,148.14,Pueblo Llano,0.702,47.96,4225
-92452058B49984819466798,ve_carabobo_puerto_cabello,Puerto Cabello,Municipio Puerto Cabello,VE-G,Carabobo,181179,203373,213832,243195,182512,434,420.53,Puerto Cabello,0.744,279.51,5568
-92452058B62434885375481,ve_monagas_punceres,Punceres,Municipio Punceres,VE-N,Monagas,27487,30715,32022,35154,34760,754,46.1,Quiriquire,,,
-92452058B22086674211008,ve_trujillo_rafael_rangel,Rafael Rangel,Municipio Rafael Rangel,VE-T,Trujillo,23423,28178,30845,37288,28489,120,237.4,Betijoque,,,
-92452058B16072820149055,ve_tachira_rafael_urdaneta,Rafael Urdaneta,Municipio Rafael Urdaneta,VE-S,Táchira,5843,6263,6493,7543,7720,176,43.86,Delicias,,,
-92452058B37520710637751,ve_merida_rangel,Rangel,Municipio Rangel,VE-L,Mérida,19287,23312,25591,30698,25243,517,48.82,Mucuchíes,0.698,18.06,4117
-92452058B20928146308063,ve_bolivar_bolivariano_angostura,Bolivariano Angostura,Municipio Bolivariano Angostura (ex Raúl Leoni),VE-F,Bolívar,,,,,49070,56916,0.86,Ciudad Piar,,,
-92452058B50148622636911,ve_sucre_ribero,Ribero,Municipio Ribero,VE-R,Sucre,63514,72982,78309,93896,67930,1480,45.89,Cariaco,,,
-92452058B80982982494496,ve_cojedes_ricaurte,Ricaurte,Municipio Ricaurte,VE-H,Cojedes,12448,14020,14850,17804,18456,905,20.39,Libertad,,,
-92452058B96512574408350,ve_merida_rivas_davila,Rivas Dávila,Municipio Rivas Dávila,VE-L,Mérida,20407,24858,27413,33502,24264,182,133.31,Bailadores,0.703,45.81,4237
-92452058B50017946052118,ve_barinas_rojas,Rojas,Municipio Rojas,VE-E,Barinas,39530,46498,50208,58733,49747,1591,31.26,Libertad,,,
-92452058B8421162175114,ve_zulia_rosario_de_perija,Rosario de Perijá,Municipio Rosario de Perijá,VE-V,Zulia,84945,99190,106929,130584,106879,3914,27.3,La Villa del Rosario,0.772,135.19,6701
-92452058B73572326911249,ve_bolivar_roscio,Roscio,Municipio Roscio,VE-F,Bolívar,24584,28931,31365,36386,27788,6182,4.49,Guasipati,0.658,133.12,3143
-92452058B70531962129306,ve_tachira_samuel_dario_maldonado,Samuel Darío Maldonado,Municipio Samuel Darío Maldonado,VE-S,Táchira,18275,19933,20882,25287,22051,548,40.23,La Tendida,,,
-92452058B56896825974617,ve_cojedes_san_carlos,San Carlos,Municipio San Carlos,VE-H,Cojedes,,,,,140256,1843,76.1,San Carlos,,,
-92452058B7770981704076,ve_aragua_san_casimiro,San Casimiro,Municipio San Casimiro,VE-D,Aragua,25885,28514,29744,33098,35103,498,70.48,San Casimiro,0.67,52.54,3397
-92452058B43927171867078,ve_tachira_san_cristobal,San Cristóbal,Municipio San Cristóbal,VE-S,Táchira,272862,289852,298816,338872,302203,241,1253.95,San Cristóbal,,,
-92452058B11643433355356,ve_carabobo_san_diego,San Diego,Municipio San Diego,VE-G,Carabobo,109969,124191,131056,151267,126101,106,1189.63,San Diego,0.74,359.73,5436
-92452058B12167323137967,ve_yaracuy_san_felipe,San Felipe,Municipio San Felipe,VE-U,Yaracuy,107079,130411,144179,183502,145783,472,308.86,San Felipe,,,
-92452058B92725802185650,ve_apure_san_fernando,San Fernando,Municipio San Fernando,VE-C,Apure,185991,231595,258512,337379,218583,5982,36.54,San Fernando de Apure,0.665,737.36,3300
-92452058B46833609539382,ve_portuguesa_san_genaro_de_boconoito,San Genaro de Boconoito,Municipio San Genaro de Boconoito,VE-P,Portuguesa,23591,27486,29702,35714,29480,1031,28.59,Boconoito,,,
-92452058B34439964520942,ve_guarico_san_geronimo_de_guayabal,San Gerónimo de Guayabal,Municipio San Gerónimo de Guayabal,VE-J,Guárico,20210,24476,26924,32240,25263,4357,5.79,Guayabal,,,
-92452058B39139174954008,ve_anzoategui_san_jose_de_guanipa,San José de Guanipa,Municipio San José de Guanipa,VE-B,Anzoátegui,77695,83092,85341,81920,98940,792,124.92,San José de Guanipa,0.629,69.01,2588
-92452058B33294183212252,ve_guarico_san_jose_de_guaribe,San José de Guaribe,Municipio San José de Guaribe,VE-J,Guárico,11895,14321,15699,18535,14294,1128,12.67,San José de Guaribe,,,
-92452058B1316533147896,ve_anzoategui_san_juan_de_capistrano,San Juan de Capistrano,Municipio San Juan de Capistrano,VE-B,Anzoátegui,9214,10904,11900,14568,12886,123,104.76,Boca de Uchire,0.674,128.52,3498
-92452058B86499403972529,ve_tachira_san_judas_tadeo,San Judas Tadeo,Municipio San Judas Tadeo,VE-S,Táchira,7531,8000,8251,9381,9914,253,39.18,Umuquena,,,
-92452058B93532552722104,ve_trujillo_san_rafael_de_carvajal,San Rafael de Carvajal,Municipio San Rafael de Carvajal,VE-T,Trujillo,60329,72854,79926,97443,65882,77,855.61,Carvajal,,,
-92452058B4017095457162,ve_portuguesa_san_rafael_de_onoto,San Rafael de Onoto,Municipio San Rafael de Onoto,VE-P,Portuguesa,18840,21773,23417,27642,23684,187,126.65,San Rafael de Onoto,,,
-92452058B52538048181152,ve_aragua_san_sebastian,San Sebastián,Municipio San Sebastián,VE-D,Aragua,24111,26576,27731,30898,31567,491,64.29,San Sebastián de Los Reyes,0.635,73.25,2689
-92452058B10612874136761,ve_anzoategui_santa_ana,Santa Ana,Municipio Santa Ana,VE-B,Anzoátegui,9644,11518,12639,15814,12659,1184,10.69,Santa Ana,0.67,66.07,3413
-92452058B64727210967891,ve_monagas_santa_barbara,Santa Bárbara,Municipio Santa Bárbara,VE-N,Monagas,9388,10860,11561,13800,13116,588,22.3,Santa Bárbara,,,
-92452058B50688374743402,ve_guarico_santa_maria_de_ipire,Santa María de Ipire,Municipio Santa María de Ipire,VE-J,Guárico,13238,16171,17881,21856,15957,4549,3.47,Santa María de Ipire,,,
-92452058B66316473888275,ve_zulia_santa_rita,Santa Rita,Municipio Santa Rita,VE-V,Zulia,59867,67108,70594,78154,78107,578,135.13,Santa Rita,0.744,209.73,5581
-92452058B3851867727254,ve_portuguesa_santa_rosalia,Santa Rosalía,Municipio Santa Rosalía,VE-P,Portuguesa,17721,20612,22254,26671,22669,1029,22.03,El Playón,,,
-92452058B98840878188065,ve_aragua_santiago_marino,Santiago Mariño,Municipio Santiago Mariño,VE-D,Aragua,223088,245849,256519,285707,266945,497,537.11,Turmero,0.67,55.91,3403
-92452058B16352791962773,ve_merida_santos_marquina,Santos Marquina,Municipio Santos Marquina,VE-L,Mérida,19406,23625,26045,31782,21638,192,112.69,Tabay,0.677,33.26,3579
-92452058B40538109508806,ve_aragua_santos_michelena,Santos Michelena,Municipio Santos Michelena,VE-D,Aragua,40343,43445,44707,47110,45436,220,206.52,Las Tejerías,0.642,38.79,2827
-92452058B21195677528356,ve_tachira_seboruco,Seboruco,Municipio Seboruco,VE-S,Táchira,10233,11084,11564,13773,13348,162,82.39,Seboruco,,,
-92452058B7239791888120,ve_bolivar_sifontes,Sifontes,Municipio Sifontes,VE-F,Bolívar,57120,66406,71471,80517,57943,24393,2.37,Tumeremo,0.676,108.89,3534
-92452058B11105078455090,ve_falcon_silva,Silva,Municipio Silva,VE-I,Falcón,37984,44440,48050,56446,39546,537,73.64,Tucacas,,,
-92452058B90039962099382,ve_lara_simon_planas,Simón Planas,Municipio Simón Planas,VE-K,Lara,,,,,48535,808,60.06,Sarare,0.681,348.05,3667
-92452058B50271348468988,ve_anzoategui_sir_arthur_mac_gregor,Sir Arthur Mac Gregor,Municipio Sir Arthur Mac Gregor,VE-B,Anzoátegui,9824,11973,13300,17468,12243,1115,10.98,El Chaparro,0.666,99.55,3325
-92452058B73243248124437,ve_barinas_sosa,Sosa,Municipio Sosa,VE-E,Barinas,23304,27799,30271,36629,29822,3546,8.41,Ciudad de Nutrias,,,
-92452058B70146576395550,ve_monagas_sotillo,Sotillo,Municipio Sotillo,VE-N,Monagas,23861,26791,28012,31114,31189,1061,29.39,Barrancas,,,
-92452058B53950788580310,ve_cojedes_tinaco,Tinaco,Municipio Tinaco,VE-H,Cojedes,31747,38172,42049,58919,43336,1098,39.46,Tinaco,,,
-92452058B57428725290546,ve_falcon_tocopero,Tocopero,Municipio Tocopero,VE-I,Falcón,5499,6354,6818,7778,8109,83,97.69,Tocópero,,,
-92452058B65560769402967,ve_tachira_torbes,Torbes,Municipio Torbes,VE-S,Táchira,50427,54669,57060,68055,58322,110,530.2,San Josecito,,,
-92452058B22596665360768,ve_lara_torres,Torres,Municipio Torres,VE-K,Lara,,,,,211806,6954,30.45,Carora,0.629,115.83,2586
-92452058B29326197328098,ve_trujillo_trujillo,Trujillo,Municipio Trujillo,VE-T,Trujillo,59097,71362,78288,95437,70426,413,170.52,Trujillo,0.649,946.79,2971
-92452058B80404447780707,ve_delta_amacuro_tucupita,Tucupita,Municipio Tucupita,VE-Y,Delta Amacuro,101794,128332,146806,275072,149845,10996,13.62,Tucupita,,,
-92452058B99464633299903,ve_portuguesa_turen,Turén,Municipio Turén,VE-P,Portuguesa,66380,75898,81075,92881,76409,1324,57.71,Villa Bruzual,,,
-92452058B21405103946028,ve_anzoategui_diego_bautista_urbanejo,Diego Bautista Urbanejo,Municipio Turístico Diego Bautista Urbaneja,VE-B,Anzoátegui,39260,47778,53020,69324,43907,12,3658.91,Lecherías,,,
-92452058B14300572902451,ve_falcon_union,Unión,Municipio Unión,VE-I,Falcón,15698,18639,20334,24757,19638,975,20.14,Santa Cruz de Bucaral,,,
-92452058B63771518802825,ve_yaracuy_urachiche,Urachiche,Municipio Urachiche,VE-U,Yaracuy,22276,26755,29335,36123,26674,170,156.9,Urachiche,,,
-92452058B26508954861758,ve_monagas_uracoa,Uracoa,Municipio Uracoa,VE-N,Monagas,9273,10551,11115,12740,12269,2764,4.43,Uracoa,,,
-92452058B24105899820975,ve_tachira_uribante,Uribante,Municipio Uribante,VE-S,Táchira,20098,21630,22479,26365,24888,1502,16.56,Pregonero,,,
-92452058B99499694826809,ve_falcon_urumaco,Urumaco,Municipio Urumaco,VE-I,Falcón,8332,9517,10143,11257,10580,752,14.06,Urumaco,,,
-92452058B13672560993609,ve_sucre_valdez,Valdez,Municipio Valdez,VE-R,Sucre,42251,49449,53647,67220,50862,598,85.05,Güiria,,,
-92452058B422414995593,ve_carabobo_valencia,Valencia,Municipio Valencia,VE-G,Carabobo,852217,943844,984252,1081782,980277,623,1573.47,Valencia,0.817,8441.91,9097
-92452058B50396237528900,ve_trujillo_valera,Valera,Municipio Valera,VE-T,Trujillo,151067,171854,181910,192259,176961,240,737.33,Valera,,,
-92452058B93255664897858,ve_zulia_valmore_rodriguez,Valmore Rodríguez,Municipio Valmore Rodríguez,VE-V,Zulia,52014,59828,63919,75297,65840,1292,50.95,Bachaquero,0.772,2684.5,6727
-92452058B35881959392947,ve_yaracuy_veroes,Veroes,Municipio Veroes,VE-U,Yaracuy,28163,32683,35103,39792,35365,1059,33.39,Farriar,,,
-92452058B87556418523140,ve_nueva_esparta_villalba,Villalba,Municipio Villalba,VE-O,Nueva Esparta,,,,,11894,55,216.25,San Pedro de Coche,,,
-92452058B83118913216781,ve_guarico_zaraza,Zaraza,Municipio Zaraza,VE-J,Guárico,63800,77190,84859,101366,75808,2410,31.45,Zaraza,,,
-92452058B34699715340940,ve_merida_zea,Zea,Municipio Zea,VE-L,Mérida,11388,13572,14773,17124,14092,122,115.5,Zea,0.68,26.39,3650
-92452058B66612082158993,ve_falcon_acosta,Acosta,Municipio Acosta,VE-I,Falcón,19076,22791,24955,30828,23323,757,30.8,San Juan de los Cayos,,,
-92452058B59962143626105,ve_monagas_acosta,Acosta,Municipio Acosta,VE-N,Monagas,17518,19904,20960,23959,22335,609,36.67,San Antonio,,,
-92452058B60175540924522,ve_tachira_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-S,Táchira,20434,21913,22724,26422,24160,98,246.53,Cordero,,,
-92452058B19626943802375,ve_merida_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-L,Mérida,14456,17111,18550,21166,17294,398,43.45,La Azulita,0.673,80.33,3482
-92452058B96669771674103,ve_trujillo_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-T,Trujillo,16970,20398,22316,26922,21800,202,107.92,Santa Isabel,,,
-92452058B69461621653352,ve_miranda_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-M,Miranda,21322,23688,24690,25564,24526,114,215.14,San José de Barlovento,0.78,927.9,7070
-92452058B83235361555221,ve_barinas_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-E,Barinas,15175,18037,19599,23509,19920,1493,13.34,El Cantón,,,
-92452058B18977618770055,ve_sucre_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-R,Sucre,27539,31766,34164,41345,30981,721,42.96,Casanay,,,
-92452058B34095123389968,ve_lara_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-K,Lara,,,,,56076,708,79.2,Sanare,0.685,1287.89,3755
-92452058B15677212765732,ve_sucre_arismendi,Arismendi,Municipio Arismendi,VE-R,Sucre,48949,56756,61229,75022,54735,769,71.17,Río Caribe,,,
-92452058B71215590710272,ve_nueva_esparta_arismendi,Arismendi,Municipio Arismendi,VE-O,Nueva Esparta,,,,,35986,52,692.03,La Asunción,,,
-92452058B99527238900768,ve_barinas_arismendi,Arismendi,Municipio Arismendi,VE-E,Barinas,26147,31249,34066,41404,27544,7209,3.82,Arismendi,,,
-92452058B10882972052933,ve_monagas_bolivar,Bolívar,Municipio Bolívar,VE-N,Monagas,37683,43448,46157,54652,47609,345,137.99,Caripito,,,
-92452058B68095023694670,ve_aragua_bolivar,Bolívar,Municipio Bolívar,VE-D,Aragua,38430,42012,43623,47659,44733,58,771.25,San Mateo,0.668,566.1,3355
-92452058B3006076397116,ve_trujillo_bolivar,Bolívar,Municipio Bolívar,VE-T,Trujillo,16646,20067,21994,26720,19626,208,94.35,Sabana Grande,,,
-92452058B16204644970009,ve_sucre_bolivar,Bolívar,Municipio Bolívar,VE-R,Sucre,22702,26517,28733,35830,27594,211,130.77,Marigüitar,,,
-92452058B57727814013353,ve_falcon_bolivar,Bolívar,Municipio Bolívar,VE-I,Falcón,8595,9978,10739,12391,11345,295,38.45,San Luis,,,
-92452058B41519808204677,ve_barinas_bolivar,Bolívar,Municipio Bolívar,VE-E,Barinas,51227,61648,67484,83396,64780,1047,61.87,Barinitas,,,
-92452058B46129601263202,ve_yaracuy_bolivar,Bolívar,Municipio Bolívar,VE-U,Yaracuy,32403,38508,41952,50359,37664,1087,34.64,Aroa,,,
-92452058B93734391596245,ve_tachira_bolivar,Bolívar,Municipio Bolívar,VE-S,Táchira,62384,66392,68533,78230,70124,204,343.74,San Antonio del Táchira,,,
-92452058B49980742384962,ve_monagas_cedeno,Cedeño,Municipio Cedeño,VE-N,Monagas,34586,40035,42632,50961,42397,1977,21.44,Caicara,,,
-92452058B45585815377737,ve_bolivar_cedeno,Cedeño,Municipio Cedeño,VE-F,Bolívar,92437,107772,116192,131800,82179,46020,1.78,Caicara del Orinoco,0.692,244.66,3953
-92452058B88295948802008,ve_monagas_ezequiel_zamora,Ezequiel Zamora,Municipio Ezequiel Zamora,VE-N,Monagas,63325,73082,77681,92168,82480,162,509.13,Punta de Mata,,,
-92452058B98091189447786,ve_barinas_ezequiel_zamora,Ezequiel Zamora,Municipio Ezequiel Zamora,VE-E,Barinas,51079,60836,66182,79776,64426,4042,15.93,Santa Bárbara,,,
-92452058B50868019184012,ve_cojedes_falcon,Falcón,Municipio Falcón,VE-H,Cojedes,95053,115937,128721,185271,124919,714,174.95,Tinaquillo,,,
-92452058B34280729247629,ve_falcon_falcon,Falcón,Municipio Falcón,VE-I,Falcón,50920,58034,61773,68185,55014,1577,34.88,Pueblo Nuevo,0.683,1652.95,3719
-92452058B17363739467274,ve_guarico_francisco_de_miranda,Francisco de Miranda,Municipio Francisco de Miranda,VE-J,Guárico,148642,181492,200622,244895,165539,13490,12.27,Calabozo,,,
-92452058B99053619460093,ve_tachira_francisco_de_miranda,Francisco de Miranda,Municipio Francisco de Miranda,VE-S,Táchira,4031,4365,4553,5421,5169,262,19.72,San José de Bolívar,,,
-92452058B9282611745030,ve_anzoategui_francisco_de_miranda,Francisco de Miranda,Municipio Francisco de Miranda,VE-B,Anzoátegui,43353,47053,48757,48501,50181,5334,9.4,Pariaguán,0.634,58.16,2680
-92452058B30205634756293,ve_cojedes_girardot,Girardot,Municipio Girardot,VE-H,Cojedes,11713,13166,13929,16624,16806,3468,4.84,El Baúl,,,
-92452058B62779861524453,ve_aragua_girardot,Girardot,Municipio Girardot,VE-D,Aragua,431547,475175,495544,550785,469371,302,1554.2,Maracay,0.724,5079.93,4892
-92452058B82042298353727,ve_miranda_independencia,Independencia,Municipio Independencia,VE-M,Miranda,145361,165268,174662,191132,173685,284,611.56,Santa Teresa del Tuy,0.741,612.24,5453
-92452058B61290497369270,ve_anzoategui_independencia,Independencia,Municipio Independencia,VE-B,Anzoátegui,31904,38991,43381,57306,41745,5929,7.04,Soledad,0.64,85.7,2787
-92452058B61414933124472,ve_tachira_independencia,Independencia,Municipio Independencia,VE-S,Táchira,36521,40169,42289,52205,43065,80,538.31,Capacho Nuevo,,,
-92452058B35610022203869,ve_yaracuy_independencia,Independencia,Municipio Independencia,VE-U,Yaracuy,63774,75851,82676,99434,72788,98,742.73,Independencia,,,
-92452058B50204709100098,ve_anzoategui_libertad,Libertad,Municipio Libertad,VE-B,Anzoátegui,16191,18036,18983,20101,20278,2043,9.92,San Mateo,0.683,97.99,3721
-92452058B23217711082732,ve_tachira_libertad,Libertad,Municipio Libertad,VE-S,Táchira,27405,29545,30736,36192,31967,166,192.57,Capacho Viejo,,,
-92452058B71261275194510,ve_carabobo_libertador,Libertador,Municipio Libertador,VE-G,Carabobo,172121,191817,200816,224542,207247,558,371.41,Tocuyito,0.729,548.18,5040
-92452058B74442038912920,ve_sucre_libertador,Libertador,Municipio Libertador,VE-R,Sucre,9932,11534,12456,15321,12713,237,53.64,Tunapuy,,,
-92452058B90473537969965,ve_aragua_libertador,Libertador,Municipio Libertador,VE-D,Aragua,117677,130517,136705,154607,158616,52,3050.3,Palo Negro,0.625,86.97,2531
-92452058B63201291940851,ve_merida_libertador,Libertador,Municipio Libertador,VE-L,Mérida,252042,299191,324896,373220,261076,803,325.15,Mérida,0.698,1940.73,4092
-92452058B13345815126611,ve_distrito_capital_libertador,Libertador,Municipio Bolivariano Libertador,VE-A,Distrito Capital,2070927,2090479,2099223,2066367,2277972,433,5260.9,Caracas,0.788,16493.4,7497
-92452058B22657240029689,ve_tachira_libertador,Libertador,Municipio Libertador,VE-S,Táchira,21847,23709,24762,29622,27016,1139,23.71,Abejales,,,
-92452058B64772493971985,ve_monagas_libertador,Libertador,Municipio Libertador,VE-N,Monagas,43692,49934,52767,61157,54373,3447,15.77,Temblador,,,
-92452058B95168979191,ve_nueva_esparta_marino,Mariño,Municipio Mariño,VE-O,Nueva Esparta,,,,,118649,39,3042.28,Porlamar,,,
-92452058B36519834610261,ve_sucre_marino,Mariño,Municipio Mariño,VE-R,Sucre,24978,28993,31300,38453,28217,469,60.16,Irapa,,,
-92452058B11824178609180,ve_carabobo_miranda,Miranda,Municipio Miranda,VE-G,Carabobo,28388,32907,35276,43360,34809,161,216.2,Miranda,0.775,647.18,6875
-92452058B99639061411506,ve_merida_miranda,Miranda,Municipio Miranda,VE-L,Mérida,22654,27261,29845,35420,27977,408,68.57,Timotes,0.666,46.39,3314
-92452058B1546334358138,ve_trujillo_miranda,Miranda,Municipio Miranda,VE-T,Trujillo,23299,27714,30124,35349,26177,374,69.99,El Dividive,,,
-92452058B40555810306039,ve_falcon_miranda,Miranda,Municipio Miranda,VE-I,Falcón,218965,254106,273312,313525,268862,1805,148.95,Santa Ana de Coro,,,
-92452058B50002149731912,ve_portuguesa_paez,Páez,Municipio Páez,VE-P,Portuguesa,182507,215938,234917,283969,219524,425,516.52,Acarigua,,,
-92452058B91932726489103,ve_zulia_paez,Páez,Municipio Páez,VE-V,Zulia,,,,,91162,2370,38.46,Sinamaica,,,
-92452058B72828901186947,ve_miranda_paez,Páez,Municipio Páez,VE-M,Miranda,39303,43671,45522,47154,46005,963,47.77,Río Chico,0.731,345.06,5099
-92452058B68065976769542,ve_apure_paez,Páez,Municipio Páez,VE-C,Apure,,,,,122130,12820,9.52,Guasdualito,,,
-92452058B74978111878407,ve_monagas_piar,Piar,Municipio Piar,VE-N,Monagas,45140,51147,53769,61030,58886,1074,54.82,Aragua,,,
-92452058B47549156675396,ve_bolivar_piar,Piar,Municipio Piar,VE-F,Bolívar,112638,132081,142894,164348,123242,15900,7.75,Upata,0.71,378.26,4435
-92452058B36429563491132,ve_falcon_piritu,Píritu,Municipio Píritu,VE-I,Falcón,10638,12396,13370,15563,13152,1168,11.26,Píritu,,,
-92452058B35367180068237,ve_anzoategui_piritu,Píritu,Municipio Píritu,VE-B,Anzoátegui,25013,29143,31510,37152,30146,225,133.98,Píritu,0.657,105.98,3121
-92452058B21426676418020,ve_cojedes_romulo_gallegos,Rómulo Gallegos,Municipio Rómulo Gallegos,VE-H,Cojedes,18009,20172,21295,25197,26270,725,36.23,Las Vegas,,,
-92452058B89555253536357,ve_apure_romulo_gallegos,Rómulo Gallegos,Municipio Rómulo Gallegos,VE-C,Apure,27632,34345,38298,49818,31763,12219,2.59,Elorza,0.556,57.74,1591
-92452058B3899539267655,ve_falcon_san_francisco,San Francisco,Municipio San Francisco,VE-I,Falcón,11060,13012,14117,16817,13587,346,39.26,Mirimire,,,
-92452058B36126847225490,ve_zulia_san_francisco,San Francisco,Municipio San Francisco,VE-V,Zulia,446474,526504,570940,713815,541009,185,2924.37,San Francisco,0.772,226.17,6727
-92452058B7204279738521,ve_miranda_simon_bolivar,Simón Bolívar,Municipio Simón Bolívar,VE-M,Miranda,45279,50165,52203,53701,60664,131,463.08,San Francisco de Yare,0.779,365.16,7045
-92452058B72837046286909,ve_zulia_simon_bolivar,Simón Bolívar,Municipio Simón Bolívar,VE-V,Zulia,42906,50229,54232,66636,60070,219,274.29,Tía Juana,0.736,179,5279
-92452058B340100748175,ve_anzoategui_simon_bolivar,Simón Bolívar,Municipio Simón Bolívar,VE-B,Anzoátegui,444928,506016,539200,599328,516904,1706,302.99,Barcelona,0.725,5035.63,4918
-92452058B83373837217774,ve_tachira_simon_rodriguez,Simón Rodríguez,Municipio Simón Rodríguez,VE-S,Táchira,2503,2671,2761,3174,2950,69,42.75,San Simón,,,
-92452058B74376664002472,ve_anzoategui_simon_rodriguez,Simón Rodríguez,Municipio Simón Rodríguez,VE-B,Anzoátegui,194077,222450,238158,269842,216175,703,307.5,El Tigre,0.686,65.92,3793
-92452058B18295884568936,ve_falcon_sucre,Sucre,Municipio Sucre,VE-I,Falcón,5857,6729,7196,8096,7799,840,9.28,La Cruz de Taratara,,,
-92452058B59537518099621,ve_tachira_sucre,Sucre,Municipio Sucre,VE-S,Táchira,7425,7954,8243,9564,9680,407,23.78,Queniquea,,,
-92452058B63445948802308,ve_bolivar_sucre,Sucre,Municipio Sucre,VE-F,Bolívar,22127,25725,27687,31193,26677,46166,0.57,Maripa,0.629,1437.84,2595
-92452058B73017007286704,ve_yaracuy_sucre,Sucre,Municipio Sucre,VE-U,Yaracuy,20198,24570,27144,34456,23238,133,174.72,Guama,,,
-92452058B78508752034039,ve_aragua_sucre,Sucre,Municipio Sucre,VE-D,Aragua,125136,137494,143207,158371,138437,76,1821.53,Cagua,0.703,65.43,4231
-92452058B15586506098632,ve_merida_sucre,Sucre,Municipio Sucre,VE-L,Mérida,58660,71271,78479,95293,69240,946,73.19,Lagunillas,0.722,25.17,4811
-92452058B14540922264670,ve_portuguesa_sucre,Sucre,Municipio Sucre,VE-P,Portuguesa,41912,48922,52914,63742,47196,400,117.99,Biscucuy,,,
-92452058B12777305429441,ve_miranda_sucre,Sucre,Municipio Sucre,VE-M,Miranda,642959,718203,751029,787784,682718,164,4162.91,Petare,0.759,307.51,6150
-92452058B70878488170331,ve_trujillo_sucre,Sucre,Municipio Sucre,VE-T,Trujillo,31775,38427,42193,51638,38595,214,180.35,Sabana de Mendoza,,,
-92452058B50415523485502,ve_sucre_sucre,Sucre,Municipio Sucre,VE-R,Sucre,383228,451448,491476,622479,451794,1570,287.76,Cumaná,0.65,1029.08,2974
-92452058B74873434476019,ve_aragua_tovar,Tovar,Municipio Tovar,VE-D,Aragua,14516,16404,17375,20551,16385,225,72.82,La Colonia Tovar,0.691,69.84,3917
-92452058B76146617843422,ve_merida_tovar,Tovar,Municipio Tovar,VE-L,Mérida,39514,46051,49459,54364,45438,184,246.94,Tovar,0.677,20.83,3578
-92452058B98233245594574,ve_aragua_urdaneta,Urdaneta,Municipio Urdaneta,VE-D,Aragua,21469,23956,25182,28895,34074,2024,16.83,Barbacoas,0.645,56.31,2874
-92452058B66787265555701,ve_trujillo_urdaneta,Urdaneta,Municipio Urdaneta,VE-T,Trujillo,35464,42658,46690,56415,39738,497,79.95,La Quebrada,,,
-92452058B69956206553200,ve_lara_urdaneta,Urdaneta,Municipio Urdaneta,VE-K,Lara,,,,,69956,4256,16.43,Siquisique,0.679,1384.04,3616
-92452058B23947748286776,ve_miranda_urdaneta,Urdaneta,Municipio Urdaneta,VE-M,Miranda,155709,174534,182890,193454,176326,273,645.88,Cúa,0.762,163.14,6296
-92452058B44429853731382,ve_falcon_zamora,Zamora,Municipio Zamora,VE-I,Falcón,34227,40362,43853,52512,38897,619,62.83,Puerto Cumarebo,,,
-92452058B49597531088827,ve_miranda_zamora,Zamora,Municipio Zamora,VE-M,Miranda,203278,227666,238450,251738,216276,378,572.15,Guatire,0.777,6873.79,6950
-92452058B58412499983511,ve_aragua_zamora,Zamora,Municipio Zamora,VE-D,Aragua,148300,163139,170037,188577,173014,649,266.58,Villa de Cura,0.666,1296.69,3307
-92452058B76868797395121,ve_anzoategui_fernando_de_penalver,Fernando de Peñalver,Municipio Fernando de Peñalver,VE-B,Anzoátegui,36792,44720,49592,64658,40729,643,63.34,Puerto Píritu,0.665,76.4,3303
-92452058B40300597364264,ve_carabobo_carlos_arvelo,Carlos Arvelo,Municipio Carlos Arvelo,VE-G,Carabobo,149264,165266,172349,189775,175908,835,210.66,Güigüe,0.725,1147.86,4926
-92452058B48736670242482,ve_merida_tulio_febres_cordero,Tulio Febres Cordero,Municipio Tulio Febres Cordero,VE-L,Mérida,34649,40082,42856,46269,42276,560,75.49,Nueva Bolivia,0.675,22.36,3517
-92452058B74295605734614,ve_nueva_esparta_tubores,Tubores,Municipio Tubores,VE-O,Nueva Esparta,,,,,46597,180,258.87,Punta de Piedras,,,
-92452058B26241339003056,ve_zulia_almirante_padilla,Almirante Padilla,Municipio Almirante Padilla,VE-V,Zulia,12108,14325,15564,19616,16004,151,105.98,El Toro,0.763,2117.72,6317
-92452058B15023517845906,ve_zulia_miranda,Miranda,Municipio Miranda,VE-V,Zulia,98185,113602,121795,145499,122233,2255,54.2,Los Puertos de Altagracia,0.755,129.08,5989
-92452058B245358204852,ve_zulia_sucre,Sucre,Municipio Sucre,VE-V,Zulia,61201,68475,71948,79292,74618,874,85.37,Bobures,0.754,191.26,5955
-92452058B30911467500490,ve_carabobo_san_joaquin,San Joaquín,Municipio San Joaquín,VE-G,Carabobo,62887,69894,73059,81198,75707,127,596.11,San Joaquín,0.753,475.26,5916
-92452058B25675040918260_muni,ve_guayana_esequiba_guayana_esequiba,Guayana Esequiba,Estado Guayana Esequiba,VE-GE,Guayana Esequiba,,,,,,,,,0.5884049625,479.71,1998.7760833333334
-42786344B94533756407676_muni,ve_la_guaira_vargas,Vargas,Municipio Vargas,VE-X,La Guaira,350553,382123,402905,540516,448894,1171,383.34,La Guaira,0.75,2562.56,5824
-42786344B77541452473448_muni,ve_dependencias_federales_dependencias_federales,Dependencias Federales,Dependencias Federales,VE-W,Dependencias Federales,,,,,,,,,,,
+id,external_id,name,nombre_oficial,parent_iso,parent_state,poblacion_2010,poblacion_2020,poblacion_2026,poblacion_2050,poblacion_2021,poblacion_capital_2021,porcentaje_urbano_2021,area_km2,densidad,capital,idh,pib_total_mm_usd,pib_per_capita_usd
+92452058B38977236110472,ve_miranda_acevedo,Acevedo,Municipio Acevedo,VE-M,Miranda,89673,99810,104150,108329,108299,32356,29.88,1879,57.63,Caucagua,0.765,1583.28,6423
+92452058B57596479619194,ve_apure_achaguas,Achaguas,Municipio Achaguas,VE-C,Apure,64856,80534,89748,116441,72802,41738,57.33,15754,4.62,Achaguas,0.569,162.03,1742
+92452058B11954780234519,ve_portuguesa_agua_blanca,Agua Blanca,Municipio Agua Blanca,VE-P,Portuguesa,21012,24496,26481,31897,26512,26512,100,199,133.22,Agua Blanca,,,
+92452058B20734367983151,ve_monagas_aguasay,Aguasay,Municipio Aguasay,VE-N,Monagas,11647,13308,14061,16291,16739,16739,100,2504,6.68,Aguasay,,,
+92452058B83946856745535,ve_merida_alberto_adriani,Alberto Adriani,Municipio Alberto Adriani,VE-L,Mérida,136997,165458,181535,217249,164330,107836,65.62,683,240.6,El Vigía,0.679,169.27,3605
+92452058B22632362075175,ve_barinas_alberto_arvelo_torrealba,Alberto Arvelo Torrealba,Municipio Alberto Arvelo Torrealba,VE-E,Barinas,40152,47869,52108,62958,54133,45868,84.73,769,70.39,Sabaneta,,,
+92452058B38768688631563,ve_anzoategui_anaco,Anaco,Municipio Anaco,VE-B,Anzoátegui,130535,150478,161660,185719,162556,152672,93.92,795,204.47,Anaco,0.69,289.9,3886
+92452058B98875483329913,ve_sucre_andres_mata,Andrés Mata,Municipio Andrés Mata,VE-R,Sucre,20416,23811,25777,32031,24818,14409,58.06,454,54.66,San José de Aerocuar,,,
+92452058B1998456811231,ve_nueva_esparta_antolin_del_campo,Antolín del Campo,Municipio Antolín del Campo,VE-O,Nueva Esparta,,,,,35830,35830,100,72,497.63,La Plaza de Paraguachí,,,
+92452058B74293045430698,ve_delta_amacuro_antonio_diaz,Antonio Díaz,Municipio Antonio Díaz,VE-Y,Delta Amacuro,26516,33388,38254,73444,42417,18681,44.04,22746,7.86,Curiapo,,,
+92452058B75275574170386,ve_barinas_antonio_jose_de_sucre,Antonio José de Sucre,Municipio Antonio José de Sucre,VE-E,Barinas,77712,90620,97339,111484,96337,77123,80.06,2975,32.38,Socopó,,,
+92452058B76772094645860,ve_merida_antonio_pinto_salinas,Antonio Pinto Salinas,Municipio Antonio Pinto Salinas,VE-L,Mérida,24277,29115,31810,37451,31073,22902,73.7,348,89.29,Santa Cruz de Mora,0.67,426.52,3416
+92452058B88247068668405,ve_tachira_antonio_romulo_costa,Antonio Rómulo Costa,Municipio Antonio Rómulo Costa,VE-S,Táchira,10378,11288,11805,14202,13333,13333,100,146,91.32,Las Mesas,,,
+92452058B2608246233639,ve_cojedes_anzoategui,Anzoátegui,Municipio Anzoátegui,VE-H,Cojedes,16762,18775,19820,23452,23019,8945,38.86,831,27.7,Cojedes,,,
+92452058B83392643498369,ve_anzoategui_aragua,Aragua,Municipio Aragua,VE-B,Anzoátegui,28859,35409,39490,52667,35659,34416,96.51,2624,13.58,Aragua de Barcelona,0.7,218.04,4166
+92452058B8973005468773,ve_portuguesa_araure,Araure,Municipio Araure,VE-P,Portuguesa,166288,198267,216694,266775,180812,166116,91.87,640,282.51,Araure,,,
+92452058B92699654861711,ve_merida_aricagua,Aricagua,Municipio Aricagua,VE-L,Mérida,4259,5068,5512,6371,6119,4680,76.48,790,7.74,Aricagua,0.634,62.01,2686
+92452058B45353491303676,ve_yaracuy_aristides_bastidas,Arístides Bastidas,Municipio Arístides Bastidas,VE-U,Yaracuy,21114,25548,28136,35267,25234,25234,100,74,341,San Pablo,,,
+92452058B11237040354260,ve_merida_arzobispo_chacon,Arzobispo Chacón,Municipio Arzobispo Chacón,VE-L,Mérida,13206,15648,16975,19419,15478,4227,27.31,1659,9.32,Canaguá,0.637,63.06,2736
+92452058B65922817978550,ve_amazonas_autonomo_alto_orinoco,Autónomo Alto Orinoco,Municipio Autónomo Alto Orinoco,VE-Z,Amazonas,12814,16074,18222,28127,14492,14492,100,50850,0.28,La Esmeralda,0.579,59.36,1858
+92452058B96252003881726,ve_amazonas_autonomo_atabapo,Autónomo Atabapo,Municipio Autónomo Atabapo,VE-Z,Amazonas,9348,11929,13669,22083,10667,10667,100,25900,0.41,San Fernando de Atabapo,0.591,54.65,2013
+92452058B12581966052082,ve_amazonas_autonomo_atures,Autónomo Atures,Municipio Autónomo Atures,VE-Z,Amazonas,111194,147924,171537,260628,128153,128153,100,4500,28.47,Puerto Ayacucho,0.655,269.35,3092
+92452058B84571882758287,ve_amazonas_autonomo_autana,Autónomo Autana,Municipio Autónomo Autana,VE-Z,Amazonas,8821,11347,13066,21538,9620,9620,100,15750,0.61,Isla Ratón,0.619,20.02,2418
+92452058B42172892239758,ve_amazonas_autonomo_manapiare,Autónomo Manapiare,Municipio Autónomo Manapiare,VE-Z,Amazonas,7966,10040,11418,17904,8841,8841,100,33100,0.26,San Juan de Manapiare,0.593,4.69,2045
+92452058B1963066211404,ve_amazonas_autonomo_maroa,Autónomo Maroa,Municipio Autónomo Maroa,VE-Z,Amazonas,2050,2641,3046,5058,2326,2326,100,14250,0.16,Maroa,0.599,10.79,2126
+92452058B35318903418648,ve_amazonas_autonomo_rio_negro,Autónomo Río Negro,Municipio Autónomo Río Negro,VE-Z,Amazonas,2326,2938,3350,5315,2581,2581,100,39150,0.06,San Carlos de Río Negro,0.615,42.96,2368
+92452058B12744919392555,ve_tachira_ayacucho,Ayacucho,Municipio Ayacucho,VE-S,Táchira,58134,62513,64931,75961,67590,57446,84.99,507,133.31,Colón,,,
+92452058B6439374620840,ve_zulia_baralt,Baralt,Municipio Baralt,VE-V,Zulia,90634,105877,114166,139560,112432,6964,6.19,2211,50.85,San Timoteo,0.74,1662.47,5423
+92452058B44291856842988,ve_barinas_barinas,Barinas,Municipio Barinas,VE-E,Barinas,351036,427863,471914,600501,495578,421128,84.98,3304,149.99,Barinas,0.664,1563.72,3265
+92452058B98941669377363,ve_miranda_baruta,Baruta,Municipio Baruta,VE-M,Miranda,335557,377558,396537,423229,273755,183320,66.96,86,3183.19,Baruta,0.741,1280.41,5461
+92452058B13726471401889,ve_carabobo_bejuma,Bejuma,Municipio Bejuma,VE-G,Carabobo,47811,53496,56142,63409,56275,37560,66.74,469,119.98,Bejuma,0.74,1437.41,5447
+92452058B36691786068251,ve_sucre_benitez,Benítez,Municipio Benítez,VE-R,Sucre,32735,37542,40236,48024,38501,20520,53.3,2733,14.08,El Pilar,,,
+92452058B25789635219154,ve_sucre_bermudez,Bermúdez,Municipio Bermúdez,VE-R,Sucre,145850,167187,179131,213539,170052,170052,100,203,837.69,Carúpano,,,
+92452058B20804490373380,ve_apure_biruaca,Biruaca,Municipio Biruaca,VE-C,Apure,61522,76553,85420,111391,66782,66782,100,1281,52.13,Biruaca,0.546,75.33,1491
+92452058B89474674930128,ve_trujillo_bocono,Boconó,Municipio Boconó,VE-T,Trujillo,91387,109078,118833,140900,103717,32840,31.66,1365,75.98,Boconó,,,
+92452058B25759098564616,ve_miranda_brion,Brión,Municipio Brión,VE-M,Miranda,62643,69938,73111,76604,72520,42699,58.88,531,136.57,Higuerote,0.759,996.71,6157
+92452058B76566791733610,ve_yaracuy_bruzual,Bruzual,Municipio Bruzual,VE-U,Yaracuy,73039,86161,93451,110188,83862,68108,81.21,417,201.1,Chivacoa,,,
+92452058B24669849330150,ve_falcon_buchivacoa,Buchivacoa,Municipio Buchivacoa,VE-I,Falcón,22991,27170,29554,35567,27932,10678,38.23,2657,10.51,Capatárida,,,
+92452058B89590794968656,ve_miranda_buroz,Buroz,Municipio Buroz,VE-M,Miranda,27866,30918,32202,33240,34203,34203,100,198,172.74,Mamporal,0.742,520.65,5515
+92452058B12886197889450,ve_zulia_cabimas,Cabimas,Municipio Cabimas,VE-V,Zulia,272995,312063,332141,385372,326738,304728,93.26,655,498.83,Cabimas,0.744,1249.24,5597
+92452058B31160427054809,ve_falcon_cacique_manaure,Cacique Manaure,Municipio Cacique Manaure,VE-I,Falcón,11020,12919,13986,16520,13918,13918,100,190,73.25,Yaracal,,,
+92452058B36515365287716,ve_sucre_cajigal,Cajigal,Municipio Cajigal,VE-R,Sucre,21796,25474,27613,34484,27069,15173,56.05,365,74.16,Yaguaraparo,,,
+92452058B96430954073814,ve_guarico_camaguan,Camaguán,Municipio Camaguán,VE-J,Guárico,25580,31371,34771,42909,30122,20716,68.77,1164,25.87,Camaguán,,,
+92452058B18446749128605,ve_aragua_camatagua,Camatagua,Municipio Camatagua,VE-D,Aragua,17232,19456,20597,24310,27991,20518,73.3,780,35.88,Camatagua,0.652,489.77,3027
+92452058B73225783388147,ve_merida_campo_elias,Campo Elías,Municipio Campo Elías,VE-L,Mérida,108188,132332,146295,180398,119614,107897,90.2,609,196.41,Ejido,0.7,87.95,4150
+92452058B32887557209533,ve_trujillo_candelaria,Candelaria,Municipio Candelaria,VE-T,Trujillo,29505,35144,38241,45142,33348,16044,48.11,411,81.13,Chejendé,,,
+92452058B9406045296169,ve_merida_caracciolo_parra_olmedo,Caracciolo Parra Olmedo,Municipio Caracciolo Parra Olmedo,VE-L,Mérida,28206,33423,36254,41469,35714,26659,74.65,689,51.83,Tucaní,0.698,153.2,4111
+92452058B98251546128304,ve_trujillo_carache,Carache,Municipio Carache,VE-T,Trujillo,29598,34814,37597,43065,32160,13754,42.77,957,33.6,Carache,,,
+92452058B92131040648268,ve_merida_cardenal_quintero,Cardenal Quintero,Municipio Cardenal Quintero,VE-L,Mérida,9696,11480,12447,14213,11617,6876,59.19,350,33.19,Santo Domingo,0.683,105.29,3722
+92452058B54071015831659,ve_tachira_cardenas,Cárdenas,Municipio Cárdenas,VE-S,Táchira,125702,138402,145757,179733,139002,111355,80.11,262,530.54,Táriba,,,
+92452058B25550874950140,ve_monagas_caripe,Caripe,Municipio Caripe,VE-N,Monagas,33499,38586,40970,48400,40965,11017,26.89,573,71.49,Caripe,,,
+92452058B62251986707273,ve_falcon_carirubana,Carirubana,Municipio Carirubana,VE-I,Falcón,252206,292427,314340,359516,310730,148005,47.63,684,454.28,Punto Fijo,,,
+92452058B19178625121823,ve_bolivar_caroni,Caroní,Municipio Caroní,VE-F,Bolívar,803299,950012,1033036,1212615,831264,792635,95.35,1612,515.67,Ciudad Guayana,0.71,708.42,4437
+92452058B35839392546530,ve_miranda_carrizal,Carrizal,Municipio Carrizal,VE-M,Miranda,52681,58821,61494,64443,60392,60392,100,32,1887.25,Carrizal,0.727,740.18,4981
+92452058B8554820713404,ve_delta_amacuro_casacoima,Casacoima,Municipio Casacoima,VE-Y,Delta Amacuro,32669,40692,46309,86391,38839,13604,35.03,2921,13.29,Sierra Imataca,,,
+92452058B12262203467904,ve_zulia_catatumbo,Catatumbo,Municipio Catatumbo,VE-V,Zulia,40346,47167,50882,62311,49117,27712,56.42,5225,9.4,Encontrados,0.723,974.96,4848
+92452058B92934117405956,ve_miranda_chacao,Chacao,Municipio Chacao,VE-M,Miranda,71330,80011,83879,88880,68985,68985,100,13,5306.53,Chacao,0.733,1025.39,5168
+92452058B96684435366560,ve_guarico_chaguaramas,Chaguaramas,Municipio Chaguaramas,VE-J,Guárico,14324,17728,19758,24921,17095,17095,100,2069,8.15,Chaguaramas,,,
+92452058B26692301480200,ve_yaracuy_cocorote,Cocorote,Municipio Cocorote,VE-U,Yaracuy,44473,52803,57495,68864,52444,52444,100,135,388.47,Cocorote,,,
+92452058B212448851474,ve_falcon_colina,Colina,Municipio Colina,VE-I,Falcón,42671,49295,52897,60297,48451,34498,71.2,582,83.24,La Vela de Coro,,,
+92452058B89776134514459,ve_zulia_colon,Colón,Municipio Colón,VE-V,Zulia,126359,145301,155203,182680,157067,14930,9.51,3368,46.63,San Carlos del Zulia,0.746,1357.14,5649
+92452058B51720127769836,ve_tachira_cordoba,Córdoba,Municipio Córdoba,VE-S,Táchira,32992,35452,36808,43002,38372,38372,100,619,61.99,Santa Ana,,,
+92452058B43990033715561,ve_lara_crespo,Crespo,Municipio Crespo,VE-K,Lara,,,,,58960,38849,65.89,875,67.38,Duaca,0.724,833.91,4896
+92452058B19007337502862,ve_miranda_cristobal_rojas,Cristóbal Rojas,Municipio Cristóbal Rojas,VE-M,Miranda,131622,147149,153953,161829,140596,111469,79.28,120,1171.63,Charallave,0.761,879.72,6244
+92452058B3115924902263,ve_barinas_cruz_paredes,Cruz Paredes,Municipio Cruz Paredes,VE-E,Barinas,24929,29642,32216,38680,32648,26960,82.58,778,41.96,Barrancas,,,
+92452058B32391304036894,ve_sucre_cruz_salmeron_acosta,Cruz Salmerón Acosta,Municipio Cruz Salmerón Acosta,VE-R,Sucre,36975,42390,45421,54163,44811,26395,58.9,612,73.22,Araya,,,
+92452058B15505529275902,ve_falcon_dabajuro,Dabajuro,Municipio Dabajuro,VE-I,Falcón,23810,28117,30571,36729,28009,28009,100,1144,24.48,Dabajuro,,,
+92452058B27987332660152,ve_falcon_democracia,Democracia,Municipio Democracia,VE-I,Falcón,10392,11894,12692,14156,12415,8869,71.44,2602,4.77,Pedregal,,,
+92452058B72966397381157,ve_nueva_esparta_diaz,Díaz,Municipio Díaz,VE-O,Nueva Esparta,,,,,88696,52587,59.29,166,534.31,San Juan Bautista,,,
+92452058B45156381863749,ve_carabobo_diego_ibarra,Diego Ibarra,Municipio Diego Ibarra,VE-G,Carabobo,101875,116142,123257,145494,130961,130961,100,79,1657.73,Mariara,0.714,1033.59,4576
+92452058B65625562328801,ve_bolivar_el_callao,El Callao,Municipio El Callao,VE-F,Bolívar,22957,26863,29026,33219,26963,26963,100,2223,12.12,El Callao,0.644,424.6,2858
+92452058B59483171465423,ve_miranda_el_hatillo,EL Hatillo,Municipio EL Hatillo,VE-M,Miranda,84362,93970,98100,102221,82439,82439,100,81,1017.76,El Hatillo,0.706,742.26,4322
+92452058B23928909517794,ve_guarico_el_socorro,El Socorro,Municipio El Socorro,VE-J,Guárico,17217,20914,23046,27793,21809,21809,100,2659,8.2,El Socorro,,,
+92452058B55958295548986,ve_trujillo_escuque,Escuque,Municipio Escuque,VE-T,Trujillo,28967,34560,37644,44616,33031,17459,52.86,165,200.18,Escuque,,,
+92452058B46678467131598,ve_portuguesa_esteller,Esteller,Municipio Esteller,VE-P,Portuguesa,44726,52098,56277,67439,54303,46218,85.11,754,72.01,Píritu,,,
+92452058B41516758992982,ve_falcon_federacion,Federación,Municipio Federación,VE-I,Falcón,29862,35390,38561,46716,35135,18299,52.08,1084,32.41,Churuguara,,,
+92452058B4465653427750,ve_tachira_fernandez_feo,Fernández Feo,Municipio Fernández Feo,VE-S,Táchira,44876,48894,51184,61775,53939,22278,41.3,1084,49.75,San Rafael del Piñal,,,
+92452058B62931079063514,ve_anzoategui_francisco_del_carmen_carvajal,Francisco del Carmen Carvajal,Municipio Francisco del Carmen Carvajal,VE-B,Anzoátegui,14526,16388,17381,18975,20804,19275,92.65,125,166.43,Valle de Guanape,0.665,90.91,3305
+92452058B43821030143886,ve_zulia_francisco_javier_pulgar,Francisco Javier Pulgar,Municipio Francisco Javier Pulgar,VE-V,Zulia,33236,38051,40537,47216,42259,21573,51.05,800,52.82,Pueblo Nuevo El Chivo,0.717,709.57,4659
+92452058B79162136428337,ve_aragua_francisco_linares_alcantara,Francisco Linares Alcántara,Municipio Francisco Linares Alcántara,VE-D,Aragua,127459,141351,148044,167392,149360,111242,74.48,24,6223.33,Santa Rita,0.683,317.03,3712
+92452058B94720386415889,ve_nueva_esparta_garcia,García,Municipio García,VE-O,Nueva Esparta,,,,,80441,21905,27.23,85,946.36,El Valle del Espíritu Santo,,,
+92452058B38365579478512,ve_tachira_garcia_de_hevia,García de Hevia,Municipio García de Hevia,VE-S,Táchira,47694,52407,55141,67890,63736,54702,85.83,911,69.96,La Fría,,,
+92452058B72866558471416,ve_nueva_esparta_gomez,Gómez,Municipio Gómez,VE-O,Nueva Esparta,,,,,49814,20561,41.28,96,518.89,Santa Ana,,,
+92452058B73629823948973,ve_bolivar_gran_sabana,Gran Sabana,Municipio Gran Sabana,VE-F,Bolívar,34302,40263,43585,50251,34309,32000,93.27,32990,1.03,Santa Elena de Uairén,0.671,341.47,3430
+92452058B76847227335777,ve_carabobo_guacara,Guacara,Municipio Guacara,VE-G,Carabobo,176658,198883,209477,239905,213815,185776,86.89,165,1295.84,Guacara,0.708,800.74,4390
+92452058B8376465303279,ve_miranda_guaicaipuro,Guaicaipuro,Municipio Bolivariano Guaicaipuro,VE-M,Miranda,267654,302006,317722,341404,287664,221985,77.17,661,435.19,Los Teques,0.76,3476.73,6214
+92452058B33473960581249,ve_portuguesa_guanare,Guanare,Municipio Guanare,VE-P,Portuguesa,202281,235997,254645,298597,244050,206671,84.68,2008,121.53,Guanare,,,
+92452058B74462864631262,ve_portuguesa_guanarito,Guanarito,Municipio Guanarito,VE-P,Portuguesa,37674,44234,48013,58662,47667,40376,84.7,3103,15.36,Guanarito,,,
+92452058B94128330205113,ve_anzoategui_guanta,Guanta,Municipio Guanta,VE-B,Anzoátegui,31893,38605,42706,55145,38200,21921,57.38,67,570.14,Guanta,0.672,103.23,3455
+92452058B8560426021820,ve_merida_guaraque,Guaraque,Municipio Guaraque,VE-L,Mérida,9087,10872,11863,13891,11533,5386,46.7,533,21.63,Guaraque,0.62,81.01,2448
+92452058B12619730938493,ve_tachira_guasimos,Guasimos,Municipio Guasimos,VE-S,Táchira,43677,48087,50654,62659,51029,51029,100,32,1594.65,Palmira,,,
+92452058B41510746407735,ve_bolivar_angostura_del_orinoco,Angostura del Orinoco,Municipio Angostura del Orinoco (ex Heres),VE-F,Bolívar,373572,440396,477970,556788,395176,387449,98.04,5851,67.36,Ciudad Bolívar,0.66,344.9,3177
+92452058B63992196257399,ve_lara_iribarren,Iribarren,Municipio Iribarren,VE-K,Lara,,,,,1225175,1173095,95.75,2760,443.9,Barquisimeto,0.739,5120.87,5407
+92452058B13526806799320,ve_falcon_jacura,Jacura,Municipio Jacura,VE-I,Falcón,11243,13353,14570,17755,13046,7088,54.33,1842,7.08,Jacura,,,
+92452058B82426430242133,ve_tachira_jauregui,Jáuregui,Municipio Jáuregui,VE-S,Táchira,40683,44762,47135,58224,48172,40521,84.12,444,108.49,La Grita,,,
+92452058B2023603244390,ve_zulia_jesus_enrique_lossada,Jesús Enrique Lossada,Municipio Jesús Enrique Lossada,VE-V,Zulia,119110,135586,143949,165356,147280,88536,60.11,3533,41.68,La Concepción,0.753,579.2,5910
+92452058B27709882446555,ve_zulia_jesus_maria_semprum,Jesús María Semprum,Municipio Jesús María Semprum,VE-V,Zulia,30569,34518,36469,41091,38671,26079,67.44,6003,6.44,Casigua El Cubo,0.759,676.47,6150
+92452058B9761229691883,ve_lara_jimenez,Jimenez,Municipio Jimenez,VE-K,Lara,,,,,113647,50368,44.32,768,147.97,Quibor,0.672,260.11,3458
+92452058B12753025075780,ve_aragua_jose_angel_lamas,José Ángel Lamas,Municipio José Ángel Lamas,VE-D,Aragua,33605,36695,38076,41485,39191,39191,100,20,1959.55,Santa Cruz,0.635,69.94,2704
+92452058B17559996625330,ve_yaracuy_jose_antonio_paez,José Antonio Páez,Municipio José Antonio Páez,VE-U,Yaracuy,19985,24262,26773,33824,23806,23806,100,135,176.34,Sabana de Parra,,,
+92452058B50490503212565,ve_trujillo_jose_felipe_marquez_canizales,José Felipe Márquez Cañizales,Municipio José Felipe Márquez Cañizales,VE-T,Trujillo,4761,5748,6316,7816,6656,5715,85.86,648,10.27,El Paradero,,,
+92452058B25382681816620,ve_aragua_jose_felix_ribas,José Félix Ribas,Municipio José Félix Ribas,VE-D,Aragua,152639,167789,174806,193523,175108,64185,36.65,419,417.91,La Victoria,0.669,200.09,3379
+92452058B71126113854602,ve_guarico_jose_felix_ribas,José Félix Ribas,Municipio José Félix Ribas,VE-J,Guárico,38259,46682,51582,62875,48731,44689,91.71,2792,17.45,Tucupido,,,
+92452058B4239970506529,ve_anzoategui_jose_gregorio_monagas,José Gregorio Monagas,Municipio José Gregorio Monagas,VE-B,Anzoátegui,17808,19811,20835,21993,21731,5125,23.58,9176,2.36,Mapire,0.67,104.34,3395
+92452058B29935113777127,ve_tachira_jose_maria_vargas,José María Vargas,Municipio José María Vargas,VE-S,Táchira,10134,10876,11283,13147,13543,13543,100,85,159.32,El Cobre,,,
+92452058B98714042459160,ve_aragua_jose_rafael_revenga,José Rafael Revenga,Municipio José Rafael Revenga,VE-D,Aragua,51012,56604,59304,67150,64200,64200,100,192,334.37,El Consejo,0.637,130.68,2733
+92452058B4495474982112,ve_guarico_jose_tadeo_monagas,José Tadeo Monagas,Municipio José Tadeo Monagas,VE-J,Guárico,77073,95664,106791,135551,92032,66520,72.28,3455,26.63,Altagracia de Orituco,,,
+92452058B55780217800828,ve_anzoategui_juan_antonio_sotillo,Juan Antonio Sotillo,Municipio Juan Antonio Sotillo,VE-B,Anzoátegui,252794,306481,339116,435826,296899,189943,63.98,244,1216.79,Puerto La Cruz,0.653,1321.46,3042
+92452058B78447057272703,ve_guarico_juan_german_roscio,Juan Germán Roscio,Municipio Juan Germán Roscio,VE-J,Guárico,136597,168459,187326,234101,159302,151418,95.05,1497,106.41,San Juan de los Morros,,,
+92452058B38139614361819,ve_carabobo_juan_jose_mora,Juan José Mora,Municipio Juan José Mora,VE-G,Carabobo,69332,77940,82023,93667,80496,70760,87.9,453,177.69,Morón,0.739,1219.57,5382
+92452058B8931930020089,ve_anzoategui_juan_manuel_cajigal,Juan Manuel Cajigal,Municipio Juan Manuel Cajigal,VE-B,Anzoátegui,13505,16218,17856,22636,18471,14831,80.29,1741,10.6,Onoto,0.629,79.42,2598
+92452058B66607033591065,ve_trujillo_juan_vicente_campo_elias,Juan Vicente Campo Elías,Municipio Juan Vicente Campo Elías,VE-T,Trujillo,5519,6514,7049,8142,7356,5422,,98,75.06,Campo Elías,,,
+92452058B78980927741565,ve_guarico_julian_mellado,Julián Mellado,Municipio Julián Mellado,VE-J,Guárico,27996,34124,37682,45818,36572,34045,93.09,2983,12.26,El Sombrero,,,
+92452058B92522690941110,ve_merida_julio_cesar_salas,Julio César Salas,Municipio Julio César Salas,VE-L,Mérida,14662,17455,18986,21960,18389,15478,84.17,202,91.03,Arapuey,0.709,209.59,4421
+92452058B9885086190441,ve_tachira_junin,Junín,Municipio Junín,VE-S,Táchira,87979,93197,95937,108295,96402,84242,87.39,208,463.47,Rubio,,,
+92452058B97313175950957,ve_merida_justo_briceno,Justo Briceño,Municipio Justo Briceño,VE-L,Mérida,4894,5921,6504,7820,6082,4540,74.65,509,11.94,Torondoy,0.643,88.27,2840
+92452058B23774185756617,ve_zulia_la_canada_de_urdaneta,La Cañada de Urdaneta,Municipio La Cañada de Urdaneta,VE-V,Zulia,81924,95311,102520,124095,106819,47844,44.79,2073,51.52,Concepción,0.708,641.89,4377
+92452058B17411594659204,ve_trujillo_la_ceiba,La Ceiba,Municipio La Ceiba,VE-T,Trujillo,20896,24574,26536,30384,24032,6706,27.9,386,62.25,Santa Apolonia,,,
+92452058B64371118688426,ve_yaracuy_la_trinidad,La Trinidad,Municipio La Trinidad,VE-U,Yaracuy,17944,21588,23695,29297,20392,20392,100,62,328.9,Boraure,,,
+92452058B81914214166984,ve_zulia_lagunillas,Lagunillas,Municipio Lagunillas,VE-V,Zulia,203563,227902,239551,264326,271289,224758,82.85,1024,264.93,Ciudad Ojeda,0.747,1002.65,5695
+92452058B34599827545063,ve_miranda_lander,Lander,Municipio Lander,VE-M,Miranda,157816,178093,187376,201420,215445,167558,77.77,478,450.72,Ocumare del Tuy,0.745,320.69,5598
+92452058B67436429291477,ve_guarico_las_mercedes,Las Mercedes,Municipio Las Mercedes,VE-J,Guárico,35019,42017,45963,53819,41106,25623,,7691,5.34,Las Mercedes,,,
+92452058B88324768545293,ve_guarico_leonardo_infante,Leonardo Infante,Municipio Leonardo Infante,VE-J,Guárico,129740,159483,177004,219535,154684,149027,96.34,10613,14.57,Valle de La Pascua,,,
+92452058B80910187087135,ve_cojedes_lima_blanco,Lima Blanco,Municipio Lima Blanco,VE-H,Cojedes,9287,10551,11235,13757,14377,8817,61.33,127,113.2,Macapo,,,
+92452058B92766796026281,ve_tachira_lobatera,Lobatera,Municipio Lobatera,VE-S,Táchira,13203,14041,14488,16516,16654,9325,55.99,216,77.1,Lobatera,,,
+92452058B64111630674136,ve_carabobo_los_guayos,Los Guayos,Municipio Los Guayos,VE-G,Carabobo,151332,168525,176355,196867,192582,192582,100,64,3009.09,Los Guayos,0.75,1032.99,5807
+92452058B35086054619694,ve_miranda_los_salias,Los Salias,Municipio Los Salias,VE-M,Miranda,70630,79056,82770,87255,75166,75166,100,51,1473.84,San Antonio de los Altos,0.728,467.9,5022
+92452058B87386897899112,ve_falcon_los_taques,Los Taques,Municipio Los Taques,VE-I,Falcón,41881,48229,51655,58440,54132,27317,50.46,231,234.33,Santa Cruz de Los Taques,,,
+92452058B61168539952553,ve_zulia_machiques_de_perija,Machiques de Perijá,Municipio Machiques de Perijá,VE-V,Zulia,124600,141976,150820,173659,147627,92127,62.41,9493,15.55,Machiques,0.769,1181.01,6602
+92452058B84467790604965,ve_nueva_esparta_maneiro,Maneiro,Municipio Maneiro,VE-O,Nueva Esparta,,,,,54828,28701,52.35,35,1566.51,Pampatar,,,
+92452058B81602658617496,ve_anzoategui_manuel_ezequiel_bruzual,Manuel Ezequiel Bruzual,Municipio Manuel Ezequiel Bruzual,VE-B,Anzoátegui,32673,36751,38908,42171,39609,23457,59.22,1566,25.29,Clarines,0.71,259.02,4454
+92452058B96786834235834,ve_yaracuy_manuel_monge,Manuel Monge,Municipio Manuel Monge,VE-U,Yaracuy,13186,15661,17057,20447,18017,18017,100,474,38.01,Yumare,,,
+92452058B70966506034681,ve_zulia_mara,Mara,Municipio Mara,VE-V,Zulia,207492,230409,240997,260701,252988,65133,25.75,3588,70.5,San Rafael de El Moján,0.776,13660.02,6899
+92452058B74108168136268,ve_zulia_maracaibo,Maracaibo,Municipio Maracaibo,VE-V,Zulia,1522765,1776686,1914382,2333285,1624210,1585357,97.61,419,3876.39,Maracaibo,0.75,127.79,5816
+92452058B26998381958141,ve_nueva_esparta_marcano,Marcano,Municipio Marcano,VE-O,Nueva Esparta,,,,,45782,27268,59.56,40,1144.55,Juan Griego,,,
+92452058B60789568646042,ve_aragua_mario_briceno_iragorry,Mario Briceño Iragorry,Municipio Mario Briceño Iragorry,VE-D,Aragua,104241,115950,121658,138550,136784,41153,30.09,53,2580.83,El Limón,0.708,209.79,4377
+92452058B57031672069031,ve_monagas_maturin,Maturín,Municipio Maturín,VE-N,Monagas,538627,623400,663302,785900,655423,576335,87.93,13042,50.25,Maturín,,,
+92452058B8049854825221,ve_falcon_mauroa,Mauroa,Municipio Mauroa,VE-I,Falcón,24689,29420,32161,39475,30438,20422,67.09,1904,15.98,Mene de Mauroa,,,
+92452058B9202349267506,ve_sucre_mejia,Mejía,Municipio Mejía,VE-R,Sucre,14579,16947,18310,22570,18144,18144,100,298,60.88,San Antonio del Golfo,,,
+92452058B68094075186803,ve_tachira_michelena,Michelena,Municipio Michelena,VE-S,Táchira,18929,20539,21451,25657,22815,22815,100,128,178.24,Michelena,,,
+92452058B75092813359951,ve_falcon_monsenor_iturriza,Monseñor Iturriza,Municipio Monseñor Iturriza,VE-I,Falcón,19662,23495,25728,31800,26970,13025,48.29,907,29.73,Chichiriviche,,,
+92452058B41252647262147,ve_portuguesa_monsenor_jose_vicente_de_unda,Monseñor José Vicente de Unda,Municipio Monseñor José Vicente de Unda,VE-P,Portuguesa,23853,27919,30253,36772,29282,26553,90.68,222,131.9,Paraíso de Chabasquén,,,
+92452058B69792739078610,ve_carabobo_montalban,Montalbán,Municipio Montalbán,VE-G,Carabobo,24987,29451,31886,40783,29977,29977,100,107,280.15,Montalbán,0.718,541.82,4697
+92452058B96264628893767,ve_trujillo_monte_carmelo,Monte Carmelo,Municipio Monte Carmelo,VE-T,Trujillo,13563,15930,17188,19620,17381,7786,44.8,386,45.02,Monte Carmelo,,,
+92452058B41395444182143,ve_sucre_montes,Montes,Municipio Montes,VE-R,Sucre,55471,64312,69377,84982,69696,32139,46.11,1080,64.53,Cumanacoa,,,
+92452058B54957724737366,ve_lara_moran,Morán,Municipio Morán,VE-K,Lara,,,,,141556,74424,52.58,2231,63.44,El Tocuyo,0.654,238.28,3060
+92452058B76648483747073,ve_trujillo_motatan,Motatán,Municipio Motatán,VE-T,Trujillo,21625,25437,27473,31476,38383,23823,62.07,115,333.76,Motatán,,,
+92452058B76694277740413,ve_apure_munoz,Muñoz,Municipio Muñoz,VE-C,Apure,28929,35742,39710,50908,34703,8733,25.16,7925,4.37,Bruzual,0.546,140.8,1492
+92452058B81521575667263,ve_carabobo_naguanagua,Naguanagua,Municipio Naguanagua,VE-G,Carabobo,171105,191093,200315,225123,178413,178413,100,188,949,Naguanagua,0.741,694.31,5451
+92452058B44788675020047,ve_yaracuy_nirgua,Nirgua,Municipio Nirgua,VE-U,Yaracuy,61811,71159,76057,84525,68341,51823,75.83,2274,30.05,Nirgua,,,
+92452058B83653348343735,ve_merida_obispo_ramos_de_lora,Obispo Ramos de Lora,Municipio Obispo Ramos de Lora,VE-L,Mérida,24960,29852,32562,38085,31919,17556,55,321,99.43,Santa Elena de Arenales,0.703,50.57,4235
+92452058B50645357968703,ve_barinas_obispos,Obispos,Municipio Obispos,VE-E,Barinas,35662,42171,45682,54129,48601,21003,43.22,1753,27.72,Obispos,,,
+92452058B86432153938912,ve_guarico_ortiz,Ortíz,Municipio Ortíz,VE-J,Guárico,24406,29526,32460,38769,29461,13509,45.85,4129,7.13,Ortiz,,,
+92452058B37394705502377,ve_portuguesa_ospino,Ospino,Municipio Ospino,VE-P,Portuguesa,49678,57363,61644,72366,58127,35133,60.44,1675,34.7,Ospino,,,
+92452058B20589241231515,ve_merida_padre_noguera,Padre Noguera,Municipio Padre Noguera,VE-L,Mérida,3186,3864,4250,5137,4628,4628,100,206,22.46,Santa María de Caparo,0.7,41.36,4156
+92452058B54674524555313,ve_bolivar_padre_pedro_chien,Padre Pedro Chien,Municipio Padre Pedro Chien,VE-F,Bolívar,16732,19415,20873,23408,20031,20031,100,2275,8.8,El Palmar,,,
+92452058B2415433423645,ve_lara_palavecino,Palavecino,Municipio Palavecino,VE-K,Lara,,,,,207494,86610,41.74,440,471.57,Cabudare,0.707,366.19,4356
+92452058B80542411245757,ve_falcon_palmasola,Palmasola,Municipio Palmasola,VE-I,Falcón,7566,8808,9495,11030,8816,8816,100,194,45.44,Palmasola,,,
+92452058B93497297495940,ve_trujillo_pampan,Pampán,Municipio Pampán,VE-T,Trujillo,51039,59657,64186,72427,65296,10148,15.54,431,151.49,Pampán,,,
+92452058B5298065984570,ve_trujillo_pampanito,Pampanito,Municipio Pampanito,VE-T,Trujillo,29944,35847,39123,46740,37528,17848,47.56,93,403.52,Pampanito,,,
+92452058B52691376316443,ve_tachira_panamericano,Panamericano,Municipio Panamericano,VE-S,Táchira,31686,34132,35490,41707,37198,28765,77.33,569,65.37,Coloncito,,,
+92452058B64948290230997,ve_cojedes_pao_de_san_juan_bautista,Pao de San Juan Bautista,Municipio Pao de San Juan Bautista,VE-H,Cojedes,16547,18520,19543,23083,25300,25300,100,5089,4.97,El Pao,,,
+92452058B42383806432363,ve_portuguesa_papelon,Papelón,Municipio Papelón,VE-P,Portuguesa,16906,19596,21112,25095,19219,7140,37.15,2203,8.72,Papelón,,,
+92452058B74472117393048,ve_miranda_paz_castillo,Paz Castillo,Municipio Paz Castillo,VE-M,Miranda,116360,129215,134646,139273,132876,132876,100,408,325.67,Santa Lucía,0.75,355.89,5787
+92452058B28830683582357,ve_delta_amacuro_pedernales,Pedernales,Municipio Pedernales,VE-Y,Delta Amacuro,6268,7996,9236,18352,9163,6538,71.35,3537,2.59,Pedernales,,,
+92452058B9002130030249,ve_barinas_pedraza,Pedraza,Municipio Pedraza,VE-E,Barinas,63854,76949,84303,104518,79815,56001,70.16,6693,11.92,Ciudad Bolivia,,,
+92452058B33564894721572,ve_apure_pedro_camejo,Pedro Camejo,Municipio Pedro Camejo,VE-C,Apure,33082,41296,46169,60683,35931,13752,38.27,20519,1.75,San Juan de Payara,0.608,62.47,2256
+92452058B80975086584779,ve_miranda_pedro_gual,Pedro Gual,Municipio Pedro Gual,VE-M,Miranda,22293,24745,25777,26634,27151,25876,95.3,925,29.35,Cúpira,0.752,376.92,5900
+92452058B2929237041778,ve_anzoategui_pedro_maria_freites,Pedro María Freites,Municipio Pedro María Freites,VE-B,Anzoátegui,79432,86001,88986,87996,88795,70221,79.08,7153,12.41,Cantaura,0.646,100.96,2893
+92452058B18404635880934,ve_tachira_pedro_maria_urena,Pedro María Ureña,Municipio Pedro María Ureña,VE-S,Táchira,52130,56509,58977,70322,61930,49537,79.99,184,336.57,Ureña,,,
+92452058B42535057202540,ve_nueva_esparta_peninsula_de_macanao,Península de Macanao,Municipio Península de Macanao,VE-O,Nueva Esparta,,,,,33597,14959,44.52,331,101.5,Boca de Río,,,
+92452058B84020445528897,ve_yaracuy_pena,Peña,Municipio Peña,VE-U,Yaracuy,104229,126935,140332,178592,122942,111714,90.87,510,241.06,Yaritagua,,,
+92452058B76742860274923,ve_falcon_petit,Petit,Municipio Petit,VE-I,Falcón,13659,16471,18134,22909,17471,8421,48.2,1025,17.04,Cabure,,,
+92452058B28042998253075,ve_miranda_plaza,Plaza,Municipio Plaza,VE-M,Miranda,221308,248588,260820,277276,248945,248945,100,180,1383.02,Guarenas,0.744,390.52,5596
+92452058B87022428114391,ve_merida_pueblo_llano,Pueblo Llano,Municipio Pueblo Llano,VE-L,Mérida,11088,13103,14190,16127,13185,13185,100,89,148.14,Pueblo Llano,0.702,47.96,4225
+92452058B49984819466798,ve_carabobo_puerto_cabello,Puerto Cabello,Municipio Puerto Cabello,VE-G,Carabobo,181179,203373,213832,243195,182512,173500,95.06,434,420.53,Puerto Cabello,0.744,279.51,5568
+92452058B62434885375481,ve_monagas_punceres,Punceres,Municipio Punceres,VE-N,Monagas,27487,30715,32022,35154,34760,17515,50.39,754,46.1,Quiriquire,,,
+92452058B22086674211008,ve_trujillo_rafael_rangel,Rafael Rangel,Municipio Rafael Rangel,VE-T,Trujillo,23423,28178,30845,37288,28489,7019,24.64,120,237.4,Betijoque,,,
+92452058B16072820149055,ve_tachira_rafael_urdaneta,Rafael Urdaneta,Municipio Rafael Urdaneta,VE-S,Táchira,5843,6263,6493,7543,7720,7720,100,176,43.86,Delicias,,,
+92452058B37520710637751,ve_merida_rangel,Rangel,Municipio Rangel,VE-L,Mérida,19287,23312,25591,30698,25243,10508,41.63,517,48.82,Mucuchíes,0.698,18.06,4117
+92452058B20928146308063,ve_bolivar_bolivariano_angostura,Bolivariano Angostura,Municipio Bolivariano Angostura (ex Raúl Leoni),VE-F,Bolívar,,,,,49070,17375,35.41,56916,0.86,Ciudad Piar,,,
+92452058B50148622636911,ve_sucre_ribero,Ribero,Municipio Ribero,VE-R,Sucre,63514,72982,78309,93896,67930,38215,56.26,1480,45.89,Cariaco,,,
+92452058B80982982494496,ve_cojedes_ricaurte,Ricaurte,Municipio Ricaurte,VE-H,Cojedes,12448,14020,14850,17804,18456,16416,88.95,905,20.39,Libertad,,,
+92452058B96512574408350,ve_merida_rivas_davila,Rivas Dávila,Municipio Rivas Dávila,VE-L,Mérida,20407,24858,27413,33502,24264,19809,81.64,182,133.31,Bailadores,0.703,45.81,4237
+92452058B50017946052118,ve_barinas_rojas,Rojas,Municipio Rojas,VE-E,Barinas,39530,46498,50208,58733,49747,13531,27.2,1591,31.26,Libertad,,,
+92452058B8421162175114,ve_zulia_rosario_de_perija,Rosario de Perijá,Municipio Rosario de Perijá,VE-V,Zulia,84945,99190,106929,130584,106879,88775,83.06,3914,27.3,La Villa del Rosario,0.772,135.19,6701
+92452058B73572326911249,ve_bolivar_roscio,Roscio,Municipio Roscio,VE-F,Bolívar,24584,28931,31365,36386,27788,26968,97.05,6182,4.49,Guasipati,0.658,133.12,3143
+92452058B70531962129306,ve_tachira_samuel_dario_maldonado,Samuel Darío Maldonado,Municipio Samuel Darío Maldonado,VE-S,Táchira,18275,19933,20882,25287,22051,13294,60.29,548,40.23,La Tendida,,,
+92452058B56896825974617,ve_cojedes_san_carlos,San Carlos,Municipio San Carlos,VE-H,Cojedes,,,,,140256,133708,,1843,76.1,San Carlos,,,
+92452058B7770981704076,ve_aragua_san_casimiro,San Casimiro,Municipio San Casimiro,VE-D,Aragua,25885,28514,29744,33098,35103,27613,78.66,498,70.48,San Casimiro,0.67,52.54,3397
+92452058B43927171867078,ve_tachira_san_cristobal,San Cristóbal,Municipio San Cristóbal,VE-S,Táchira,272862,289852,298816,338872,302203,300846,99.55,241,1253.95,San Cristóbal,,,
+92452058B11643433355356,ve_carabobo_san_diego,San Diego,Municipio San Diego,VE-G,Carabobo,109969,124191,131056,151267,126101,126101,100,106,1189.63,San Diego,0.74,359.73,5436
+92452058B12167323137967,ve_yaracuy_san_felipe,San Felipe,Municipio San Felipe,VE-U,Yaracuy,107079,130411,144179,183502,145783,80127,54.96,472,308.86,San Felipe,,,
+92452058B92725802185650,ve_apure_san_fernando,San Fernando,Municipio San Fernando,VE-C,Apure,185991,231595,258512,337379,218583,164489,75.25,5982,36.54,San Fernando de Apure,0.665,737.36,3300
+92452058B46833609539382,ve_portuguesa_san_genaro_de_boconoito,San Genaro de Boconoito,Municipio San Genaro de Boconoito,VE-P,Portuguesa,23591,27486,29702,35714,29480,19709,66.86,1031,28.59,Boconoito,,,
+92452058B34439964520942,ve_guarico_san_geronimo_de_guayabal,San Gerónimo de Guayabal,Municipio San Gerónimo de Guayabal,VE-J,Guárico,20210,24476,26924,32240,25263,16691,66.07,4357,5.79,Guayabal,,,
+92452058B39139174954008,ve_anzoategui_san_jose_de_guanipa,San José de Guanipa,Municipio San José de Guanipa,VE-B,Anzoátegui,77695,83092,85341,81920,98940,98940,100,792,124.92,San José de Guanipa,0.629,69.01,2588
+92452058B33294183212252,ve_guarico_san_jose_de_guaribe,San José de Guaribe,Municipio San José de Guaribe,VE-J,Guárico,11895,14321,15699,18535,14294,14294,100,1128,12.67,San José de Guaribe,,,
+92452058B1316533147896,ve_anzoategui_san_juan_de_capistrano,San Juan de Capistrano,Municipio San Juan de Capistrano,VE-B,Anzoátegui,9214,10904,11900,14568,12886,11681,90.65,123,104.76,Boca de Uchire,0.674,128.52,3498
+92452058B86499403972529,ve_tachira_san_judas_tadeo,San Judas Tadeo,Municipio San Judas Tadeo,VE-S,Táchira,7531,8000,8251,9381,9914,9914,100,253,39.18,Umuquena,,,
+92452058B93532552722104,ve_trujillo_san_rafael_de_carvajal,San Rafael de Carvajal,Municipio San Rafael de Carvajal,VE-T,Trujillo,60329,72854,79926,97443,65882,22273,33.81,77,855.61,Carvajal,,,
+92452058B4017095457162,ve_portuguesa_san_rafael_de_onoto,San Rafael de Onoto,Municipio San Rafael de Onoto,VE-P,Portuguesa,18840,21773,23417,27642,23684,19225,81.17,187,126.65,San Rafael de Onoto,,,
+92452058B52538048181152,ve_aragua_san_sebastian,San Sebastián,Municipio San Sebastián,VE-D,Aragua,24111,26576,27731,30898,31567,31567,100,491,64.29,San Sebastián de Los Reyes,0.635,73.25,2689
+92452058B10612874136761,ve_anzoategui_santa_ana,Santa Ana,Municipio Santa Ana,VE-B,Anzoátegui,9644,11518,12639,15814,12659,12070,95.35,1184,10.69,Santa Ana,0.67,66.07,3413
+92452058B64727210967891,ve_monagas_santa_barbara,Santa Bárbara,Municipio Santa Bárbara,VE-N,Monagas,9388,10860,11561,13800,13116,13116,100,588,22.3,Santa Bárbara,,,
+92452058B50688374743402,ve_guarico_santa_maria_de_ipire,Santa María de Ipire,Municipio Santa María de Ipire,VE-J,Guárico,13238,16171,17881,21856,15957,14899,93.37,4549,3.47,Santa María de Ipire,,,
+92452058B66316473888275,ve_zulia_santa_rita,Santa Rita,Municipio Santa Rita,VE-V,Zulia,59867,67108,70594,78154,78107,45478,58.23,578,135.13,Santa Rita,0.744,209.73,5581
+92452058B3851867727254,ve_portuguesa_santa_rosalia,Santa Rosalía,Municipio Santa Rosalía,VE-P,Portuguesa,17721,20612,22254,26671,22669,18147,80.05,1029,22.03,El Playón,,,
+92452058B98840878188065,ve_aragua_santiago_marino,Santiago Mariño,Municipio Santiago Mariño,VE-D,Aragua,223088,245849,256519,285707,266945,75218,28.18,497,537.11,Turmero,0.67,55.91,3403
+92452058B16352791962773,ve_merida_santos_marquina,Santos Marquina,Municipio Santos Marquina,VE-L,Mérida,19406,23625,26045,31782,21638,21638,100,192,112.69,Tabay,0.677,33.26,3579
+92452058B40538109508806,ve_aragua_santos_michelena,Santos Michelena,Municipio Santos Michelena,VE-D,Aragua,40343,43445,44707,47110,45436,41920,92.26,220,206.52,Las Tejerías,0.642,38.79,2827
+92452058B21195677528356,ve_tachira_seboruco,Seboruco,Municipio Seboruco,VE-S,Táchira,10233,11084,11564,13773,13348,13348,100,162,82.39,Seboruco,,,
+92452058B7239791888120,ve_bolivar_sifontes,Sifontes,Municipio Sifontes,VE-F,Bolívar,57120,66406,71471,80517,57943,33849,58.42,24393,2.37,Tumeremo,0.676,108.89,3534
+92452058B11105078455090,ve_falcon_silva,Silva,Municipio Silva,VE-I,Falcón,37984,44440,48050,56446,39546,28704,72.58,537,73.64,Tucacas,,,
+92452058B90039962099382,ve_lara_simon_planas,Simón Planas,Municipio Simón Planas,VE-K,Lara,,,,,48535,24184,49.83,808,60.06,Sarare,0.681,348.05,3667
+92452058B50271348468988,ve_anzoategui_sir_arthur_mac_gregor,Sir Arthur Mac Gregor,Municipio Sir Arthur Mac Gregor,VE-B,Anzoátegui,9824,11973,13300,17468,12243,10836,,1115,10.98,El Chaparro,0.666,99.55,3325
+92452058B73243248124437,ve_barinas_sosa,Sosa,Municipio Sosa,VE-E,Barinas,23304,27799,30271,36629,29822,8171,27.4,3546,8.41,Ciudad de Nutrias,,,
+92452058B70146576395550,ve_monagas_sotillo,Sotillo,Municipio Sotillo,VE-N,Monagas,23861,26791,28012,31114,31189,22770,73.01,1061,29.39,Barrancas,,,
+92452058B53950788580310,ve_cojedes_tinaco,Tinaco,Municipio Tinaco,VE-H,Cojedes,31747,38172,42049,58919,43336,43336,100,1098,39.46,Tinaco,,,
+92452058B57428725290546,ve_falcon_tocopero,Tocopero,Municipio Tocopero,VE-I,Falcón,5499,6354,6818,7778,8109,8109,100,83,97.69,Tocópero,,,
+92452058B65560769402967,ve_tachira_torbes,Torbes,Municipio Torbes,VE-S,Táchira,50427,54669,57060,68055,58322,58322,100,110,530.2,San Josecito,,,
+92452058B22596665360768,ve_lara_torres,Torres,Municipio Torres,VE-K,Lara,,,,,211806,123082,58.11,6954,30.45,Carora,0.629,115.83,2586
+92452058B29326197328098,ve_trujillo_trujillo,Trujillo,Municipio Trujillo,VE-T,Trujillo,59097,71362,78288,95437,70426,63662,90.4,413,170.52,Trujillo,0.649,946.79,2971
+92452058B80404447780707,ve_delta_amacuro_tucupita,Tucupita,Municipio Tucupita,VE-Y,Delta Amacuro,101794,128332,146806,275072,149845,6873,4.59,10996,13.62,Tucupita,,,
+92452058B99464633299903,ve_portuguesa_turen,Turén,Municipio Turén,VE-P,Portuguesa,66380,75898,81075,92881,76409,53750,70.35,1324,57.71,Villa Bruzual,,,
+92452058B21405103946028,ve_anzoategui_diego_bautista_urbanejo,Diego Bautista Urbanejo,Municipio Turístico Diego Bautista Urbaneja,VE-B,Anzoátegui,39260,47778,53020,69324,43907,43907,100,12,3658.91,Lecherías,,,
+92452058B14300572902451,ve_falcon_union,Unión,Municipio Unión,VE-I,Falcón,15698,18639,20334,24757,19638,11953,60.87,975,20.14,Santa Cruz de Bucaral,,,
+92452058B63771518802825,ve_yaracuy_urachiche,Urachiche,Municipio Urachiche,VE-U,Yaracuy,22276,26755,29335,36123,26674,26674,100,170,156.9,Urachiche,,,
+92452058B26508954861758,ve_monagas_uracoa,Uracoa,Municipio Uracoa,VE-N,Monagas,9273,10551,11115,12740,12269,12269,100,2764,4.43,Uracoa,,,
+92452058B24105899820975,ve_tachira_uribante,Uribante,Municipio Uribante,VE-S,Táchira,20098,21630,22479,26365,24888,16077,64.6,1502,16.56,Pregonero,,,
+92452058B99499694826809,ve_falcon_urumaco,Urumaco,Municipio Urumaco,VE-I,Falcón,8332,9517,10143,11257,10580,7741,73.17,752,14.06,Urumaco,,,
+92452058B13672560993609,ve_sucre_valdez,Valdez,Municipio Valdez,VE-R,Sucre,42251,49449,53647,67220,50862,41407,81.41,598,85.05,Güiria,,,
+92452058B422414995593,ve_carabobo_valencia,Valencia,Municipio Valencia,VE-G,Carabobo,852217,943844,984252,1081782,980277,968991,98.85,623,1573.47,Valencia,0.817,8441.91,9097
+92452058B50396237528900,ve_trujillo_valera,Valera,Municipio Valera,VE-T,Trujillo,151067,171854,181910,192259,176961,150869,85.26,240,737.33,Valera,,,
+92452058B93255664897858,ve_zulia_valmore_rodriguez,Valmore Rodríguez,Municipio Valmore Rodríguez,VE-V,Zulia,52014,59828,63919,75297,65840,46036,69.92,1292,50.95,Bachaquero,0.772,2684.5,6727
+92452058B35881959392947,ve_yaracuy_veroes,Veroes,Municipio Veroes,VE-U,Yaracuy,28163,32683,35103,39792,35365,14566,41.19,1059,33.39,Farriar,,,
+92452058B87556418523140,ve_nueva_esparta_villalba,Villalba,Municipio Villalba,VE-O,Nueva Esparta,,,,,11894,7142,60.05,55,216.25,San Pedro de Coche,,,
+92452058B83118913216781,ve_guarico_zaraza,Zaraza,Municipio Zaraza,VE-J,Guárico,63800,77190,84859,101366,75808,72315,95.39,2410,31.45,Zaraza,,,
+92452058B34699715340940,ve_merida_zea,Zea,Municipio Zea,VE-L,Mérida,11388,13572,14773,17124,14092,9207,65.33,122,115.5,Zea,0.68,26.39,3650
+92452058B66612082158993,ve_falcon_acosta,Acosta,Municipio Acosta,VE-I,Falcón,19076,22791,24955,30828,23323,9734,41.74,757,30.8,San Juan de los Cayos,,,
+92452058B59962143626105,ve_monagas_acosta,Acosta,Municipio Acosta,VE-N,Monagas,17518,19904,20960,23959,22335,14300,64.03,609,36.67,San Antonio,,,
+92452058B60175540924522,ve_tachira_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-S,Táchira,20434,21913,22724,26422,24160,24160,100,98,246.53,Cordero,,,
+92452058B19626943802375,ve_merida_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-L,Mérida,14456,17111,18550,21166,17294,17294,100,398,43.45,La Azulita,0.673,80.33,3482
+92452058B96669771674103,ve_trujillo_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-T,Trujillo,16970,20398,22316,26922,21800,7874,36.12,202,107.92,Santa Isabel,,,
+92452058B69461621653352,ve_miranda_andres_bello,Andrés Bello,Municipio Andrés Bello,VE-M,Miranda,21322,23688,24690,25564,24526,23287,94.95,114,215.14,San José de Barlovento,0.78,927.9,7070
+92452058B83235361555221,ve_barinas_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-E,Barinas,15175,18037,19599,23509,19920,8094,40.63,1493,13.34,El Cantón,,,
+92452058B18977618770055,ve_sucre_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-R,Sucre,27539,31766,34164,41345,30981,19660,63.46,721,42.96,Casanay,,,
+92452058B34095123389968,ve_lara_andres_eloy_blanco,Andrés Eloy Blanco,Municipio Andrés Eloy Blanco,VE-K,Lara,,,,,56076,37168,66.28,708,79.2,Sanare,0.685,1287.89,3755
+92452058B15677212765732,ve_sucre_arismendi,Arismendi,Municipio Arismendi,VE-R,Sucre,48949,56756,61229,75022,54735,29900,54.63,769,71.17,Río Caribe,,,
+92452058B71215590710272,ve_nueva_esparta_arismendi,Arismendi,Municipio Arismendi,VE-O,Nueva Esparta,,,,,35986,35986,100,52,692.03,La Asunción,,,
+92452058B99527238900768,ve_barinas_arismendi,Arismendi,Municipio Arismendi,VE-E,Barinas,26147,31249,34066,41404,27544,11072,40.2,7209,3.82,Arismendi,,,
+92452058B10882972052933,ve_monagas_bolivar,Bolívar,Municipio Bolívar,VE-N,Monagas,37683,43448,46157,54652,47609,47609,100,345,137.99,Caripito,,,
+92452058B68095023694670,ve_aragua_bolivar,Bolívar,Municipio Bolívar,VE-D,Aragua,38430,42012,43623,47659,44733,44733,100,58,771.25,San Mateo,0.668,566.1,3355
+92452058B3006076397116,ve_trujillo_bolivar,Bolívar,Municipio Bolívar,VE-T,Trujillo,16646,20067,21994,26720,19626,9751,49.68,208,94.35,Sabana Grande,,,
+92452058B16204644970009,ve_sucre_bolivar,Bolívar,Municipio Bolívar,VE-R,Sucre,22702,26517,28733,35830,27594,27594,100,211,130.77,Marigüitar,,,
+92452058B57727814013353,ve_falcon_bolivar,Bolívar,Municipio Bolívar,VE-I,Falcón,8595,9978,10739,12391,11345,5709,50.32,295,38.45,San Luis,,,
+92452058B41519808204677,ve_barinas_bolivar,Bolívar,Municipio Bolívar,VE-E,Barinas,51227,61648,67484,83396,64780,54072,83.47,1047,61.87,Barinitas,,,
+92452058B46129601263202,ve_yaracuy_bolivar,Bolívar,Municipio Bolívar,VE-U,Yaracuy,32403,38508,41952,50359,37664,37664,100,1087,34.64,Aroa,,,
+92452058B93734391596245,ve_tachira_bolivar,Bolívar,Municipio Bolívar,VE-S,Táchira,62384,66392,68533,78230,70124,54247,77.36,204,343.74,San Antonio del Táchira,,,
+92452058B49980742384962,ve_monagas_cedeno,Cedeño,Municipio Cedeño,VE-N,Monagas,34586,40035,42632,50961,42397,25655,60.51,1977,21.44,Caicara,,,
+92452058B45585815377737,ve_bolivar_cedeno,Cedeño,Municipio Cedeño,VE-F,Bolívar,92437,107772,116192,131800,82179,48581,59.12,46020,1.78,Caicara del Orinoco,0.692,244.66,3953
+92452058B88295948802008,ve_monagas_ezequiel_zamora,Ezequiel Zamora,Municipio Ezequiel Zamora,VE-N,Monagas,63325,73082,77681,92168,82480,67682,82.06,162,509.13,Punta de Mata,,,
+92452058B98091189447786,ve_barinas_ezequiel_zamora,Ezequiel Zamora,Municipio Ezequiel Zamora,VE-E,Barinas,51079,60836,66182,79776,64426,49741,77.21,4042,15.93,Santa Bárbara,,,
+92452058B50868019184012,ve_cojedes_falcon,Falcón,Municipio Falcón,VE-H,Cojedes,95053,115937,128721,185271,124919,124919,100,714,174.95,Tinaquillo,,,
+92452058B34280729247629,ve_falcon_falcon,Falcón,Municipio Falcón,VE-I,Falcón,50920,58034,61773,68185,55014,16428,29.86,1577,34.88,Pueblo Nuevo,0.683,1652.95,3719
+92452058B17363739467274,ve_guarico_francisco_de_miranda,Francisco de Miranda,Municipio Francisco de Miranda,VE-J,Guárico,148642,181492,200622,244895,165539,153924,92.98,13490,12.27,Calabozo,,,
+92452058B99053619460093,ve_tachira_francisco_de_miranda,Francisco de Miranda,Municipio Francisco de Miranda,VE-S,Táchira,4031,4365,4553,5421,5169,5169,100,262,19.72,San José de Bolívar,,,
+92452058B9282611745030,ve_anzoategui_francisco_de_miranda,Francisco de Miranda,Municipio Francisco de Miranda,VE-B,Anzoátegui,43353,47053,48757,48501,50181,43177,86.04,5334,9.4,Pariaguán,0.634,58.16,2680
+92452058B30205634756293,ve_cojedes_girardot,Girardot,Municipio Girardot,VE-H,Cojedes,11713,13166,13929,16624,16806,13388,79.66,3468,4.84,El Baúl,,,
+92452058B62779861524453,ve_aragua_girardot,Girardot,Municipio Girardot,VE-D,Aragua,431547,475175,495544,550785,469371,460380,98.08,302,1554.2,Maracay,0.724,5079.93,4892
+92452058B82042298353727,ve_miranda_independencia,Independencia,Municipio Independencia,VE-M,Miranda,145361,165268,174662,191132,173685,81938,47.18,284,611.56,Santa Teresa del Tuy,0.741,612.24,5453
+92452058B61290497369270,ve_anzoategui_independencia,Independencia,Municipio Independencia,VE-B,Anzoátegui,31904,38991,43381,57306,41745,30941,74.12,5929,7.04,Soledad,0.64,85.7,2787
+92452058B61414933124472,ve_tachira_independencia,Independencia,Municipio Independencia,VE-S,Táchira,36521,40169,42289,52205,43065,27497,,80,538.31,Capacho Nuevo,,,
+92452058B35610022203869,ve_yaracuy_independencia,Independencia,Municipio Independencia,VE-U,Yaracuy,63774,75851,82676,99434,72788,72788,100,98,742.73,Independencia,,,
+92452058B50204709100098,ve_anzoategui_libertad,Libertad,Municipio Libertad,VE-B,Anzoátegui,16191,18036,18983,20101,20278,14050,69.29,2043,9.92,San Mateo,0.683,97.99,3721
+92452058B23217711082732,ve_tachira_libertad,Libertad,Municipio Libertad,VE-S,Táchira,27405,29545,30736,36192,31967,16381,,166,192.57,Capacho Viejo,,,
+92452058B71261275194510,ve_carabobo_libertador,Libertador,Municipio Libertador,VE-G,Carabobo,172121,191817,200816,224542,207247,207247,100,558,371.41,Tocuyito,0.729,548.18,5040
+92452058B74442038912920,ve_sucre_libertador,Libertador,Municipio Libertador,VE-R,Sucre,9932,11534,12456,15321,12713,11023,86.71,237,53.64,Tunapuy,,,
+92452058B90473537969965,ve_aragua_libertador,Libertador,Municipio Libertador,VE-D,Aragua,117677,130517,136705,154607,158616,72578,45.76,52,3050.3,Palo Negro,0.625,86.97,2531
+92452058B63201291940851,ve_merida_libertador,Libertador,Municipio Libertador,VE-L,Mérida,252042,299191,324896,373220,261076,258836,99.14,803,325.15,Mérida,0.698,1940.73,4092
+92452058B13345815126611,ve_distrito_capital_libertador,Libertador,Municipio Bolivariano Libertador,VE-A,Distrito Capital,2070927,2090479,2099223,2066367,2277972,2277972,100,433,5260.9,Caracas,0.788,16493.4,7497
+92452058B22657240029689,ve_tachira_libertador,Libertador,Municipio Libertador,VE-S,Táchira,21847,23709,24762,29622,27016,11488,42.52,1139,23.71,Abejales,,,
+92452058B64772493971985,ve_monagas_libertador,Libertador,Municipio Libertador,VE-N,Monagas,43692,49934,52767,61157,54373,40325,74.16,3447,15.77,Temblador,,,
+92452058B95168979191,ve_nueva_esparta_marino,Mariño,Municipio Mariño,VE-O,Nueva Esparta,,,,,118649,118649,100,39,3042.28,Porlamar,,,
+92452058B36519834610261,ve_sucre_marino,Mariño,Municipio Mariño,VE-R,Sucre,24978,28993,31300,38453,28217,15011,53.2,469,60.16,Irapa,,,
+92452058B11824178609180,ve_carabobo_miranda,Miranda,Municipio Miranda,VE-G,Carabobo,28388,32907,35276,43360,34809,34809,100,161,216.2,Miranda,0.775,647.18,6875
+92452058B99639061411506,ve_merida_miranda,Miranda,Municipio Miranda,VE-L,Mérida,22654,27261,29845,35420,27977,20094,71.82,408,68.57,Timotes,0.666,46.39,3314
+92452058B1546334358138,ve_trujillo_miranda,Miranda,Municipio Miranda,VE-T,Trujillo,23299,27714,30124,35349,26177,13828,52.82,374,69.99,El Dividive,,,
+92452058B40555810306039,ve_falcon_miranda,Miranda,Municipio Miranda,VE-I,Falcón,218965,254106,273312,313525,268862,251459,93.53,1805,148.95,Santa Ana de Coro,,,
+92452058B50002149731912,ve_portuguesa_paez,Páez,Municipio Páez,VE-P,Portuguesa,182507,215938,234917,283969,219524,189716,86.42,425,516.52,Acarigua,,,
+92452058B91932726489103,ve_zulia_paez,Páez,Municipio Páez,VE-V,Zulia,,,,,91162,20397,,2370,38.46,Sinamaica,,,
+92452058B72828901186947,ve_miranda_paez,Páez,Municipio Páez,VE-M,Miranda,39303,43671,45522,47154,46005,25218,54.82,963,47.77,Río Chico,0.731,345.06,5099
+92452058B68065976769542,ve_apure_paez,Páez,Municipio Páez,VE-C,Apure,,,,,122130,61180,50.09,12820,9.52,Guasdualito,,,
+92452058B74978111878407,ve_monagas_piar,Piar,Municipio Piar,VE-N,Monagas,45140,51147,53769,61030,58886,14788,25.11,1074,54.82,Aragua,,,
+92452058B47549156675396,ve_bolivar_piar,Piar,Municipio Piar,VE-F,Bolívar,112638,132081,142894,164348,123242,106060,86.06,15900,7.75,Upata,0.71,378.26,4435
+92452058B36429563491132,ve_falcon_piritu,Píritu,Municipio Píritu,VE-I,Falcón,10638,12396,13370,15563,13152,9957,75.71,1168,11.26,Píritu,,,
+92452058B35367180068237,ve_anzoategui_piritu,Píritu,Municipio Píritu,VE-B,Anzoátegui,25013,29143,31510,37152,30146,28978,96.13,225,133.98,Píritu,0.657,105.98,3121
+92452058B21426676418020,ve_cojedes_romulo_gallegos,Rómulo Gallegos,Municipio Rómulo Gallegos,VE-H,Cojedes,18009,20172,21295,25197,26270,26270,100,725,36.23,Las Vegas,,,
+92452058B89555253536357,ve_apure_romulo_gallegos,Rómulo Gallegos,Municipio Rómulo Gallegos,VE-C,Apure,27632,34345,38298,49818,31763,26232,82.59,12219,2.59,Elorza,0.556,57.74,1591
+92452058B3899539267655,ve_falcon_san_francisco,San Francisco,Municipio San Francisco,VE-I,Falcón,11060,13012,14117,16817,13587,13587,100,346,39.26,Mirimire,,,
+92452058B36126847225490,ve_zulia_san_francisco,San Francisco,Municipio San Francisco,VE-V,Zulia,446474,526504,570940,713815,541009,156218,28.88,185,2924.37,San Francisco,0.772,226.17,6727
+92452058B7204279738521,ve_miranda_simon_bolivar,Simón Bolívar,Municipio Simón Bolívar,VE-M,Miranda,45279,50165,52203,53701,60664,51832,85.44,131,463.08,San Francisco de Yare,0.779,365.16,7045
+92452058B72837046286909,ve_zulia_simon_bolivar,Simón Bolívar,Municipio Simón Bolívar,VE-V,Zulia,42906,50229,54232,66636,60070,25436,42.34,219,274.29,Tía Juana,0.736,179,5279
+92452058B340100748175,ve_anzoategui_simon_bolivar,Simón Bolívar,Municipio Simón Bolívar,VE-B,Anzoátegui,444928,506016,539200,599328,516904,472023,91.32,1706,302.99,Barcelona,0.725,5035.63,4918
+92452058B83373837217774,ve_tachira_simon_rodriguez,Simón Rodríguez,Municipio Simón Rodríguez,VE-S,Táchira,2503,2671,2761,3174,2950,2950,100,69,42.75,San Simón,,,
+92452058B74376664002472,ve_anzoategui_simon_rodriguez,Simón Rodríguez,Municipio Simón Rodríguez,VE-B,Anzoátegui,194077,222450,238158,269842,216175,216175,100,703,307.5,El Tigre,0.686,65.92,3793
+92452058B18295884568936,ve_falcon_sucre,Sucre,Municipio Sucre,VE-I,Falcón,5857,6729,7196,8096,7799,5778,74.09,840,9.28,La Cruz de Taratara,,,
+92452058B59537518099621,ve_tachira_sucre,Sucre,Municipio Sucre,VE-S,Táchira,7425,7954,8243,9564,9680,6784,70.08,407,23.78,Queniquea,,,
+92452058B63445948802308,ve_bolivar_sucre,Sucre,Municipio Sucre,VE-F,Bolívar,22127,25725,27687,31193,26677,5440,20.39,46166,0.57,Maripa,0.629,1437.84,2595
+92452058B73017007286704,ve_yaracuy_sucre,Sucre,Municipio Sucre,VE-U,Yaracuy,20198,24570,27144,34456,23238,23238,100,133,174.72,Guama,,,
+92452058B78508752034039,ve_aragua_sucre,Sucre,Municipio Sucre,VE-D,Aragua,125136,137494,143207,158371,138437,129113,93.26,76,1821.53,Cagua,0.703,65.43,4231
+92452058B15586506098632,ve_merida_sucre,Sucre,Municipio Sucre,VE-L,Mérida,58660,71271,78479,95293,69240,29265,42.27,946,73.19,Lagunillas,0.722,25.17,4811
+92452058B14540922264670,ve_portuguesa_sucre,Sucre,Municipio Sucre,VE-P,Portuguesa,41912,48922,52914,63742,47196,24671,52.27,400,117.99,Biscucuy,,,
+92452058B12777305429441,ve_miranda_sucre,Sucre,Municipio Sucre,VE-M,Miranda,642959,718203,751029,787784,682718,420610,61.61,164,4162.91,Petare,0.759,307.51,6150
+92452058B70878488170331,ve_trujillo_sucre,Sucre,Municipio Sucre,VE-T,Trujillo,31775,38427,42193,51638,38595,12380,32.08,214,180.35,Sabana de Mendoza,,,
+92452058B50415523485502,ve_sucre_sucre,Sucre,Municipio Sucre,VE-R,Sucre,383228,451448,491476,622479,451794,401482,88.86,1570,287.76,Cumaná,0.65,1029.08,2974
+92452058B74873434476019,ve_aragua_tovar,Tovar,Municipio Tovar,VE-D,Aragua,14516,16404,17375,20551,16385,16385,100,225,72.82,La Colonia Tovar,0.691,69.84,3917
+92452058B76146617843422,ve_merida_tovar,Tovar,Municipio Tovar,VE-L,Mérida,39514,46051,49459,54364,45438,45438,100,184,246.94,Tovar,0.677,20.83,3578
+92452058B98233245594574,ve_aragua_urdaneta,Urdaneta,Municipio Urdaneta,VE-D,Aragua,21469,23956,25182,28895,34074,19558,57.4,2024,16.83,Barbacoas,0.645,56.31,2874
+92452058B66787265555701,ve_trujillo_urdaneta,Urdaneta,Municipio Urdaneta,VE-T,Trujillo,35464,42658,46690,56415,39738,8275,20.82,497,79.95,La Quebrada,,,
+92452058B69956206553200,ve_lara_urdaneta,Urdaneta,Municipio Urdaneta,VE-K,Lara,,,,,69956,27120,38.77,4256,16.43,Siquisique,0.679,1384.04,3616
+92452058B23947748286776,ve_miranda_urdaneta,Urdaneta,Municipio Urdaneta,VE-M,Miranda,155709,174534,182890,193454,176326,142967,81.08,273,645.88,Cúa,0.762,163.14,6296
+92452058B44429853731382,ve_falcon_zamora,Zamora,Municipio Zamora,VE-I,Falcón,34227,40362,43853,52512,38897,29952,77,619,62.83,Puerto Cumarebo,,,
+92452058B49597531088827,ve_miranda_zamora,Zamora,Municipio Zamora,VE-M,Miranda,203278,227666,238450,251738,216276,175705,81.24,378,572.15,Guatire,0.777,6873.79,6950
+92452058B58412499983511,ve_aragua_zamora,Zamora,Municipio Zamora,VE-D,Aragua,148300,163139,170037,188577,173014,108507,62.72,649,266.58,Villa de Cura,0.666,1296.69,3307
+92452058B76868797395121,ve_anzoategui_fernando_de_penalver,Fernando de Peñalver,Municipio Fernando de Peñalver,VE-B,Anzoátegui,36792,44720,49592,64658,40729,33410,82.03,643,63.34,Puerto Píritu,0.665,76.4,3303
+92452058B40300597364264,ve_carabobo_carlos_arvelo,Carlos Arvelo,Municipio Carlos Arvelo,VE-G,Carabobo,149264,165266,172349,189775,175908,85514,48.61,835,210.66,Güigüe,0.725,1147.86,4926
+92452058B48736670242482,ve_merida_tulio_febres_cordero,Tulio Febres Cordero,Municipio Tulio Febres Cordero,VE-L,Mérida,34649,40082,42856,46269,42276,21326,50.44,560,75.49,Nueva Bolivia,0.675,22.36,3517
+92452058B74295605734614,ve_nueva_esparta_tubores,Tubores,Municipio Tubores,VE-O,Nueva Esparta,,,,,46597,30521,65.5,180,258.87,Punta de Piedras,,,
+92452058B26241339003056,ve_zulia_almirante_padilla,Almirante Padilla,Municipio Almirante Padilla,VE-V,Zulia,12108,14325,15564,19616,16004,10305,64.39,151,105.98,El Toro,0.763,2117.72,6317
+92452058B15023517845906,ve_zulia_miranda,Miranda,Municipio Miranda,VE-V,Zulia,98185,113602,121795,145499,122233,67811,55.48,2255,54.2,Los Puertos de Altagracia,0.755,129.08,5989
+92452058B245358204852,ve_zulia_sucre,Sucre,Municipio Sucre,VE-V,Zulia,61201,68475,71948,79292,74618,7760,10.4,874,85.37,Bobures,0.754,191.26,5955
+92452058B30911467500490,ve_carabobo_san_joaquin,San Joaquín,Municipio San Joaquín,VE-G,Carabobo,62887,69894,73059,81198,75707,75707,100,127,596.11,San Joaquín,0.753,475.26,5916
+92452058B25675040918260_muni,ve_guayana_esequiba_guayana_esequiba,Guayana Esequiba,Estado Guayana Esequiba,VE-GE,Guayana Esequiba,,,,,,,,,,,0.5884049625,479.71,1998.7760833333334
+42786344B94533756407676_muni,ve_la_guaira_vargas,Vargas,Municipio Vargas,VE-X,La Guaira,350553,382123,402905,540516,448894,21250,4.73,1171,383.34,La Guaira,0.75,2562.56,5824
+42786344B77541452473448_muni,ve_dependencias_federales_dependencias_federales,Dependencias Federales,Dependencias Federales,VE-W,Dependencias Federales,,,,,,,,,,,,,
