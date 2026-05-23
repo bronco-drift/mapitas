@@ -1,0 +1,2676 @@
+{
+  "municipios": {
+    "92452058B13345815126611": {
+      "name": "Libertador",
+      "parentISO": "VE-A",
+      "wikiName": "Libertador",
+      "poblacion2021": 2277972,
+      "areaKm2": 433,
+      "densidad": 5260.9
+    },
+    "92452058B74108168136268": {
+      "name": "Maracaibo",
+      "parentISO": "VE-V",
+      "wikiName": "Maracaibo",
+      "poblacion2021": 1624210,
+      "areaKm2": 419,
+      "densidad": 3876.39
+    },
+    "92452058B63992196257399": {
+      "name": "Iribarren",
+      "parentISO": "VE-K",
+      "wikiName": "Iribarren",
+      "poblacion2021": 1225175,
+      "areaKm2": 2760,
+      "densidad": 443.9
+    },
+    "92452058B422414995593": {
+      "name": "Valencia",
+      "parentISO": "VE-G",
+      "wikiName": "Valencia",
+      "poblacion2021": 980277,
+      "areaKm2": 623,
+      "densidad": 1573.47
+    },
+    "92452058B19178625121823": {
+      "name": "Caroní",
+      "parentISO": "VE-F",
+      "wikiName": "Caroní",
+      "poblacion2021": 831264,
+      "areaKm2": 1612,
+      "densidad": 515.67
+    },
+    "92452058B57031672069031": {
+      "name": "Maturín",
+      "parentISO": "VE-N",
+      "wikiName": "Maturín",
+      "poblacion2021": 753254,
+      "areaKm2": 13042,
+      "densidad": 50.25
+    },
+    "92452058B12777305429441": {
+      "name": "Sucre",
+      "parentISO": "VE-M",
+      "wikiName": "Sucre",
+      "poblacion2021": 682718,
+      "areaKm2": 164,
+      "densidad": 4162.91
+    },
+    "92452058B36126847225490": {
+      "name": "San Francisco",
+      "parentISO": "VE-V",
+      "wikiName": "San Francisco",
+      "poblacion2021": 541009,
+      "areaKm2": 185,
+      "densidad": 2924.37
+    },
+    "92452058B340100748175": {
+      "name": "Simón Bolívar",
+      "parentISO": "VE-B",
+      "wikiName": "Bolívar",
+      "poblacion2021": 516904,
+      "areaKm2": 1706,
+      "densidad": 302.99
+    },
+    "92452058B44291856842988": {
+      "name": "Barinas",
+      "parentISO": "VE-E",
+      "wikiName": "Barinas",
+      "poblacion2021": 555578,
+      "areaKm2": 3304,
+      "densidad": 149.99
+    },
+    "92452058B62779861524453": {
+      "name": "Girardot",
+      "parentISO": "VE-D",
+      "wikiName": "Girardot",
+      "poblacion2021": 469371,
+      "areaKm2": 302,
+      "densidad": 1554.2
+    },
+    "92452058B50415523485502": {
+      "name": "Sucre",
+      "parentISO": "VE-R",
+      "wikiName": "Sucre",
+      "poblacion2021": 451794,
+      "areaKm2": 1570,
+      "densidad": 287.76
+    },
+    "42786344B94533756407676_muni": {
+      "name": "Vargas",
+      "parentISO": "VE-X",
+      "wikiName": "Vargas",
+      "poblacion2021": 448894,
+      "areaKm2": 1171,
+      "densidad": 383.34
+    },
+    "92452058B12886197889450": {
+      "name": "Cabimas",
+      "parentISO": "VE-V",
+      "wikiName": "Cabimas",
+      "poblacion2021": 326738,
+      "areaKm2": 655,
+      "densidad": 498.83
+    },
+    "92452058B62251986707273": {
+      "name": "Carirubana",
+      "parentISO": "VE-I",
+      "wikiName": "Carirubana",
+      "poblacion2021": 310730,
+      "areaKm2": 684,
+      "densidad": 454.28
+    },
+    "92452058B43927171867078": {
+      "name": "San Cristóbal",
+      "parentISO": "VE-S",
+      "wikiName": "San Cristóbal",
+      "poblacion2021": 302203,
+      "areaKm2": 241,
+      "densidad": 1253.95
+    },
+    "92452058B55780217800828": {
+      "name": "Juan Antonio Sotillo",
+      "parentISO": "VE-B",
+      "wikiName": "Sotillo",
+      "poblacion2021": 296899,
+      "areaKm2": 244,
+      "densidad": 1216.79
+    },
+    "92452058B8376465303279": {
+      "name": "Guaicaipuro",
+      "parentISO": "VE-M",
+      "wikiName": "Guaicaipuro",
+      "poblacion2021": 287664,
+      "areaKm2": 661,
+      "densidad": 435.19
+    },
+    "92452058B98941669377363": {
+      "name": "Baruta",
+      "parentISO": "VE-M",
+      "wikiName": "Baruta",
+      "poblacion2021": 273755,
+      "areaKm2": 86,
+      "densidad": 3183.19
+    },
+    "92452058B81914214166984": {
+      "name": "Lagunillas",
+      "parentISO": "VE-V",
+      "wikiName": "Lagunillas",
+      "poblacion2021": 271289,
+      "areaKm2": 1024,
+      "densidad": 264.93
+    },
+    "92452058B40555810306039": {
+      "name": "Miranda",
+      "parentISO": "VE-I",
+      "wikiName": "Miranda",
+      "poblacion2021": 268862,
+      "areaKm2": 1805,
+      "densidad": 148.95
+    },
+    "92452058B98840878188065": {
+      "name": "Santiago Mariño",
+      "parentISO": "VE-D",
+      "wikiName": "Santiago Mariño",
+      "poblacion2021": 266945,
+      "areaKm2": 497,
+      "densidad": 537.11
+    },
+    "92452058B63201291940851": {
+      "name": "Libertador",
+      "parentISO": "VE-L",
+      "wikiName": "Libertador",
+      "poblacion2021": 261076,
+      "areaKm2": 803,
+      "densidad": 325.15
+    },
+    "92452058B70966506034681": {
+      "name": "Mara",
+      "parentISO": "VE-V",
+      "wikiName": "Mara",
+      "poblacion2021": 252988,
+      "areaKm2": 3588,
+      "densidad": 70.5
+    },
+    "92452058B28042998253075": {
+      "name": "Plaza",
+      "parentISO": "VE-M",
+      "wikiName": "Plaza",
+      "poblacion2021": 248945,
+      "areaKm2": 180,
+      "densidad": 1383.02
+    },
+    "92452058B33473960581249": {
+      "name": "Guanare",
+      "parentISO": "VE-P",
+      "wikiName": "Guanare",
+      "poblacion2021": 244050,
+      "areaKm2": 2008,
+      "densidad": 121.53
+    },
+    "92452058B50002149731912": {
+      "name": "Páez",
+      "parentISO": "VE-P",
+      "wikiName": "Páez",
+      "poblacion2021": 219524,
+      "areaKm2": 425,
+      "densidad": 516.52
+    },
+    "92452058B92725802185650": {
+      "name": "San Fernando",
+      "parentISO": "VE-C",
+      "wikiName": "San Fernando",
+      "poblacion2021": 218583,
+      "areaKm2": 5982,
+      "densidad": 36.54
+    },
+    "92452058B49597531088827": {
+      "name": "Zamora",
+      "parentISO": "VE-M",
+      "wikiName": "Zamora",
+      "poblacion2021": 216276,
+      "areaKm2": 378,
+      "densidad": 572.15
+    },
+    "92452058B74376664002472": {
+      "name": "Simón Rodríguez",
+      "parentISO": "VE-B",
+      "wikiName": "Simón Rodríguez",
+      "poblacion2021": 216175,
+      "areaKm2": 703,
+      "densidad": 307.5
+    },
+    "92452058B34599827545063": {
+      "name": "Lander",
+      "parentISO": "VE-M",
+      "wikiName": "Lander",
+      "poblacion2021": 215445,
+      "areaKm2": 478,
+      "densidad": 450.72
+    },
+    "92452058B76847227335777": {
+      "name": "Guacara",
+      "parentISO": "VE-G",
+      "wikiName": "Guacara",
+      "poblacion2021": 213815,
+      "areaKm2": 165,
+      "densidad": 1295.84
+    },
+    "92452058B22596665360768": {
+      "name": "Torres",
+      "parentISO": "VE-K",
+      "wikiName": "Torres",
+      "poblacion2021": 211806,
+      "areaKm2": 6954,
+      "densidad": 30.45
+    },
+    "92452058B2415433423645": {
+      "name": "Palavecino",
+      "parentISO": "VE-K",
+      "wikiName": "Palavecino",
+      "poblacion2021": 207494,
+      "areaKm2": 440,
+      "densidad": 471.57
+    },
+    "92452058B71261275194510": {
+      "name": "Libertador",
+      "parentISO": "VE-G",
+      "wikiName": "Libertador",
+      "poblacion2021": 207247,
+      "areaKm2": 558,
+      "densidad": 371.41
+    },
+    "92452058B64111630674136": {
+      "name": "Los Guayos",
+      "parentISO": "VE-G",
+      "wikiName": "Los Guayos",
+      "poblacion2021": 192582,
+      "areaKm2": 64,
+      "densidad": 3009.09
+    },
+    "92452058B49984819466798": {
+      "name": "Puerto Cabello",
+      "parentISO": "VE-G",
+      "wikiName": "Puerto Cabello",
+      "poblacion2021": 182512,
+      "areaKm2": 434,
+      "densidad": 420.53
+    },
+    "92452058B8973005468773": {
+      "name": "Araure",
+      "parentISO": "VE-P",
+      "wikiName": "Araure",
+      "poblacion2021": 180812,
+      "areaKm2": 640,
+      "densidad": 282.51
+    },
+    "92452058B81521575667263": {
+      "name": "Naguanagua",
+      "parentISO": "VE-G",
+      "wikiName": "Naguanagua",
+      "poblacion2021": 178413,
+      "areaKm2": 188,
+      "densidad": 949
+    },
+    "92452058B50396237528900": {
+      "name": "Valera",
+      "parentISO": "VE-T",
+      "wikiName": "Valera",
+      "poblacion2021": 176961,
+      "areaKm2": 240,
+      "densidad": 737.33
+    },
+    "92452058B23947748286776": {
+      "name": "Urdaneta",
+      "parentISO": "VE-M",
+      "wikiName": "Urdaneta",
+      "poblacion2021": 176326,
+      "areaKm2": 273,
+      "densidad": 645.88
+    },
+    "92452058B40300597364264": {
+      "name": "Carlos Arvelo",
+      "parentISO": "VE-G",
+      "wikiName": "Carlos Arvelo",
+      "poblacion2021": 175908,
+      "areaKm2": 835,
+      "densidad": 210.66
+    },
+    "92452058B25382681816620": {
+      "name": "José Félix Ribas",
+      "parentISO": "VE-D",
+      "wikiName": "José Félix Ribas",
+      "poblacion2021": 175108,
+      "areaKm2": 419,
+      "densidad": 417.91
+    },
+    "92452058B82042298353727": {
+      "name": "Independencia",
+      "parentISO": "VE-M",
+      "wikiName": "Independencia",
+      "poblacion2021": 173685,
+      "areaKm2": 284,
+      "densidad": 611.56
+    },
+    "92452058B58412499983511": {
+      "name": "Zamora",
+      "parentISO": "VE-D",
+      "wikiName": "Zamora",
+      "poblacion2021": 173014,
+      "areaKm2": 649,
+      "densidad": 266.58
+    },
+    "92452058B25789635219154": {
+      "name": "Bermúdez",
+      "parentISO": "VE-R",
+      "wikiName": "Bermúdez",
+      "poblacion2021": 170052,
+      "areaKm2": 203,
+      "densidad": 837.69
+    },
+    "92452058B17363739467274": {
+      "name": "Francisco de Miranda",
+      "parentISO": "VE-J",
+      "wikiName": "Miranda",
+      "poblacion2021": 165539,
+      "areaKm2": 13490,
+      "densidad": 12.27
+    },
+    "92452058B83946856745535": {
+      "name": "Alberto Adriani",
+      "parentISO": "VE-L",
+      "wikiName": "Alberto Adriani",
+      "poblacion2021": 164330,
+      "areaKm2": 683,
+      "densidad": 240.6
+    },
+    "92452058B38768688631563": {
+      "name": "Anaco",
+      "parentISO": "VE-B",
+      "wikiName": "Anaco",
+      "poblacion2021": 162556,
+      "areaKm2": 795,
+      "densidad": 204.47
+    },
+    "92452058B78447057272703": {
+      "name": "Juan Germán Roscio",
+      "parentISO": "VE-J",
+      "wikiName": "Roscio",
+      "poblacion2021": 159302,
+      "areaKm2": 1497,
+      "densidad": 106.41
+    },
+    "92452058B90473537969965": {
+      "name": "Libertador",
+      "parentISO": "VE-D",
+      "wikiName": "Libertador",
+      "poblacion2021": 158616,
+      "areaKm2": 52,
+      "densidad": 3050.3
+    },
+    "92452058B89776134514459": {
+      "name": "Colón",
+      "parentISO": "VE-V",
+      "wikiName": "Colón",
+      "poblacion2021": 157067,
+      "areaKm2": 3368,
+      "densidad": 46.63
+    },
+    "92452058B88324768545293": {
+      "name": "Leonardo Infante",
+      "parentISO": "VE-J",
+      "wikiName": "Infante",
+      "poblacion2021": 154684,
+      "areaKm2": 10613,
+      "densidad": 14.57
+    },
+    "92452058B80404447780707": {
+      "name": "Tucupita",
+      "parentISO": "VE-Y",
+      "wikiName": "Tucupita",
+      "poblacion2021": 149845,
+      "areaKm2": 10996,
+      "densidad": 13.62
+    },
+    "92452058B79162136428337": {
+      "name": "Francisco Linares Alcántara",
+      "parentISO": "VE-D",
+      "wikiName": "Francisco Linares Alcántara",
+      "poblacion2021": 149360,
+      "areaKm2": 24,
+      "densidad": 6223.33
+    },
+    "92452058B61168539952553": {
+      "name": "Machiques de Perijá",
+      "parentISO": "VE-V",
+      "wikiName": "Machiques de Perijá",
+      "poblacion2021": 147627,
+      "areaKm2": 9493,
+      "densidad": 15.55
+    },
+    "92452058B2023603244390": {
+      "name": "Jesús Enrique Lossada",
+      "parentISO": "VE-V",
+      "wikiName": "Jesús Enrique Lossada",
+      "poblacion2021": 147280,
+      "areaKm2": 3533,
+      "densidad": 41.68
+    },
+    "92452058B12167323137967": {
+      "name": "San Felipe",
+      "parentISO": "VE-U",
+      "wikiName": "San Felipe",
+      "poblacion2021": 145783,
+      "areaKm2": 472,
+      "densidad": 308.86
+    },
+    "92452058B54957724737366": {
+      "name": "Morán",
+      "parentISO": "VE-K",
+      "wikiName": "Morán",
+      "poblacion2021": 141556,
+      "areaKm2": 2231,
+      "densidad": 63.44
+    },
+    "92452058B19007337502862": {
+      "name": "Cristóbal Rojas",
+      "parentISO": "VE-M",
+      "wikiName": "Cristóbal Rojas",
+      "poblacion2021": 140596,
+      "areaKm2": 120,
+      "densidad": 1171.63
+    },
+    "92452058B54071015831659": {
+      "name": "Cárdenas",
+      "parentISO": "VE-S",
+      "wikiName": "Cárdenas",
+      "poblacion2021": 139002,
+      "areaKm2": 262,
+      "densidad": 530.54
+    },
+    "92452058B78508752034039": {
+      "name": "Sucre",
+      "parentISO": "VE-D",
+      "wikiName": "Sucre",
+      "poblacion2021": 138437,
+      "areaKm2": 76,
+      "densidad": 1821.53
+    },
+    "92452058B60789568646042": {
+      "name": "Mario Briceño Iragorry",
+      "parentISO": "VE-D",
+      "wikiName": "Mario Briceño Iragorry",
+      "poblacion2021": 136784,
+      "areaKm2": 53,
+      "densidad": 2580.83
+    },
+    "92452058B74472117393048": {
+      "name": "Paz Castillo",
+      "parentISO": "VE-M",
+      "wikiName": "Paz Castillo",
+      "poblacion2021": 132876,
+      "areaKm2": 408,
+      "densidad": 325.67
+    },
+    "92452058B45156381863749": {
+      "name": "Diego Ibarra",
+      "parentISO": "VE-G",
+      "wikiName": "Diego Ibarra",
+      "poblacion2021": 130961,
+      "areaKm2": 79,
+      "densidad": 1657.73
+    },
+    "92452058B12581966052082": {
+      "name": "Autónomo Atures",
+      "parentISO": "VE-Z",
+      "wikiName": "Atures",
+      "poblacion2021": 128153,
+      "areaKm2": 4500,
+      "densidad": 28.47
+    },
+    "92452058B11643433355356": {
+      "name": "San Diego",
+      "parentISO": "VE-G",
+      "wikiName": "San Diego",
+      "poblacion2021": 126101,
+      "areaKm2": 106,
+      "densidad": 1189.63
+    },
+    "92452058B50868019184012": {
+      "name": "Falcón",
+      "parentISO": "VE-H",
+      "wikiName": "Tinaquillo",
+      "poblacion2021": 124919,
+      "areaKm2": 714,
+      "densidad": 174.95
+    },
+    "92452058B47549156675396": {
+      "name": "Piar",
+      "parentISO": "VE-F",
+      "wikiName": "Piar",
+      "poblacion2021": 123242,
+      "areaKm2": 15900,
+      "densidad": 7.75
+    },
+    "92452058B84020445528897": {
+      "name": "Peña",
+      "parentISO": "VE-U",
+      "wikiName": "Peña",
+      "poblacion2021": 122942,
+      "areaKm2": 510,
+      "densidad": 241.06
+    },
+    "92452058B15023517845906": {
+      "name": "Miranda",
+      "parentISO": "VE-V",
+      "wikiName": "Miranda",
+      "poblacion2021": 122233,
+      "areaKm2": 2255,
+      "densidad": 54.2
+    },
+    "92452058B73225783388147": {
+      "name": "Campo Elías",
+      "parentISO": "VE-L",
+      "wikiName": "Campo Elías",
+      "poblacion2021": 119614,
+      "areaKm2": 609,
+      "densidad": 196.41
+    },
+    "92452058B95168979191": {
+      "name": "Mariño",
+      "parentISO": "VE-O",
+      "wikiName": "Mariño",
+      "poblacion2021": 118649,
+      "areaKm2": 39,
+      "densidad": 3042.28
+    },
+    "92452058B9761229691883": {
+      "name": "Jimenez",
+      "parentISO": "VE-K",
+      "wikiName": "Jiménez",
+      "poblacion2021": 113647,
+      "areaKm2": 768,
+      "densidad": 147.97
+    },
+    "92452058B6439374620840": {
+      "name": "Baralt",
+      "parentISO": "VE-V",
+      "wikiName": "Baralt",
+      "poblacion2021": 112432,
+      "areaKm2": 2211,
+      "densidad": 50.85
+    },
+    "92452058B38977236110472": {
+      "name": "Acevedo",
+      "parentISO": "VE-M",
+      "wikiName": "Acevedo",
+      "poblacion2021": 108299,
+      "areaKm2": 1879,
+      "densidad": 57.63
+    },
+    "92452058B8421162175114": {
+      "name": "Rosario de Perijá",
+      "parentISO": "VE-V",
+      "wikiName": "Rosario de Perijá",
+      "poblacion2021": 106879,
+      "areaKm2": 3914,
+      "densidad": 27.3
+    },
+    "92452058B23774185756617": {
+      "name": "La Cañada de Urdaneta",
+      "parentISO": "VE-V",
+      "wikiName": "La Cañada de Urdaneta",
+      "poblacion2021": 106819,
+      "areaKm2": 2073,
+      "densidad": 51.52
+    },
+    "92452058B89474674930128": {
+      "name": "Boconó",
+      "parentISO": "VE-T",
+      "wikiName": "Boconó",
+      "poblacion2021": 103717,
+      "areaKm2": 1365,
+      "densidad": 75.98
+    },
+    "92452058B39139174954008": {
+      "name": "San José de Guanipa",
+      "parentISO": "VE-B",
+      "wikiName": "Guanipa",
+      "poblacion2021": 98940,
+      "areaKm2": 792,
+      "densidad": 124.92
+    },
+    "92452058B9885086190441": {
+      "name": "Junín",
+      "parentISO": "VE-S",
+      "wikiName": "Junín",
+      "poblacion2021": 96402,
+      "areaKm2": 208,
+      "densidad": 463.47
+    },
+    "92452058B75275574170386": {
+      "name": "Antonio José de Sucre",
+      "parentISO": "VE-E",
+      "wikiName": "Antonio José de Sucre",
+      "poblacion2021": 96337,
+      "areaKm2": 2975,
+      "densidad": 32.38
+    },
+    "92452058B4495474982112": {
+      "name": "José Tadeo Monagas",
+      "parentISO": "VE-J",
+      "wikiName": "Monagas",
+      "poblacion2021": 92032,
+      "areaKm2": 3455,
+      "densidad": 26.63
+    },
+    "92452058B2929237041778": {
+      "name": "Pedro María Freites",
+      "parentISO": "VE-B",
+      "wikiName": "Freites",
+      "poblacion2021": 88795,
+      "areaKm2": 7153,
+      "densidad": 12.41
+    },
+    "92452058B72966397381157": {
+      "name": "Díaz",
+      "parentISO": "VE-O",
+      "wikiName": "Díaz",
+      "poblacion2021": 88696,
+      "areaKm2": 166,
+      "densidad": 534.31
+    },
+    "92452058B76566791733610": {
+      "name": "Bruzual",
+      "parentISO": "VE-U",
+      "wikiName": "Bruzual",
+      "poblacion2021": 83862,
+      "areaKm2": 417,
+      "densidad": 201.1
+    },
+    "92452058B88295948802008": {
+      "name": "Ezequiel Zamora",
+      "parentISO": "VE-N",
+      "wikiName": "Ezequiel Zamora",
+      "poblacion2021": 82480,
+      "areaKm2": 162,
+      "densidad": 509.13
+    },
+    "92452058B59483171465423": {
+      "name": "EL Hatillo",
+      "parentISO": "VE-M",
+      "wikiName": "El Hatillo",
+      "poblacion2021": 82439,
+      "areaKm2": 81,
+      "densidad": 1017.76
+    },
+    "92452058B45585815377737": {
+      "name": "Cedeño",
+      "parentISO": "VE-F",
+      "wikiName": "Cedeño",
+      "poblacion2021": 82179,
+      "areaKm2": 46020,
+      "densidad": 1.78
+    },
+    "92452058B38139614361819": {
+      "name": "Juan José Mora",
+      "parentISO": "VE-G",
+      "wikiName": "Juan José Mora",
+      "poblacion2021": 80496,
+      "areaKm2": 453,
+      "densidad": 177.69
+    },
+    "92452058B94720386415889": {
+      "name": "García",
+      "parentISO": "VE-O",
+      "wikiName": "García",
+      "poblacion2021": 80441,
+      "areaKm2": 85,
+      "densidad": 946.36
+    },
+    "92452058B9002130030249": {
+      "name": "Pedraza",
+      "parentISO": "VE-E",
+      "wikiName": "Pedraza",
+      "poblacion2021": 79815,
+      "areaKm2": 6693,
+      "densidad": 11.92
+    },
+    "92452058B66316473888275": {
+      "name": "Santa Rita",
+      "parentISO": "VE-V",
+      "wikiName": "Santa Rita",
+      "poblacion2021": 78107,
+      "areaKm2": 578,
+      "densidad": 135.13
+    },
+    "92452058B99464633299903": {
+      "name": "Turén",
+      "parentISO": "VE-P",
+      "wikiName": "Turén",
+      "poblacion2021": 76409,
+      "areaKm2": 1324,
+      "densidad": 57.71
+    },
+    "92452058B83118913216781": {
+      "name": "Zaraza",
+      "parentISO": "VE-J",
+      "wikiName": "Zaraza",
+      "poblacion2021": 75808,
+      "areaKm2": 2410,
+      "densidad": 31.45
+    },
+    "92452058B30911467500490": {
+      "name": "San Joaquín",
+      "parentISO": "VE-G",
+      "wikiName": "San Joaquín",
+      "poblacion2021": 75707,
+      "areaKm2": 127,
+      "densidad": 596.11
+    },
+    "92452058B35086054619694": {
+      "name": "Los Salias",
+      "parentISO": "VE-M",
+      "wikiName": "Los Salias",
+      "poblacion2021": 75166,
+      "areaKm2": 51,
+      "densidad": 1473.84
+    },
+    "92452058B245358204852": {
+      "name": "Sucre",
+      "parentISO": "VE-V",
+      "wikiName": "Sucre",
+      "poblacion2021": 74618,
+      "areaKm2": 874,
+      "densidad": 85.37
+    },
+    "92452058B57596479619194": {
+      "name": "Achaguas",
+      "parentISO": "VE-C",
+      "wikiName": "Achaguas",
+      "poblacion2021": 72802,
+      "areaKm2": 15754,
+      "densidad": 4.62
+    },
+    "92452058B35610022203869": {
+      "name": "Independencia",
+      "parentISO": "VE-U",
+      "wikiName": "Independencia",
+      "poblacion2021": 72788,
+      "areaKm2": 98,
+      "densidad": 742.73
+    },
+    "92452058B25759098564616": {
+      "name": "Brión",
+      "parentISO": "VE-M",
+      "wikiName": "Brión",
+      "poblacion2021": 72520,
+      "areaKm2": 531,
+      "densidad": 136.57
+    },
+    "92452058B29326197328098": {
+      "name": "Trujillo",
+      "parentISO": "VE-T",
+      "wikiName": "Trujillo",
+      "poblacion2021": 70426,
+      "areaKm2": 413,
+      "densidad": 170.52
+    },
+    "92452058B93734391596245": {
+      "name": "Bolívar",
+      "parentISO": "VE-S",
+      "wikiName": "Bolívar",
+      "poblacion2021": 70124,
+      "areaKm2": 204,
+      "densidad": 343.74
+    },
+    "92452058B69956206553200": {
+      "name": "Urdaneta",
+      "parentISO": "VE-K",
+      "wikiName": "Urdaneta",
+      "poblacion2021": 69956,
+      "areaKm2": 4256,
+      "densidad": 16.43
+    },
+    "92452058B41395444182143": {
+      "name": "Montes",
+      "parentISO": "VE-R",
+      "wikiName": "Montes",
+      "poblacion2021": 69696,
+      "areaKm2": 1080,
+      "densidad": 64.53
+    },
+    "92452058B15586506098632": {
+      "name": "Sucre",
+      "parentISO": "VE-L",
+      "wikiName": "Sucre",
+      "poblacion2021": 69240,
+      "areaKm2": 946,
+      "densidad": 73.19
+    },
+    "92452058B92934117405956": {
+      "name": "Chacao",
+      "parentISO": "VE-M",
+      "wikiName": "Chacao",
+      "poblacion2021": 68985,
+      "areaKm2": 13,
+      "densidad": 5306.53
+    },
+    "92452058B44788675020047": {
+      "name": "Nirgua",
+      "parentISO": "VE-U",
+      "wikiName": "Nirgua",
+      "poblacion2021": 68341,
+      "areaKm2": 2274,
+      "densidad": 30.05
+    },
+    "92452058B50148622636911": {
+      "name": "Ribero",
+      "parentISO": "VE-R",
+      "wikiName": "Ribero",
+      "poblacion2021": 67930,
+      "areaKm2": 1480,
+      "densidad": 45.89
+    },
+    "92452058B12744919392555": {
+      "name": "Ayacucho",
+      "parentISO": "VE-S",
+      "wikiName": "Ayacucho",
+      "poblacion2021": 67590,
+      "areaKm2": 507,
+      "densidad": 133.31
+    },
+    "92452058B20804490373380": {
+      "name": "Biruaca",
+      "parentISO": "VE-C",
+      "wikiName": "Biruaca",
+      "poblacion2021": 66782,
+      "areaKm2": 1281,
+      "densidad": 52.13
+    },
+    "92452058B93532552722104": {
+      "name": "San Rafael de Carvajal",
+      "parentISO": "VE-T",
+      "wikiName": "San Rafael de Carvajal",
+      "poblacion2021": 65882,
+      "areaKm2": 77,
+      "densidad": 855.61
+    },
+    "92452058B93255664897858": {
+      "name": "Valmore Rodríguez",
+      "parentISO": "VE-V",
+      "wikiName": "Valmore Rodríguez",
+      "poblacion2021": 65840,
+      "areaKm2": 1292,
+      "densidad": 50.95
+    },
+    "92452058B93497297495940": {
+      "name": "Pampán",
+      "parentISO": "VE-T",
+      "wikiName": "Pampán",
+      "poblacion2021": 65296,
+      "areaKm2": 431,
+      "densidad": 151.49
+    },
+    "92452058B41519808204677": {
+      "name": "Bolívar",
+      "parentISO": "VE-E",
+      "wikiName": "Bolívar",
+      "poblacion2021": 64780,
+      "areaKm2": 1047,
+      "densidad": 61.87
+    },
+    "92452058B98091189447786": {
+      "name": "Ezequiel Zamora",
+      "parentISO": "VE-E",
+      "wikiName": "Ezequiel Zamora",
+      "poblacion2021": 64426,
+      "areaKm2": 4042,
+      "densidad": 15.93
+    },
+    "92452058B98714042459160": {
+      "name": "José Rafael Revenga",
+      "parentISO": "VE-D",
+      "wikiName": "José Rafael Revenga",
+      "poblacion2021": 64200,
+      "areaKm2": 192,
+      "densidad": 334.37
+    },
+    "92452058B38365579478512": {
+      "name": "García de Hevia",
+      "parentISO": "VE-S",
+      "wikiName": "García de Hevia",
+      "poblacion2021": 63736,
+      "areaKm2": 911,
+      "densidad": 69.96
+    },
+    "92452058B18404635880934": {
+      "name": "Pedro María Ureña",
+      "parentISO": "VE-S",
+      "wikiName": "Pedro María Ureña",
+      "poblacion2021": 61930,
+      "areaKm2": 184,
+      "densidad": 336.57
+    },
+    "92452058B7204279738521": {
+      "name": "Simón Bolívar",
+      "parentISO": "VE-M",
+      "wikiName": "Simón Bolívar",
+      "poblacion2021": 60664,
+      "areaKm2": 131,
+      "densidad": 463.08
+    },
+    "92452058B35839392546530": {
+      "name": "Carrizal",
+      "parentISO": "VE-M",
+      "wikiName": "Carrizal",
+      "poblacion2021": 60392,
+      "areaKm2": 32,
+      "densidad": 1887.25
+    },
+    "92452058B72837046286909": {
+      "name": "Simón Bolívar",
+      "parentISO": "VE-V",
+      "wikiName": "Simón Bolívar",
+      "poblacion2021": 60070,
+      "areaKm2": 219,
+      "densidad": 274.29
+    },
+    "92452058B43990033715561": {
+      "name": "Crespo",
+      "parentISO": "VE-K",
+      "wikiName": "Crespo",
+      "poblacion2021": 58960,
+      "areaKm2": 875,
+      "densidad": 67.38
+    },
+    "92452058B74978111878407": {
+      "name": "Piar",
+      "parentISO": "VE-N",
+      "wikiName": "Piar",
+      "poblacion2021": 58886,
+      "areaKm2": 1074,
+      "densidad": 54.82
+    },
+    "92452058B65560769402967": {
+      "name": "Torbes",
+      "parentISO": "VE-S",
+      "wikiName": "Torbes",
+      "poblacion2021": 58322,
+      "areaKm2": 110,
+      "densidad": 530.2
+    },
+    "92452058B37394705502377": {
+      "name": "Ospino",
+      "parentISO": "VE-P",
+      "wikiName": "Ospino",
+      "poblacion2021": 58127,
+      "areaKm2": 1675,
+      "densidad": 34.7
+    },
+    "92452058B7239791888120": {
+      "name": "Sifontes",
+      "parentISO": "VE-F",
+      "wikiName": "Sifontes",
+      "poblacion2021": 57943,
+      "areaKm2": 24393,
+      "densidad": 2.37
+    },
+    "92452058B13726471401889": {
+      "name": "Bejuma",
+      "parentISO": "VE-G",
+      "wikiName": "Bejuma",
+      "poblacion2021": 56275,
+      "areaKm2": 469,
+      "densidad": 119.98
+    },
+    "92452058B34095123389968": {
+      "name": "Andrés Eloy Blanco",
+      "parentISO": "VE-K",
+      "wikiName": "Andrés Eloy Blanco",
+      "poblacion2021": 56076,
+      "areaKm2": 708,
+      "densidad": 79.2
+    },
+    "92452058B34280729247629": {
+      "name": "Falcón",
+      "parentISO": "VE-I",
+      "wikiName": "Falcón",
+      "poblacion2021": 55014,
+      "areaKm2": 1577,
+      "densidad": 34.88
+    },
+    "92452058B84467790604965": {
+      "name": "Maneiro",
+      "parentISO": "VE-O",
+      "wikiName": "Maneiro",
+      "poblacion2021": 54828,
+      "areaKm2": 35,
+      "densidad": 1566.51
+    },
+    "92452058B15677212765732": {
+      "name": "Arismendi",
+      "parentISO": "VE-R",
+      "wikiName": "Arismendi",
+      "poblacion2021": 54735,
+      "areaKm2": 769,
+      "densidad": 71.17
+    },
+    "92452058B64772493971985": {
+      "name": "Libertador",
+      "parentISO": "VE-N",
+      "wikiName": "Libertador",
+      "poblacion2021": 54373,
+      "areaKm2": 3447,
+      "densidad": 15.77
+    },
+    "92452058B46678467131598": {
+      "name": "Esteller",
+      "parentISO": "VE-P",
+      "wikiName": "Esteller",
+      "poblacion2021": 54303,
+      "areaKm2": 754,
+      "densidad": 72.01
+    },
+    "92452058B22632362075175": {
+      "name": "Alberto Arvelo Torrealba",
+      "parentISO": "VE-E",
+      "wikiName": "Alberto Arvelo Torrealba",
+      "poblacion2021": 54133,
+      "areaKm2": 769,
+      "densidad": 70.39
+    },
+    "92452058B87386897899112": {
+      "name": "Los Taques",
+      "parentISO": "VE-I",
+      "wikiName": "Los Taques",
+      "poblacion2021": 54132,
+      "areaKm2": 231,
+      "densidad": 234.33
+    },
+    "92452058B4465653427750": {
+      "name": "Fernández Feo",
+      "parentISO": "VE-S",
+      "wikiName": "Fernández Feo",
+      "poblacion2021": 53939,
+      "areaKm2": 1084,
+      "densidad": 49.75
+    },
+    "92452058B26692301480200": {
+      "name": "Cocorote",
+      "parentISO": "VE-U",
+      "wikiName": "Cocorote",
+      "poblacion2021": 52444,
+      "areaKm2": 135,
+      "densidad": 388.47
+    },
+    "92452058B12619730938493": {
+      "name": "Guasimos",
+      "parentISO": "VE-S",
+      "wikiName": "Guásimos",
+      "poblacion2021": 51029,
+      "areaKm2": 32,
+      "densidad": 1594.65
+    },
+    "92452058B13672560993609": {
+      "name": "Valdez",
+      "parentISO": "VE-R",
+      "wikiName": "Valdez",
+      "poblacion2021": 50862,
+      "areaKm2": 598,
+      "densidad": 85.05
+    },
+    "92452058B9282611745030": {
+      "name": "Francisco de Miranda",
+      "parentISO": "VE-B",
+      "wikiName": "Miranda",
+      "poblacion2021": 50181,
+      "areaKm2": 5334,
+      "densidad": 9.4
+    },
+    "92452058B72866558471416": {
+      "name": "Gómez",
+      "parentISO": "VE-O",
+      "wikiName": "Gómez",
+      "poblacion2021": 49814,
+      "areaKm2": 96,
+      "densidad": 518.89
+    },
+    "92452058B50017946052118": {
+      "name": "Rojas",
+      "parentISO": "VE-E",
+      "wikiName": "Rojas",
+      "poblacion2021": 49747,
+      "areaKm2": 1591,
+      "densidad": 31.26
+    },
+    "92452058B12262203467904": {
+      "name": "Catatumbo",
+      "parentISO": "VE-V",
+      "wikiName": "Catatumbo",
+      "poblacion2021": 49117,
+      "areaKm2": 5225,
+      "densidad": 9.4
+    },
+    "92452058B71126113854602": {
+      "name": "José Félix Ribas",
+      "parentISO": "VE-J",
+      "wikiName": "Ribas",
+      "poblacion2021": 48731,
+      "areaKm2": 2792,
+      "densidad": 17.45
+    },
+    "92452058B50645357968703": {
+      "name": "Obispos",
+      "parentISO": "VE-E",
+      "wikiName": "Obispos",
+      "poblacion2021": 48601,
+      "areaKm2": 1753,
+      "densidad": 27.72
+    },
+    "92452058B90039962099382": {
+      "name": "Simón Planas",
+      "parentISO": "VE-K",
+      "wikiName": "Simón Planas",
+      "poblacion2021": 48535,
+      "areaKm2": 808,
+      "densidad": 60.06
+    },
+    "92452058B212448851474": {
+      "name": "Colina",
+      "parentISO": "VE-I",
+      "wikiName": "Colina",
+      "poblacion2021": 48451,
+      "areaKm2": 582,
+      "densidad": 83.24
+    },
+    "92452058B82426430242133": {
+      "name": "Jáuregui",
+      "parentISO": "VE-S",
+      "wikiName": "Jáuregui",
+      "poblacion2021": 48172,
+      "areaKm2": 444,
+      "densidad": 108.49
+    },
+    "92452058B74462864631262": {
+      "name": "Guanarito",
+      "parentISO": "VE-P",
+      "wikiName": "Guanarito",
+      "poblacion2021": 47667,
+      "areaKm2": 3103,
+      "densidad": 15.36
+    },
+    "92452058B10882972052933": {
+      "name": "Bolívar",
+      "parentISO": "VE-N",
+      "wikiName": "Bolívar",
+      "poblacion2021": 47609,
+      "areaKm2": 345,
+      "densidad": 137.99
+    },
+    "92452058B14540922264670": {
+      "name": "Sucre",
+      "parentISO": "VE-P",
+      "wikiName": "Sucre",
+      "poblacion2021": 47196,
+      "areaKm2": 400,
+      "densidad": 117.99
+    },
+    "92452058B74295605734614": {
+      "name": "Tubores",
+      "parentISO": "VE-O",
+      "wikiName": "Tubores",
+      "poblacion2021": 46597,
+      "areaKm2": 180,
+      "densidad": 258.87
+    },
+    "92452058B72828901186947": {
+      "name": "Páez",
+      "parentISO": "VE-M",
+      "wikiName": "Páez",
+      "poblacion2021": 46005,
+      "areaKm2": 963,
+      "densidad": 47.77
+    },
+    "92452058B26998381958141": {
+      "name": "Marcano",
+      "parentISO": "VE-O",
+      "wikiName": "Marcano",
+      "poblacion2021": 45782,
+      "areaKm2": 40,
+      "densidad": 1144.55
+    },
+    "92452058B76146617843422": {
+      "name": "Tovar",
+      "parentISO": "VE-L",
+      "wikiName": "Tovar",
+      "poblacion2021": 45438,
+      "areaKm2": 184,
+      "densidad": 246.94
+    },
+    "92452058B40538109508806": {
+      "name": "Santos Michelena",
+      "parentISO": "VE-D",
+      "wikiName": "Santos Michelena",
+      "poblacion2021": 45436,
+      "areaKm2": 220,
+      "densidad": 206.52
+    },
+    "92452058B32391304036894": {
+      "name": "Cruz Salmerón Acosta",
+      "parentISO": "VE-R",
+      "wikiName": "Cruz Salmerón Acosta",
+      "poblacion2021": 44811,
+      "areaKm2": 612,
+      "densidad": 73.22
+    },
+    "92452058B68095023694670": {
+      "name": "Bolívar",
+      "parentISO": "VE-D",
+      "wikiName": "Bolívar",
+      "poblacion2021": 44733,
+      "areaKm2": 58,
+      "densidad": 771.25
+    },
+    "92452058B21405103946028": {
+      "name": "Diego Bautista Urbanejo",
+      "parentISO": "VE-B",
+      "wikiName": "Lic. Diego Bautista Urbaneja",
+      "poblacion2021": 43907,
+      "areaKm2": 12,
+      "densidad": 3658.91
+    },
+    "92452058B53950788580310": {
+      "name": "Tinaco",
+      "parentISO": "VE-H",
+      "wikiName": "Tinaco",
+      "poblacion2021": 43336,
+      "areaKm2": 1098,
+      "densidad": 39.46
+    },
+    "92452058B74293045430698": {
+      "name": "Antonio Díaz",
+      "parentISO": "VE-Y",
+      "wikiName": "Antonio Díaz",
+      "poblacion2021": 42417,
+      "areaKm2": 22746,
+      "densidad": 7.86
+    },
+    "92452058B49980742384962": {
+      "name": "Cedeño",
+      "parentISO": "VE-N",
+      "wikiName": "Cedeño",
+      "poblacion2021": 42397,
+      "areaKm2": 1977,
+      "densidad": 21.44
+    },
+    "92452058B48736670242482": {
+      "name": "Tulio Febres Cordero",
+      "parentISO": "VE-L",
+      "wikiName": "Tulio Febres Cordero",
+      "poblacion2021": 42276,
+      "areaKm2": 560,
+      "densidad": 75.49
+    },
+    "92452058B43821030143886": {
+      "name": "Francisco Javier Pulgar",
+      "parentISO": "VE-V",
+      "wikiName": "Francisco Javier Pulgar",
+      "poblacion2021": 42259,
+      "areaKm2": 800,
+      "densidad": 52.82
+    },
+    "92452058B61290497369270": {
+      "name": "Independencia",
+      "parentISO": "VE-B",
+      "wikiName": "Independencia",
+      "poblacion2021": 41745,
+      "areaKm2": 5929,
+      "densidad": 7.04
+    },
+    "92452058B25550874950140": {
+      "name": "Caripe",
+      "parentISO": "VE-N",
+      "wikiName": "Caripe",
+      "poblacion2021": 40965,
+      "areaKm2": 573,
+      "densidad": 71.49
+    },
+    "92452058B76868797395121": {
+      "name": "Fernando de Peñalver",
+      "parentISO": "VE-B",
+      "wikiName": "Peñalver",
+      "poblacion2021": 40729,
+      "areaKm2": 643,
+      "densidad": 63.34
+    },
+    "92452058B66787265555701": {
+      "name": "Urdaneta",
+      "parentISO": "VE-T",
+      "wikiName": "Urdaneta",
+      "poblacion2021": 39738,
+      "areaKm2": 497,
+      "densidad": 79.95
+    },
+    "92452058B81602658617496": {
+      "name": "Manuel Ezequiel Bruzual",
+      "parentISO": "VE-B",
+      "wikiName": "Bruzual",
+      "poblacion2021": 39609,
+      "areaKm2": 1566,
+      "densidad": 25.29
+    },
+    "92452058B11105078455090": {
+      "name": "Silva",
+      "parentISO": "VE-I",
+      "wikiName": "Silva",
+      "poblacion2021": 39546,
+      "areaKm2": 537,
+      "densidad": 73.64
+    },
+    "92452058B12753025075780": {
+      "name": "José Ángel Lamas",
+      "parentISO": "VE-D",
+      "wikiName": "José Ángel Lamas",
+      "poblacion2021": 39191,
+      "areaKm2": 20,
+      "densidad": 1959.55
+    },
+    "92452058B44429853731382": {
+      "name": "Zamora",
+      "parentISO": "VE-I",
+      "wikiName": "Zamora",
+      "poblacion2021": 38897,
+      "areaKm2": 619,
+      "densidad": 62.83
+    },
+    "92452058B8554820713404": {
+      "name": "Casacoima",
+      "parentISO": "VE-Y",
+      "wikiName": "Casacoima",
+      "poblacion2021": 38839,
+      "areaKm2": 2921,
+      "densidad": 13.29
+    },
+    "92452058B27709882446555": {
+      "name": "Jesús María Semprum",
+      "parentISO": "VE-V",
+      "wikiName": "Jesús María Semprún",
+      "poblacion2021": 38671,
+      "areaKm2": 6003,
+      "densidad": 6.44
+    },
+    "92452058B70878488170331": {
+      "name": "Sucre",
+      "parentISO": "VE-T",
+      "wikiName": "Sucre",
+      "poblacion2021": 38595,
+      "areaKm2": 214,
+      "densidad": 180.35
+    },
+    "92452058B36691786068251": {
+      "name": "Benítez",
+      "parentISO": "VE-R",
+      "wikiName": "Benítez",
+      "poblacion2021": 38501,
+      "areaKm2": 2733,
+      "densidad": 14.08
+    },
+    "92452058B76648483747073": {
+      "name": "Motatán",
+      "parentISO": "VE-T",
+      "wikiName": "Motatán",
+      "poblacion2021": 38383,
+      "areaKm2": 115,
+      "densidad": 333.76
+    },
+    "92452058B51720127769836": {
+      "name": "Córdoba",
+      "parentISO": "VE-S",
+      "wikiName": "Córdoba",
+      "poblacion2021": 38372,
+      "areaKm2": 619,
+      "densidad": 61.99
+    },
+    "92452058B94128330205113": {
+      "name": "Guanta",
+      "parentISO": "VE-B",
+      "wikiName": "Guanta",
+      "poblacion2021": 38200,
+      "areaKm2": 67,
+      "densidad": 570.14
+    },
+    "92452058B46129601263202": {
+      "name": "Bolívar",
+      "parentISO": "VE-U",
+      "wikiName": "Bolívar",
+      "poblacion2021": 37664,
+      "areaKm2": 1087,
+      "densidad": 34.64
+    },
+    "92452058B5298065984570": {
+      "name": "Pampanito",
+      "parentISO": "VE-T",
+      "wikiName": "Pampanito",
+      "poblacion2021": 37528,
+      "areaKm2": 93,
+      "densidad": 403.52
+    },
+    "92452058B52691376316443": {
+      "name": "Panamericanp",
+      "parentISO": "VE-S",
+      "wikiName": "Panamericano",
+      "poblacion2021": 37198,
+      "areaKm2": 569,
+      "densidad": 65.37
+    },
+    "92452058B78980927741565": {
+      "name": "Julián Mellado",
+      "parentISO": "VE-J",
+      "wikiName": "Mellado",
+      "poblacion2021": 36572,
+      "areaKm2": 2983,
+      "densidad": 12.26
+    },
+    "92452058B71215590710272": {
+      "name": "Arismendi",
+      "parentISO": "VE-O",
+      "wikiName": "Arismendi",
+      "poblacion2021": 35986,
+      "areaKm2": 52,
+      "densidad": 692.03
+    },
+    "92452058B33564894721572": {
+      "name": "Pedro Camejo",
+      "parentISO": "VE-C",
+      "wikiName": "Pedro Camejo",
+      "poblacion2021": 35931,
+      "areaKm2": 20519,
+      "densidad": 1.75
+    },
+    "92452058B1998456811231": {
+      "name": "Antolín del Campo",
+      "parentISO": "VE-O",
+      "wikiName": "Antolín del Campo",
+      "poblacion2021": 35830,
+      "areaKm2": 72,
+      "densidad": 497.63
+    },
+    "92452058B9406045296169": {
+      "name": "Caracciolo Parra Olmedo",
+      "parentISO": "VE-L",
+      "wikiName": "Caracciolo Parra Olmedo",
+      "poblacion2021": 35714,
+      "areaKm2": 689,
+      "densidad": 51.83
+    },
+    "92452058B83392643498369": {
+      "name": "Aragua",
+      "parentISO": "VE-B",
+      "wikiName": "Aragua",
+      "poblacion2021": 35659,
+      "areaKm2": 2624,
+      "densidad": 13.58
+    },
+    "92452058B35881959392947": {
+      "name": "Veroes",
+      "parentISO": "VE-U",
+      "wikiName": "Veroes",
+      "poblacion2021": 35365,
+      "areaKm2": 1059,
+      "densidad": 33.39
+    },
+    "92452058B41516758992982": {
+      "name": "Federación",
+      "parentISO": "VE-I",
+      "wikiName": "Federación",
+      "poblacion2021": 35135,
+      "areaKm2": 1084,
+      "densidad": 32.41
+    },
+    "92452058B7770981704076": {
+      "name": "San Casimiro",
+      "parentISO": "VE-D",
+      "wikiName": "San Casimiro",
+      "poblacion2021": 35103,
+      "areaKm2": 498,
+      "densidad": 70.48
+    },
+    "92452058B11824178609180": {
+      "name": "Miranda",
+      "parentISO": "VE-G",
+      "wikiName": "Miranda",
+      "poblacion2021": 34809,
+      "areaKm2": 161,
+      "densidad": 216.2
+    },
+    "92452058B62434885375481": {
+      "name": "Punceres",
+      "parentISO": "VE-N",
+      "wikiName": "Punceres",
+      "poblacion2021": 34760,
+      "areaKm2": 754,
+      "densidad": 46.1
+    },
+    "92452058B76694277740413": {
+      "name": "Muñoz",
+      "parentISO": "VE-C",
+      "wikiName": "Muñoz",
+      "poblacion2021": 34703,
+      "areaKm2": 7925,
+      "densidad": 4.37
+    },
+    "92452058B73629823948973": {
+      "name": "Gran Sabana",
+      "parentISO": "VE-F",
+      "wikiName": "Gran Sabana",
+      "poblacion2021": 34309,
+      "areaKm2": 32990,
+      "densidad": 1.03
+    },
+    "92452058B89590794968656": {
+      "name": "Buroz",
+      "parentISO": "VE-M",
+      "wikiName": "Buroz",
+      "poblacion2021": 34203,
+      "areaKm2": 198,
+      "densidad": 172.74
+    },
+    "92452058B98233245594574": {
+      "name": "Urdaneta",
+      "parentISO": "VE-D",
+      "wikiName": "Urdaneta",
+      "poblacion2021": 34074,
+      "areaKm2": 2024,
+      "densidad": 16.83
+    },
+    "92452058B42535057202540": {
+      "name": "Península de Macanao",
+      "parentISO": "VE-O",
+      "wikiName": "Península de Macanao",
+      "poblacion2021": 33597,
+      "areaKm2": 331,
+      "densidad": 101.5
+    },
+    "92452058B32887557209533": {
+      "name": "Candelaria",
+      "parentISO": "VE-T",
+      "wikiName": "Candelaria",
+      "poblacion2021": 33348,
+      "areaKm2": 411,
+      "densidad": 81.13
+    },
+    "92452058B55958295548986": {
+      "name": "Escuque",
+      "parentISO": "VE-T",
+      "wikiName": "Escuque",
+      "poblacion2021": 33031,
+      "areaKm2": 165,
+      "densidad": 200.18
+    },
+    "92452058B3115924902263": {
+      "name": "Cruz Paredes",
+      "parentISO": "VE-E",
+      "wikiName": "Cruz Paredes",
+      "poblacion2021": 32648,
+      "areaKm2": 778,
+      "densidad": 41.96
+    },
+    "92452058B98251546128304": {
+      "name": "Carache",
+      "parentISO": "VE-T",
+      "wikiName": "Carache",
+      "poblacion2021": 32160,
+      "areaKm2": 957,
+      "densidad": 33.6
+    },
+    "92452058B83653348343735": {
+      "name": "Obispo Ramos de Lora",
+      "parentISO": "VE-L",
+      "wikiName": "Obispo Ramos de Lora",
+      "poblacion2021": 31919,
+      "areaKm2": 321,
+      "densidad": 99.43
+    },
+    "92452058B89555253536357": {
+      "name": "Rómulo Gallegos",
+      "parentISO": "VE-C",
+      "wikiName": "Rómulo Gallegos",
+      "poblacion2021": 31763,
+      "areaKm2": 12219,
+      "densidad": 2.59
+    },
+    "92452058B52538048181152": {
+      "name": "San Sebastián",
+      "parentISO": "VE-D",
+      "wikiName": "San Sebastián",
+      "poblacion2021": 31567,
+      "areaKm2": 491,
+      "densidad": 64.29
+    },
+    "92452058B70146576395550": {
+      "name": "Sotillo",
+      "parentISO": "VE-N",
+      "wikiName": "Sotillo",
+      "poblacion2021": 31189,
+      "areaKm2": 1061,
+      "densidad": 29.39
+    },
+    "92452058B76772094645860": {
+      "name": "Antonio Pinto Salinas",
+      "parentISO": "VE-L",
+      "wikiName": "Antonio Pinto Salinas",
+      "poblacion2021": 31073,
+      "areaKm2": 348,
+      "densidad": 89.29
+    },
+    "92452058B18977618770055": {
+      "name": "Andrés Eloy Blanco",
+      "parentISO": "VE-R",
+      "wikiName": "Andrés Eloy Blanco",
+      "poblacion2021": 30981,
+      "areaKm2": 721,
+      "densidad": 42.96
+    },
+    "92452058B8049854825221": {
+      "name": "Mauroa",
+      "parentISO": "VE-I",
+      "wikiName": "Mauroa",
+      "poblacion2021": 30438,
+      "areaKm2": 1904,
+      "densidad": 15.98
+    },
+    "92452058B35367180068237": {
+      "name": "Píritu",
+      "parentISO": "VE-B",
+      "wikiName": "Píritu",
+      "poblacion2021": 30146,
+      "areaKm2": 225,
+      "densidad": 133.98
+    },
+    "92452058B96430954073814": {
+      "name": "Camaguán",
+      "parentISO": "VE-J",
+      "wikiName": "Camaguán",
+      "poblacion2021": 30122,
+      "areaKm2": 1164,
+      "densidad": 25.87
+    },
+    "92452058B69792739078610": {
+      "name": "Montalbán",
+      "parentISO": "VE-G",
+      "wikiName": "Montalbán",
+      "poblacion2021": 29977,
+      "areaKm2": 107,
+      "densidad": 280.15
+    },
+    "92452058B73243248124437": {
+      "name": "Sosa",
+      "parentISO": "VE-E",
+      "wikiName": "Sosa",
+      "poblacion2021": 29822,
+      "areaKm2": 3546,
+      "densidad": 8.41
+    },
+    "92452058B46833609539382": {
+      "name": "San Genaro de Boconoito",
+      "parentISO": "VE-P",
+      "wikiName": "San Genaro de Boconoito",
+      "poblacion2021": 29480,
+      "areaKm2": 1031,
+      "densidad": 28.59
+    },
+    "92452058B86432153938912": {
+      "name": "Ortíz",
+      "parentISO": "VE-J",
+      "wikiName": "Ortiz",
+      "poblacion2021": 29461,
+      "areaKm2": 4129,
+      "densidad": 7.13
+    },
+    "92452058B41252647262147": {
+      "name": "Monseñor José Vicente de Unda",
+      "parentISO": "VE-P",
+      "wikiName": "Monseñor José Vicente de Unda",
+      "poblacion2021": 29282,
+      "areaKm2": 222,
+      "densidad": 131.9
+    },
+    "92452058B22086674211008": {
+      "name": "Rafael Rangel",
+      "parentISO": "VE-T",
+      "wikiName": "Rafael Rangel",
+      "poblacion2021": 28489,
+      "areaKm2": 120,
+      "densidad": 237.4
+    },
+    "92452058B36519834610261": {
+      "name": "Mariño",
+      "parentISO": "VE-R",
+      "wikiName": "Mariño",
+      "poblacion2021": 28217,
+      "areaKm2": 469,
+      "densidad": 60.16
+    },
+    "92452058B15505529275902": {
+      "name": "Dabajuro",
+      "parentISO": "VE-I",
+      "wikiName": "Dabajuro",
+      "poblacion2021": 28009,
+      "areaKm2": 1144,
+      "densidad": 24.48
+    },
+    "92452058B18446749128605": {
+      "name": "Camatagua",
+      "parentISO": "VE-D",
+      "wikiName": "Camatagua",
+      "poblacion2021": 27991,
+      "areaKm2": 780,
+      "densidad": 35.88
+    },
+    "92452058B99639061411506": {
+      "name": "Miranda",
+      "parentISO": "VE-L",
+      "wikiName": "Miranda",
+      "poblacion2021": 27977,
+      "areaKm2": 408,
+      "densidad": 68.57
+    },
+    "92452058B24669849330150": {
+      "name": "Buchivacoa",
+      "parentISO": "VE-I",
+      "wikiName": "Buchivacoa",
+      "poblacion2021": 27932,
+      "areaKm2": 2657,
+      "densidad": 10.51
+    },
+    "92452058B73572326911249": {
+      "name": "Roscio",
+      "parentISO": "VE-F",
+      "wikiName": "Roscio",
+      "poblacion2021": 27788,
+      "areaKm2": 6182,
+      "densidad": 4.49
+    },
+    "92452058B16204644970009": {
+      "name": "Bolívar",
+      "parentISO": "VE-R",
+      "wikiName": "Bolívar",
+      "poblacion2021": 27594,
+      "areaKm2": 211,
+      "densidad": 130.77
+    },
+    "92452058B99527238900768": {
+      "name": "Arismendi",
+      "parentISO": "VE-E",
+      "wikiName": "Arismendi",
+      "poblacion2021": 27544,
+      "areaKm2": 7209,
+      "densidad": 3.82
+    },
+    "92452058B80975086584779": {
+      "name": "Pedro Gual",
+      "parentISO": "VE-M",
+      "wikiName": "Pedro Gual",
+      "poblacion2021": 27151,
+      "areaKm2": 925,
+      "densidad": 29.35
+    },
+    "92452058B36515365287716": {
+      "name": "Cajigal",
+      "parentISO": "VE-R",
+      "wikiName": "Cajigal",
+      "poblacion2021": 27069,
+      "areaKm2": 365,
+      "densidad": 74.16
+    },
+    "92452058B22657240029689": {
+      "name": "Libertador",
+      "parentISO": "VE-S",
+      "wikiName": "Libertador",
+      "poblacion2021": 27016,
+      "areaKm2": 1139,
+      "densidad": 23.71
+    },
+    "92452058B75092813359951": {
+      "name": "Monseñor Iturriza",
+      "parentISO": "VE-I",
+      "wikiName": "Monseñor Iturriza",
+      "poblacion2021": 26970,
+      "areaKm2": 907,
+      "densidad": 29.73
+    },
+    "92452058B65625562328801": {
+      "name": "El Callao",
+      "parentISO": "VE-F",
+      "wikiName": "El Callao",
+      "poblacion2021": 26963,
+      "areaKm2": 2223,
+      "densidad": 12.12
+    },
+    "92452058B63445948802308": {
+      "name": "Sucre",
+      "parentISO": "VE-F",
+      "wikiName": "Sucre",
+      "poblacion2021": 26677,
+      "areaKm2": 46166,
+      "densidad": 0.57
+    },
+    "92452058B63771518802825": {
+      "name": "Urachiche",
+      "parentISO": "VE-U",
+      "wikiName": "Urachiche",
+      "poblacion2021": 26674,
+      "areaKm2": 170,
+      "densidad": 156.9
+    },
+    "92452058B11954780234519": {
+      "name": "Agua Blanca",
+      "parentISO": "VE-P",
+      "wikiName": "Agua Blanca",
+      "poblacion2021": 26512,
+      "areaKm2": 199,
+      "densidad": 133.22
+    },
+    "92452058B21426676418020": {
+      "name": "Rómulo Gallegos",
+      "parentISO": "VE-H",
+      "wikiName": "Rómulo Gallegos",
+      "poblacion2021": 26270,
+      "areaKm2": 725,
+      "densidad": 36.23
+    },
+    "92452058B1546334358138": {
+      "name": "Miranda",
+      "parentISO": "VE-T",
+      "wikiName": "Miranda",
+      "poblacion2021": 26177,
+      "areaKm2": 374,
+      "densidad": 69.99
+    },
+    "92452058B64948290230997": {
+      "name": "Pao de San Juan Bautista",
+      "parentISO": "VE-H",
+      "wikiName": "Pao de San Juan Bautista",
+      "poblacion2021": 25300,
+      "areaKm2": 5089,
+      "densidad": 4.97
+    },
+    "92452058B34439964520942": {
+      "name": "San Gerónimo de Guayabal",
+      "parentISO": "VE-J",
+      "wikiName": "San Gerónimo de Guayabal",
+      "poblacion2021": 25263,
+      "areaKm2": 4357,
+      "densidad": 5.79
+    },
+    "92452058B37520710637751": {
+      "name": "Rangel",
+      "parentISO": "VE-L",
+      "wikiName": "Rangel",
+      "poblacion2021": 25243,
+      "areaKm2": 517,
+      "densidad": 48.82
+    },
+    "92452058B45353491303676": {
+      "name": "Arístides Bastidas",
+      "parentISO": "VE-U",
+      "wikiName": "Arístides Bastidas",
+      "poblacion2021": 25234,
+      "areaKm2": 74,
+      "densidad": 341
+    },
+    "92452058B24105899820975": {
+      "name": "Uribante",
+      "parentISO": "VE-S",
+      "wikiName": "Uribante",
+      "poblacion2021": 24888,
+      "areaKm2": 1502,
+      "densidad": 16.56
+    },
+    "92452058B98875483329913": {
+      "name": "Andrés Mata",
+      "parentISO": "VE-R",
+      "wikiName": "Andrés Mata",
+      "poblacion2021": 24818,
+      "areaKm2": 454,
+      "densidad": 54.66
+    },
+    "92452058B69461621653352": {
+      "name": "Andrés Bello",
+      "parentISO": "VE-M",
+      "wikiName": "Andrés Bello",
+      "poblacion2021": 24526,
+      "areaKm2": 114,
+      "densidad": 215.14
+    },
+    "92452058B96512574408350": {
+      "name": "Rivas Dávila",
+      "parentISO": "VE-L",
+      "wikiName": "Rivas Dávila",
+      "poblacion2021": 24264,
+      "areaKm2": 182,
+      "densidad": 133.31
+    },
+    "92452058B60175540924522": {
+      "name": "Andrés Bello",
+      "parentISO": "VE-S",
+      "wikiName": "Andrés Bello",
+      "poblacion2021": 24160,
+      "areaKm2": 98,
+      "densidad": 246.53
+    },
+    "92452058B17411594659204": {
+      "name": "La Ceiba",
+      "parentISO": "VE-T",
+      "wikiName": "La Ceiba",
+      "poblacion2021": 24032,
+      "areaKm2": 386,
+      "densidad": 62.25
+    },
+    "92452058B17559996625330": {
+      "name": "José Antonio Páez",
+      "parentISO": "VE-U",
+      "wikiName": "José Antonio Páez",
+      "poblacion2021": 23806,
+      "areaKm2": 135,
+      "densidad": 176.34
+    },
+    "92452058B4017095457162": {
+      "name": "San Rafael de Onoto",
+      "parentISO": "VE-P",
+      "wikiName": "San Rafael de Onoto",
+      "poblacion2021": 23684,
+      "areaKm2": 187,
+      "densidad": 126.65
+    },
+    "92452058B66612082158993": {
+      "name": "Acosta",
+      "parentISO": "VE-I",
+      "wikiName": "Acosta",
+      "poblacion2021": 23323,
+      "areaKm2": 757,
+      "densidad": 30.8
+    },
+    "92452058B73017007286704": {
+      "name": "Sucre",
+      "parentISO": "VE-U",
+      "wikiName": "Sucre",
+      "poblacion2021": 23238,
+      "areaKm2": 133,
+      "densidad": 174.72
+    },
+    "92452058B2608246233639": {
+      "name": "Anzoátegui",
+      "parentISO": "VE-H",
+      "wikiName": "Anzoátegui",
+      "poblacion2021": 23019,
+      "areaKm2": 831,
+      "densidad": 27.7
+    },
+    "92452058B68094075186803": {
+      "name": "Michelena",
+      "parentISO": "VE-S",
+      "wikiName": "Michelena",
+      "poblacion2021": 22815,
+      "areaKm2": 128,
+      "densidad": 178.24
+    },
+    "92452058B3851867727254": {
+      "name": "Santa Rosalía",
+      "parentISO": "VE-P",
+      "wikiName": "Santa Rosalía",
+      "poblacion2021": 22669,
+      "areaKm2": 1029,
+      "densidad": 22.03
+    },
+    "92452058B59962143626105": {
+      "name": "Acosta",
+      "parentISO": "VE-N",
+      "wikiName": "Acosta",
+      "poblacion2021": 22335,
+      "areaKm2": 609,
+      "densidad": 36.67
+    },
+    "92452058B70531962129306": {
+      "name": "Samuel Darío Maldonado",
+      "parentISO": "VE-S",
+      "wikiName": "Samuel Darío Maldonado",
+      "poblacion2021": 22051,
+      "areaKm2": 548,
+      "densidad": 40.23
+    },
+    "92452058B23928909517794": {
+      "name": "El Socorro",
+      "parentISO": "VE-J",
+      "wikiName": "El Socorro",
+      "poblacion2021": 21809,
+      "areaKm2": 2659,
+      "densidad": 8.2
+    },
+    "92452058B96669771674103": {
+      "name": "Andrés Bello",
+      "parentISO": "VE-T",
+      "wikiName": "Andrés Bello",
+      "poblacion2021": 21800,
+      "areaKm2": 202,
+      "densidad": 107.92
+    },
+    "92452058B4239970506529": {
+      "name": "José Gregorio Monagas",
+      "parentISO": "VE-B",
+      "wikiName": "Monagas",
+      "poblacion2021": 21731,
+      "areaKm2": 9176,
+      "densidad": 2.36
+    },
+    "92452058B16352791962773": {
+      "name": "Santos Marquina",
+      "parentISO": "VE-L",
+      "wikiName": "Santos Marquina",
+      "poblacion2021": 21638,
+      "areaKm2": 192,
+      "densidad": 112.69
+    },
+    "92452058B62931079063514": {
+      "name": "Francisco del Carmen Carvajal",
+      "parentISO": "VE-B",
+      "wikiName": "Carvajal",
+      "poblacion2021": 20804,
+      "areaKm2": 125,
+      "densidad": 166.43
+    },
+    "92452058B64371118688426": {
+      "name": "La Trinidad",
+      "parentISO": "VE-U",
+      "wikiName": "La Trinidad",
+      "poblacion2021": 20392,
+      "areaKm2": 62,
+      "densidad": 328.9
+    },
+    "92452058B50204709100098": {
+      "name": "Libertad",
+      "parentISO": "VE-B",
+      "wikiName": "Libertad",
+      "poblacion2021": 20278,
+      "areaKm2": 2043,
+      "densidad": 9.92
+    },
+    "92452058B54674524555313": {
+      "name": "Padre Pedro Chien",
+      "parentISO": "VE-F",
+      "wikiName": "Padre Pedro Chien",
+      "poblacion2021": 20031,
+      "areaKm2": 2275,
+      "densidad": 8.8
+    },
+    "92452058B83235361555221": {
+      "name": "Andrés Eloy Blanco",
+      "parentISO": "VE-E",
+      "wikiName": "Andrés Eloy Blanco",
+      "poblacion2021": 19920,
+      "areaKm2": 1493,
+      "densidad": 13.34
+    },
+    "92452058B14300572902451": {
+      "name": "Unión",
+      "parentISO": "VE-I",
+      "wikiName": "Unión",
+      "poblacion2021": 19638,
+      "areaKm2": 975,
+      "densidad": 20.14
+    },
+    "92452058B3006076397116": {
+      "name": "Bolívar",
+      "parentISO": "VE-T",
+      "wikiName": "Bolívar",
+      "poblacion2021": 19626,
+      "areaKm2": 208,
+      "densidad": 94.35
+    },
+    "92452058B42383806432363": {
+      "name": "Papelón",
+      "parentISO": "VE-P",
+      "wikiName": "Papelón",
+      "poblacion2021": 19219,
+      "areaKm2": 2203,
+      "densidad": 8.72
+    },
+    "92452058B8931930020089": {
+      "name": "Juan Manuel Cajigal",
+      "parentISO": "VE-B",
+      "wikiName": "Cajigal",
+      "poblacion2021": 18471,
+      "areaKm2": 1741,
+      "densidad": 10.6
+    },
+    "92452058B80982982494496": {
+      "name": "Ricaurte",
+      "parentISO": "VE-H",
+      "wikiName": "Ricaurte",
+      "poblacion2021": 18456,
+      "areaKm2": 905,
+      "densidad": 20.39
+    },
+    "92452058B92522690941110": {
+      "name": "Julio César Salas",
+      "parentISO": "VE-L",
+      "wikiName": "Julio César Salas",
+      "poblacion2021": 18389,
+      "areaKm2": 202,
+      "densidad": 91.03
+    },
+    "92452058B9202349267506": {
+      "name": "Mejía",
+      "parentISO": "VE-R",
+      "wikiName": "Mejía",
+      "poblacion2021": 18144,
+      "areaKm2": 298,
+      "densidad": 60.88
+    },
+    "92452058B96786834235834": {
+      "name": "Manuel Monge",
+      "parentISO": "VE-U",
+      "wikiName": "Manuel Monge",
+      "poblacion2021": 18017,
+      "areaKm2": 474,
+      "densidad": 38.01
+    },
+    "92452058B76742860274923": {
+      "name": "Petit",
+      "parentISO": "VE-I",
+      "wikiName": "Petit",
+      "poblacion2021": 17471,
+      "areaKm2": 1025,
+      "densidad": 17.04
+    },
+    "92452058B96264628893767": {
+      "name": "Monte Carmelo",
+      "parentISO": "VE-T",
+      "wikiName": "Monte Carmelo",
+      "poblacion2021": 17381,
+      "areaKm2": 386,
+      "densidad": 45.02
+    },
+    "92452058B19626943802375": {
+      "name": "Andrés Bello",
+      "parentISO": "VE-L",
+      "wikiName": "Andrés Bello",
+      "poblacion2021": 17294,
+      "areaKm2": 398,
+      "densidad": 43.45
+    },
+    "92452058B96684435366560": {
+      "name": "Chaguaramas",
+      "parentISO": "VE-J",
+      "wikiName": "Chaguaramas",
+      "poblacion2021": 17095,
+      "areaKm2": 2069,
+      "densidad": 8.15
+    },
+    "92452058B30205634756293": {
+      "name": "Girardot",
+      "parentISO": "VE-H",
+      "wikiName": "Girardot",
+      "poblacion2021": 16806,
+      "areaKm2": 3468,
+      "densidad": 4.84
+    },
+    "92452058B20734367983151": {
+      "name": "Aguasay",
+      "parentISO": "VE-N",
+      "wikiName": "Aguasay",
+      "poblacion2021": 16739,
+      "areaKm2": 2504,
+      "densidad": 6.68
+    },
+    "92452058B92766796026281": {
+      "name": "Lobatera",
+      "parentISO": "VE-S",
+      "wikiName": "Lobatera",
+      "poblacion2021": 16654,
+      "areaKm2": 216,
+      "densidad": 77.1
+    },
+    "92452058B74873434476019": {
+      "name": "Tovar",
+      "parentISO": "VE-D",
+      "wikiName": "Tovar",
+      "poblacion2021": 16385,
+      "areaKm2": 225,
+      "densidad": 72.82
+    },
+    "92452058B26241339003056": {
+      "name": "Almirante Padilla",
+      "parentISO": "VE-V",
+      "wikiName": "Almirante Padilla",
+      "poblacion2021": 16004,
+      "areaKm2": 151,
+      "densidad": 105.98
+    },
+    "92452058B50688374743402": {
+      "name": "Santa María de Ipire",
+      "parentISO": "VE-J",
+      "wikiName": "Santa María de Ipire",
+      "poblacion2021": 15957,
+      "areaKm2": 4549,
+      "densidad": 3.47
+    },
+    "92452058B11237040354260": {
+      "name": "Arzobispo Chacón",
+      "parentISO": "VE-L",
+      "wikiName": "Arzobispo Chacón",
+      "poblacion2021": 15478,
+      "areaKm2": 1659,
+      "densidad": 9.32
+    },
+    "92452058B65922817978550": {
+      "name": "Autónomo Alto Orinoco",
+      "parentISO": "VE-Z",
+      "wikiName": "Alto Orinoco",
+      "poblacion2021": 14492,
+      "areaKm2": 50850,
+      "densidad": 0.28
+    },
+    "92452058B80910187087135": {
+      "name": "Lima Blanco",
+      "parentISO": "VE-H",
+      "wikiName": "Lima Blanco",
+      "poblacion2021": 14377,
+      "areaKm2": 127,
+      "densidad": 113.2
+    },
+    "92452058B33294183212252": {
+      "name": "San José de Guaribe",
+      "parentISO": "VE-J",
+      "wikiName": "San José de Guaribe",
+      "poblacion2021": 14294,
+      "areaKm2": 1128,
+      "densidad": 12.67
+    },
+    "92452058B34699715340940": {
+      "name": "Zea",
+      "parentISO": "VE-L",
+      "wikiName": "Zea",
+      "poblacion2021": 14092,
+      "areaKm2": 122,
+      "densidad": 115.5
+    },
+    "92452058B31160427054809": {
+      "name": "Cacique Manaure",
+      "parentISO": "VE-I",
+      "wikiName": "Cacique Manaure",
+      "poblacion2021": 13918,
+      "areaKm2": 190,
+      "densidad": 73.25
+    },
+    "92452058B3899539267655": {
+      "name": "San Francisco",
+      "parentISO": "VE-I",
+      "wikiName": "San Francisco",
+      "poblacion2021": 13587,
+      "areaKm2": 346,
+      "densidad": 39.26
+    },
+    "92452058B29935113777127": {
+      "name": "José María Vargas",
+      "parentISO": "VE-S",
+      "wikiName": "José María Vargas",
+      "poblacion2021": 13543,
+      "areaKm2": 85,
+      "densidad": 159.32
+    },
+    "92452058B21195677528356": {
+      "name": "Seboruco",
+      "parentISO": "VE-S",
+      "wikiName": "Seboruco",
+      "poblacion2021": 13348,
+      "areaKm2": 162,
+      "densidad": 82.39
+    },
+    "92452058B88247068668405": {
+      "name": "Antonio Rómulo Costa",
+      "parentISO": "VE-S",
+      "wikiName": "Antonio Rómulo Costa",
+      "poblacion2021": 13333,
+      "areaKm2": 146,
+      "densidad": 91.32
+    },
+    "92452058B87022428114391": {
+      "name": "Pueblo Llano",
+      "parentISO": "VE-L",
+      "wikiName": "Pueblo Llano",
+      "poblacion2021": 13185,
+      "areaKm2": 89,
+      "densidad": 148.14
+    },
+    "92452058B36429563491132": {
+      "name": "Píritu",
+      "parentISO": "VE-I",
+      "wikiName": "Píritu",
+      "poblacion2021": 13152,
+      "areaKm2": 1168,
+      "densidad": 11.26
+    },
+    "92452058B64727210967891": {
+      "name": "Santa Bárbara",
+      "parentISO": "VE-N",
+      "wikiName": "Santa Bárbara",
+      "poblacion2021": 13116,
+      "areaKm2": 588,
+      "densidad": 22.3
+    },
+    "92452058B13526806799320": {
+      "name": "Jacura",
+      "parentISO": "VE-I",
+      "wikiName": "Jacura",
+      "poblacion2021": 13046,
+      "areaKm2": 1842,
+      "densidad": 7.08
+    },
+    "92452058B1316533147896": {
+      "name": "San Juan de Capistrano",
+      "parentISO": "VE-B",
+      "wikiName": "San Juan de Capistrano",
+      "poblacion2021": 12886,
+      "areaKm2": 123,
+      "densidad": 104.76
+    },
+    "92452058B74442038912920": {
+      "name": "Libertador",
+      "parentISO": "VE-R",
+      "wikiName": "Libertador",
+      "poblacion2021": 12713,
+      "areaKm2": 237,
+      "densidad": 53.64
+    },
+    "92452058B10612874136761": {
+      "name": "Santa Ana",
+      "parentISO": "VE-B",
+      "wikiName": "Santa Ana",
+      "poblacion2021": 12659,
+      "areaKm2": 1184,
+      "densidad": 10.69
+    },
+    "92452058B27987332660152": {
+      "name": "Democracia",
+      "parentISO": "VE-I",
+      "wikiName": "Democracia",
+      "poblacion2021": 12415,
+      "areaKm2": 2602,
+      "densidad": 4.77
+    },
+    "92452058B26508954861758": {
+      "name": "Uracoa",
+      "parentISO": "VE-N",
+      "wikiName": "Uracoa",
+      "poblacion2021": 12269,
+      "areaKm2": 2764,
+      "densidad": 4.43
+    },
+    "92452058B87556418523140": {
+      "name": "Villalba",
+      "parentISO": "VE-O",
+      "wikiName": "Villalba",
+      "poblacion2021": 11894,
+      "areaKm2": 55,
+      "densidad": 216.25
+    },
+    "92452058B92131040648268": {
+      "name": "Cardenal Quintero",
+      "parentISO": "VE-L",
+      "wikiName": "Cardenal Quintero",
+      "poblacion2021": 11617,
+      "areaKm2": 350,
+      "densidad": 33.19
+    },
+    "92452058B8560426021820": {
+      "name": "Guaraque",
+      "parentISO": "VE-L",
+      "wikiName": "Guaraque",
+      "poblacion2021": 11533,
+      "areaKm2": 533,
+      "densidad": 21.63
+    },
+    "92452058B57727814013353": {
+      "name": "Bolívar",
+      "parentISO": "VE-I",
+      "wikiName": "Bolívar",
+      "poblacion2021": 11345,
+      "areaKm2": 295,
+      "densidad": 38.45
+    },
+    "92452058B96252003881726": {
+      "name": "Autónomo Atabapo",
+      "parentISO": "VE-Z",
+      "wikiName": "Atabapo",
+      "poblacion2021": 10667,
+      "areaKm2": 25900,
+      "densidad": 0.41
+    },
+    "92452058B99499694826809": {
+      "name": "Urumaco",
+      "parentISO": "VE-I",
+      "wikiName": "Urumaco",
+      "poblacion2021": 10580,
+      "areaKm2": 752,
+      "densidad": 14.06
+    },
+    "92452058B86499403972529": {
+      "name": "San Judas Tadeo",
+      "parentISO": "VE-S",
+      "wikiName": "San Judas Tadeo",
+      "poblacion2021": 9914,
+      "areaKm2": 253,
+      "densidad": 39.18
+    },
+    "92452058B59537518099621": {
+      "name": "Sucre",
+      "parentISO": "VE-S",
+      "wikiName": "Sucre",
+      "poblacion2021": 9680,
+      "areaKm2": 407,
+      "densidad": 23.78
+    },
+    "92452058B84571882758287": {
+      "name": "Autónomo Autana",
+      "parentISO": "VE-Z",
+      "wikiName": "Autana",
+      "poblacion2021": 9620,
+      "areaKm2": 15750,
+      "densidad": 0.61
+    },
+    "92452058B28830683582357": {
+      "name": "Pedernales",
+      "parentISO": "VE-Y",
+      "wikiName": "Pedernales",
+      "poblacion2021": 9163,
+      "areaKm2": 3537,
+      "densidad": 2.59
+    },
+    "92452058B42172892239758": {
+      "name": "Autónomo Manapiare",
+      "parentISO": "VE-Z",
+      "wikiName": "Manapiare",
+      "poblacion2021": 8841,
+      "areaKm2": 33100,
+      "densidad": 0.26
+    },
+    "92452058B80542411245757": {
+      "name": "Palmasola",
+      "parentISO": "VE-I",
+      "wikiName": "Palmasola",
+      "poblacion2021": 8816,
+      "areaKm2": 194,
+      "densidad": 45.44
+    },
+    "92452058B57428725290546": {
+      "name": "Tocopero",
+      "parentISO": "VE-I",
+      "wikiName": "Tocópero",
+      "poblacion2021": 8109,
+      "areaKm2": 83,
+      "densidad": 97.69
+    },
+    "92452058B18295884568936": {
+      "name": "Sucre",
+      "parentISO": "VE-I",
+      "wikiName": "Sucre",
+      "poblacion2021": 7799,
+      "areaKm2": 840,
+      "densidad": 9.28
+    },
+    "92452058B16072820149055": {
+      "name": "Rafael Urdaneta",
+      "parentISO": "VE-S",
+      "wikiName": "Rafael Urdaneta",
+      "poblacion2021": 7720,
+      "areaKm2": 176,
+      "densidad": 43.86
+    },
+    "92452058B50490503212565": {
+      "name": "José Felipe Márquez Cañizales",
+      "parentISO": "VE-T",
+      "wikiName": "José Felipe Márquez Cañizales",
+      "poblacion2021": 6656,
+      "areaKm2": 648,
+      "densidad": 10.27
+    },
+    "92452058B92699654861711": {
+      "name": "Aricagua",
+      "parentISO": "VE-L",
+      "wikiName": "Aricagua",
+      "poblacion2021": 6119,
+      "areaKm2": 790,
+      "densidad": 7.74
+    },
+    "92452058B97313175950957": {
+      "name": "Justo Briceño",
+      "parentISO": "VE-L",
+      "wikiName": "Justo Briceño",
+      "poblacion2021": 6082,
+      "areaKm2": 509,
+      "densidad": 11.94
+    },
+    "92452058B99053619460093": {
+      "name": "Francisco de Miranda",
+      "parentISO": "VE-S",
+      "wikiName": "Francisco de Miranda",
+      "poblacion2021": 5169,
+      "areaKm2": 262,
+      "densidad": 19.72
+    },
+    "92452058B20589241231515": {
+      "name": "Padre Noguera",
+      "parentISO": "VE-L",
+      "wikiName": "Padre Noguera",
+      "poblacion2021": 4628,
+      "areaKm2": 206,
+      "densidad": 22.46
+    },
+    "92452058B83373837217774": {
+      "name": "Simón Rodríguez",
+      "parentISO": "VE-S",
+      "wikiName": "Simón Rodríguez",
+      "poblacion2021": 2950,
+      "areaKm2": 69,
+      "densidad": 42.75
+    },
+    "92452058B35318903418648": {
+      "name": "Autónomo Río Negro",
+      "parentISO": "VE-Z",
+      "wikiName": "Río Negro",
+      "poblacion2021": 2581,
+      "areaKm2": 39150,
+      "densidad": 0.06
+    },
+    "92452058B1963066211404": {
+      "name": "Autónomo Maroa",
+      "parentISO": "VE-Z",
+      "wikiName": "Maroa",
+      "poblacion2021": 2326,
+      "areaKm2": 14250,
+      "densidad": 0.16
+    }
+  },
+  "stateAggregates": {
+    "poblacion2021": {
+      "VE-A": 2277972,
+      "VE-V": 4341257,
+      "VE-K": 2133205,
+      "VE-G": 2665080,
+      "VE-F": 1230396,
+      "VE-N": 1210372,
+      "VE-M": 3208636,
+      "VE-B": 1807274,
+      "VE-E": 1123351,
+      "VE-D": 2006315,
+      "VE-R": 1117917,
+      "VE-X": 448894,
+      "VE-I": 1137315,
+      "VE-S": 1301260,
+      "VE-L": 1018219,
+      "VE-P": 1078934,
+      "VE-C": 460564,
+      "VE-T": 879226,
+      "VE-J": 886669,
+      "VE-Y": 240264,
+      "VE-U": 756550,
+      "VE-Z": 176680,
+      "VE-H": 292483,
+      "VE-O": 602114
+    },
+    "areaKm2": {
+      "VE-A": 433,
+      "VE-V": 47860,
+      "VE-K": 19800,
+      "VE-G": 4369,
+      "VE-F": 177761,
+      "VE-N": 28900,
+      "VE-M": 7950,
+      "VE-B": 42185,
+      "VE-E": 35200,
+      "VE-D": 6580,
+      "VE-R": 11800,
+      "VE-X": 1171,
+      "VE-I": 24800,
+      "VE-S": 10566,
+      "VE-L": 11300,
+      "VE-P": 15200,
+      "VE-C": 63680,
+      "VE-T": 7302,
+      "VE-J": 57295,
+      "VE-Y": 40200,
+      "VE-U": 7100,
+      "VE-Z": 183500,
+      "VE-H": 12957,
+      "VE-O": 1151
+    },
+    "densidad": {
+      "VE-A": 5260.91,
+      "VE-V": 90.71,
+      "VE-K": 107.74,
+      "VE-G": 610,
+      "VE-F": 6.92,
+      "VE-N": 41.88,
+      "VE-M": 403.6,
+      "VE-B": 42.84,
+      "VE-E": 31.91,
+      "VE-D": 304.91,
+      "VE-R": 94.74,
+      "VE-X": 383.34,
+      "VE-I": 45.86,
+      "VE-S": 123.16,
+      "VE-L": 90.11,
+      "VE-P": 70.98,
+      "VE-C": 7.23,
+      "VE-T": 120.41,
+      "VE-J": 15.48,
+      "VE-Y": 5.98,
+      "VE-U": 106.56,
+      "VE-Z": 0.96,
+      "VE-H": 22.57,
+      "VE-O": 523.12
+    }
+  }
+}

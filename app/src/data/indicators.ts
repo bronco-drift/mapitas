@@ -1,6 +1,7 @@
 import municipalData from './municipal-indicators.json'
 import ineStatesRaw from './ine-population-states.json'
 import ineMunisRaw from './ine-population-municipalities.json'
+import wikiData from './wiki-municipios.json'
 
 // JSONs INE — proyecciones poblacionales 2000-2050. Estructura:
 //   states:    { iso → { name, byYear: { '2026': number, ... } } }
@@ -94,6 +95,80 @@ const POBLACION_INE_2050: Indicator = {
   stateAggregate: ineStateForYear(2050),
 }
 
+// ---- Indicadores Wikipedia (proyecciones INE 2021 recopiladas) ----
+// Fuente: Anexo:Municipios de Venezuela por población y área en Wikipedia es.
+// Cobertura: 324 de 335 municipios (11 son gaps reales del adm2: Páez de Apure,
+// Ocumare Aragua, Angostura Bolívar, Guajira Zulia, etc.).
+type WikiData = {
+  municipios: Record<
+    string,
+    {
+      name: string
+      parentISO: string
+      wikiName: string
+      poblacion2021: number | null
+      areaKm2: number | null
+      densidad: number | null
+    }
+  >
+  stateAggregates: {
+    poblacion2021: Record<string, number>
+    areaKm2: Record<string, number>
+    densidad: Record<string, number>
+  }
+}
+const wiki = wikiData as WikiData
+
+function wikiMuniField(field: 'poblacion2021' | 'areaKm2' | 'densidad'): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const [sid, m] of Object.entries(wiki.municipios)) {
+    const v = m[field]
+    if (typeof v === 'number') out[sid] = v
+  }
+  return out
+}
+
+const POBLACION_WIKI_2021: Indicator = {
+  id: 'poblacion_wiki_2021',
+  label: 'Población 2021 · Wiki',
+  description: 'Población municipal según anexo de Wikipedia',
+  unit: 'habitantes',
+  format: 'number',
+  year: 2021,
+  source: 'Wikipedia (recopilación INE 2021)',
+  note: '324/335 municipios · gaps del adm2 en Páez Apure, Ocumare, Angostura, etc.',
+  aggregation: 'municipality',
+  data: wikiMuniField('poblacion2021'),
+  stateAggregate: wiki.stateAggregates.poblacion2021,
+}
+
+const AREA_WIKI: Indicator = {
+  id: 'area_wiki',
+  label: 'Área · Wiki',
+  description: 'Superficie territorial según anexo de Wikipedia',
+  unit: 'km²',
+  format: 'number',
+  year: 2021,
+  source: 'Wikipedia (INE)',
+  aggregation: 'municipality',
+  data: wikiMuniField('areaKm2'),
+  stateAggregate: wiki.stateAggregates.areaKm2,
+}
+
+const DENSIDAD_WIKI: Indicator = {
+  id: 'densidad_wiki',
+  label: 'Densidad · Wiki',
+  description: 'Habitantes por km² según anexo de Wikipedia',
+  unit: 'hab/km²',
+  format: 'rate',
+  year: 2021,
+  source: 'Wikipedia (INE)',
+  aggregation: 'municipality',
+  nationalAggregation: 'mean',
+  data: wikiMuniField('densidad'),
+  stateAggregate: wiki.stateAggregates.densidad,
+}
+
 // ---- Indicadores estatales (legacy, aproximaciones hardcoded) ----
 // Mantenido para no perder data anterior — diferenciado por etiqueta "est. estatal".
 // Para data oficial 2024 ver POBLACION_INE_* (acceso a la serie completa 2000-2050).
@@ -163,7 +238,7 @@ const POBLACION_2026: Indicator = {
 
 const AREA: Indicator = {
   id: 'area_km2',
-  label: 'Área',
+  label: 'Área · est. municipal',
   description: 'Superficie territorial',
   unit: 'km²',
   format: 'number',
@@ -221,12 +296,15 @@ const IDH_2026: Indicator = {
 export const INDICATORS: Indicator[] = [
   POBLACION_INE_2026,
   POBLACION_INE_2050,
+  POBLACION_WIKI_2021,
   POBLACION_2026,
   POBLACION_2024,
   IDH_2026,
   PIB_PER_CAPITA,
   PIB_TOTAL,
+  AREA_WIKI,
   AREA,
+  DENSIDAD_WIKI,
   HOMICIDIOS,
 ]
 
