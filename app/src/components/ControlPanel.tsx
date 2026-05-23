@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
 import { useStore } from '../store'
 import { PALETTE_OPTIONS, PALETTE_EXTRA, paletteGradient, getPaletteStops } from '../lib/color-scale'
 import { RangeEditor } from './RangeEditor'
@@ -41,10 +41,61 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const isMobile = useIsMobile()
 
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
-  // Solo aplicamos transform inline cuando estamos en mobile; en desktop el
-  // aside ocupa su lugar normal por las clases md:relative.
-  const inlineStyle = isMobile
-    ? { transform: mobileOpen ? 'translateY(0)' : 'translateY(100%)' }
+
+  // ── Drawer expandible (solo mobile) ──────────────────────────────────────
+  // Dos snap points: collapsed (45vh) y expanded (88vh). El user puede
+  // arrastrar el handle hacia arriba/abajo, o tocarlo para alternar.
+  const COLLAPSED_VH = 45
+  const EXPANDED_VH = 88
+  const SNAP_MID = (COLLAPSED_VH + EXPANDED_VH) / 2
+  const [expanded, setExpanded] = useState(false)
+  const [dragOffset, setDragOffset] = useState(0)
+  const draggingRef = useRef(false)
+  const startYRef = useRef(0)
+  const movedRef = useRef(false)
+
+  function handlePointerDown(e: ReactPointerEvent<HTMLDivElement>) {
+    if (!isMobile) return
+    draggingRef.current = true
+    startYRef.current = e.clientY
+    movedRef.current = false
+    e.currentTarget.setPointerCapture?.(e.pointerId)
+  }
+  function handlePointerMove(e: ReactPointerEvent<HTMLDivElement>) {
+    if (!draggingRef.current) return
+    const dy = e.clientY - startYRef.current
+    if (Math.abs(dy) > 4) movedRef.current = true
+    setDragOffset(dy)
+  }
+  function handlePointerUp() {
+    if (!draggingRef.current) return
+    draggingRef.current = false
+    if (movedRef.current) {
+      // Snap por threshold: dónde quedó la altura en este instante
+      const dragVh = (dragOffset / window.innerHeight) * 100
+      const finalVh = (expanded ? EXPANDED_VH : COLLAPSED_VH) - dragVh
+      setExpanded(finalVh > SNAP_MID)
+    } else {
+      // Tap simple: alternar estado
+      setExpanded(v => !v)
+    }
+    setDragOffset(0)
+  }
+
+  // Altura efectiva en vh, sumando el drag offset durante la interacción
+  const baseVh = expanded ? EXPANDED_VH : COLLAPSED_VH
+  const dragVh = draggingRef.current ? (dragOffset / (typeof window !== 'undefined' ? window.innerHeight : 800)) * 100 : 0
+  const heightVh = Math.max(20, Math.min(95, baseVh - dragVh))
+
+  const inlineStyle: CSSProperties | undefined = isMobile
+    ? {
+        transform: mobileOpen ? 'translateY(0)' : 'translateY(100%)',
+        height: `${heightVh}vh`,
+        maxHeight: `${heightVh}vh`,
+        transition: draggingRef.current
+          ? 'none'
+          : 'height 280ms cubic-bezier(0.25,1,0.5,1), max-height 280ms cubic-bezier(0.25,1,0.5,1), transform 280ms cubic-bezier(0.25,1,0.5,1)',
+      }
     : undefined
 
   return (
@@ -62,14 +113,28 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
       <aside
         style={inlineStyle}
-        className="flex shrink-0 flex-col overflow-hidden bg-white md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 fixed inset-x-0 bottom-0 z-[1050] h-[45vh] max-h-[45vh] rounded-t-2xl border-t border-slate-200 shadow-2xl md:rounded-none md:shadow-none md:h-full md:max-h-none"
+        className="flex shrink-0 flex-col overflow-hidden bg-white md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 fixed inset-x-0 bottom-0 z-[1050] rounded-t-2xl border-t border-slate-200 shadow-2xl md:rounded-none md:shadow-none md:h-full md:max-h-none"
       >
-        {/* Handle + close visible solo mobile */}
-        <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2 md:hidden">
-          <span className="h-1 w-10 rounded-full bg-slate-300" />
+        {/* Handle drag area + cerrar (solo mobile).
+            Toda la fila es draggable; el botón Cerrar usa stopPropagation
+            para no disparar el drag al tap. touch-none evita que el browser
+            haga scroll de la página mientras arrastrás. */}
+        <div
+          className="flex items-center justify-between border-b border-slate-100 px-4 py-3 md:hidden touch-none cursor-grab active:cursor-grabbing select-none"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          role="button"
+          tabIndex={0}
+          aria-label={expanded ? 'Colapsar panel' : 'Expandir panel'}
+        >
+          <span aria-hidden className="block w-10" />
+          <span className="h-1 w-10 rounded-full bg-slate-300" aria-hidden />
           <button
             type="button"
             onClick={onMobileClose}
+            onPointerDown={e => e.stopPropagation()}
             className="text-[12px] text-slate-500 hover:text-slate-900"
           >
             Cerrar
@@ -87,50 +152,10 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </p>
       </header>
 
-      {/* Mobile: pills compactos en 2 filas para ahorrar altura del drawer.
-          Desktop: segmented controls full-width (los originales). */}
-
-      {/* MOBILE — Nivel + Tabs en pills compactos */}
-      <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 border-b border-slate-100 px-4 py-2 md:hidden">
-        {(
-          [
-            { key: 'adm0', label: 'País' },
-            { key: 'adm1', label: 'Estados' },
-            { key: 'adm2', label: 'Municipios' },
-          ] as const
-        ).map(item => (
-          <button
-            key={item.key}
-            type="button"
-            onClick={() => setLevel(item.key)}
-            className={`shrink-0 rounded-full px-2.5 py-1 text-[12px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              level === item.key
-                ? 'bg-slate-900 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
-        <span className="mx-0.5 h-4 w-px bg-slate-200" aria-hidden />
-        {(['datos', 'capas', 'estilo'] as const).map(t => (
-          <button
-            key={t}
-            type="button"
-            onClick={() => setTab(t)}
-            className={`shrink-0 rounded-full px-2.5 py-1 text-[12px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              tab === t
-                ? 'bg-slate-900 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-            }`}
-          >
-            {t === 'datos' ? 'Datos' : t === 'capas' ? 'Capas' : 'Estilo'}
-          </button>
-        ))}
-      </div>
-
-      {/* DESKTOP — Nivel segmented full-width */}
-      <div className="hidden px-5 py-3 md:block">
+      {/* Nivel + Tabs: segmented controls full-width, igual en desktop y mobile.
+          En mobile ahorramos espacio con el drawer expandible, no con
+          controles diferentes. */}
+      <div className="px-5 py-3">
         <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
           <button
             type="button"
@@ -162,8 +187,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </div>
       </div>
 
-      {/* DESKTOP — Tabs segmented full-width */}
-      <div className="hidden border-b border-slate-100 px-5 pb-3 md:block">
+      <div className="border-b border-slate-100 px-5 pb-3">
         <div className="inline-flex w-full rounded-md border border-slate-200 bg-slate-50 p-0.5 text-[12px]">
           {(['datos', 'capas', 'estilo'] as const).map(t => (
             <button
