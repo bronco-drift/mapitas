@@ -75,7 +75,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             Cerrar
           </button>
         </div>
-      <header className="hidden border-b border-slate-100 px-5 pt-5 pb-4 md:block">
+      <header className="hidden border-b border-slate-100 px-5 py-5 md:block">
         <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
           Mapitas
         </div>
@@ -93,7 +93,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <button
             type="button"
             onClick={() => setLevel('adm0')}
-            className={`flex-1 rounded px-2.5 py-1 transition ${
+            className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
               level === 'adm0' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
@@ -102,7 +102,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <button
             type="button"
             onClick={() => setLevel('adm1')}
-            className={`flex-1 rounded px-2.5 py-1 transition ${
+            className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
               level === 'adm1' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
@@ -111,7 +111,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <button
             type="button"
             onClick={() => setLevel('adm2')}
-            className={`flex-1 rounded px-2.5 py-1 transition ${
+            className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
               level === 'adm2' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
@@ -128,7 +128,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               key={t}
               type="button"
               onClick={() => setTab(t)}
-              className={`flex-1 rounded px-2.5 py-1 transition ${
+              className={`flex-1 rounded px-2.5 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
                 tab === t
                   ? 'bg-white text-slate-900 shadow-sm'
                   : 'text-slate-500 hover:text-slate-700'
@@ -200,8 +200,9 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               </div>
             )}
             <Legend />
-            <div className="mt-2 text-[10px] tabular-nums text-slate-400">
-              {stats.matched} de {stats.totalFeatures} pintados
+            <div className="mt-2 text-[10px] tabular-nums tracking-wide text-slate-400">
+              <span className="text-slate-600">{stats.matched}</span>
+              <span> de {stats.totalFeatures} pintados</span>
             </div>
           </Section>
         )}
@@ -249,7 +250,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             onClick={() => {
               if (confirm('¿Resetear todos los ajustes guardados?')) resetSettings()
             }}
-            className="shrink-0 underline-offset-2 hover:text-slate-700 hover:underline"
+            className="shrink-0 rounded underline-offset-2 transition-colors hover:text-slate-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
           >
             Resetear
           </button>

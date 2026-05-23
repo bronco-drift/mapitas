@@ -188,10 +188,10 @@ function Disclosure({
       onToggle={e => setOpen((e.currentTarget as HTMLDetailsElement).open)}
       className="group rounded-md border border-slate-100"
     >
-      <summary className="flex cursor-pointer items-center justify-between rounded-md px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-600 hover:bg-slate-50 marker:hidden">
+      <summary className="group flex cursor-pointer items-center justify-between rounded-md px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-600 transition-colors hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 marker:hidden">
         <span>{title}</span>
         <svg
-          className={`h-3 w-3 text-slate-400 transition-transform ${open ? 'rotate-90' : ''}`}
+          className={`h-3 w-3 text-slate-400 transition-transform duration-200 group-hover:text-slate-700 ${open ? 'rotate-90' : ''}`}
           viewBox="0 0 12 12"
           fill="none"
           aria-hidden

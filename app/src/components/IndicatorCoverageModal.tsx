@@ -84,14 +84,14 @@ export function IndicatorCoverageModal({
 
   return (
     <div
-      className="fixed inset-0 z-[2000] flex items-center justify-center bg-slate-900/40 p-4"
+      className="modal-backdrop fixed inset-0 z-[2000] flex items-center justify-center bg-slate-900/40 p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="cov-modal-title"
     >
       <div
-        className="relative max-h-[80vh] w-full max-w-md overflow-hidden rounded-lg bg-white shadow-2xl"
+        className="modal-content relative max-h-[80vh] w-full max-w-md overflow-hidden rounded-lg bg-white shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* Header pegajoso */}
