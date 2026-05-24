@@ -58,7 +58,7 @@
     "label": "Límites internacionales · CV",
     "color": "#dc2626",
     "file": "/data/thematic/internacionales-cv.geojson",
-    "featureCount": 3,
+    "featureCount": 4,
     "sizeKB": 1,
     "geometryType": "LineString",
     "dashed": true,

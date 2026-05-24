@@ -42,6 +42,10 @@ data/ine-raw/
 /*.xlsx
 /*.csv
 
+# GeoJSON sueltos en la raíz (archivos de trabajo del user antes de integrarlos
+# a app/public/data/. Los buenos viven adentro y sí se commitean).
+/*.geojson
+
 # Documentos privados de trabajo (no publicar)
 /revision.html
 
