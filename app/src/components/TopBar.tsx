@@ -43,7 +43,19 @@ export function TopBar() {
   const current = COUNTRIES.find(c => c.code === currentCode)
 
   return (
-    <div className="flex h-11 shrink-0 items-center gap-2 border-b border-slate-200 bg-white px-3 md:h-12 md:gap-3 md:px-4">
+    <div
+      // Safe area top: en iOS con notch, sin esto el TopBar queda parcialmente
+      // tapado por el área del notch/Dynamic Island. env(safe-area-inset-top)
+      // devuelve 47px en iPhone 14 Pro, 0 en desktop/Android sin notch.
+      // px-3/md:px-4 también heredan safe-area-inset horizontal para landscape.
+      style={{
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        paddingLeft: 'max(0.75rem, env(safe-area-inset-left, 0px))',
+        paddingRight: 'max(0.75rem, env(safe-area-inset-right, 0px))',
+      }}
+      className="flex shrink-0 items-center gap-2 border-b border-slate-200 bg-white md:gap-3"
+    >
+      <div className="flex h-11 w-full items-center gap-2 md:h-12 md:gap-3">
       <a
         href="#/"
         className="flex items-center gap-1.5 text-slate-700 transition hover:text-slate-900"
@@ -106,6 +118,7 @@ export function TopBar() {
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
         <span className="hidden sm:inline">Local · sin red</span>
         <span className="sm:hidden">Local</span>
+      </div>
       </div>
     </div>
   )

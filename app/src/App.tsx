@@ -41,7 +41,7 @@ export default function App() {
     return (
       <Suspense
         fallback={
-          <div className="flex h-screen w-screen items-center justify-center bg-slate-100 text-sm text-slate-500">
+          <div className="flex h-full w-full items-center justify-center bg-slate-100 text-sm text-slate-500">
             Cargando mapa…
           </div>
         }

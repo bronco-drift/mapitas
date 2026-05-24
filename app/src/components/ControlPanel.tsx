@@ -110,6 +110,9 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         transform: mobileOpen ? 'translateY(0)' : 'translateY(100%)',
         height: `${heightVh}vh`,
         maxHeight: `${heightVh}vh`,
+        // Safe area bottom: respeta el home indicator de iOS (~34px).
+        // Sin esto el contenido inferior del drawer queda tapado por la barra.
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         transition: draggingRef.current
           ? 'none'
           : 'height 280ms cubic-bezier(0.25,1,0.5,1), max-height 280ms cubic-bezier(0.25,1,0.5,1), transform 280ms cubic-bezier(0.25,1,0.5,1)',
