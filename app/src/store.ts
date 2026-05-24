@@ -24,7 +24,7 @@ import {
   applyIndicatorToAdm2,
   type IndicatorStats,
 } from './lib/apply-indicator'
-import { getIndicator, INDICATORS, type Indicator } from './data/indicators'
+import { getIndicator, getIndicatorByGroupAndLevel, INDICATORS, type Indicator } from './data/indicators'
 
 export type DataSource =
   | { kind: 'indicator'; indicator: Indicator }
@@ -318,6 +318,20 @@ export const useStore = create<State & Actions>()(
   },
 
   setLevel(level) {
+    // Auto-switch: si el indicador activo pertenece a un grupo simbólico
+    // (banderas/escudos) y existe variant para el nuevo nivel, switch
+    // automático. Permite al user "navegar por niveles" sin re-seleccionar
+    // el indicador. Si no hay variant para el nivel, mantenemos el actual
+    // (caerá en "Solo a nivel X" archivado).
+    const src = get().source
+    if (src?.kind === 'indicator' && src.indicator.group) {
+      const next = getIndicatorByGroupAndLevel(src.indicator.group, level)
+      if (next && next.id !== src.indicator.id) {
+        set({ level, source: { kind: 'indicator', indicator: next } })
+        get().applyMerge()
+        return
+      }
+    }
     set({ level })
     get().applyMerge()
   },

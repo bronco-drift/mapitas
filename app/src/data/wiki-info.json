@@ -1,0 +1,2476 @@
+{
+  "_meta": {
+    "source": "Wikidata + Wikimedia Commons",
+    "fetched_at": "2026-05-24",
+    "states_matched": 26,
+    "munis_matched": 297,
+    "states_with_flag": 26,
+    "states_with_shield": 24,
+    "munis_with_flag": 192,
+    "munis_with_shield": 242,
+    "munis_with_description": 264,
+    "has_country": true
+  },
+  "states": {
+    "VE-G": {
+      "name": "Carabobo",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q191186"
+    },
+    "VE-U": {
+      "name": "Yaracuy",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q201121"
+    },
+    "VE-Y": {
+      "name": "Delta Amacuro",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q201137"
+    },
+    "VE-I": {
+      "name": "Falcón",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q202071"
+    },
+    "VE-T": {
+      "name": "Trujillo",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q202068"
+    },
+    "VE-J": {
+      "name": "Guárico",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q202075"
+    },
+    "VE-O": {
+      "name": "Nueva Esparta",
+      "description": "archipiélago y estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q204876"
+    },
+    "VE-C": {
+      "name": "Apure",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q41146"
+    },
+    "VE-S": {
+      "name": "Táchira",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q41144"
+    },
+    "VE-E": {
+      "name": "Barinas",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q43271"
+    },
+    "VE-V": {
+      "name": "Zulia",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q43269"
+    },
+    "VE-H": {
+      "name": "Cojedes",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q205460"
+    },
+    "VE-N": {
+      "name": "Monagas",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q205776"
+    },
+    "VE-P": {
+      "name": "Portuguesa",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q205784"
+    },
+    "VE-K": {
+      "name": "Lara",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q205796"
+    },
+    "VE-Z": {
+      "name": "Amazonas",
+      "description": "estado venezolano",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q170453"
+    },
+    "VE-D": {
+      "name": "Aragua",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q190687"
+    },
+    "VE-B": {
+      "name": "Anzoátegui",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q190922"
+    },
+    "VE-R": {
+      "name": "Sucre",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q205824"
+    },
+    "VE-GE": {
+      "name": "Guayana Esequiba",
+      "description": "Territorio reclamado por Venezuela actualmente administrado por Guyana. Capital provisional: Tumeremo.",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": null,
+      "override": "placeholder tricolor venezolano (no hay bandera oficial designada para el territorio)"
+    },
+    "VE-F": {
+      "name": "Bolívar",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q191164"
+    },
+    "VE-M": {
+      "name": "Miranda",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q191174"
+    },
+    "VE-W": {
+      "name": "Dependencias Federales",
+      "description": "entidad territorial administrativa de primer nivel de Venezuela, no organizada como estado",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q130343"
+    },
+    "VE-L": {
+      "name": "Mérida",
+      "description": "estado de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q165582"
+    },
+    "VE-A": {
+      "name": "Distrito Capital",
+      "description": "Distrito Capital de Venezuela. Sede de Caracas, capital nacional.",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q9930",
+      "override": "manual (no matched en SPARQL: tipo Q9930 distinto)"
+    },
+    "VE-X": {
+      "name": "La Guaira",
+      "description": "Estado costero al norte central, anteriormente llamado Vargas.",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1257303",
+      "override": "manual (no matched en SPARQL)"
+    }
+  },
+  "munis": {
+    "92452058B11643433355356": {
+      "name": "San Diego",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2071710"
+    },
+    "92452058B84571882758287": {
+      "name": "Autónomo Autana",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2074983"
+    },
+    "92452058B35839392546530": {
+      "name": "Carrizal",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2078261"
+    },
+    "92452058B96252003881726": {
+      "name": "Autónomo Atabapo",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2084824"
+    },
+    "92452058B80404447780707": {
+      "name": "Tucupita",
+      "state": "Delta Amacuro",
+      "description": "división administrativa de segundo nivel en el Estado Delta Amacuro, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2092931"
+    },
+    "92452058B60175540924522": {
+      "name": "Andrés Bello",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2093831"
+    },
+    "92452058B98875483329913": {
+      "name": "Andrés Mata",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2095488"
+    },
+    "92452058B87022428114391": {
+      "name": "Pueblo Llano",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2096564"
+    },
+    "92452058B35610022203869": {
+      "name": "Independencia",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2098386"
+    },
+    "92452058B73572326911249": {
+      "name": "Roscio",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2100029"
+    },
+    "92452058B74295605734614": {
+      "name": "Tubores",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2102962"
+    },
+    "92452058B92522690941110": {
+      "name": "Julio César Salas",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2105291"
+    },
+    "92452058B19007337502862": {
+      "name": "Cristóbal Rojas",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2112101"
+    },
+    "92452058B9761229691883": {
+      "name": "Jiménez",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q952348"
+    },
+    "92452058B35367180068237": {
+      "name": "Píritu",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q965270"
+    },
+    "92452058B4465653427750": {
+      "name": "Fernández Feo",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q974559"
+    },
+    "92452058B59483171465423": {
+      "name": "El Hatillo",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q975765"
+    },
+    "92452058B23928909517794": {
+      "name": "El Socorro",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1006441"
+    },
+    "92452058B96430954073814": {
+      "name": "Camaguán",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q1027967"
+    },
+    "92452058B40300597364264": {
+      "name": "Carlos Arvelo",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1042713"
+    },
+    "92452058B96684435366560": {
+      "name": "Chaguaramas",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1058857"
+    },
+    "92452058B8376465303279": {
+      "name": "Guaicaipuro",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1090454"
+    },
+    "92452058B49597531088827": {
+      "name": "Zamora",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1129558"
+    },
+    "92452058B74472117393048": {
+      "name": "Paz Castillo",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1149232"
+    },
+    "92452058B28042998253075": {
+      "name": "Plaza",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1149242"
+    },
+    "92452058B45156381863749": {
+      "name": "Diego Ibarra",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1220474"
+    },
+    "92452058B25759098564616": {
+      "name": "Brión",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q260682"
+    },
+    "92452058B62251986707273": {
+      "name": "Carirubana",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q262132"
+    },
+    "92452058B7239791888120": {
+      "name": "Sifontes",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q373198"
+    },
+    "92452058B92934117405956": {
+      "name": "Chacao",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q374734"
+    },
+    "92452058B93734391596245": {
+      "name": "Bolívar",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q383833"
+    },
+    "92452058B12777305429441": {
+      "name": "Sucre",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q400079"
+    },
+    "92452058B88295948802008": {
+      "name": "Ezequiel Zamora",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q429692"
+    },
+    "92452058B83118913216781": {
+      "name": "Zaraza",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q431008"
+    },
+    "92452058B65922817978550": {
+      "name": "Autónomo Alto Orinoco",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q443529"
+    },
+    "92452058B80542411245757": {
+      "name": "Palma Sola",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q507132"
+    },
+    "92452058B34095123389968": {
+      "name": "Andrés Eloy Blanco",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q524054"
+    },
+    "92452058B89555253536357": {
+      "name": "Rómulo Gallegos",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2665199"
+    },
+    "92452058B1963066211404": {
+      "name": "Autónomo Maroa",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2673918"
+    },
+    "92452058B1316533147896": {
+      "name": "San Juan de Capistrano",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2674109"
+    },
+    "92452058B50415523485502": {
+      "name": "Sucre",
+      "state": "Sucre",
+      "description": "Municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2674191"
+    },
+    "92452058B20589241231515": {
+      "name": "Padre Noguera",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2674477"
+    },
+    "92452058B36126847225490": {
+      "name": "San Francisco",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2677085"
+    },
+    "92452058B92131040648268": {
+      "name": "Cardenal Quintero",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2706815"
+    },
+    "92452058B8973005468773": {
+      "name": "Araure",
+      "state": "Portuguesa",
+      "description": "municipio en venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2741347"
+    },
+    "92452058B66612082158993": {
+      "name": "Acosta",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2745788"
+    },
+    "92452058B34280729247629": {
+      "name": "Falcón",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2772399"
+    },
+    "92452058B24669849330150": {
+      "name": "Buchivacoa",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1814869"
+    },
+    "92452058B70966506034681": {
+      "name": "Mara",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1820462"
+    },
+    "92452058B71261275194510": {
+      "name": "Libertador",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1822992"
+    },
+    "92452058B35881959392947": {
+      "name": "Veroes",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1827306"
+    },
+    "92452058B61414933124472": {
+      "name": "Independencia",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1831978"
+    },
+    "92452058B11824178609180": {
+      "name": "Miranda",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1839865"
+    },
+    "92452058B76742860274923": {
+      "name": "Petit",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q1862679"
+    },
+    "92452058B8049854825221": {
+      "name": "Mauroa",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1886710"
+    },
+    "92452058B36691786068251": {
+      "name": "Benítez",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1891862"
+    },
+    "92452058B93532552722104": {
+      "name": "San Rafael de Carvajal",
+      "state": "Trujillo",
+      "description": "municipio del estado Trujillo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1905292"
+    },
+    "92452058B49984819466798": {
+      "name": "Puerto Cabello",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3410570"
+    },
+    "92452058B56896825974617": {
+      "name": "San Carlos",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3471383"
+    },
+    "92452058B43927171867078": {
+      "name": "San Cristóbal",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3471395"
+    },
+    "92452058B92725802185650": {
+      "name": "San Fernando",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3471417"
+    },
+    "92452058B64727210967891": {
+      "name": "Santa Bárbara",
+      "state": "Monagas",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q32491626"
+    },
+    "92452058B76146617843422": {
+      "name": "Tovar",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3535910"
+    },
+    "92452058B422414995593": {
+      "name": "Valencia",
+      "state": "Carabobo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31963073"
+    },
+    "92452058B64111630674136": {
+      "name": "Los Guayos",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3646838"
+    },
+    "92452058B245358204852": {
+      "name": "Sucre",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q4827917"
+    },
+    "92452058B12886197889450": {
+      "name": "Cabimas",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q5116306"
+    },
+    "92452058B50396237528900": {
+      "name": "Valera",
+      "state": "Trujillo",
+      "description": "municipio de Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q5413768"
+    },
+    "92452058B83946856745535": {
+      "name": "Alberto Adriani",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2124390"
+    },
+    "92452058B78508752034039": {
+      "name": "Sucre",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2135040"
+    },
+    "92452058B9002130030249": {
+      "name": "Pedraza",
+      "state": "Barinas",
+      "description": "División Administrativa de Segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2135709"
+    },
+    "92452058B76772094645860": {
+      "name": "Antonio Pinto Salinas",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2146204"
+    },
+    "92452058B26692301480200": {
+      "name": "Cocorote",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2161707"
+    },
+    "92452058B52691376316443": {
+      "name": "Panamericano",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2162569"
+    },
+    "92452058B69461621653352": {
+      "name": "Andrés Bello",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2171229"
+    },
+    "92452058B15023517845906": {
+      "name": "Miranda",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2180802"
+    },
+    "92452058B73017007286704": {
+      "name": "Sucre",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2181142"
+    },
+    "92452058B99527238900768": {
+      "name": "Arismendi",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2183400"
+    },
+    "92452058B44429853731382": {
+      "name": "Zamora",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2184913"
+    },
+    "92452058B35318903418648": {
+      "name": "Autónomo Río Negro",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2198075"
+    },
+    "92452058B83373837217774": {
+      "name": "Simón Rodríguez",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2772652"
+    },
+    "92452058B61290497369270": {
+      "name": "Independencia",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2777221"
+    },
+    "92452058B92766796026281": {
+      "name": "Lobatera",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2779125"
+    },
+    "92452058B80910187087135": {
+      "name": "Lima Blanco",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2786560"
+    },
+    "92452058B16352791962773": {
+      "name": "Santos Marquina",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2803774"
+    },
+    "92452058B59962143626105": {
+      "name": "Acosta",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2823425"
+    },
+    "92452058B81914214166984": {
+      "name": "Lagunillas",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2847018"
+    },
+    "92452058B18977618770055": {
+      "name": "Andrés Eloy Blanco",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2849019"
+    },
+    "92452058B92699654861711": {
+      "name": "Aricagua",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2856316"
+    },
+    "92452058B1998456811231": {
+      "name": "Antolín del Campo",
+      "state": "Nueva Esparta",
+      "description": "municipio en el estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2856992"
+    },
+    "92452058B76694277740413": {
+      "name": "Muñoz",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2537345"
+    },
+    "92452058B2608246233639": {
+      "name": "Anzoátegui",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2545745"
+    },
+    "92452058B28830683582357": {
+      "name": "Pedernales",
+      "state": "Delta Amacuro",
+      "description": "división administrativa de segundo nivel en el Estado Delta Amacuro, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2552137"
+    },
+    "92452058B36515365287716": {
+      "name": "Cajigal",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2554123"
+    },
+    "92452058B46833609539382": {
+      "name": "San Genaro de Boconoito",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31962696"
+    },
+    "92452058B23947748286776": {
+      "name": "Urdaneta",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2569928"
+    },
+    "92452058B33564894721572": {
+      "name": "Pedro Camejo",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2574354"
+    },
+    "92452058B64371118688426": {
+      "name": "La Trinidad",
+      "state": "Yaracuy",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31962086"
+    },
+    "92452058B50645357968703": {
+      "name": "Obispos",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2606907"
+    },
+    "92452058B8560426021820": {
+      "name": "Guaraque",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2607198"
+    },
+    "92452058B15677212765732": {
+      "name": "Arismendi",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2607465"
+    },
+    "92452058B82426430242133": {
+      "name": "Jáuregui",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2608254"
+    },
+    "92452058B10612874136761": {
+      "name": "Santa Ana",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2613916"
+    },
+    "92452058B23217711082732": {
+      "name": "Libertad",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3072345"
+    },
+    "92452058B37394705502377": {
+      "name": "Ospino",
+      "state": "Portuguesa",
+      "description": "municipio en venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3087224"
+    },
+    "92452058B72828901186947": {
+      "name": "Páez",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3087978"
+    },
+    "92452058B90039962099382": {
+      "name": "Simón Planas",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3088394"
+    },
+    "92452058B97313175950957": {
+      "name": "Justo Briceño",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3088418"
+    },
+    "92452058B75092813359951": {
+      "name": "Monseñor Iturriza",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3089926"
+    },
+    "92452058B73243248124437": {
+      "name": "Sosa",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3089933"
+    },
+    "92452058B73629823948973": {
+      "name": "Gran Sabana",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3113406"
+    },
+    "92452058B22596665360768": {
+      "name": "Torres",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3132001"
+    },
+    "92452058B53950788580310": {
+      "name": "Tinaco",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3132009"
+    },
+    "92452058B59537518099621": {
+      "name": "Sucre",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3134312"
+    },
+    "92452058B57031672069031": {
+      "name": "Maturín",
+      "state": "Monagas",
+      "description": "municipio en el Estado de Monagas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3300002"
+    },
+    "92452058B17363739467274": {
+      "name": "Francisco de Miranda",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q40767"
+    },
+    "92452058B16204644970009": {
+      "name": "Bolívar",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q530214"
+    },
+    "92452058B54674524555313": {
+      "name": "Padre Pedro Chién",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q535057"
+    },
+    "92452058B22657240029689": {
+      "name": "Libertador",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q538798"
+    },
+    "92452058B8554820713404": {
+      "name": "Casacoima",
+      "state": "Delta Amacuro",
+      "description": "división administrativa de segundo nivel en el Estado Delta Amacuro, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q577335"
+    },
+    "92452058B4017095457162": {
+      "name": "San Rafael de Onoto",
+      "state": "Portuguesa",
+      "description": "municipio en venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q583005"
+    },
+    "92452058B9885086190441": {
+      "name": "Junín",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q591314"
+    },
+    "92452058B83235361555221": {
+      "name": "Andrés Eloy Blanco",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q592803"
+    },
+    "92452058B74293045430698": {
+      "name": "Antonio Díaz",
+      "state": "Delta Amacuro",
+      "description": "división administrativa de segundo nivel en el Estado Delta Amacuro, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q601873"
+    },
+    "92452058B83392643498369": {
+      "name": "Aragua",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q606975"
+    },
+    "92452058B82042298353727": {
+      "name": "Independencia",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q607774"
+    },
+    "92452058B18295884568936": {
+      "name": "Sucre",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q615843"
+    },
+    "92452058B52538048181152": {
+      "name": "San Sebastián",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q642788"
+    },
+    "92452058B57596479619194": {
+      "name": "Achaguas",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q649153"
+    },
+    "92452058B48736670242482": {
+      "name": "Tulio Febres Cordero",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2457287"
+    },
+    "92452058B57428725290546": {
+      "name": "Tocópero",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2464893"
+    },
+    "92452058B66316473888275": {
+      "name": "Santa Rita",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2471594"
+    },
+    "92452058B47549156675396": {
+      "name": "Piar",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2475688"
+    },
+    "92452058B68065976769542": {
+      "name": "Páez",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2483236"
+    },
+    "92452058B84020445528897": {
+      "name": "Peña",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2497712"
+    },
+    "92452058B54957724737366": {
+      "name": "Morán",
+      "state": "Lara",
+      "description": "municipio del estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2511946"
+    },
+    "92452058B34699715340940": {
+      "name": "Zea",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2526746"
+    },
+    "92452058B31160427054809": {
+      "name": "Cacique Manaure",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2527737"
+    },
+    "92452058B50204709100098": {
+      "name": "Libertad",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2530307"
+    },
+    "92452058B340100748175": {
+      "name": "Simón Bolívar",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1998574"
+    },
+    "92452058B18446749128605": {
+      "name": "Camatagua",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2011270"
+    },
+    "92452058B20734367983151": {
+      "name": "Aguasay",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2012193"
+    },
+    "92452058B46129601263202": {
+      "name": "Bolívar",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2014715"
+    },
+    "92452058B21195677528356": {
+      "name": "Seboruco",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2015236"
+    },
+    "92452058B14300572902451": {
+      "name": "Unión",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2024872"
+    },
+    "92452058B94720386415889": {
+      "name": "García",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2029662"
+    },
+    "92452058B74978111878407": {
+      "name": "Piar",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2043020"
+    },
+    "92452058B3115924902263": {
+      "name": "Cruz Paredes",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2046275"
+    },
+    "92452058B62434885375481": {
+      "name": "Punceres",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2064667"
+    },
+    "92452058B72966397381157": {
+      "name": "Díaz",
+      "state": "Nueva Esparta",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q32491142"
+    },
+    "92452058B15586506098632": {
+      "name": "Sucre",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2069301"
+    },
+    "92452058B68095023694670": {
+      "name": "Bolívar",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2615175"
+    },
+    "92452058B54071015831659": {
+      "name": "Cárdenas",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2621527"
+    },
+    "92452058B9406045296169": {
+      "name": "Caracciolo Parra Olmedo",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2623246"
+    },
+    "92452058B38977236110472": {
+      "name": "Acevedo",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2625145"
+    },
+    "92452058B68094075186803": {
+      "name": "Michelena",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2629942"
+    },
+    "92452058B3899539267655": {
+      "name": "San Francisco",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2635389"
+    },
+    "92452058B20804490373380": {
+      "name": "Biruaca",
+      "state": "Apure",
+      "description": "división administrativa de segundo nivel en el Estado Apure, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2635750"
+    },
+    "92452058B26508954861758": {
+      "name": "Uracoa",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2635968"
+    },
+    "92452058B11105078455090": {
+      "name": "Silva",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2636713"
+    },
+    "92452058B15505529275902": {
+      "name": "Dabajuro",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2651190"
+    },
+    "92452058B63445948802308": {
+      "name": "Sucre",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2662721"
+    },
+    "92452058B51720127769836": {
+      "name": "Córdoba",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2664224"
+    },
+    "92452058B86432153938912": {
+      "name": "Ortíz",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1308380"
+    },
+    "92452058B76847227335777": {
+      "name": "Guacara",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1446171"
+    },
+    "92452058B67436429291477": {
+      "name": "Las Mercedes",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1450597"
+    },
+    "92452058B78980927741565": {
+      "name": "Julián Mellado",
+      "state": "Guárico",
+      "description": "división administrativa de segundo nivel en el Estado Guárico, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1581019"
+    },
+    "92452058B30911467500490": {
+      "name": "San Joaquín",
+      "state": "Carabobo",
+      "description": "Municipio de Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1631420"
+    },
+    "92452058B34599827545063": {
+      "name": "Lander",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1811782"
+    },
+    "92452058B11237040354260": {
+      "name": "Arzobispo Chacón",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2866132"
+    },
+    "92452058B12744919392555": {
+      "name": "Ayacucho",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2874853"
+    },
+    "92452058B99639061411506": {
+      "name": "Miranda",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2878264"
+    },
+    "92452058B44291856842988": {
+      "name": "Barinas",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2884525"
+    },
+    "92452058B41519808204677": {
+      "name": "Bolívar",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2909567"
+    },
+    "92452058B57727814013353": {
+      "name": "Bolívar",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2909570"
+    },
+    "92452058B74462864631262": {
+      "name": "Guanarito",
+      "state": "Portuguesa",
+      "description": "municipio en Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2916834"
+    },
+    "92452058B76566791733610": {
+      "name": "Bruzual",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2927131"
+    },
+    "92452058B25550874950140": {
+      "name": "Caripe",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2938835"
+    },
+    "92452058B40538109508806": {
+      "name": "Santos Michelena",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3042211"
+    },
+    "92452058B83653348343735": {
+      "name": "Obispo Ramos de Lora",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3055381"
+    },
+    "92452058B84467790604965": {
+      "name": "Maneiro",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3066174"
+    },
+    "92452058B41516758992982": {
+      "name": "Federación",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3067852"
+    },
+    "92452058B70146576395550": {
+      "name": "Sotillo",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q3070900"
+    },
+    "92452058B50148622636911": {
+      "name": "Ribero",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3071700"
+    },
+    "92452058B74442038912920": {
+      "name": "Libertador",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3071710"
+    },
+    "92452058B86499403972529": {
+      "name": "San Judas Tadeo",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3071847"
+    },
+    "92452058B36519834610261": {
+      "name": "Mariño",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3071960"
+    },
+    "92452058B24105899820975": {
+      "name": "Uribante",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3072187"
+    },
+    "92452058B12619730938493": {
+      "name": "Guásimos",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3072321"
+    },
+    "92452058B81521575667263": {
+      "name": "Naguanagua",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2255048"
+    },
+    "92452058B46678467131598": {
+      "name": "Esteller",
+      "state": "Portuguesa",
+      "description": "municipio en venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2255063"
+    },
+    "92452058B58412499983511": {
+      "name": "Zamora",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2259169"
+    },
+    "92452058B69956206553200": {
+      "name": "Urdaneta",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2269268"
+    },
+    "92452058B89776134514459": {
+      "name": "Colón",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2271833"
+    },
+    "92452058B62779861524453": {
+      "name": "Girardot",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2280536"
+    },
+    "92452058B96512574408350": {
+      "name": "Rivas Dávila",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2291411"
+    },
+    "92452058B12581966052082": {
+      "name": "Autónomo Atures",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2295357"
+    },
+    "92452058B26241339003056": {
+      "name": "Almirante Padilla",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2306582"
+    },
+    "92452058B2415433423645": {
+      "name": "Palavecino",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2307377"
+    },
+    "92452058B42172892239758": {
+      "name": "Autónomo Manapiare",
+      "state": "Amazonas",
+      "description": "división administrativa de segundo nivel en el Estado Amazonas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2309810"
+    },
+    "92452058B25789635219154": {
+      "name": "Bermúdez",
+      "state": "Sucre",
+      "description": "municipio de Sucre, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2309997"
+    },
+    "92452058B76868797395121": {
+      "name": "Fernando de Peñalver",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2310580"
+    },
+    "92452058B99499694826809": {
+      "name": "Urumaco",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q659748"
+    },
+    "92452058B21426676418020": {
+      "name": "Rómulo Gallegos",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q744445"
+    },
+    "92452058B26998381958141": {
+      "name": "Marcano",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q748134"
+    },
+    "92452058B89590794968656": {
+      "name": "Buroz",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q751150"
+    },
+    "92452058B98941669377363": {
+      "name": "Baruta",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q761148"
+    },
+    "92452058B38365579478512": {
+      "name": "García de Hevia",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q770422"
+    },
+    "92452058B13726471401889": {
+      "name": "Bejuma",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q814978"
+    },
+    "92452058B35086054619694": {
+      "name": "Los Salias",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q827414"
+    },
+    "92452058B30205634756293": {
+      "name": "Girardot",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q922530"
+    },
+    "92452058B37520710637751": {
+      "name": "Rangel",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q929490"
+    },
+    "92452058B38768688631563": {
+      "name": "Anaco",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q943822"
+    },
+    "92452058B14540922264670": {
+      "name": "Sucre",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31962874"
+    },
+    "92452058B74873434476019": {
+      "name": "Tovar",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2421221"
+    },
+    "92452058B98233245594574": {
+      "name": "Urdaneta",
+      "state": "Aragua",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31963008"
+    },
+    "92452058B63992196257399": {
+      "name": "Iribarren",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2435584"
+    },
+    "92452058B42383806432363": {
+      "name": "Papelón",
+      "state": "Portuguesa",
+      "description": "Portuguesa",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2436120"
+    },
+    "92452058B90473537969965": {
+      "name": "Libertador",
+      "state": "Aragua",
+      "description": "división administrativa de segundo nivel en el Estado Aragua, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2441787"
+    },
+    "92452058B45585815377737": {
+      "name": "Cedeño",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2448257"
+    },
+    "92452058B65625562328801": {
+      "name": "El Callao",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2450334"
+    },
+    "92452058B72866558471416": {
+      "name": "Gómez",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2451657"
+    },
+    "92452058B72837046286909": {
+      "name": "Simón Bolívar",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2453851"
+    },
+    "92452058B87386897899112": {
+      "name": "Los Taques",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2318412"
+    },
+    "92452058B27987332660152": {
+      "name": "Democracia",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2328156"
+    },
+    "92452058B13526806799320": {
+      "name": "Jacura",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2328759"
+    },
+    "92452058B19178625121823": {
+      "name": "Caroní",
+      "state": "Bolívar",
+      "description": "división administrativa de segundo nivel en el Estado Bolívar, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2354199"
+    },
+    "92452058B12262203467904": {
+      "name": "Catatumbo",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2370436"
+    },
+    "92452058B64772493971985": {
+      "name": "Libertador",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2375805"
+    },
+    "92452058B94128330205113": {
+      "name": "Guanta",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2381428"
+    },
+    "92452058B80975086584779": {
+      "name": "Pedro Gual",
+      "state": "Miranda",
+      "description": "división administrativa de segundo nivel en el Estado Miranda, Venezuela",
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2388590"
+    },
+    "92452058B65560769402967": {
+      "name": "Torbes",
+      "state": "Táchira",
+      "description": "división administrativa de segundo nivel en el Estado Táchira, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2403741"
+    },
+    "92452058B74376664002472": {
+      "name": "Simón Rodríguez",
+      "state": "Anzoátegui",
+      "description": "división administrativa de segundo nivel en el Estado Anzoátegui, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2404225"
+    },
+    "92452058B50002149731912": {
+      "name": "Páez",
+      "state": "Portuguesa",
+      "description": "municipio de Portuguesa, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2408036"
+    },
+    "92452058B212448851474": {
+      "name": "Colina",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2408734"
+    },
+    "92452058B95168979191": {
+      "name": "Mariño",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2413769"
+    },
+    "92452058B40555810306039": {
+      "name": "Miranda",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1910828"
+    },
+    "92452058B43990033715561": {
+      "name": "Crespo",
+      "state": "Lara",
+      "description": "división administrativa de segundo nivel en el Estado Lara, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1913811"
+    },
+    "92452058B71215590710272": {
+      "name": "Arismendi",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1925791"
+    },
+    "92452058B49980742384962": {
+      "name": "Cedeño",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q1929212"
+    },
+    "92452058B45353491303676": {
+      "name": "Arístides Bastidas",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1933341"
+    },
+    "92452058B10882972052933": {
+      "name": "Bolívar",
+      "state": "Monagas",
+      "description": "división administrativa de segundo nivel en el Estado Monagas, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1939178"
+    },
+    "92452058B73225783388147": {
+      "name": "Campo Elías",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1943448"
+    },
+    "92452058B50017946052118": {
+      "name": "Rojas",
+      "state": "Barinas",
+      "description": "división administrativa de segundo nivel en el Estado Barinas, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1956852"
+    },
+    "92452058B9202349267506": {
+      "name": "Mejía",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1958023"
+    },
+    "92452058B69792739078610": {
+      "name": "Montalbán",
+      "state": "Carabobo",
+      "description": "división administrativa de segundo nivel en el Estado Carabobo, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1964146"
+    },
+    "92452058B63771518802825": {
+      "name": "Urachiche",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1974420"
+    },
+    "92452058B8421162175114": {
+      "name": "Rosario de Perijá",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1996591"
+    },
+    "92452058B93255664897858": {
+      "name": "Valmore Rodríguez",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q9298782"
+    },
+    "92452058B74108168136268": {
+      "name": "Maracaibo",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q10324879"
+    },
+    "92452058B44788675020047": {
+      "name": "Nirgua",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q10801437"
+    },
+    "92452058B12167323137967": {
+      "name": "San Felipe",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q11694014"
+    },
+    "92452058B6439374620840": {
+      "name": "Baralt",
+      "state": "Zulia",
+      "description": "división administrativa de segundo nivel en el Estado Zulia, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2201316"
+    },
+    "92452058B36429563491132": {
+      "name": "Píritu",
+      "state": "Falcón",
+      "description": "división administrativa de segundo nivel en el Estado Falcón, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2202157"
+    },
+    "92452058B32391304036894": {
+      "name": "Cruz Salmerón Acosta",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q2203040"
+    },
+    "92452058B63201291940851": {
+      "name": "Libertador",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2207830"
+    },
+    "92452058B87556418523140": {
+      "name": "Villalba",
+      "state": "Nueva Esparta",
+      "description": "municipio del estado Nueva Esparta, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2208173"
+    },
+    "92452058B96786834235834": {
+      "name": "Manuel Monge",
+      "state": "Yaracuy",
+      "description": "división administrativa de segundo nivel en el Estado Yaracuy, Venezuela",
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2215868"
+    },
+    "92452058B80982982494496": {
+      "name": "Ricaurte",
+      "state": "Cojedes",
+      "description": "división administrativa de segundo nivel en el Estado Cojedes, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2218342"
+    },
+    "92452058B13672560993609": {
+      "name": "Valdez",
+      "state": "Sucre",
+      "description": "municipio del estado Sucre, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2230534"
+    },
+    "92452058B19626943802375": {
+      "name": "Andrés Bello",
+      "state": "Mérida",
+      "description": "municipio del estado Mérida, Venezuela",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2250084"
+    },
+    "92452058B41395444182143": {
+      "name": "Montes",
+      "state": "Sucre",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q1823071"
+    },
+    "92452058B1546334358138": {
+      "name": "Miranda",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q1891642"
+    },
+    "92452058B96264628893767": {
+      "name": "Monte Carmelo",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31962346"
+    },
+    "92452058B55958295548986": {
+      "name": "Escuque",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2254362"
+    },
+    "92452058B70878488170331": {
+      "name": "Sucre",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2352951"
+    },
+    "92452058B66787265555701": {
+      "name": "Urdaneta",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2388919"
+    },
+    "92452058B22086674211008": {
+      "name": "Rafael Rangel",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2465345"
+    },
+    "92452058B41252647262147": {
+      "name": "Monseñor José Vicente de Unda",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2479642"
+    },
+    "92452058B98251546128304": {
+      "name": "Carache",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2565242"
+    },
+    "92452058B5298065984570": {
+      "name": "Pampanito",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2596580"
+    },
+    "92452058B11954780234519": {
+      "name": "Agua Blanca",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2827311"
+    },
+    "92452058B96669771674103": {
+      "name": "Andrés Bello",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2849001"
+    },
+    "92452058B89474674930128": {
+      "name": "Boconó",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2908331"
+    },
+    "92452058B3006076397116": {
+      "name": "Bolívar",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q2909562"
+    },
+    "92452058B32887557209533": {
+      "name": "Candelaria",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31961575"
+    },
+    "92452058B99464633299903": {
+      "name": "Turén",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q3038839"
+    },
+    "92452058B3851867727254": {
+      "name": "Santa Rosalía",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q32491634"
+    },
+    "92452058B33473960581249": {
+      "name": "Guanare",
+      "state": "Portuguesa",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q3118730"
+    },
+    "92452058B29326197328098": {
+      "name": "Trujillo",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q6026898"
+    },
+    "92452058B17411594659204": {
+      "name": "La Ceiba",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": false,
+      "hasShield": false,
+      "wikidata": "http://www.wikidata.org/entity/Q31962082"
+    },
+    "92452058B93497297495940": {
+      "name": "Pampán",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q9035906"
+    },
+    "92452058B76648483747073": {
+      "name": "Motatán",
+      "state": "Trujillo",
+      "description": null,
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q10052643"
+    }
+  },
+  "country": {
+    "VE": {
+      "name": "Venezuela",
+      "description": "República Bolivariana de Venezuela. País del norte de Sudamérica.",
+      "hasFlag": true,
+      "hasShield": true,
+      "wikidata": "http://www.wikidata.org/entity/Q717"
+    }
+  }
+}

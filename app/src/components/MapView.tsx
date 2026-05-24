@@ -87,6 +87,181 @@ function MapBootstrap({ bgColor, bounds }: { bgColor: string; bounds: L.LatLngBo
 //   opacity ≥ 0.9 → weight 1.7  (tapa-gaps al máximo)
 //   opacity ≤ 0.3 → weight 0.5  (mínimo útil)
 //   entre        → interpolación lineal
+import wikiInfo from '../data/wiki-info.json'
+type WikiEntry = { hasFlag?: boolean; hasShield?: boolean }
+const wikiCountry = (wikiInfo as { country?: Record<string, WikiEntry> }).country ?? {}
+const wikiStates = (wikiInfo as { states: Record<string, WikiEntry> }).states
+const wikiMunis = (wikiInfo as { munis: Record<string, WikiEntry> }).munis
+
+type SymbolLevel = 'country' | 'state' | 'muni'
+
+// Resuelve la URL del asset para un símbolo (bandera/escudo) de una entidad.
+// Maneja excepción: VE-GE usa .svg (placeholder tricolor manual). Resto .png.
+function symbolAssetUrl(kind: 'flag' | 'shield', level: SymbolLevel, id: string): string {
+  const dir = kind === 'flag' ? 'flags' : 'shields'
+  const ext = level === 'state' && id === 'VE-GE' ? 'svg' : 'png'
+  return `${import.meta.env.BASE_URL}data/${dir}/${level}/${id}.${ext}`
+}
+
+function entityHasSymbol(kind: 'flag' | 'shield', level: SymbolLevel, id: string): boolean {
+  const source = level === 'country' ? wikiCountry : level === 'state' ? wikiStates : wikiMunis
+  const entry = source[id]
+  return !!(kind === 'flag' ? entry?.hasFlag : entry?.hasShield)
+}
+
+// Modo simbólico: cada entidad (estado o muni) se rellena con su bandera o
+// escudo RECORTADO EXACTAMENTE al polígono geográfico. Técnica: SVG
+// <clipPath> con el path del polígono + <image> clipeada con
+// preserveAspectRatio="cover".
+//
+// Generalizado para 4 indicadores: banderas estados, escudos estados,
+// banderas munis, escudos munis. Props: kind + level + data del geo.
+//
+// En cada zoom/move recalculamos:
+//   1. Polígono de la entidad en pixel coords del SVG de Leaflet
+//   2. <clipPath> con ese path
+//   3. <image> posicionada en el bounding box del polígono, con clip aplicado
+function SymbolClippedLayer({
+  kind,
+  level,
+  geo,
+  opacity,
+}: {
+  kind: 'flag' | 'shield'
+  level: SymbolLevel
+  geo: AdmGeoJSON<Adm0Props> | AdmGeoJSON<Adm1Props> | AdmGeoJSON<Adm2Props>
+  opacity: number
+}) {
+  const map = useMap()
+  useEffect(() => {
+    if (!map || !geo) return
+    let cancelled = false
+    let cleanup: Array<() => void> = []
+
+    function setup() {
+      if (cancelled) return
+      const overlayPane = map.getPanes().overlayPane
+      const svg = overlayPane?.querySelector('svg')
+      if (!svg) {
+        requestAnimationFrame(setup)
+        return
+      }
+
+      const SVG_NS = 'http://www.w3.org/2000/svg'
+      const defsAttr = `data-symbol-defs-${kind}-${level}`
+      const groupAttr = `data-symbol-group-${kind}-${level}`
+
+      let defs = svg.querySelector(`defs[${defsAttr}="true"]`) as SVGDefsElement | null
+      if (!defs) {
+        defs = document.createElementNS(SVG_NS, 'defs')
+        defs.setAttribute(defsAttr, 'true')
+        svg.insertBefore(defs, svg.firstChild)
+      }
+      let group = svg.querySelector(`g[${groupAttr}="true"]`) as SVGGElement | null
+      if (!group) {
+        group = document.createElementNS(SVG_NS, 'g')
+        group.setAttribute(groupAttr, 'true')
+        svg.appendChild(group)
+      }
+
+      function update() {
+        if (cancelled || !defs || !group) return
+        defs.textContent = ''
+        group.textContent = ''
+
+        for (const feature of geo.features) {
+          // ID de la entidad según nivel: 'VE' para país, iso para estados,
+          // sourceID para munis.
+          const id =
+            level === 'country' ? 'VE'
+            : level === 'state' ? (feature.properties as Adm1Props).iso
+            : (feature.properties as Adm2Props).sourceID
+          if (!entityHasSymbol(kind, level, id)) continue
+
+          // Convertir geometría a pixel coords del SVG de Leaflet.
+          const geom = feature.geometry as
+            | { type: 'Polygon'; coordinates: number[][][] }
+            | { type: 'MultiPolygon'; coordinates: number[][][][] }
+          const polygons =
+            geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates
+
+          let minX = Infinity
+          let minY = Infinity
+          let maxX = -Infinity
+          let maxY = -Infinity
+          const pathSegments: string[] = []
+
+          for (const rings of polygons) {
+            for (const ring of rings) {
+              const pixels: Array<[number, number]> = []
+              for (const [lng, lat] of ring) {
+                const p = map.latLngToLayerPoint([lat, lng])
+                if (p.x < minX) minX = p.x
+                if (p.x > maxX) maxX = p.x
+                if (p.y < minY) minY = p.y
+                if (p.y > maxY) maxY = p.y
+                pixels.push([p.x, p.y])
+              }
+              const seg =
+                pixels
+                  .map(([x, y], i) => (i === 0 ? `M${x},${y}` : `L${x},${y}`))
+                  .join('') + 'Z'
+              pathSegments.push(seg)
+            }
+          }
+
+          // <clipPath> con el polígono en pixel coords. ID único por
+          // kind + level + id para que múltiples capas no colisionen.
+          const clipId = `clip-${kind}-${level}-${id}`
+          const clipPath = document.createElementNS(SVG_NS, 'clipPath')
+          clipPath.setAttribute('id', clipId)
+          clipPath.setAttribute('clipPathUnits', 'userSpaceOnUse')
+          const clipPathPath = document.createElementNS(SVG_NS, 'path')
+          clipPathPath.setAttribute('d', pathSegments.join(' '))
+          clipPathPath.setAttribute('fill-rule', 'evenodd')
+          clipPath.appendChild(clipPathPath)
+          defs.appendChild(clipPath)
+
+          // <image> en el bbox del polígono, recortada con el clip-path.
+          // preserveAspectRatio="none" garantiza que la imagen llena 100%
+          // el bbox (sin gaps por aspect ratio interno de SVG fuente).
+          const w = maxX - minX
+          const h = maxY - minY
+          const img = document.createElementNS(SVG_NS, 'image')
+          img.setAttribute('href', symbolAssetUrl(kind, level, id))
+          img.setAttribute('x', String(minX))
+          img.setAttribute('y', String(minY))
+          img.setAttribute('width', String(w))
+          img.setAttribute('height', String(h))
+          img.setAttribute('preserveAspectRatio', 'none')
+          img.setAttribute('clip-path', `url(#${clipId})`)
+          img.setAttribute('opacity', String(opacity))
+          img.setAttribute('pointer-events', 'none')
+          group.appendChild(img)
+        }
+      }
+
+      update()
+      map.on('zoomend moveend viewreset', update)
+      cleanup.push(() => map.off('zoomend moveend viewreset', update))
+      cleanup.push(() => {
+        defs?.remove()
+        group?.remove()
+      })
+    }
+
+    requestAnimationFrame(setup)
+
+    return () => {
+      cancelled = true
+      cleanup.forEach(fn => fn())
+      cleanup = []
+    }
+  }, [map, geo, opacity, kind, level])
+
+  return null
+}
+
 function strokeWeightForOpacity(opacity: number): number {
   if (opacity >= 0.9) return 1.7
   if (opacity <= 0.3) return 0.5
@@ -94,7 +269,11 @@ function strokeWeightForOpacity(opacity: number): number {
   return 0.5 + t * (1.7 - 0.5)
 }
 
-function fillStyleFor(style: MapStyle): (feature?: Feature) => PathOptions {
+
+function fillStyleFor(
+  style: MapStyle,
+  _level: 'adm0' | 'adm1' | 'adm2',
+): (feature?: Feature) => PathOptions {
   return feature => {
     const props = feature?.properties as Adm1Props | Adm2Props | undefined
     const fillColor = props?._color ?? '#e5e7eb'
@@ -238,10 +417,10 @@ export function MapView() {
   useEffect(() => {
     const layer = layerRef.current
     if (!layer) return
-    const styleFn = fillStyleFor(mapStyle)
+    const styleFn = fillStyleFor(mapStyle, level)
     layer.options.style = styleFn
     layer.setStyle(styleFn)
-  }, [mapStyle])
+  }, [mapStyle, level])
 
   useEffect(() => {
     const layer = overlayRef.current
@@ -308,7 +487,7 @@ export function MapView() {
             key={layerKey}
             ref={layerRef}
             data={data as never}
-            style={fillStyleFor(mapStyle)}
+            style={fillStyleFor(mapStyle, level)}
             onEachFeature={(feature, layer: Layer) => {
               const props = feature.properties as Adm1Props | Adm2Props
               const name = (props as Adm1Props).name
@@ -345,6 +524,32 @@ export function MapView() {
             }}
           />
         )}
+        {/* Indicadores simbólicos: bandera o escudo de cada entidad
+            recortado al polígono geográfico exacto. Se monta el componente
+            correcto según el indicador activo + nivel. Para indicadores de
+            estados aplicamos en adm1; para munis en adm2. */}
+        {source?.kind === 'indicator' && (() => {
+          const sid = source.indicator.id
+          if (sid === 'banderas_pais' && level === 'adm0' && adm0) {
+            return <SymbolClippedLayer kind="flag" level="country" geo={adm0} opacity={mapStyle.fillOpacity} />
+          }
+          if (sid === 'escudos_pais' && level === 'adm0' && adm0) {
+            return <SymbolClippedLayer kind="shield" level="country" geo={adm0} opacity={mapStyle.fillOpacity} />
+          }
+          if (sid === 'banderas_estados' && level === 'adm1' && adm1) {
+            return <SymbolClippedLayer kind="flag" level="state" geo={adm1} opacity={mapStyle.fillOpacity} />
+          }
+          if (sid === 'escudos_estados' && level === 'adm1' && adm1) {
+            return <SymbolClippedLayer kind="shield" level="state" geo={adm1} opacity={mapStyle.fillOpacity} />
+          }
+          if (sid === 'banderas_munis' && level === 'adm2' && adm2) {
+            return <SymbolClippedLayer kind="flag" level="muni" geo={adm2} opacity={mapStyle.fillOpacity} />
+          }
+          if (sid === 'escudos_munis' && level === 'adm2' && adm2) {
+            return <SymbolClippedLayer kind="shield" level="muni" geo={adm2} opacity={mapStyle.fillOpacity} />
+          }
+          return null
+        })()}
         {activeThematic.map(t => (
           <GeoJSON
             key={`thematic-${t.meta.id}`}

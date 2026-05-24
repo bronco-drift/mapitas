@@ -52,6 +52,33 @@ function autoRange(values: number[], clipExtremes: boolean): { min: number; max:
   return { min: quantile(sorted, 0.02), max: quantile(sorted, 0.98) }
 }
 
+// Indicadores simbólicos = los que tienen group definido ('banderas' o
+// 'escudos'). En lugar de aplicar la escala de color, asignan _color
+// neutro para que MapView monte las imágenes encima del polígono
+// recortadas al contorno geográfico.
+function isSymbolIndicator(indicator: Indicator): boolean {
+  return !!indicator.group
+}
+
+// wiki-info.json indica qué entidades tienen bandera/escudo disponible
+// (cosechado desde Wikidata). Import eager: el JSON pesa ~100KB y se usa
+// en el camino sincrónico de applyIndicatorTo* + en hover/tooltip.
+import wikiInfo from '../data/wiki-info.json'
+
+function hasFlag(level: 'state' | 'muni', id: string): boolean {
+  if (level === 'state') {
+    return !!(wikiInfo as never as { states: Record<string, { hasFlag?: boolean }> }).states[id]?.hasFlag
+  }
+  return !!(wikiInfo as never as { munis: Record<string, { hasFlag?: boolean }> }).munis[id]?.hasFlag
+}
+
+function hasShield(level: 'state' | 'muni', id: string): boolean {
+  if (level === 'state') {
+    return !!(wikiInfo as never as { states: Record<string, { hasShield?: boolean }> }).states[id]?.hasShield
+  }
+  return !!(wikiInfo as never as { munis: Record<string, { hasShield?: boolean }> }).munis[id]?.hasShield
+}
+
 export function applyIndicatorToAdm1(
   geo: AdmGeoJSON<Adm1Props>,
   indicator: Indicator,
@@ -60,6 +87,43 @@ export function applyIndicatorToAdm1(
   customRange?: { min: number | null; mid: number | null; max: number | null },
   opts: { clipExtremes?: boolean } = {},
 ): { geo: AdmGeoJSON<Adm1Props>; stats: IndicatorStats } {
+  // Camino especial: indicadores simbólicos (banderas/escudos estados).
+  // Cada entidad recibe un gris claro de base. SymbolClippedLayer en MapView
+  // superpone la imagen del símbolo recortada al polígono. Entidades sin
+  // símbolo disponible (según wiki-info.json) quedan en gris sin imagen.
+  if (isSymbolIndicator(indicator)) {
+    const checkFn = indicator.id.startsWith('banderas') ? hasFlag : hasShield
+    let matched = 0
+    const features = geo.features.map(f => {
+      const iso = f.properties.iso
+      const has = checkFn('state', iso)
+      if (has) matched++
+      return {
+        ...f,
+        properties: {
+          ...f.properties,
+          _value: has ? 1 : null,
+          // Gris claro como base. Si por anti-aliasing quedan gaps mínimos
+          // en la imagen, se ve el gris (no el basemap blanco que era confuso).
+          _color: '#cbd5e1',
+          _matched: has,
+        },
+      }
+    })
+    return {
+      geo: { ...geo, features },
+      stats: {
+        matched,
+        unmatched: geo.features.length - matched,
+        totalFeatures: geo.features.length,
+        totalRows: matched,
+        unmatchedRows: [],
+        min: 0,
+        max: 1,
+      },
+    }
+  }
+
   const values = valuesForRange(indicator, 'adm1')
   const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
   const min = customRange?.min ?? autoMin
@@ -111,6 +175,38 @@ export function applyIndicatorToAdm2(
   customRange?: { min: number | null; mid: number | null; max: number | null },
   opts: { clipExtremes?: boolean } = {},
 ): { geo: AdmGeoJSON<Adm2Props>; stats: IndicatorStats } {
+  // Indicadores simbólicos a nivel muni (banderas/escudos municipales).
+  // SymbolClippedLayer en MapView monta la imagen recortada al polígono.
+  if (isSymbolIndicator(indicator)) {
+    const checkFn = indicator.id.startsWith('banderas') ? hasFlag : hasShield
+    let matched = 0
+    const features = geo.features.map(f => {
+      const sid = f.properties.sourceID
+      const has = checkFn('muni', sid)
+      if (has) matched++
+      return {
+        ...f,
+        properties: {
+          ...f.properties,
+          _value: has ? 1 : null,
+          _color: '#cbd5e1',
+          _matched: has,
+        },
+      }
+    })
+    return {
+      geo: { ...geo, features },
+      stats: {
+        matched,
+        unmatched: geo.features.length - matched,
+        totalFeatures: geo.features.length,
+        totalRows: matched,
+        unmatchedRows: [],
+        min: 0,
+        max: 1,
+      },
+    }
+  }
   const values = valuesForRange(indicator, 'adm2')
   const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
   const min = customRange?.min ?? autoMin
@@ -248,6 +344,32 @@ export function applyIndicatorToAdm0(
   palette: PaletteId,
   custom?: CustomStops,
 ): { geo: AdmGeoJSON<Adm0Props>; stats: IndicatorStats } {
+  // Indicadores simbólicos a nivel país (bandera/escudo nacional).
+  // SymbolClippedLayer monta la imagen recortada al polígono de Venezuela.
+  if (isSymbolIndicator(indicator)) {
+    const features = geo.features.map(f => ({
+      ...f,
+      properties: {
+        ...f.properties,
+        _value: 1,
+        _color: '#cbd5e1',
+        _matched: true,
+      },
+    }))
+    return {
+      geo: { ...geo, features },
+      stats: {
+        matched: 1,
+        unmatched: 0,
+        totalFeatures: 1,
+        totalRows: 1,
+        unmatchedRows: [],
+        min: 0,
+        max: 1,
+      },
+    }
+  }
+
   const value = nationalAggregate(indicator)
   const features = geo.features.map(f => ({
     ...f,

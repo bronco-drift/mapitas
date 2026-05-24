@@ -47,3 +47,8 @@ data/ine-raw/
 
 # Descargas raw para vista global (Natural Earth + PDFs R4V, regenerables)
 data/diaspora-raw/
+
+# Reportes intermedios de cosecha Wiki (unmatched munis, etc.). Regenerable
+# con `node scripts/fetch-wiki-info.mjs`. La salida final útil
+# (app/src/data/wiki-info.json + flags/shields) sí se commitea.
+data/wiki-raw/

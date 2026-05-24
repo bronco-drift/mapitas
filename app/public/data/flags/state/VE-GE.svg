@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Bandera placeholder para la Guayana Esequiba (VE-GE).
+  Tricolor venezolano sin las 8 estrellas ni escudo.
+  Colores oficiales bandera de Venezuela:
+    Amarillo (Pantone 116 C):  #FCD116
+    Azul (Pantone 286 C):       #00247D
+    Rojo (Pantone 186 C):       #CF142B
+  El Esequibo es territorio reclamado por Venezuela; usamos el tricolor base
+  sin elementos simbólicos plenos como placeholder neutral hasta que haya
+  un símbolo oficial designado para el territorio.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <rect width="900" height="200" y="0" fill="#FCD116"/>
+  <rect width="900" height="200" y="200" fill="#00247D"/>
+  <rect width="900" height="200" y="400" fill="#CF142B"/>
+</svg>

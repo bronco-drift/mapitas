@@ -108,6 +108,19 @@ export type Indicator = {
   // Si true, los munis sin data específica heredan el stateAggregate del
   // estado padre. Sin esta flag, quedan gris (honestidad de datos).
   inheritFromState?: boolean
+  // Restringe el indicador a un único nivel administrativo. Útil para
+  // indicadores simbólicos (banderas/escudos) cuya imagen solo tiene
+  // sentido en su nivel propio (ej. "Banderas munis" no aplica en vista
+  // estados aunque tenga data muni). En otros niveles queda archivado y
+  // disabled. Sin restricción, el indicador se puede ver en otros niveles
+  // vía agregación natural (sum/mean).
+  restrictedTo?: import('../lib/types').AdmLevel
+  // Grupo de indicadores intercambiables al cambiar de nivel. Ej. los 3
+  // "Banderas" (país/estados/munis) comparten group='banderas': cuando el
+  // user cambia de nivel, el store autoswitchea al variant del nivel nuevo.
+  // Permite UX de "navego por niveles viendo las banderas" sin tener que
+  // re-seleccionar el indicador cada vez.
+  group?: 'banderas' | 'escudos'
 }
 
 // ─── Indicadores del master (data trazada) ────────────────────────────────
@@ -334,6 +347,120 @@ const POBLACION_2024: Indicator = {
   },
 }
 
+// Indicadores especiales simbólicos: en lugar de un dato cuantitativo,
+// muestran la bandera o escudo oficial de cada entidad recortado al
+// polígono geográfico. Cosechados desde Wikidata + Wikimedia Commons.
+// La cobertura está en wiki-info.json; los que no tienen símbolo
+// disponible aparecen en gris claro.
+
+// data ficticio (1 por entidad) para que getIndicatorCoverage cuente
+// correctamente las entidades disponibles a cada nivel.
+function _buildSymbolData(level: 'state' | 'muni', kind: 'flag' | 'shield'): Record<string, number> {
+  const key = kind === 'flag' ? 'hasFlag' : 'hasShield'
+  // Lectura lazy para evitar circular import. wiki-info.json es JSON puro.
+  const wiki = wikiInfoRaw as { states: Record<string, Record<string, unknown>>; munis: Record<string, Record<string, unknown>> }
+  const source = level === 'state' ? wiki.states : wiki.munis
+  const out: Record<string, number> = {}
+  for (const [id, info] of Object.entries(source)) {
+    if (info[key]) out[id] = 1
+  }
+  return out
+}
+
+import wikiInfoRaw from './wiki-info.json'
+
+// Los 6 indicadores simbólicos comparten 2 grupos: 'banderas' y 'escudos'.
+// El store autoswitch entre variants al cambiar de nivel — el user navega
+// "viendo banderas" sin re-seleccionar.
+
+const BANDERAS_PAIS: Indicator = {
+  id: 'banderas_pais',
+  label: 'Bandera nacional · Cultural',
+  description: 'Bandera oficial de la República Bolivariana de Venezuela',
+  unit: 'simbólico',
+  format: 'number',
+  year: 0,
+  source: 'Wikimedia Commons',
+  aggregation: 'state',
+  restrictedTo: 'adm0',
+  group: 'banderas',
+  data: { VE: 1 },
+}
+
+const ESCUDOS_PAIS: Indicator = {
+  id: 'escudos_pais',
+  label: 'Escudo nacional · Cultural',
+  description: 'Escudo de armas oficial de Venezuela',
+  unit: 'simbólico',
+  format: 'number',
+  year: 0,
+  source: 'Wikimedia Commons',
+  aggregation: 'state',
+  restrictedTo: 'adm0',
+  group: 'escudos',
+  data: { VE: 1 },
+}
+
+const BANDERAS_ESTADOS: Indicator = {
+  id: 'banderas_estados',
+  label: 'Banderas estados · Cultural',
+  description: 'Bandera oficial de cada entidad federal venezolana',
+  unit: 'simbólico',
+  format: 'number',
+  year: 0,
+  source: 'Wikidata + Wikimedia Commons',
+  note: 'Entidades sin bandera oficial documentada aparecen en gris.',
+  aggregation: 'state',
+  restrictedTo: 'adm1',
+  group: 'banderas',
+  data: _buildSymbolData('state', 'flag'),
+}
+
+const ESCUDOS_ESTADOS: Indicator = {
+  id: 'escudos_estados',
+  label: 'Escudos estados · Cultural',
+  description: 'Escudo oficial de cada entidad federal venezolana',
+  unit: 'simbólico',
+  format: 'number',
+  year: 0,
+  source: 'Wikidata + Wikimedia Commons',
+  note: 'Entidades sin escudo oficial documentado aparecen en gris.',
+  aggregation: 'state',
+  restrictedTo: 'adm1',
+  group: 'escudos',
+  data: _buildSymbolData('state', 'shield'),
+}
+
+const BANDERAS_MUNIS: Indicator = {
+  id: 'banderas_munis',
+  label: 'Banderas munis · Cultural',
+  description: 'Bandera oficial de cada municipio venezolano',
+  unit: 'simbólico',
+  format: 'number',
+  year: 0,
+  source: 'Wikidata + Wikimedia Commons',
+  note: 'Cobertura aproximada 57%. Municipios sin bandera oficial documentada aparecen en gris.',
+  aggregation: 'municipality',
+  restrictedTo: 'adm2',
+  group: 'banderas',
+  data: _buildSymbolData('muni', 'flag'),
+}
+
+const ESCUDOS_MUNIS: Indicator = {
+  id: 'escudos_munis',
+  label: 'Escudos munis · Cultural',
+  description: 'Escudo oficial de cada municipio venezolano',
+  unit: 'simbólico',
+  format: 'number',
+  year: 0,
+  source: 'Wikidata + Wikimedia Commons',
+  note: 'Cobertura aproximada 72%. Municipios sin escudo oficial documentado aparecen en gris.',
+  aggregation: 'municipality',
+  restrictedTo: 'adm2',
+  group: 'escudos',
+  data: _buildSymbolData('muni', 'shield'),
+}
+
 const HOMICIDIOS: Indicator = {
   id: 'homicidios',
   label: 'Tasa homicidios · OVV',
@@ -373,7 +500,23 @@ export const INDICATORS: Indicator[] = [
   PIB_TOTAL,
   POBLACION_2024,
   HOMICIDIOS,
+  BANDERAS_PAIS,
+  BANDERAS_ESTADOS,
+  BANDERAS_MUNIS,
+  ESCUDOS_PAIS,
+  ESCUDOS_ESTADOS,
+  ESCUDOS_MUNIS,
 ]
+
+// Lookup para auto-switch: dado un grupo + nivel, devuelve el indicador
+// que aplica. Usado por el store cuando setLevel cambia mientras hay un
+// indicador simbólico activo, para mantener el "concepto" del user.
+export function getIndicatorByGroupAndLevel(
+  group: 'banderas' | 'escudos',
+  level: 'adm0' | 'adm1' | 'adm2',
+): Indicator | undefined {
+  return INDICATORS.find(i => i.group === group && i.restrictedTo === level)
+}
 
 // Mapeo de IDs deprecados → IDs canónicos. Mantiene retro-compatibilidad
 // con la persistencia (localStorage) de users que tenían seleccionados
@@ -408,6 +551,18 @@ export function getIndicatorCoverage(
   level: 'adm0' | 'adm1' | 'adm2',
   totals: { adm1Count: number; adm2Count: number },
 ): IndicatorCoverage {
+  // Restricción explícita por nivel (banderas/escudos solo en su nivel).
+  // Si el indicador declara restrictedTo, en cualquier otro nivel queda
+  // marcado como no-aplica (se archiva en la UI).
+  if (indicator.restrictedTo && indicator.restrictedTo !== level) {
+    const friendly =
+      indicator.restrictedTo === 'adm1' ? 'Solo a nivel estado'
+      : indicator.restrictedTo === 'adm2' ? 'Solo a nivel municipal'
+      : 'Solo a nivel país'
+    const total = level === 'adm0' ? 1 : level === 'adm1' ? totals.adm1Count : totals.adm2Count
+    return { covered: 0, total, missing: total, applies: false, reason: friendly }
+  }
+
   // País: siempre 1 valor (un agregado nacional), no tiene sentido medir
   // cobertura. Aplica.
   if (level === 'adm0') {
