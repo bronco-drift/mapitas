@@ -154,7 +154,10 @@ export type Indicator = {
   // re-seleccionar el indicador cada vez.
   // 'politico' es el mapa categórico de identidad: cada estado/muni con su
   // propio color, sin codificar valor numérico. Es el default al primer load.
-  group?: 'banderas' | 'escudos' | 'politico'
+  // 'pib' y 'pib_pc' agrupan los reportes económicos para el mismo
+  // mecanismo: ver el PIB estatal cuando estás en estados, el municipal
+  // cuando estás en munis, sin tener que cambiar de indicador.
+  group?: 'banderas' | 'escudos' | 'politico' | 'pib' | 'pib_pc'
 }
 
 // ─── Paleta categórica para vista política ────────────────────────────────
@@ -317,33 +320,72 @@ import {
   PIB_NACIONAL_USD_MM,
 } from './pib-mapitas'
 
-const PIB_TOTAL: Indicator = {
-  id: 'pib_total',
+// Reportes de PIB separados por nivel. Comparten group='pib' para que al
+// cambiar de nivel el store autoswitchee entre Estatal y Municipal. El
+// user que está viendo "PIB Estatal" en estados y baja a munis, ve "PIB
+// Municipal" automáticamente — sin tener que reseleccionar.
+const PIB_ESTATAL: Indicator = {
+  id: 'pib_estatal',
   category: 'economia',
-  label: 'PIB total · estimado Mapitas',
-  description: 'Producto Interno Bruto total distribuido entre 335 munis',
+  label: 'PIB Estatal · estimado Mapitas',
+  description: 'PIB total estimado por estado',
   unit: 'MM USD',
   format: 'number',
   year: 2026,
   source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
-  note: `Modelo de distribución del PIB nacional venezolano (~$${(PIB_NACIONAL_USD_MM / 1000).toFixed(0)}B USD) entre los 335 munis usando proxies: población × urbanidad × IDH estatal × sector económico del estado. El BCV no publica cuentas regionales; esto es una estimación reproducible, no un dato oficial. Caracas-area concentra ~37% del total, coherente con la literatura.`,
+  note: `Estimación del PIB de cada estado por distribución del nacional ($${(PIB_NACIONAL_USD_MM / 1000).toFixed(0)}B USD). El BCV no publica cuentas regionales; es una estimación reproducible, no un dato oficial. Top: Distrito Capital (~$24B), Zulia (~$13B), Miranda (~$11B), Carabobo (~$8B).`,
+  aggregation: 'state',
+  restrictedTo: 'adm1',
+  group: 'pib',
+  data: PIB_MAPITAS_ESTATAL_MM,
+}
+
+const PIB_MUNICIPAL: Indicator = {
+  id: 'pib_municipal',
+  category: 'economia',
+  label: 'PIB Municipal · estimado Mapitas',
+  description: 'PIB total estimado por municipio',
+  unit: 'MM USD',
+  format: 'number',
+  year: 2026,
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: `Estimación del PIB de cada uno de los 335 municipios por distribución del nacional ($${(PIB_NACIONAL_USD_MM / 1000).toFixed(0)}B USD). Top: Libertador/Caracas (~$24B), Maracaibo (~$7B), Valencia (~$4B), Iribarren/Barquisimeto (~$3B), Caroní/Pto Ordaz (~$3B).`,
   aggregation: 'municipality',
+  restrictedTo: 'adm2',
+  group: 'pib',
   data: PIB_MAPITAS_MUNICIPAL_MM,
   stateAggregate: PIB_MAPITAS_ESTATAL_MM,
 }
 
-const PIB_PER_CAPITA: Indicator = {
-  id: 'pib_per_capita',
+const PIB_PC_ESTATAL: Indicator = {
+  id: 'pib_pc_estatal',
   category: 'economia',
-  label: 'PIB per cápita · estimado Mapitas',
-  description: 'PIB por habitante (estimación)',
+  label: 'PIB per cápita Estatal · estimado Mapitas',
+  description: 'PIB por habitante a nivel estatal',
   unit: 'USD',
   format: 'currency',
   year: 2026,
   source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
-  note: 'Derivado de PIB_total / población 2021. Libertador (Caracas) ~$10.700, munis rurales del interior ~$1.200. Magnitudes relativas significativas; valores absolutos son sensibles al supuesto de PIB nacional ($100B en este modelo).',
+  note: 'PIB del estado dividido por su población 2021. Distrito Capital lidera por concentración de servicios; estados petroleros (Zulia, Anzoátegui) y mineros (Bolívar) en la parte alta; rurales en la parte baja.',
+  aggregation: 'state',
+  restrictedTo: 'adm1',
+  group: 'pib_pc',
+  data: PIB_MAPITAS_PER_CAPITA_ESTATAL,
+}
+
+const PIB_PC_MUNICIPAL: Indicator = {
+  id: 'pib_pc_municipal',
+  category: 'economia',
+  label: 'PIB per cápita Municipal · estimado Mapitas',
+  description: 'PIB por habitante a nivel municipal',
+  unit: 'USD',
+  format: 'currency',
+  year: 2026,
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: 'Libertador (Caracas) ~$10.700/hab, munis petroleros del Zulia ~$3.700, munis rurales del interior ~$1.200. Magnitudes relativas significativas; valores absolutos sensibles al supuesto de PIB nacional ($100B en este modelo).',
   aggregation: 'municipality',
-  nationalAggregation: 'mean',
+  restrictedTo: 'adm2',
+  group: 'pib_pc',
   data: PIB_MAPITAS_PER_CAPITA_MUNI,
   stateAggregate: PIB_MAPITAS_PER_CAPITA_ESTATAL,
 }
@@ -701,8 +743,10 @@ export const INDICATORS: Indicator[] = [
   IDH_1990_CV,
   IDH_CAMBIO,
   IDH,
-  PIB_PER_CAPITA,
-  PIB_TOTAL,
+  PIB_ESTATAL,
+  PIB_MUNICIPAL,
+  PIB_PC_ESTATAL,
+  PIB_PC_MUNICIPAL,
   PIB_PCT_NACIONAL,
   POBLACION_2024,
   HOMICIDIOS,
@@ -718,7 +762,7 @@ export const INDICATORS: Indicator[] = [
 // que aplica. Usado por el store cuando setLevel cambia mientras hay un
 // indicador simbólico activo, para mantener el "concepto" del user.
 export function getIndicatorByGroupAndLevel(
-  group: 'banderas' | 'escudos' | 'politico',
+  group: 'banderas' | 'escudos' | 'politico' | 'pib' | 'pib_pc',
   level: 'adm0' | 'adm1' | 'adm2',
 ): Indicator | undefined {
   return INDICATORS.find(i => i.group === group && i.restrictedTo === level)
@@ -729,9 +773,15 @@ export function getIndicatorByGroupAndLevel(
 // indicadores que ya no existen como separados.
 //   poblacion_2026 era el sintético → ahora apunta a la versión INE
 //   area_km2 era el sintético       → ahora apunta a Área (Excel/Wiki)
+//   pib_total / pib_per_capita → separados en estatal + municipal con
+//     restrictedTo. Mapeamos al variant municipal por default; cuando el
+//     user cambia de nivel, el auto-switch via group='pib'/'pib_pc'
+//     transita al variant correcto.
 const LEGACY_ID_ALIAS: Record<string, string> = {
   poblacion_2026: 'poblacion_ine_2026',
   area_km2: 'area_wiki',
+  pib_total: 'pib_municipal',
+  pib_per_capita: 'pib_pc_municipal',
 }
 
 export function getIndicator(id: string): Indicator | undefined {
