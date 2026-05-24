@@ -335,23 +335,44 @@ export function applyIndicatorToAdm2(
   }
 }
 
-// Vista diáspora: pinta el GeoJSON LATAM por cifra de migrantes VE
-// recibidos en cada país. Reusa la misma escala de color que las vistas
-// VE, pero el dominio sale de migrantes_ve (no de un Indicator).
+// Vista diáspora: pinta el GeoJSON LATAM con uno de 3 modos.
+//   - 'migrantes': cuántos migrantes venezolanos recibió cada país. VE queda
+//     fuera del rango (no recibió migrantes, es el origen) y se pinta con
+//     un color granate fijo distinto del gradiente.
+//   - 'venezolanos': total de venezolanos viviendo en ese país (= migrantes_ve,
+//     y para VE = población residente). Todos en el mismo gradiente; VE
+//     entra como el valor máximo natural.
+//   - 'porcentaje': venezolanos sobre población total del país. VE = 100%.
+//     Útil para ver dónde la presencia venezolana es MÁS densa relativa al
+//     tamaño del país receptor (ej. Panamá tiene 144k = 3.1%, más densa
+//     proporcionalmente que Brasil con 388k = 0.18%).
+export type DiasporaMode = 'migrantes' | 'venezolanos' | 'porcentaje'
+
 export function applyDiaspora(
   geo: AdmGeoJSON<DiasporaProps>,
   palette: PaletteId,
+  mode: DiasporaMode = 'migrantes',
   custom?: CustomStops,
   customRange?: { min: number | null; mid: number | null; max: number | null },
   opts: { clipExtremes?: boolean } = {},
 ): { geo: AdmGeoJSON<DiasporaProps>; stats: IndicatorStats } {
-  // El rango se calcula EXCLUYENDO el país origen (VE con is_origin=true):
-  // su población es ~5x el mayor receptor (Colombia) y rompe la escala
-  // visual del choropleth. VE igual se pinta abajo pero con un color
-  // distintivo (granate fijo) que la marca como "origen" no comparable.
+  // valueFor: extrae el valor del feature según el modo activo.
+  const valueFor = (f: { properties: DiasporaProps }): number | null => {
+    const props = f.properties
+    if (mode === 'migrantes') {
+      // VE no es receptor — sólo cuenta para receptores reales.
+      return props.is_origin ? null : props.migrantes_ve
+    }
+    if (mode === 'venezolanos') {
+      return props.migrantes_ve
+    }
+    // mode === 'porcentaje'
+    if (props.migrantes_ve == null || props.poblacion_total == null) return null
+    return (props.migrantes_ve / props.poblacion_total) * 100
+  }
+
   const values = geo.features
-    .filter(f => !f.properties.is_origin)
-    .map(f => f.properties.migrantes_ve)
+    .map(valueFor)
     .filter((v): v is number => typeof v === 'number')
   const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
   const min = customRange?.min ?? autoMin
@@ -361,25 +382,28 @@ export function applyDiaspora(
       ? Math.max(0.05, Math.min(0.95, (customRange.mid - min) / (max - min)))
       : 0.5
 
-  // Color fijo para el país origen: granate oscuro, indica "este es de donde
-  // sale la migración" y queda visualmente separado del gradiente de receptores.
+  // Color fijo para el país origen en modo 'migrantes': granate oscuro,
+  // indica "este es de donde sale la migración" y queda visualmente
+  // separado del gradiente de receptores. En los otros modos VE entra
+  // en el gradiente normal porque su valor SÍ es comparable.
   const ORIGIN_COLOR = '#6b1f2b'
 
   let matched = 0
   const features = geo.features.map(f => {
-    const v = f.properties.migrantes_ve
+    const v = valueFor(f)
     const isOrigin = f.properties.is_origin === true
     if (v != null) matched++
     return {
       ...f,
       properties: {
         ...f.properties,
-        _value: v ?? null,
-        _color: isOrigin
-          ? ORIGIN_COLOR
-          : v != null
-            ? colorScale(v, min, max, palette, custom, midRatio)
-            : null,
+        _value: v,
+        _color:
+          mode === 'migrantes' && isOrigin
+            ? ORIGIN_COLOR
+            : v != null
+              ? colorScale(v, min, max, palette, custom, midRatio)
+              : null,
         _matched: v != null,
       },
     }

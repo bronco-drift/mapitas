@@ -59,13 +59,15 @@ export type DiasporaProps = {
   iso_a3: string
   name: string
   migrantes_ve: number | null
+  // Población total del país (UN 2024, redondeada). Sólo presente en países
+  // que tienen migrantes_ve o que son geográficamente relevantes para el
+  // contexto. Usada para calcular el modo "porcentaje" en vista Global.
+  poblacion_total?: number | null
   as_of?: string | null
   source?: string | null
-  // true para el país origen (Venezuela). Cuando está activo:
-  // - migrantes_ve guarda la población actual de VE (no migrantes recibidos)
-  // - el feature se excluye del cálculo del rango del choropleth
-  // - se pinta con un color fijo (granate) distinto del gradiente
-  // - el tooltip dice "habitantes" en vez de "migrantes"
+  // true para el país origen (Venezuela). En modo 'migrantes' la excluye
+  // del cálculo del rango y la pinta granate. En 'venezolanos' y
+  // 'porcentaje' entra al gradiente normalmente (su valor SÍ es comparable).
   is_origin?: boolean
   _value?: number | null
   _color?: string | null

@@ -292,49 +292,154 @@ type DiasporaRecord = {
   note?: string
 }
 
+// Población de Venezuela (INE proyección 2026, suma de estados). Sólo se
+// agrega a las listas cuando el modo es 'venezolanos' o 'porcentaje', con
+// fuente clara (INE) para distinguirla de los receptores (R4V/ACNUR).
+const VE_POBLACION_2026 = 34_908_131
+
+// Población total por país receptor (UN 2024, redondeada). Coincide con
+// world-countries.geojson; replicada acá para el cálculo del % sin tener
+// que cargar el geojson dos veces.
+const VE_POBLACION_RESIDENTE = 28_800_000 // VE sin contar diáspora
+const POBLACION_TOTAL: Record<string, number> = {
+  COL: 52_800_000, PER: 34_000_000, USA: 341_800_000, CHL: 19_800_000,
+  ECU: 18_200_000, BRA: 217_600_000, ESP: 48_800_000, ARG: 45_800_000,
+  PAN: 4_600_000, DOM: 11_400_000, MEX: 130_000_000, URY: 3_400_000,
+  PRY: 6_900_000, BOL: 12_400_000, CRI: 5_300_000, TTO: 1_500_000,
+  GUY: 800_000, ARU: 110_000, CUB: 11_200_000,
+}
+
 function DiasporaPanel() {
   const setSelected = useStore(s => s.setSelected)
+  const globalMetric = useStore(s => s.globalMetric)
+  const setGlobalMetric = useStore(s => s.setGlobalMetric)
   const data = diasporaReceivers as Record<string, DiasporaRecord>
-  const entries = Object.entries(data).sort((a, b) => b[1].total - a[1].total)
-  const total = entries.reduce((acc, [, r]) => acc + r.total, 0)
-  const TOTAL_REGIONAL = 6_700_000 // R4V RMNA 2024
-  const TOTAL_GLOBAL = 7_900_000 // ACNUR 2024
-  const max = entries[0]?.[1].total ?? 1
+
+  // Construye la lista según el modo activo. Cada entry trae un valor
+  // numérico ya en la unidad correcta (personas o %) y un label para el
+  // formato. Eso desacopla el rendering del modo.
+  type Entry = { iso: string; name: string; value: number; source: string }
+  let entries: Entry[]
+  let total: number
+  let unit: '' | '%' | 'M'
+  let header: { label: string; sub: string }
+
+  if (globalMetric === 'migrantes') {
+    entries = Object.entries(data)
+      .map(([iso, r]) => ({ iso, name: r.name, value: r.total, source: r.source }))
+      .sort((a, b) => b.value - a.value)
+    total = entries.reduce((acc, e) => acc + e.value, 0)
+    unit = 'M'
+    header = {
+      label: 'Migrantes venezolanos · 2022–2025',
+      sub: `en ${entries.length} países · R4V regional estima 6.7 M · ACNUR global 7.9 M`,
+    }
+  } else if (globalMetric === 'venezolanos') {
+    // Incluye VE como ORIGEN al tope de la lista (es donde más venezolanos viven).
+    entries = [
+      { iso: 'VEN', name: 'Venezuela (origen)', value: VE_POBLACION_2026, source: 'INE Venezuela · proyección 2026' },
+      ...Object.entries(data).map(([iso, r]) => ({ iso, name: r.name, value: r.total, source: r.source })),
+    ].sort((a, b) => b.value - a.value)
+    total = entries.reduce((acc, e) => acc + e.value, 0)
+    unit = 'M'
+    header = {
+      label: 'Venezolanos en el mundo',
+      sub: `${entries.length} países · origen ${(VE_POBLACION_2026 / 1_000_000).toFixed(1)} M + diáspora ${(total / 1_000_000 - VE_POBLACION_2026 / 1_000_000).toFixed(1)} M`,
+    }
+  } else {
+    // porcentaje = (migrantes_ve o pob_origen) / poblacion_total * 100
+    entries = [
+      {
+        iso: 'VEN',
+        name: 'Venezuela (origen)',
+        value: (VE_POBLACION_2026 / VE_POBLACION_RESIDENTE) * 100,
+        source: 'venezolanos residentes / población base',
+      },
+      ...Object.entries(data)
+        .filter(([iso]) => POBLACION_TOTAL[iso] != null)
+        .map(([iso, r]) => ({
+          iso,
+          name: r.name,
+          value: (r.total / POBLACION_TOTAL[iso]) * 100,
+          source: r.source,
+        })),
+    ].sort((a, b) => b.value - a.value)
+    total = 0 // no aplica un total agregado para porcentajes
+    unit = '%'
+    header = {
+      label: 'Venezolanos sobre población local',
+      sub: 'porcentaje de residentes venezolanos en cada país',
+    }
+  }
+
+  const max = entries[0]?.value ?? 1
 
   return (
     <div className="space-y-3">
+      {/* Selector segmentado de los 3 reportes de la vista Global */}
+      <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
+        {(
+          [
+            { id: 'migrantes' as const, label: 'Recibidos' },
+            { id: 'venezolanos' as const, label: 'Total' },
+            { id: 'porcentaje' as const, label: '% local' },
+          ]
+        ).map(opt => (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => setGlobalMetric(opt.id)}
+            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+              globalMetric === opt.id
+                ? 'bg-white text-slate-900 shadow-sm font-medium'
+                : 'text-slate-500 hover:text-slate-700'
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+
       <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5">
         <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
-          Migrantes venezolanos · 2022–2025
+          {header.label}
         </div>
-        <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
-          {(total / 1_000_000).toFixed(1)} M
-        </div>
-        <div className="mt-0.5 text-[11px] text-slate-500">
-          en {entries.length} países · R4V regional estima {(TOTAL_REGIONAL / 1_000_000).toFixed(1)} M
-          {' · '}ACNUR global {(TOTAL_GLOBAL / 1_000_000).toFixed(1)} M
+        {unit === 'M' ? (
+          <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
+            {(total / 1_000_000).toFixed(1)} M
+          </div>
+        ) : (
+          <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
+            {entries[0] ? `${entries[0].value.toFixed(1)}%` : '—'}
+            {entries[0] && (
+              <span className="ml-1.5 text-[11px] font-normal text-slate-400">máx · {entries[0].name.replace(' (origen)', '')}</span>
+            )}
+          </div>
+        )}
+        <div className="mt-0.5 text-[11px] leading-snug text-slate-500">
+          {header.sub}
         </div>
       </div>
 
       <div className="space-y-0.5">
-        {entries.map(([iso, r]) => (
+        {entries.map(r => (
           <button
-            key={iso}
+            key={r.iso}
             type="button"
-            onClick={() => setSelected({ name: r.name, iso, value: r.total })}
+            onClick={() => setSelected({ name: r.name, iso: r.iso, value: r.value })}
             className="group flex w-full items-center gap-2 rounded px-2 py-1.5 text-left transition outline-none hover:bg-slate-100 focus:ring-2 focus:ring-slate-400"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline justify-between gap-2">
                 <span className="truncate text-[13px] font-medium text-slate-800">{r.name}</span>
                 <span className="shrink-0 text-[13px] font-semibold tabular-nums text-slate-900">
-                  {r.total.toLocaleString('es-VE')}
+                  {unit === '%' ? `${r.value.toFixed(2)}%` : r.value.toLocaleString('es-VE')}
                 </span>
               </div>
               <div className="mt-1 h-1 overflow-hidden rounded-full bg-slate-200">
                 <div
                   className="h-full rounded-full bg-slate-900"
-                  style={{ width: `${(r.total / max) * 100}%` }}
+                  style={{ width: `${Math.min(100, (r.value / max) * 100)}%` }}
                 />
               </div>
               <div className="mt-1 truncate text-[10px] text-slate-400">
@@ -346,17 +451,27 @@ function DiasporaPanel() {
       </div>
 
       <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-[11px] leading-relaxed text-slate-500">
-        Cifras oficiales de gobiernos receptores agregadas por R4V (coordinada
-        por OIM + ACNUR). Subestiman porque no contemplan migrantes en
-        situación irregular.{' '}
-        <a
-          href="https://www.r4v.info/en/refugeeandmigrants"
-          target="_blank"
-          rel="noreferrer"
-          className="text-slate-700 underline hover:text-slate-900"
-        >
-          R4V
-        </a>
+        {globalMetric === 'porcentaje' ? (
+          <>
+            Porcentaje calculado sobre población total del país (UN 2024).
+            La diáspora venezolana es más densa donde el país receptor es
+            más chico (Panamá, Trinidad), no donde más migrantes recibió.
+          </>
+        ) : (
+          <>
+            Cifras oficiales de gobiernos receptores agregadas por R4V
+            (coordinada por OIM + ACNUR). Subestiman porque no contemplan
+            migrantes en situación irregular.{' '}
+            <a
+              href="https://www.r4v.info/en/refugeeandmigrants"
+              target="_blank"
+              rel="noreferrer"
+              className="text-slate-700 underline hover:text-slate-900"
+            >
+              R4V
+            </a>
+          </>
+        )}
       </div>
     </div>
   )

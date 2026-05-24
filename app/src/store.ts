@@ -105,6 +105,11 @@ type State = {
   adm2: AdmGeoJSON<Adm2Props> | null
   diaspora: AdmGeoJSON<DiasporaProps> | null
   diasporaLoading: boolean
+  // Métrica activa en vista Global (3 reportes intercambiables).
+  //   'migrantes'   = migrantes VE recibidos por país (default histórico)
+  //   'venezolanos' = total venezolanos viviendo en ese país (incluye VE)
+  //   'porcentaje'  = % venezolanos sobre población total del país
+  globalMetric: import('./lib/apply-indicator').DiasporaMode
   // Vista Global: proyección d3-geo activa + rotación [lambda, phi, gamma]
   // que solo aplica a proyecciones tipo globo (Orthographic).
   projection: 'equalEarth' | 'orthographic' | 'naturalEarth' | 'mercator' | 'equirectangular'
@@ -144,6 +149,7 @@ type Actions = {
   setView: (view: ViewMode) => void
   setProjection: (p: State['projection']) => void
   setRotation: (r: [number, number, number]) => void
+  setGlobalMetric: (m: import('./lib/apply-indicator').DiasporaMode) => void
   setMobilePanelHeight: (h: number) => void
   setLevel: (level: AdmLevel) => void
   setPalette: (palette: PaletteId) => void
@@ -217,6 +223,7 @@ export const useStore = create<State & Actions>()(
   view: 'venezuela',
   diaspora: null,
   diasporaLoading: false,
+  globalMetric: 'migrantes',
   // Default: Orthographic centrado en Venezuela (Caracas: -66, 7).
   // En d3-geo, rotate([λ, φ, γ]) pone el punto (-λ, -φ) en el centro.
   // Para centrar en VE → λ=66 (lng=-66), φ=-7 (lat=+7), γ=0.
@@ -331,6 +338,11 @@ export const useStore = create<State & Actions>()(
     set({ rotation: r })
   },
 
+  setGlobalMetric(m) {
+    set({ globalMetric: m })
+    if (get().view === 'global') get().applyMerge()
+  },
+
   setMobilePanelHeight(h) {
     set({ mobilePanelHeight: Math.max(0, Math.min(1, h)) })
   },
@@ -389,14 +401,15 @@ export const useStore = create<State & Actions>()(
   },
 
   applyMerge() {
-    const { view, level, adm0, adm1, adm2, diaspora, source, palette, mapStyle, customRange } = get()
+    const { view, level, adm0, adm1, adm2, diaspora, source, palette, mapStyle, customRange, globalMetric } = get()
     const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
 
-    // Vista Global: lógica aparte, no usa indicators ni level
+    // Vista Global: lógica aparte, no usa indicators ni level. Lee globalMetric
+    // para decidir qué pintar (migrantes recibidos / venezolanos totales / %).
     if (view === 'global') {
       if (!diaspora) return
       const opts = { clipExtremes: mapStyle.autoClipExtremes }
-      const { geo, stats } = applyDiaspora(diaspora, palette, custom, customRange, opts)
+      const { geo, stats } = applyDiaspora(diaspora, palette, globalMetric, custom, customRange, opts)
       set({ diaspora: geo, stats })
       return
     }
@@ -622,6 +635,7 @@ export const useStore = create<State & Actions>()(
         archivedIndicators: state.archivedIndicators,
         projection: state.projection,
         rotation: state.rotation,
+        globalMetric: state.globalMetric,
         _persistedSourceId:
           state.source?.kind === 'indicator' ? state.source.indicator.id : null,
         _persistedThematicIds: Object.entries(state.thematic)
