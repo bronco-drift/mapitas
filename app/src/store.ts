@@ -24,7 +24,7 @@ import {
   applyIndicatorToAdm2,
   type IndicatorStats,
 } from './lib/apply-indicator'
-import { getIndicator, getIndicatorByGroupAndLevel, INDICATORS, type Indicator } from './data/indicators'
+import { getIndicator, getIndicatorByGroupAndLevel, type Indicator } from './data/indicators'
 
 export type DataSource =
   | { kind: 'indicator'; indicator: Indicator }
@@ -260,14 +260,25 @@ export const useStore = create<State & Actions>()(
       const adm2 = topoFeature(topo2, firstObj(topo2)) as unknown as AdmGeoJSON<Adm2Props>
 
       set({ adm0, adm1, adm2, loading: false })
-      // Restaurar indicador persistido o auto-seleccionar el primero
+      // Restaurar indicador persistido o auto-seleccionar la vista política
+      // del nivel actual. La vista política es un mapa categórico (cada
+      // estado/muni con su color) que sirve como mapa orientador al primer
+      // load. El user puede saltar a cualquier indicador desde Datos.
       const sourceId = get()._persistedSourceId
+      const lvl = get().level
+      const defaultId =
+        lvl === 'adm0' ? 'politico_pais'
+        : lvl === 'adm2' ? 'politico_munis'
+        : 'politico_estados'
       if (sourceId) {
         get().selectIndicator(sourceId)
         set({ _persistedSourceId: null })
-      } else if (!get().source && INDICATORS[0]) {
-        // Primera carga: seleccionar el primer indicador disponible
-        get().selectIndicator(INDICATORS[0].id)
+      }
+      // Fallback al default si: no había persistencia, o el id persistido
+      // no resolvió (ej. indicador eliminado del catálogo). Verifica el
+      // source DESPUÉS del intento de restauración.
+      if (!get().source) {
+        get().selectIndicator(defaultId)
       }
       // Si la persistencia trae view='global', traer ese geo también.
       // No bloqueamos el load principal — es lazy.

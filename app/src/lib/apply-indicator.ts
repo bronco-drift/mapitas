@@ -1,6 +1,10 @@
 import type { AdmGeoJSON, Adm0Props, Adm1Props, Adm2Props, DiasporaProps, PaletteId } from './types'
 import type { Indicator } from '../data/indicators'
+import { colorForState } from '../data/indicators'
 import { colorScale, type CustomStops } from './color-scale'
+
+// Color institucional para el bloque país en vista política.
+const VE_COUNTRY_COLOR = '#5b8def'
 
 export type IndicatorStats = {
   matched: number
@@ -52,12 +56,18 @@ function autoRange(values: number[], clipExtremes: boolean): { min: number; max:
   return { min: quantile(sorted, 0.02), max: quantile(sorted, 0.98) }
 }
 
-// Indicadores simbólicos = los que tienen group definido ('banderas' o
-// 'escudos'). En lugar de aplicar la escala de color, asignan _color
-// neutro para que MapView monte las imágenes encima del polígono
-// recortadas al contorno geográfico.
+// Indicadores simbólicos = banderas o escudos. En lugar de aplicar la
+// escala de color, asignan _color neutro para que MapView monte las
+// imágenes encima del polígono recortadas al contorno geográfico.
 function isSymbolIndicator(indicator: Indicator): boolean {
-  return !!indicator.group
+  return indicator.group === 'banderas' || indicator.group === 'escudos'
+}
+
+// Vista política: mapa categórico (sin valor numérico). Cada entidad
+// recibe un color de la paleta categórica estable. Es el default al
+// primer load y sirve como mapa orientador.
+function isPoliticoIndicator(indicator: Indicator): boolean {
+  return indicator.group === 'politico'
 }
 
 // wiki-info.json indica qué entidades tienen bandera/escudo disponible
@@ -117,6 +127,35 @@ export function applyIndicatorToAdm1(
         unmatched: geo.features.length - matched,
         totalFeatures: geo.features.length,
         totalRows: matched,
+        unmatchedRows: [],
+        min: 0,
+        max: 1,
+      },
+    }
+  }
+
+  // Vista política: cada estado con su color categórico estable. No usa
+  // colorScale ni domain numérico; el color sale del lookup por iso.
+  if (isPoliticoIndicator(indicator)) {
+    const features = geo.features.map(f => {
+      const iso = f.properties.iso
+      return {
+        ...f,
+        properties: {
+          ...f.properties,
+          _value: 1,
+          _color: colorForState(iso),
+          _matched: true,
+        },
+      }
+    })
+    return {
+      geo: { ...geo, features },
+      stats: {
+        matched: features.length,
+        unmatched: 0,
+        totalFeatures: features.length,
+        totalRows: features.length,
         unmatchedRows: [],
         min: 0,
         max: 1,
@@ -207,6 +246,37 @@ export function applyIndicatorToAdm2(
       },
     }
   }
+
+  // Vista política munis: cada muni hereda el color de su estado padre.
+  // Resultado: los 25 estados aparecen como bloques de color uniformes
+  // formados por sus munis, haciendo evidente la jerarquía territorial.
+  if (isPoliticoIndicator(indicator)) {
+    const features = geo.features.map(f => {
+      const parentISO = f.properties.parentISO
+      return {
+        ...f,
+        properties: {
+          ...f.properties,
+          _value: 1,
+          _color: parentISO ? colorForState(parentISO) : '#cbd5e1',
+          _matched: !!parentISO,
+        },
+      }
+    })
+    return {
+      geo: { ...geo, features },
+      stats: {
+        matched: features.length,
+        unmatched: 0,
+        totalFeatures: features.length,
+        totalRows: features.length,
+        unmatchedRows: [],
+        min: 0,
+        max: 1,
+      },
+    }
+  }
+
   const values = valuesForRange(indicator, 'adm2')
   const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
   const min = customRange?.min ?? autoMin
@@ -353,6 +423,32 @@ export function applyIndicatorToAdm0(
         ...f.properties,
         _value: 1,
         _color: '#cbd5e1',
+        _matched: true,
+      },
+    }))
+    return {
+      geo: { ...geo, features },
+      stats: {
+        matched: 1,
+        unmatched: 0,
+        totalFeatures: 1,
+        totalRows: 1,
+        unmatchedRows: [],
+        min: 0,
+        max: 1,
+      },
+    }
+  }
+
+  // Vista política país: Venezuela como bloque institucional con un único
+  // color sólido. No tiene meaning estadístico, sólo orientador.
+  if (isPoliticoIndicator(indicator)) {
+    const features = geo.features.map(f => ({
+      ...f,
+      properties: {
+        ...f.properties,
+        _value: 1,
+        _color: VE_COUNTRY_COLOR,
         _matched: true,
       },
     }))

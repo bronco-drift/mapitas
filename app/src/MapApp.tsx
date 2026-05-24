@@ -4,6 +4,7 @@ import { MapView } from './components/MapView'
 import { ControlPanel } from './components/ControlPanel'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { TopBar } from './components/TopBar'
+import { WelcomeModal } from './components/WelcomeModal'
 
 // Lazy load del WorldMapView: trae d3-geo + d3-zoom (~70KB) solo cuando
 // el user entra a vista Global. La vista Venezuela (default) no paga ese costo.
@@ -68,6 +69,10 @@ export function MapApp() {
       >
         Panel
       </button>
+
+      {/* Modal de bienvenida: sólo aparece la primera vez. Auto-decide
+          mostrarse o no según localStorage; cerrarlo marca el flag. */}
+      <WelcomeModal />
     </div>
   )
 }

@@ -120,7 +120,38 @@ export type Indicator = {
   // user cambia de nivel, el store autoswitchea al variant del nivel nuevo.
   // Permite UX de "navego por niveles viendo las banderas" sin tener que
   // re-seleccionar el indicador cada vez.
-  group?: 'banderas' | 'escudos'
+  // 'politico' es el mapa categórico de identidad: cada estado/muni con su
+  // propio color, sin codificar valor numérico. Es el default al primer load.
+  group?: 'banderas' | 'escudos' | 'politico'
+}
+
+// ─── Paleta categórica para vista política ────────────────────────────────
+//
+// 26 colores curados (1 por entidad federal venezolana) en tonos medios,
+// saturación media, evitando vecinos confundibles. Pensado para legibilidad
+// inmediata: el usuario ve los estados como bloques distintos sin sobrecarga
+// visual. No es accesible color-blind perfecto, pero los iso adyacentes
+// alfabéticamente tienen hues bien separados (anti-clustering).
+
+const STATE_ISOS_ORDERED = [
+  'VE-A', 'VE-B', 'VE-C', 'VE-D', 'VE-E', 'VE-F', 'VE-G', 'VE-H',
+  'VE-I', 'VE-J', 'VE-K', 'VE-L', 'VE-M', 'VE-N', 'VE-O', 'VE-P',
+  'VE-R', 'VE-S', 'VE-T', 'VE-U', 'VE-V', 'VE-W', 'VE-X', 'VE-Y',
+  'VE-Z', 'VE-GE',
+]
+
+const CATEGORICAL_26 = [
+  '#5b8def', '#f4a261', '#e76f51', '#2a9d8f', '#8ab17d',
+  '#e9c46a', '#a663cc', '#f08080', '#9c6b50', '#9eb1b8',
+  '#5fa8b4', '#d4a5d4', '#b5b85a', '#e89b5c', '#7d99ad',
+  '#c08866', '#86b89a', '#dd7878', '#9b9b7a', '#6c8ead',
+  '#d4a373', '#7c9070', '#b88173', '#779ecb', '#c4946d',
+  '#8a90b8',
+]
+
+export function colorForState(iso: string): string {
+  const idx = STATE_ISOS_ORDERED.indexOf(iso)
+  return idx >= 0 ? CATEGORICAL_26[idx] : '#cbd5e1'
 }
 
 // ─── Indicadores del master (data trazada) ────────────────────────────────
@@ -373,6 +404,56 @@ import wikiInfoRaw from './wiki-info.json'
 // El store autoswitch entre variants al cambiar de nivel — el user navega
 // "viendo banderas" sin re-seleccionar.
 
+// ─── Vista política (mapa categórico, default al primer load) ─────────────
+//
+// No codifica un valor numérico: cada entidad recibe un color de la paleta
+// categórica. Sirve como mapa orientador cuando el usuario todavía no eligió
+// un indicador concreto. La paleta es estable (el mismo estado siempre tiene
+// el mismo color), no depende de la paleta global del style.
+// `_value: 1` por entidad para que el merge la cuente como "matched".
+
+const POLITICO_PAIS: Indicator = {
+  id: 'politico_pais',
+  label: 'Vista política · País',
+  description: 'Venezuela como bloque institucional',
+  unit: 'sin unidad',
+  format: 'number',
+  year: 0,
+  source: 'División político-administrativa oficial',
+  aggregation: 'state',
+  restrictedTo: 'adm0',
+  group: 'politico',
+  data: { VE: 1 },
+}
+
+const POLITICO_ESTADOS: Indicator = {
+  id: 'politico_estados',
+  label: 'Vista política · Estados',
+  description: 'Cada estado con su color de identidad',
+  unit: 'sin unidad',
+  format: 'number',
+  year: 0,
+  source: 'División político-administrativa oficial',
+  aggregation: 'state',
+  restrictedTo: 'adm1',
+  group: 'politico',
+  data: Object.fromEntries(STATE_ISOS_ORDERED.map(iso => [iso, 1])),
+}
+
+const POLITICO_MUNIS: Indicator = {
+  id: 'politico_munis',
+  label: 'Vista política · Municipios',
+  description: 'Municipios coloreados por estado padre',
+  unit: 'sin unidad',
+  format: 'number',
+  year: 0,
+  source: 'División político-administrativa oficial',
+  aggregation: 'municipality',
+  restrictedTo: 'adm2',
+  group: 'politico',
+  data: Object.fromEntries(Object.keys(munis).map(sid => [sid, 1])),
+}
+
 const BANDERAS_PAIS: Indicator = {
   id: 'banderas_pais',
   label: 'Bandera nacional · Cultural',
@@ -484,6 +565,11 @@ const HOMICIDIOS: Indicator = {
 // ─── Catálogo público ─────────────────────────────────────────────────────
 
 export const INDICATORS: Indicator[] = [
+  // Vista política primero: es el default al primer load y el "mapa neutral"
+  // de orientación. El user puede saltar a cualquier otro desde la lista.
+  POLITICO_PAIS,
+  POLITICO_ESTADOS,
+  POLITICO_MUNIS,
   POBLACION_INE_2026,
   POBLACION_INE_2050,
   POBLACION_2021,
@@ -512,7 +598,7 @@ export const INDICATORS: Indicator[] = [
 // que aplica. Usado por el store cuando setLevel cambia mientras hay un
 // indicador simbólico activo, para mantener el "concepto" del user.
 export function getIndicatorByGroupAndLevel(
-  group: 'banderas' | 'escudos',
+  group: 'banderas' | 'escudos' | 'politico',
   level: 'adm0' | 'adm1' | 'adm2',
 ): Indicator | undefined {
   return INDICATORS.find(i => i.group === group && i.restrictedTo === level)

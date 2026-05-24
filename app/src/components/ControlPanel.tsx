@@ -22,6 +22,7 @@ import { DataUploader } from './DataUploader'
 import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
+import { IndicatorCoverageModal } from './IndicatorCoverageModal'
 import { PROJECTION_OPTIONS, type ProjectionId } from '../lib/projections'
 
 type Props = {
@@ -45,6 +46,11 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const isMobile = useIsMobile()
 
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
+
+  // Modal de cobertura del indicador activo. Se abre desde el header
+  // (título del reporte clickeable). Para CSV propios o cuando no hay
+  // source, el click navega al tab Datos.
+  const [headerModalOpen, setHeaderModalOpen] = useState(false)
 
   // ── Drawer expandible (solo mobile) ──────────────────────────────────────
   // Dos snap points: collapsed (45vh) y expanded (88vh). El user puede
@@ -145,17 +151,74 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             Cerrar
           </button>
         </div>
-      <header className="hidden border-b border-slate-100 px-5 py-5 md:block">
+      {/* Header del panel (solo desktop): muestra el reporte activo de forma
+          prominente y clickeable. Reemplaza el slogan estático "Transparencia
+          territorial" por contexto inmediato del mapa que se está viendo.
+          Click → modal de cobertura del indicador, o al tab Datos si no hay
+          indicador (CSV propio o vacío). */}
+      <header className="hidden border-b border-slate-100 px-5 py-4 md:block">
         <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-          Mapitas
+          Mapitas · Reporte
         </div>
-        <h1 className="mt-1.5 text-[18px] font-semibold leading-[1.1] tracking-tight text-slate-900">
-          Transparencia territorial
-        </h1>
-        <p className="mt-1.5 text-[11px] leading-snug text-slate-500">
-          Venezuela · datos abiertos · 100% local
-        </p>
+        {activeIndicator ? (
+          <button
+            type="button"
+            onClick={() => setHeaderModalOpen(true)}
+            className="group mt-1.5 block w-full text-left transition focus:outline-none"
+            aria-label={`Ver cobertura del reporte: ${activeIndicator.label}`}
+          >
+            <div className="flex items-baseline gap-2">
+              <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 group-hover:text-blue-600">
+                {activeIndicator.label}
+              </h1>
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3 w-3 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-600"
+                aria-hidden="true"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </div>
+            <p className="mt-1 text-[11px] leading-snug text-slate-500">
+              {activeIndicator.year > 0 ? `${activeIndicator.year} · ` : ''}
+              {activeIndicator.source}
+            </p>
+          </button>
+        ) : source?.kind === 'upload' ? (
+          <button
+            type="button"
+            onClick={() => setTab('datos')}
+            className="group mt-1.5 block w-full text-left transition focus:outline-none"
+          >
+            <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 group-hover:text-blue-600">
+              {source.dataset.valueColumn ?? 'CSV propio'}
+            </h1>
+            <p className="mt-1 text-[11px] leading-snug text-slate-500">
+              {source.dataset.filename} · {source.dataset.rows.length} filas
+            </p>
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setTab('datos')}
+            className="mt-1.5 block w-full text-left text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-500 transition hover:text-slate-900 focus:outline-none"
+          >
+            Elegí un indicador
+            <span className="ml-2 text-[12px] font-normal text-slate-400">en Datos →</span>
+          </button>
+        )}
       </header>
+      {headerModalOpen && activeIndicator && (
+        <IndicatorCoverageModal
+          indicator={activeIndicator}
+          onClose={() => setHeaderModalOpen(false)}
+        />
+      )}
 
       {/* Nivel + Tabs: segmented controls compactos. Mismos en desktop y mobile.
           Tamaño reducido vs versión anterior (text-[11px], padding más chico)
