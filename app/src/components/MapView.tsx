@@ -380,13 +380,14 @@ export function MapView() {
   // Cuando es "transparent", transparente. Si no, el bgColor solo se ve si el basemap real falla.
   const isSolidBasemap = mapStyle.basemap === 'solid'
   const isWorldOutlines = mapStyle.basemap === 'world-outlines'
-  // El basemap "Contornos" override el bgColor con el color de océano de Carto
-  // (#fafaf6, crema claro). Así el área fuera de los polígonos (océanos) se
-  // ve igual que la tierra cercana, matcheando visualmente Carto sin etiquetas.
+  // El basemap "Contornos" override el bgColor con el gris-azul suave del
+  // océano (estilo Mapbox basic / Google Maps default). La tierra va en
+  // blanco casi puro con bordes rojos sutiles, replicando el patrón clásico
+  // de mapas administrativos.
   const effectiveBg = mapStyle.transparentBg
     ? 'transparent'
     : isWorldOutlines
-      ? '#fafaf6'
+      ? '#e3e8eb'
       : mapStyle.bgColor
   // Esconde tiles si "isolate", basemap solid o world-outlines (no hay tiles que cargar
   // para esos tres — solid usa bgColor, world-outlines pinta el geojson como capa)
@@ -573,15 +574,16 @@ export function MapView() {
             pane="worldOutlinesPane"
             interactive={false}
             style={() => ({
-              // Colores fieles a Carto Light Nolabels (positron sin labels):
-              //   - tierra: #f5f3eb (warm beige claro)
-              //   - bordes país: #c4c4c4 (gris suave)
-              // El bgColor del mapa se override a #fafaf6 (water/no-data)
-              // cuando este basemap está activo, así el océano calza con el
-              // mismo tono que usa Carto.
-              fillColor: '#f5f3eb',
-              color: '#c4c4c4',
-              weight: 0.5,
+              // Estilo Mapbox basic / Google Maps default:
+              //   - tierra: #fafaf9 (blanco casi puro, ligero warm)
+              //   - bordes país: #c89898 (rojo apagado, no gris)
+              //   - océano (bg): #e3e8eb (gris-azul suave)
+              // Es el patrón clásico de los mapas administrativos: tierra
+              // limpia, agua suave, fronteras destacadas en color cálido
+              // para separarlas de cualquier borde de polígono interno.
+              fillColor: '#fafaf9',
+              color: '#c89898',
+              weight: 0.7,
               fillOpacity: 1,
               opacity: 1,
             })}
