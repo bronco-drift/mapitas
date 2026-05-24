@@ -435,6 +435,30 @@ const PIB_PCT_ESTATAL: Indicator = {
   data: PIB_MAPITAS_PCT_ESTATAL,
 }
 
+// Entry explícita: cuánto aporta cada muni al PIB nacional. Es la misma
+// data que pib_pct_nacional aplicada a adm2, pero como entry separada en
+// el panel para que sea descubrible y comparable con pib_pct_estatal
+// (concentración nacional vs concentración intra-estatal).
+const PIB_PCT_MUNICIPAL_NACIONAL: Indicator = {
+  id: 'pib_pct_municipal_nacional',
+  category: 'economia',
+  label: '% del PIB del municipio sobre el nacional · estimado Mapitas',
+  description: 'Qué porcentaje del PIB nacional aporta cada municipio',
+  unit: '%',
+  format: 'rate',
+  year: 2026,
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: 'Libertador (Caracas) aporta ~24% del PIB nacional venezolano (el muni con mayor peso). Maracaibo ~7%, Valencia ~4%, Iribarren/Barquisimeto ~3%, Caroní/Pto Ordaz ~3%. La mayoría de los 335 munis aporta menos del 1% individualmente.',
+  aggregation: 'municipality',
+  restrictedTo: 'adm2',
+  data: Object.fromEntries(
+    Object.entries(PIB_MAPITAS_MUNICIPAL_MM).map(([sid, pibMM]) => [
+      sid,
+      (pibMM / PIB_NACIONAL_USD_MM) * 100,
+    ]),
+  ),
+}
+
 // ─── Source CV: indicadores municipales y estatales del Excel del user ──
 
 const PCT_URBANO: Indicator = {
@@ -768,6 +792,7 @@ export const INDICATORS: Indicator[] = [
   PIB_PC_MUNICIPAL,
   PIB_PCT_NACIONAL,
   PIB_PCT_ESTATAL,
+  PIB_PCT_MUNICIPAL_NACIONAL,
   POBLACION_2024,
   HOMICIDIOS,
   BANDERAS_PAIS,
