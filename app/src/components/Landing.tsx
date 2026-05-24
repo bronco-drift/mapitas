@@ -22,6 +22,12 @@ export function Landing() {
         </a>
         <nav className="flex items-center gap-5 text-[13px] text-slate-500">
           <a
+            href="#/mide"
+            className="hidden hover:text-slate-900 sm:inline"
+          >
+            MIDE
+          </a>
+          <a
             href="#faq"
             className="hidden hover:text-slate-900 sm:inline"
           >
@@ -119,6 +125,58 @@ export function Landing() {
               title="Personalizable"
               body="13 paletas, opacidades, basemaps, fondo transparente. Tu mapa, tu estilo."
             />
+          </div>
+        </section>
+
+        {/* Proyecto MIDE — iniciativa dentro de Mapitas */}
+        <section
+          aria-labelledby="mide-callout-title"
+          className="border-t border-slate-100 pt-16 pb-20 sm:pt-24"
+        >
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+            Iniciativa
+          </div>
+          <h2
+            id="mide-callout-title"
+            className="max-w-3xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
+          >
+            Proyecto MIDE.
+            <br />
+            <span className="text-slate-500">
+              La infraestructura que el Estado dejó vacía.
+            </span>
+          </h2>
+          <p className="mt-5 max-w-[60ch] text-[15px] leading-relaxed text-slate-600 sm:text-[16px]">
+            Mapitas no es solo una herramienta de visualización. Es una
+            iniciativa para construir, desde la sociedad civil, la
+            infraestructura cívica de datos que un Instituto Nacional de
+            Estadística debería sostener y que en Venezuela está abandonada.
+          </p>
+          <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-slate-600 sm:text-[16px]">
+            MIDE (Ministerio de Datos y Estadísticas) es un proyecto dentro
+            de Mapitas con hoja de ruta explícita: qué hacemos, qué no
+            podemos hacer desde afuera del Estado y qué sí podemos.
+          </p>
+          <div className="mt-7">
+            <a
+              href="#/mide"
+              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-[14px] font-medium text-white shadow-sm transition hover:bg-slate-700"
+            >
+              Conocer el proyecto
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3.5 w-3.5"
+                aria-hidden="true"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </a>
           </div>
         </section>
 

@@ -1,18 +1,23 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { Landing } from './components/Landing'
+import { MIDE } from './components/MIDE'
 
 // Lazy load del mapa: ~280kb extra (Leaflet + react-leaflet + Turf cuando se
 // requiera). La landing NO los necesita, así que sólo se descargan cuando
 // el user navega a /#/app. Mejora drásticamente el LCP de la home.
 const MapApp = lazy(() => import('./MapApp').then(m => ({ default: m.MapApp })))
 
-function getRoute(): 'landing' | 'app' {
+type Route = 'landing' | 'app' | 'mide'
+
+function getRoute(): Route {
   const hash = window.location.hash.slice(1)
-  return hash.startsWith('/app') ? 'app' : 'landing'
+  if (hash.startsWith('/app')) return 'app'
+  if (hash.startsWith('/mide')) return 'mide'
+  return 'landing'
 }
 
 export default function App() {
-  const [route, setRoute] = useState<'landing' | 'app'>(getRoute)
+  const [route, setRoute] = useState<Route>(getRoute)
 
   useEffect(() => {
     const onHash = () => setRoute(getRoute())
@@ -25,6 +30,8 @@ export default function App() {
   useEffect(() => {
     if (route === 'app') {
       document.title = 'Mapa interactivo — Mapitas'
+    } else if (route === 'mide') {
+      document.title = 'Proyecto MIDE — Mapitas'
     } else {
       document.title = 'Mapitas — Mapas y datos abiertos de Venezuela'
     }
@@ -42,6 +49,9 @@ export default function App() {
         <MapApp />
       </Suspense>
     )
+  }
+  if (route === 'mide') {
+    return <MIDE />
   }
   return <Landing />
 }
