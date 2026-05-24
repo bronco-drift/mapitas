@@ -566,9 +566,13 @@ export function MapView() {
             pane="worldOutlinesPane"
             interactive={false}
             style={() => ({
-              fillColor: '#fdfdfb',
-              color: '#cbd5e1',
-              weight: 0.5,
+              // Colores matcheados a Carto Light Nolabels (mismo tono beige
+              // cálido del raster), pero sin etiquetas ni subdivisiones
+              // internas. Resultado: el ojo lee "esto es continuación de
+              // Carto" pero sin distracciones, y Venezuela queda en foco.
+              fillColor: '#f6f6f4',
+              color: '#d4d4d3',
+              weight: 0.6,
               fillOpacity: 1,
               opacity: 1,
             })}

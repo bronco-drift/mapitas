@@ -154,6 +154,31 @@ export function colorForState(iso: string): string {
   return idx >= 0 ? CATEGORICAL_26[idx] : '#cbd5e1'
 }
 
+// ─── Paleta para vista política a nivel municipal ─────────────────────────
+//
+// 6 colores para colorear los ~335 munis sin que dos vecinos compartan tono.
+// La asignación de muni → índice viene del script compute-muni-coloring.mjs
+// (greedy graph coloring sobre el grafo de adyacencias del TopoJSON). Los
+// vecinos directos siempre tienen distinto índice; con 5 colores alcanza
+// para Venezuela. Es el patrón clásico de los mapas políticos en papel.
+
+import muniColoringRaw from './muni-coloring.json'
+const MUNI_COLORING = muniColoringRaw as Record<string, number>
+
+const MUNI_PALETTE_6 = [
+  '#5b8def', // azul
+  '#f4a261', // naranja cálido
+  '#2a9d8f', // teal
+  '#e76f51', // coral
+  '#a663cc', // púrpura
+  '#e9c46a', // amarillo cálido
+]
+
+export function colorForMuni(sourceID: string): string {
+  const idx = MUNI_COLORING[sourceID]
+  return idx != null ? MUNI_PALETTE_6[idx % MUNI_PALETTE_6.length] : '#cbd5e1'
+}
+
 // ─── Indicadores del master (data trazada) ────────────────────────────────
 
 const POBLACION_INE_2026: Indicator = {

@@ -173,7 +173,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   customStart: '#f7fbff',
   customEnd: '#08306b',
   paletteMidpoint: 0.5,
-  basemap: 'carto-light-nolabels',
+  basemap: 'world-outlines',
   fillOpacity: 0.95,
   borderOpacity: 1,
   transparentBg: false,
@@ -561,14 +561,16 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
-      version: 5,
+      version: 6,
       // Migraciones:
       //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
       //   v2 → v3: projection default Orthographic + rotation centrada en VE
       //   v3 → v4: fix rotation a [66, -7, 0] para que phi compense la
       //   latitud de Caracas (7°N) y VE quede en el centro absoluto del globo.
       //   v4 → v5: basemap default "Sin nombres" + toggle showLabels en off.
-      //   El mapa arranca limpio; el user activa labels desde Estilo.
+      //   v5 → v6: basemap default "Contornos países". Solo upgrade automático
+      //   si el user tenía el viejo default (carto-light-nolabels). Si había
+      //   elegido otro manualmente, respetamos.
       migrate: (persisted, version) => {
         let obj = persisted as Record<string, unknown>
         if (version < 2 && obj?.view === 'diaspora') {
@@ -586,10 +588,18 @@ export const useStore = create<State & Actions>()(
             ...obj,
             mapStyle: {
               ...ms,
-              // Solo cambiar si el user tenía el viejo default (carto-light).
-              // Si había elegido otro basemap (Dark, OSM, etc.), respetamos.
               basemap: ms.basemap === 'carto-light' ? 'carto-light-nolabels' : ms.basemap,
               showLabels: false,
+            },
+          }
+        }
+        if (version < 6) {
+          const ms = (obj.mapStyle as Record<string, unknown> | undefined) ?? {}
+          obj = {
+            ...obj,
+            mapStyle: {
+              ...ms,
+              basemap: ms.basemap === 'carto-light-nolabels' ? 'world-outlines' : ms.basemap,
             },
           }
         }

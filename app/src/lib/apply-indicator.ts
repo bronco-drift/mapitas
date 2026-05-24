@@ -1,6 +1,6 @@
 import type { AdmGeoJSON, Adm0Props, Adm1Props, Adm2Props, DiasporaProps, PaletteId } from './types'
 import type { Indicator } from '../data/indicators'
-import { colorForState } from '../data/indicators'
+import { colorForState, colorForMuni } from '../data/indicators'
 import { colorScale, type CustomStops } from './color-scale'
 
 // Color institucional para el bloque país en vista política.
@@ -247,19 +247,20 @@ export function applyIndicatorToAdm2(
     }
   }
 
-  // Vista política munis: cada muni hereda el color de su estado padre.
-  // Resultado: los 25 estados aparecen como bloques de color uniformes
-  // formados por sus munis, haciendo evidente la jerarquía territorial.
+  // Vista política munis: cada muni con un color de una paleta de 6,
+  // asignados por graph coloring para que NINGÚN par de munis vecinos
+  // comparta tono. Es el patrón clásico de mapas políticos en papel.
+  // La asignación viene precomputada de scripts/compute-muni-coloring.mjs.
   if (isPoliticoIndicator(indicator)) {
     const features = geo.features.map(f => {
-      const parentISO = f.properties.parentISO
+      const sourceID = f.properties.sourceID
       return {
         ...f,
         properties: {
           ...f.properties,
           _value: 1,
-          _color: parentISO ? colorForState(parentISO) : '#cbd5e1',
-          _matched: !!parentISO,
+          _color: colorForMuni(sourceID),
+          _matched: true,
         },
       }
     })
