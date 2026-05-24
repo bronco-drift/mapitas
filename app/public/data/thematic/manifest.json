@@ -54,6 +54,17 @@
     "geometryType": "MultiLineString"
   },
   {
+    "id": "internacionales-cv",
+    "label": "Límites internacionales · CV",
+    "color": "#dc2626",
+    "file": "/data/thematic/internacionales-cv.geojson",
+    "featureCount": 10,
+    "sizeKB": 111,
+    "geometryType": "MultiLineString",
+    "dashed": true,
+    "weight": 1.8
+  },
+  {
     "id": "formaciones-vegetales",
     "label": "Formaciones vegetales",
     "color": "#22c55e",

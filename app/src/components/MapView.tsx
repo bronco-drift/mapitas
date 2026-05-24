@@ -881,12 +881,22 @@ import type { ThematicMeta } from '../store'
 function thematicStyleFor(meta: ThematicMeta): PathOptions {
   // Diferentes estilos según tipo de geometría
   if (meta.geometryType === 'LineString' || meta.geometryType === 'MultiLineString') {
-    return { color: meta.color, weight: 1, opacity: 0.7, fillOpacity: 0 }
+    const style: PathOptions = {
+      color: meta.color,
+      weight: meta.weight ?? 1,
+      opacity: 0.85,
+      fillOpacity: 0,
+    }
+    // dashArray Leaflet: '4 6' = trazo de 4px, espacio de 6px. Patrón clásico
+    // de líneas punteadas para distinguir fronteras "reclamadas" o "en disputa"
+    // de las administrativas de facto.
+    if (meta.dashed) style.dashArray = '4 6'
+    return style
   }
   return {
     fillColor: meta.color,
     color: meta.color,
-    weight: 0.8,
+    weight: meta.weight ?? 0.8,
     fillOpacity: 0.28,
     opacity: 0.8,
   }

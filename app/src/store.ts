@@ -76,6 +76,13 @@ export type ThematicMeta = {
   // Key del feature.properties que se usa como label visible.
   // Si no se especifica, usa la primera property encontrada.
   labelKey?: string
+  // Si true, la línea se dibuja punteada (dashArray). Sólo aplica a
+  // LineString/MultiLineString. Sirve para distinguir versiones (oficial
+  // vs reclamada, por ejemplo) de la misma capa.
+  dashed?: boolean
+  // Weight override (px). Si no se especifica, usa el default por tipo de
+  // geometría en thematicStyleFor.
+  weight?: number
 }
 
 export type ThematicState = {
