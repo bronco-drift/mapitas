@@ -394,9 +394,11 @@ export function WorldMapView() {
             const matched = props._matched
             const op = matched ? mapStyle.fillOpacity : Math.min(mapStyle.fillOpacity * 0.6, 0.5)
             const stroke = mapStyle.noBorders ? fillColor : mapStyle.borderColor
-            const weight = mapStyle.noBorders
-              ? 0.5
-              : Math.max(mapStyle.lineWidth, 0.3)
+            // Respetar lineWidth=0 del slider (sin stroke). El mínimo forzado
+            // de 0.3px hacía que sobre fills oscuros (como VE en verde
+            // intenso) el stroke slate-700 se viera como un "borde oscuro
+            // incrustado" justo dentro del polígono, lo cual era confuso.
+            const weight = mapStyle.noBorders ? 0.5 : mapStyle.lineWidth
             const d = pathGen(f as never)
             if (!d) return null
             return (
