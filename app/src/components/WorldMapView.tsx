@@ -399,6 +399,14 @@ export function WorldMapView() {
             // intenso) el stroke slate-700 se viera como un "borde oscuro
             // incrustado" justo dentro del polígono, lo cual era confuso.
             const weight = mapStyle.noBorders ? 0.5 : mapStyle.lineWidth
+            // En modo "sin bordes" el stroke comparte color con el fill, pero
+            // si strokeOpacity != fillOpacity el stroke se ve más intenso y
+            // queda como un anillo más oscuro alrededor del polígono (visible
+            // en VE pintada con colores intensos: el Esequibo, costas, etc.
+            // mostraban un borde sutil del mismo tono pero más fuerte). Fix:
+            // matchear strokeOpacity con fillOpacity en este modo, igual que
+            // hace fillStyleFor en MapView.tsx (vista VE).
+            const strokeOp = mapStyle.noBorders ? op : mapStyle.borderOpacity
             const d = pathGen(f as never)
             if (!d) return null
             return (
@@ -410,7 +418,7 @@ export function WorldMapView() {
                 fillOpacity={op}
                 stroke={stroke}
                 strokeWidth={weight}
-                strokeOpacity={mapStyle.borderOpacity}
+                strokeOpacity={strokeOp}
                 style={{ cursor: 'pointer' }}
               >
                 <title>
