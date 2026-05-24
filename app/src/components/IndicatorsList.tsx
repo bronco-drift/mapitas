@@ -292,15 +292,16 @@ type DiasporaRecord = {
   note?: string
 }
 
-// Población de Venezuela (INE proyección 2026, suma de estados). Sólo se
-// agrega a las listas cuando el modo es 'venezolanos' o 'porcentaje', con
-// fuente clara (INE) para distinguirla de los receptores (R4V/ACNUR).
-const VE_POBLACION_2026 = 34_908_131
+// Venezolanos viviendo EN Venezuela hoy (residentes). NO confundir con la
+// proyección INE 34.9M, que es "cuántos venezolanos habría si nadie hubiera
+// emigrado" — esa cifra ya incluye conceptualmente a los 7.1M de diáspora,
+// y usarla aquí causaba double-counting (total 42M en vez de ~36M real).
+// La cifra correcta para "venezolanos residentes en VE" es UN 2024: ~28.8M.
+const VE_VENEZOLANOS_RESIDENTES = 28_800_000
 
 // Población total por país receptor (UN 2024, redondeada). Coincide con
 // world-countries.geojson; replicada acá para el cálculo del % sin tener
 // que cargar el geojson dos veces.
-const VE_POBLACION_RESIDENTE = 28_800_000 // VE sin contar diáspora
 const POBLACION_TOTAL: Record<string, number> = {
   COL: 52_800_000, PER: 34_000_000, USA: 341_800_000, CHL: 19_800_000,
   ECU: 18_200_000, BRA: 217_600_000, ESP: 48_800_000, ARG: 45_800_000,
@@ -335,25 +336,30 @@ function DiasporaPanel() {
       sub: `en ${entries.length} países · R4V regional estima 6.7 M · ACNUR global 7.9 M`,
     }
   } else if (globalMetric === 'venezolanos') {
-    // Incluye VE como ORIGEN al tope de la lista (es donde más venezolanos viven).
+    // Total de venezolanos en el mundo: residentes en VE + diáspora.
+    // Suma realista ~35.9M, NO los 42M que daba antes (double-counting con
+    // la proyección INE 34.9M, que ya incluía conceptualmente a los emigrados).
     entries = [
-      { iso: 'VEN', name: 'Venezuela (origen)', value: VE_POBLACION_2026, source: 'INE Venezuela · proyección 2026' },
+      { iso: 'VEN', name: 'Venezuela (origen)', value: VE_VENEZOLANOS_RESIDENTES, source: 'UN World Population Prospects 2024' },
       ...Object.entries(data).map(([iso, r]) => ({ iso, name: r.name, value: r.total, source: r.source })),
     ].sort((a, b) => b.value - a.value)
     total = entries.reduce((acc, e) => acc + e.value, 0)
     unit = 'M'
+    const diasporaM = (total - VE_VENEZOLANOS_RESIDENTES) / 1_000_000
     header = {
       label: 'Venezolanos en el mundo',
-      sub: `${entries.length} países · origen ${(VE_POBLACION_2026 / 1_000_000).toFixed(1)} M + diáspora ${(total / 1_000_000 - VE_POBLACION_2026 / 1_000_000).toFixed(1)} M`,
+      sub: `${entries.length} países · ${(VE_VENEZOLANOS_RESIDENTES / 1_000_000).toFixed(1)} M en VE + ${diasporaM.toFixed(1)} M en el exterior`,
     }
   } else {
-    // porcentaje = (migrantes_ve o pob_origen) / poblacion_total * 100
+    // porcentaje = venezolanos / población total del país × 100.
+    // Para VE es 100% por definición: los venezolanos viviendo en VE son los
+    // 28.8M residentes; la población total de VE son los mismos 28.8M.
     entries = [
       {
         iso: 'VEN',
         name: 'Venezuela (origen)',
-        value: (VE_POBLACION_2026 / VE_POBLACION_RESIDENTE) * 100,
-        source: 'venezolanos residentes / población base',
+        value: 100,
+        source: 'residentes venezolanos / población total VE',
       },
       ...Object.entries(data)
         .filter(([iso]) => POBLACION_TOTAL[iso] != null)
