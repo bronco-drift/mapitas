@@ -5,6 +5,42 @@ de mayor a menor impacto percibido, no por dificultad.
 
 ---
 
+## Mejorar borde de Venezuela en vista Global
+
+Hoy en el mapa global hay **overlap visible en fronteras** entre VE y sus
+vecinos (Colombia, Brasil, Guyana, Trinidad). La causa: para mostrar el
+Esequibo, las islas y los límites marítimos reclamados, reemplazamos la
+geometría de VE en `world-countries.geojson` con la del `venezuela-adm0-
+enriched.geojson` (fuente: geoBoundaries / IGVSB con simplify 50m).
+
+Los países vecinos siguen siendo Natural Earth 110m. Las dos fuentes NO
+comparten exactamente las mismas líneas fronterizas — se cruzan unos km
+acá y allá, dejando slivers de "missing color" o doble pintado.
+
+Se nota especialmente:
+
+- Frontera con Colombia (oeste, Apure, Táchira, Zulia).
+- Frontera con Brasil (sur, Amazonas, Bolívar).
+- Línea Esequibo-Guyana (donde ya tuvimos que filtrar slivers de
+  `turf.difference`).
+
+**Opciones a futuro**:
+
+1. **Misma fuente para todos**: usar Natural Earth 50m + reemplazar VE
+   con su versión enriquecida, pero alinear manualmente las fronteras
+   (snapping de vértices comunes con tolerancia <0.01°).
+2. **Rehacer VE con la frontera Natural Earth**: tomar el contorno
+   exterior de VE-110m (que sí calza con vecinos) y añadirle a mano el
+   Esequibo + islas. Mantiene compatibilidad de bordes.
+3. **Topología compartida real**: armar un TopoJSON con todos los países
+   donde los arcs fronterizos sean compartidos entre VE y Colombia/
+   Brasil/Guyana. Más trabajo pero el resultado es perfecto.
+
+Hasta resolverlo, los modos "Sin bordes" en Global pueden mitigar lo que
+se ve, pero no es solución real.
+
+---
+
 ## Visualización de tabla
 
 Mostrar los datos del indicador activo como **tabla ordenable** además del
@@ -129,6 +165,66 @@ regionales para Venezuela).
 
 ---
 
+## Fix Venezuela + Esequibo en vista Global
+
+En vista Global hoy Venezuela se ve **recortada del lado oriental**
+porque `world-countries.geojson` usa la geometría internacional
+(probablemente Natural Earth), que no incluye el Esequibo como
+territorio venezolano.
+
+**Diagnóstico medido**:
+
+| Fuente | Extremo este | Esequibo |
+|--------|--------------|----------|
+| `world-countries.geojson` (vista Global hoy) | −59.83°W | Recortado |
+| `venezuela-adm0-enriched.geojson` (vista VE) | −58.18°W | Completo |
+
+Diferencia: ~1.65° más al este (~180 km en esa latitud). En vista
+Global, el Esequibo aparece pintado como parte de Guyana, lo cual
+contradice la posición soberanista que ya toma la vista Venezuela.
+
+**Plan** (script de build time + reemplazo):
+
+```js
+// scripts/fix-venezuela-in-world.mjs
+import { simplify, difference } from '@turf/turf'
+
+const world = JSON.parse(readFileSync('app/public/data/world-countries.geojson'))
+const veFull = JSON.parse(readFileSync('app/public/data/venezuela-adm0-enriched.geojson'))
+
+// 1. Simplificar VE detallado a escala mundial (~250 puntos vs 6.575 originales)
+const veSimplified = simplify(veFull.features[0], {
+  tolerance: 0.05,   // ajustar empíricamente
+  highQuality: true,
+})
+
+// 2. Reemplazar VE en world (preservar props originales: iso_a3, continent, etc.)
+const veIdx = world.features.findIndex(f => f.properties.iso_a3 === 'VEN')
+world.features[veIdx].geometry = veSimplified.geometry
+
+// 3. Recortar Guyana para que no overlap el Esequibo
+const guyIdx = world.features.findIndex(f => f.properties.iso_a3 === 'GUY')
+const guyClipped = difference(world.features[guyIdx], veSimplified)
+if (guyClipped) world.features[guyIdx].geometry = guyClipped.geometry
+
+writeFileSync('app/public/data/world-countries.geojson', JSON.stringify(world))
+```
+
+**Decisiones tomadas**:
+- **Cortar Guyana** (no dejar overlap). Es 1 línea más con
+  `turf.difference()` y queda cartográficamente coherente con la
+  posición que ya toma la vista VE.
+- **Solo VE+Esequibo**, no abrir la lata de otros disputados
+  (Malvinas, Sahara Occidental, Cachemira, Taiwán). Si en algún
+  momento el proyecto quiere tomar posiciones editoriales sobre
+  esos casos, es decisión aparte.
+
+**Esfuerzo**: ~30 min (1 script + 1 corrida + verificación visual).
+**Impacto**: alto simbólicamente (coherencia entre vistas), bajo
+funcionalmente. Vale la pena hacerlo pronto.
+
+---
+
 ## Normalización vista Global ↔ vista Venezuela (Leaflet)
 
 Las dos vistas (Global con d3-geo, Venezuela con Leaflet) tienen
@@ -189,6 +285,198 @@ También reordenar las secciones del panel Estilo:
 Test: abrir como usuario nuevo y ver cuáles toggles toca primero.
 Esos deberían estar arriba y siempre visibles. El resto puede ir en
 disclosures plegables.
+
+---
+
+## Refactor multi-país
+
+Hoy `indicators.ts`, los masters y los TopoJSON están hardcoded para
+Venezuela. El selector LATAM del TopBar es placeholder. Para sumar
+Colombia, Perú u otros, el código necesita generalizarse.
+
+**Estructura propuesta**: una sola app, un solo deploy, país en el path
+(`/ve`, `/co`). Carpetas reorganizadas:
+
+```
+data/master/<code>/{states,municipalities,coverage}.json
+app/public/data/<code>/{adm0,adm1,adm2}.topojson
+app/public/data/<code>/thematic/...
+app/src/data/indicators/<code>.ts
+app/src/data/countries.ts        ← registry central
+```
+
+**Registry central** (`countries.ts`):
+- `code`, `name`, `enabled`, `bounds`
+- `levelLabels`: `{ adm1: 'Estados', adm2: 'Municipios' }` (Venezuela)
+  vs `{ adm1: 'Departamentos', adm2: 'Municipios' }` (Colombia) — lo
+  único que el usuario nota
+- `counts: { adm1, adm2 }` cache
+- `isoPrefix: 'VE-' | 'CO-' | ...`
+- `indicatorsModule: () => Promise<...>` (lazy import por país)
+
+**Store generalizado**: `loadCountry(code)` en vez de `loadGeoData()`.
+`country: string` (ya está parcial). El `selectIndicator` y demás siguen
+igual — solo cambia de qué array de indicators viene.
+
+**Roadmap en 3 fases**:
+
+1. **Fase 0 · Preparar (sin sumar países)**. Renombrar carpetas a
+   `data/<code>/`, mover `indicators.ts` → `indicators/ve.ts`, generalizar
+   store. VE sigue funcionando idéntico — mide la arquitectura sin riesgo.
+2. **Fase 1 · Sumar Colombia como prueba**. geoBoundaries CO + 2-3
+   indicadores DANE. Si el toggle del TopBar funciona sin tocar código
+   VE, la arquitectura quedó validada.
+3. **Fase 2 · Documentar "cómo agregar un país"**. Script
+   `scripts/scaffold-country.mjs <iso>` que crea las carpetas y
+   templates. Doc `docs/ADD_COUNTRY.md`. Desbloquea contribuciones
+   externas.
+
+**Decisiones tomadas**:
+- URL strategy: **path** (`/co`), no subdominio. Mejor SEO, sin DNS extra.
+- Nomenclatura adm: **por país** vía `levelLabels`, no genérico.
+- Indicadores: **cada país lo suyo** primero. Catálogo común
+  cross-país es optimización prematura hasta tener 3+ países.
+- Vista global: **modo aparte** (`ViewMode: 'country' | 'global'`), no
+  un país más.
+
+Trade-off: agregar país nuevo requiere ~1-2 semanas la primera vez
+(refactor inicial), después debería ser 2-3 días el siguiente.
+
+---
+
+## Backend opcional para reportes ciudadanos (trigger: Supabase)
+
+La visión de fondo del proyecto incluye que ciudadanos puedan reportar
+huecos, robos, alcabalas e irregularidades sobre el mapa. Esto **es el
+único feature que requiere backend sin alternativa**: persistencia
+compartida entre usuarios + moderación + posiblemente auth anti-spam.
+
+**Triggers explícitos para activar Supabase** (cualquiera de estos
+justifica romper el principio "static-first"):
+
+1. 3+ usuarios reales (periodistas, ONGs identificables) piden
+   explícitamente "quiero reportar X en el mapa".
+2. Querés probar el modelo de reportes ciudadanos con un piloto en una
+   ciudad o estado concreto.
+3. Aparece sponsor/financiamiento que cubra ~USD 25/mes del plan paid
+   (free tier alcanza para empezar: 500 MB DB, 50K MAU, 5 GB bandwidth).
+
+**Por qué Supabase específicamente** (si en algún momento):
+- Postgres compatible (sin lock-in si después migras)
+- Auth built-in (anónimo si querés mantener "sin login")
+- Row-level security para moderación
+- Storage si en algún momento se permiten fotos en reportes
+- Buena integración con Vercel
+
+**Principio de diseño**: la app **sigue funcionando 100% sin Supabase**
+para users que no usan reportes. Reportes es un `<ReportLayer>` opcional
+que pide datos al backend. Si Supabase está caído u offline, el resto
+del producto sigue. Eso preserva la robustez actual y mantiene
+"static-first" como default, con Supabase como excepción documentada
+para 1 feature.
+
+**Lo que NO justifica activar Supabase** (resoluble más barato):
+
+| Caso | Alternativa |
+|------|-------------|
+| Mapas compartidos por link (snapshot view state) | Vercel KV — más simple |
+| API pública para terceros | Vercel Edge Function + cache |
+| Analytics propias | Plausible / Umami (privacy-first) |
+| Sincronizar prefs entre devices del mismo user | localStorage cubre 95% |
+| Búsqueda full-text de localidades (<5K) | Cliente con trie/fuzzy |
+
+Hasta que aparezca alguno de los 3 triggers concretos, postergar es la
+decisión correcta — aplica directo el principio "eficiente: no agregar
+dependencias hasta que duelan no tenerlas".
+
+---
+
+## Sacar masters JSON del bundle
+
+Hoy `app/src/data/master-municipalities.json` (~700 KB) y
+`master-states.json` (~40 KB) se importan en `indicators.ts` y quedan
+**bundled en el JavaScript del cliente**. Cada indicador que agreguemos
+crece el bundle.
+
+**Cambio**: convertir a fetch lazy desde `public/data/`, con caché en
+Zustand.
+
+```ts
+// store.ts
+async loadMasters() {
+  const [munis, states] = await Promise.all([
+    fetch('/data/master/ve/municipalities.json').then(r => r.json()),
+    fetch('/data/master/ve/states.json').then(r => r.json()),
+  ])
+  set({ masters: { munis, states } })
+}
+```
+
+**Beneficios**:
+- Bundle inicial baja ~30%
+- Actualizar datos no requiere rebuild de la app (solo reemplazar JSON
+  en el deploy)
+- Encaja perfecto con el refactor multi-país (cada país fetchea sus
+  propios masters)
+
+**Esfuerzo**: low. **Impacto**: alto en tamaño de bundle, medio en
+mantenimiento. Vale la pena hacerlo **antes** del refactor multi-país
+para que el cambio sea natural.
+
+---
+
+## Búsqueda y categorización de indicadores
+
+Hoy hay 25 indicadores en una lista flat. Funcionan, pero la cognición
+humana ya empieza a degradarse pasados 30-40 items sin organización.
+
+**Trigger**: hacerlo **antes** de llegar a 40 indicadores. Hoy estamos
+en 25, así que hay margen, pero la próxima ola (timeline slider expone
+las series temporales como indicadores separables, banderas/escudos por
+país en multi-país) puede empujar fácil a 50+.
+
+**Cambios**:
+
+1. Agregar campo `category: 'demografia' | 'economia' | 'desarrollo' |
+   'seguridad' | 'simbolico' | 'politico'` al tipo `Indicator`.
+2. Search box arriba de la lista (`input` simple con filtro por
+   `label` + `description`).
+3. Collapse por categoría (`<details>` nativos, mismo patrón que
+   StyleControls).
+4. Hover de cada indicador expande tooltip con `description` + `note`
+   + `coverage` (hoy solo se ve al click).
+
+**Bonus**: en mobile, en vez de lista expandida, picker tipo modal con
+search + filtros chip por categoría. Más nativo para pantallas chicas.
+
+---
+
+## Vector tiles para capas temáticas pesadas
+
+`vialidad.geojson` pesa 1.9 MB con 9697 LineStrings. En mobile el render
+de Leaflet ya está al límite. Cualquier capa temática nueva de >2 MB
+romperá la UX en celulares.
+
+**Trigger**: cuando aparezca el primer reporte real de "se traba el
+mapa al activar vialidad en mi celular", o cuando se quiera agregar
+una capa pesada nueva (ej. red eléctrica completa, drenajes).
+
+**Opciones evaluadas**:
+
+1. **Vector tiles propios** (servidos como archivos `.pbf` estáticos
+   desde Vercel/CDN). Generar con tippecanoe en el script de
+   preprocesamiento. Pros: mantiene "sin backend". Contras: complejidad
+   del pipeline, archivos generados por zoom level.
+2. **Protomaps** (vector tiles servidos como un solo `.pmtiles` desde
+   CDN, sin tile server). Pros: super liviano operacionalmente, mantiene
+   static-first. Contras: dep nueva en frontend (`pmtiles` library).
+3. **Simplificación geométrica más agresiva** con tolerancia más alta
+   en `simplify-thematic.mjs`. Pros: cero arquitectura nueva. Contras:
+   pierde detalle visible en zoom alto.
+
+Recomendación: empezar con **(3)** (más simplificación), agresivo solo
+en zoom medio. Si no alcanza, ir a **(2) Protomaps** porque preserva
+"sin backend". Vector tiles propios sólo si hay 5+ capas que lo necesitan.
 
 ---
 
