@@ -337,6 +337,38 @@ const PIB_PER_CAPITA: Indicator = {
   stateAggregate: stateField('pib_per_capita_usd'),
 }
 
+// PIB nacional = suma de PIB de munis (= suma de estados, son consistentes).
+// Computado una vez al import, reusado para el indicador de % nacional.
+const PIB_NACIONAL_TOTAL_MM_USD = Object.values(munis)
+  .reduce((sum, m) => sum + (m.pib_total_mm_usd ?? 0), 0)
+
+const PIB_PCT_NACIONAL: Indicator = {
+  id: 'pib_pct_nacional',
+  category: 'economia',
+  label: '% del PIB nacional · estimado',
+  description: 'Porcentaje que cada muni/estado representa del PIB total venezolano',
+  unit: '%',
+  format: 'rate',
+  year: 2026,
+  source: 'Estimaciones del proyecto (PIB muni / PIB nacional)',
+  note: 'Cobertura ~46% munis. La suma de % de los munis con data NO llega a 100% porque faltan ~54% de los munis sin estimación.',
+  aggregation: 'municipality',
+  // En adm0 sumamos los % → da el % cubierto (cerca de 100% si la cobertura
+  // estatal es alta; menos si no). Es informativo de cuánto del PIB nacional
+  // está realmente contemplado en estos datos.
+  nationalAggregation: 'sum',
+  data: Object.fromEntries(
+    Object.entries(munis)
+      .filter(([, m]) => typeof m.pib_total_mm_usd === 'number')
+      .map(([sid, m]) => [sid, (m.pib_total_mm_usd! / PIB_NACIONAL_TOTAL_MM_USD) * 100]),
+  ),
+  stateAggregate: Object.fromEntries(
+    Object.entries(states)
+      .filter(([, s]) => typeof s.pib_total_mm_usd === 'number')
+      .map(([iso, s]) => [iso, (s.pib_total_mm_usd! / PIB_NACIONAL_TOTAL_MM_USD) * 100]),
+  ),
+}
+
 // ─── Source CV: indicadores municipales y estatales del Excel del user ──
 
 const PCT_URBANO: Indicator = {
@@ -666,6 +698,7 @@ export const INDICATORS: Indicator[] = [
   IDH,
   PIB_PER_CAPITA,
   PIB_TOTAL,
+  PIB_PCT_NACIONAL,
   POBLACION_2024,
   HOMICIDIOS,
   BANDERAS_PAIS,

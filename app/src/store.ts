@@ -175,7 +175,10 @@ type Actions = {
 
 // Indicadores archivados por default — son los 3 estimados (sin fuente
 // oficial sólida). El usuario puede desarchivar si los necesita.
-const DEFAULT_ARCHIVED_INDICATORS = ['idh_2026', 'pib_total', 'pib_per_capita']
+// idh_2026 sigue archivado: es un IDH estimado para 2026 con cobertura
+// parcial y metodología propia (no oficial). Los PIB son estimados también
+// pero el user los pidió como reportes visibles de la sección Economía.
+const DEFAULT_ARCHIVED_INDICATORS = ['idh_2026']
 
 export const DEFAULT_MAP_STYLE: MapStyle = {
   lineWidth: 0.6,
