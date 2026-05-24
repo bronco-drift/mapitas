@@ -414,7 +414,9 @@ export function WorldMapView() {
                 <title>
                   {`${props.name}${
                     typeof props._value === 'number'
-                      ? ` · ${props._value.toLocaleString('es-VE')} migrantes`
+                      ? ` · ${props._value.toLocaleString('es-VE')} ${
+                          props.is_origin ? 'habitantes (origen)' : 'migrantes'
+                        }`
                       : ' · sin dato'
                   }${props.as_of ? ` (${props.as_of})` : ''}`}
                 </title>

@@ -345,7 +345,12 @@ export function applyDiaspora(
   customRange?: { min: number | null; mid: number | null; max: number | null },
   opts: { clipExtremes?: boolean } = {},
 ): { geo: AdmGeoJSON<DiasporaProps>; stats: IndicatorStats } {
+  // El rango se calcula EXCLUYENDO el país origen (VE con is_origin=true):
+  // su población es ~5x el mayor receptor (Colombia) y rompe la escala
+  // visual del choropleth. VE igual se pinta abajo pero con un color
+  // distintivo (granate fijo) que la marca como "origen" no comparable.
   const values = geo.features
+    .filter(f => !f.properties.is_origin)
     .map(f => f.properties.migrantes_ve)
     .filter((v): v is number => typeof v === 'number')
   const { min: autoMin, max: autoMax } = autoRange(values, opts.clipExtremes ?? true)
@@ -356,16 +361,25 @@ export function applyDiaspora(
       ? Math.max(0.05, Math.min(0.95, (customRange.mid - min) / (max - min)))
       : 0.5
 
+  // Color fijo para el país origen: granate oscuro, indica "este es de donde
+  // sale la migración" y queda visualmente separado del gradiente de receptores.
+  const ORIGIN_COLOR = '#6b1f2b'
+
   let matched = 0
   const features = geo.features.map(f => {
     const v = f.properties.migrantes_ve
+    const isOrigin = f.properties.is_origin === true
     if (v != null) matched++
     return {
       ...f,
       properties: {
         ...f.properties,
         _value: v ?? null,
-        _color: v != null ? colorScale(v, min, max, palette, custom, midRatio) : null,
+        _color: isOrigin
+          ? ORIGIN_COLOR
+          : v != null
+            ? colorScale(v, min, max, palette, custom, midRatio)
+            : null,
         _matched: v != null,
       },
     }

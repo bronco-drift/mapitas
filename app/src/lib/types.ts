@@ -61,6 +61,12 @@ export type DiasporaProps = {
   migrantes_ve: number | null
   as_of?: string | null
   source?: string | null
+  // true para el país origen (Venezuela). Cuando está activo:
+  // - migrantes_ve guarda la población actual de VE (no migrantes recibidos)
+  // - el feature se excluye del cálculo del rango del choropleth
+  // - se pinta con un color fijo (granate) distinto del gradiente
+  // - el tooltip dice "habitantes" en vez de "migrantes"
+  is_origin?: boolean
   _value?: number | null
   _color?: string | null
   _matched?: boolean
