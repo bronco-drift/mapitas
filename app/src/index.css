@@ -34,6 +34,31 @@ html, body, #root {
   shape-rendering: geometricPrecision;
 }
 
+/* Quita el focus outline default del browser sobre los paths interactivos
+   de Leaflet. El browser dibuja un rectángulo alrededor del bbox del
+   <path> SVG al hacer click (accesibilidad), pero ese rectángulo:
+   1) no sigue la geometría del polígono (es un cuadrado del bbox),
+   2) queda detrás de los polígonos vecinos por z-order del SVG,
+   3) compite visualmente con nuestro indicador de selección.
+   Lo reemplazamos por un outline propio dibujado en hoverPane (z-index 500)
+   que sigue la forma real del polígono y queda siempre arriba. */
+.leaflet-interactive {
+  outline: none;
+}
+.leaflet-interactive:focus {
+  outline: none;
+}
+
+/* Sliders nativos en mobile: iOS Safari por default deja al browser decidir
+   si un touch sobre el slider es "scroll vertical de la página" o "drag del
+   thumb del slider". En un panel con overflow-y-auto, gana scroll → el slider
+   queda inerte. `touch-action: pan-x` le dice al browser: este elemento solo
+   responde a pan horizontal, deja el pan vertical para el scroll del padre.
+   Para sliders horizontales esto destraba el drag sin romper el scroll. */
+input[type="range"] {
+  touch-action: pan-x;
+}
+
 /* Tooltips de Leaflet alineados con el estilo de la app: borde slate,
    sombra suave, sin la flecha pixel-grosera del default. */
 .leaflet-tooltip {

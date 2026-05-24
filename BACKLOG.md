@@ -77,6 +77,121 @@ Bonus: botón ▶ que reproduce automáticamente la serie en loop.
 
 ---
 
+## Imágenes con fondo transparente (banderas/escudos)
+
+Algunas banderas y la mayoría de los escudos cosechados desde Wikidata
+vienen con **fondo transparente** (PNG con canal alpha). Al recortarlos
+al polígono del estado/muni con clip-path, el área transparente deja ver
+el `_color` gris claro del path debajo (#cbd5e1) en lugar del color que
+correspondería visualmente.
+
+Casos donde se nota: escudos sobre polígonos en modo escudos (la mayoría
+son figuras con fondo transparente, no rectángulos llenos).
+
+**Plan**:
+
+1. Detectar en el script de cosecha si la imagen tiene canal alpha y
+   tiene áreas transparentes significativas (>20% píxeles).
+2. Para esas imágenes, generar una versión con fondo plano (blanco o
+   color de la bandera nacional/estatal correspondiente) y servir la
+   versión "rasterizada con fondo".
+3. O alternativa: separar visualmente "bandera" (siempre rect) vs
+   "escudo" (figura sobre área neutra) — los escudos no deberían cubrir
+   100% del polígono sino aparecer centrados en tamaño reducido (estilo
+   marca de agua), con fondo del polígono visible alrededor.
+
+Trade-off: la option 3 cambia significativamente la UX visual del
+indicador "Escudos" pero es más fiel al uso real de los escudos.
+
+---
+
+## Reportes a nivel regional
+
+Hoy tenemos 3 niveles: País → Estado → Municipio. Falta un nivel
+intermedio para análisis geográficos: **región**.
+
+Regiones típicas de Venezuela (definidas por ONU-Habitat y CORDIPLAN):
+- Capital, Central, Centro-Occidental, Llanos, Los Andes, Nor-Oriental,
+  Insular, Guayana, Zuliana.
+
+Algunas estadísticas se publican a este nivel (ej. CEPAL reporta
+regionales para Venezuela).
+
+**Plan**:
+
+1. Mapeo `region.json`: cada estado → su región.
+2. Geometría regional: dissolve de los polígonos estatales (turf union)
+   en build time, output a `venezuela-regions.topojson`.
+3. Toggle "Regiones" entre Estados y Municipios en el segmented de
+   nivel del ControlPanel.
+4. Los indicadores se agregan automáticamente desde estados → regiones
+   (sum o mean según el indicator).
+
+---
+
+## Normalización vista Global ↔ vista Venezuela (Leaflet)
+
+Las dos vistas (Global con d3-geo, Venezuela con Leaflet) tienen
+**diferencias visuales y funcionales** que generan inconsistencia:
+
+- Vista VE: pan/zoom de Leaflet, tiles base, tooltip de Leaflet,
+  control de zoom con +/−.
+- Vista Global: pan/zoom manual con PointerEvents, sin tiles, sphere
+  background, sin botones de zoom.
+
+Tareas:
+1. Unificar controles de zoom: agregar botones +/− también en vista
+   Global (custom, no Leaflet).
+2. Tooltip consistente: usar el mismo estilo en ambas vistas.
+3. Decidir si los basemaps deben aparecer también en Global (con tiles
+   reproyectados o ignorados).
+4. Que los slider de opacidad de relleno y borde funcionen también
+   en vista Global.
+5. Estado mapStyle (showLabels, noBorders) debería aplicarse o estar
+   deshabilitado claramente cuando no aplica.
+
+---
+
+## Reportes de LATAM
+
+Extender el alcance de "indicadores comparativos" a toda LATAM, no
+solo Venezuela:
+
+- IDH PNUD por país (data disponible)
+- Esperanza de vida WHO
+- PIB per cápita World Bank
+- Pobreza (CEPAL)
+- Migración intra-LATAM (R4V para Venezuela ya está; agregar otros
+  flujos: Haití, Nicaragua, etc.)
+
+La infraestructura de vista Global (d3-geo + world-countries.geojson)
+ya está. Faltan los datasets y los indicadores en `indicators.ts` con
+`restrictedTo: 'global'` o similar.
+
+UX: en vista Global, además de "Migrantes VE recibidos" (lo que hay
+hoy), aparecen otros indicadores comparativos. El user puede ver el
+mismo mapa LATAM/mundial con diferentes capas de data.
+
+---
+
+## Defaults + reordenar sección Estilos
+
+Auditar todos los valores default del producto (palette, opacidad,
+basemap, etc.) y verificar que sean los "menos sorprendentes" para un
+visitante nuevo. Algunos quedaron como están por inercia de development.
+
+También reordenar las secciones del panel Estilo:
+- Hoy: Color → Mapa base → Polígonos → Vista
+- Pensar qué es lo más usado primero, qué queda más abajo
+- Considerar qué opciones merece ser disclosure colapsable vs siempre
+  visible
+
+Test: abrir como usuario nuevo y ver cuáles toggles toca primero.
+Esos deberían estar arriba y siempre visibles. El resto puede ir en
+disclosures plegables.
+
+---
+
 ## Otros items menores (pendientes de sesiones previas)
 
 - Páez de Apure: el polígono existe en adm2 (lo movimos a VE-C) pero los

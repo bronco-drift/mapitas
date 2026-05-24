@@ -10,6 +10,7 @@ export const CARTO_LABELS_OVERLAY_URL =
 
 export type BasemapId =
   | 'solid'
+  | 'world-outlines'
   | 'carto-light'
   | 'carto-light-nolabels'
   | 'carto-dark'
@@ -36,6 +37,15 @@ export const BASEMAPS: Basemap[] = [
     attribution: '',
     maxZoom: 19,
     preview: 'linear-gradient(135deg, #1f2937, #0f172a)',
+  },
+  {
+    id: 'world-outlines',
+    label: 'Contornos países',
+    short: 'Contornos',
+    url: '',
+    attribution: 'Borders &copy; Natural Earth',
+    maxZoom: 19,
+    preview: 'linear-gradient(135deg, #fdfdfb, #f1f1ee)',
   },
   {
     id: 'carto-light',

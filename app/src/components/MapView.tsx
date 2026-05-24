@@ -43,6 +43,26 @@ function MapBootstrap({ bgColor, bounds }: { bgColor: string; bounds: L.LatLngBo
   // boundsRef nos permite reaccionar a cambios de bounds (toggle de vista)
   // sin perder el "fitted" inicial dentro del mismo bounds.
   const lastBoundsRef = useRef<L.LatLngBounds>(bounds)
+  // Pane custom para el basemap de contornos: z-index 300 = encima de los
+  // tiles (200) pero debajo del overlayPane default (400) donde vive el
+  // choropleth de VE. Así los polígonos de Venezuela siempre quedan arriba.
+  useEffect(() => {
+    if (!map.getPane('worldOutlinesPane')) {
+      const pane = map.createPane('worldOutlinesPane')
+      pane.style.zIndex = '300'
+      pane.style.pointerEvents = 'none'
+    }
+    // Pane para el contorno del polígono hoverado: z-index 500 = encima de
+    // TODO (overlayPane 400, símbolos, borders, tooltips bajos). El path del
+    // polígono captura el evento abajo, pero el outline visible se dibuja en
+    // este pane para que no quede tapado por banderas/escudos ni por los
+    // bordes de overlay (stateOverlay, countryBorder).
+    if (!map.getPane('hoverPane')) {
+      const pane = map.createPane('hoverPane')
+      pane.style.zIndex = '500'
+      pane.style.pointerEvents = 'none'
+    }
+  }, [map])
   useEffect(() => {
     const container = map.getContainer()
     let fitted = false
@@ -348,6 +368,8 @@ export function MapView() {
   const source = useStore(s => s.source)
   const mapStyle = useStore(s => s.mapStyle)
   const thematic = useStore(s => s.thematic)
+  const diaspora = useStore(s => s.diaspora)
+  const loadDiasporaData = useStore(s => s.loadDiasporaData)
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
   const [zoom, setZoom] = useState<number | null>(null)
@@ -357,9 +379,19 @@ export function MapView() {
   // Cuando el basemap es "solid", usa el mismo bgColor del style (el color picker "Fondo").
   // Cuando es "transparent", transparente. Si no, el bgColor solo se ve si el basemap real falla.
   const isSolidBasemap = mapStyle.basemap === 'solid'
+  const isWorldOutlines = mapStyle.basemap === 'world-outlines'
   const effectiveBg = mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor
-  // Esconde tiles si "isolate" o si el basemap es solid (no hay tiles que cargar)
-  const hideBasemap = mapStyle.isolateCountry || isSolidBasemap
+  // Esconde tiles si "isolate", basemap solid o world-outlines (no hay tiles que cargar
+  // para esos tres — solid usa bgColor, world-outlines pinta el geojson como capa)
+  const hideBasemap = mapStyle.isolateCountry || isSolidBasemap || isWorldOutlines
+
+  // Carga lazy del geojson mundial la primera vez que el user elige el
+  // basemap de contornos. Reusa el dataset que ya cargaba la vista Global.
+  useEffect(() => {
+    if (isWorldOutlines && !diaspora) {
+      loadDiasporaData()
+    }
+  }, [isWorldOutlines, diaspora, loadDiasporaData])
 
   const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<
     Adm0Props | Adm1Props | Adm2Props
@@ -388,9 +420,57 @@ export function MapView() {
   const layerRef = useRef<L.GeoJSON | null>(null)
   const overlayRef = useRef<L.GeoJSON | null>(null)
   const countryBorderRef = useRef<L.GeoJSON | null>(null)
+  // Layer L.GeoJSON temporal que dibuja sólo el outline del polígono hoverado
+  // en el hoverPane (z-index 500). Se crea on-mouseover y se destruye on-mouseout.
+  // Garantiza visibilidad del contorno aunque haya banderas, escudos, stateOverlay
+  // o countryBorder tapando los bordes del path original.
+  const hoverOutlineRef = useRef<L.GeoJSON | null>(null)
+  // Outline persistente del polígono seleccionado al click. Vive en el mismo
+  // hoverPane (z-index 500) — reemplaza al rectángulo focus default del browser,
+  // que es el bbox del <path> SVG (no la forma del polígono) y queda enterrado
+  // por los vecinos. Se actualiza en cada click; cleanup al cambiar layerKey.
+  const selectedOutlineRef = useRef<L.GeoJSON | null>(null)
   // Marcador para distinguir "primera vez que veo esta layer" vs "data cambió
   // dentro de la misma layer". react-leaflet sólo aplica data en mount.
   const lastLayerRef = useRef<L.GeoJSON | null>(null)
+
+  // Helper: remueve un layer del map de forma defensiva. Si el map está en
+  // proceso de destruirse (ej. al cambiar de vista VE↔Global), removeLayer
+  // puede tirar "Cannot read properties of undefined (reading '_removePath')"
+  // porque el renderer del pane ya fue limpiado. Silenciamos esos casos.
+  function safeRemoveLayer(map: L.Map | null, layer: L.Layer | null) {
+    if (!map || !layer) return
+    try {
+      map.removeLayer(layer)
+    } catch {
+      // map ya destruyéndose o layer huérfano; no es accionable.
+    }
+  }
+
+  // Limpia los outlines (hover y selected) cuando cambia el nivel o el data
+  // layer se remontea. Sin esto, un mouseover o click seguido de cambio de
+  // nivel deja contornos fantasma en el hoverPane.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map) return
+    safeRemoveLayer(map, hoverOutlineRef.current)
+    hoverOutlineRef.current = null
+    safeRemoveLayer(map, selectedOutlineRef.current)
+    selectedOutlineRef.current = null
+  }, [layerKey])
+
+  // Cleanup al desmontar MapView (ej. user cambia a vista Global). Sin esto,
+  // los outlines quedan huérfanos referenciando el map viejo y al volver a
+  // Venezuela puede haber leaks o errores.
+  useEffect(() => {
+    return () => {
+      const map = mapRef.current
+      safeRemoveLayer(map, hoverOutlineRef.current)
+      hoverOutlineRef.current = null
+      safeRemoveLayer(map, selectedOutlineRef.current)
+      selectedOutlineRef.current = null
+    }
+  }, [])
 
   // Cuando data cambia SIN que la key haga remount (cambia palette custom,
   // colores start/end del custom, customRange), react-leaflet no propaga el
@@ -455,6 +535,15 @@ export function MapView() {
         className="h-full w-full"
         style={{ background: effectiveBg }}
       >
+        {/* MapBootstrap PRIMERO en el orden de children: su useEffect crea
+            los panes custom (worldOutlinesPane, hoverPane). React ejecuta los
+            useEffect de siblings en el orden en que aparecen en el JSX, así
+            que cualquier layer que use esos panes (ej. world-outlines basemap
+            abajo) debe ir DESPUÉS. Si los panes no existieran al montarse la
+            layer, el renderer SVG fallaría al hacer getPane() y al desmontar
+            tiraría "Cannot read properties of undefined (reading '_removePath')". */}
+        <MapBootstrap bgColor={effectiveBg} bounds={VENEZUELA_BOUNDS} />
+        <ZoomBridge onChange={setZoom} mapRef={mapRef} />
         {!hideBasemap && (() => {
           const bm = getBasemap(mapStyle.basemap)
           return (
@@ -466,6 +555,25 @@ export function MapView() {
             />
           )
         })()}
+        {/* Basemap "Contornos países": en vez de un TileLayer, montamos un
+            GeoJSON con los polígonos de Natural Earth en un pane custom
+            debajo del overlayPane. Mapa casi blanco con divisiones grises
+            de países, sin nombres ni relieve. */}
+        {isWorldOutlines && !mapStyle.isolateCountry && diaspora && (
+          <GeoJSON
+            key="world-outlines-basemap"
+            data={diaspora as never}
+            pane="worldOutlinesPane"
+            interactive={false}
+            style={() => ({
+              fillColor: '#fdfdfb',
+              color: '#cbd5e1',
+              weight: 0.5,
+              fillOpacity: 1,
+              opacity: 1,
+            })}
+          />
+        )}
         {/* Overlay de etiquetas: tile solo-labels de Carto encima del basemap.
             Permite usar el basemap limpio (sin nombres) y prender los nombres
             independiente. Pane "tooltipPane" para que quede sobre los
@@ -480,8 +588,6 @@ export function MapView() {
             opacity={0.9}
           />
         )}
-        <MapBootstrap bgColor={effectiveBg} bounds={VENEZUELA_BOUNDS} />
-        <ZoomBridge onChange={setZoom} mapRef={mapRef} />
         {data && (
           <GeoJSON
             key={layerKey}
@@ -509,8 +615,40 @@ export function MapView() {
                 { sticky: true, direction: 'auto' },
               )
               layer.on({
-                mouseover: e => (e.target as L.Path).setStyle(hoverStyle(mapStyle)),
-                mouseout: e => layerRef.current?.resetStyle(e.target as L.Path),
+                mouseover: e => {
+                  const target = e.target as L.Path
+                  target.setStyle(hoverStyle(mapStyle))
+                  // Outline duplicado en hoverPane (z-index 500) para que se vea
+                  // por encima de cualquier capa: banderas/escudos (que tapan el
+                  // path original), stateOverlay (que tapa bordes compartidos en
+                  // modo munis) y countryBorder. El path real sigue capturando
+                  // mouseout abajo; este es puramente visual.
+                  const map = mapRef.current
+                  if (!map) return
+                  if (hoverOutlineRef.current) {
+                    map.removeLayer(hoverOutlineRef.current)
+                    hoverOutlineRef.current = null
+                  }
+                  hoverOutlineRef.current = L.geoJSON(feature as never, {
+                    pane: 'hoverPane',
+                    interactive: false,
+                    style: {
+                      color: '#0f172a',
+                      weight: Math.max(mapStyle.lineWidth * 3, 1.8),
+                      opacity: 1,
+                      fillOpacity: 0,
+                      fill: false,
+                    },
+                  }).addTo(map)
+                },
+                mouseout: e => {
+                  layerRef.current?.resetStyle(e.target as L.Path)
+                  const map = mapRef.current
+                  if (map && hoverOutlineRef.current) {
+                    map.removeLayer(hoverOutlineRef.current)
+                    hoverOutlineRef.current = null
+                  }
+                },
                 click: () => {
                   setSelected({
                     name,
@@ -519,6 +657,27 @@ export function MapView() {
                     iso: (props as Adm1Props).iso ?? (props as Adm2Props).parentISO,
                     value,
                   })
+                  // Outline persistente en hoverPane: sigue la forma real del
+                  // polígono y queda siempre arriba (encima de banderas,
+                  // overlays y vecinos). Reemplaza el rectángulo focus default
+                  // del browser que vivía a nivel <path> SVG.
+                  const map = mapRef.current
+                  if (!map) return
+                  if (selectedOutlineRef.current) {
+                    map.removeLayer(selectedOutlineRef.current)
+                    selectedOutlineRef.current = null
+                  }
+                  selectedOutlineRef.current = L.geoJSON(feature as never, {
+                    pane: 'hoverPane',
+                    interactive: false,
+                    style: {
+                      color: '#0f172a',
+                      weight: Math.max(mapStyle.lineWidth * 3, 1.8),
+                      opacity: 1,
+                      fillOpacity: 0,
+                      fill: false,
+                    },
+                  }).addTo(map)
                 },
               })
             }}

@@ -160,6 +160,13 @@ export function WorldMapView() {
   // Marcador: si el pointer se movió más que el threshold, el siguiente click
   // sobre un país NO debe dispararse (es el final de un drag, no un tap).
   const wasDraggedRef = useRef(false)
+  // Path SVG que recibió el pointerdown. Lo guardamos para resolver el "click"
+  // en pointerup vía event delegation. En iOS, asignar onClick directamente a
+  // cada <path> hace que Safari intercepte los touch events y NO los propague
+  // al SVG padre — eso rompía el drag-to-rotate del globo: tocando agua/sphere
+  // funcionaba, tocando un país no. Resolviendo el tap acá liberamos los paths
+  // de cualquier handler de touch/click y el drag funciona en toda la sphere.
+  const downTargetRef = useRef<SVGPathElement | null>(null)
 
   // Reset pan/scale al cambiar dimensiones (rotación pantalla, abrir/cerrar
   // panel mobile). Sin reset, el pan queda con coordenadas viejas.
@@ -187,6 +194,12 @@ export function WorldMapView() {
     // Primer pointer: arrancar drag
     e.currentTarget.setPointerCapture?.(e.pointerId)
     wasDraggedRef.current = false
+    // Cachear el path tocado para resolver el tap en pointerup. e.target acá
+    // es el elemento real bajo el dedo (sphere o un path de país). En pointerup
+    // el target puede haber cambiado por el pointerCapture, así que guardamos
+    // el original ahora.
+    const t = e.target as Element
+    downTargetRef.current = t instanceof SVGPathElement && t.dataset.iso ? t : null
     dragRef.current = {
       pointerId: e.pointerId,
       startX: e.clientX,
@@ -236,6 +249,23 @@ export function WorldMapView() {
     if (dragRef.current?.pointerId === e.pointerId) {
       e.currentTarget.releasePointerCapture?.(e.pointerId)
       dragRef.current = null
+      // Resolver el "click" si no hubo drag. Event delegation desde el SVG
+      // para que iOS no bloquee los touches con onClick por-path.
+      if (!wasDraggedRef.current && downTargetRef.current && diaspora) {
+        const iso = downTargetRef.current.dataset.iso
+        const feature = diaspora.features.find(
+          f => (f.properties as DiasporaProps).iso_a3 === iso,
+        )
+        if (feature) {
+          const props = feature.properties as DiasporaProps
+          setSelected({
+            name: props.name,
+            iso: props.iso_a3,
+            value: props._value ?? null,
+          })
+        }
+      }
+      downTargetRef.current = null
     }
   }
 
@@ -309,6 +339,7 @@ export function WorldMapView() {
             return (
               <path
                 key={props.iso_a3 || i}
+                data-iso={props.iso_a3}
                 d={d}
                 fill={fillColor}
                 fillOpacity={op}
@@ -316,15 +347,6 @@ export function WorldMapView() {
                 strokeWidth={weight}
                 strokeOpacity={mapStyle.borderOpacity}
                 style={{ cursor: 'pointer' }}
-                onClick={() => {
-                  // Si vino del final de un drag, ignorar el click
-                  if (wasDraggedRef.current) return
-                  setSelected({
-                    name: props.name,
-                    iso: props.iso_a3,
-                    value: props._value ?? null,
-                  })
-                }}
               >
                 <title>
                   {`${props.name}${

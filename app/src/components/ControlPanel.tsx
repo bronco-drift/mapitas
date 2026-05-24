@@ -215,7 +215,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]">
         {tab === 'datos' && (
           <>
             {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'state' && (
