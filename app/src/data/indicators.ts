@@ -306,66 +306,71 @@ const IDH: Indicator = {
   stateAggregate: stateField('idh'),
 }
 
+// PIB estimado por metodología Mapitas: distribución del PIB nacional entre
+// los 335 munis usando proxies (población × urbanidad × IDH estatal × sector
+// económico del estado). Documentación completa: app/src/data/pib-mapitas.ts.
+import {
+  PIB_MAPITAS_MUNICIPAL_MM,
+  PIB_MAPITAS_PER_CAPITA_MUNI,
+  PIB_MAPITAS_ESTATAL_MM,
+  PIB_MAPITAS_PER_CAPITA_ESTATAL,
+  PIB_NACIONAL_USD_MM,
+} from './pib-mapitas'
+
 const PIB_TOTAL: Indicator = {
   id: 'pib_total',
   category: 'economia',
-  label: 'PIB total · estimado',
-  description: 'Producto Interno Bruto total',
+  label: 'PIB total · estimado Mapitas',
+  description: 'Producto Interno Bruto total distribuido entre 335 munis',
   unit: 'MM USD',
   format: 'number',
   year: 2026,
-  source: 'Estimaciones del proyecto',
-  note: 'El BCV no publica cuentas regionales municipales. Usar como referencia, no como dato oficial',
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: `Modelo de distribución del PIB nacional venezolano (~$${(PIB_NACIONAL_USD_MM / 1000).toFixed(0)}B USD) entre los 335 munis usando proxies: población × urbanidad × IDH estatal × sector económico del estado. El BCV no publica cuentas regionales; esto es una estimación reproducible, no un dato oficial. Caracas-area concentra ~37% del total, coherente con la literatura.`,
   aggregation: 'municipality',
-  data: muniField('pib_total_mm_usd'),
-  stateAggregate: stateField('pib_total_mm_usd'),
+  data: PIB_MAPITAS_MUNICIPAL_MM,
+  stateAggregate: PIB_MAPITAS_ESTATAL_MM,
 }
 
 const PIB_PER_CAPITA: Indicator = {
   id: 'pib_per_capita',
   category: 'economia',
-  label: 'PIB per cápita · estimado',
-  description: 'PIB por habitante',
+  label: 'PIB per cápita · estimado Mapitas',
+  description: 'PIB por habitante (estimación)',
   unit: 'USD',
   format: 'currency',
   year: 2026,
-  source: 'Estimaciones del proyecto',
-  note: 'El BCV no publica PIB municipal. Usar como referencia, no como dato oficial',
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: 'Derivado de PIB_total / población 2021. Libertador (Caracas) ~$10.700, munis rurales del interior ~$1.200. Magnitudes relativas significativas; valores absolutos son sensibles al supuesto de PIB nacional ($100B en este modelo).',
   aggregation: 'municipality',
   nationalAggregation: 'mean',
-  data: muniField('pib_per_capita_usd'),
-  stateAggregate: stateField('pib_per_capita_usd'),
+  data: PIB_MAPITAS_PER_CAPITA_MUNI,
+  stateAggregate: PIB_MAPITAS_PER_CAPITA_ESTATAL,
 }
-
-// PIB nacional = suma de PIB de munis (= suma de estados, son consistentes).
-// Computado una vez al import, reusado para el indicador de % nacional.
-const PIB_NACIONAL_TOTAL_MM_USD = Object.values(munis)
-  .reduce((sum, m) => sum + (m.pib_total_mm_usd ?? 0), 0)
 
 const PIB_PCT_NACIONAL: Indicator = {
   id: 'pib_pct_nacional',
   category: 'economia',
-  label: '% del PIB nacional · estimado',
+  label: '% del PIB nacional · estimado Mapitas',
   description: 'Porcentaje que cada muni/estado representa del PIB total venezolano',
   unit: '%',
   format: 'rate',
   year: 2026,
-  source: 'Estimaciones del proyecto (PIB muni / PIB nacional)',
-  note: 'Cobertura ~46% munis. La suma de % de los munis con data NO llega a 100% porque faltan ~54% de los munis sin estimación.',
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: 'Cobertura 100% (todos los munis con población tienen estimación). Distrito Capital concentra ~24%, Zulia ~13%, Miranda ~11%, Carabobo ~8%. Suma de % = 100%.',
   aggregation: 'municipality',
-  // En adm0 sumamos los % → da el % cubierto (cerca de 100% si la cobertura
-  // estatal es alta; menos si no). Es informativo de cuánto del PIB nacional
-  // está realmente contemplado en estos datos.
   nationalAggregation: 'sum',
   data: Object.fromEntries(
-    Object.entries(munis)
-      .filter(([, m]) => typeof m.pib_total_mm_usd === 'number')
-      .map(([sid, m]) => [sid, (m.pib_total_mm_usd! / PIB_NACIONAL_TOTAL_MM_USD) * 100]),
+    Object.entries(PIB_MAPITAS_MUNICIPAL_MM).map(([sid, pibMM]) => [
+      sid,
+      (pibMM / PIB_NACIONAL_USD_MM) * 100,
+    ]),
   ),
   stateAggregate: Object.fromEntries(
-    Object.entries(states)
-      .filter(([, s]) => typeof s.pib_total_mm_usd === 'number')
-      .map(([iso, s]) => [iso, (s.pib_total_mm_usd! / PIB_NACIONAL_TOTAL_MM_USD) * 100]),
+    Object.entries(PIB_MAPITAS_ESTATAL_MM).map(([iso, pibMM]) => [
+      iso,
+      (pibMM / PIB_NACIONAL_USD_MM) * 100,
+    ]),
   ),
 }
 
