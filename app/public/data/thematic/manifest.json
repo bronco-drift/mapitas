@@ -63,6 +63,17 @@
     "geometryType": "MultiLineString"
   },
   {
+    "id": "internacionales-maritimos",
+    "label": "Límites marítimos · CV",
+    "color": "#0891b2",
+    "file": "/data/thematic/internacionales-maritimos.geojson",
+    "featureCount": 10,
+    "sizeKB": 4,
+    "geometryType": "MultiLineString",
+    "dashed": true,
+    "weight": 1.5
+  },
+  {
     "id": "formaciones-vegetales",
     "label": "Formaciones vegetales",
     "color": "#22c55e",
