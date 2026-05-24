@@ -62,6 +62,15 @@ function MapBootstrap({ bgColor, bounds }: { bgColor: string; bounds: L.LatLngBo
       pane.style.zIndex = '500'
       pane.style.pointerEvents = 'none'
     }
+    // Pane del contorno país (toggle "Borde país"): z-index 450 = encima de
+    // overlayPane (400) y de los símbolos que se appendean al SVG, pero
+    // debajo de hoverPane (500). Sin este pane el contorno quedaba tapado
+    // por banderas/escudos cuando había un indicador simbólico activo.
+    if (!map.getPane('countryBorderPane')) {
+      const pane = map.createPane('countryBorderPane')
+      pane.style.zIndex = '450'
+      pane.style.pointerEvents = 'none'
+    }
   }, [map])
   useEffect(() => {
     const container = map.getContainer()
@@ -337,13 +346,19 @@ function stateOverlayStyle(style: MapStyle): PathOptions {
   }
 }
 
-// Contorno del país (adm0) — grosor fijo 0.5, color del borderColor del style.
-// Va por encima de los polígonos para que se vea siempre el contorno completo.
+// Contorno del país (adm0). Se renderea en countryBorderPane (z-index 450)
+// para garantizar que quede ARRIBA de cualquier capa simbólica (banderas,
+// escudos, vista política) cuyas imágenes se appendean al final del SVG
+// del overlayPane y antes tapaban el contorno.
+//
+// Weight ~2px porque la línea original de 0.5px era casi invisible y el
+// toggle "Borde país" no parecía hacer nada. Se ajusta con lineWidth para
+// que herede el grosor general del style.
 function countryBorderStyle(style: MapStyle): PathOptions {
   return {
     fillOpacity: 0,
     color: style.borderColor,
-    weight: 0.5,
+    weight: Math.max(1.5, style.lineWidth * 2.5),
     opacity: 1,
   }
 }
@@ -798,6 +813,7 @@ export function MapView() {
             key="country-border"
             ref={countryBorderRef}
             data={adm0 as never}
+            pane="countryBorderPane"
             style={countryBorderStyle(mapStyle)}
             interactive={false}
           />
