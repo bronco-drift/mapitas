@@ -9,6 +9,14 @@ import {
   type IndicatorCategory,
   type IndicatorCoverage,
 } from '../data/indicators'
+import {
+  GLOBAL_REPORTS,
+  GLOBAL_CATEGORY_LABELS,
+  GLOBAL_CATEGORY_ORDER,
+  getGlobalReportByMode,
+  type GlobalReport,
+  type GlobalReportCategory,
+} from '../data/global-reports'
 import { IndicatorCoverageModal } from './IndicatorCoverageModal'
 import diasporaReceivers from '../data/diaspora-receivers.json'
 
@@ -420,30 +428,71 @@ function DiasporaPanel() {
 
   const max = entries[0]?.value ?? 1
 
+  // Reportes globales agrupados por categoría. Mismo patrón que la lista
+  // de Indicators VE: header con label + contador, items clickeables, sólo
+  // se renderean categorías con al menos 1 reporte. Soporta crecer a muchas
+  // categorías (demografía mundial, IDH PNUD, etc.) sin cambiar la UI.
+  const groupedReports = new Map<GlobalReportCategory, GlobalReport[]>()
+  for (const cat of GLOBAL_CATEGORY_ORDER) groupedReports.set(cat, [])
+  for (const r of GLOBAL_REPORTS) groupedReports.get(r.category)?.push(r)
+  const categoriesWithReports = GLOBAL_CATEGORY_ORDER.filter(
+    cat => (groupedReports.get(cat)?.length ?? 0) > 0,
+  )
+  const activeReport = getGlobalReportByMode(globalMetric)
+
   return (
-    <div className="space-y-3">
-      {/* Selector segmentado de los 3 reportes de la vista Global */}
-      <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
-        {(
-          [
-            { id: 'migrantes' as const, label: 'Recibidos' },
-            { id: 'venezolanos' as const, label: 'Total' },
-            { id: 'porcentaje' as const, label: '% local' },
-          ]
-        ).map(opt => (
-          <button
-            key={opt.id}
-            type="button"
-            onClick={() => setGlobalMetric(opt.id)}
-            className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-              globalMetric === opt.id
-                ? 'bg-white text-slate-900 shadow-sm font-medium'
-                : 'text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            {opt.label}
-          </button>
-        ))}
+    <div className="space-y-4">
+      {/* Lista de reportes agrupada por categoría */}
+      <div className="space-y-3">
+        {categoriesWithReports.map(cat => {
+          const items = groupedReports.get(cat) ?? []
+          return (
+            <div key={cat}>
+              <div className="mb-1 flex items-baseline justify-between px-2.5">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                  {GLOBAL_CATEGORY_LABELS[cat]}
+                </span>
+                <span className="text-[10px] tabular-nums text-slate-400">
+                  {items.length}
+                </span>
+              </div>
+              <div className="space-y-1">
+                {items.map(report => {
+                  const isActive = activeReport?.id === report.id
+                  return (
+                    <button
+                      key={report.id}
+                      type="button"
+                      onClick={() => setGlobalMetric(report.mode)}
+                      className={`group flex w-full items-start justify-between gap-2 rounded-md px-2.5 py-2 text-left transition outline-none focus:ring-2 focus:ring-slate-400 ${
+                        isActive
+                          ? 'bg-slate-900 text-white'
+                          : 'hover:bg-slate-100'
+                      }`}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div
+                          className={`text-[13px] font-medium leading-tight ${
+                            isActive ? 'text-white' : 'text-slate-900'
+                          }`}
+                        >
+                          {report.label}
+                        </div>
+                        <div
+                          className={`mt-0.5 truncate text-[10px] ${
+                            isActive ? 'text-slate-300' : 'text-slate-500'
+                          }`}
+                        >
+                          {report.year} · {report.source}
+                        </div>
+                      </div>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
       </div>
 
       <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5">
