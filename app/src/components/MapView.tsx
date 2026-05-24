@@ -71,6 +71,16 @@ function MapBootstrap({ bgColor, bounds }: { bgColor: string; bounds: L.LatLngBo
       pane.style.zIndex = '450'
       pane.style.pointerEvents = 'none'
     }
+    // Pane de "Bordes de estado arriba" (toggle stateOverlayInMuni): z-index
+    // 440, entre el data layer del choropleth (400) y el countryBorderPane
+    // (450). Sin este pane, al cambiar de reporte el data layer se remonta
+    // y queda en el DOM DESPUÉS del overlay, tapándolo. El user tenía que
+    // toggle off/on para que el overlay vuelva a verse.
+    if (!map.getPane('stateOverlayPane')) {
+      const pane = map.createPane('stateOverlayPane')
+      pane.style.zIndex = '440'
+      pane.style.pointerEvents = 'none'
+    }
   }, [map])
   useEffect(() => {
     const container = map.getContainer()
@@ -804,6 +814,7 @@ export function MapView() {
             key={overlayKey}
             ref={overlayRef}
             data={adm1 as never}
+            pane="stateOverlayPane"
             style={stateOverlayStyle(mapStyle)}
             interactive={false}
           />
