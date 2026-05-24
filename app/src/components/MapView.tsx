@@ -380,7 +380,14 @@ export function MapView() {
   // Cuando es "transparent", transparente. Si no, el bgColor solo se ve si el basemap real falla.
   const isSolidBasemap = mapStyle.basemap === 'solid'
   const isWorldOutlines = mapStyle.basemap === 'world-outlines'
-  const effectiveBg = mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor
+  // El basemap "Contornos" override el bgColor con el color de océano de Carto
+  // (#fafaf6, crema claro). Así el área fuera de los polígonos (océanos) se
+  // ve igual que la tierra cercana, matcheando visualmente Carto sin etiquetas.
+  const effectiveBg = mapStyle.transparentBg
+    ? 'transparent'
+    : isWorldOutlines
+      ? '#fafaf6'
+      : mapStyle.bgColor
   // Esconde tiles si "isolate", basemap solid o world-outlines (no hay tiles que cargar
   // para esos tres — solid usa bgColor, world-outlines pinta el geojson como capa)
   const hideBasemap = mapStyle.isolateCountry || isSolidBasemap || isWorldOutlines
@@ -566,13 +573,15 @@ export function MapView() {
             pane="worldOutlinesPane"
             interactive={false}
             style={() => ({
-              // Colores matcheados a Carto Light Nolabels (mismo tono beige
-              // cálido del raster), pero sin etiquetas ni subdivisiones
-              // internas. Resultado: el ojo lee "esto es continuación de
-              // Carto" pero sin distracciones, y Venezuela queda en foco.
-              fillColor: '#f6f6f4',
-              color: '#d4d4d3',
-              weight: 0.6,
+              // Colores fieles a Carto Light Nolabels (positron sin labels):
+              //   - tierra: #f5f3eb (warm beige claro)
+              //   - bordes país: #c4c4c4 (gris suave)
+              // El bgColor del mapa se override a #fafaf6 (water/no-data)
+              // cuando este basemap está activo, así el océano calza con el
+              // mismo tono que usa Carto.
+              fillColor: '#f5f3eb',
+              color: '#c4c4c4',
+              weight: 0.5,
               fillOpacity: 1,
               opacity: 1,
             })}

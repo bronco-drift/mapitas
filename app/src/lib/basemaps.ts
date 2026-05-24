@@ -45,7 +45,7 @@ export const BASEMAPS: Basemap[] = [
     url: '',
     attribution: 'Borders &copy; Natural Earth',
     maxZoom: 19,
-    preview: 'linear-gradient(135deg, #f6f6f4, #e8e8e4)',
+    preview: 'linear-gradient(135deg, #fafaf6, #f5f3eb)',
   },
   {
     id: 'carto-light',
