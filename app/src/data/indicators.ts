@@ -86,12 +86,44 @@ function stateField(field: NumericStateField): Record<string, number> {
 
 export type IndicatorAggregation = 'state' | 'municipality'
 
+// Categoría temática para agrupar indicadores en el panel. Hoy son 5:
+//   demografia  → población, densidad, área, % urbano
+//   desarrollo  → IDH y derivados
+//   economia    → PIB total / per cápita
+//   seguridad   → homicidios, otros delitos a futuro
+//   identidad   → banderas, escudos, vista política (categóricos/simbólicos)
+// Si el campo es undefined el indicador cae en "Otros" al final de la lista.
+export type IndicatorCategory =
+  | 'demografia'
+  | 'desarrollo'
+  | 'economia'
+  | 'seguridad'
+  | 'identidad'
+
+export const CATEGORY_LABELS: Record<IndicatorCategory, string> = {
+  demografia: 'Demografía',
+  desarrollo: 'Desarrollo humano',
+  economia: 'Economía',
+  seguridad: 'Seguridad',
+  identidad: 'Identidad y cultura',
+}
+
+// Orden visible en el panel (primero los más usados).
+export const CATEGORY_ORDER: IndicatorCategory[] = [
+  'demografia',
+  'desarrollo',
+  'economia',
+  'seguridad',
+  'identidad',
+]
+
 export type Indicator = {
   id: string
   label: string
   description: string
   unit: string
   format: 'number' | 'decimal' | 'rate' | 'currency'
+  category?: IndicatorCategory
   year: number
   source: string
   note?: string
@@ -183,6 +215,7 @@ export function colorForMuni(sourceID: string): string {
 
 const POBLACION_INE_2026: Indicator = {
   id: 'poblacion_ine_2026',
+  category: 'demografia',
   label: 'Población 2026 · INE',
   description: 'Proyección oficial INE basada en censo 2011',
   unit: 'habitantes',
@@ -197,6 +230,7 @@ const POBLACION_INE_2026: Indicator = {
 
 const POBLACION_INE_2050: Indicator = {
   id: 'poblacion_ine_2050',
+  category: 'demografia',
   label: 'Población 2050 · INE',
   description: 'Proyección poblacional al año 2050 del INE',
   unit: 'habitantes',
@@ -211,6 +245,7 @@ const POBLACION_INE_2050: Indicator = {
 
 const POBLACION_2021: Indicator = {
   id: 'poblacion_wiki_2021',
+  category: 'demografia',
   label: 'Población 2021 · Excel/INE',
   description: 'Población municipal según INE 2021',
   unit: 'habitantes',
@@ -224,6 +259,7 @@ const POBLACION_2021: Indicator = {
 
 const AREA: Indicator = {
   id: 'area_wiki',
+  category: 'demografia',
   label: 'Área · Excel/INE',
   description: 'Superficie territorial en km²',
   unit: 'km²',
@@ -237,6 +273,7 @@ const AREA: Indicator = {
 
 const DENSIDAD: Indicator = {
   id: 'densidad_wiki',
+  category: 'demografia',
   label: 'Densidad · Excel/INE',
   description: 'Habitantes por km²',
   unit: 'hab/km²',
@@ -255,6 +292,7 @@ const DENSIDAD: Indicator = {
 
 const IDH: Indicator = {
   id: 'idh_2026',
+  category: 'desarrollo',
   label: 'IDH 2026 · estimado',
   description: 'Índice de Desarrollo Humano municipal',
   unit: 'índice 0–1',
@@ -270,6 +308,7 @@ const IDH: Indicator = {
 
 const PIB_TOTAL: Indicator = {
   id: 'pib_total',
+  category: 'economia',
   label: 'PIB total · estimado',
   description: 'Producto Interno Bruto total',
   unit: 'MM USD',
@@ -284,6 +323,7 @@ const PIB_TOTAL: Indicator = {
 
 const PIB_PER_CAPITA: Indicator = {
   id: 'pib_per_capita',
+  category: 'economia',
   label: 'PIB per cápita · estimado',
   description: 'PIB por habitante',
   unit: 'USD',
@@ -301,6 +341,7 @@ const PIB_PER_CAPITA: Indicator = {
 
 const PCT_URBANO: Indicator = {
   id: 'porcentaje_urbano_2021',
+  category: 'demografia',
   label: '% en cabecera · CV',
   description: 'Población viviendo en la capital del municipio (sobre el total municipal)',
   unit: '%',
@@ -315,6 +356,7 @@ const PCT_URBANO: Indicator = {
 
 const IDH_1990_CV: Indicator = {
   id: 'idh_1990_cv',
+  category: 'desarrollo',
   label: 'IDH 1990 · CV',
   description: 'Índice de Desarrollo Humano por entidad federal en 1990',
   unit: 'índice 0–1',
@@ -328,6 +370,7 @@ const IDH_1990_CV: Indicator = {
 
 const IDH_2000_CV: Indicator = {
   id: 'idh_2000_cv',
+  category: 'desarrollo',
   label: 'IDH 2000 · CV',
   description: 'Índice de Desarrollo Humano por entidad federal en 2000',
   unit: 'índice 0–1',
@@ -341,6 +384,7 @@ const IDH_2000_CV: Indicator = {
 
 const IDH_2010_CV: Indicator = {
   id: 'idh_2010_cv',
+  category: 'desarrollo',
   label: 'IDH 2010 · CV',
   description: 'Índice de Desarrollo Humano por entidad federal en 2010',
   unit: 'índice 0–1',
@@ -354,6 +398,7 @@ const IDH_2010_CV: Indicator = {
 
 const IDH_2020_CV: Indicator = {
   id: 'idh_2020_cv',
+  category: 'desarrollo',
   label: 'IDH 2020 · CV',
   description: 'Índice de Desarrollo Humano oficial por entidad federal en 2020',
   unit: 'índice 0–1',
@@ -368,6 +413,7 @@ const IDH_2020_CV: Indicator = {
 
 const IDH_CAMBIO: Indicator = {
   id: 'idh_cambio_2010_2020_cv',
+  category: 'desarrollo',
   label: 'Cambio IDH 2010–2020 · CV',
   description: 'Variación del IDH entre 2010 y 2020 (negativo = retroceso)',
   unit: 'Δ índice',
@@ -384,6 +430,7 @@ const IDH_CAMBIO: Indicator = {
 
 const POBLACION_2024: Indicator = {
   id: 'poblacion_2024',
+  category: 'demografia',
   label: 'Población 2024 · aprox. estatal',
   description: 'Aproximación estatal preexistente, números redondeados',
   unit: 'habitantes',
@@ -439,6 +486,7 @@ import wikiInfoRaw from './wiki-info.json'
 
 const POLITICO_PAIS: Indicator = {
   id: 'politico_pais',
+  category: 'identidad',
   label: 'Vista política · País',
   description: 'Venezuela como bloque institucional',
   unit: 'sin unidad',
@@ -453,6 +501,7 @@ const POLITICO_PAIS: Indicator = {
 
 const POLITICO_ESTADOS: Indicator = {
   id: 'politico_estados',
+  category: 'identidad',
   label: 'Vista política · Estados',
   description: 'Cada estado con su color de identidad',
   unit: 'sin unidad',
@@ -467,6 +516,7 @@ const POLITICO_ESTADOS: Indicator = {
 
 const POLITICO_MUNIS: Indicator = {
   id: 'politico_munis',
+  category: 'identidad',
   label: 'Vista política · Municipios',
   description: 'Municipios coloreados por estado padre',
   unit: 'sin unidad',
@@ -481,6 +531,7 @@ const POLITICO_MUNIS: Indicator = {
 
 const BANDERAS_PAIS: Indicator = {
   id: 'banderas_pais',
+  category: 'identidad',
   label: 'Bandera nacional · Cultural',
   description: 'Bandera oficial de la República Bolivariana de Venezuela',
   unit: 'simbólico',
@@ -495,6 +546,7 @@ const BANDERAS_PAIS: Indicator = {
 
 const ESCUDOS_PAIS: Indicator = {
   id: 'escudos_pais',
+  category: 'identidad',
   label: 'Escudo nacional · Cultural',
   description: 'Escudo de armas oficial de Venezuela',
   unit: 'simbólico',
@@ -509,6 +561,7 @@ const ESCUDOS_PAIS: Indicator = {
 
 const BANDERAS_ESTADOS: Indicator = {
   id: 'banderas_estados',
+  category: 'identidad',
   label: 'Banderas estados · Cultural',
   description: 'Bandera oficial de cada entidad federal venezolana',
   unit: 'simbólico',
@@ -524,6 +577,7 @@ const BANDERAS_ESTADOS: Indicator = {
 
 const ESCUDOS_ESTADOS: Indicator = {
   id: 'escudos_estados',
+  category: 'identidad',
   label: 'Escudos estados · Cultural',
   description: 'Escudo oficial de cada entidad federal venezolana',
   unit: 'simbólico',
@@ -539,6 +593,7 @@ const ESCUDOS_ESTADOS: Indicator = {
 
 const BANDERAS_MUNIS: Indicator = {
   id: 'banderas_munis',
+  category: 'identidad',
   label: 'Banderas munis · Cultural',
   description: 'Bandera oficial de cada municipio venezolano',
   unit: 'simbólico',
@@ -554,6 +609,7 @@ const BANDERAS_MUNIS: Indicator = {
 
 const ESCUDOS_MUNIS: Indicator = {
   id: 'escudos_munis',
+  category: 'identidad',
   label: 'Escudos munis · Cultural',
   description: 'Escudo oficial de cada municipio venezolano',
   unit: 'simbólico',
@@ -569,6 +625,7 @@ const ESCUDOS_MUNIS: Indicator = {
 
 const HOMICIDIOS: Indicator = {
   id: 'homicidios',
+  category: 'seguridad',
   label: 'Tasa homicidios · OVV',
   description: 'Homicidios por cada 100.000 habitantes',
   unit: 'por 100k',

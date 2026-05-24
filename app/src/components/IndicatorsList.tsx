@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { useStore } from '../store'
-import { INDICATORS, getIndicatorCoverage, type Indicator, type IndicatorCoverage } from '../data/indicators'
+import {
+  INDICATORS,
+  getIndicatorCoverage,
+  CATEGORY_LABELS,
+  CATEGORY_ORDER,
+  type Indicator,
+  type IndicatorCategory,
+  type IndicatorCoverage,
+} from '../data/indicators'
 import { IndicatorCoverageModal } from './IndicatorCoverageModal'
 import diasporaReceivers from '../data/diaspora-receivers.json'
 
@@ -61,6 +69,20 @@ export function IndicatorsList() {
   const visibleRows = rows.filter(r => !r.isArchived)
   const archivedRows = rows.filter(r => r.isArchived)
 
+  // Agrupar las visibles por categoría. Las que no tienen category caen en
+  // 'otros' al final. El orden de las categorías sale de CATEGORY_ORDER.
+  const grouped = new Map<IndicatorCategory | 'otros', typeof visibleRows>()
+  for (const cat of CATEGORY_ORDER) grouped.set(cat, [])
+  grouped.set('otros', [])
+  for (const row of visibleRows) {
+    const cat = row.indicator.category ?? 'otros'
+    grouped.get(cat)!.push(row)
+  }
+  // Categorías con al menos 1 indicador, en el orden definido.
+  const categoriesWithRows = [...CATEGORY_ORDER, 'otros' as const].filter(
+    cat => (grouped.get(cat)?.length ?? 0) > 0,
+  )
+
   // Si el indicador activo está archivado, abrimos la sección para que el user
   // entienda dónde está. Solo se "fuerza" abierto, no se cierra automáticamente.
   const activeIsArchived = activeId && archivedRows.some(r => r.indicator.id === activeId)
@@ -68,23 +90,41 @@ export function IndicatorsList() {
 
   return (
     <>
-      <div className="space-y-1">
-        {visibleRows.map(({ indicator, cov, isManuallyArchived }) => (
-          <Row
-            key={indicator.id}
-            indicator={indicator}
-            cov={cov}
-            level={level}
-            active={activeId === indicator.id}
-            disabled={false}
-            isArchived={false}
-            canToggleArchive
-            isManuallyArchived={isManuallyArchived}
-            onActivate={() => selectIndicator(activeId === indicator.id ? null : indicator.id)}
-            onArchiveToggle={() => archiveIndicator(indicator.id)}
-            onCoverageClick={() => setCoverageModalFor(indicator)}
-          />
-        ))}
+      <div className="space-y-3">
+        {categoriesWithRows.map(cat => {
+          const items = grouped.get(cat) ?? []
+          const label = cat === 'otros' ? 'Otros' : CATEGORY_LABELS[cat]
+          return (
+            <div key={cat}>
+              <div className="mb-1 flex items-baseline justify-between px-2.5">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                  {label}
+                </span>
+                <span className="text-[10px] tabular-nums text-slate-400">
+                  {items.length}
+                </span>
+              </div>
+              <div className="space-y-1">
+                {items.map(({ indicator, cov, isManuallyArchived }) => (
+                  <Row
+                    key={indicator.id}
+                    indicator={indicator}
+                    cov={cov}
+                    level={level}
+                    active={activeId === indicator.id}
+                    disabled={false}
+                    isArchived={false}
+                    canToggleArchive
+                    isManuallyArchived={isManuallyArchived}
+                    onActivate={() => selectIndicator(activeId === indicator.id ? null : indicator.id)}
+                    onArchiveToggle={() => archiveIndicator(indicator.id)}
+                    onCoverageClick={() => setCoverageModalFor(indicator)}
+                  />
+                ))}
+              </div>
+            </div>
+          )
+        })}
       </div>
 
       {archivedRows.length > 0 && (
