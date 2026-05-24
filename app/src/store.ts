@@ -180,6 +180,11 @@ type Actions = {
 // pero el user los pidió como reportes visibles de la sección Economía.
 const DEFAULT_ARCHIVED_INDICATORS = ['idh_2026']
 
+// Capas temáticas activadas por default al primer load (sólo cuando no hay
+// persistencia previa de localStorage). Los usuarios que ya configuraron
+// sus capas en sesiones anteriores conservan su elección.
+const DEFAULT_ENABLED_THEMATIC = ['internacionales-maritimos']
+
 export const DEFAULT_MAP_STYLE: MapStyle = {
   lineWidth: 0.6,
   borderColor: '#475569',
@@ -529,12 +534,15 @@ export const useStore = create<State & Actions>()(
         initial[meta.id] = { meta: { ...meta, file }, enabled: false, loading: false, data: null }
       }
       set({ thematic: initial })
-      // Restaurar capas que estaban habilitadas la última vez
+      // Restaurar capas habilitadas. Prioridad:
+      //   1) localStorage del user (sesiones anteriores) — respetamos su elección
+      //   2) DEFAULT_ENABLED_THEMATIC — usuarios nuevos sin persistencia
       const persistedIds = get()._persistedThematicIds
+      const idsToEnable = persistedIds.length > 0 ? persistedIds : DEFAULT_ENABLED_THEMATIC
+      for (const id of idsToEnable) {
+        if (initial[id]) await get().toggleThematic(id)
+      }
       if (persistedIds.length > 0) {
-        for (const id of persistedIds) {
-          if (initial[id]) await get().toggleThematic(id)
-        }
         set({ _persistedThematicIds: [] })
       }
     } catch (err) {
