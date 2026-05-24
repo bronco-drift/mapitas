@@ -368,9 +368,13 @@ export function MapView() {
   const source = useStore(s => s.source)
   const mapStyle = useStore(s => s.mapStyle)
   const thematic = useStore(s => s.thematic)
-  const diaspora = useStore(s => s.diaspora)
-  const loadDiasporaData = useStore(s => s.loadDiasporaData)
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
+
+  // Geojson dedicado del basemap "Contornos" (Natural Earth 1:50m simplificado,
+  // ~1.27MB). NO reusa el geojson de la vista Global (110m con properties para
+  // matchear migrantes_ve) — son archivos distintos con propósitos distintos:
+  // el de Global necesita las properties; el basemap solo necesita geometrías.
+  const [worldOutlinesGeo, setWorldOutlinesGeo] = useState<object | null>(null)
 
   const [zoom, setZoom] = useState<number | null>(null)
   const mapRef = useRef<L.Map | null>(null)
@@ -393,13 +397,23 @@ export function MapView() {
   // para esos tres — solid usa bgColor, world-outlines pinta el geojson como capa)
   const hideBasemap = mapStyle.isolateCountry || isSolidBasemap || isWorldOutlines
 
-  // Carga lazy del geojson mundial la primera vez que el user elige el
-  // basemap de contornos. Reusa el dataset que ya cargaba la vista Global.
+  // Carga lazy del geojson 50m la primera vez que el user elige el basemap
+  // de contornos. Cancelable: si el user navega a otra cosa antes de que
+  // termine el fetch, no seteamos state stale.
   useEffect(() => {
-    if (isWorldOutlines && !diaspora) {
-      loadDiasporaData()
+    if (!isWorldOutlines || worldOutlinesGeo) return
+    let cancelled = false
+    const base = import.meta.env.BASE_URL
+    fetch(`${base}data/world-outlines-50m.geojson`)
+      .then(r => r.json())
+      .then(geo => {
+        if (!cancelled) setWorldOutlinesGeo(geo)
+      })
+      .catch(err => console.error('Error cargando basemap Contornos:', err))
+    return () => {
+      cancelled = true
     }
-  }, [isWorldOutlines, diaspora, loadDiasporaData])
+  }, [isWorldOutlines, worldOutlinesGeo])
 
   const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<
     Adm0Props | Adm1Props | Adm2Props
@@ -567,10 +581,10 @@ export function MapView() {
             GeoJSON con los polígonos de Natural Earth en un pane custom
             debajo del overlayPane. Mapa casi blanco con divisiones grises
             de países, sin nombres ni relieve. */}
-        {isWorldOutlines && !mapStyle.isolateCountry && diaspora && (
+        {isWorldOutlines && !mapStyle.isolateCountry && worldOutlinesGeo && (
           <GeoJSON
             key="world-outlines-basemap"
-            data={diaspora as never}
+            data={worldOutlinesGeo as never}
             pane="worldOutlinesPane"
             interactive={false}
             style={() => ({
