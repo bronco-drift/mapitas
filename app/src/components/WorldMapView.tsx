@@ -175,8 +175,102 @@ export function WorldMapView() {
     setScale(1)
   }, [size?.w, size?.h])
 
+  // Refs a state/props que los handlers de window leen. Como los handlers
+  // viven en window y son llamados desde fuera del ciclo de render de React,
+  // necesitan refs estables para no leer valores stale al cerrar sobre el
+  // state inicial.
+  const rotationRef = useRef(rotation)
+  const panRef = useRef(pan)
+  const scaleRef = useRef(scale)
+  const sizeRef = useRef(size)
+  const mobilePanelHeightRef = useRef(mobilePanelHeight)
+  const isGlobeRef = useRef(isGlobeProjection)
+  const diasporaRef = useRef(diaspora)
+  useEffect(() => { rotationRef.current = rotation }, [rotation])
+  useEffect(() => { panRef.current = pan }, [pan])
+  useEffect(() => { scaleRef.current = scale }, [scale])
+  useEffect(() => { sizeRef.current = size }, [size])
+  useEffect(() => { mobilePanelHeightRef.current = mobilePanelHeight }, [mobilePanelHeight])
+  useEffect(() => { isGlobeRef.current = isGlobeProjection }, [isGlobeProjection])
+  useEffect(() => { diasporaRef.current = diaspora }, [diaspora])
+
+  // Handlers de window con identidad ESTABLE (definidos en useRef, no
+  // recreados por render). Sin esto, removeEventListener no encuentra los
+  // handlers a remover y se acumulan listeners zombie cada drag.
+  const handlersRef = useRef<{
+    onMove: (e: PointerEvent) => void
+    onUp: (e: PointerEvent) => void
+  } | null>(null)
+
+  if (!handlersRef.current) {
+    const endDrag = () => {
+      dragRef.current = null
+      pinchRef.current = null
+      if (!handlersRef.current) return
+      window.removeEventListener('pointermove', handlersRef.current.onMove)
+      window.removeEventListener('pointerup', handlersRef.current.onUp)
+      window.removeEventListener('pointercancel', handlersRef.current.onUp)
+    }
+    handlersRef.current = {
+      onMove: (e: PointerEvent) => {
+        // Pinch en progreso: actualizar scale
+        if (pinchRef.current) {
+          const { p1, p2, startDist, startScale } = pinchRef.current
+          const p = e.pointerId === p1.id ? p1 : e.pointerId === p2.id ? p2 : null
+          if (!p) return
+          p.x = e.clientX
+          p.y = e.clientY
+          const newDist = Math.hypot(p2.x - p1.x, p2.y - p1.y)
+          const newScale = Math.max(0.5, Math.min(8, startScale * (newDist / startDist)))
+          setScale(newScale)
+          return
+        }
+        const d = dragRef.current
+        if (!d || d.pointerId !== e.pointerId) return
+        const dx = e.clientX - d.startX
+        const dy = e.clientY - d.startY
+        if (Math.hypot(dx, dy) > 5) wasDraggedRef.current = true
+        if (isGlobeRef.current) {
+          const s = sizeRef.current
+          const radius = Math.max(20, Math.min(s?.w ?? 800, (s?.h ?? 600) * (1 - mobilePanelHeightRef.current)) / 2 - 24)
+          const k = 90 / radius
+          const newLambda = d.startRotation[0] + dx * k
+          const newPhi = Math.max(-89, Math.min(89, d.startRotation[1] - dy * k))
+          setRotation([newLambda, newPhi, d.startRotation[2]])
+        } else {
+          setPan({ x: d.startPan.x + dx, y: d.startPan.y + dy })
+        }
+      },
+      onUp: (e: PointerEvent) => {
+        if (pinchRef.current && (e.pointerId === pinchRef.current.p1.id || e.pointerId === pinchRef.current.p2.id)) {
+          endDrag()
+          return
+        }
+        if (dragRef.current?.pointerId === e.pointerId) {
+          // Tap → setSelected (event delegation desde el div).
+          if (!wasDraggedRef.current && downTargetRef.current && diasporaRef.current) {
+            const iso = downTargetRef.current.dataset.iso
+            const feature = diasporaRef.current.features.find(
+              f => (f.properties as DiasporaProps).iso_a3 === iso,
+            )
+            if (feature) {
+              const props = feature.properties as DiasporaProps
+              setSelected({
+                name: props.name,
+                iso: props.iso_a3,
+                value: props._value ?? null,
+              })
+            }
+          }
+          downTargetRef.current = null
+          endDrag()
+        }
+      },
+    }
+  }
+
   function handlePointerDown(e: ReactPointerEvent<HTMLDivElement>) {
-    // Si es el segundo dedo: arrancar pinch
+    // Segundo dedo: arrancar pinch
     if (dragRef.current && !pinchRef.current) {
       const p1 = { id: dragRef.current.pointerId, x: dragRef.current.startX, y: dragRef.current.startY }
       const p2 = { id: e.pointerId, x: e.clientX, y: e.clientY }
@@ -185,90 +279,46 @@ export function WorldMapView() {
       pinchRef.current = {
         p1, p2,
         startDist: Math.hypot(dx, dy),
-        startScale: scale,
+        startScale: scaleRef.current,
       }
-      // Cancelar el drag normal mientras hay pinch
       dragRef.current = null
       return
     }
-    // Primer pointer: arrancar drag. setPointerCapture sobre el div (NO sobre
-    // el SVG) porque iOS Safari no respeta el capture sobre elementos SVG —
-    // los touches se quedan asociados al child path original y los pointermove
-    // nunca llegan al handler. Con el capture en el div, el flujo es estable.
-    e.currentTarget.setPointerCapture?.(e.pointerId)
+    // Primer pointer: arrancar drag con listeners en WINDOW (no en el div ni
+    // el SVG). En iOS Safari, los pointer events sobre elementos SVG sufren
+    // problemas: setPointerCapture no funciona bien, y el browser cancela
+    // gestos a los pocos pixels ("se mueve un poquito y se para"). Window
+    // listeners reciben TODOS los eventos del browser sin pasar por el
+    // árbol DOM, lo que evita esos problemas.
     wasDraggedRef.current = false
-    // Cachear el path tocado para resolver el tap en pointerup. e.target acá
-    // es el elemento real bajo el dedo (sphere o un path de país).
     const t = e.target as Element
     downTargetRef.current = t instanceof SVGPathElement && t.dataset.iso ? t : null
     dragRef.current = {
       pointerId: e.pointerId,
       startX: e.clientX,
       startY: e.clientY,
-      startRotation: rotation,
-      startPan: pan,
+      startRotation: rotationRef.current,
+      startPan: panRef.current,
+    }
+    const h = handlersRef.current
+    if (h) {
+      window.addEventListener('pointermove', h.onMove)
+      window.addEventListener('pointerup', h.onUp)
+      window.addEventListener('pointercancel', h.onUp)
     }
   }
 
-  function handlePointerMove(e: ReactPointerEvent<HTMLDivElement>) {
-    // Pinch en progreso: actualizar scale en función de la nueva distancia
-    if (pinchRef.current) {
-      const { p1, p2, startDist, startScale } = pinchRef.current
-      const p = e.pointerId === p1.id ? p1 : e.pointerId === p2.id ? p2 : null
-      if (!p) return
-      p.x = e.clientX
-      p.y = e.clientY
-      const newDist = Math.hypot(p2.x - p1.x, p2.y - p1.y)
-      const newScale = Math.max(0.5, Math.min(8, startScale * (newDist / startDist)))
-      setScale(newScale)
-      return
-    }
-    const d = dragRef.current
-    if (!d || d.pointerId !== e.pointerId) return
-    const dx = e.clientX - d.startX
-    const dy = e.clientY - d.startY
-    if (Math.hypot(dx, dy) > 5) wasDraggedRef.current = true
-    if (isGlobeProjection) {
-      // Drag-to-rotate. Sensibilidad inversa al radio: en pantallas grandes
-      // (más radio) un pixel corresponde a menos grados.
-      const radius = Math.max(20, Math.min(size?.w ?? 800, (size?.h ?? 600) * (1 - mobilePanelHeight)) / 2 - 24)
-      const k = 90 / radius // ~0.3 grados/pixel cuando radio=300
-      const newLambda = d.startRotation[0] + dx * k
-      const newPhi = Math.max(-89, Math.min(89, d.startRotation[1] - dy * k))
-      setRotation([newLambda, newPhi, d.startRotation[2]])
-    } else {
-      // Pan estándar en proyecciones planas
-      setPan({ x: d.startPan.x + dx, y: d.startPan.y + dy })
-    }
-  }
-
-  function handlePointerUp(e: ReactPointerEvent<HTMLDivElement>) {
-    if (pinchRef.current && (e.pointerId === pinchRef.current.p1.id || e.pointerId === pinchRef.current.p2.id)) {
-      pinchRef.current = null
-      return
-    }
-    if (dragRef.current?.pointerId === e.pointerId) {
-      e.currentTarget.releasePointerCapture?.(e.pointerId)
-      dragRef.current = null
-      // Resolver el "click" si no hubo drag. Event delegation desde el SVG
-      // para que iOS no bloquee los touches con onClick por-path.
-      if (!wasDraggedRef.current && downTargetRef.current && diaspora) {
-        const iso = downTargetRef.current.dataset.iso
-        const feature = diaspora.features.find(
-          f => (f.properties as DiasporaProps).iso_a3 === iso,
-        )
-        if (feature) {
-          const props = feature.properties as DiasporaProps
-          setSelected({
-            name: props.name,
-            iso: props.iso_a3,
-            value: props._value ?? null,
-          })
-        }
+  // Cleanup al desmontar: remover cualquier listener pendiente.
+  useEffect(() => {
+    return () => {
+      const h = handlersRef.current
+      if (h) {
+        window.removeEventListener('pointermove', h.onMove)
+        window.removeEventListener('pointerup', h.onUp)
+        window.removeEventListener('pointercancel', h.onUp)
       }
-      downTargetRef.current = null
     }
-  }
+  }, [])
 
   // React monta onWheel como passive: true, por lo que e.preventDefault() es
   // un no-op. Para que la rueda haga zoom sin scrollear la página, registramos
@@ -312,10 +362,6 @@ export function WorldMapView() {
         cursor: isGlobeProjection ? 'grab' : 'move',
       }}
       onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-      onPointerLeave={handlePointerUp}
     >
       {(!diaspora || !size) ? (
         <div className="flex h-full w-full items-center justify-center text-sm text-slate-500">
