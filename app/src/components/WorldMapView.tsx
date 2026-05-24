@@ -175,7 +175,7 @@ export function WorldMapView() {
     setScale(1)
   }, [size?.w, size?.h])
 
-  function handlePointerDown(e: ReactPointerEvent<SVGSVGElement>) {
+  function handlePointerDown(e: ReactPointerEvent<HTMLDivElement>) {
     // Si es el segundo dedo: arrancar pinch
     if (dragRef.current && !pinchRef.current) {
       const p1 = { id: dragRef.current.pointerId, x: dragRef.current.startX, y: dragRef.current.startY }
@@ -191,13 +191,14 @@ export function WorldMapView() {
       dragRef.current = null
       return
     }
-    // Primer pointer: arrancar drag
+    // Primer pointer: arrancar drag. setPointerCapture sobre el div (NO sobre
+    // el SVG) porque iOS Safari no respeta el capture sobre elementos SVG —
+    // los touches se quedan asociados al child path original y los pointermove
+    // nunca llegan al handler. Con el capture en el div, el flujo es estable.
     e.currentTarget.setPointerCapture?.(e.pointerId)
     wasDraggedRef.current = false
     // Cachear el path tocado para resolver el tap en pointerup. e.target acá
-    // es el elemento real bajo el dedo (sphere o un path de país). En pointerup
-    // el target puede haber cambiado por el pointerCapture, así que guardamos
-    // el original ahora.
+    // es el elemento real bajo el dedo (sphere o un path de país).
     const t = e.target as Element
     downTargetRef.current = t instanceof SVGPathElement && t.dataset.iso ? t : null
     dragRef.current = {
@@ -209,7 +210,7 @@ export function WorldMapView() {
     }
   }
 
-  function handlePointerMove(e: ReactPointerEvent<SVGSVGElement>) {
+  function handlePointerMove(e: ReactPointerEvent<HTMLDivElement>) {
     // Pinch en progreso: actualizar scale en función de la nueva distancia
     if (pinchRef.current) {
       const { p1, p2, startDist, startScale } = pinchRef.current
@@ -241,7 +242,7 @@ export function WorldMapView() {
     }
   }
 
-  function handlePointerUp(e: ReactPointerEvent<SVGSVGElement>) {
+  function handlePointerUp(e: ReactPointerEvent<HTMLDivElement>) {
     if (pinchRef.current && (e.pointerId === pinchRef.current.p1.id || e.pointerId === pinchRef.current.p2.id)) {
       pinchRef.current = null
       return
@@ -271,20 +272,27 @@ export function WorldMapView() {
 
   // React monta onWheel como passive: true, por lo que e.preventDefault() es
   // un no-op. Para que la rueda haga zoom sin scrollear la página, registramos
-  // un wheel listener nativo con passive: false.
+  // un wheel listener nativo con passive: false. Va en el container (div, no
+  // SVG) para emparejarse con los pointer handlers que también viven ahí.
   useEffect(() => {
-    const svg = svgRef.current
-    if (!svg) return
+    const el = containerRef.current
+    if (!el) return
     const handler = (e: WheelEvent) => {
       e.preventDefault()
       const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15
       setScale(s => Math.max(0.5, Math.min(8, s * factor)))
     }
-    svg.addEventListener('wheel', handler, { passive: false })
-    return () => svg.removeEventListener('wheel', handler)
+    el.addEventListener('wheel', handler, { passive: false })
+    return () => el.removeEventListener('wheel', handler)
   }, [])
 
-  const transform = `translate(${pan.x},${pan.y}) scale(${scale})`
+  // Zoom centrado en el viewport (no en (0,0) del SVG). El truco es
+  // translate(cx,cy) → scale → translate(-cx,-cy): el contenido se escala
+  // alrededor del centro pantalla y el centro mismo queda inmóvil. El pan
+  // adicional se aplica DESPUÉS del scale (no se escala con el zoom).
+  const cx = size ? size.w / 2 : 0
+  const cy = size ? size.h / 2 : 0
+  const transform = `translate(${cx + pan.x},${cy + pan.y}) scale(${scale}) translate(${-cx},${-cy})`
 
   // Sphere de fondo (solo en Orthographic): es el "borde del globo"
   const showSphere = PROJECTIONS[projection].isGlobe
@@ -293,7 +301,21 @@ export function WorldMapView() {
     <div
       ref={containerRef}
       className="relative h-full w-full overflow-hidden"
-      style={{ background: mapStyle.transparentBg ? 'transparent' : theme.space }}
+      style={{
+        background: mapStyle.transparentBg ? 'transparent' : theme.space,
+        // touchAction y handlers van acá (no en el SVG) porque iOS Safari
+        // no respeta setPointerCapture cuando se invoca sobre elementos SVG:
+        // los touches se quedan "pegados" al child path donde empezaron y
+        // los pointermove jamás llegan al handler → drag muerto sobre toda
+        // forma rellena (países y sphere). En el div HTML funciona estable.
+        touchAction: 'none',
+        cursor: isGlobeProjection ? 'grab' : 'move',
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      onPointerLeave={handlePointerUp}
     >
       {(!diaspora || !size) ? (
         <div className="flex h-full w-full items-center justify-center text-sm text-slate-500">
@@ -305,12 +327,7 @@ export function WorldMapView() {
         width={size.w}
         height={size.h}
         viewBox={`0 0 ${size.w} ${size.h}`}
-        style={{ shapeRendering: 'geometricPrecision', touchAction: 'none', cursor: isGlobeProjection ? 'grab' : 'move' }}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        onPointerLeave={handlePointerUp}
+        style={{ shapeRendering: 'geometricPrecision' }}
       >
         <g ref={gRef} transform={transform}>
           {/* Cuerpo del globo. En proyecciones tipo globo (Orthographic) la
