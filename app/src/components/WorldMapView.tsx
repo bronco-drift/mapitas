@@ -393,20 +393,16 @@ export function WorldMapView() {
             const fillColor = props._color ?? theme.missing
             const matched = props._matched
             const op = matched ? mapStyle.fillOpacity : Math.min(mapStyle.fillOpacity * 0.6, 0.5)
-            const stroke = mapStyle.noBorders ? fillColor : mapStyle.borderColor
-            // Respetar lineWidth=0 del slider (sin stroke). El mínimo forzado
-            // de 0.3px hacía que sobre fills oscuros (como VE en verde
-            // intenso) el stroke slate-700 se viera como un "borde oscuro
-            // incrustado" justo dentro del polígono, lo cual era confuso.
-            const weight = mapStyle.noBorders ? 0.5 : mapStyle.lineWidth
-            // En modo "sin bordes" el stroke comparte color con el fill, pero
-            // si strokeOpacity != fillOpacity el stroke se ve más intenso y
-            // queda como un anillo más oscuro alrededor del polígono (visible
-            // en VE pintada con colores intensos: el Esequibo, costas, etc.
-            // mostraban un borde sutil del mismo tono pero más fuerte). Fix:
-            // matchear strokeOpacity con fillOpacity en este modo, igual que
-            // hace fillStyleFor en MapView.tsx (vista VE).
-            const strokeOp = mapStyle.noBorders ? op : mapStyle.borderOpacity
+            // En vista Global "sin bordes" significa literalmente sin stroke
+            // (weight=0). En vista VE el modo activa un tapa-gaps con
+            // stroke=fillColor + weight expandido (strokeWeightForOpacity)
+            // porque los polígonos comparten arcs del TopoJSON simplificado
+            // y dejan hilitos del fondo. En Global los países NO comparten
+            // arcs entre sí (cada uno es un feature independiente), así que
+            // ese hack no aplica y solo introducía artefactos visuales.
+            const stroke = mapStyle.borderColor
+            const weight = mapStyle.noBorders ? 0 : mapStyle.lineWidth
+            const strokeOp = mapStyle.borderOpacity
             const d = pathGen(f as never)
             if (!d) return null
             return (
