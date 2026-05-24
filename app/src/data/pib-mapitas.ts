@@ -187,7 +187,26 @@ function computeMapitasPIB() {
     }
   }
 
-  return { pibMunicipalMM, pibPerCapitaMuni, pibEstatalMM, pibPerCapitaEstatal }
+  // 6) % del PIB del muni respecto a su estado padre. Muestra concentración
+  // intra-estatal: Maracaibo concentra ~50% de Zulia, Caroní ~60% de Bolívar.
+  // Libertador (Caracas) = 100% del Distrito Capital (es el único muni).
+  // La suma de % de los munis de un mismo estado es exactamente 100%.
+  const pibPctEstatal: Record<string, number> = {}
+  for (const [sid, pibMM] of Object.entries(pibMunicipalMM)) {
+    const iso = munis[sid]?.parent_iso
+    const pibEstado = iso ? pibEstatalMM[iso] : undefined
+    if (pibEstado && pibEstado > 0) {
+      pibPctEstatal[sid] = (pibMM / pibEstado) * 100
+    }
+  }
+
+  return {
+    pibMunicipalMM,
+    pibPerCapitaMuni,
+    pibEstatalMM,
+    pibPerCapitaEstatal,
+    pibPctEstatal,
+  }
 }
 
 const result = computeMapitasPIB()
@@ -196,3 +215,4 @@ export const PIB_MAPITAS_MUNICIPAL_MM = result.pibMunicipalMM
 export const PIB_MAPITAS_PER_CAPITA_MUNI = result.pibPerCapitaMuni
 export const PIB_MAPITAS_ESTATAL_MM = result.pibEstatalMM
 export const PIB_MAPITAS_PER_CAPITA_ESTATAL = result.pibPerCapitaEstatal
+export const PIB_MAPITAS_PCT_ESTATAL = result.pibPctEstatal

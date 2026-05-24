@@ -317,6 +317,7 @@ import {
   PIB_MAPITAS_PER_CAPITA_MUNI,
   PIB_MAPITAS_ESTATAL_MM,
   PIB_MAPITAS_PER_CAPITA_ESTATAL,
+  PIB_MAPITAS_PCT_ESTATAL,
   PIB_NACIONAL_USD_MM,
 } from './pib-mapitas'
 
@@ -414,6 +415,24 @@ const PIB_PCT_NACIONAL: Indicator = {
       (pibMM / PIB_NACIONAL_USD_MM) * 100,
     ]),
   ),
+}
+
+// Restringido a nivel muni: a nivel estatal sería 100% por definición,
+// a nivel país no tiene sentido. Muestra concentración intra-estatal:
+// dónde dentro de cada estado se concentra la actividad económica.
+const PIB_PCT_ESTATAL: Indicator = {
+  id: 'pib_pct_estatal',
+  category: 'economia',
+  label: '% del PIB del municipio sobre su estado · estimado Mapitas',
+  description: 'Qué porcentaje del PIB estatal aporta cada municipio',
+  unit: '%',
+  format: 'rate',
+  year: 2026,
+  source: 'Estimación Mapitas (algoritmo en pib-mapitas.ts)',
+  note: 'Muestra concentración intra-estatal. Maracaibo concentra ~45% del PIB de Zulia, Caroní ~55% del de Bolívar. Libertador es 100% del Distrito Capital (único muni). Suma de % de los munis de un mismo estado = 100%.',
+  aggregation: 'municipality',
+  restrictedTo: 'adm2',
+  data: PIB_MAPITAS_PCT_ESTATAL,
 }
 
 // ─── Source CV: indicadores municipales y estatales del Excel del user ──
@@ -748,6 +767,7 @@ export const INDICATORS: Indicator[] = [
   PIB_PC_ESTATAL,
   PIB_PC_MUNICIPAL,
   PIB_PCT_NACIONAL,
+  PIB_PCT_ESTATAL,
   POBLACION_2024,
   HOMICIDIOS,
   BANDERAS_PAIS,
