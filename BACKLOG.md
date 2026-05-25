@@ -480,6 +480,169 @@ en zoom medio. Si no alcanza, ir a **(2) Protomaps** porque preserva
 
 ---
 
+## Más reportes oficiales para Venezuela
+
+Hoy tenemos catálogo decente (~15 indicadores) pero hay áreas con poca
+cobertura. Próximos a sumar (priorizados por demanda/disponibilidad):
+
+- **Educación**: matrícula INE por nivel (preescolar, primaria, media,
+  universitaria) por estado/muni
+- **Salud**: tasa de mortalidad infantil, médicos por mil habitantes
+  (ENCOVI o WHO-PAHO)
+- **Empleo**: tasa de desempleo, % informalidad (ENCOVI 2023/24)
+- **Servicios básicos**: % hogares con agua potable, electricidad, gas
+  (ENCOVI, censo 2011 actualizado donde haya datos nuevos)
+- **Migración interna**: saldo migratorio entre estados (ENCOVI módulo
+  migración)
+- **Inseguridad ampliada**: secuestros, extorsión, hurtos OVV o CICPC
+- **Económicos no-PIB**: remesas recibidas por estado, salario mínimo
+  vs canasta básica, % pobreza multidimensional
+
+Cada uno requiere: encontrar la fuente, normalizar a 27 estados / 336 munis,
+matchear contra el master, agregar al catálogo `indicators.ts`. Trabajo
+incremental — un reporte por sesión idealmente.
+
+---
+
+## Embellecer mapas regionales (Latam, Sudamérica, Europa, etc.)
+
+Las regiones de vista Global (Latam, Sudamérica, Iberoamérica, Europa,
+USA) y las Test Leaflet funcionan, pero el polish visual es desigual:
+
+- Algunos países se ven con bordes finos y otros muy gruesos (depende
+  de la simplificación de Natural Earth a 110m).
+- "Mundo" en Equal Earth todavía deja ver Rusia/Asia recortadas raras.
+- Países pequeños (Caribe, Centroamérica) quedan minúsculos en
+  Iberoamérica/Latam — un mini-zoom o etiquetas ayudarían.
+- En Test Leaflet, los tiles del basemap no siempre matchean el tema
+  Cosmos (mar azul + tierras grises) — desbalance visual.
+
+Trabajo: pasada de design en cada región, ajustar bordes/colores/
+proyección/zoom defaults por caso, eventualmente migrar a un geojson
+mejor (Natural Earth 50m simplificado a 30m con mapshaper).
+
+---
+
+## Mapas detallados de Argentina, Colombia, México (ADM1/ADM2)
+
+Fase 2 de la feature de regiones: tener mapas internos de los países
+más demandados de LATAM con sus provincias/departamentos/estados y
+municipios.
+
+Por país, lo necesario:
+- **Argentina**: 24 provincias (ADM1) + 530+ partidos/municipios (ADM2).
+  Fuente: IGN AR / geoBoundaries.
+- **Colombia**: 32 departamentos + 1100+ municipios. Fuente: DANE /
+  geoBoundaries.
+- **México**: 32 estados + 2400+ municipios. Fuente: INEGI /
+  geoBoundaries.
+
+Cada uno son varios MB de geojson incluso simplificados. Pipeline:
+descargar → simplify con mapshaper → enriquecer con IDs y nombres
+oficiales → TopoJSON → integrar al store con nuevos tipos.
+
+Habilita: ver indicadores por nivel sub-país en cualquier país, no
+sólo VE. Y painter por estados/munis de esos países.
+
+---
+
+## Detección automática del país del visitante
+
+Cuando el user entra por primera vez a `/#/app`, abrir directo en la
+vista de SU país en lugar de Venezuela (hoy hardcoded). Si su país no
+tiene mapa propio (sólo VE habilitado), caer a la región que lo contiene
+(Latam, Iberoamérica, etc.) o a Mundo.
+
+Opciones para detectar:
+1. **`navigator.language`** — detecta locale del browser (`es-AR`,
+   `pt-BR`). No requiere red. Falla en usuarios con browser en inglés.
+2. **GeoIP del header del request** — Vercel expone `x-vercel-ip-country`
+   gratis. Más exacto pero requiere SSR o función edge para leerlo.
+3. **API geoip pública** (ipapi.co, ipinfo.io) — tier free limitado,
+   añade un round-trip al boot.
+
+Recomendación: empezar con `navigator.language` (cero costo, sin
+backend). Si en analytics vemos que el 60%+ tiene browser en inglés,
+sumar GeoIP de Vercel.
+
+Persistir la elección en localStorage para no detectar de nuevo en
+cada visita.
+
+---
+
+## Modo oscuro global
+
+Hoy el UI está hardcoded en light (slate-50 / white / slate-900 text).
+Agregar dark mode coherente con la estética Apple/Anthropic:
+
+- Fondo principal `bg-slate-950` en lugar de `bg-slate-50`
+- Texto invertido (`text-slate-100` para body, `text-white` para títulos)
+- Bordes `border-slate-800` en lugar de `border-slate-200`
+- Mantener el mapa con basemap activo del user — el "dark" del UI no
+  fuerza basemap oscuro (el user puede tener Carto Dark o Cosmos
+  por su cuenta).
+
+Toggle: en panel Estilo o como botón del TopBar. Persistir en
+localStorage. Default: `prefers-color-scheme` del browser.
+
+Cuidado: muchos componentes tienen colores hardcoded inline
+(swatches, badges, modal Wiki, etc.). Pasada de design system con
+clases `dark:` de Tailwind. Ojo con el tema Cosmos del globo, que
+ya tiene su propio dark interno — no debe duplicar.
+
+---
+
+## Pipeline de traducción automática (i18n)
+
+Hoy todo está en español. Para abrir a usuarios de otros países (Brasil,
+USA, Europa) hace falta i18n. Plan:
+
+1. Extraer strings de UI a un archivo `messages.es.json`. Usar
+   `react-intl` o `i18next` para leerlos. ~200-300 strings.
+2. **Traducción automática**: pipeline n8n (o GitHub Actions con
+   DeepL/OpenAI API) que toma el `.es.json` y produce `.en.json`,
+   `.pt.json`. Corre en cada push a main; commit automático de los
+   archivos traducidos.
+3. Selector de idioma en TopBar o footer. Detectar default por
+   `navigator.language`.
+
+Items que NO requieren traducción auto (mantener literal):
+- Nombres oficiales de estados/munis/países (ya están en español/
+  inglés según fuente)
+- Indicadores con metodología compleja (mantener español; agregar
+  glosario para idioma destino)
+
+Costo: DeepL free es 500k chars/mes, suficiente. Si crece a más
+idiomas o updates frecuentes, pagar tier API (~$5/mes).
+
+---
+
+## Límites marítimos en mapas regionales y globales
+
+Hoy la capa temática "Límites marítimos · CV" sólo se muestra en vista
+VE (Leaflet). Cuando el user va a Global o regiones, la capa desaparece
+porque el sistema de capas temáticas (`thematic`) está pensado para
+vista VE.
+
+Para que aparezca también en Global / regiones / Test Leaflet:
+
+1. Cargar el geojson `internacionales-maritimos.geojson` también desde
+   WorldMapView y RegionTestView.
+2. Renderizar como `<path>` o `<polyline>` en SVG (Global) o como
+   GeoJSON layer en Leaflet (Test).
+3. Respetar el toggle del panel Capas — si está activo, se muestra
+   en todas las vistas.
+
+Beneficio: cuando el user pinte Iberoamérica o Mundo, las divisiones
+marítimas reclamadas por VE quedan visibles. Refuerza la postura
+oficial sin esfuerzo extra.
+
+NOTA: relacionado con "Mejorar borde de Venezuela en vista Global"
+(sección de arriba) — los dos abordan el problema de "VE no se ve igual
+de bien fuera de su vista propia".
+
+---
+
 ## Otros items menores (pendientes de sesiones previas)
 
 - Páez de Apure: el polígono existe en adm2 (lo movimos a VE-C) pero los
