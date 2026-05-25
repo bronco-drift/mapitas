@@ -118,7 +118,7 @@ export function IndicatorCoverageModal({
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-md p-1 text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-900"
+            className="shrink-0 rounded-md p-1 text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900"
             aria-label="Cerrar"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none">

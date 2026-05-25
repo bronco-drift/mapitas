@@ -227,12 +227,12 @@ function Row({
       }}
       className={`group flex w-full items-start justify-between gap-2 rounded-md px-2.5 py-2 text-left transition outline-none focus:ring-2 focus:ring-slate-400 ${
         active
-          ? 'bg-slate-900 text-white'
+          ? 'bg-slate-900 text-white dark:bg-slate-200 dark:text-slate-900'
           : disabled
             ? 'cursor-not-allowed opacity-40'
             : isArchived
-              ? 'cursor-pointer opacity-70 hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:opacity-100'
-              : 'cursor-pointer hover:bg-slate-100'
+              ? 'cursor-pointer opacity-70 hover:bg-slate-100 dark:hover:bg-slate-800 hover:opacity-100'
+              : 'cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800'
       }`}
       title={disabled ? cov.reason : undefined}
     >
@@ -240,7 +240,7 @@ function Row({
         <div className="flex items-baseline gap-1.5">
           <div
             className={`text-[14px] font-medium leading-snug tracking-tight ${
-              active ? 'text-white' : 'text-slate-800'
+              active ? 'text-white dark:text-slate-900' : 'text-slate-800 dark:text-slate-200'
             }`}
           >
             {indicator.label}
@@ -540,14 +540,14 @@ function DiasporaPanel() {
                       onClick={() => setGlobalMetric(report.mode)}
                       className={`group flex w-full items-start justify-between gap-2 rounded-md px-2.5 py-2 text-left transition outline-none focus:ring-2 focus:ring-slate-400 ${
                         isActive
-                          ? 'bg-slate-900 text-white'
-                          : 'hover:bg-slate-100'
+                          ? 'bg-slate-900 text-white dark:bg-slate-200 dark:text-slate-900'
+                          : 'hover:bg-slate-100 dark:hover:bg-slate-800'
                       }`}
                     >
                       <div className="min-w-0 flex-1">
                         <div
                           className={`text-[13px] font-medium leading-tight ${
-                            isActive ? 'text-white' : 'text-slate-900'
+                            isActive ? 'text-white dark:text-slate-900' : 'text-slate-900 dark:text-slate-100'
                           }`}
                         >
                           {report.label}
@@ -592,12 +592,12 @@ function DiasporaPanel() {
             key={r.iso}
             type="button"
             onClick={() => setSelected({ name: r.name, iso: r.iso, value: r.value })}
-            className="group flex w-full items-center gap-2 rounded px-2 py-1.5 text-left transition outline-none hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 focus:ring-2 focus:ring-slate-400"
+            className="group flex w-full items-center gap-2 rounded px-2 py-1.5 text-left transition outline-none hover:bg-slate-100 dark:hover:bg-slate-800 focus:ring-2 focus:ring-slate-400"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline justify-between gap-2">
-                <span className="truncate text-[13px] font-medium text-slate-800">{r.name}</span>
-                <span className="shrink-0 text-[13px] font-semibold tabular-nums text-slate-900">
+                <span className="truncate text-[13px] font-medium text-slate-800 dark:text-slate-200">{r.name}</span>
+                <span className="shrink-0 text-[13px] font-semibold tabular-nums text-slate-900 dark:text-slate-100">
                   {formatValue(r.value)}
                 </span>
               </div>

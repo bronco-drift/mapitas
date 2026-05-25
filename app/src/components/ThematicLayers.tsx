@@ -73,7 +73,7 @@ export function ThematicLayersList() {
                 onClick={() => setExpandedId(expanded ? null : meta.id)}
                 aria-label={expanded ? 'Cerrar ajustes' : 'Abrir ajustes'}
                 aria-expanded={expanded}
-                className="flex w-7 shrink-0 items-center justify-center rounded-md text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                className="flex w-7 shrink-0 items-center justify-center rounded-md text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
                 title={expanded ? 'Cerrar ajustes' : 'Ajustar capa'}
               >
                 <svg
@@ -264,7 +264,7 @@ function LabelTweaks({
           <button
             type="button"
             onClick={() => setOverride(_meta.id, { labelBg: '' })}
-            className="rounded border border-slate-200 dark:border-slate-800 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-300 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-700"
+            className="rounded border border-slate-200 dark:border-slate-800 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-300 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700"
             title="Sin fondo"
           >
             Sin
