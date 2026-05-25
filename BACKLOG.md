@@ -686,38 +686,6 @@ soporta dark mode. Hay precedente para ambas decisiones.
 
 ---
 
-## Bug zoom mapa global no va al centro
-
-En vista Global (d3-geo, `WorldMapView.tsx`), hacer zoom con scroll
-del mouse **no va hacia el centro del viewport** sino hacia donde
-queda el cursor relativo al SVG, pero el cálculo está descalibrado:
-el mapa se desplaza después del zoom en vez de quedarse anclado al
-punto bajo el cursor.
-
-Reproducir: abrir vista Global, scrollear con mouse al centro del
-mapa. Esperado: zoom apunta al centro. Observado: zoom desplaza el
-mapa.
-
-Diagnóstico probable: el `d3-zoom` (o el handler manual de
-PointerEvents si así está hecho) usa coordenadas del browser pero
-no resta el offset del bounding rect del SVG, o lo hace mal cuando
-el viewport tiene `transform` aplicado por algún padre.
-
-Investigar: `app/src/components/WorldMapView.tsx` — ver cómo está
-montado el zoom y comparar contra el ejemplo canónico de
-`d3-zoom` + `geoIdentity`.
-
----
-
-## Sacar "local" de la barra
-
-En el TopBar aparece la palabra **"local"** en algún lado (probablemente
-badge BETA o nombre del entorno en dev). En producción no debería
-aparecer. Revisar `TopBar.tsx` y `MapApp.tsx` para ver de dónde sale
-y quitar / condicionar a `import.meta.env.DEV` si es un dev-only marker.
-
----
-
 ## Mostrar MIDE en la barra de la landing principal
 
 Hoy el callout de MIDE en la landing principal está en el body
