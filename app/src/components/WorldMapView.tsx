@@ -469,12 +469,17 @@ export function WorldMapView() {
     return () => el.removeEventListener('wheel', handler)
   }, [])
 
-  // Zoom centrado en el viewport (no en (0,0) del SVG). El truco es
-  // translate(cx,cy) → scale → translate(-cx,-cy): el contenido se escala
-  // alrededor del centro pantalla y el centro mismo queda inmóvil. El pan
-  // adicional se aplica DESPUÉS del scale (no se escala con el zoom).
+  // Zoom centrado en el ÁREA VISIBLE (no en el container completo). El truco
+  // es translate(cx,cy) → scale → translate(-cx,-cy): el contenido se escala
+  // alrededor del centro pasado como pivot. Ese pivot debe matchear el lugar
+  // donde la esfera/mapa están posicionados — en mobile la esfera vive arriba
+  // (centerY = visibleH/2, ver pathGen líneas arriba) porque el panel drawer
+  // tapa la mitad inferior. Si usáramos size.h/2 como pivot, el zoom anclaría
+  // un punto debajo del panel y el globo se desplaza al zoomear.
+  // En desktop visibleH === size.h, así que el cálculo coincide con size.h/2.
+  const visibleH = size ? (isMobile ? size.h * (1 - mobilePanelHeight) : size.h) : 0
   const cx = size ? size.w / 2 : 0
-  const cy = size ? size.h / 2 : 0
+  const cy = visibleH / 2
   const transform = `translate(${cx + pan.x},${cy + pan.y}) scale(${scale}) translate(${-cx},${-cy})`
 
   // Sphere de fondo (solo en Orthographic): es el "borde del globo"
