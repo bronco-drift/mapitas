@@ -1,17 +1,24 @@
 // Computa el "map coloring" para los municipios venezolanos.
 //
-// Objetivo: asignar a cada muni un color de una paleta pequeña (6 colores)
-// de modo que NINGÚN PAR DE MUNIS VECINOS comparta color. Es el clásico
+// Objetivo: asignar a cada muni un color de una paleta de 16 colores de
+// modo que NINGÚN PAR DE MUNIS VECINOS comparta color. Es el clásico
 // problema de coloreado de grafos. Por el teorema de los 4 colores cualquier
-// mapa planar se puede colorear con 4, pero usamos 6 para margen y para
-// que la heurística greedy converja sin perfectionismo.
+// mapa planar se puede colorear con 4 colores, pero acá usamos 16 para
+// MÁS VARIEDAD VISUAL — un mapa político con solo 4-6 colores se ve más
+// pobre que el de estados (26 colores únicos), aun teniendo más divisiones.
 //
 // Cómo se detecta "vecindad": en TopoJSON los polígonos comparten ARCS.
 // Dos munis con un arc común son vecinos (comparten frontera). Esto es
 // mucho más rápido y robusto que hacer intersect espacial con turf.
 //
+// Estrategia de asignación: greedy Welsh-Powell (degree descendente) +
+// "least used so far". Entre los colores válidos para un muni (los que no
+// usan sus vecinos), elegimos el que MENOS veces apareció hasta ahora en
+// el mapa entero. Esto distribuye el uso uniforme entre los 16 colores en
+// lugar de saturar los primeros (que es lo que hace el greedy estándar).
+//
 // Output: app/src/data/muni-coloring.json con `{ sourceID: colorIdx }`,
-// donde colorIdx ∈ [0, 5]. Los colores reales viven en runtime (el
+// donde colorIdx ∈ [0, 15]. Los colores reales viven en runtime (el
 // JSON es solo "qué muni va con qué slot").
 //
 // Regenerar después de cambiar la geometría adm2: `node scripts/compute-muni-coloring.mjs`
@@ -26,7 +33,7 @@ const ROOT = resolve(__dirname, '..')
 const TOPOJSON_PATH = resolve(ROOT, 'app/public/data/venezuela-adm2.topojson')
 const OUTPUT_PATH = resolve(ROOT, 'app/src/data/muni-coloring.json')
 
-const N_COLORS = 6
+const N_COLORS = 16
 
 async function main() {
   const topo = JSON.parse(await readFile(TOPOJSON_PATH, 'utf8'))
@@ -75,6 +82,7 @@ async function main() {
   )
 
   const coloring = new Map() // muniIdx → colorIdx
+  const usageCount = new Array(N_COLORS).fill(0) // cuántos munis tienen ya cada color
   let maxColorUsed = 0
   let conflicts = 0
 
@@ -83,20 +91,27 @@ async function main() {
     for (const n of adjacency.get(idx) ?? []) {
       if (coloring.has(n)) neighborColors.add(coloring.get(n))
     }
+    // De los colores disponibles (los que no usan vecinos), elegir el menos
+    // usado globalmente. Esto evita que greedy concentre todo en los primeros
+    // índices: con N=16 colores y solo 4-6 estrictamente necesarios, sin
+    // "least used" el algoritmo dejaría los últimos 10 índices sin uso.
     let chosen = -1
+    let chosenUsage = Infinity
     for (let c = 0; c < N_COLORS; c++) {
-      if (!neighborColors.has(c)) {
+      if (neighborColors.has(c)) continue
+      if (usageCount[c] < chosenUsage) {
         chosen = c
-        break
+        chosenUsage = usageCount[c]
       }
     }
     if (chosen === -1) {
-      // No alcanzaron N colores (esperable solo si la heurística falla).
-      // Usar el módulo y contar como conflicto para que el script avise.
+      // No alcanzaron N colores (esperable solo si la heurística falla en un
+      // grafo extremadamente conectado). Fallback: módulo.
       chosen = neighborColors.size % N_COLORS
       conflicts++
     }
     coloring.set(idx, chosen)
+    usageCount[chosen]++
     if (chosen > maxColorUsed) maxColorUsed = chosen
   }
 

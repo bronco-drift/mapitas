@@ -191,27 +191,43 @@ export function colorForState(iso: string): string {
 
 // ─── Paleta para vista política a nivel municipal ─────────────────────────
 //
-// 6 colores para colorear los ~335 munis sin que dos vecinos compartan tono.
+// 16 colores para colorear los ~335 munis sin que dos vecinos compartan tono.
 // La asignación de muni → índice viene del script compute-muni-coloring.mjs
-// (greedy graph coloring sobre el grafo de adyacencias del TopoJSON). Los
-// vecinos directos siempre tienen distinto índice; con 5 colores alcanza
-// para Venezuela. Es el patrón clásico de los mapas políticos en papel.
+// (greedy graph coloring + "least used" sobre el grafo de adyacencias del
+// TopoJSON). Los vecinos directos siempre tienen distinto índice; el script
+// distribuye los 336 munis uniformemente entre los 16 colores.
+//
+// Por qué 16 y no 4-6: el teorema de los 4 colores garantiza factibilidad
+// con 4, pero con paletas chicas el mapa político queda visualmente pobre
+// (incluso menos rico que el de estados con 26 colores únicos). Saltar a 16
+// recupera la sensación de variedad y permite que vecinos cercanos (pero no
+// directos) se vean claramente distintos.
 
 import muniColoringRaw from './muni-coloring.json'
 const MUNI_COLORING = muniColoringRaw as Record<string, number>
 
-const MUNI_PALETTE_6 = [
-  '#5b8def', // azul
-  '#f4a261', // naranja cálido
+const MUNI_PALETTE_16 = [
+  '#5b8def', // azul medio
+  '#f4a261', // naranja
   '#2a9d8f', // teal
   '#e76f51', // coral
   '#a663cc', // púrpura
-  '#e9c46a', // amarillo cálido
+  '#e9c46a', // amarillo
+  '#8ab17d', // verde lima
+  '#dd7878', // rosa apagado
+  '#5fa8b4', // cian
+  '#b5b85a', // oliva
+  '#c08866', // terracota
+  '#779ecb', // azul vivo
+  '#d4a5d4', // lila claro
+  '#86b89a', // verde sage
+  '#9c6b50', // marrón
+  '#8a90b8', // lavender gris
 ]
 
 export function colorForMuni(sourceID: string): string {
   const idx = MUNI_COLORING[sourceID]
-  return idx != null ? MUNI_PALETTE_6[idx % MUNI_PALETTE_6.length] : '#cbd5e1'
+  return idx != null ? MUNI_PALETTE_16[idx % MUNI_PALETTE_16.length] : '#cbd5e1'
 }
 
 // ─── Indicadores del master (data trazada) ────────────────────────────────
