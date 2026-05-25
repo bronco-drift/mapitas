@@ -145,7 +145,95 @@ export type CosmosTweaks = {
   highlightIntensity: number // 0..2
 }
 
+// ─── Painter (Hacer tu propio mapa) ───────────────────────────────────────
+// Feature estilo mapchart.net: el user pinta features (estados VE o países)
+// con el color activo. No vive en ruta aparte — es un tab más del
+// ControlPanel ("Dibujar") que comparte TopBar, mapa y panel Estilo
+// (basemap, fondo, bordes). Cuando el tab activo es 'dibujar', el click
+// en un feature lo pinta en lugar de seleccionarlo.
+//
+// Modelo simple inspirado en mapchart: el user elige un color de la paleta
+// y pinta. La "leyenda" se construye al runtime agrupando features por
+// color. No hay grupos pre-creados — los colores aparecen en la leyenda
+// recién cuando se usan al menos una vez.
+
+// Contexto = combinación (view + level) donde el painter aplica. Cada
+// contexto tiene su set propio de asignaciones para que pintar países no
+// pise pintar estados VE, etc.
+export type PaintContext = 've_states' | 've_munis' | 'countries'
+
+export type PaintState = {
+  // Título del mapa. Mostrado en el header del tab Dibujar y usado como
+  // nombre del archivo PNG al exportar.
+  title: string
+  // Color activo (hex). Si null, los clicks en el mapa NO pintan aunque el
+  // tab Dibujar esté activo — el user puede ver su pintura sin riesgo de
+  // tocarla por accidente.
+  activeColor: string | null
+  // Asignaciones por contexto: featureId → colorHex. Identificadores:
+  //   ve_states:  iso (ej 'VE-A')
+  //   ve_munis:   sourceID (ej 'amazonas-atabapo')
+  //   countries:  iso_a3 (ej 'COL')
+  assignments: {
+    ve_states: Record<string, string>
+    ve_munis: Record<string, string>
+    countries: Record<string, string>
+  }
+  // Labels custom por color (compartido entre contextos). Si el user pone
+  // verde como "Visitados" en estados, sigue siendo "Visitados" si lo usa
+  // en países también. Coherencia conceptual de la leyenda.
+  labels: Record<string, string>
+}
+
+export const PAINT_STATE_DEFAULT: PaintState = {
+  title: 'Mi mapa',
+  activeColor: null,
+  assignments: { ve_states: {}, ve_munis: {}, countries: {} },
+  labels: {},
+}
+
+// Slot para guardar el estado del painter con un nombre custom. El user
+// puede tener N slots y cargarlos cuando quiera (snapshot completo del
+// paint en ese momento). NO incluimos `activeColor` (es una preferencia
+// momentánea, no parte del mapa).
+export type SavedMap = {
+  id: string
+  name: string
+  savedAt: number // timestamp en ms (Date.now)
+  title: string
+  assignments: PaintState['assignments']
+  labels: PaintState['labels']
+}
+
+// Helper: resuelve el contexto del painter para una vista + nivel dados.
+// adm0 (país solo) no tiene contexto porque pintar 1 sólo polígono no
+// aporta — el painter aplica a niveles con varias entidades.
+export function getPaintContext(
+  view: ViewMode,
+  level: AdmLevel,
+): PaintContext | null {
+  if (view === 'global') return 'countries'
+  if (level === 'adm1') return 've_states'
+  if (level === 'adm2') return 've_munis'
+  return null
+}
+
 export const COSMOS_TWEAKS_DEFAULT: CosmosTweaks = {
+  space: '#0f172a',
+  globe: '#89c8f5', // sky-medio: más luminoso que el #bedaee histórico
+  missing: '#e2e8f0',
+  starsDensity: 1,
+  haloIntensity: 1, // halo full → atmósfera bien visible
+  highlightX: 73, // luz desde la derecha
+  highlightY: 34,
+  highlightIntensity: 1.6, // brillo 3D más marcado
+}
+
+// Valores históricos del default (anteriores a la promoción de Cosmos como
+// default global). Sirven para detectar si el user nunca tocó los tweaks:
+// si su cosmosTweaks coincide exactamente con esto, es default → lo
+// migramos al nuevo default; si difiere, respetamos su customización.
+const COSMOS_TWEAKS_LEGACY_DEFAULT = {
   space: '#0f172a',
   globe: '#bedaee',
   missing: '#e2e8f0',
@@ -156,7 +244,13 @@ export const COSMOS_TWEAKS_DEFAULT: CosmosTweaks = {
   highlightIntensity: 1,
 }
 
-export type PanelTab = 'datos' | 'capas' | 'estilo'
+// Tabs visibles dependen de paintModeActive:
+//   modo normal:  'datos' | 'capas' | 'estilo'
+//   modo pintar:  'presets' | 'estilo' | 'pintar'
+// 'presets' fusiona Datos+Capas en una sola tab para que mientras pintás
+// puedas activar capas o cambiar indicador de fondo sin perder el contexto.
+// 'pintar' tiene la paleta de colores + leyenda + acciones del painter.
+export type PanelTab = 'datos' | 'capas' | 'estilo' | 'presets' | 'pintar'
 
 type State = {
   view: ViewMode
@@ -173,6 +267,10 @@ type State = {
   //   'venezolanos' = total venezolanos viviendo en ese país (incluye VE)
   //   'porcentaje'  = % venezolanos sobre población total del país
   globalMetric: import('./lib/apply-indicator').DiasporaMode
+  // Región activa en vista Global (filtro de países visibles + auto-fit
+  // de la proyección al subset). 'world' = mundo entero (sin filtro).
+  // Ver app/src/lib/regions.ts para la definición de cada región.
+  globalRegion: import('./lib/regions').RegionId
   // Vista Global: proyección d3-geo activa + rotación [lambda, phi, gamma]
   // que solo aplica a proyecciones tipo globo (Orthographic).
   projection: 'equalEarth' | 'orthographic' | 'naturalEarth' | 'mercator' | 'equirectangular'
@@ -198,6 +296,19 @@ type State = {
   // Overrides por capa, indexados por id. Vacío inicialmente; cada capa
   // que el user toca acumula sus tweaks. Persistido en localStorage.
   thematicOverrides: Record<string, ThematicOverride>
+  // Painter (Hacer tu propio mapa). Vive en su propio slice porque es un
+  // producto separado dentro de Mapitas.
+  paint: PaintState
+  // Modo Pintar global, independiente del tab activo. Cuando está ON:
+  //   - el click en una región del mapa pinta (no selecciona)
+  //   - el set de tabs visibles cambia: 'presets' | 'estilo' | 'pintar'
+  //   - el render del mapa ignora el color del indicador (lienzo limpio)
+  // Cuando está OFF: experiencia normal. Se togglea desde el botón
+  // "Hacer tu propio mapa" del TopBar.
+  paintModeActive: boolean
+  // Slots de mapas guardados (local, localStorage). El user puede tener
+  // N mapas con nombre custom y cargarlos cuando quiera.
+  savedMaps: SavedMap[]
   // Rango custom para clasificación visual (null = usa min/max natural)
   customRange: { min: number | null; mid: number | null; max: number | null }
   // IDs de indicadores que el usuario quiere ocultar de la lista principal.
@@ -217,6 +328,7 @@ type Actions = {
   setProjection: (p: State['projection']) => void
   setRotation: (r: [number, number, number]) => void
   setGlobalMetric: (m: import('./lib/apply-indicator').DiasporaMode) => void
+  setGlobalRegion: (r: import('./lib/regions').RegionId) => void
   setMobilePanelHeight: (h: number) => void
   setLevel: (level: AdmLevel) => void
   setPalette: (palette: PaletteId) => void
@@ -233,6 +345,21 @@ type Actions = {
   resetCosmosTweaks: () => void
   setThematicOverride: (id: string, patch: Partial<ThematicOverride>) => void
   resetThematicOverride: (id: string) => void
+  // Painter actions
+  setPaintMode: (active: boolean) => void
+  setPaintTitle: (title: string) => void
+  setPaintActiveColor: (color: string | null) => void
+  paintFeature: (ctx: PaintContext, featureId: string) => void
+  setPaintColorLabel: (color: string, label: string) => void
+  // Despinta TODOS los features asignados a este color en el contexto actual
+  removePaintColor: (ctx: PaintContext, color: string) => void
+  clearPaintContext: (ctx: PaintContext) => void
+  resetPaint: () => void
+  // Slots de mapas guardados
+  saveMapAs: (name: string) => void
+  loadSavedMap: (id: string) => void
+  deleteSavedMap: (id: string) => void
+  renameSavedMap: (id: string, name: string) => void
   setCountry: (code: 'VE') => void
   setTab: (tab: PanelTab) => void
   loadThematicManifest: () => Promise<void>
@@ -272,7 +399,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   noBorders: true,
   countryBorder: true,
   autoClipExtremes: true,
-  globeTheme: 'day',
+  globeTheme: 'cosmos',
   showLabels: false,
 }
 
@@ -303,6 +430,7 @@ export const useStore = create<State & Actions>()(
   diaspora: null,
   diasporaLoading: false,
   globalMetric: 'migrantes',
+  globalRegion: 'world',
   // Default: Orthographic centrado en Venezuela (Caracas: -66, 7).
   // En d3-geo, rotate([λ, φ, γ]) pone el punto (-λ, -φ) en el centro.
   // Para centrar en VE → λ=66 (lng=-66), φ=-7 (lat=+7), γ=0.
@@ -319,6 +447,9 @@ export const useStore = create<State & Actions>()(
   cosmosTweaks: COSMOS_TWEAKS_DEFAULT,
   thematic: {},
   thematicOverrides: {},
+  paint: PAINT_STATE_DEFAULT,
+  paintModeActive: false,
+  savedMaps: [],
   customRange: { min: null, mid: null, max: null },
   archivedIndicators: DEFAULT_ARCHIVED_INDICATORS,
   _persistedSourceId: null,
@@ -426,8 +557,12 @@ export const useStore = create<State & Actions>()(
 
   setView(view) {
     set({ view })
-    // Carga lazy la primera vez que se entra a la vista Global
-    if (view === 'global' && !get().diaspora) {
+    // Tanto 'global' (d3-geo) como 'region_test' (Leaflet) usan el geo de
+    // diáspora — cargamos lazy la primera vez que se entra a cualquiera
+    // de las dos. Si ya estaba cargado, aplyMerge re-pinta con la métrica
+    // activa. 'venezuela' usa adm1/adm2 que ya se cargaron al boot.
+    const needsDiaspora = view === 'global' || view === 'region_test'
+    if (needsDiaspora && !get().diaspora) {
       get().loadDiasporaData()
     } else {
       get().applyMerge()
@@ -445,6 +580,12 @@ export const useStore = create<State & Actions>()(
   setGlobalMetric(m) {
     set({ globalMetric: m })
     if (get().view === 'global') get().applyMerge()
+  },
+
+  setGlobalRegion(r) {
+    set({ globalRegion: r })
+    // No hace falta applyMerge — la región solo filtra el render, no
+    // recalcula colores. WorldMapView lee globalRegion directamente.
   },
 
   setMobilePanelHeight(h) {
@@ -602,6 +743,154 @@ export const useStore = create<State & Actions>()(
     set({ thematicOverrides: rest })
   },
 
+  // ─── Painter actions ──────────────────────────────────────────────────
+  setPaintMode(active) {
+    set({ paintModeActive: active })
+    // Al activar el modo, llevamos al user al tab Pintar (paleta) si está
+    // en uno que ya no será visible. Al desactivar, lo llevamos a Datos.
+    if (active) {
+      const t = get().tab
+      if (t !== 'presets' && t !== 'estilo' && t !== 'pintar') {
+        set({ tab: 'pintar' })
+      }
+    } else {
+      const t = get().tab
+      if (t !== 'datos' && t !== 'capas' && t !== 'estilo') {
+        set({ tab: 'datos' })
+      }
+    }
+  },
+
+  setPaintTitle(title) {
+    set({ paint: { ...get().paint, title } })
+  },
+
+  setPaintActiveColor(color) {
+    set({ paint: { ...get().paint, activeColor: color } })
+  },
+
+  // Click sobre un feature en modo Dibujar. Toggle:
+  //   - Si ya tenía el color activo → despinta
+  //   - Si estaba sin color o con otro → asigna el color activo
+  // Sin color activo, no hace nada (el modo lectura del painter).
+  paintFeature(ctx, featureId) {
+    const paint = get().paint
+    if (!paint.activeColor) return
+    const current = paint.assignments[ctx][featureId]
+    const next = { ...paint.assignments[ctx] }
+    if (current === paint.activeColor) {
+      delete next[featureId]
+    } else {
+      next[featureId] = paint.activeColor
+    }
+    set({
+      paint: {
+        ...paint,
+        assignments: { ...paint.assignments, [ctx]: next },
+      },
+    })
+  },
+
+  setPaintColorLabel(color, label) {
+    const labels = { ...get().paint.labels }
+    if (label.trim() === '') delete labels[color]
+    else labels[color] = label
+    set({ paint: { ...get().paint, labels } })
+  },
+
+  // Despinta todos los features asignados a este color en el contexto dado.
+  // El label del color se conserva (queda en `labels` por si el user vuelve
+  // a usarlo) salvo que no haya quedado nada en ningún contexto.
+  removePaintColor(ctx, color) {
+    const paint = get().paint
+    const next = Object.fromEntries(
+      Object.entries(paint.assignments[ctx]).filter(([, c]) => c !== color),
+    )
+    const newAssignments = { ...paint.assignments, [ctx]: next }
+    // Si el color ya no aparece en NINGÚN contexto, limpiamos también su label.
+    const stillUsed =
+      Object.values(newAssignments.ve_states).includes(color) ||
+      Object.values(newAssignments.ve_munis).includes(color) ||
+      Object.values(newAssignments.countries).includes(color)
+    const labels = { ...paint.labels }
+    if (!stillUsed) delete labels[color]
+    set({
+      paint: {
+        ...paint,
+        assignments: newAssignments,
+        labels,
+      },
+    })
+  },
+
+  clearPaintContext(ctx) {
+    const paint = get().paint
+    set({
+      paint: {
+        ...paint,
+        assignments: { ...paint.assignments, [ctx]: {} },
+      },
+    })
+  },
+
+  resetPaint() {
+    set({ paint: PAINT_STATE_DEFAULT })
+  },
+
+  // ─── Slots de mapas guardados ─────────────────────────────────────────
+  saveMapAs(name) {
+    const paint = get().paint
+    const id = `m_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`
+    const slot: SavedMap = {
+      id,
+      name: name.trim() || paint.title || 'Mapa sin nombre',
+      savedAt: Date.now(),
+      title: paint.title,
+      // Deep clone para que ediciones futuras al paint NO muten el snapshot
+      assignments: {
+        ve_states: { ...paint.assignments.ve_states },
+        ve_munis: { ...paint.assignments.ve_munis },
+        countries: { ...paint.assignments.countries },
+      },
+      labels: { ...paint.labels },
+    }
+    // Más recientes primero — orden natural en la UI.
+    set({ savedMaps: [slot, ...get().savedMaps] })
+  },
+
+  loadSavedMap(id) {
+    const slot = get().savedMaps.find(m => m.id === id)
+    if (!slot) return
+    // Cargamos title + assignments + labels al paint actual. activeColor
+    // no se toca (es preferencia momentánea del user).
+    set({
+      paint: {
+        ...get().paint,
+        title: slot.title,
+        assignments: {
+          ve_states: { ...slot.assignments.ve_states },
+          ve_munis: { ...slot.assignments.ve_munis },
+          countries: { ...slot.assignments.countries },
+        },
+        labels: { ...slot.labels },
+      },
+    })
+  },
+
+  deleteSavedMap(id) {
+    set({ savedMaps: get().savedMaps.filter(m => m.id !== id) })
+  },
+
+  renameSavedMap(id, name) {
+    const newName = name.trim()
+    if (!newName) return
+    set({
+      savedMaps: get().savedMaps.map(m =>
+        m.id === id ? { ...m, name: newName } : m,
+      ),
+    })
+  },
+
   setCountry(code) {
     set({ country: code })
   },
@@ -709,7 +998,7 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
-      version: 9,
+      version: 14,
       // Migraciones:
       //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
       //   v2 → v3: projection default Orthographic + rotation centrada en VE
@@ -725,6 +1014,16 @@ export const useStore = create<State & Actions>()(
       //   tweaks por capa temática: opacidad, color, estilo de texto).
       //   v8 → v9: agregar highlightX/Y/Intensity al cosmosTweaks. Merge
       //   con defaults para preservar lo que ya tenía el user.
+      //   v9 → v10: agregar paint state (feature "Hacer tu propio mapa").
+      //   v10 → v11: agregar globalRegion 'world' default (feature regiones).
+      //   v11 → v12: tab 'dibujar' renombrado a 'pintar'; paintModeActive
+      //   inicializa en false. El user vuelve a estado neutral.
+      //   v12 → v13: Cosmos pasa a ser default del globo (era 'day'). Solo
+      //   afecta a usuarios que tenían 'day' (default histórico) — los que
+      //   habían elegido otro tema se respetan. Idem para cosmosTweaks: si
+      //   tenía los valores legacy exactos (no tocados), se actualiza al
+      //   nuevo default; si los tweakeo, se mantiene.
+      //   v13 → v14: agregar savedMaps [] (slots de guardado del painter).
       migrate: (persisted, version) => {
         let obj = persisted as Record<string, unknown>
         if (version < 2 && obj?.view === 'diaspora') {
@@ -772,6 +1071,46 @@ export const useStore = create<State & Actions>()(
             cosmosTweaks: { ...COSMOS_TWEAKS_DEFAULT, ...existing },
           }
         }
+        if (version < 10 && obj.paint == null) {
+          obj = { ...obj, paint: PAINT_STATE_DEFAULT }
+        }
+        if (version < 11 && obj.globalRegion == null) {
+          obj = { ...obj, globalRegion: 'world' }
+        }
+        if (version < 12) {
+          // Renombrar tab 'dibujar' (que no existe más en el type) → 'pintar'.
+          // paintModeActive inicia en false sin importar lo que tenía antes.
+          const t = obj.tab as string | undefined
+          obj = {
+            ...obj,
+            tab: t === 'dibujar' ? 'pintar' : (t ?? 'datos'),
+            paintModeActive: false,
+          }
+        }
+        if (version < 14 && obj.savedMaps == null) {
+          obj = { ...obj, savedMaps: [] }
+        }
+        if (version < 13) {
+          // Cosmos pasa a default. Solo migramos a usuarios que tenían el
+          // default histórico 'day' — los que habían elegido otro tema (night,
+          // editorial, o ya cosmos) se respetan.
+          const ms = (obj.mapStyle as Record<string, unknown> | undefined) ?? {}
+          if (ms.globeTheme === 'day') {
+            obj = { ...obj, mapStyle: { ...ms, globeTheme: 'cosmos' } }
+          }
+          // CosmosTweaks: si los valores son los legacy exactos (no tocados),
+          // los actualizamos al nuevo default. Comparación por igualdad de
+          // cada campo — basta que UNO difiera para considerar "tweakeo".
+          const ct = obj.cosmosTweaks as Record<string, unknown> | undefined
+          if (ct) {
+            const isLegacyDefault = (
+              Object.keys(COSMOS_TWEAKS_LEGACY_DEFAULT) as Array<keyof typeof COSMOS_TWEAKS_LEGACY_DEFAULT>
+            ).every(k => ct[k] === COSMOS_TWEAKS_LEGACY_DEFAULT[k])
+            if (isLegacyDefault) {
+              obj = { ...obj, cosmosTweaks: COSMOS_TWEAKS_DEFAULT }
+            }
+          }
+        }
         return obj as unknown
       },
       partialize: state => ({
@@ -782,11 +1121,15 @@ export const useStore = create<State & Actions>()(
         mapStyle: state.mapStyle,
         cosmosTweaks: state.cosmosTweaks,
         thematicOverrides: state.thematicOverrides,
+        paint: state.paint,
+        paintModeActive: state.paintModeActive,
+        savedMaps: state.savedMaps,
         customRange: state.customRange,
         archivedIndicators: state.archivedIndicators,
         projection: state.projection,
         rotation: state.rotation,
         globalMetric: state.globalMetric,
+        globalRegion: state.globalRegion,
         _persistedSourceId:
           state.source?.kind === 'indicator' ? state.source.indicator.id : null,
         _persistedThematicIds: Object.entries(state.thematic)
@@ -802,6 +1145,28 @@ export const useStore = create<State & Actions>()(
         if (!state) return
         state.cosmosTweaks = { ...COSMOS_TWEAKS_DEFAULT, ...(state.cosmosTweaks ?? {}) }
         state.thematicOverrides = state.thematicOverrides ?? {}
+        // savedMaps: garantizar array. Si por algún motivo quedó undefined
+        // o null, lo inicializamos vacío.
+        if (!Array.isArray(state.savedMaps)) {
+          state.savedMaps = []
+        }
+        // Paint: si el persisted no lo tenía o está parcial, garantizamos
+        // shape completo. Defensa contra estados corruptos / migraciones
+        // que no corrieron por alguna razón. También sirve para migrar
+        // del shape viejo (con groups + level) al nuevo (color libre)
+        // descartando datos incompatibles.
+        const persistedPaint = state.paint as Partial<PaintState> | undefined
+        const a = (persistedPaint?.assignments ?? {}) as Partial<PaintState['assignments']>
+        state.paint = {
+          title: persistedPaint?.title ?? PAINT_STATE_DEFAULT.title,
+          activeColor: persistedPaint?.activeColor ?? null,
+          assignments: {
+            ve_states: a.ve_states ?? {},
+            ve_munis: a.ve_munis ?? {},
+            countries: a.countries ?? {},
+          },
+          labels: persistedPaint?.labels ?? {},
+        }
       },
     },
   ),

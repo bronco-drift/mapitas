@@ -2,11 +2,18 @@ import type { FeatureCollection, Polygon, MultiPolygon } from 'geojson'
 
 export type AdmLevel = 'adm0' | 'adm1' | 'adm2'
 
-// Vista del producto: Venezuela (mapa interno con Leaflet + tiles) vs
-// Global (mapa mundial con d3-geo + proyecciones elegibles). La vista
-// Global cubre tanto la diáspora venezolana como cualquier futuro indicador
-// comparativo entre países (IDH, esperanza de vida, etc.).
-export type ViewMode = 'venezuela' | 'global'
+// Vista del producto:
+//   venezuela    → mapa interno con Leaflet + tiles (estados/munis VE)
+//   global       → mapa mundial con d3-geo + proyecciones (países)
+//   region_test  → vista experimental: cualquier región (Mundo, Latam,
+//                  Europa, etc.) renderizada en Leaflet en lugar de SVG.
+//                  Sirve para comparar feel del Leaflet (pan/zoom + tiles)
+//                  vs el motor d3-geo. La región específica sale de
+//                  `globalRegion` del store.
+//
+// La vista Global cubre tanto la diáspora venezolana como cualquier futuro
+// indicador comparativo entre países (IDH, esperanza de vida, etc.).
+export type ViewMode = 'venezuela' | 'global' | 'region_test'
 
 export type Adm0Props = {
   name: string

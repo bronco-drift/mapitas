@@ -33,7 +33,7 @@ export default function App() {
     } else if (route === 'mide') {
       document.title = 'Proyecto MIDE — Mapitas'
     } else {
-      document.title = 'Mapitas — Mapas y datos abiertos de Venezuela'
+      document.title = 'Mapitas — Mapas coropleticos en tu navegador'
     }
   }, [route])
 
@@ -42,8 +42,6 @@ export default function App() {
   // overflow:hidden + height:100dvh al body globalmente. La clase
   // `.app-locked` reactiva esos estilos puntualmente para la app, donde
   // sí los necesitamos (anti-bounce iOS + URL bar estable). Ver index.css.
-  // Aplicamos a <html> en lugar de body para que un único selector simple
-  // (html.app-locked, html.app-locked body) maneje ambos sin :has().
   useEffect(() => {
     if (route !== 'app') return
     const html = document.documentElement

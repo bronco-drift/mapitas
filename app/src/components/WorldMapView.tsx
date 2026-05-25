@@ -24,11 +24,12 @@ import {
   geoPath,
   type GeoProjection,
 } from 'd3-geo'
-import { useStore } from '../store'
+import { useStore, getPaintContext } from '../store'
 import type { DiasporaProps } from '../lib/types'
 import type { ProjectionId } from '../lib/projections'
 import { getGlobeTheme } from '../lib/globe-themes'
 import { getGlobalReportByMode } from '../data/global-reports'
+import { getRegion, isInRegion } from '../lib/regions'
 
 // Mapping ProjectionId → factory d3. Vive acá porque arrastra d3 (lazy load).
 const PROJECTIONS: Record<
@@ -50,9 +51,41 @@ export function WorldMapView() {
   const rotation = useStore(s => s.rotation)
   const mobilePanelHeight = useStore(s => s.mobilePanelHeight)
   const globalMetric = useStore(s => s.globalMetric)
+  const globalRegion = useStore(s => s.globalRegion)
   const cosmosTweaks = useStore(s => s.cosmosTweaks)
+  const paint = useStore(s => s.paint)
+  const paintModeActive = useStore(s => s.paintModeActive)
+  const paintFeature = useStore(s => s.paintFeature)
+
+  // Filtro por región: subset del geo con sólo los países incluidos en
+  // la región activa. fitExtent debajo lo usa para auto-centrar/zoom
+  // a la región. 'world' devuelve el geo entero sin tocar.
+  const region = getRegion(globalRegion)
+  const regionGeo = useMemo(() => {
+    if (!diaspora) return null
+    if (region.isos.length === 0) return diaspora
+    const features = diaspora.features.filter(f =>
+      isInRegion((f.properties as DiasporaProps).iso_a3, region),
+    )
+    return { ...diaspora, features }
+  }, [diaspora, region])
   const baseTheme = getGlobeTheme(mapStyle.globeTheme)
   const activeReport = getGlobalReportByMode(globalMetric)
+
+  // Painter: en vista Global el contexto es siempre 'countries'. Cuando el
+  // tab activo es 'dibujar' Y hay color seleccionado, los clicks pintan
+  // en lugar de seleccionar. Override del fill se aplica siempre que un
+  // feature esté en assignments[countries] (la pintura es persistente
+  // incluso fuera del tab Dibujar, así el user no la pierde al navegar).
+  //
+  // Mientras el tab Dibujar está activo, el mapa IGNORA el color del
+  // indicador (diáspora) y muestra todo en el color "missing" del tema —
+  // así el user arranca con un lienzo limpio, no con datos preseleccionados.
+  // La pintura persiste en localStorage; al volver a Datos el indicador
+  // se vuelve a ver de fondo (y la pintura encima si quiere).
+  const paintAssignments = paint.assignments.countries
+  const isOnPaintTab = paintModeActive
+  const isPainting = paintModeActive && paint.activeColor != null && getPaintContext('global', 'adm0') === 'countries'
 
   // Si el tema activo es Cosmos, los colores base salen de cosmosTweaks
   // (editables por el user). Para otros temas usamos los presets de
@@ -144,19 +177,21 @@ export function WorldMapView() {
       // Recortar al hemisferio frontal: los países "detrás" del globo
       // dejan de renderizarse, evitando overlap visual.
       if (p.clipAngle) p.clipAngle(90)
-    } else if (diaspora && p.fitExtent) {
+    } else if (regionGeo && regionGeo.features.length > 0 && p.fitExtent) {
+      // fitExtent al subset de región: si el user filtra a Suramérica,
+      // la proyección zoomea/centra ahí. 'world' usa el geo completo.
       p.fitExtent(
         [
           [MARGIN, visibleTop + MARGIN],
           [size.w - MARGIN, visibleBottom - MARGIN],
         ],
-        diaspora as never,
+        regionGeo as never,
       )
     } else {
       p.translate([size.w / 2, (visibleTop + visibleBottom) / 2])
     }
     return geoPath(p)
-  }, [projection, rotation, size, diaspora, isMobile, mobilePanelHeight])
+  }, [projection, rotation, size, regionGeo, isMobile, mobilePanelHeight])
 
   // ─── Interacción: drag + wheel + pinch ──────────────────────────────────
   // En lugar de d3-zoom (que conflictúa con drag-to-rotate en Orthographic),
@@ -211,6 +246,7 @@ export function WorldMapView() {
   const mobilePanelHeightRef = useRef(mobilePanelHeight)
   const isGlobeRef = useRef(isGlobeProjection)
   const diasporaRef = useRef(diaspora)
+  const isPaintingRef = useRef(isPainting)
   useEffect(() => { rotationRef.current = rotation }, [rotation])
   useEffect(() => { panRef.current = pan }, [pan])
   useEffect(() => { scaleRef.current = scale }, [scale])
@@ -218,6 +254,7 @@ export function WorldMapView() {
   useEffect(() => { mobilePanelHeightRef.current = mobilePanelHeight }, [mobilePanelHeight])
   useEffect(() => { isGlobeRef.current = isGlobeProjection }, [isGlobeProjection])
   useEffect(() => { diasporaRef.current = diaspora }, [diaspora])
+  useEffect(() => { isPaintingRef.current = isPainting }, [isPainting])
 
   // Handlers de window con identidad ESTABLE (definidos en useRef, no
   // recreados por render). Sin esto, removeEventListener no encuentra los
@@ -272,19 +309,25 @@ export function WorldMapView() {
           return
         }
         if (dragRef.current?.pointerId === e.pointerId) {
-          // Tap → setSelected (event delegation desde el div).
+          // Tap → paint (modo Dibujar) o setSelected (otros tabs).
+          // En modo Dibujar Y con color activo, el click pinta el país.
+          // Sin color activo, el click sigue seleccionando (lectura).
           if (!wasDraggedRef.current && downTargetRef.current && diasporaRef.current) {
             const iso = downTargetRef.current.dataset.iso
             const feature = diasporaRef.current.features.find(
               f => (f.properties as DiasporaProps).iso_a3 === iso,
             )
-            if (feature) {
+            if (feature && iso) {
               const props = feature.properties as DiasporaProps
-              setSelected({
-                name: props.name,
-                iso: props.iso_a3,
-                value: props._value ?? null,
-              })
+              if (isPaintingRef.current) {
+                paintFeature('countries', iso)
+              } else {
+                setSelected({
+                  name: props.name,
+                  iso: props.iso_a3,
+                  value: props._value ?? null,
+                })
+              }
             }
           }
           downTargetRef.current = null
@@ -480,6 +523,7 @@ export function WorldMapView() {
         height={size.h}
         viewBox={`0 0 ${size.w} ${size.h}`}
         style={{ shapeRendering: 'geometricPrecision' }}
+        className="world-map-svg"
       >
         {/* Defs del tema Cosmos: radial gradient (efecto 3D del sphere) +
             drop shadow azul (halo atmosférico). Sólo se montan cuando el
@@ -556,11 +600,23 @@ export function WorldMapView() {
               Estilo. Razón: las divisiones políticas tienen que ser siempre
               legibles a escala mundial. El user puede ajustar opacidad del
               borde (atenuarlo) pero no quitarlo del todo. */}
-          {diaspora.features.map((f, i) => {
+          {(regionGeo ?? diaspora).features.map((f, i) => {
             const props = f.properties as DiasporaProps
-            const fillColor = props._color ?? theme.missing
-            const matched = props._matched
-            const op = matched ? mapStyle.fillOpacity : Math.min(mapStyle.fillOpacity * 0.6, 0.5)
+            // Override del paint: si el feature está pintado por el user en
+            // modo Dibujar, ese color manda. En el tab Dibujar el indicador
+            // se ignora (lienzo limpio); fuera del tab, _color del indicador
+            // se ve normal (paint encima cuando hay).
+            const paintColor = paintAssignments[props.iso_a3]
+            const fillColor =
+              paintColor ??
+              (isOnPaintTab ? theme.missing : (props._color ?? theme.missing))
+            // En paint mode el opacity es uniforme (lienzo plano). Fuera, los
+            // unmatched del indicador se atenúan al 60% para resaltar matched.
+            const op = isOnPaintTab
+              ? mapStyle.fillOpacity
+              : (props._matched || paintColor)
+                ? mapStyle.fillOpacity
+                : Math.min(mapStyle.fillOpacity * 0.6, 0.5)
             const stroke = '#000000'
             const weight = 0.6
             const strokeOp = mapStyle.borderOpacity

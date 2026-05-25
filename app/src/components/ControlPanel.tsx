@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
-import { useStore } from '../store'
+import { useStore, type PanelTab } from '../store'
 import { PALETTE_OPTIONS, PALETTE_EXTRA, paletteGradient, getPaletteStops } from '../lib/color-scale'
 import { RangeEditor } from './RangeEditor'
 
@@ -22,6 +22,7 @@ import { DataUploader } from './DataUploader'
 import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
+import { PaintTab } from './PaintTab'
 import { IndicatorCoverageModal } from './IndicatorCoverageModal'
 import { WikiModal } from './WikiModal'
 import { wikiQueryFor } from '../lib/wiki'
@@ -44,6 +45,13 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const resetSettings = useStore(s => s.resetSettings)
   const tab = useStore(s => s.tab)
   const setTab = useStore(s => s.setTab)
+  const paintModeActive = useStore(s => s.paintModeActive)
+  // Tabs visibles dependen del modo. En modo Pintar, Datos+Capas se fusionan
+  // en "Presets" para que el user pueda activar capas/datos sin perder el
+  // contexto del painter (que vive en la tab 'pintar').
+  const visibleTabs: PanelTab[] = paintModeActive
+    ? (['presets', 'estilo', 'pintar'] as PanelTab[])
+    : (['datos', 'capas', 'estilo'] as PanelTab[])
   const setMobilePanelHeight = useStore(s => s.setMobilePanelHeight)
   const isMobile = useIsMobile()
 
@@ -269,7 +277,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
       <div className="border-b border-slate-100 px-4 pb-2">
         <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
-          {(['datos', 'capas', 'estilo'] as const).map(t => (
+          {visibleTabs.map(t => (
             <button
               key={t}
               type="button"
@@ -280,7 +288,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              {t === 'datos' ? 'Datos' : t === 'capas' ? 'Capas' : 'Estilo'}
+              {tabLabel(t)}
             </button>
           ))}
         </div>
@@ -332,6 +340,23 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               {isDiaspora && <ProjectionSelector />}
               <StyleControls />
             </div>
+          </Section>
+        )}
+
+        {tab === 'presets' && (
+          <>
+            <Section title="Capas">
+              <ThematicLayersList />
+            </Section>
+            <Section title="Datos">
+              <IndicatorsList />
+            </Section>
+          </>
+        )}
+
+        {tab === 'pintar' && (
+          <Section title="Hacer tu propio mapa">
+            <PaintTab />
           </Section>
         )}
 
@@ -443,6 +468,16 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
       </aside>
     </>
   )
+}
+
+function tabLabel(t: PanelTab): string {
+  switch (t) {
+    case 'datos': return 'Datos'
+    case 'capas': return 'Capas'
+    case 'estilo': return 'Estilo'
+    case 'presets': return 'Presets'
+    case 'pintar': return 'Pintar'
+  }
 }
 
 function PaletteSelector() {

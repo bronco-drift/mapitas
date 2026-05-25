@@ -1,4 +1,5 @@
 import { useStore } from '../store'
+import { REGIONS, type RegionId } from '../lib/regions'
 
 type Country = {
   code: string
@@ -7,11 +8,11 @@ type Country = {
   enabled: boolean
 }
 
-// La opción "Global" no es un país, es un modo de vista (mapa mundial con
-// d3-geo + proyecciones). Va al principio para que sea la primera opción
-// visible cuando el user abre el selector.
+// Países disponibles a nivel ADM1/ADM2 (vista propia). Hoy solo VE — el
+// resto está como "próximamente" porque requiere descargar y procesar sus
+// geojsons. Las regiones (Mundo, Latam, etc.) viven en REGIONS y van al
+// principio del dropdown porque son lo más probable que el user use.
 const COUNTRIES: Country[] = [
-  { code: 'GLOBAL', name: 'Global', flag: '🌍', enabled: true },
   { code: 'VE', name: 'Venezuela', flag: '🇻🇪', enabled: true },
   { code: 'AR', name: 'Argentina', flag: '🇦🇷', enabled: false },
   { code: 'BO', name: 'Bolivia', flag: '🇧🇴', enabled: false },
@@ -36,11 +37,45 @@ const COUNTRIES: Country[] = [
 export function TopBar() {
   const view = useStore(s => s.view)
   const setView = useStore(s => s.setView)
-  // El selector unifica vista (Global) + país. "Global" mapea a view='global'.
-  // Cualquier código de país concreto mapea a view='venezuela' (por ahora
-  // solo VE está habilitado; los demás están como próximamente).
-  const currentCode = view === 'global' ? 'GLOBAL' : 'VE'
-  const current = COUNTRIES.find(c => c.code === currentCode)
+  const globalRegion = useStore(s => s.globalRegion)
+  const setGlobalRegion = useStore(s => s.setGlobalRegion)
+  const paintModeActive = useStore(s => s.paintModeActive)
+  const setPaintMode = useStore(s => s.setPaintMode)
+  // El value del select tiene 2 formatos:
+  //   region:<id>   ej "region:latam"  → view='global' + esa región
+  //   country:<iso> ej "country:VE"    → view='venezuela' (solo VE habilitado)
+  // Permite mezclar regiones y países en un solo dropdown con <optgroup>.
+  const currentValue =
+    view === 'global'
+      ? `region:${globalRegion}`
+      : view === 'region_test'
+        ? `region_test:${globalRegion}`
+        : `country:VE`
+  const currentRegion = REGIONS.find(r => r.id === globalRegion)
+  const currentLabel =
+    view === 'global'
+      ? `${currentRegion?.flag ?? '🌍'} ${currentRegion?.label ?? 'Mundo'}`
+      : view === 'region_test'
+        ? `🧪 ${currentRegion?.label ?? 'Mundo'} (Test Leaflet)`
+        : `🇻🇪 Venezuela`
+  const isDibujando = paintModeActive
+
+  function handleChange(value: string) {
+    const [kind, id] = value.split(':')
+    if (kind === 'region') {
+      setGlobalRegion(id as RegionId)
+      if (view !== 'global') setView('global')
+    } else if (kind === 'region_test') {
+      // Test Leaflet de cualquier región. Setea la región Y cambia view.
+      setGlobalRegion(id as RegionId)
+      if (view !== 'region_test') setView('region_test')
+    } else if (kind === 'country') {
+      if (id === 'VE') {
+        if (view !== 'venezuela') setView('venezuela')
+      }
+      // otros países están disabled, no llegan acá
+    }
+  }
 
   return (
     <div
@@ -83,41 +118,84 @@ export function TopBar() {
       </div>
       <div className="relative">
         <select
-          value={currentCode}
-          onChange={e => {
-            const code = e.target.value
-            if (code === 'GLOBAL') {
-              setView('global')
-            } else if (code === 'VE') {
-              setView('venezuela')
-            }
-            // otros países están disabled, no llegan acá
-          }}
+          value={currentValue}
+          onChange={e => handleChange(e.target.value)}
           className="appearance-none rounded-md border border-slate-200 bg-white py-1 pl-2 pr-7 text-[12px] text-slate-800 focus:border-slate-900 focus:outline-none md:pr-8 md:text-[13px]"
         >
-          {COUNTRIES.map(c => (
-            <option key={c.code} value={c.code} disabled={!c.enabled}>
-              {c.flag} {c.name}
-              {!c.enabled ? ' · próximamente' : ''}
-            </option>
-          ))}
+          <optgroup label="Regiones">
+            {REGIONS.map(r => (
+              <option key={r.id} value={`region:${r.id}`}>
+                {r.flag} {r.label}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Experimental · Test Leaflet">
+            {REGIONS.map(r => (
+              <option key={`test-${r.id}`} value={`region_test:${r.id}`}>
+                🧪 {r.label} (Leaflet)
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Países">
+            {COUNTRIES.map(c => (
+              <option key={c.code} value={`country:${c.code}`} disabled={!c.enabled}>
+                {c.flag} {c.name}
+                {!c.enabled ? ' · próximamente' : ''}
+              </option>
+            ))}
+          </optgroup>
         </select>
         <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">
           ▾
         </span>
       </div>
       <span className="hidden text-[11px] text-slate-400 md:inline">
-        {current?.flag} {current?.name}
+        {currentLabel}
         {view === 'global' && (
           <span className="ml-2 rounded-sm bg-amber-100 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-amber-800">
             beta
           </span>
         )}
       </span>
-      <div className="ml-auto flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-slate-400 md:gap-2">
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-        <span className="hidden sm:inline">Local · sin red</span>
-        <span className="sm:hidden">Local</span>
+      <div className="ml-auto flex items-center gap-2 md:gap-3">
+        {/* Atajo al tab Dibujar. Cuando el tab activo ya es "dibujar", el
+            botón cambia a estado "activo" (fondo oscuro) y deja de actuar
+            como toggle al tab — sirve como indicador visual del modo. */}
+        <button
+          type="button"
+          onClick={() => setPaintMode(!isDibujando)}
+          className={`flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:px-2.5 ${
+            isDibujando
+              ? 'border-slate-900 bg-slate-900 text-white hover:bg-slate-700'
+              : 'border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900'
+          }`}
+          title={isDibujando ? 'Cerrar modo Pintar' : 'Hacer tu propio mapa'}
+          aria-pressed={isDibujando}
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M3 11.5V13h1.5L12 5.5 10.5 4z" />
+            <path d="M9.5 5 11 6.5" />
+          </svg>
+          <span className="hidden sm:inline">
+            {isDibujando ? 'Pintando' : 'Hacer tu propio mapa'}
+          </span>
+        </button>
+        <span className="hidden h-4 w-px bg-slate-200 sm:inline-block" aria-hidden="true" />
+        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-slate-400 md:gap-2">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          <span className="hidden sm:inline">Local · sin red</span>
+          <span className="sm:hidden">Local</span>
+        </div>
       </div>
       </div>
     </div>

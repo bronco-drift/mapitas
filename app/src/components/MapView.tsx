@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet'
 import type { Layer, PathOptions } from 'leaflet'
 import L from 'leaflet'
 import type { Feature } from 'geojson'
-import { useStore } from '../store'
+import { useStore, getPaintContext } from '../store'
 import type { MapStyle } from '../store'
 import type { Adm0Props, Adm1Props, Adm2Props, AdmGeoJSON } from '../lib/types'
 import { formatIndicatorValue } from '../data/indicators'
@@ -311,18 +311,36 @@ function strokeWeightForOpacity(opacity: number): number {
 
 function fillStyleFor(
   style: MapStyle,
-  _level: 'adm0' | 'adm1' | 'adm2',
+  level: 'adm0' | 'adm1' | 'adm2',
+  // Asignaciones del painter para el contexto actual. Si el feature está
+  // pintado, su color manda sobre el del indicador (override).
+  paintAssignments?: Record<string, string> | null,
+  // En el tab Dibujar el mapa ignora el color del indicador (lienzo limpio).
+  // Sin el flag, el user vería el choropleth de fondo al entrar a Dibujar.
+  isOnPaintTab?: boolean,
 ): (feature?: Feature) => PathOptions {
   return feature => {
     const props = feature?.properties as Adm1Props | Adm2Props | undefined
-    const fillColor = props?._color ?? '#e5e7eb'
+    const paintColor =
+      paintAssignments && props
+        ? paintAssignments[
+            level === 'adm1'
+              ? (props as Adm1Props).iso
+              : (props as Adm2Props).sourceID
+          ]
+        : undefined
+    const fillColor =
+      paintColor ?? (isOnPaintTab ? '#e5e7eb' : (props?._color ?? '#e5e7eb'))
+    // En paint mode tratamos todo como "matched" (full opacity, lienzo plano).
+    // Sin el override el unmatched del indicador se atenúa al 60%.
+    const matched = isOnPaintTab || !!paintColor || !!props?._matched
 
     // Cuando "Sin bordes" está ON: stroke del mismo color del fill, weight
     // que se ajusta a la opacidad. fillOpacity y opacity comparten valor para
     // que TODO el polígono (relleno + stroke superpuesto) se atenúe parejo
     // cuando el user mueve el slider.
     if (style.noBorders) {
-      const op = props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)
+      const op = matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)
       return {
         fillColor,
         color: fillColor,
@@ -340,7 +358,7 @@ function fillStyleFor(
       fillColor,
       color: strokeColor,
       weight,
-      fillOpacity: props?._matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5),
+      fillOpacity: matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5),
       opacity: style.borderOpacity,
     }
   }
@@ -395,6 +413,20 @@ export function MapView() {
   const cosmosTweaks = useStore(s => s.cosmosTweaks)
   const thematic = useStore(s => s.thematic)
   const thematicOverrides = useStore(s => s.thematicOverrides)
+  const paint = useStore(s => s.paint)
+  const paintModeActive = useStore(s => s.paintModeActive)
+  const paintFeature = useStore(s => s.paintFeature)
+  const view = useStore(s => s.view)
+
+  // Painter: el contexto del paint depende de view+level. Para adm0 (1 sólo
+  // país) no aplica. Mientras paintModeActive=true, el click en una región
+  // pinta (no selecciona) y el mapa ignora el color del indicador (lienzo
+  // limpio). Esto es INDEPENDIENTE del tab activo, así el user puede ir a
+  // Presets/Estilo y seguir pintando sin interrupciones.
+  const paintCtx = getPaintContext(view, level)
+  const paintAssignments = paintCtx ? paint.assignments[paintCtx] : null
+  const isOnPaintTab = paintModeActive
+  const isPainting = paintModeActive && paint.activeColor != null && paintCtx != null
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
   // Geojson dedicado del basemap "Contornos" (Natural Earth 1:50m simplificado,
@@ -481,6 +513,16 @@ export function MapView() {
   const layerRef = useRef<L.GeoJSON | null>(null)
   const overlayRef = useRef<L.GeoJSON | null>(null)
   const countryBorderRef = useRef<L.GeoJSON | null>(null)
+
+  // Refs para el modo Dibujar. El onEachFeature del GeoJSON se ejecuta
+  // UNA vez al montar el layer y cierra sobre los valores de ese momento;
+  // sin refs, isPainting siempre quedaría en false aunque el user active
+  // el tab Dibujar después. Los refs los leemos imperativamente en el
+  // click handler para ver el estado fresco.
+  const isPaintingRef = useRef(isPainting)
+  const paintCtxRef = useRef(paintCtx)
+  useEffect(() => { isPaintingRef.current = isPainting }, [isPainting])
+  useEffect(() => { paintCtxRef.current = paintCtx }, [paintCtx])
   // Layer L.GeoJSON temporal que dibuja sólo el outline del polígono hoverado
   // en el hoverPane (z-index 500). Se crea on-mouseover y se destruye on-mouseout.
   // Garantiza visibilidad del contorno aunque haya banderas, escudos, stateOverlay
@@ -558,10 +600,10 @@ export function MapView() {
   useEffect(() => {
     const layer = layerRef.current
     if (!layer) return
-    const styleFn = fillStyleFor(mapStyle, level)
+    const styleFn = fillStyleFor(mapStyle, level, paintAssignments, isOnPaintTab)
     layer.options.style = styleFn
     layer.setStyle(styleFn)
-  }, [mapStyle, level])
+  }, [mapStyle, level, paintAssignments, isOnPaintTab])
 
   useEffect(() => {
     const layer = overlayRef.current
@@ -685,7 +727,7 @@ export function MapView() {
             key={layerKey}
             ref={layerRef}
             data={data as never}
-            style={fillStyleFor(mapStyle, level)}
+            style={fillStyleFor(mapStyle, level, paintAssignments, isOnPaintTab)}
             onEachFeature={(feature, layer: Layer) => {
               const props = feature.properties as Adm1Props | Adm2Props
               const name = (props as Adm1Props).name
@@ -742,6 +784,23 @@ export function MapView() {
                   }
                 },
                 click: () => {
+                  // En modo Dibujar con color activo: el click pinta el
+                  // feature en lugar de seleccionarlo. La asignación
+                  // dispara re-style imperativo vía el useEffect de
+                  // paintAssignments. Sin color activo (o en otros tabs)
+                  // el click sigue actuando como "seleccionar".
+                  // Leemos refs (no las vars cerradas) porque onEachFeature
+                  // se ejecuta UNA vez al montar el layer y captura los
+                  // valores stale del primer render.
+                  const ctxNow = paintCtxRef.current
+                  if (isPaintingRef.current && ctxNow) {
+                    const id =
+                      level === 'adm1'
+                        ? (props as Adm1Props).iso
+                        : (props as Adm2Props).sourceID
+                    if (id) paintFeature(ctxNow, id)
+                    return
+                  }
                   setSelected({
                     name,
                     nombreOficial: props.nombreOficial ?? null,

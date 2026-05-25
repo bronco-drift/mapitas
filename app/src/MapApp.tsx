@@ -11,6 +11,12 @@ import { WelcomeModal } from './components/WelcomeModal'
 const WorldMapView = lazy(() =>
   import('./components/WorldMapView').then(m => ({ default: m.WorldMapView })),
 )
+// Vista experimental "Test Leaflet": cualquier región (Mundo, Latam, Europa,
+// etc.) renderizada en Leaflet en lugar de SVG d3-geo. La región específica
+// sale de `globalRegion` del store; este componente sirve para los 6 tests.
+const RegionTestView = lazy(() =>
+  import('./components/RegionTestView').then(m => ({ default: m.RegionTestView })),
+)
 
 export function MapApp() {
   const view = useStore(s => s.view)
@@ -27,6 +33,7 @@ export function MapApp() {
   }, [loadGeoData, loadThematicManifest])
 
   const isGlobal = view === 'global'
+  const isRegionTest = view === 'region_test'
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden bg-slate-100 md:flex-row">
@@ -48,6 +55,12 @@ export function MapApp() {
             <ErrorBoundary>
               <Suspense fallback={<div className="flex h-full w-full items-center justify-center text-sm text-slate-500">Cargando vista global…</div>}>
                 <WorldMapView />
+              </Suspense>
+            </ErrorBoundary>
+          ) : isRegionTest ? (
+            <ErrorBoundary>
+              <Suspense fallback={<div className="flex h-full w-full items-center justify-center text-sm text-slate-500">Cargando vista Test Leaflet…</div>}>
+                <RegionTestView />
               </Suspense>
             </ErrorBoundary>
           ) : (
