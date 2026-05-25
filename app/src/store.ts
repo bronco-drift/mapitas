@@ -350,6 +350,12 @@ type Actions = {
   setPaintTitle: (title: string) => void
   setPaintActiveColor: (color: string | null) => void
   paintFeature: (ctx: PaintContext, featureId: string) => void
+  // Variante "force": pinta SIEMPRE con el color activo, sin toggle.
+  // Necesaria para el brush con Ctrl+hover — si fuera toggle, pasar el
+  // mouse sobre regiones ya pintadas las despintaría en lugar de seguir
+  // pintando. Si el feature ya tiene el color activo, no hace nada
+  // (idempotente, evita re-renders en cada pixel del movimiento).
+  paintFeatureForce: (ctx: PaintContext, featureId: string) => void
   setPaintColorLabel: (color: string, label: string) => void
   // Despinta TODOS los features asignados a este color en el contexto actual
   removePaintColor: (ctx: PaintContext, color: string) => void
@@ -787,6 +793,22 @@ export const useStore = create<State & Actions>()(
       paint: {
         ...paint,
         assignments: { ...paint.assignments, [ctx]: next },
+      },
+    })
+  },
+
+  paintFeatureForce(ctx, featureId) {
+    const paint = get().paint
+    if (!paint.activeColor) return
+    const current = paint.assignments[ctx][featureId]
+    if (current === paint.activeColor) return // ya está, no hacer nada
+    set({
+      paint: {
+        ...paint,
+        assignments: {
+          ...paint.assignments,
+          [ctx]: { ...paint.assignments[ctx], [featureId]: paint.activeColor },
+        },
       },
     })
   },

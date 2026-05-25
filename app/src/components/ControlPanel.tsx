@@ -46,6 +46,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   const tab = useStore(s => s.tab)
   const setTab = useStore(s => s.setTab)
   const paintModeActive = useStore(s => s.paintModeActive)
+  const paint = useStore(s => s.paint)
+  const setPaintTitle = useStore(s => s.setPaintTitle)
   // Tabs visibles dependen del modo. En modo Pintar, Datos+Capas se fusionan
   // en "Presets" para que el user pueda activar capas/datos sin perder el
   // contexto del painter (que vive en la tab 'pintar').
@@ -167,13 +169,32 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             Cerrar
           </button>
         </div>
-      {/* Header del panel (solo desktop): muestra el reporte activo de forma
-          prominente y clickeable. Reemplaza el slogan estático "Transparencia
-          territorial" por contexto inmediato del mapa que se está viendo.
-          Click → modal de cobertura del indicador, o al tab Datos si no hay
-          indicador (CSV propio o vacío). En modo Pintar lo ocultamos porque
-          el indicador no se ve en el mapa (lienzo limpio) — mostrar su
-          nombre acá confunde. */}
+      {/* Header del panel (solo desktop). Dos variantes según modo:
+          - Modo normal: nombre del reporte activo (o "Elegí un indicador").
+          - Modo Pintar: input editable con el título del mapa que estás
+            creando. Reemplazar (en vez de ocultar) mantiene la altura
+            estable y le da al user un lugar prominente para nombrar lo
+            que está creando — el campo título del PaintTab se vuelve
+            redundante (lo dejamos también para consistencia mobile). */}
+      {paintModeActive && (
+        <header className="hidden border-b border-slate-100 px-5 py-4 md:block">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+            Mapitas · Pintando
+          </div>
+          <input
+            type="text"
+            value={paint.title}
+            onChange={e => setPaintTitle(e.target.value)}
+            placeholder="Título del mapa"
+            maxLength={80}
+            className="mt-1.5 block w-full bg-transparent text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:outline-none"
+            aria-label="Título del mapa"
+          />
+          <p className="mt-1 text-[11px] leading-snug text-slate-500">
+            Mantené Ctrl mientras movés el mouse para pintar varias regiones
+          </p>
+        </header>
+      )}
       {!paintModeActive && (
       <header className="hidden border-b border-slate-100 px-5 py-4 md:block">
         <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">

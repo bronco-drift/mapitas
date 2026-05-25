@@ -416,6 +416,7 @@ export function MapView() {
   const paint = useStore(s => s.paint)
   const paintModeActive = useStore(s => s.paintModeActive)
   const paintFeature = useStore(s => s.paintFeature)
+  const paintFeatureForce = useStore(s => s.paintFeatureForce)
   const view = useStore(s => s.view)
 
   // Painter: el contexto del paint depende de view+level. Para adm0 (1 sólo
@@ -750,6 +751,19 @@ export function MapView() {
               )
               layer.on({
                 mouseover: e => {
+                  // Brush: Ctrl + hover en modo Pintar → pinta el feature.
+                  // Force (no toggle): si el feature ya tiene el color activo
+                  // no hace nada, evitando que el movimiento accidentalmente
+                  // despinte. Solo aplica cuando hay color activo Y modo Pintar.
+                  const ctxNow = paintCtxRef.current
+                  const native = (e as unknown as { originalEvent?: MouseEvent }).originalEvent
+                  if (isPaintingRef.current && ctxNow && native?.ctrlKey) {
+                    const id =
+                      level === 'adm1'
+                        ? (props as Adm1Props).iso
+                        : (props as Adm2Props).sourceID
+                    if (id) paintFeatureForce(ctxNow, id)
+                  }
                   const target = e.target as L.Path
                   target.setStyle(hoverStyle(mapStyle))
                   // Outline duplicado en hoverPane (z-index 500) para que se vea

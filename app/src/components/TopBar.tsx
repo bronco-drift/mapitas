@@ -51,13 +51,9 @@ export function TopBar() {
       : view === 'region_test'
         ? `region_test:${globalRegion}`
         : `country:VE`
-  const currentRegion = REGIONS.find(r => r.id === globalRegion)
-  const currentLabel =
-    view === 'global'
-      ? `${currentRegion?.flag ?? '🌍'} ${currentRegion?.label ?? 'Mundo'}`
-      : view === 'region_test'
-        ? `🧪 ${currentRegion?.label ?? 'Mundo'} (Test Leaflet)`
-        : `🇻🇪 Venezuela`
+  // (Antes mostrábamos currentLabel acá al lado del dropdown, pero era
+  // redundante: el dropdown ya muestra la vista activa. Conservamos sólo el
+  // badge BETA para vista Global / Test Leaflet.)
   const isDibujando = paintModeActive
 
   function handleChange(value: string) {
@@ -149,14 +145,14 @@ export function TopBar() {
           ▾
         </span>
       </div>
-      <span className="hidden text-[11px] text-slate-400 md:inline">
-        {currentLabel}
-        {view === 'global' && (
-          <span className="ml-2 rounded-sm bg-amber-100 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-amber-800">
-            beta
-          </span>
-        )}
-      </span>
+      {/* Badge BETA solo cuando la vista activa lo necesita. El label
+          completo (currentLabel) lo quitamos: era redundante con el dropdown
+          de arriba, que ya muestra la vista seleccionada. */}
+      {(view === 'global' || view === 'region_test') && (
+        <span className="hidden rounded-sm bg-amber-100 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-amber-800 md:inline-block">
+          beta
+        </span>
+      )}
       <div className="ml-auto flex items-center gap-2 md:gap-3">
         {/* Atajo al tab Dibujar. Cuando el tab activo ya es "dibujar", el
             botón cambia a estado "activo" (fondo oscuro) y deja de actuar

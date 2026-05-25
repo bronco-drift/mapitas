@@ -29,6 +29,7 @@ export function RegionTestView() {
   const paint = useStore(s => s.paint)
   const paintModeActive = useStore(s => s.paintModeActive)
   const paintFeature = useStore(s => s.paintFeature)
+  const paintFeatureForce = useStore(s => s.paintFeatureForce)
   const setSelected = useStore(s => s.setSelected)
 
   useEffect(() => {
@@ -140,6 +141,13 @@ export function RegionTestView() {
                 iso: props.iso_a3,
                 value: typeof props._value === 'number' ? props._value : null,
               })
+            })
+            // Brush: Ctrl + hover pinta sin toggle.
+            layer.on('mouseover', e => {
+              const native = (e as unknown as { originalEvent?: MouseEvent }).originalEvent
+              if (isPaintingRef.current && native?.ctrlKey) {
+                paintFeatureForce('countries', props.iso_a3)
+              }
             })
           }}
         />

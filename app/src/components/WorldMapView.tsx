@@ -56,6 +56,7 @@ export function WorldMapView() {
   const paint = useStore(s => s.paint)
   const paintModeActive = useStore(s => s.paintModeActive)
   const paintFeature = useStore(s => s.paintFeature)
+  const paintFeatureForce = useStore(s => s.paintFeatureForce)
 
   // Filtro por región: subset del geo con sólo los países incluidos en
   // la región activa. fitExtent debajo lo usa para auto-centrar/zoom
@@ -352,6 +353,12 @@ export function WorldMapView() {
     const t = e.target as Element
     if (t instanceof SVGPathElement && t.dataset.iso) {
       const iso = t.dataset.iso
+      // Brush: Ctrl + hover en modo Pintar → pinta sin toggle. La acción
+      // es idempotente (si el feature ya tiene el color activo, no hace
+      // nada), así que se puede llamar en cada pointermove sin throttle.
+      if (isPainting && e.ctrlKey) {
+        paintFeatureForce('countries', iso)
+      }
       const feature = diaspora?.features.find(
         f => (f.properties as DiasporaProps).iso_a3 === iso,
       )
