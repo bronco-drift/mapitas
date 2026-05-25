@@ -37,6 +37,20 @@ export default function App() {
     }
   }, [route])
 
+  // Lock del viewport SOLO en la app del mapa. Sin esto, la landing y
+  // MIDE no se podían scrollear en iPhone porque el index.css aplicaba
+  // overflow:hidden + height:100dvh al body globalmente. La clase
+  // `.app-locked` reactiva esos estilos puntualmente para la app, donde
+  // sí los necesitamos (anti-bounce iOS + URL bar estable). Ver index.css.
+  // Aplicamos a <html> en lugar de body para que un único selector simple
+  // (html.app-locked, html.app-locked body) maneje ambos sin :has().
+  useEffect(() => {
+    if (route !== 'app') return
+    const html = document.documentElement
+    html.classList.add('app-locked')
+    return () => html.classList.remove('app-locked')
+  }, [route])
+
   if (route === 'app') {
     return (
       <Suspense

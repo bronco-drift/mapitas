@@ -1,5 +1,11 @@
 import type { PaletteId } from './types'
 
+// Paletas de gradiente. Las "clásicas" (blues..pinks) y las "científicas"
+// (viridis, rdbu, brbg, piyg, spectral) son ColorBrewer / Matplotlib —
+// optimizadas para legibilidad estadística pero a veces ásperas
+// visualmente. Las "Apple-aesthetic" (sky, emerald, slate) usan stops
+// de la paleta Tailwind hand-tuned: tonos refinados, menos saturados en
+// los extremos, ideales cuando el mapa va a vivir junto a UI minimalista.
 const PALETTES: Record<Exclude<PaletteId, 'custom'>, [string, string]> = {
   blues: ['#f7fbff', '#08306b'],
   reds: ['#fff5eb', '#7f2704'],
@@ -9,6 +15,11 @@ const PALETTES: Record<Exclude<PaletteId, 'custom'>, [string, string]> = {
   teals: ['#f7fcfd', '#00441b'],
   pinks: ['#feebe2', '#7a0177'],
   grays: ['#f7f7f7', '#252525'],
+  // Apple-aesthetic (Tailwind scales): azul fresco, verde natural, gris-azul
+  // sofisticado. Pensadas para mapas donde la paleta no tiene que gritar.
+  sky: ['#f0f9ff', '#075985'],
+  emerald: ['#ecfdf5', '#064e3b'],
+  slate: ['#f8fafc', '#1e293b'],
   viridis: ['#fde725', '#440154'],
   rdbu: ['#2166ac', '#b2182b'],
   brbg: ['#543005', '#003c30'],
@@ -103,7 +114,13 @@ export const PALETTE_OPTIONS: { id: PaletteId; label: string }[] = [
   { id: 'rdbu', label: 'Divergente' },
 ]
 
+// El extra se abre con "+". Las 3 Apple-aesthetic van al principio porque
+// son las que el usuario suele preferir cuando descubre el panel — el resto
+// son alternativas más técnicas (ColorBrewer científico) o de uso esporádico.
 export const PALETTE_EXTRA: { id: PaletteId; label: string }[] = [
+  { id: 'sky', label: 'Cielo' },
+  { id: 'emerald', label: 'Esmeralda' },
+  { id: 'slate', label: 'Pizarra' },
   { id: 'oranges', label: 'Naranjas' },
   { id: 'purples', label: 'Violetas' },
   { id: 'teals', label: 'Verde-azul' },

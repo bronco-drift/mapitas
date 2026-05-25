@@ -56,7 +56,7 @@ export type MapStyle = {
   // Tema visual de la vista Global (d3-geo). No aplica a vista VE.
   // Mantenemos el type literal acá (no import) para que el bundler no
   // arrastre globe-themes al chunk del store.
-  globeTheme: 'day' | 'night' | 'editorial'
+  globeTheme: 'day' | 'night' | 'editorial' | 'cosmos'
   // Toggle "Etiquetas": muestra overlay de labels (Carto only_labels) encima
   // del basemap. Permite tener el mapa limpio por default y nombres a demanda.
   showLabels: boolean
@@ -91,6 +91,69 @@ export type ThematicState = {
   loading: boolean
   data: unknown | null
   error?: string | null
+}
+
+// Overrides editables por el user sobre los defaults de cada capa temática
+// (definidos en manifest.json → ThematicMeta). Todos los campos son opcionales;
+// los que no se setean usan el default del meta. Persistido en localStorage
+// por id de capa para que el user no pierda sus customizaciones.
+//
+// `label*` aplican sólo a capas de puntos con labels (permanentLabels=true).
+// El estilo se inyecta como HTML inline en el tooltip de Leaflet, así que
+// soporta más libertad que el className fijo viejo (`thematic-label-permanent`).
+export type ThematicOverride = {
+  // Estilo del shape (polígono / línea / punto)
+  color?: string
+  fillOpacity?: number // 0..1
+  opacity?: number // 0..1 (línea/borde)
+  weight?: number // px
+  dashed?: boolean
+  // Estilo del label permanente (solo capas con permanentLabels)
+  labelBold?: boolean
+  labelItalic?: boolean
+  labelFontSize?: number // px (default 11)
+  labelFontFamily?: 'sans' | 'serif' | 'mono'
+  labelAlign?: 'left' | 'center' | 'right'
+  labelColor?: string
+  labelBg?: string // background del label, '' para transparente
+  labelBgOpacity?: number // 0..1
+}
+
+// Tweaks editables del tema/basemap Cosmos. Defaults preservan la estética
+// "mapamundi atlas escolar" del preset. El user puede:
+//   - cambiar los 3 colores base (fondo del Global, océano, países sin data)
+//   - ajustar densidad de estrellas (vista Global)
+//   - ajustar intensidad del halo atmosférico del globo
+// Estas mods aplican tanto al tema 'cosmos' del globo (vista Global) como
+// al basemap 'cosmos' (vista VE), porque comparten paleta conceptualmente.
+export type CosmosTweaks = {
+  space: string
+  globe: string
+  missing: string
+  starsDensity: number // 0..3 (1 = density default; 0 = sin estrellas)
+  haloIntensity: number // 0..1 (floodOpacity del drop shadow)
+  // Highlight 3D del globo (radial gradient):
+  //   - highlightX / highlightY: posición del centro del gradient en % del
+  //     bounding box del sphere. (35, 30) = upper-left, simulando luz desde
+  //     arriba a la izquierda. Mover hacia 50/50 lo centra (look más plano);
+  //     hacia 80/80 lo lleva al opuesto.
+  //   - highlightIntensity: multiplicador del lighten/darken aplicado a los
+  //     stops del gradient. 0 = sin efecto (color plano), 1 = default
+  //     (lighten 35% / darken 30%), 2 = exagerado.
+  highlightX: number // 0..100 %
+  highlightY: number // 0..100 %
+  highlightIntensity: number // 0..2
+}
+
+export const COSMOS_TWEAKS_DEFAULT: CosmosTweaks = {
+  space: '#0f172a',
+  globe: '#bedaee',
+  missing: '#e2e8f0',
+  starsDensity: 1,
+  haloIntensity: 0.4,
+  highlightX: 35,
+  highlightY: 30,
+  highlightIntensity: 1,
 }
 
 export type PanelTab = 'datos' | 'capas' | 'estilo'
@@ -130,7 +193,11 @@ type State = {
     value?: number | null
   } | null
   mapStyle: MapStyle
+  cosmosTweaks: CosmosTweaks
   thematic: Record<string, ThematicState>
+  // Overrides por capa, indexados por id. Vacío inicialmente; cada capa
+  // que el user toca acumula sus tweaks. Persistido en localStorage.
+  thematicOverrides: Record<string, ThematicOverride>
   // Rango custom para clasificación visual (null = usa min/max natural)
   customRange: { min: number | null; mid: number | null; max: number | null }
   // IDs de indicadores que el usuario quiere ocultar de la lista principal.
@@ -162,6 +229,10 @@ type Actions = {
   setSelected: (sel: State['selected']) => void
   clearSource: () => void
   setMapStyle: (patch: Partial<MapStyle>) => void
+  setCosmosTweaks: (patch: Partial<CosmosTweaks>) => void
+  resetCosmosTweaks: () => void
+  setThematicOverride: (id: string, patch: Partial<ThematicOverride>) => void
+  resetThematicOverride: (id: string) => void
   setCountry: (code: 'VE') => void
   setTab: (tab: PanelTab) => void
   loadThematicManifest: () => Promise<void>
@@ -245,7 +316,9 @@ export const useStore = create<State & Actions>()(
   stats: null,
   selected: null,
   mapStyle: DEFAULT_MAP_STYLE,
+  cosmosTweaks: COSMOS_TWEAKS_DEFAULT,
   thematic: {},
+  thematicOverrides: {},
   customRange: { min: null, mid: null, max: null },
   archivedIndicators: DEFAULT_ARCHIVED_INDICATORS,
   _persistedSourceId: null,
@@ -317,9 +390,32 @@ export const useStore = create<State & Actions>()(
     set({ diasporaLoading: true })
     try {
       const base = import.meta.env.BASE_URL
-      const res = await fetch(`${base}data/world-countries.geojson`)
-      if (!res.ok) throw new Error('No se pudo cargar el mapa mundial')
-      const diaspora = (await res.json()) as AdmGeoJSON<DiasporaProps>
+      // Cargamos geojson + indicadores comparativos en paralelo. El JSON de
+      // indicadores se mergea como propiedades extra del feature (PIB pc, IDH)
+      // para que applyDiaspora pueda leerlos uniformemente. Mantener separados
+      // permite actualizar los datos sin regenerar la geometría (WB publica
+      // anualmente en julio, UNDP en marzo).
+      const [geoRes, indicatorsRes] = await Promise.all([
+        fetch(`${base}data/world-countries.geojson`),
+        fetch(`${base}data/world-indicators.json`),
+      ])
+      if (!geoRes.ok) throw new Error('No se pudo cargar el mapa mundial')
+      const diaspora = (await geoRes.json()) as AdmGeoJSON<DiasporaProps>
+      if (indicatorsRes.ok) {
+        const indicators = (await indicatorsRes.json()) as {
+          countries?: Record<string, { pib_per_capita_usd?: number | null; idh?: number | null }>
+        }
+        const lookup = indicators.countries ?? {}
+        // Mutación in-place del array recién parseado (no afecta nada externo).
+        // Más simple y barato que rebuildear el feature collection completo.
+        for (const f of diaspora.features) {
+          const iso = f.properties?.iso_a3
+          const data = iso ? lookup[iso] : undefined
+          if (data) {
+            f.properties = { ...f.properties, ...data }
+          }
+        }
+      }
       set({ diaspora, diasporaLoading: false })
       // Si el user ya cambió a la vista global antes de que cargara, pintar
       if (get().view === 'global') get().applyMerge()
@@ -485,6 +581,27 @@ export const useStore = create<State & Actions>()(
     }
   },
 
+  setCosmosTweaks(patch) {
+    set({ cosmosTweaks: { ...get().cosmosTweaks, ...patch } })
+  },
+
+  resetCosmosTweaks() {
+    set({ cosmosTweaks: COSMOS_TWEAKS_DEFAULT })
+  },
+
+  setThematicOverride(id, patch) {
+    const current = get().thematicOverrides[id] ?? {}
+    set({
+      thematicOverrides: { ...get().thematicOverrides, [id]: { ...current, ...patch } },
+    })
+  },
+
+  resetThematicOverride(id) {
+    const rest = { ...get().thematicOverrides }
+    delete rest[id]
+    set({ thematicOverrides: rest })
+  },
+
   setCountry(code) {
     set({ country: code })
   },
@@ -592,7 +709,7 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
-      version: 6,
+      version: 9,
       // Migraciones:
       //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
       //   v2 → v3: projection default Orthographic + rotation centrada en VE
@@ -602,6 +719,12 @@ export const useStore = create<State & Actions>()(
       //   v5 → v6: basemap default "Contornos países". Solo upgrade automático
       //   si el user tenía el viejo default (carto-light-nolabels). Si había
       //   elegido otro manualmente, respetamos.
+      //   v6 → v7: agregar cosmosTweaks con defaults si no existe (feature
+      //   de personalización del tema Cosmos).
+      //   v7 → v8: agregar thematicOverrides {} si no existe (feature de
+      //   tweaks por capa temática: opacidad, color, estilo de texto).
+      //   v8 → v9: agregar highlightX/Y/Intensity al cosmosTweaks. Merge
+      //   con defaults para preservar lo que ya tenía el user.
       migrate: (persisted, version) => {
         let obj = persisted as Record<string, unknown>
         if (version < 2 && obj?.view === 'diaspora') {
@@ -634,6 +757,21 @@ export const useStore = create<State & Actions>()(
             },
           }
         }
+        if (version < 7 && obj.cosmosTweaks == null) {
+          obj = { ...obj, cosmosTweaks: COSMOS_TWEAKS_DEFAULT }
+        }
+        if (version < 8 && obj.thematicOverrides == null) {
+          obj = { ...obj, thematicOverrides: {} }
+        }
+        if (version < 9) {
+          // Mergeamos los defaults con lo que el user ya tenía, así garantizamos
+          // los campos nuevos sin pisar los que ya había modificado.
+          const existing = (obj.cosmosTweaks as Partial<CosmosTweaks> | undefined) ?? {}
+          obj = {
+            ...obj,
+            cosmosTweaks: { ...COSMOS_TWEAKS_DEFAULT, ...existing },
+          }
+        }
         return obj as unknown
       },
       partialize: state => ({
@@ -642,6 +780,8 @@ export const useStore = create<State & Actions>()(
         palette: state.palette,
         tab: state.tab,
         mapStyle: state.mapStyle,
+        cosmosTweaks: state.cosmosTweaks,
+        thematicOverrides: state.thematicOverrides,
         customRange: state.customRange,
         archivedIndicators: state.archivedIndicators,
         projection: state.projection,
@@ -653,6 +793,16 @@ export const useStore = create<State & Actions>()(
           .filter(([, t]) => t.enabled)
           .map(([id]) => id),
       }),
+      // Red de seguridad post-hidratación: garantizar que cosmosTweaks y
+      // thematicOverrides estén completos y bien tipados. Sin esto, un state
+      // parcial en localStorage (o una migración que no corrió) puede dejar
+      // campos como `undefined`, que luego rompen `cx="undefined%"` en SVG
+      // o `value.toFixed()` en sliders, dejando el mapa "en gris".
+      onRehydrateStorage: () => state => {
+        if (!state) return
+        state.cosmosTweaks = { ...COSMOS_TWEAKS_DEFAULT, ...(state.cosmosTweaks ?? {}) }
+        state.thematicOverrides = state.thematicOverrides ?? {}
+      },
     },
   ),
 )

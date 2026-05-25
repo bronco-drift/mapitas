@@ -4,39 +4,49 @@
 // para el mapa mundial. Cada entrada describe un reporte navegable desde
 // el panel del tab Datos cuando la vista activa es Global.
 //
-// Hoy hay 3 reportes en una sola categoría (Diáspora venezolana). A medida
-// que agregamos data mundial (Banco Mundial, PNUD, CEPAL, WHO, OIM, etc.)
-// se irán sumando categorías nuevas: demografía mundial, desarrollo, etc.
+// Categorías hoy:
+//   - 'diaspora'  · 3 reportes sobre migrantes venezolanos (default histórico)
+//   - 'demografia' · 1 reporte (población total)
+//   - 'economia'   · 1 reporte (PIB per cápita USD)
+//   - 'desarrollo' · 1 reporte (IDH)
 //
-// Aclaración técnica: los 3 reportes actuales NO leen data del geojson de
-// la misma forma (uno cuenta migrantes_ve, otro suma con población origen,
-// otro calcula ratio). Cada uno tiene su lógica en `applyDiaspora`. El
-// campo `mode` acá conecta el reporte con su lógica de pintado. Cuando
-// se sumen reportes "estándar" (un solo número por país), se podrá usar
-// un mode genérico que sólo lee data[iso_a3].
+// A medida que agreguemos data mundial (esperanza de vida, % alfabetización,
+// densidad, emisiones, etc.) se irán sumando reportes a las categorías
+// existentes — la UI ya soporta arbitrariamente muchos por categoría.
+//
+// Aclaración técnica: cada reporte tiene un `mode` que apunta a la lógica
+// de pintado en `applyDiaspora` (apply-indicator.ts). Para los modos
+// 'poblacion' / 'pib_pc' / 'idh', el valor se lee directamente del feature
+// del geojson (las props se mergean en loadDiasporaData desde
+// world-indicators.json). Para los 3 modos de diáspora, la lógica usa los
+// campos migrantes_ve / poblacion_total / is_origin del geojson.
 //
 // Para agregar un reporte:
-//   1. Si reusa un mode existente (migrantes/venezolanos/porcentaje):
-//      agregás una entrada acá y listo.
-//   2. Si es lógica nueva: agregás un mode a DiasporaMode en
+//   1. Si reusa un mode existente: agregás una entrada acá y listo.
+//   2. Si es lógica nueva: agregás el mode a GlobalMetric en
 //      apply-indicator.ts, actualizás applyDiaspora con esa lógica, y
-//      lo enlazás acá vía `mode`.
+//      lo enlazás acá vía `mode`. Si el valor viene de un campo nuevo,
+//      sumalo a world-indicators.json y a DiasporaProps en types.ts.
 
-import type { DiasporaMode } from '../lib/apply-indicator'
+import type { GlobalMetric } from '../lib/apply-indicator'
 
-export type GlobalReportCategory = 'diaspora'
+export type GlobalReportCategory = 'diaspora' | 'demografia' | 'economia' | 'desarrollo'
 
 export const GLOBAL_CATEGORY_LABELS: Record<GlobalReportCategory, string> = {
   diaspora: 'Diáspora venezolana',
-  // Cuando agreguemos más reportes mundiales:
-  // demografia: 'Demografía mundial',
-  // desarrollo: 'Desarrollo humano',
-  // economia:   'Economía mundial',
-  // ambiente:   'Ambiente y clima',
-  // migracion:  'Migración global',
+  demografia: 'Demografía',
+  economia: 'Economía',
+  desarrollo: 'Desarrollo humano',
 }
 
-export const GLOBAL_CATEGORY_ORDER: GlobalReportCategory[] = ['diaspora']
+// Orden de aparición en el panel. Diáspora primero (es la vista insignia
+// de Mapitas en modo Global), después comparativos generales por país.
+export const GLOBAL_CATEGORY_ORDER: GlobalReportCategory[] = [
+  'diaspora',
+  'demografia',
+  'economia',
+  'desarrollo',
+]
 
 export type GlobalReport = {
   id: string
@@ -48,15 +58,16 @@ export type GlobalReport = {
   category: GlobalReportCategory
   year: string // string en lugar de number: algunos cubren rangos ("2022–2025")
   source: string
-  unit: string // "habitantes" | "%" | etc.
+  unit: string // "habitantes" | "%" | "USD" | "IDH" | etc.
   // Modo que aplica el merge en el geojson. Cada modo tiene su lógica
   // específica en applyDiaspora (rango, color, fórmula).
-  mode: DiasporaMode
+  mode: GlobalMetric
   // Nota opcional: aclaraciones sobre metodología, sesgos, limitaciones.
   note?: string
 }
 
 export const GLOBAL_REPORTS: GlobalReport[] = [
+  // ─── Diáspora venezolana ────────────────────────────────────────────────
   {
     id: 'migrantes_recibidos',
     label: 'Migrantes recibidos',
@@ -94,6 +105,50 @@ export const GLOBAL_REPORTS: GlobalReport[] = [
     unit: '%',
     mode: 'porcentaje',
   },
+
+  // ─── Demografía mundial ─────────────────────────────────────────────────
+  {
+    id: 'poblacion_pais',
+    label: 'Población por país',
+    short: 'Población',
+    description:
+      'Habitantes totales por país. Permite comparar tamaño absoluto de cada Estado en el mapa.',
+    category: 'demografia',
+    year: '2024',
+    source: 'ONU · World Population Prospects',
+    unit: 'habitantes',
+    mode: 'poblacion',
+  },
+
+  // ─── Economía mundial ───────────────────────────────────────────────────
+  {
+    id: 'pib_per_capita_pais',
+    label: 'PIB per cápita',
+    short: 'PIB pc',
+    description:
+      'Producto Interno Bruto per cápita en USD nominal. Indicador estándar de tamaño económico medio por habitante.',
+    category: 'economia',
+    year: '2023',
+    source: 'Banco Mundial · World Development Indicators',
+    unit: 'USD',
+    mode: 'pib_pc',
+    note:
+      'Para Venezuela: estimación FMI/WEO. El Banco Mundial dejó de publicar PIB venezolano en 2014 por opacidad oficial.',
+  },
+
+  // ─── Desarrollo humano ──────────────────────────────────────────────────
+  {
+    id: 'idh_pais',
+    label: 'Índice de Desarrollo Humano',
+    short: 'IDH',
+    description:
+      'IDH compuesto por esperanza de vida, años de escolaridad e ingreso. Rango 0 a 1; cuanto más alto, mejor desarrollo humano relativo.',
+    category: 'desarrollo',
+    year: '2022',
+    source: 'PNUD · Informe sobre Desarrollo Humano 2023/2024',
+    unit: 'IDH',
+    mode: 'idh',
+  },
 ]
 
 // Lookup helpers análogos a los de indicators.ts
@@ -101,6 +156,6 @@ export function getGlobalReport(id: string): GlobalReport | undefined {
   return GLOBAL_REPORTS.find(r => r.id === id)
 }
 
-export function getGlobalReportByMode(mode: DiasporaMode): GlobalReport | undefined {
+export function getGlobalReportByMode(mode: GlobalMetric): GlobalReport | undefined {
   return GLOBAL_REPORTS.find(r => r.mode === mode)
 }

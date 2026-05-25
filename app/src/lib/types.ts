@@ -52,22 +52,34 @@ export type Adm2Props = {
 
 export type AdmGeoJSON<P> = FeatureCollection<Polygon | MultiPolygon, P>
 
-// Features de la vista diáspora: países LATAM + ESP + USA con su cifra de
-// migrantes venezolanos recibidos. iso_a3 es el código ISO 3166-1 alpha-3
-// (Natural Earth lo usa como identidad estable).
+// Features de la vista Global: países UN-reconocidos con su cifra de
+// migrantes venezolanos recibidos + indicadores comparativos (población,
+// PIB pc, IDH). iso_a3 es el código ISO 3166-1 alpha-3 (Natural Earth lo
+// usa como identidad estable).
+//
+// Los campos `pib_per_capita_usd` e `idh` NO viven en el geojson en disco:
+// se mergean at runtime desde world-indicators.json en loadDiasporaData,
+// para mantener el geojson liviano y poder actualizar los indicadores sin
+// regenerar la geometría.
 export type DiasporaProps = {
   iso_a3: string
   name: string
   migrantes_ve: number | null
-  // Población total del país (UN 2024, redondeada). Sólo presente en países
-  // que tienen migrantes_ve o que son geográficamente relevantes para el
-  // contexto. Usada para calcular el modo "porcentaje" en vista Global.
+  // Población total del país (UN 2024, redondeada). Cobertura completa
+  // para los países con migrantes_ve, parcial para el resto. Usada en
+  // los modos 'porcentaje' (vs migrantes) y 'poblacion' (vista absoluta).
   poblacion_total?: number | null
+  // PIB per cápita en USD nominal (Banco Mundial 2023). null cuando la
+  // fuente oficial no publica (Venezuela: BM cortó en 2014, usamos FMI).
+  pib_per_capita_usd?: number | null
+  // Índice de Desarrollo Humano (PNUD HDR 2023/24, datos 2022). null para
+  // territorios no incluidos en el reporte (Taiwán, Kosovo, etc.).
+  idh?: number | null
   as_of?: string | null
   source?: string | null
   // true para el país origen (Venezuela). En modo 'migrantes' la excluye
-  // del cálculo del rango y la pinta granate. En 'venezolanos' y
-  // 'porcentaje' entra al gradiente normalmente (su valor SÍ es comparable).
+  // del cálculo del rango y la pinta granate. En el resto de los modos
+  // entra al gradiente normalmente (su valor SÍ es comparable).
   is_origin?: boolean
   _value?: number | null
   _color?: string | null
@@ -89,5 +101,6 @@ export type UploadedDataset = {
 
 export type PaletteId =
   | 'blues' | 'reds' | 'greens' | 'oranges' | 'purples' | 'teals' | 'pinks' | 'grays'
+  | 'sky' | 'emerald' | 'slate'
   | 'viridis' | 'rdbu' | 'brbg' | 'piyg' | 'spectral'
   | 'custom'

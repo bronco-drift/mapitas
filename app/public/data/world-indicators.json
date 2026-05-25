@@ -1,0 +1,716 @@
+{
+  "meta": {
+    "description": "Indicadores comparativos por país. Cobertura: ~190 países UN-reconocidos. null cuando la fuente oficial no publica el dato (territorios disputados, autoridades de facto, Corea del Norte sin transparencia macro, etc.).",
+    "sources": {
+      "pib_per_capita_usd": "Banco Mundial · World Development Indicators · NY.GDP.PCAP.CD · 2023 (USD nominal)",
+      "idh": "PNUD · Informe sobre Desarrollo Humano 2023/2024 (publicado marzo 2024, datos 2022)"
+    },
+    "notes": {
+      "VEN": "Venezuela: Banco Mundial dejó de publicar PIB desde 2014 por opacidad oficial; valor mostrado es estimación FMI/WEO ajustada por inflación.",
+      "CUB": "Cuba: datos del Banco Mundial discontinuados; valor es último año disponible (2020).",
+      "PRK": "Corea del Norte: sin data oficial publicada (Banco Mundial / UN sin acceso)."
+    }
+  },
+  "countries": {
+    "AFG": {
+      "pib_per_capita_usd": 422,
+      "idh": 0.462
+    },
+    "AGO": {
+      "pib_per_capita_usd": 2057,
+      "idh": 0.591
+    },
+    "ALB": {
+      "pib_per_capita_usd": 8368,
+      "idh": 0.789
+    },
+    "ARE": {
+      "pib_per_capita_usd": 51910,
+      "idh": 0.937
+    },
+    "ARG": {
+      "pib_per_capita_usd": 13730,
+      "idh": 0.849
+    },
+    "ARM": {
+      "pib_per_capita_usd": 8040,
+      "idh": 0.786
+    },
+    "ATF": {
+      "pib_per_capita_usd": null,
+      "idh": null
+    },
+    "AUS": {
+      "pib_per_capita_usd": 65366,
+      "idh": 0.951
+    },
+    "AUT": {
+      "pib_per_capita_usd": 56506,
+      "idh": 0.926
+    },
+    "AZE": {
+      "pib_per_capita_usd": 7762,
+      "idh": 0.76
+    },
+    "BDI": {
+      "pib_per_capita_usd": 200,
+      "idh": 0.42
+    },
+    "BEL": {
+      "pib_per_capita_usd": 53475,
+      "idh": 0.942
+    },
+    "BEN": {
+      "pib_per_capita_usd": 1428,
+      "idh": 0.504
+    },
+    "BFA": {
+      "pib_per_capita_usd": 893,
+      "idh": 0.438
+    },
+    "BGD": {
+      "pib_per_capita_usd": 2529,
+      "idh": 0.67
+    },
+    "BGR": {
+      "pib_per_capita_usd": 15797,
+      "idh": 0.799
+    },
+    "BHS": {
+      "pib_per_capita_usd": 34749,
+      "idh": 0.82
+    },
+    "BIH": {
+      "pib_per_capita_usd": 7682,
+      "idh": 0.779
+    },
+    "BLR": {
+      "pib_per_capita_usd": 7889,
+      "idh": 0.801
+    },
+    "BLZ": {
+      "pib_per_capita_usd": 7252,
+      "idh": 0.7
+    },
+    "BOL": {
+      "pib_per_capita_usd": 3658,
+      "idh": 0.698
+    },
+    "BRA": {
+      "pib_per_capita_usd": 10412,
+      "idh": 0.76
+    },
+    "BRN": {
+      "pib_per_capita_usd": 33700,
+      "idh": 0.823
+    },
+    "BTN": {
+      "pib_per_capita_usd": 3838,
+      "idh": 0.681
+    },
+    "BWA": {
+      "pib_per_capita_usd": 7250,
+      "idh": 0.708
+    },
+    "CAF": {
+      "pib_per_capita_usd": 511,
+      "idh": 0.414
+    },
+    "CAN": {
+      "pib_per_capita_usd": 53247,
+      "idh": 0.935
+    },
+    "CHE": {
+      "pib_per_capita_usd": 99995,
+      "idh": 0.967
+    },
+    "CHL": {
+      "pib_per_capita_usd": 17094,
+      "idh": 0.86
+    },
+    "CHN": {
+      "pib_per_capita_usd": 12614,
+      "idh": 0.788
+    },
+    "CIV": {
+      "pib_per_capita_usd": 2729,
+      "idh": 0.534
+    },
+    "CMR": {
+      "pib_per_capita_usd": 1647,
+      "idh": 0.587
+    },
+    "COD": {
+      "pib_per_capita_usd": 686,
+      "idh": 0.481
+    },
+    "COG": {
+      "pib_per_capita_usd": 2541,
+      "idh": 0.593
+    },
+    "COL": {
+      "pib_per_capita_usd": 6624,
+      "idh": 0.758
+    },
+    "CRI": {
+      "pib_per_capita_usd": 17150,
+      "idh": 0.806
+    },
+    "CUB": {
+      "pib_per_capita_usd": 9477,
+      "idh": 0.764
+    },
+    "CYN": {
+      "pib_per_capita_usd": null,
+      "idh": null
+    },
+    "CYP": {
+      "pib_per_capita_usd": 33807,
+      "idh": 0.907
+    },
+    "CZE": {
+      "pib_per_capita_usd": 29856,
+      "idh": 0.895
+    },
+    "DEU": {
+      "pib_per_capita_usd": 52746,
+      "idh": 0.95
+    },
+    "DJI": {
+      "pib_per_capita_usd": 3606,
+      "idh": 0.515
+    },
+    "DNK": {
+      "pib_per_capita_usd": 67967,
+      "idh": 0.952
+    },
+    "DOM": {
+      "pib_per_capita_usd": 11249,
+      "idh": 0.766
+    },
+    "DZA": {
+      "pib_per_capita_usd": 4274,
+      "idh": 0.745
+    },
+    "ECU": {
+      "pib_per_capita_usd": 6533,
+      "idh": 0.765
+    },
+    "EGY": {
+      "pib_per_capita_usd": 3457,
+      "idh": 0.728
+    },
+    "ERI": {
+      "pib_per_capita_usd": 612,
+      "idh": 0.493
+    },
+    "ESH": {
+      "pib_per_capita_usd": null,
+      "idh": null
+    },
+    "ESP": {
+      "pib_per_capita_usd": 32677,
+      "idh": 0.911
+    },
+    "EST": {
+      "pib_per_capita_usd": 30998,
+      "idh": 0.899
+    },
+    "ETH": {
+      "pib_per_capita_usd": 1027,
+      "idh": 0.492
+    },
+    "FIN": {
+      "pib_per_capita_usd": 53983,
+      "idh": 0.942
+    },
+    "FLK": {
+      "pib_per_capita_usd": null,
+      "idh": null
+    },
+    "FRA": {
+      "pib_per_capita_usd": 44461,
+      "idh": 0.91
+    },
+    "GAB": {
+      "pib_per_capita_usd": 8635,
+      "idh": 0.706
+    },
+    "GBR": {
+      "pib_per_capita_usd": 48867,
+      "idh": 0.94
+    },
+    "GEO": {
+      "pib_per_capita_usd": 8120,
+      "idh": 0.814
+    },
+    "GHA": {
+      "pib_per_capita_usd": 2238,
+      "idh": 0.602
+    },
+    "GIN": {
+      "pib_per_capita_usd": 1568,
+      "idh": 0.471
+    },
+    "GMB": {
+      "pib_per_capita_usd": 822,
+      "idh": 0.495
+    },
+    "GNB": {
+      "pib_per_capita_usd": 904,
+      "idh": 0.483
+    },
+    "GNQ": {
+      "pib_per_capita_usd": 7010,
+      "idh": 0.65
+    },
+    "GRC": {
+      "pib_per_capita_usd": 23173,
+      "idh": 0.893
+    },
+    "GRL": {
+      "pib_per_capita_usd": 56000,
+      "idh": null
+    },
+    "GTM": {
+      "pib_per_capita_usd": 5707,
+      "idh": 0.629
+    },
+    "GUY": {
+      "pib_per_capita_usd": 21515,
+      "idh": 0.742
+    },
+    "HND": {
+      "pib_per_capita_usd": 3076,
+      "idh": 0.624
+    },
+    "HRV": {
+      "pib_per_capita_usd": 22221,
+      "idh": 0.878
+    },
+    "HTI": {
+      "pib_per_capita_usd": 1745,
+      "idh": 0.552
+    },
+    "HUN": {
+      "pib_per_capita_usd": 22147,
+      "idh": 0.851
+    },
+    "IDN": {
+      "pib_per_capita_usd": 4941,
+      "idh": 0.713
+    },
+    "IND": {
+      "pib_per_capita_usd": 2612,
+      "idh": 0.644
+    },
+    "IRL": {
+      "pib_per_capita_usd": 103685,
+      "idh": 0.95
+    },
+    "IRN": {
+      "pib_per_capita_usd": 4503,
+      "idh": 0.78
+    },
+    "IRQ": {
+      "pib_per_capita_usd": 5938,
+      "idh": 0.686
+    },
+    "ISL": {
+      "pib_per_capita_usd": 78836,
+      "idh": 0.959
+    },
+    "ISR": {
+      "pib_per_capita_usd": 53196,
+      "idh": 0.915
+    },
+    "ITA": {
+      "pib_per_capita_usd": 38373,
+      "idh": 0.906
+    },
+    "JAM": {
+      "pib_per_capita_usd": 6987,
+      "idh": 0.706
+    },
+    "JOR": {
+      "pib_per_capita_usd": 4527,
+      "idh": 0.736
+    },
+    "JPN": {
+      "pib_per_capita_usd": 33834,
+      "idh": 0.92
+    },
+    "KAZ": {
+      "pib_per_capita_usd": 13136,
+      "idh": 0.802
+    },
+    "KEN": {
+      "pib_per_capita_usd": 2099,
+      "idh": 0.601
+    },
+    "KGZ": {
+      "pib_per_capita_usd": 2290,
+      "idh": 0.701
+    },
+    "KHM": {
+      "pib_per_capita_usd": 2479,
+      "idh": 0.6
+    },
+    "KOR": {
+      "pib_per_capita_usd": 33121,
+      "idh": 0.929
+    },
+    "KOS": {
+      "pib_per_capita_usd": 6385,
+      "idh": null
+    },
+    "KWT": {
+      "pib_per_capita_usd": 32290,
+      "idh": 0.847
+    },
+    "LAO": {
+      "pib_per_capita_usd": 2087,
+      "idh": 0.62
+    },
+    "LBN": {
+      "pib_per_capita_usd": 4136,
+      "idh": 0.723
+    },
+    "LBR": {
+      "pib_per_capita_usd": 794,
+      "idh": 0.487
+    },
+    "LBY": {
+      "pib_per_capita_usd": 7338,
+      "idh": 0.746
+    },
+    "LKA": {
+      "pib_per_capita_usd": 3828,
+      "idh": 0.78
+    },
+    "LSO": {
+      "pib_per_capita_usd": 1054,
+      "idh": 0.521
+    },
+    "LTU": {
+      "pib_per_capita_usd": 27090,
+      "idh": 0.879
+    },
+    "LUX": {
+      "pib_per_capita_usd": 128259,
+      "idh": 0.927
+    },
+    "LVA": {
+      "pib_per_capita_usd": 23104,
+      "idh": 0.879
+    },
+    "MAR": {
+      "pib_per_capita_usd": 3711,
+      "idh": 0.698
+    },
+    "MDA": {
+      "pib_per_capita_usd": 6603,
+      "idh": 0.763
+    },
+    "MDG": {
+      "pib_per_capita_usd": 545,
+      "idh": 0.487
+    },
+    "MEX": {
+      "pib_per_capita_usd": 13804,
+      "idh": 0.781
+    },
+    "MKD": {
+      "pib_per_capita_usd": 7488,
+      "idh": 0.77
+    },
+    "MLI": {
+      "pib_per_capita_usd": 856,
+      "idh": 0.41
+    },
+    "MMR": {
+      "pib_per_capita_usd": 1198,
+      "idh": 0.585
+    },
+    "MNE": {
+      "pib_per_capita_usd": 12387,
+      "idh": 0.844
+    },
+    "MNG": {
+      "pib_per_capita_usd": 5366,
+      "idh": 0.741
+    },
+    "MOZ": {
+      "pib_per_capita_usd": 627,
+      "idh": 0.461
+    },
+    "MRT": {
+      "pib_per_capita_usd": 2147,
+      "idh": 0.54
+    },
+    "MWI": {
+      "pib_per_capita_usd": 481,
+      "idh": 0.508
+    },
+    "MYS": {
+      "pib_per_capita_usd": 11649,
+      "idh": 0.807
+    },
+    "NAM": {
+      "pib_per_capita_usd": 4878,
+      "idh": 0.61
+    },
+    "NCL": {
+      "pib_per_capita_usd": 36800,
+      "idh": null
+    },
+    "NER": {
+      "pib_per_capita_usd": 624,
+      "idh": 0.394
+    },
+    "NGA": {
+      "pib_per_capita_usd": 2163,
+      "idh": 0.548
+    },
+    "NIC": {
+      "pib_per_capita_usd": 2533,
+      "idh": 0.669
+    },
+    "NLD": {
+      "pib_per_capita_usd": 62536,
+      "idh": 0.946
+    },
+    "NOR": {
+      "pib_per_capita_usd": 87925,
+      "idh": 0.966
+    },
+    "NPL": {
+      "pib_per_capita_usd": 1399,
+      "idh": 0.601
+    },
+    "NZL": {
+      "pib_per_capita_usd": 47362,
+      "idh": 0.939
+    },
+    "OMN": {
+      "pib_per_capita_usd": 21266,
+      "idh": 0.819
+    },
+    "PAK": {
+      "pib_per_capita_usd": 1471,
+      "idh": 0.54
+    },
+    "PAN": {
+      "pib_per_capita_usd": 17354,
+      "idh": 0.82
+    },
+    "PER": {
+      "pib_per_capita_usd": 7791,
+      "idh": 0.762
+    },
+    "PHL": {
+      "pib_per_capita_usd": 3859,
+      "idh": 0.71
+    },
+    "PNG": {
+      "pib_per_capita_usd": 2906,
+      "idh": 0.568
+    },
+    "POL": {
+      "pib_per_capita_usd": 22057,
+      "idh": 0.881
+    },
+    "PRI": {
+      "pib_per_capita_usd": 36084,
+      "idh": null
+    },
+    "PRK": {
+      "pib_per_capita_usd": null,
+      "idh": null
+    },
+    "PRT": {
+      "pib_per_capita_usd": 27291,
+      "idh": 0.874
+    },
+    "PRY": {
+      "pib_per_capita_usd": 6232,
+      "idh": 0.731
+    },
+    "PSE": {
+      "pib_per_capita_usd": 3517,
+      "idh": 0.716
+    },
+    "QAT": {
+      "pib_per_capita_usd": 80195,
+      "idh": 0.875
+    },
+    "ROU": {
+      "pib_per_capita_usd": 18414,
+      "idh": 0.827
+    },
+    "RUS": {
+      "pib_per_capita_usd": 13815,
+      "idh": 0.821
+    },
+    "RWA": {
+      "pib_per_capita_usd": 966,
+      "idh": 0.548
+    },
+    "SAU": {
+      "pib_per_capita_usd": 32422,
+      "idh": 0.875
+    },
+    "SDN": {
+      "pib_per_capita_usd": 1101,
+      "idh": 0.516
+    },
+    "SEN": {
+      "pib_per_capita_usd": 1633,
+      "idh": 0.517
+    },
+    "SLB": {
+      "pib_per_capita_usd": 2466,
+      "idh": 0.562
+    },
+    "SLE": {
+      "pib_per_capita_usd": 527,
+      "idh": 0.458
+    },
+    "SLV": {
+      "pib_per_capita_usd": 5391,
+      "idh": 0.674
+    },
+    "SOL": {
+      "pib_per_capita_usd": null,
+      "idh": null
+    },
+    "SOM": {
+      "pib_per_capita_usd": 592,
+      "idh": null
+    },
+    "SRB": {
+      "pib_per_capita_usd": 11680,
+      "idh": 0.805
+    },
+    "SSD": {
+      "pib_per_capita_usd": 1115,
+      "idh": 0.381
+    },
+    "SUR": {
+      "pib_per_capita_usd": 6688,
+      "idh": 0.69
+    },
+    "SVK": {
+      "pib_per_capita_usd": 24470,
+      "idh": 0.855
+    },
+    "SVN": {
+      "pib_per_capita_usd": 32163,
+      "idh": 0.926
+    },
+    "SWE": {
+      "pib_per_capita_usd": 56291,
+      "idh": 0.952
+    },
+    "SWZ": {
+      "pib_per_capita_usd": 3771,
+      "idh": 0.61
+    },
+    "SYR": {
+      "pib_per_capita_usd": 421,
+      "idh": 0.557
+    },
+    "TCD": {
+      "pib_per_capita_usd": 717,
+      "idh": 0.394
+    },
+    "TGO": {
+      "pib_per_capita_usd": 992,
+      "idh": 0.547
+    },
+    "THA": {
+      "pib_per_capita_usd": 7172,
+      "idh": 0.803
+    },
+    "TJK": {
+      "pib_per_capita_usd": 1278,
+      "idh": 0.679
+    },
+    "TKM": {
+      "pib_per_capita_usd": 11743,
+      "idh": 0.744
+    },
+    "TLS": {
+      "pib_per_capita_usd": 1404,
+      "idh": 0.566
+    },
+    "TTO": {
+      "pib_per_capita_usd": 19057,
+      "idh": 0.814
+    },
+    "TUN": {
+      "pib_per_capita_usd": 3895,
+      "idh": 0.732
+    },
+    "TUR": {
+      "pib_per_capita_usd": 12882,
+      "idh": 0.855
+    },
+    "TWN": {
+      "pib_per_capita_usd": 32443,
+      "idh": null
+    },
+    "TZA": {
+      "pib_per_capita_usd": 1192,
+      "idh": 0.532
+    },
+    "UGA": {
+      "pib_per_capita_usd": 1014,
+      "idh": 0.55
+    },
+    "UKR": {
+      "pib_per_capita_usd": 5181,
+      "idh": 0.734
+    },
+    "URY": {
+      "pib_per_capita_usd": 22565,
+      "idh": 0.83
+    },
+    "USA": {
+      "pib_per_capita_usd": 80035,
+      "idh": 0.927
+    },
+    "UZB": {
+      "pib_per_capita_usd": 2255,
+      "idh": 0.727
+    },
+    "VEN": {
+      "pib_per_capita_usd": 3474,
+      "idh": 0.699
+    },
+    "VNM": {
+      "pib_per_capita_usd": 4324,
+      "idh": 0.726
+    },
+    "VUT": {
+      "pib_per_capita_usd": 3105,
+      "idh": 0.614
+    },
+    "YEM": {
+      "pib_per_capita_usd": 650,
+      "idh": 0.424
+    },
+    "ZAF": {
+      "pib_per_capita_usd": 6253,
+      "idh": 0.717
+    },
+    "ZMB": {
+      "pib_per_capita_usd": 1369,
+      "idh": 0.569
+    },
+    "ZWE": {
+      "pib_per_capita_usd": 2304,
+      "idh": 0.55
+    }
+  }
+}

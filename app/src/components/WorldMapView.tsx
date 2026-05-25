@@ -28,6 +28,7 @@ import { useStore } from '../store'
 import type { DiasporaProps } from '../lib/types'
 import type { ProjectionId } from '../lib/projections'
 import { getGlobeTheme } from '../lib/globe-themes'
+import { getGlobalReportByMode } from '../data/global-reports'
 
 // Mapping ProjectionId → factory d3. Vive acá porque arrastra d3 (lazy load).
 const PROJECTIONS: Record<
@@ -48,7 +49,31 @@ export function WorldMapView() {
   const projection = useStore(s => s.projection)
   const rotation = useStore(s => s.rotation)
   const mobilePanelHeight = useStore(s => s.mobilePanelHeight)
-  const theme = getGlobeTheme(mapStyle.globeTheme)
+  const globalMetric = useStore(s => s.globalMetric)
+  const cosmosTweaks = useStore(s => s.cosmosTweaks)
+  const baseTheme = getGlobeTheme(mapStyle.globeTheme)
+  const activeReport = getGlobalReportByMode(globalMetric)
+
+  // Si el tema activo es Cosmos, los colores base salen de cosmosTweaks
+  // (editables por el user). Para otros temas usamos los presets de
+  // globe-themes.ts directamente.
+  const isCosmosTheme = mapStyle.globeTheme === 'cosmos'
+  const theme = isCosmosTheme
+    ? { ...baseTheme, space: cosmosTweaks.space, globe: cosmosTweaks.globe, missing: cosmosTweaks.missing }
+    : baseTheme
+
+  // Hover state: país bajo el pointer + posición del tooltip flotante.
+  // null cuando no hay hover (mobile, drag, fuera del mapa). El tooltip
+  // se monta como sibling del SVG, no como <title> HTML nativo, para
+  // poder estilizarlo coherente con el resto del producto.
+  const [hovered, setHovered] = useState<{
+    iso: string
+    name: string
+    value: number | null
+    matched: boolean
+    x: number
+    y: number
+  } | null>(null)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -269,6 +294,44 @@ export function WorldMapView() {
     }
   }
 
+  // Pointer move hover (desktop): identifica el path bajo el cursor y muestra
+  // tooltip flotante con nombre + valor. Si hay drag activo, no hace nada
+  // (queremos cursor=grabbing limpio). En mobile el hover no aplica: pointer
+  // coarse no tiene "estado hover", así que solo nos importa para mouse/pen.
+  function handlePointerMoveContainer(e: ReactPointerEvent<HTMLDivElement>) {
+    if (dragRef.current || pinchRef.current) {
+      if (hovered) setHovered(null)
+      return
+    }
+    // Solo nos interesan pointers tipo mouse/pen. Los touch generan pointermove
+    // entre touches pero no es un "hover" real.
+    if (e.pointerType === 'touch') return
+    const t = e.target as Element
+    if (t instanceof SVGPathElement && t.dataset.iso) {
+      const iso = t.dataset.iso
+      const feature = diaspora?.features.find(
+        f => (f.properties as DiasporaProps).iso_a3 === iso,
+      )
+      if (feature) {
+        const p = feature.properties as DiasporaProps
+        setHovered({
+          iso,
+          name: p.name,
+          value: typeof p._value === 'number' ? p._value : null,
+          matched: !!p._matched,
+          x: e.clientX,
+          y: e.clientY,
+        })
+        return
+      }
+    }
+    if (hovered) setHovered(null)
+  }
+
+  function handlePointerLeaveContainer() {
+    if (hovered) setHovered(null)
+  }
+
   function handlePointerDown(e: ReactPointerEvent<HTMLDivElement>) {
     // Segundo dedo: arrancar pinch
     if (dragRef.current && !pinchRef.current) {
@@ -347,6 +410,47 @@ export function WorldMapView() {
   // Sphere de fondo (solo en Orthographic): es el "borde del globo"
   const showSphere = PROJECTIONS[projection].isGlobe
 
+  // ─── Efectos visuales del tema Cosmos ──────────────────────────────────
+  // El tema Cosmos agrega tres elementos para reforzar el feel espacial:
+  //   1. Radial gradient en el sphere → ilusión 3D (highlight + shadow)
+  //   2. Drop shadow tenue azul → halo atmosférico alrededor del globo
+  //   3. Estrellas determinísticas (seed fijo) en el fondo del viewport
+  // Sólo aplican cuando globeTheme === 'cosmos'; otros temas quedan idénticos.
+  const isCosmos = isCosmosTheme
+
+  // Stops del radial gradient derivados del color base (cosmosTweaks.globe).
+  // Lighten/darken simple por mezcla RGB con blanco/negro, escalados por
+  // highlightIntensity (0 = sin efecto, 1 = default, 2 = exagerado).
+  // Cap a 0.85/0.7 para que en intensity=2 no se vuelva blanco/negro puro.
+  const gradientStops = useMemo(() => {
+    const lightenAmt = Math.min(0.85, 0.35 * cosmosTweaks.highlightIntensity)
+    const darkenAmt = Math.min(0.7, 0.3 * cosmosTweaks.highlightIntensity)
+    return {
+      highlight: lightenHex(cosmosTweaks.globe, lightenAmt),
+      base: cosmosTweaks.globe,
+      shadow: darkenHex(cosmosTweaks.globe, darkenAmt),
+    }
+  }, [cosmosTweaks.globe, cosmosTweaks.highlightIntensity])
+
+  // Estrellas: posiciones determinísticas (mulberry32 con seed fijo) para
+  // que la "constelación" sea estable entre renders y rotaciones. Densidad
+  // base ≈ 1 estrella cada 7000 px² del viewport, multiplicada por el
+  // tweak starsDensity (0 = sin estrellas, 1 = default, hasta 3x).
+  const stars = useMemo(() => {
+    if (!isCosmos || !size || cosmosTweaks.starsDensity <= 0) return []
+    const baseCount = Math.round((size.w * size.h) / 7000)
+    const count = Math.max(0, Math.min(420, Math.round(baseCount * cosmosTweaks.starsDensity)))
+    if (count === 0) return []
+    const rand = mulberry32(42)
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      cx: rand() * size.w,
+      cy: rand() * size.h,
+      r: rand() * 0.9 + 0.3, // 0.3 – 1.2 px
+      opacity: rand() * 0.55 + 0.25, // 0.25 – 0.8
+    }))
+  }, [isCosmos, size?.w, size?.h, cosmosTweaks.starsDensity])
+
   return (
     <div
       ref={containerRef}
@@ -362,6 +466,8 @@ export function WorldMapView() {
         cursor: isGlobeProjection ? 'grab' : 'move',
       }}
       onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMoveContainer}
+      onPointerLeave={handlePointerLeaveContainer}
     >
       {(!diaspora || !size) ? (
         <div className="flex h-full w-full items-center justify-center text-sm text-slate-500">
@@ -375,33 +481,88 @@ export function WorldMapView() {
         viewBox={`0 0 ${size.w} ${size.h}`}
         style={{ shapeRendering: 'geometricPrecision' }}
       >
+        {/* Defs del tema Cosmos: radial gradient (efecto 3D del sphere) +
+            drop shadow azul (halo atmosférico). Sólo se montan cuando el
+            tema activo es Cosmos para no agregar nodos vacíos en otros temas. */}
+        {isCosmos && (
+          <defs>
+            <radialGradient
+              id="cosmos-globe-gradient"
+              cx={`${cosmosTweaks.highlightX}%`}
+              cy={`${cosmosTweaks.highlightY}%`}
+              r="75%"
+            >
+              <stop offset="0%" stopColor={gradientStops.highlight} stopOpacity="1" />
+              <stop offset="55%" stopColor={gradientStops.base} stopOpacity="1" />
+              <stop offset="100%" stopColor={gradientStops.shadow} stopOpacity="1" />
+            </radialGradient>
+            <filter
+              id="cosmos-globe-shadow"
+              x="-30%"
+              y="-30%"
+              width="160%"
+              height="160%"
+            >
+              <feDropShadow
+                dx="0"
+                dy="0"
+                stdDeviation="10"
+                floodColor={cosmosTweaks.globe}
+                floodOpacity={cosmosTweaks.haloIntensity}
+              />
+            </filter>
+          </defs>
+        )}
+
+        {/* Estrellas: FUERA del <g transform> para que no rote/escale con el
+            mapa — quedan fijas al viewport como si fueran del espacio real,
+            no del mundo. pointerEvents=none para no interferir con el drag. */}
+        {isCosmos && stars.length > 0 && (
+          <g pointerEvents="none">
+            {stars.map(s => (
+              <circle
+                key={s.id}
+                cx={s.cx}
+                cy={s.cy}
+                r={s.r}
+                fill="#ffffff"
+                opacity={s.opacity}
+              />
+            ))}
+          </g>
+        )}
+
         <g ref={gRef} transform={transform}>
           {/* Cuerpo del globo. En proyecciones tipo globo (Orthographic) la
               sphere actúa como "agua/atmósfera" detrás de los continentes.
               En proyecciones planas (Equal Earth) actúa como background sutil
-              que recorta los países al área del mundo. */}
+              que recorta los países al área del mundo.
+              En tema Cosmos + Orthographic: aplicamos radial gradient
+              (centro claro, bordes oscuros) + drop shadow azul para halo. */}
           <path
             d={pathGen({ type: 'Sphere' } as never) ?? undefined}
-            fill={theme.globe}
+            fill={isCosmos && showSphere ? 'url(#cosmos-globe-gradient)' : theme.globe}
             stroke={showSphere ? theme.border : 'none'}
             strokeWidth={showSphere ? 0.5 : 0}
+            filter={isCosmos && showSphere ? 'url(#cosmos-globe-shadow)' : undefined}
           />
 
-          {/* Países */}
+          {/* Países. El <title> nativo del browser fue reemplazado por un
+              tooltip flotante (abajo) para coherencia visual con el resto
+              del producto.
+
+              Bordes fijos en vista Global: negro #000000 a 0.6px, sin
+              respetar el toggle "Sin bordes" ni el color/grosor del panel
+              Estilo. Razón: las divisiones políticas tienen que ser siempre
+              legibles a escala mundial. El user puede ajustar opacidad del
+              borde (atenuarlo) pero no quitarlo del todo. */}
           {diaspora.features.map((f, i) => {
             const props = f.properties as DiasporaProps
             const fillColor = props._color ?? theme.missing
             const matched = props._matched
             const op = matched ? mapStyle.fillOpacity : Math.min(mapStyle.fillOpacity * 0.6, 0.5)
-            // En vista Global "sin bordes" significa literalmente sin stroke
-            // (weight=0). En vista VE el modo activa un tapa-gaps con
-            // stroke=fillColor + weight expandido (strokeWeightForOpacity)
-            // porque los polígonos comparten arcs del TopoJSON simplificado
-            // y dejan hilitos del fondo. En Global los países NO comparten
-            // arcs entre sí (cada uno es un feature independiente), así que
-            // ese hack no aplica y solo introducía artefactos visuales.
-            const stroke = mapStyle.borderColor
-            const weight = mapStyle.noBorders ? 0 : mapStyle.lineWidth
+            const stroke = '#000000'
+            const weight = 0.6
             const strokeOp = mapStyle.borderOpacity
             const d = pathGen(f as never)
             if (!d) return null
@@ -416,22 +577,110 @@ export function WorldMapView() {
                 strokeWidth={weight}
                 strokeOpacity={strokeOp}
                 style={{ cursor: 'pointer' }}
-              >
-                <title>
-                  {`${props.name}${
-                    typeof props._value === 'number'
-                      ? ` · ${props._value.toLocaleString('es-VE')} ${
-                          props.is_origin ? 'habitantes (origen)' : 'migrantes'
-                        }`
-                      : ' · sin dato'
-                  }${props.as_of ? ` (${props.as_of})` : ''}`}
-                </title>
-              </path>
+              />
             )
           })}
+
+          {/* Outline del feature hovered: contorno oscuro encima del path
+              original. Se renderiza al final para quedar por encima de todos
+              los países (evita que un vecino con z mayor lo tape). */}
+          {hovered && (() => {
+            const feature = diaspora.features.find(
+              f => (f.properties as DiasporaProps).iso_a3 === hovered.iso,
+            )
+            if (!feature) return null
+            const d = pathGen(feature as never)
+            if (!d) return null
+            return (
+              <path
+                d={d}
+                fill="none"
+                stroke="#0f172a"
+                strokeWidth={1.4}
+                strokeOpacity={0.95}
+                pointerEvents="none"
+                style={{ vectorEffect: 'non-scaling-stroke' }}
+              />
+            )
+          })()}
         </g>
       </svg>
       )}
+
+      {/* Tooltip flotante (solo desktop con pointer mouse/pen). Posición
+          fixed para que no se recorte por el container y siga al cursor.
+          El formato del valor sale del reporte global activo. */}
+      {hovered && (
+        <div
+          className="pointer-events-none fixed z-[1100] rounded-md bg-slate-900/95 px-2.5 py-1.5 text-[11px] leading-tight text-white shadow-lg"
+          style={{
+            left: hovered.x + 14,
+            top: hovered.y + 14,
+            // Si el tooltip queda muy cerca del borde derecho, lo movemos
+            // a la izquierda del cursor para que no se recorte
+            transform:
+              size && hovered.x + 220 > size.w ? 'translateX(calc(-100% - 28px))' : undefined,
+          }}
+        >
+          <div className="font-semibold">{hovered.name}</div>
+          <div className="mt-0.5 tabular-nums text-slate-300">
+            {hovered.value != null
+              ? formatHoverValue(hovered.value, globalMetric)
+              : 'sin dato'}
+          </div>
+          {activeReport && hovered.matched && (
+            <div className="mt-0.5 text-[10px] text-slate-400">{activeReport.short}</div>
+          )}
+        </div>
+      )}
     </div>
   )
+}
+
+// Formato del valor en el tooltip flotante. Cada modo tiene su propia
+// unidad: el formato debe coincidir con el del panel para que el usuario
+// reconozca el mismo número. Ver DiasporaPanel.formatValue.
+// PRNG determinístico (mulberry32). Lo usamos para que las estrellas del
+// tema Cosmos queden en las mismas posiciones entre renders — sin esto,
+// Math.random() generaría una "constelación" nueva en cada repaint y se
+// vería ruidoso al hacer drag o resize.
+function mulberry32(seed: number): () => number {
+  let s = seed | 0
+  return () => {
+    s = (s + 0x6d2b79f5) | 0
+    let t = Math.imul(s ^ (s >>> 15), s | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+// Lighten/darken simple en RGB: mezcla lineal con blanco (#ffffff) o negro
+// (#000000). amount ∈ [0,1]. Lo usamos para derivar los stops del radial
+// gradient del globo Cosmos a partir del color base editable por el user.
+// No es HSL-perfecto, pero para los rangos pastel de Cosmos da resultado
+// visualmente consistente.
+function hexToRgb(hex: string): [number, number, number] {
+  const h = hex.replace('#', '')
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]
+}
+function rgbToHex(r: number, g: number, b: number): string {
+  const toHex = (n: number) => Math.round(Math.max(0, Math.min(255, n))).toString(16).padStart(2, '0')
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+}
+function lightenHex(hex: string, amount: number): string {
+  const [r, g, b] = hexToRgb(hex)
+  return rgbToHex(r + (255 - r) * amount, g + (255 - g) * amount, b + (255 - b) * amount)
+}
+function darkenHex(hex: string, amount: number): string {
+  const [r, g, b] = hexToRgb(hex)
+  return rgbToHex(r * (1 - amount), g * (1 - amount), b * (1 - amount))
+}
+
+function formatHoverValue(value: number, metric: string): string {
+  if (metric === 'porcentaje') return `${value.toFixed(2)}%`
+  if (metric === 'pib_pc')
+    return `$${value.toLocaleString('es-VE', { maximumFractionDigits: 0 })}`
+  if (metric === 'idh') return value.toFixed(3)
+  // migrantes / venezolanos / poblacion: número con separador de miles.
+  return value.toLocaleString('es-VE', { maximumFractionDigits: 0 })
 }

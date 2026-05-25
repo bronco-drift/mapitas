@@ -23,6 +23,8 @@ import { Legend } from './Legend'
 import { StyleControls } from './StyleControls'
 import { ThematicLayersList } from './ThematicLayers'
 import { IndicatorCoverageModal } from './IndicatorCoverageModal'
+import { WikiModal } from './WikiModal'
+import { wikiQueryFor } from '../lib/wiki'
 import { PROJECTION_OPTIONS, type ProjectionId } from '../lib/projections'
 
 type Props = {
@@ -51,6 +53,9 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
   // (título del reporte clickeable). Para CSV propios o cuando no hay
   // source, el click navega al tab Datos.
   const [headerModalOpen, setHeaderModalOpen] = useState(false)
+  // Modal Wikipedia. Se abre desde el botón "Más info" del bloque selected.
+  // Aplica a estados/munis VE y a países (vista Global).
+  const [wikiOpen, setWikiOpen] = useState(false)
 
   // ── Drawer expandible (solo mobile) ──────────────────────────────────────
   // Dos snap points: collapsed (45vh) y expanded (88vh). El user puede
@@ -377,7 +382,45 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
                 )}
               </div>
             )}
+            {/* Botón Más info → abre modal con extract de Wikipedia.
+                Funciona para estados/munis VE y para países en vista Global.
+                El query se arma con `wikiQueryFor` (incluye estado padre
+                para munis con nombre genérico). */}
+            <button
+              type="button"
+              onClick={() => setWikiOpen(true)}
+              className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 underline-offset-2 transition hover:text-slate-900 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+            >
+              Más info
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3 w-3 transition group-hover:translate-x-0.5"
+                aria-hidden
+              >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </button>
           </Section>
+        )}
+        {wikiOpen && selected && (
+          <WikiModal
+            query={wikiQueryFor(selected)}
+            subtitle={
+              selected.parentState
+                ? `Municipio · ${selected.parentState}`
+                : selected.iso?.startsWith('VE-')
+                  ? 'Estado de Venezuela'
+                  : view === 'global'
+                    ? 'País'
+                    : undefined
+            }
+            onClose={() => setWikiOpen(false)}
+          />
         )}
       </div>
 

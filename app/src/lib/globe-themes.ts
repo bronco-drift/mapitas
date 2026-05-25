@@ -9,7 +9,7 @@
 //
 // Los países CON data se pintan con la paleta del store (igual que en vista VE).
 
-export type GlobeThemeId = 'day' | 'night' | 'editorial'
+export type GlobeThemeId = 'day' | 'night' | 'editorial' | 'cosmos'
 
 export type GlobeTheme = {
   id: GlobeThemeId
@@ -52,6 +52,23 @@ export const GLOBE_THEMES: GlobeTheme[] = [
     globe: '#f8fafc', // slate-50
     missing: '#e2e8f0', // slate-200
     border: '#94a3b8', // slate-400
+  },
+  {
+    // Tema "Cosmos": estética de mapamundi clásico tipo atlas escolar — mar
+    // en azul grisáceo desaturado (el azul-celeste reconocible de cualquier
+    // atlas o globo terráqueo de aula), tierras en gris claro neutro para
+    // que sean lectura limpia sin competir con el choropleth. Background
+    // ligeramente oscuro (slate-900) para que el globo destaque como objeto
+    // iluminado — no es espacio profundo, es una superficie neutra que
+    // respeta la jerarquía visual del mapa.
+    id: 'cosmos',
+    label: 'Cosmos',
+    short: 'Cosmos',
+    preview: 'linear-gradient(135deg, #0f172a 0%, #0f172a 50%, #bedaee 50%, #bedaee 100%)',
+    space: '#0f172a', // slate-900: fondo oscuro neutro, no espacial puro
+    globe: '#bedaee', // powder blue suave: celeste claro tipo atlas escolar
+    missing: '#e2e8f0', // slate-200: tierra en gris muy claro, contrastante con mar
+    border: '#475569', // slate-600: sphere outline visible pero contenido
   },
 ]
 

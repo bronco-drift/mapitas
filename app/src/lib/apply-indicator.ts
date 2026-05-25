@@ -335,23 +335,37 @@ export function applyIndicatorToAdm2(
   }
 }
 
-// Vista diáspora: pinta el GeoJSON LATAM con uno de 3 modos.
-//   - 'migrantes': cuántos migrantes venezolanos recibió cada país. VE queda
-//     fuera del rango (no recibió migrantes, es el origen) y se pinta con
-//     un color granate fijo distinto del gradiente.
-//   - 'venezolanos': total de venezolanos viviendo en ese país (= migrantes_ve,
-//     y para VE = población residente). Todos en el mismo gradiente; VE
-//     entra como el valor máximo natural.
-//   - 'porcentaje': venezolanos sobre población total del país. VE = 100%.
-//     Útil para ver dónde la presencia venezolana es MÁS densa relativa al
-//     tamaño del país receptor (ej. Panamá tiene 144k = 3.1%, más densa
-//     proporcionalmente que Brasil con 388k = 0.18%).
-export type DiasporaMode = 'migrantes' | 'venezolanos' | 'porcentaje'
+// Vista Global: pinta el GeoJSON mundial con uno de varios modos.
+//
+// Diáspora venezolana:
+//   - 'migrantes':   cuántos migrantes VE recibió cada país. VE queda fuera
+//                    del rango (es origen, no receptor) y se pinta granate.
+//   - 'venezolanos': total de venezolanos viviendo en cada país (residentes
+//                    de VE + diáspora). VE entra al gradiente como máximo.
+//   - 'porcentaje':  venezolanos sobre población total del país. VE = 100%.
+//                    Útil para ver presencia relativa al tamaño del receptor.
+//
+// Comparativos por país (data de world-indicators.json mergeada at runtime):
+//   - 'poblacion':   habitantes totales (UN 2024). VE entra normal.
+//   - 'pib_pc':      PIB per cápita USD nominal (Banco Mundial 2023).
+//   - 'idh':         IDH compuesto (PNUD HDR 2023/24).
+//
+// El alias `DiasporaMode` se mantiene exportado por retro-compat (lo usan
+// el store y los reportes antiguos); `GlobalMetric` es el nombre canónico
+// para nuevos consumidores.
+export type GlobalMetric =
+  | 'migrantes'
+  | 'venezolanos'
+  | 'porcentaje'
+  | 'poblacion'
+  | 'pib_pc'
+  | 'idh'
+export type DiasporaMode = GlobalMetric
 
 export function applyDiaspora(
   geo: AdmGeoJSON<DiasporaProps>,
   palette: PaletteId,
-  mode: DiasporaMode = 'migrantes',
+  mode: GlobalMetric = 'migrantes',
   custom?: CustomStops,
   customRange?: { min: number | null; mid: number | null; max: number | null },
   opts: { clipExtremes?: boolean } = {},
@@ -366,9 +380,14 @@ export function applyDiaspora(
     if (mode === 'venezolanos') {
       return props.migrantes_ve
     }
-    // mode === 'porcentaje'
-    if (props.migrantes_ve == null || props.poblacion_total == null) return null
-    return (props.migrantes_ve / props.poblacion_total) * 100
+    if (mode === 'porcentaje') {
+      if (props.migrantes_ve == null || props.poblacion_total == null) return null
+      return (props.migrantes_ve / props.poblacion_total) * 100
+    }
+    if (mode === 'poblacion') return props.poblacion_total ?? null
+    if (mode === 'pib_pc') return props.pib_per_capita_usd ?? null
+    if (mode === 'idh') return props.idh ?? null
+    return null
   }
 
   const values = geo.features

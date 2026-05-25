@@ -11,6 +11,7 @@ export const CARTO_LABELS_OVERLAY_URL =
 export type BasemapId =
   | 'solid'
   | 'world-outlines'
+  | 'cosmos'
   | 'carto-light'
   | 'carto-light-nolabels'
   | 'carto-dark'
@@ -46,6 +47,19 @@ export const BASEMAPS: Basemap[] = [
     attribution: 'Borders &copy; Natural Earth',
     maxZoom: 19,
     preview: 'linear-gradient(135deg, #e3e8eb, #fafaf9)',
+  },
+  {
+    // Cosmos: contraparte VE del tema "Cosmos" del globo. Mismo geojson
+    // world-outlines de Natural Earth, pero pintado con paleta espacial:
+    // fondo tinta cósmica + tierras vecinas en azul océano profundo.
+    // Reutiliza el lazy load del basemap "Contornos países" (mismo asset).
+    id: 'cosmos',
+    label: 'Cosmos',
+    short: 'Cosmos',
+    url: '',
+    attribution: 'Borders &copy; Natural Earth',
+    maxZoom: 19,
+    preview: 'linear-gradient(135deg, #bedaee 0%, #bedaee 50%, #e2e8f0 50%, #e2e8f0 100%)',
   },
   {
     id: 'carto-light',

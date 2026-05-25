@@ -392,7 +392,9 @@ export function MapView() {
   const setSelected = useStore(s => s.setSelected)
   const source = useStore(s => s.source)
   const mapStyle = useStore(s => s.mapStyle)
+  const cosmosTweaks = useStore(s => s.cosmosTweaks)
   const thematic = useStore(s => s.thematic)
+  const thematicOverrides = useStore(s => s.thematicOverrides)
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
   // Geojson dedicado del basemap "Contornos" (Natural Earth 1:50m simplificado,
@@ -409,24 +411,36 @@ export function MapView() {
   // Cuando es "transparent", transparente. Si no, el bgColor solo se ve si el basemap real falla.
   const isSolidBasemap = mapStyle.basemap === 'solid'
   const isWorldOutlines = mapStyle.basemap === 'world-outlines'
+  // Basemap "Cosmos": misma técnica que world-outlines (geojson + sin tiles),
+  // pero pintado con estética de mapamundi clásico — mar azul grisáceo
+  // tipo atlas + tierras grises. Pareja visual del tema "Cosmos" del globo
+  // en la vista Global.
+  const isCosmosBasemap = mapStyle.basemap === 'cosmos'
+  const usesWorldOutlinesGeo = isWorldOutlines || isCosmosBasemap
   // El basemap "Contornos" override el bgColor con el gris-azul suave del
   // océano (estilo Mapbox basic / Google Maps default). La tierra va en
   // blanco casi puro con bordes rojos sutiles, replicando el patrón clásico
-  // de mapas administrativos.
+  // de mapas administrativos. "Cosmos" hace lo mismo pero con paleta
+  // mapamundi escolar (mar azul grisáceo, tierras grises).
   const effectiveBg = mapStyle.transparentBg
     ? 'transparent'
     : isWorldOutlines
       ? '#e3e8eb'
-      : mapStyle.bgColor
-  // Esconde tiles si "isolate", basemap solid o world-outlines (no hay tiles que cargar
-  // para esos tres — solid usa bgColor, world-outlines pinta el geojson como capa)
-  const hideBasemap = mapStyle.isolateCountry || isSolidBasemap || isWorldOutlines
+      : isCosmosBasemap
+        ? cosmosTweaks.globe
+        : mapStyle.bgColor
+  // Esconde tiles si "isolate", basemap solid, world-outlines o cosmos
+  // (esos cuatro no descargan tiles del network — solid usa bgColor, los
+  // dos basemaps geojson pintan vector como capa).
+  const hideBasemap = mapStyle.isolateCountry || isSolidBasemap || usesWorldOutlinesGeo
 
-  // Carga lazy del geojson 50m la primera vez que el user elige el basemap
-  // de contornos. Cancelable: si el user navega a otra cosa antes de que
-  // termine el fetch, no seteamos state stale.
+  // Carga lazy del geojson 50m la primera vez que el user elige uno de los
+  // basemaps vectoriales (Contornos o Cosmos). Comparten asset así que el
+  // fetch se hace una sola vez y se reutiliza al cambiar entre ellos.
+  // Cancelable: si el user navega a otra cosa antes de que termine el
+  // fetch, no seteamos state stale.
   useEffect(() => {
-    if (!isWorldOutlines || worldOutlinesGeo) return
+    if (!usesWorldOutlinesGeo || worldOutlinesGeo) return
     let cancelled = false
     const base = import.meta.env.BASE_URL
     fetch(`${base}data/world-outlines-50m.geojson`)
@@ -434,11 +448,11 @@ export function MapView() {
       .then(geo => {
         if (!cancelled) setWorldOutlinesGeo(geo)
       })
-      .catch(err => console.error('Error cargando basemap Contornos:', err))
+      .catch(err => console.error('Error cargando basemap vectorial:', err))
     return () => {
       cancelled = true
     }
-  }, [isWorldOutlines, worldOutlinesGeo])
+  }, [usesWorldOutlinesGeo, worldOutlinesGeo])
 
   const data = (level === 'adm0' ? adm0 : level === 'adm1' ? adm1 : adm2) as AdmGeoJSON<
     Adm0Props | Adm1Props | Adm2Props
@@ -565,7 +579,12 @@ export function MapView() {
     layer.setStyle(styleObj)
   }, [mapStyle])
 
-  const showOverlay = level === 'adm2' && mapStyle.stateOverlayInMuni && adm1
+  // El overlay de bordes de estado en pane dedicado (z-index 440) aplica en
+  // adm1 y adm2. En adm2 sirve como jerarquía estado/municipio; en adm1
+  // sirve para que los bordes no queden tapados por banderas, escudos o
+  // capas temáticas grandes (áreas protegidas, formaciones vegetales).
+  const showOverlay =
+    (level === 'adm1' || level === 'adm2') && mapStyle.stateOverlayInMuni && adm1
   const showCountryBorder = mapStyle.countryBorder && adm0
 
   return (
@@ -606,26 +625,45 @@ export function MapView() {
             GeoJSON con los polígonos de Natural Earth en un pane custom
             debajo del overlayPane. Mapa casi blanco con divisiones grises
             de países, sin nombres ni relieve. */}
-        {isWorldOutlines && !mapStyle.isolateCountry && worldOutlinesGeo && (
+        {usesWorldOutlinesGeo && !mapStyle.isolateCountry && worldOutlinesGeo && (
           <GeoJSON
-            key="world-outlines-basemap"
+            // Key incluye el id del basemap + el color editable (en modo
+            // cosmos) para forzar re-mount al cambiar entre "Contornos" y
+            // "Cosmos" Y al tunear el color de tierras del cosmos desde
+            // el panel — sin esto, Leaflet conserva el style cacheado.
+            key={`outlines-basemap-${mapStyle.basemap}-${isCosmosBasemap ? cosmosTweaks.missing : ''}`}
             data={worldOutlinesGeo as never}
             pane="worldOutlinesPane"
             interactive={false}
-            style={() => ({
-              // Estilo Mapbox basic / Google Maps default:
-              //   - tierra: #fafaf9 (blanco casi puro, ligero warm)
-              //   - bordes país: #c89898 (rojo apagado, no gris)
-              //   - océano (bg): #e3e8eb (gris-azul suave)
-              // Es el patrón clásico de los mapas administrativos: tierra
-              // limpia, agua suave, fronteras destacadas en color cálido
-              // para separarlas de cualquier borde de polígono interno.
-              fillColor: '#fafaf9',
-              color: '#c89898',
-              weight: 0.7,
-              fillOpacity: 1,
-              opacity: 1,
-            })}
+            style={() =>
+              isCosmosBasemap
+                ? {
+                    // Cosmos: estética mapamundi clásico. fillColor = "tierras
+                    // vecinas" = el mismo color que "países sin data" del tema
+                    // Cosmos en Global (cosmosTweaks.missing) para coherencia
+                    // entre las dos vistas. Si el user lo edita en el panel
+                    // Estilo, ambos se actualizan a la par.
+                    fillColor: cosmosTweaks.missing,
+                    color: '#94a3b8',
+                    weight: 0.5,
+                    fillOpacity: 1,
+                    opacity: 0.7,
+                  }
+                : {
+                    // Contornos países (estilo Mapbox basic / Google Maps default):
+                    //   - tierra: #fafaf9 (blanco casi puro, ligero warm)
+                    //   - bordes país: #c89898 (rojo apagado, no gris)
+                    //   - océano (bg): #e3e8eb (gris-azul suave)
+                    // Patrón clásico de mapas administrativos: tierra limpia,
+                    // agua suave, fronteras en color cálido para separarlas de
+                    // cualquier borde de polígono interno.
+                    fillColor: '#fafaf9',
+                    color: '#c89898',
+                    weight: 0.7,
+                    fillOpacity: 1,
+                    opacity: 1,
+                  }
+            }
           />
         )}
         {/* Overlay de etiquetas: tile solo-labels de Carto encima del basemap.
@@ -763,52 +801,62 @@ export function MapView() {
           }
           return null
         })()}
-        {activeThematic.map(t => (
-          <GeoJSON
-            key={`thematic-${t.meta.id}`}
-            data={t.data as never}
-            style={() => thematicStyleFor(t.meta)}
-            pointToLayer={(feature, latlng) => {
-              const m = L.circleMarker(latlng, {
-                radius: 3,
-                fillColor: t.meta.color,
-                color: t.meta.color,
-                fillOpacity: 0.85,
-                weight: 1,
-              })
-              const props = feature.properties as Record<string, string | undefined>
-              const labelKey = t.meta.labelKey
-              const label = labelKey
-                ? props[labelKey]
-                : props.nombre_cen ?? props.nombre ?? Object.values(props)[0]
-              if (label) {
-                // permanentLabels=true → tooltip siempre visible al lado del
-                // punto (capitales de estado). Sin permanent, solo en hover.
-                if (t.meta.permanentLabels) {
-                  m.bindTooltip(String(label), {
-                    permanent: true,
-                    direction: 'right',
-                    offset: [6, 0],
-                    className: 'thematic-label-permanent',
-                  })
-                } else {
-                  m.bindTooltip(String(label), { sticky: true, direction: 'top' })
+        {activeThematic.map(t => {
+          const ov = thematicOverrides[t.meta.id] ?? {}
+          // Key incluye stringify del override para que Leaflet re-monte al
+          // cambiar cualquier tweak. JSON.stringify es estable para objetos
+          // con keys ordenadas; basta con un superficial sort si en algún
+          // momento metemos campos no ordenables.
+          const ovKey = JSON.stringify(ov)
+          return (
+            <GeoJSON
+              key={`thematic-${t.meta.id}-${ovKey}`}
+              data={t.data as never}
+              style={() => thematicStyleFor(t.meta, ov)}
+              pointToLayer={(feature, latlng) => {
+                const fillColor = ov.color ?? t.meta.color
+                const fillOpacity = ov.fillOpacity ?? 0.85
+                const m = L.circleMarker(latlng, {
+                  radius: 3,
+                  fillColor,
+                  color: fillColor,
+                  fillOpacity,
+                  weight: ov.weight ?? 1,
+                })
+                const props = feature.properties as Record<string, string | undefined>
+                const labelKey = t.meta.labelKey
+                const label = labelKey
+                  ? props[labelKey]
+                  : props.nombre_cen ?? props.nombre ?? Object.values(props)[0]
+                if (label) {
+                  // permanentLabels=true → tooltip siempre visible al lado del
+                  // punto (capitales de estado). Sin permanent, solo en hover.
+                  if (t.meta.permanentLabels) {
+                    m.bindTooltip(buildLabelHtml(String(label), ov), {
+                      permanent: true,
+                      direction: 'right',
+                      offset: [6, 0],
+                      className: 'thematic-label-custom',
+                    })
+                  } else {
+                    m.bindTooltip(String(label), { sticky: true, direction: 'top' })
+                  }
                 }
-              }
-              return m
-            }}
-            onEachFeature={(feature, layer: Layer) => {
-              if (feature.geometry?.type === 'Point' || feature.geometry?.type === 'MultiPoint') return
-              const props = feature.properties as Record<string, string | undefined>
-              const label = props.nombre ?? props.Nombre ?? props.nombre_cen ?? props.tipo ?? '—'
-              const sub = props.categoria ?? props.etnias ?? props.cat_UICN ?? props.tipo
-              layer.bindTooltip(
-                `<div style="font-size:12px"><div style="font-weight:600">${label}</div>${sub ? `<div style="color:#64748b;font-size:10px">${sub}</div>` : ''}</div>`,
-                { sticky: true, direction: 'auto' },
-              )
-            }}
-          />
-        ))}
+                return m
+              }}
+              onEachFeature={(feature, layer: Layer) => {
+                if (feature.geometry?.type === 'Point' || feature.geometry?.type === 'MultiPoint') return
+                const props = feature.properties as Record<string, string | undefined>
+                const label = props.nombre ?? props.Nombre ?? props.nombre_cen ?? props.tipo ?? '—'
+                const sub = props.categoria ?? props.etnias ?? props.cat_UICN ?? props.tipo
+                layer.bindTooltip(
+                  `<div style="font-size:12px"><div style="font-weight:600">${label}</div>${sub ? `<div style="color:#64748b;font-size:10px">${sub}</div>` : ''}</div>`,
+                  { sticky: true, direction: 'auto' },
+                )
+              }}
+            />
+          )
+        })}
         {showOverlay && (
           <GeoJSON
             key={overlayKey}
@@ -917,28 +965,77 @@ function ZoomControl({
   )
 }
 
-import type { ThematicMeta } from '../store'
+import type { ThematicMeta, ThematicOverride } from '../store'
 
-function thematicStyleFor(meta: ThematicMeta): PathOptions {
-  // Diferentes estilos según tipo de geometría
+// Estilo efectivo de una capa: defaults del meta + overrides del user.
+// Cada campo del override es opcional; los que faltan caen al default.
+function thematicStyleFor(meta: ThematicMeta, ov: ThematicOverride = {}): PathOptions {
+  const color = ov.color ?? meta.color
+  const dashed = ov.dashed ?? meta.dashed ?? false
   if (meta.geometryType === 'LineString' || meta.geometryType === 'MultiLineString') {
     const style: PathOptions = {
-      color: meta.color,
-      weight: meta.weight ?? 1,
-      opacity: 0.85,
+      color,
+      weight: ov.weight ?? meta.weight ?? 1,
+      opacity: ov.opacity ?? 0.85,
       fillOpacity: 0,
     }
     // dashArray Leaflet: '4 6' = trazo de 4px, espacio de 6px. Patrón clásico
     // de líneas punteadas para distinguir fronteras "reclamadas" o "en disputa"
     // de las administrativas de facto.
-    if (meta.dashed) style.dashArray = '4 6'
+    if (dashed) style.dashArray = '4 6'
     return style
   }
   return {
-    fillColor: meta.color,
-    color: meta.color,
-    weight: meta.weight ?? 0.8,
-    fillOpacity: 0.28,
-    opacity: 0.8,
+    fillColor: color,
+    color,
+    weight: ov.weight ?? meta.weight ?? 0.8,
+    fillOpacity: ov.fillOpacity ?? 0.28,
+    opacity: ov.opacity ?? 0.8,
   }
+}
+
+// HTML del label permanente con estilos inline. Usar HTML (en lugar del
+// className 'thematic-label-permanent') permite que cada capa tenga su
+// propio styling sin agregar CSS por id. El className genérico
+// 'thematic-label-custom' desactiva el styling default de Leaflet para que
+// los estilos inline del span tengan total control.
+function buildLabelHtml(text: string, ov: ThematicOverride): string {
+  const fontFamily =
+    ov.labelFontFamily === 'serif'
+      ? 'Georgia, "Times New Roman", serif'
+      : ov.labelFontFamily === 'mono'
+        ? 'ui-monospace, SFMono-Regular, Menlo, monospace'
+        : 'inherit'
+  const bg = ov.labelBg && ov.labelBg.length > 0 ? ov.labelBg : 'transparent'
+  const bgOp = ov.labelBgOpacity ?? 0.92
+  const styles: Record<string, string | number> = {
+    display: 'inline-block',
+    'font-weight': ov.labelBold === false ? 400 : 600, // default bold
+    'font-style': ov.labelItalic ? 'italic' : 'normal',
+    'font-size': `${ov.labelFontSize ?? 11}px`,
+    'font-family': fontFamily,
+    color: ov.labelColor ?? '#0f172a',
+    'text-align': ov.labelAlign ?? 'left',
+    background: bg === 'transparent' ? 'transparent' : hexToRgba(bg, bgOp),
+    'border-radius': '3px',
+    padding: bg === 'transparent' ? '0' : '1px 5px',
+    'white-space': 'nowrap',
+  }
+  const styleStr = Object.entries(styles)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(';')
+  // Escape de caracteres HTML básicos para evitar XSS desde nombres con < o &.
+  const safe = text.replace(/[<>&"]/g, c =>
+    c === '<' ? '&lt;' : c === '>' ? '&gt;' : c === '&' ? '&amp;' : '&quot;',
+  )
+  return `<span style="${styleStr}">${safe}</span>`
+}
+
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace('#', '')
+  if (h.length !== 6) return hex
+  const r = parseInt(h.slice(0, 2), 16)
+  const g = parseInt(h.slice(2, 4), 16)
+  const b = parseInt(h.slice(4, 6), 16)
+  return `rgba(${r},${g},${b},${alpha})`
 }

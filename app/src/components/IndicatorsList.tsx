@@ -19,6 +19,7 @@ import {
 } from '../data/global-reports'
 import { IndicatorCoverageModal } from './IndicatorCoverageModal'
 import diasporaReceivers from '../data/diaspora-receivers.json'
+import type { DiasporaProps } from '../lib/types'
 
 // Defaults razonables si los geo todavía no cargaron (primer render).
 // 26 estados + Esequibo, 336 munis del adm2 post-fix.
@@ -362,26 +363,37 @@ function DiasporaPanel() {
   const setSelected = useStore(s => s.setSelected)
   const globalMetric = useStore(s => s.globalMetric)
   const setGlobalMetric = useStore(s => s.setGlobalMetric)
+  const diaspora = useStore(s => s.diaspora)
   const data = diasporaReceivers as Record<string, DiasporaRecord>
+  const activeReport = getGlobalReportByMode(globalMetric)
 
   // Construye la lista según el modo activo. Cada entry trae un valor
-  // numérico ya en la unidad correcta (personas o %) y un label para el
-  // formato. Eso desacopla el rendering del modo.
+  // numérico ya en la unidad correcta (personas, USD, IDH 0..1, %) y un
+  // formatter por modo en formatValue() decide el render. Eso desacopla
+  // el rendering del modo.
+  //
+  // Hay dos fuentes:
+  //   - Modos diáspora (migrantes/venezolanos/porcentaje): usan
+  //     diasporaReceivers (lista de 19 países receptores) + VE_VENEZOLANOS_RESIDENTES
+  //     + POBLACION_TOTAL. Datos curados específicos para esta vista.
+  //   - Modos comparativos (poblacion/pib_pc/idh): leen world-indicators.json
+  //     mergeado en `diaspora.features[].properties` por el store. Cobertura
+  //     de ~170 países, lo que llena toda la lista del panel.
   type Entry = { iso: string; name: string; value: number; source: string }
   let entries: Entry[]
-  let total: number
-  let unit: '' | '%' | 'M'
-  let header: { label: string; sub: string }
+  let unit: '' | '%' | 'M' | 'USD' | 'IDH'
+  let header: { label: string; sub: string; total: string | null }
 
   if (globalMetric === 'migrantes') {
     entries = Object.entries(data)
       .map(([iso, r]) => ({ iso, name: r.name, value: r.total, source: r.source }))
       .sort((a, b) => b.value - a.value)
-    total = entries.reduce((acc, e) => acc + e.value, 0)
+    const sum = entries.reduce((acc, e) => acc + e.value, 0)
     unit = 'M'
     header = {
       label: 'Migrantes venezolanos · 2022–2025',
       sub: `en ${entries.length} países · R4V regional estima 6.7 M · ACNUR global 7.9 M`,
+      total: `${(sum / 1_000_000).toFixed(1)} M`,
     }
   } else if (globalMetric === 'venezolanos') {
     // Total de venezolanos en el mundo: residentes en VE + diáspora.
@@ -391,14 +403,15 @@ function DiasporaPanel() {
       { iso: 'VEN', name: 'Venezuela (origen)', value: VE_VENEZOLANOS_RESIDENTES, source: 'UN World Population Prospects 2024' },
       ...Object.entries(data).map(([iso, r]) => ({ iso, name: r.name, value: r.total, source: r.source })),
     ].sort((a, b) => b.value - a.value)
-    total = entries.reduce((acc, e) => acc + e.value, 0)
+    const sum = entries.reduce((acc, e) => acc + e.value, 0)
     unit = 'M'
-    const diasporaM = (total - VE_VENEZOLANOS_RESIDENTES) / 1_000_000
+    const diasporaM = (sum - VE_VENEZOLANOS_RESIDENTES) / 1_000_000
     header = {
       label: 'Venezolanos en el mundo',
       sub: `${entries.length} países · ${(VE_VENEZOLANOS_RESIDENTES / 1_000_000).toFixed(1)} M en VE + ${diasporaM.toFixed(1)} M en el exterior`,
+      total: `${(sum / 1_000_000).toFixed(1)} M`,
     }
-  } else {
+  } else if (globalMetric === 'porcentaje') {
     // porcentaje = venezolanos / población total del país × 100.
     // Para VE es 100% por definición: los venezolanos viviendo en VE son los
     // 28.8M residentes; la población total de VE son los mismos 28.8M.
@@ -418,11 +431,59 @@ function DiasporaPanel() {
           source: r.source,
         })),
     ].sort((a, b) => b.value - a.value)
-    total = 0 // no aplica un total agregado para porcentajes
     unit = '%'
     header = {
       label: 'Venezolanos sobre población local',
       sub: 'porcentaje de residentes venezolanos en cada país',
+      total: entries[0] ? `${entries[0].value.toFixed(1)}%` : null,
+    }
+  } else {
+    // Modos comparativos: leen del geojson (cargado con merge desde
+    // world-indicators.json). Si el geojson aún no cargó, lista vacía
+    // y el panel muestra "Cargando" via el header.
+    const fieldFor = (p: DiasporaProps): number | null | undefined =>
+      globalMetric === 'poblacion'
+        ? p.poblacion_total
+        : globalMetric === 'pib_pc'
+          ? p.pib_per_capita_usd
+          : globalMetric === 'idh'
+            ? p.idh
+            : null
+    const sourceLabel = activeReport?.source ?? ''
+    entries = (diaspora?.features ?? [])
+      .map(f => {
+        const p = f.properties as DiasporaProps
+        const v = fieldFor(p)
+        return { iso: p.iso_a3, name: p.name, value: v ?? NaN, source: sourceLabel }
+      })
+      .filter(e => Number.isFinite(e.value))
+      .sort((a, b) => b.value - a.value)
+
+    if (globalMetric === 'poblacion') {
+      const sum = entries.reduce((acc, e) => acc + e.value, 0)
+      unit = 'M'
+      header = {
+        label: 'Población mundial',
+        sub: `${entries.length} países · ONU World Population Prospects 2024`,
+        total: `${(sum / 1_000_000_000).toFixed(2)} mil M`,
+      }
+    } else if (globalMetric === 'pib_pc') {
+      unit = 'USD'
+      header = {
+        label: 'PIB per cápita',
+        sub: `${entries.length} países · Banco Mundial 2023 · USD nominal`,
+        total: entries[0]
+          ? `$${entries[0].value.toLocaleString('es-VE', { maximumFractionDigits: 0 })}`
+          : null,
+      }
+    } else {
+      // idh
+      unit = 'IDH'
+      header = {
+        label: 'Índice de Desarrollo Humano',
+        sub: `${entries.length} países · PNUD HDR 2023/2024 · rango 0 a 1`,
+        total: entries[0] ? entries[0].value.toFixed(3) : null,
+      }
     }
   }
 
@@ -438,7 +499,20 @@ function DiasporaPanel() {
   const categoriesWithReports = GLOBAL_CATEGORY_ORDER.filter(
     cat => (groupedReports.get(cat)?.length ?? 0) > 0,
   )
-  const activeReport = getGlobalReportByMode(globalMetric)
+
+  // Formato del valor mostrado en cada fila + en el modal "selected".
+  // Cada modo tiene su unidad propia y nivel de precisión:
+  //   migrantes/venezolanos/poblacion → entero con separador de miles
+  //   porcentaje → 2 decimales + %
+  //   pib_pc → "$X.XXX USD" con separador de miles
+  //   idh → 3 decimales (rango 0..1 necesita precisión)
+  function formatValue(value: number): string {
+    if (unit === '%') return `${value.toFixed(2)}%`
+    if (unit === 'USD') return `$${value.toLocaleString('es-VE', { maximumFractionDigits: 0 })}`
+    if (unit === 'IDH') return value.toFixed(3)
+    // M (millones de personas): valor entero, separador de miles.
+    return value.toLocaleString('es-VE', { maximumFractionDigits: 0 })
+  }
 
   return (
     <div className="space-y-4">
@@ -499,18 +573,14 @@ function DiasporaPanel() {
         <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
           {header.label}
         </div>
-        {unit === 'M' ? (
-          <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
-            {(total / 1_000_000).toFixed(1)} M
-          </div>
-        ) : (
-          <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
-            {entries[0] ? `${entries[0].value.toFixed(1)}%` : '—'}
-            {entries[0] && (
-              <span className="ml-1.5 text-[11px] font-normal text-slate-400">máx · {entries[0].name.replace(' (origen)', '')}</span>
-            )}
-          </div>
-        )}
+        <div className="mt-0.5 text-[22px] font-semibold tabular-nums tracking-tight text-slate-900">
+          {header.total ?? '—'}
+          {entries[0] && (unit === '%' || unit === 'USD' || unit === 'IDH') && (
+            <span className="ml-1.5 text-[11px] font-normal text-slate-400">
+              máx · {entries[0].name.replace(' (origen)', '')}
+            </span>
+          )}
+        </div>
         <div className="mt-0.5 text-[11px] leading-snug text-slate-500">
           {header.sub}
         </div>
@@ -528,7 +598,7 @@ function DiasporaPanel() {
               <div className="flex items-baseline justify-between gap-2">
                 <span className="truncate text-[13px] font-medium text-slate-800">{r.name}</span>
                 <span className="shrink-0 text-[13px] font-semibold tabular-nums text-slate-900">
-                  {unit === '%' ? `${r.value.toFixed(2)}%` : r.value.toLocaleString('es-VE')}
+                  {formatValue(r.value)}
                 </span>
               </div>
               <div className="mt-1 h-1 overflow-hidden rounded-full bg-slate-200">
@@ -546,13 +616,14 @@ function DiasporaPanel() {
       </div>
 
       <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-[11px] leading-relaxed text-slate-500">
-        {globalMetric === 'porcentaje' ? (
+        {globalMetric === 'porcentaje' && (
           <>
             Porcentaje calculado sobre población total del país (UN 2024).
             La diáspora venezolana es más densa donde el país receptor es
             más chico (Panamá, Trinidad), no donde más migrantes recibió.
           </>
-        ) : (
+        )}
+        {(globalMetric === 'migrantes' || globalMetric === 'venezolanos') && (
           <>
             Cifras oficiales de gobiernos receptores agregadas por R4V
             (coordinada por OIM + ACNUR). Subestiman porque no contemplan
@@ -565,6 +636,49 @@ function DiasporaPanel() {
             >
               R4V
             </a>
+          </>
+        )}
+        {globalMetric === 'poblacion' && (
+          <>
+            Población estimada total por país. Fuente: ONU{' '}
+            <a
+              href="https://population.un.org/wpp/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-slate-700 underline hover:text-slate-900"
+            >
+              World Population Prospects 2024
+            </a>
+            . Cifras redondeadas.
+          </>
+        )}
+        {globalMetric === 'pib_pc' && (
+          <>
+            PIB nominal per cápita en USD corrientes. Fuente:{' '}
+            <a
+              href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD"
+              target="_blank"
+              rel="noreferrer"
+              className="text-slate-700 underline hover:text-slate-900"
+            >
+              Banco Mundial WDI
+            </a>
+            . Venezuela: estimación FMI (BM no publica desde 2014).
+          </>
+        )}
+        {globalMetric === 'idh' && (
+          <>
+            IDH combina esperanza de vida, años de escolaridad e ingreso
+            per cápita (PPP). Rango 0 a 1. Fuente:{' '}
+            <a
+              href="https://hdr.undp.org/data-center/country-insights"
+              target="_blank"
+              rel="noreferrer"
+              className="text-slate-700 underline hover:text-slate-900"
+            >
+              PNUD HDR 2023/2024
+            </a>
+            .
           </>
         )}
       </div>

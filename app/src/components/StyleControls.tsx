@@ -12,9 +12,19 @@ import { GLOBE_THEMES } from '../lib/globe-themes'
 export function StyleControls() {
   const style = useStore(s => s.mapStyle)
   const setMapStyle = useStore(s => s.setMapStyle)
+  const cosmosTweaks = useStore(s => s.cosmosTweaks)
+  const setCosmosTweaks = useStore(s => s.setCosmosTweaks)
+  const resetCosmosTweaks = useStore(s => s.resetCosmosTweaks)
   const level = useStore(s => s.level)
   const view = useStore(s => s.view)
   const isGlobal = view === 'global'
+  // Personalización del tema Cosmos: visible si el user está mirando Cosmos
+  // en cualquiera de las dos vistas. Los colores son compartidos entre tema
+  // (Global) y basemap (VE); los sliders de estrellas/halo sólo aplican al
+  // Global pero se muestran siempre que cosmos esté activo (no estorba).
+  const cosmosActive =
+    (isGlobal && style.globeTheme === 'cosmos') ||
+    (!isGlobal && style.basemap === 'cosmos')
 
   return (
     <div className="space-y-3">
@@ -125,10 +135,14 @@ export function StyleControls() {
             onChange={v => setMapStyle({ countryBorder: v })}
           />
 
-          {level === 'adm2' && (
+          {(level === 'adm1' || level === 'adm2') && (
             <Toggle
               label="Bordes de estados arriba"
-              hint="Resalta jerarquía estado/municipio"
+              hint={
+                level === 'adm1'
+                  ? 'Mantiene los bordes visibles sobre banderas y capas temáticas'
+                  : 'Resalta jerarquía estado/municipio'
+              }
               checked={style.stateOverlayInMuni}
               onChange={v => setMapStyle({ stateOverlayInMuni: v })}
             />
@@ -210,6 +224,168 @@ export function StyleControls() {
           />
         </div>
       </Disclosure>
+
+      {/* Personalizar Cosmos — sólo visible si el tema/basemap Cosmos está
+          activo. Permite tunear los 3 colores base (compartidos entre Global
+          y VE) y, en Global, ajustar densidad de estrellas + intensidad del
+          halo atmosférico. Default colapsado para no agregar ruido visual. */}
+      {cosmosActive && (
+        <Disclosure title="Personalizar Cosmos">
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
+              <ColorField
+                label="Océano"
+                value={cosmosTweaks.globe}
+                onChange={v => setCosmosTweaks({ globe: v })}
+                hint="Color del mar (globo en Global, fondo de VE)"
+              />
+              <ColorField
+                label="Sin datos"
+                value={cosmosTweaks.missing}
+                onChange={v => setCosmosTweaks({ missing: v })}
+                hint="Países sin dato del indicador / tierras vecinas"
+              />
+            </div>
+            {isGlobal && (
+              <ColorField
+                label="Fondo"
+                value={cosmosTweaks.space}
+                onChange={v => setCosmosTweaks({ space: v })}
+                hint="Color del espacio alrededor del globo"
+              />
+            )}
+
+            {isGlobal && (
+              <>
+                <div>
+                  <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                    <span>Densidad de estrellas</span>
+                    <span className="font-normal text-slate-400">
+                      {cosmosTweaks.starsDensity.toFixed(1)}×
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={3}
+                    step={0.1}
+                    value={cosmosTweaks.starsDensity}
+                    onChange={e =>
+                      setCosmosTweaks({ starsDensity: parseFloat(e.target.value) })
+                    }
+                    className="w-full accent-slate-900"
+                    aria-label="Densidad de estrellas"
+                  />
+                  <div className="text-[10px] text-slate-400">0 = sin estrellas · 1 = default · 3 = máximo</div>
+                </div>
+
+                <div>
+                  <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                    <span>Halo del globo</span>
+                    <span className="font-normal text-slate-400">
+                      {Math.round(cosmosTweaks.haloIntensity * 100)}%
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    value={cosmosTweaks.haloIntensity}
+                    onChange={e =>
+                      setCosmosTweaks({ haloIntensity: parseFloat(e.target.value) })
+                    }
+                    className="w-full accent-slate-900"
+                    aria-label="Intensidad del halo atmosférico"
+                  />
+                  <div className="text-[10px] text-slate-400">Atmósfera azul alrededor del globo</div>
+                </div>
+
+                {/* Highlight 3D: marca cuánto y dónde "le pega la luz" al globo.
+                    Posición controla la dirección de la fuente lumínica; la
+                    intensidad controla qué tan marcada es la diferencia entre
+                    el highlight y la sombra del globo. */}
+                <div>
+                  <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                    <span>Brillo 3D</span>
+                    <span className="font-normal text-slate-400">
+                      {cosmosTweaks.highlightIntensity.toFixed(1)}×
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={2}
+                    step={0.05}
+                    value={cosmosTweaks.highlightIntensity}
+                    onChange={e =>
+                      setCosmosTweaks({ highlightIntensity: parseFloat(e.target.value) })
+                    }
+                    className="w-full accent-slate-900"
+                    aria-label="Intensidad del brillo 3D"
+                  />
+                  <div className="text-[10px] text-slate-400">
+                    0 = globo plano · 1 = default · 2 = exagerado
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                    <span>Brillo · posición X</span>
+                    <span className="font-normal text-slate-400">
+                      {Math.round(cosmosTweaks.highlightX)}%
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={cosmosTweaks.highlightX}
+                    onChange={e =>
+                      setCosmosTweaks({ highlightX: parseFloat(e.target.value) })
+                    }
+                    className="w-full accent-slate-900"
+                    aria-label="Posición horizontal del brillo"
+                  />
+                </div>
+
+                <div>
+                  <div className="mb-1.5 flex items-baseline justify-between text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                    <span>Brillo · posición Y</span>
+                    <span className="font-normal text-slate-400">
+                      {Math.round(cosmosTweaks.highlightY)}%
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={cosmosTweaks.highlightY}
+                    onChange={e =>
+                      setCosmosTweaks({ highlightY: parseFloat(e.target.value) })
+                    }
+                    className="w-full accent-slate-900"
+                    aria-label="Posición vertical del brillo"
+                  />
+                  <div className="text-[10px] text-slate-400">
+                    0/0 = arriba izquierda · 50/50 = centro · 100/100 = abajo derecha
+                  </div>
+                </div>
+              </>
+            )}
+
+            <button
+              type="button"
+              onClick={resetCosmosTweaks}
+              className="mt-1 text-[10px] uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+            >
+              Restaurar defaults
+            </button>
+          </div>
+        </Disclosure>
+      )}
     </div>
   )
 }

@@ -10,13 +10,30 @@
 }
 
 html, body, #root {
-  height: 100%;
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
 }
 
-/* Lockear el viewport en mobile (especialmente iOS Safari): sin esto, el
+/* La landing (/) y MIDE (/#/mide) son páginas de scroll vertical normal:
+   el browser maneja el viewport como en cualquier sitio web. Por eso NO
+   aplicamos lock global de altura/overflow al body — eso impediría el
+   scroll del contenido largo de la landing en iPhone (bug reportado).
+
+   El lock del viewport se aplica EXCLUSIVAMENTE cuando la app del mapa
+   está montada, vía la clase `.app-locked` que App.tsx agrega al body
+   en ruta /#/app. Ver el bloque siguiente y App.tsx (useEffect por ruta).
+
+   En #root mantenemos text-align y border: 0 para evitar el centrado por
+   default de algunos resets. La altura completa en app la da `.app-locked`. */
+#root {
+  width: 100%;
+  max-width: none;
+  text-align: left;
+  border: 0;
+}
+
+/* Vista de la app del mapa: viewport fijo. Sin esto, en iOS Safari el
    browser oculta/muestra dinámicamente la URL bar al scrollear y hace
    "bounce" en los bordes, lo que mueve el TopBar y rompe la UX.
    - overscroll-behavior: none  → evita rubber-band scroll global
@@ -24,27 +41,29 @@ html, body, #root {
    - height: 100dvh              → dynamic viewport height (iOS 15.4+)
      se ajusta automáticamente sin reposicionar contenido. Fallback 100vh.
 
+   La clase `.app-locked` se aplica al elemento <html> desde App.tsx
+   cuando la ruta es /#/app. Aplicarla al <html> (en vez de body + has())
+   nos permite atacar html y body con un selector simple compatible con
+   todos los browsers que soportan :hover (todos).
+
    NO usar `position: fixed; inset: 0` en el body: rompe la cascade de
    altura para flex children — algunos componentes que dependen de
    getBoundingClientRect() (WorldMapView con d3-geo) miden 0 en el
    primer paint y nunca llegan a renderear el mapa. */
-html, body {
+html.app-locked,
+html.app-locked body {
   overscroll-behavior: none;
   overflow: hidden;
   width: 100%;
   height: 100vh;
   height: 100dvh;
 }
-
-#root {
+html.app-locked #root {
   width: 100%;
-  max-width: none;
   height: 100vh;
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  text-align: left;
-  border: 0;
   overflow: hidden;
 }
 
@@ -111,6 +130,21 @@ input[type="range"] {
   font-size: 11px;
   font-weight: 600;
   color: rgb(15 23 42);
+  pointer-events: none;
+}
+
+/* Labels temáticos con styling custom inyectado desde el panel Capas.
+   El contenido del tooltip es un <span> con todos los estilos inline
+   (font, bg, color, etc.); el wrapper de Leaflet queda completamente
+   neutro para que el span tenga control total. */
+.leaflet-tooltip.thematic-label-custom,
+.leaflet-tooltip.thematic-label-custom::before {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  color: inherit;
   pointer-events: none;
 }
 
