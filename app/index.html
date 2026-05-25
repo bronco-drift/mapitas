@@ -7,9 +7,9 @@
     <meta name="color-scheme" content="light" />
     <meta name="format-detection" content="telephone=no" />
 
-    <title>Mapitas — Mapas y datos abiertos de Venezuela</title>
-    <meta name="description" content="Crea mapas coropleticos de Venezuela en segundos. Sube tu CSV o Excel y visualiza datos por estado o municipio, o usa los indicadores oficiales pre-cargados (poblacion, IDH, homicidios, PIB). Gratis, sin login, sin servidor. Todo corre en tu navegador." />
-    <meta name="keywords" content="mapas Venezuela, mapa Venezuela CSV, mapa coropletico Venezuela, choropleth Venezuela, datos abiertos Venezuela, visualizacion datos Venezuela, transparencia territorial, GIS Venezuela, mapa estados Venezuela, mapa municipios Venezuela, INE Venezuela, OVV homicidios, Provita capas tematicas, IGVSB, IDH Venezuela, poblacion Venezuela 2024 2026, PIB per capita Venezuela, mapa interactivo, mapa periodistas, mapa investigadores, herramienta cartografica gratis, Datawrapper alternativa, Flourish alternativa, mapas open source, Esequibo, Dependencias Federales, areas protegidas Venezuela, territorios indigenas Venezuela" />
+    <title>Mapitas — Mapas coropleticos en tu navegador</title>
+    <meta name="description" content="Hace mapas coropleticos en segundos. Subi tu CSV o Excel y se pinta sobre el mapa de cualquier pais. Sin GIS, sin login, sin servidor. Open source y gratis. Caso de uso destacado: el proyecto MIDE con datos abiertos de Venezuela." />
+    <meta name="keywords" content="mapas, mapa coropletico, choropleth maps, visualizacion de datos, mapa CSV, mapa Excel, herramienta cartografica gratis, Datawrapper alternativa, Flourish alternativa, MapChart alternativa, mapas open source, mapa interactivo, mapa periodistas, mapa investigadores, visualizacion territorial, GIS browser, no-code maps, MIDE Venezuela, transparencia territorial, datos abiertos Venezuela, INE Venezuela, OVV homicidios, mapa estados, mapa municipios, Esequibo" />
     <meta name="author" content="Mapitas" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
@@ -22,19 +22,19 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Mapitas" />
-    <meta property="og:title" content="Mapitas — Mapas y datos abiertos de Venezuela" />
-    <meta property="og:description" content="Mapas coropleticos al instante con datos pre-cargados o tu propio CSV. 100% en tu navegador." />
+    <meta property="og:title" content="Mapitas — Mapas coropleticos en tu navegador" />
+    <meta property="og:description" content="Subi tu CSV y se pinta sobre el mapa. Sin GIS, sin login, sin servidor. Open source y gratis." />
     <meta property="og:url" content="https://mapitas.vercel.app/" />
-    <meta property="og:locale" content="es_VE" />
+    <meta property="og:locale" content="es" />
     <meta property="og:image" content="https://mapitas.vercel.app/og-image.svg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mapitas — Mapas de Venezuela. Datos al instante." />
+    <meta property="og:image:alt" content="Mapitas — Hace tu mapa en segundos." />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mapitas — Mapas y datos abiertos de Venezuela" />
-    <meta name="twitter:description" content="Mapas coropleticos al instante con datos pre-cargados o tu propio CSV. 100% en tu navegador." />
+    <meta name="twitter:title" content="Mapitas — Mapas coropleticos en tu navegador" />
+    <meta name="twitter:description" content="Subi tu CSV y se pinta sobre el mapa. Sin GIS, sin login, sin servidor. Open source y gratis." />
     <meta name="twitter:image" content="https://mapitas.vercel.app/og-image.svg" />
 
     <!-- Favicons + PWA -->
@@ -52,8 +52,8 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Mapitas",
-        "alternateName": ["Mapitas — Mapas de Venezuela", "Mapas Venezuela"],
-        "description": "Plataforma web gratuita para crear mapas coropleticos de Venezuela. Sube CSV o Excel, o usa indicadores oficiales pre-cargados de INE, OVV y Provita. Todo corre en el navegador, sin servidores ni cuentas.",
+        "alternateName": ["Mapas coropleticos en tu navegador", "Mapitas mapping tool"],
+        "description": "Herramienta web gratuita para crear mapas coropleticos. Sube CSV o Excel y se pinta sobre el mapa de cualquier pais. Sin GIS, sin login, sin servidor. Open source. Incluye el proyecto MIDE con datos abiertos de Venezuela como caso de uso destacado.",
         "url": "https://mapitas.vercel.app/",
         "applicationCategory": "DataVisualization",
         "applicationSubCategory": "Choropleth maps",
@@ -68,15 +68,15 @@
           "availability": "https://schema.org/InStock"
         },
         "featureList": [
-          "7 indicadores oficiales pre-cargados (poblacion, IDH, homicidios, PIB, area)",
           "Upload CSV y Excel con fuzzy matching automatico",
-          "11 capas tematicas opcionales (areas protegidas, indigenas, petroleo, energia, cuencas, vialidad)",
           "12+ paletas de colores con paleta custom",
-          "Auto-clip de outliers por percentiles 2/98",
+          "Editor de rango con histograma y auto-clip de outliers",
+          "Multiples basemaps + fondo transparente para exportar",
           "Soporte mobile con bottom sheet",
-          "100% en el navegador, sin backend"
+          "100% en el navegador, sin backend ni tracking",
+          "Proyecto MIDE con datos abiertos de Venezuela (caso destacado)"
         ],
-        "inLanguage": "es-VE",
+        "inLanguage": "es",
         "isAccessibleForFree": true,
         "creator": {
           "@type": "Organization",
@@ -98,7 +98,7 @@
         "sameAs": [
           "https://github.com/bronco-drift/mapitas"
         ],
-        "description": "Proyecto open source de transparencia territorial para Venezuela. Mapas coropleticos accesibles sin GIS, sin login y sin servidor."
+        "description": "Herramienta open source para crear mapas coropleticos en el navegador. Sin GIS, sin login, sin servidor."
       }
     </script>
 
@@ -109,26 +109,30 @@
         "@type": "WebSite",
         "name": "Mapitas",
         "url": "https://mapitas.vercel.app/",
-        "inLanguage": "es-VE",
-        "description": "Mapas y datos abiertos de Venezuela. Sube tu CSV o usa los indicadores oficiales pre-cargados."
+        "inLanguage": "es",
+        "description": "Mapas coropleticos en tu navegador. Sube tu CSV o pinta a mano. Open source y gratis."
       }
     </script>
 
-    <!-- Structured data: FAQPage (50 preguntas frecuentes) -->
-    <!-- Refleja exactamente las FAQ que se muestran en la landing (data/faq.ts).
-         Si modificas el listado, actualiza tambien data/faq.ts para mantener
-         consistencia entre lo que ve el usuario y lo que ve el bot. -->
+    <!-- Structured data: FAQPage (Mapitas, herramienta generica) -->
+    <!-- Refleja las FAQ que se muestran en la landing principal (data/faq-mapitas.ts).
+         Para las FAQ del proyecto MIDE (datos Venezuela) ver data/faq-mide.ts;
+         por ahora viven solo dentro del componente MIDE y no en este schema.
+         Cuando se implemente pre-rendering por ruta, /mide tendra su propio
+         FAQPage schema independiente. -->
+    <!-- FAQ_BLOCK_START -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
+          
           {
             "@type": "Question",
             "name": "¿Qué es Mapitas?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Una herramienta web para visualizar datos territoriales sobre el mapa de Venezuela. Permite subir un CSV o Excel y verlo pintado sobre estados o municipios en segundos. También trae indicadores oficiales pre-cargados como población, IDH y tasa de homicidios."
+              "text": "Una herramienta web para crear mapas coropléticos en el navegador. Subís un CSV o Excel y se pinta sobre el mapa de un país en segundos. Sin pagar, sin login, sin instalar nada."
             }
           },
           {
@@ -136,15 +140,7 @@
             "name": "¿Para qué sirve Mapitas?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Para que periodistas, investigadores, ONGs y ciudadanos puedan crear mapas coropléticos de Venezuela sin saber GIS, sin instalar nada y sin pagar. Sirve tanto para ilustrar notas y reportes como para explorar visualmente los indicadores oficiales del país."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Quién hizo Mapitas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Mapitas es un proyecto open source mantenido bajo el handle bronco-drift. El código fuente está disponible públicamente en GitHub. No es una empresa ni una organización con fines de lucro."
+              "text": "Para visualizar cualquier dataset territorial: indicadores demográficos, económicos, ambientales o tus propios datos. Útil para periodistas, investigadores, ONGs, estudiantes y curiosos que necesitan mostrar información sobre un mapa sin saber GIS."
             }
           },
           {
@@ -152,7 +148,7 @@
             "name": "¿Es gratis Mapitas?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí, completamente. Sin paywall, sin freemium, sin marca de agua en los mapas exportados. El proyecto es open source y se aloja en un CDN estático, por lo que el costo de operación es cercano a cero."
+              "text": "Sí, completamente. Sin paywall, sin freemium, sin marca de agua. Es un proyecto open source que se aloja en un CDN estático."
             }
           },
           {
@@ -160,15 +156,7 @@
             "name": "¿Tengo que crear una cuenta?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Mapitas no tiene login, registro ni perfiles. Abrís la página y empezás a usar. Tus preferencias (paleta, indicador activo, capas) se guardan en tu navegador con localStorage, no en un servidor."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Por qué se enfoca en Venezuela?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Porque resolver bien un país obliga a construir las abstracciones correctas para escalar al siguiente. Venezuela es el primer caso completo; el código ya está preparado para sumar otros países latinoamericanos en el futuro sin reescribirse."
+              "text": "No. Mapitas no tiene login, registro ni perfiles. Abrís la página y empezás. Tus preferencias (paleta, configuración de estilo) se guardan en tu navegador con localStorage."
             }
           },
           {
@@ -176,23 +164,15 @@
             "name": "¿Mapitas es open source?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí. El código fuente completo está en GitHub bajo el repositorio bronco-drift/mapitas. Cualquiera puede revisar cómo funciona, proponer mejoras, abrir issues o usarlo como base para sus propios proyectos."
+              "text": "Sí. El código fuente está en GitHub bajo bronco-drift/mapitas. Cualquiera puede revisar cómo funciona, proponer mejoras o usarlo como base para sus propios proyectos."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Cuánto cuesta usar Mapitas?",
+            "name": "¿En qué se diferencia de Datawrapper, Flourish o MapChart?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nada. No tiene planes, no hay pago por uso ni límite de mapas generados. Tampoco existe una versión pro pagada. El modelo es 100% gratuito y libre, en línea con el principio de transparencia que motiva al proyecto."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿En qué se diferencia Mapitas de Datawrapper o Flourish?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Mapitas se especializa exclusivamente en Venezuela, con datos oficiales pre-cargados y geometrías ya validadas para estados y municipios. No tiene marca de agua, no requiere login y todo el procesamiento ocurre en tu navegador. Datawrapper y Flourish son más generales pero menos integrados con datos venezolanos."
+              "text": "Mapitas corre 100% en tu navegador (no toca servidor), no exige login ni marca de agua, es open source, y prioriza la velocidad: el mapa aparece en menos de 30 segundos desde que abrís el sitio."
             }
           },
           {
@@ -200,7 +180,7 @@
             "name": "¿Cuál es la misión de Mapitas?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hacer la transparencia territorial accesible para cualquier persona. Que los datos relevantes para la ciudadanía dejen de estar encerrados en PDFs y silos institucionales y pasen a ser visibles, comparables y públicos sobre un mapa que todos entienden."
+              "text": "Hacer la visualización territorial accesible para cualquier persona, sin barreras técnicas ni económicas. La herramienta es genérica; los datos curados de Venezuela viven en el proyecto MIDE, que usa Mapitas como base."
             }
           },
           {
@@ -208,12 +188,12 @@
             "name": "¿Cómo subo mis datos a Mapitas?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "En el panel lateral hay un botón Subir CSV o Excel. Podés arrastrar tu archivo o seleccionarlo desde el sistema. Mapitas detecta las columnas automáticamente y te pide confirmar cuál es el nombre del estado o municipio y cuál es el valor a mapear."
+              "text": "En el panel lateral hay un botón Subir CSV o Excel. Arrastrás tu archivo o lo seleccionás. Mapitas detecta las columnas automáticamente y te pide confirmar cuál es el nombre del territorio y cuál es el valor a mapear."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Qué formatos de archivo acepta Mapitas?",
+            "name": "¿Qué formatos de archivo acepta?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "CSV (separado por coma), TSV (separado por tabulación), Excel (.xlsx y .xls) y OpenDocument Spreadsheet (.ods). El parseo se hace localmente con PapaParse y SheetJS, sin subir tu archivo a ningún servidor."
@@ -224,15 +204,15 @@
             "name": "¿Cómo debe estar estructurado mi CSV?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Solo necesitás una columna con el nombre del estado o municipio y una columna con el valor numérico. Mapitas adivina cuál es cuál y te deja confirmar. Si trabajás a nivel municipio y hay nombres repetidos entre estados, podés sumar una columna opcional de estado padre para desambiguar."
+              "text": "Necesitás una columna con el nombre del territorio (estado, departamento, municipio, etc.) y una columna con el valor numérico. Mapitas adivina cuál es cuál y te deja confirmar el mapeo después."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Qué pasa si los nombres de mis municipios tienen tildes o abreviaciones?",
+            "name": "¿Qué pasa si los nombres de mis territorios tienen tildes o abreviaciones?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Mapitas usa fuzzy matching: tolera tildes faltantes, mayúsculas, espacios extra y abreviaciones comunes como Edo. o Mcpio. Después de cargar el archivo, te muestra cuántas filas matchearon y cuáles no, con la lista exacta de los nombres no reconocidos para que los corrijas."
+              "text": "Mapitas usa fuzzy matching: tolera tildes faltantes, mayúsculas, espacios extra y abreviaciones comunes. Después de cargar el archivo, te muestra cuántas filas matchearon y cuáles no, con la lista exacta para corregir."
             }
           },
           {
@@ -240,12 +220,12 @@
             "name": "¿Puedo elegir qué columna usar como valor?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí. Después de subir el archivo, Mapitas muestra dropdowns con todas las columnas detectadas. Vos elegís cuál usar como geo (nombre) y cuál como valor. Si cambiás de idea, podés modificar el mapeo sin volver a subir el archivo."
+              "text": "Sí. Después de subir el archivo, Mapitas muestra dropdowns con todas las columnas detectadas. Elegís cuál usar como geo (nombre) y cuál como valor. Podés cambiar el mapeo sin volver a subir el archivo."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Cómo cambio la paleta de colores en Mapitas?",
+            "name": "¿Cómo cambio la paleta de colores?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "En la pestaña Estilo del panel hay doce paletas predefinidas más una opción custom con dos color pickers (color inicial y final). También podés mover el centro del gradiente con un editor de rango que muestra el histograma de tus datos."
@@ -256,7 +236,7 @@
             "name": "¿Puedo personalizar el rango de colores?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí, con el range editor. Muestra el histograma de tus datos con tres handles (mínimo, medio, máximo) que podés mover. Por default se aplica un auto-clip de outliers usando los percentiles 2 y 98 para que un valor extremo no aplane el resto del mapa. Es toggleable."
+              "text": "Sí, con el range editor. Muestra el histograma de tus datos con tres handles (mínimo, medio, máximo) que podés mover. Por default se aplica un auto-clip de outliers usando los percentiles 2 y 98 para que un valor extremo no aplane el resto del mapa."
             }
           },
           {
@@ -264,7 +244,7 @@
             "name": "¿Cómo exporto el mapa que generé?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Por ahora la forma directa es hacer un screenshot del navegador (Ctrl+Shift+S en Firefox, Command+Shift+4 en Mac, o herramientas como Lightshot y ShareX). En el roadmap hay un export directo a PNG y SVG previsto para los próximos meses."
+              "text": "Por ahora la forma directa es hacer un screenshot del navegador. En el roadmap hay un export directo a PNG y SVG previsto para los próximos meses."
             }
           },
           {
@@ -272,7 +252,7 @@
             "name": "¿Puedo hacer un mapa con fondo transparente?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí. En la pestaña Estilo, sección Vista, hay un toggle de Fondo transparente pensado justamente para esto. Sirve para que el mapa exportado se vea bien sobre cualquier color de fondo en notas, presentaciones, sitios web o redes sociales."
+              "text": "Sí. En la pestaña Estilo hay un toggle de Fondo transparente. Sirve para que el mapa exportado se vea bien sobre cualquier color de fondo en notas, presentaciones o redes sociales."
             }
           },
           {
@@ -280,90 +260,34 @@
             "name": "¿Mapitas funciona en celular?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí, Mapitas es responsive. En mobile el panel de controles aparece como una bottom sheet deslizable que no oscurece el mapa al abrirse, así seguís viendo lo que estás mapeando mientras ajustás. Hay un botón flotante Panel para invocarla desde cualquier vista."
+              "text": "Sí, Mapitas es responsive. En mobile el panel de controles aparece como una bottom sheet deslizable que no oscurece el mapa al abrirse, así seguís viendo lo que estás mapeando mientras ajustás."
             }
           },
           {
             "@type": "Question",
-            "name": "¿De dónde vienen los datos de Venezuela?",
+            "name": "¿Mis datos se suben a un servidor?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Las geometrías de estados y municipios vienen de geoBoundaries (William & Mary). Las del Esequibo de Provita / IGVSB. Los indicadores oficiales del Instituto Nacional de Estadística (INE), del Observatorio Venezolano de Violencia (OVV) y de Source CV. Las capas temáticas son del geoportal de Provita."
+              "text": "No. Todo el procesamiento ocurre en tu navegador. Cuando subís un CSV, el archivo nunca sale de tu máquina: las librerías de parseo lo leen localmente y los resultados se renderizan en el mapa sin tocar ningún backend."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Qué indicadores oficiales vienen pre-cargados?",
+            "name": "¿Mapitas tiene tracking o analytics?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Siete: población 2024, población 2026 (proyección), Índice de Desarrollo Humano (IDH), PIB total, PIB per cápita, área en kilómetros cuadrados y tasa de homicidios del OVV. Cada indicador muestra su fuente y año dentro de la app, en la leyenda del mapa."
+              "text": "No. Mapitas no usa Google Analytics, Facebook Pixel ni ningún script de seguimiento. No se sabe quién entra, qué hace ni cuántas veces vuelve."
             }
           },
           {
             "@type": "Question",
-            "name": "¿Por qué hay municipios sin datos en algunos indicadores?",
+            "name": "¿Necesita conexión a internet para funcionar?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Porque las fuentes oficiales no publican datos para todas las entidades. En la lista de indicadores aparece un badge en color ámbar con el número de entidades sin datos. Si hacés click ahí, se abre un modal con la lista completa de qué está faltando, para que la opacidad de los datos sea visible."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué pasa con el Esequibo en Mapitas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Está incluido como entidad propia con su geometría, basada en datos de Provita / IGVSB. La mayoría de los indicadores oficiales no publica datos diferenciados para el Esequibo, así que aparece en gris en esos casos. En el roadmap se planea agregar valores espejados desde Delta Amacuro como estimaciones marcadas."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Por qué Dependencias Federales aparece en gris?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Porque las fuentes oficiales (INE, OVV, Wikipedia) no publican datos demográficos para esa entidad. Está representada con su geometría correcta, pero los indicadores quedan sin valor. En el roadmap hay un plan para agregar estimaciones marcadas explícitamente como aproximadas, no oficiales."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué año tienen los datos de población?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Hay dos series disponibles: población 2024 y proyección 2026, ambas basadas en publicaciones del INE. La proyección 2026 está marcada como estimación. En el futuro se sumarán las series históricas 2010, 2020 y 2050 que ya están procesadas, a la espera de una UI de timeline slider."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿De dónde viene la tasa de homicidios?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Del Observatorio Venezolano de Violencia (OVV), una organización independiente que publica estadísticas anuales de violencia letal por estado y municipio. Es una fuente reconocida internacionalmente, citada por medios y trabajos académicos sobre seguridad pública en Venezuela."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué son las capas temáticas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Son once capas opcionales del geoportal de Provita / IGVSB que podés superponer al mapa: áreas protegidas, territorios indígenas, cuencas hidrográficas, vialidad, lotes petroleros, energía, centros poblados y otras. Se cargan bajo demanda para no aumentar el peso del bootstrap inicial."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Quién valida que los datos sean correctos?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Las fuentes son las oficiales (INE, OVV, Provita). Mapitas no genera datos propios, los normaliza y consolida. Cuando un dato es estimado o tiene baja confianza, la app lo indica explícitamente con la leyenda datos ilustrativos · validar contra fuente oficial para que el usuario sepa."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué licencia tienen los datos?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "geoBoundaries y Provita publican bajo Creative Commons BY 4.0. Wikipedia bajo CC BY-SA. Los datos del INE y OVV son de acceso público según las leyes venezolanas de estadística. Las licencias específicas se documentan en el repositorio de GitHub."
+              "text": "Sólo la primera vez para descargar la app y los datos base. Una vez cargada, funciona offline: podés navegar el mapa, cambiar configuración y aplicar estilos sin conexión."
             }
           }
-        ]
+                ]
       }
     </script>
   </head>

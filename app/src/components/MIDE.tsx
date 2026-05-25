@@ -1,16 +1,23 @@
 // Landing del Proyecto MIDE (Ministerio de Datos y Estadísticas).
 //
-// MIDE es una iniciativa DENTRO de Mapitas: pensar la plataforma como
-// infraestructura cívica de datos que llene, desde la sociedad civil,
-// las funciones que un Instituto Nacional de Estadística debería cumplir
-// y que en Venezuela hoy están abandonadas.
+// MIDE es un proyecto venezolano de transparencia territorial que usa
+// Mapitas como herramienta base. La relación: Mapitas es la herramienta
+// genérica de mapping coroplético (BYO data, sin curaduría); MIDE es el
+// caso Venezuela con datos oficiales pre-cargados, fuentes citadas y la
+// misión cívica explícita de cumplir las funciones que un INE serio
+// debería sostener y que hoy están abandonadas.
 //
 // La página explica: qué hace un INE, el vacío venezolano actual, lo
-// que ya hacemos alineado con MIDE, los límites estructurales de hacerlo
+// que MIDE ya cubre con Mapitas, los límites estructurales de hacerlo
 // desde afuera del Estado, y la hoja de ruta hacia un MIDE virtual real.
+//
+// Las FAQ específicas a MIDE/VE viven en data/faq-mide.ts. Las FAQ sobre
+// la herramienta Mapitas en sí viven en data/faq-mapitas.ts (en Landing).
 //
 // Mismo estilo Apple/Anthropic que Landing.tsx (sin gradients ornamentales,
 // jerarquía por aire, tipografía como protagonista).
+
+import { FAQ_MIDE } from '../data/faq-mide'
 
 export function MIDE() {
   return (
@@ -23,6 +30,9 @@ export function MIDE() {
         <nav className="flex items-center gap-5 text-[13px] text-slate-500">
           <a href="#/" className="hidden hover:text-slate-900 sm:inline">
             Mapitas
+          </a>
+          <a href="#faq" className="hidden hover:text-slate-900 sm:inline">
+            FAQ
           </a>
           <a
             href="https://github.com/bronco-drift/mapitas"
@@ -44,9 +54,10 @@ export function MIDE() {
       <main className="mx-auto max-w-6xl px-6 sm:px-10">
         {/* Hero */}
         <section className="pt-12 pb-20 sm:pt-24 sm:pb-28" aria-labelledby="mide-title">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-            Iniciativa · Proyecto dentro de Mapitas
+          <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            <span aria-hidden className="text-[13px] leading-none">📍</span>
+            Transparencia territorial · Venezuela
+            <span aria-hidden className="text-[13px] leading-none">🇻🇪</span>
           </div>
           <h1
             id="mide-title"
@@ -54,25 +65,31 @@ export function MIDE() {
           >
             Proyecto MIDE.
             <br />
-            <span className="text-slate-500">
+            <span className="bg-gradient-to-br from-[#a83a4d] via-[#7B1F2D] to-slate-900 bg-clip-text text-transparent">
               Ministerio de Datos y Estadísticas.
             </span>
           </h1>
           <p className="mt-7 max-w-[60ch] text-[17px] leading-[1.55] text-slate-600 sm:text-[19px]">
-            Una iniciativa para construir, desde la sociedad civil, la
-            infraestructura cívica de datos que un Instituto Nacional de
+            MIDE construye, desde la sociedad civil, la infraestructura
+            cívica de datos territoriales que un Instituto Nacional de
             Estadística debería sostener y que en Venezuela está abandonada.
+            Usa{' '}
+            <a href="#/" className="text-slate-900 underline-offset-2 hover:underline">
+              Mapitas
+            </a>{' '}
+            como herramienta base, le suma fuentes oficiales y consolida
+            todo en un visor abierto.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#por-que"
-              className="rounded-full bg-slate-900 px-6 py-3 text-[15px] font-medium text-white shadow-sm transition hover:bg-slate-700"
+              className="rounded-full bg-[#7B1F2D] px-6 py-3 text-[15px] font-medium text-white shadow-sm transition hover:bg-[#5C1622]"
             >
               Por qué existe
             </a>
             <a
               href="#hoja-de-ruta"
-              className="rounded-full px-6 py-3 text-[15px] font-medium text-slate-600 transition hover:text-slate-900"
+              className="rounded-full px-6 py-3 text-[15px] font-medium text-slate-600 transition hover:text-[#7B1F2D]"
             >
               Hoja de ruta
             </a>
@@ -191,7 +208,7 @@ export function MIDE() {
             />
           </div>
 
-          <div className="mt-10 max-w-[60ch] border-l-2 border-slate-200 pl-5 text-[15px] leading-relaxed text-slate-600">
+          <div className="mt-10 max-w-[60ch] border-l-2 border-[#7B1F2D] pl-5 text-[15px] leading-relaxed text-slate-600">
             Pero lo verdaderamente importante no son los números. Es la
             función de{' '}
             <span className="font-medium text-slate-900">árbitro de verdad</span>:
@@ -345,7 +362,7 @@ export function MIDE() {
             />
           </div>
 
-          <div className="mt-10 max-w-[60ch] border-l-2 border-slate-200 pl-5 text-[15px] leading-relaxed text-slate-600">
+          <div className="mt-10 max-w-[60ch] border-l-2 border-[#7B1F2D] pl-5 text-[15px] leading-relaxed text-slate-600">
             Un MIDE virtual tiene ventajas que un ministerio estatal no:
             velocidad de iteración sin burocracia, independencia política con
             financiamiento diverso, acceso global sin barreras, contribución
@@ -411,6 +428,43 @@ export function MIDE() {
           </ol>
         </section>
 
+        {/* FAQ */}
+        <section
+          id="faq"
+          aria-labelledby="faq-title"
+          className="border-t border-slate-100 pt-16 pb-20 sm:pt-24"
+        >
+          <h2
+            id="faq-title"
+            className="max-w-2xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
+          >
+            Preguntas frecuentes.
+          </h2>
+          <p className="mt-4 max-w-[55ch] text-[15px] leading-relaxed text-slate-500 sm:text-[16px]">
+            Sobre el proyecto MIDE y los datos venezolanos. Para preguntas
+            sobre cómo usar la herramienta de mapping, mirá las FAQ de{' '}
+            <a href="#/" className="text-slate-700 underline-offset-2 hover:underline">
+              Mapitas
+            </a>
+            .
+          </p>
+
+          <div className="mt-12 space-y-12">
+            {FAQ_MIDE.map(cat => (
+              <div key={cat.id}>
+                <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                  {cat.label}
+                </h3>
+                <div className="border-t border-slate-100">
+                  {cat.items.map((item, i) => (
+                    <MIDEFAQItem key={i} q={item.q} a={item.a} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* CTA */}
         <section
           aria-labelledby="cta-title"
@@ -429,7 +483,7 @@ export function MIDE() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href="#/app"
-              className="rounded-full bg-slate-900 px-7 py-3.5 text-[15px] font-medium text-white shadow-sm transition hover:bg-slate-700"
+              className="rounded-full bg-[#7B1F2D] px-7 py-3.5 text-[15px] font-medium text-white shadow-sm transition hover:bg-[#5C1622]"
             >
               Abrir el mapa
             </a>
@@ -437,7 +491,7 @@ export function MIDE() {
               href="https://github.com/bronco-drift/mapitas"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-slate-200 px-7 py-3.5 text-[15px] font-medium text-slate-700 transition hover:border-slate-900 hover:text-slate-900"
+              className="rounded-full border border-slate-200 px-7 py-3.5 text-[15px] font-medium text-slate-700 transition hover:border-[#7B1F2D] hover:text-[#7B1F2D]"
             >
               Ver código
             </a>
@@ -472,6 +526,31 @@ export function MIDE() {
 
 // ─── Subcomponentes ─────────────────────────────────────────────────────────
 
+// FAQ item con <details>/<summary> nativos (mismo patrón que Landing).
+function MIDEFAQItem({ q, a }: { q: string; a: string }) {
+  return (
+    <details className="group border-b border-slate-100 [&::-webkit-details-marker]:hidden [&_summary::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer items-start justify-between gap-4 py-4 marker:hidden">
+        <span className="text-[15px] font-medium leading-snug text-slate-900">{q}</span>
+        <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center text-slate-400 transition-transform duration-200 group-open:rotate-45">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            className="h-3.5 w-3.5"
+            aria-hidden="true"
+          >
+            <path d="M8 3v10M3 8h10" />
+          </svg>
+        </span>
+      </summary>
+      <p className="pb-5 pr-9 text-[14px] leading-relaxed text-slate-600">{a}</p>
+    </details>
+  )
+}
+
 function FunctionBlock({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
@@ -499,7 +578,7 @@ function Cover({ title, body }: { title: string; body: string }) {
       <div className="mb-2 flex items-center gap-2">
         <span
           aria-hidden
-          className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"
+          className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#fef2f4] text-[#7B1F2D]"
         >
           <svg
             viewBox="0 0 16 16"
@@ -555,7 +634,7 @@ function Phase({
 }) {
   const statusColor =
     status === 'En curso'
-      ? 'bg-emerald-50 text-emerald-700 ring-emerald-200'
+      ? 'bg-[#fef2f4] text-[#7B1F2D] ring-[#7B1F2D]/20'
       : status === 'Próximo'
         ? 'bg-amber-50 text-amber-700 ring-amber-200'
         : 'bg-slate-50 text-slate-500 ring-slate-200'

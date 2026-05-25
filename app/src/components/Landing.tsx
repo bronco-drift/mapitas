@@ -1,16 +1,21 @@
-// Landing page de Mapitas. Estructura:
-//   - <header> con logo + link a GitHub + link a FAQ
-//   - <main> con hero + grid de features + sources + FAQ + CTA secundaria
-//   - <footer> con créditos y atribuciones
+// Landing page de Mapitas (producto genérico).
+//
+// Mapitas es la herramienta web de mapping coroplético. Es BYO data: subís
+// un CSV/Excel y se pinta sobre el mapa. La curaduría específica de
+// Venezuela (indicadores oficiales pre-cargados, capas Provita, misión
+// cívica) vive en /#/mide como un caso de uso destacado que usa esta misma
+// herramienta como base.
+//
+// Estructura:
+//   - <header> con logo + FAQ + MIDE + GitHub + Abrir mapa
+//   - <main> con hero + features + audiencias + promo MIDE + FAQ + CTA
+//   - <footer> con créditos
 //
 // Diseño Apple/Anthropic: mucho whitespace, jerarquía tipográfica clara,
-// sin imágenes pesadas, sólo SVG inline. HTML semántico para SEO y a11y.
-//
-// Las FAQ viven en data/faq.ts (single source of truth). El JSON-LD de
-// FAQPage que las refleja para Google está en index.html — si cambia el
-// listado, hay que actualizar ambos.
+// sólo SVG inline. Las FAQ genéricas viven en data/faq-mapitas.ts. El
+// JSON-LD FAQPage en index.html debe reflejar las mismas.
 
-import { FAQ } from '../data/faq'
+import { FAQ_MAPITAS } from '../data/faq-mapitas'
 
 export function Landing() {
   return (
@@ -22,16 +27,16 @@ export function Landing() {
         </a>
         <nav className="flex items-center gap-5 text-[13px] text-slate-500">
           <a
-            href="#/mide"
-            className="hidden hover:text-slate-900 sm:inline"
-          >
-            MIDE
-          </a>
-          <a
             href="#faq"
             className="hidden hover:text-slate-900 sm:inline"
           >
             FAQ
+          </a>
+          <a
+            href="#/mide"
+            className="hidden hover:text-slate-900 sm:inline"
+          >
+            MIDE
           </a>
           <a
             href="https://github.com/bronco-drift/mapitas"
@@ -55,29 +60,29 @@ export function Landing() {
         <section className="pt-12 pb-20 sm:pt-24 sm:pb-32" aria-labelledby="hero-title">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Datos abiertos · 100% local
+            Sin servidor · sin login · open source
           </div>
           <h1
             id="hero-title"
             className="max-w-3xl text-[44px] font-bold leading-[0.98] tracking-[-0.025em] text-slate-900 sm:text-[68px]"
           >
-            Mapas de Venezuela.
+            Hacé tu mapa.
             <br />
             <span className="bg-gradient-to-br from-blue-500 to-slate-900 bg-clip-text text-transparent">
-              Datos al instante.
+              En segundos.
             </span>
           </h1>
           <p className="mt-7 max-w-[58ch] text-[17px] leading-[1.55] text-slate-600 sm:text-[19px]">
-            Visualizá indicadores territoriales sobre Venezuela. Usá los datos
-            pre-cargados o subí tu propio CSV. Todo corre en tu navegador, sin
-            servidores ni cuentas.
+            Subí un CSV o Excel con tus datos territoriales y mirá cómo se
+            pintan sobre el mapa. Sin GIS, sin instalación, sin pago. Todo
+            corre en tu navegador.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#/app"
               className="rounded-full bg-slate-900 px-6 py-3 text-[15px] font-medium text-white shadow-sm transition hover:bg-slate-700"
             >
-              Abrir el mapa
+              Empezá un mapa
             </a>
             <a
               href="#features"
@@ -98,135 +103,89 @@ export function Landing() {
             id="features-title"
             className="max-w-2xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
           >
-            Hecho para periodistas, investigadores y curiosos.
+            Pensado para periodistas, investigadores y curiosos.
           </h2>
           <p className="mt-4 max-w-[55ch] text-[15px] leading-relaxed text-slate-500 sm:text-[16px]">
-            Sin instalación. Sin curva de aprendizaje. Solo abrís y mapeás.
+            Sin instalación. Sin curva de aprendizaje. Abrís, mapeás, exportás.
           </p>
 
           <div className="mt-12 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             <Feature
-              icon={<IconLayers />}
-              title="7 indicadores oficiales"
-              body="Población, IDH, homicidios, PIB, área, PIB per cápita. Sobre estados y municipios."
+              icon={<IconUpload />}
+              title="Subí tu CSV o Excel"
+              body="Detección automática de columnas. Fuzzy matching por nombre. Funciona también con TSV y ODS."
             />
             <Feature
-              icon={<IconUpload />}
-              title="Subí tu CSV"
-              body="Cruce automático por nombre o ISO. Excel también. Sin configuración."
+              icon={<IconPalette />}
+              title="12 paletas + custom"
+              body="Predefinidas más una custom con dos color pickers. Editor de rango con histograma y auto-clip de outliers."
             />
             <Feature
               icon={<IconLock />}
               title="100% en tu navegador"
-              body="Nada se sube a un servidor. Tus datos no salen de tu máquina."
+              body="Tus datos no salen de tu máquina. Sin servidor, sin tracking, sin login. Funciona offline una vez cargado."
             />
             <Feature
-              icon={<IconPalette />}
-              title="Personalizable"
-              body="13 paletas, opacidades, basemaps, fondo transparente. Tu mapa, tu estilo."
+              icon={<IconLayers />}
+              title="Export a tu estilo"
+              body="Fondo transparente, modos sin bordes, paletas personalizadas. El mapa listo para tu nota o informe."
             />
           </div>
         </section>
 
-        {/* Proyecto MIDE — iniciativa dentro de Mapitas */}
+        {/* Promo MIDE — caso de uso destacado */}
         <section
-          aria-labelledby="mide-callout-title"
+          aria-labelledby="mide-promo-title"
           className="border-t border-slate-100 pt-16 pb-20 sm:pt-24"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-            Iniciativa
-          </div>
-          <h2
-            id="mide-callout-title"
-            className="max-w-3xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
-          >
-            Proyecto MIDE.
-            <br />
-            <span className="text-slate-500">
-              La infraestructura que el Estado dejó vacía.
-            </span>
-          </h2>
-          <p className="mt-5 max-w-[60ch] text-[15px] leading-relaxed text-slate-600 sm:text-[16px]">
-            Mapitas no es solo una herramienta de visualización. Es una
-            iniciativa para construir, desde la sociedad civil, la
-            infraestructura cívica de datos que un Instituto Nacional de
-            Estadística debería sostener y que en Venezuela está abandonada.
-          </p>
-          <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-slate-600 sm:text-[16px]">
-            MIDE (Ministerio de Datos y Estadísticas) es un proyecto dentro
-            de Mapitas con hoja de ruta explícita: qué hacemos, qué no
-            podemos hacer desde afuera del Estado y qué sí podemos.
-          </p>
-          <div className="mt-7">
-            <a
-              href="#/mide"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-[14px] font-medium text-white shadow-sm transition hover:bg-slate-700"
-            >
-              Conocer el proyecto
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-3.5 w-3.5"
-                aria-hidden="true"
+          <div className="grid gap-10 sm:grid-cols-[1.4fr_1fr] sm:items-end">
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-slate-500">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#7B1F2D]" />
+                Caso de uso destacado
+              </div>
+              <h2
+                id="mide-promo-title"
+                className="max-w-2xl text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[40px]"
               >
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
-            </a>
-          </div>
-        </section>
+                Proyecto MIDE.
+                <br />
+                <span className="text-slate-500">Datos abiertos de Venezuela.</span>
+              </h2>
+              <p className="mt-5 max-w-[55ch] text-[15px] leading-relaxed text-slate-600 sm:text-[16px]">
+                MIDE (Ministerio de Datos y Estadísticas) usa Mapitas como
+                base para construir, desde la sociedad civil, la
+                infraestructura cívica de datos territoriales venezolanos
+                que un INE serio debería sostener. Indicadores oficiales
+                pre-cargados, capas temáticas, cobertura honesta.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href="#/mide"
+                  className="rounded-full bg-slate-900 px-5 py-2.5 text-[14px] font-medium text-white transition hover:bg-slate-700"
+                >
+                  Conocé MIDE
+                </a>
+                <a
+                  href="#/app"
+                  className="rounded-full px-5 py-2.5 text-[14px] font-medium text-slate-600 transition hover:text-slate-900"
+                >
+                  Abrir mapa de Venezuela
+                </a>
+              </div>
+            </div>
 
-        {/* Stack / Fuentes */}
-        <section
-          aria-labelledby="sources-title"
-          className="border-t border-slate-100 pt-16 pb-20 sm:pt-24"
-        >
-          <h2
-            id="sources-title"
-            className="text-[24px] font-semibold leading-[1.1] tracking-[-0.02em] text-slate-900 sm:text-[32px]"
-          >
-            Datos confiables, abiertos.
-          </h2>
-          <div className="mt-8 grid gap-6 text-[14px] leading-relaxed text-slate-600 sm:grid-cols-2">
-            <div>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6 sm:p-7">
               <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                Fronteras
+                Lo que MIDE incluye hoy
               </div>
-              <p className="mt-1.5">
-                Provita y IGVSB. Geometría limpia con topología cerrada, sin huecos
-                entre polígonos. 23 estados, 335 municipios.
-              </p>
-            </div>
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                Indicadores
-              </div>
-              <p className="mt-1.5">
-                INE Venezuela, OVV, estimaciones 2026. Cada indicador conserva su
-                fuente y año visibles en la app.
-              </p>
-            </div>
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                Capas temáticas
-              </div>
-              <p className="mt-1.5">
-                11 capas opcionales de Provita: áreas protegidas, pueblos indígenas,
-                cuencas, centros poblados.
-              </p>
-            </div>
-            <div>
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                Tecnología
-              </div>
-              <p className="mt-1.5">
-                React, Leaflet y TopoJSON. Build estático servido desde CDN.
-                Funciona offline una vez cargado.
-              </p>
+              <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700">
+                <li className="flex gap-2"><Dot /> 25+ indicadores oficiales pre-cargados</li>
+                <li className="flex gap-2"><Dot /> 27 estados y 337 municipios</li>
+                <li className="flex gap-2"><Dot /> 11 capas temáticas Provita / IGVSB</li>
+                <li className="flex gap-2"><Dot /> Series temporales INE 1990–2050</li>
+                <li className="flex gap-2"><Dot /> Esequibo y Dependencias Federales</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -244,11 +203,16 @@ export function Landing() {
             Preguntas frecuentes.
           </h2>
           <p className="mt-4 max-w-[55ch] text-[15px] leading-relaxed text-slate-500 sm:text-[16px]">
-            Lo esencial sobre cómo funciona Mapitas, de dónde vienen los datos y qué viene después.
+            Lo esencial sobre cómo funciona Mapitas como herramienta. Para
+            preguntas sobre los datos de Venezuela, mirá las FAQ del{' '}
+            <a href="#/mide" className="text-slate-700 underline-offset-2 hover:underline">
+              proyecto MIDE
+            </a>
+            .
           </p>
 
           <div className="mt-12 space-y-12">
-            {FAQ.map(cat => (
+            {FAQ_MAPITAS.map(cat => (
               <div key={cat.id}>
                 <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                   {cat.label}
@@ -293,6 +257,9 @@ export function Landing() {
             <span>Mapitas · © 2026</span>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="#/mide" className="hover:text-slate-900">
+              Proyecto MIDE
+            </a>
             <a
               href="https://github.com/bronco-drift/mapitas"
               target="_blank"
@@ -301,21 +268,8 @@ export function Landing() {
             >
               Código fuente
             </a>
-            <a
-              href="https://geoportal.provita.org.ve/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-slate-900"
-            >
-              Datos: Provita
-            </a>
-            <a
-              href="https://www.ine.gob.ve/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-slate-900"
-            >
-              INE Venezuela
+            <a href="#faq" className="hover:text-slate-900">
+              FAQ
             </a>
           </div>
         </div>
@@ -368,6 +322,15 @@ function Feature({
       <h3 className="text-[15px] font-semibold text-slate-900">{title}</h3>
       <p className="mt-1.5 text-[14px] leading-relaxed text-slate-600">{body}</p>
     </div>
+  )
+}
+
+function Dot() {
+  return (
+    <span
+      aria-hidden
+      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-400"
+    />
   )
 }
 
