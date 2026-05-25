@@ -227,12 +227,6 @@ export function TopBar() {
             {isDibujando ? 'Pintando' : 'Hacer tu propio mapa'}
           </span>
         </button>
-        <span className="hidden h-4 w-px bg-slate-200 sm:inline-block" aria-hidden="true" />
-        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-slate-400 md:gap-2">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          <span className="hidden sm:inline">Local · sin red</span>
-          <span className="sm:hidden">Local</span>
-        </div>
       </div>
       </div>
     </div>

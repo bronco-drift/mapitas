@@ -216,8 +216,12 @@ export function WorldMapView() {
     startPan: { x: number; y: number }
   }
   const dragRef = useRef<DragState | null>(null)
-  // Cache del segundo pointer para pinch-to-zoom (multi-touch)
-  const pinchRef = useRef<{ p1: { id: number; x: number; y: number }; p2: { id: number; x: number; y: number }; startDist: number; startScale: number } | null>(null)
+  // Cache del segundo pointer para pinch-to-zoom (multi-touch).
+  // startPan guarda el pan al inicio del pinch para que el reescalado del
+  // pan (que mantiene anclado el centro al zoomear) parta del valor
+  // congelado al touchstart, no del pan corriente que se actualiza con
+  // cada setPan dentro del propio pinch (eso causaría drift exponencial).
+  const pinchRef = useRef<{ p1: { id: number; x: number; y: number }; p2: { id: number; x: number; y: number }; startDist: number; startScale: number; startPan: { x: number; y: number } } | null>(null)
   // Marcador: si el pointer se movió más que el threshold, el siguiente click
   // sobre un país NO debe dispararse (es el final de un drag, no un tap).
   const wasDraggedRef = useRef(false)
@@ -276,16 +280,21 @@ export function WorldMapView() {
     }
     handlersRef.current = {
       onMove: (e: PointerEvent) => {
-        // Pinch en progreso: actualizar scale
+        // Pinch en progreso: actualizar scale + pan.
+        // El pan se reescala por el mismo factor que el scale para que el
+        // centro del viewport quede anclado durante el zoom (sin esto, el
+        // mapa se desplaza al zoomear si previamente hubo pan).
         if (pinchRef.current) {
-          const { p1, p2, startDist, startScale } = pinchRef.current
+          const { p1, p2, startDist, startScale, startPan } = pinchRef.current
           const p = e.pointerId === p1.id ? p1 : e.pointerId === p2.id ? p2 : null
           if (!p) return
           p.x = e.clientX
           p.y = e.clientY
           const newDist = Math.hypot(p2.x - p1.x, p2.y - p1.y)
           const newScale = Math.max(0.5, Math.min(8, startScale * (newDist / startDist)))
+          const factor = newScale / startScale
           setScale(newScale)
+          setPan({ x: startPan.x * factor, y: startPan.y * factor })
           return
         }
         const d = dragRef.current
@@ -393,6 +402,7 @@ export function WorldMapView() {
         p1, p2,
         startDist: Math.hypot(dx, dy),
         startScale: scaleRef.current,
+        startPan: { ...panRef.current },
       }
       dragRef.current = null
       return
@@ -443,7 +453,17 @@ export function WorldMapView() {
     const handler = (e: WheelEvent) => {
       e.preventDefault()
       const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15
-      setScale(s => Math.max(0.5, Math.min(8, s * factor)))
+      const currentScale = scaleRef.current
+      const newScale = Math.max(0.5, Math.min(8, currentScale * factor))
+      if (newScale === currentScale) return // clamped al límite
+      // Ancla el zoom al centro del viewport: el transform es
+      //   T(P) = scale*P + (1-scale)*(cx,cy) + pan
+      // Para que el centro (cx,cy) quede fijo al pasar de oldScale a newScale,
+      // pan_new = (newScale/oldScale) * pan. Sin esta línea el zoom desplaza
+      // el mapa cuando previamente hubo pan (bug histórico reportado).
+      const actualFactor = newScale / currentScale
+      setScale(newScale)
+      setPan(p => ({ x: p.x * actualFactor, y: p.y * actualFactor }))
     }
     el.addEventListener('wheel', handler, { passive: false })
     return () => el.removeEventListener('wheel', handler)
