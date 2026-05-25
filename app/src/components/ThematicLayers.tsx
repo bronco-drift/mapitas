@@ -73,7 +73,7 @@ export function ThematicLayersList() {
                 onClick={() => setExpandedId(expanded ? null : meta.id)}
                 aria-label={expanded ? 'Cerrar ajustes' : 'Abrir ajustes'}
                 aria-expanded={expanded}
-                className="flex w-7 shrink-0 items-center justify-center rounded-md text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                className="flex w-7 shrink-0 items-center justify-center rounded-md text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
                 title={expanded ? 'Cerrar ajustes' : 'Ajustar capa'}
               >
                 <svg
@@ -102,7 +102,7 @@ export function ThematicLayersList() {
                     type="color"
                     value={effectiveColor}
                     onChange={e => setOverride(meta.id, { color: e.target.value })}
-                    className="h-6 w-9 cursor-pointer rounded border border-slate-200 bg-white p-0"
+                    className="h-6 w-9 cursor-pointer rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 p-0"
                     aria-label="Color de la capa"
                   />
 
@@ -158,7 +158,7 @@ export function ThematicLayersList() {
                     type="button"
                     onClick={() => resetOverride(meta.id)}
                     disabled={!hasOverride}
-                    className="text-[10px] uppercase tracking-wider text-slate-400 transition-colors enabled:hover:text-slate-700 disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+                    className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-400 transition-colors enabled:hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
                   >
                     Restaurar
                   </button>
@@ -213,7 +213,7 @@ function LabelTweaks({
               labelFontFamily: e.target.value as 'sans' | 'serif' | 'mono',
             })
           }
-          className="rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[11px] text-slate-800 focus:border-slate-900 focus:outline-none"
+          className="rounded border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-1.5 py-0.5 text-[11px] text-slate-800 dark:text-slate-200 focus:border-slate-900 focus:outline-none"
         >
           <option value="sans">Sans-serif</option>
           <option value="serif">Serif</option>
@@ -248,7 +248,7 @@ function LabelTweaks({
           type="color"
           value={ov.labelColor ?? '#0f172a'}
           onChange={e => setOverride(_meta.id, { labelColor: e.target.value })}
-          className="h-6 w-9 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          className="h-6 w-9 cursor-pointer rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 p-0"
           aria-label="Color del texto"
         />
 
@@ -258,13 +258,13 @@ function LabelTweaks({
             type="color"
             value={ov.labelBg && ov.labelBg.length > 0 ? ov.labelBg : '#ffffff'}
             onChange={e => setOverride(_meta.id, { labelBg: e.target.value })}
-            className="h-6 w-9 cursor-pointer rounded border border-slate-200 bg-white p-0"
+            className="h-6 w-9 cursor-pointer rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 p-0"
             aria-label="Color del fondo"
           />
           <button
             type="button"
             onClick={() => setOverride(_meta.id, { labelBg: '' })}
-            className="rounded border border-slate-200 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+            className="rounded border border-slate-200 dark:border-slate-800 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-300 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-700"
             title="Sin fondo"
           >
             Sin
@@ -345,7 +345,7 @@ function ToggleInline({ checked, onChange }: { checked: boolean; onChange: (v: b
       }`}
     >
       <span
-        className={`inline-block h-3 w-3 transform rounded-full bg-white shadow transition ${
+        className={`inline-block h-3 w-3 transform rounded-full bg-white dark:bg-slate-900 shadow transition ${
           checked ? 'translate-x-3.5' : 'translate-x-0.5'
         }`}
       />
@@ -377,7 +377,7 @@ function PillToggle({
       className={`flex h-6 min-w-[26px] items-center justify-center rounded border px-1.5 text-[11px] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
         active
           ? 'border-slate-900 bg-slate-900 text-white'
-          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400'
+          : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 dark:text-slate-400 hover:border-slate-400'
       }`}
       style={{
         fontWeight: bold ? 700 : 500,

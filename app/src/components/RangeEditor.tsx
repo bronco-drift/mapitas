@@ -197,7 +197,7 @@ export function RangeEditor() {
           <button
             type="button"
             onClick={() => setCustomRange({ min: null, mid: null, max: null })}
-            className="text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
+            className="text-slate-500 dark:text-slate-300 dark:text-slate-400 underline-offset-2 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 hover:underline"
           >
             volver a auto
           </button>
@@ -229,7 +229,7 @@ function AutoRangeToggle() {
         }`}
       >
         <span
-          className={`inline-block h-2 w-2 transform rounded-full bg-white transition ${
+          className={`inline-block h-2 w-2 transform rounded-full bg-white dark:bg-slate-900 transition ${
             checked ? 'translate-x-2.5' : 'translate-x-0.5'
           }`}
         />
@@ -267,7 +267,7 @@ function Handle({
         onPointerDown(e)
       }}
       onDoubleClick={onDoubleClick}
-      className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 rounded-full border-2 border-slate-900 bg-white cursor-grab ${
+      className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 rounded-full border-2 border-slate-900 bg-white dark:bg-slate-900 cursor-grab ${
         isDragging ? 'cursor-grabbing scale-110 ring-2 ring-slate-300' : ''
       } ${isAuto && !isDragging ? 'opacity-60' : ''}`}
       style={{ left }}

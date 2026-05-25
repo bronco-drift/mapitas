@@ -62,13 +62,13 @@ export function StyleControls() {
                 className={`group flex flex-col items-stretch overflow-hidden rounded-sm border text-[10px] transition ${
                   style.globeTheme === t.id
                     ? 'border-slate-900 ring-1 ring-slate-900'
-                    : 'border-slate-200 hover:border-slate-400'
+                    : 'border-slate-200 dark:border-slate-800 hover:border-slate-400'
                 }`}
               >
                 <span className="block h-5" style={{ background: t.preview }} />
                 <span
                   className={`block px-1 py-0.5 text-center ${
-                    style.globeTheme === t.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+                    style.globeTheme === t.id ? 'bg-slate-900 text-white' : 'bg-white dark:bg-slate-900 text-slate-600'
                   }`}
                 >
                   {t.short}
@@ -89,7 +89,7 @@ export function StyleControls() {
                 className={`group flex flex-col items-stretch overflow-hidden rounded-sm border text-[10px] transition ${
                   style.basemap === b.id
                     ? 'border-slate-900 ring-1 ring-slate-900'
-                    : 'border-slate-200 hover:border-slate-400'
+                    : 'border-slate-200 dark:border-slate-800 hover:border-slate-400'
                 } ${style.isolateCountry ? 'opacity-40 cursor-not-allowed' : ''}`}
               >
                 <span
@@ -98,7 +98,7 @@ export function StyleControls() {
                 />
                 <span
                   className={`block px-1 py-0.5 text-center ${
-                    style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white text-slate-600'
+                    style.basemap === b.id ? 'bg-slate-900 text-white' : 'bg-white dark:bg-slate-900 text-slate-600'
                   }`}
                 >
                   {b.short}
@@ -108,7 +108,7 @@ export function StyleControls() {
           </div>
         )}
         {!isGlobal && (
-          <div className="mt-3 border-t border-slate-100 pt-3">
+          <div className="mt-3 border-t border-slate-100 dark:border-slate-800 pt-3">
             <Toggle
               label="Etiquetas"
               hint="Mostrar nombres de ciudades sobre el mapa"
@@ -385,7 +385,7 @@ export function StyleControls() {
             <button
               type="button"
               onClick={resetCosmosTweaks}
-              className="mt-1 text-[10px] uppercase tracking-wider text-slate-400 transition-colors hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+              className="mt-1 text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-400 transition-colors hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
             >
               Restaurar defaults
             </button>
@@ -414,10 +414,10 @@ function Disclosure({
       onToggle={e => setOpen((e.currentTarget as HTMLDetailsElement).open)}
       className="group rounded-md border border-slate-100"
     >
-      <summary className="group flex cursor-pointer items-center justify-between rounded-md px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-600 transition-colors hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 marker:hidden">
+      <summary className="group flex cursor-pointer items-center justify-between rounded-md px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-600 dark:text-slate-300 dark:text-slate-400 transition-colors hover:bg-slate-50 dark:hover:bg-slate-900/40 dark:bg-slate-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 marker:hidden">
         <span>{title}</span>
         <svg
-          className={`h-3 w-3 text-slate-400 transition-transform duration-200 group-hover:text-slate-700 ${open ? 'rotate-90' : ''}`}
+          className={`h-3 w-3 text-slate-400 dark:text-slate-400 transition-transform duration-200 group-hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 ${open ? 'rotate-90' : ''}`}
           viewBox="0 0 12 12"
           fill="none"
           aria-hidden
@@ -447,7 +447,7 @@ function ColorField({
         type="color"
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="h-7 w-7 shrink-0 cursor-pointer rounded border border-slate-200 bg-white p-0"
+        className="h-7 w-7 shrink-0 cursor-pointer rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 p-0"
         aria-label={label}
       />
       <div className="min-w-0 flex-1 leading-tight">
@@ -493,7 +493,7 @@ function Toggle({
         aria-pressed={checked}
       >
         <span
-          className={`inline-block h-3 w-3 transform rounded-full bg-white transition ${
+          className={`inline-block h-3 w-3 transform rounded-full bg-white dark:bg-slate-900 transition ${
             checked ? 'translate-x-3.5' : 'translate-x-0.5'
           }`}
         />

@@ -97,11 +97,11 @@ export function IndicatorCoverageModal({
       aria-labelledby="cov-modal-title"
     >
       <div
-        className="modal-content relative max-h-[80vh] w-full max-w-md overflow-hidden rounded-lg bg-white shadow-2xl"
+        className="modal-content relative max-h-[80vh] w-full max-w-md overflow-hidden rounded-lg bg-white dark:bg-slate-900 shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* Header pegajoso */}
-        <div className="flex items-start justify-between border-b border-slate-100 px-5 py-4">
+        <div className="flex items-start justify-between border-b border-slate-100 dark:border-slate-800 px-5 py-4">
           <div className="min-w-0">
             <div id="cov-modal-title" className="truncate text-[17px] font-semibold leading-tight tracking-tight text-slate-900">
               {indicator.label}
@@ -118,7 +118,7 @@ export function IndicatorCoverageModal({
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-900"
+            className="shrink-0 rounded-md p-1 text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-900"
             aria-label="Cerrar"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none">

@@ -34,7 +34,7 @@ export function Section({
 
   if (!collapsible) {
     return (
-      <section className="border-b border-slate-100 px-5 py-4">
+      <section className="border-b border-slate-100 dark:border-slate-800 px-5 py-4">
         {header}
         {children}
       </section>
@@ -42,7 +42,7 @@ export function Section({
   }
 
   return (
-    <section className="border-b border-slate-100 px-5 py-4">
+    <section className="border-b border-slate-100 dark:border-slate-800 px-5 py-4">
       <button
         type="button"
         onClick={() => setOpen(o => !o)}

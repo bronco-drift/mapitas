@@ -252,6 +252,12 @@ const COSMOS_TWEAKS_LEGACY_DEFAULT = {
 // 'pintar' tiene la paleta de colores + leyenda + acciones del painter.
 export type PanelTab = 'datos' | 'capas' | 'estilo' | 'presets' | 'pintar'
 
+// Modo de color del UI. 'system' lee prefers-color-scheme del browser
+// (default razonable); 'light' y 'dark' son overrides explícitos del user.
+// El estado efectivo se calcula en App.tsx: 'system' → resolve a 'light'
+// o 'dark' según el media query, los otros pasan literal.
+export type ColorScheme = 'light' | 'dark' | 'system'
+
 type State = {
   view: ViewMode
   level: AdmLevel
@@ -309,6 +315,10 @@ type State = {
   // Slots de mapas guardados (local, localStorage). El user puede tener
   // N mapas con nombre custom y cargarlos cuando quiera.
   savedMaps: SavedMap[]
+  // Modo de color del UI ('light' | 'dark' | 'system'). El default es
+  // 'system' (lee prefers-color-scheme del browser). Aplicación de la
+  // clase `.dark` al <html> vive en App.tsx.
+  colorScheme: ColorScheme
   // Rango custom para clasificación visual (null = usa min/max natural)
   customRange: { min: number | null; mid: number | null; max: number | null }
   // IDs de indicadores que el usuario quiere ocultar de la lista principal.
@@ -366,6 +376,7 @@ type Actions = {
   loadSavedMap: (id: string) => void
   deleteSavedMap: (id: string) => void
   renameSavedMap: (id: string, name: string) => void
+  setColorScheme: (s: ColorScheme) => void
   setCountry: (code: 'VE') => void
   setTab: (tab: PanelTab) => void
   loadThematicManifest: () => Promise<void>
@@ -456,6 +467,7 @@ export const useStore = create<State & Actions>()(
   paint: PAINT_STATE_DEFAULT,
   paintModeActive: false,
   savedMaps: [],
+  colorScheme: 'system',
   customRange: { min: null, mid: null, max: null },
   archivedIndicators: DEFAULT_ARCHIVED_INDICATORS,
   _persistedSourceId: null,
@@ -913,6 +925,10 @@ export const useStore = create<State & Actions>()(
     })
   },
 
+  setColorScheme(scheme) {
+    set({ colorScheme: scheme })
+  },
+
   setCountry(code) {
     set({ country: code })
   },
@@ -1020,7 +1036,7 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
-      version: 14,
+      version: 15,
       // Migraciones:
       //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
       //   v2 → v3: projection default Orthographic + rotation centrada en VE
@@ -1046,6 +1062,7 @@ export const useStore = create<State & Actions>()(
       //   tenía los valores legacy exactos (no tocados), se actualiza al
       //   nuevo default; si los tweakeo, se mantiene.
       //   v13 → v14: agregar savedMaps [] (slots de guardado del painter).
+      //   v14 → v15: agregar colorScheme 'system' default (modo claro/oscuro).
       migrate: (persisted, version) => {
         let obj = persisted as Record<string, unknown>
         if (version < 2 && obj?.view === 'diaspora') {
@@ -1112,6 +1129,9 @@ export const useStore = create<State & Actions>()(
         if (version < 14 && obj.savedMaps == null) {
           obj = { ...obj, savedMaps: [] }
         }
+        if (version < 15 && obj.colorScheme == null) {
+          obj = { ...obj, colorScheme: 'system' }
+        }
         if (version < 13) {
           // Cosmos pasa a default. Solo migramos a usuarios que tenían el
           // default histórico 'day' — los que habían elegido otro tema (night,
@@ -1146,6 +1166,7 @@ export const useStore = create<State & Actions>()(
         paint: state.paint,
         paintModeActive: state.paintModeActive,
         savedMaps: state.savedMaps,
+        colorScheme: state.colorScheme,
         customRange: state.customRange,
         archivedIndicators: state.archivedIndicators,
         projection: state.projection,

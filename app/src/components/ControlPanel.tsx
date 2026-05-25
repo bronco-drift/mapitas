@@ -142,14 +142,14 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
 
       <aside
         style={inlineStyle}
-        className="flex shrink-0 flex-col overflow-hidden bg-white md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 fixed inset-x-0 bottom-0 z-[1050] rounded-t-2xl border-t border-slate-200 shadow-2xl md:rounded-none md:shadow-none md:h-full md:max-h-none"
+        className="flex shrink-0 flex-col overflow-hidden bg-white dark:bg-slate-900 md:relative md:h-full md:w-[320px] md:border-r md:border-slate-200 dark:border-slate-800 fixed inset-x-0 bottom-0 z-[1050] rounded-t-2xl border-t border-slate-200 dark:border-slate-800 shadow-2xl md:rounded-none md:shadow-none md:h-full md:max-h-none dark:bg-slate-950 dark:border-slate-800"
       >
         {/* Handle drag area + cerrar (solo mobile).
             Toda la fila es draggable; el botón Cerrar usa stopPropagation
             para no disparar el drag al tap. touch-none evita que el browser
             haga scroll de la página mientras arrastrás. */}
         <div
-          className="flex items-center justify-between border-b border-slate-100 px-4 py-1.5 md:hidden touch-none cursor-grab active:cursor-grabbing select-none"
+          className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 px-4 py-1.5 md:hidden touch-none cursor-grab active:cursor-grabbing select-none dark:border-slate-800"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
@@ -159,12 +159,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           aria-label={expanded ? 'Colapsar panel' : 'Expandir panel'}
         >
           <span aria-hidden className="block w-10" />
-          <span className="h-[3px] w-8 rounded-full bg-slate-300" aria-hidden />
+          <span className="h-[3px] w-8 rounded-full bg-slate-300 dark:bg-slate-600" aria-hidden />
           <button
             type="button"
             onClick={onMobileClose}
             onPointerDown={e => e.stopPropagation()}
-            className="text-[11px] text-slate-500 hover:text-slate-900"
+            className="text-[11px] text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-100"
           >
             Cerrar
           </button>
@@ -177,8 +177,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             que está creando — el campo título del PaintTab se vuelve
             redundante (lo dejamos también para consistencia mobile). */}
       {paintModeActive && (
-        <header className="hidden border-b border-slate-100 px-5 py-4 md:block">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+        <header className="hidden border-b border-slate-100 dark:border-slate-800 px-5 py-4 md:block dark:border-slate-800">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-400">
             Mapitas · Pintando
           </div>
           <input
@@ -187,17 +187,17 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             onChange={e => setPaintTitle(e.target.value)}
             placeholder="Título del mapa"
             maxLength={80}
-            className="mt-1.5 block w-full bg-transparent text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:outline-none"
+            className="mt-1.5 block w-full bg-transparent text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 dark:text-slate-100 placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none dark:text-slate-100 dark:placeholder:text-slate-600"
             aria-label="Título del mapa"
           />
-          <p className="mt-1 text-[11px] leading-snug text-slate-500">
+          <p className="mt-1 text-[11px] leading-snug text-slate-500 dark:text-slate-300 dark:text-slate-400 dark:text-slate-300">
             Mantené Ctrl mientras movés el mouse para pintar varias regiones
           </p>
         </header>
       )}
       {!paintModeActive && (
-      <header className="hidden border-b border-slate-100 px-5 py-4 md:block">
-        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+      <header className="hidden border-b border-slate-100 dark:border-slate-800 px-5 py-4 md:block dark:border-slate-800">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-400">
           Mapitas · Reporte
         </div>
         {activeIndicator ? (
@@ -208,7 +208,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             aria-label={`Ver cobertura del reporte: ${activeIndicator.label}`}
           >
             <div className="flex items-baseline gap-2">
-              <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 group-hover:text-blue-600">
+              <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:text-slate-100 dark:group-hover:text-blue-400">
                 {activeIndicator.label}
               </h1>
               <svg
@@ -235,7 +235,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             onClick={() => setTab('datos')}
             className="group mt-1.5 block w-full text-left transition focus:outline-none"
           >
-            <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 group-hover:text-blue-600">
+            <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-blue-600">
               {source.dataset.valueColumn ?? 'CSV propio'}
             </h1>
             <p className="mt-1 text-[11px] leading-snug text-slate-500">
@@ -246,7 +246,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           <button
             type="button"
             onClick={() => setTab('datos')}
-            className="mt-1.5 block w-full text-left text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-500 transition hover:text-slate-900 focus:outline-none"
+            className="mt-1.5 block w-full text-left text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-500 dark:text-slate-300 dark:text-slate-400 transition hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 focus:outline-none"
           >
             Elegí un indicador
             <span className="ml-2 text-[12px] font-normal text-slate-400">en Datos →</span>
@@ -268,12 +268,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           el "nivel" es siempre el país receptor. */}
       {!isDiaspora && (
         <div className="px-4 pt-2 pb-1.5">
-          <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
+          <div className="inline-flex w-full rounded bg-slate-100 dark:bg-slate-800 p-0.5 text-[11px] dark:bg-slate-800/60">
             <button
               type="button"
               onClick={() => setLevel('adm0')}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-                level === 'adm0' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
+                level === 'adm0' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100' : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               País
@@ -282,7 +282,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               type="button"
               onClick={() => setLevel('adm1')}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-                level === 'adm1' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
+                level === 'adm1' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100' : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               Estados
@@ -291,7 +291,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               type="button"
               onClick={() => setLevel('adm2')}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-                level === 'adm2' ? 'bg-white text-slate-900 shadow-sm font-medium' : 'text-slate-500 hover:text-slate-700'
+                level === 'adm2' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100' : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               Municipios
@@ -300,8 +300,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </div>
       )}
 
-      <div className="border-b border-slate-100 px-4 pb-2">
-        <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px]">
+      <div className="border-b border-slate-100 dark:border-slate-800 px-4 pb-2 dark:border-slate-800">
+        <div className="inline-flex w-full rounded bg-slate-100 dark:bg-slate-800 p-0.5 text-[11px]">
           {visibleTabs.map(t => (
             <button
               key={t}
@@ -309,8 +309,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               onClick={() => setTab(t)}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
                 tab === t
-                  ? 'bg-white text-slate-900 shadow-sm font-medium'
-                  : 'text-slate-500 hover:text-slate-700'
+                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100'
+                  : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               {tabLabel(t)}
@@ -323,7 +323,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         {tab === 'datos' && (
           <>
             {activeIndicator && level === 'adm2' && activeIndicator.aggregation === 'state' && (
-              <div className="border-b border-slate-100 px-5 py-2 text-[10px] text-slate-400">
+              <div className="border-b border-slate-100 dark:border-slate-800 px-5 py-2 text-[10px] text-slate-400 dark:text-slate-400 dark:border-slate-800 dark:text-slate-400">
                 Cada municipio toma el valor de su estado
               </div>
             )}
@@ -334,7 +334,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
                   <button
                     type="button"
                     onClick={clearSource}
-                    className="text-[10px] uppercase tracking-wider text-slate-400 hover:text-slate-700"
+                    className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-400 hover:text-slate-700"
                   >
                     limpiar
                   </button>
@@ -439,7 +439,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             <button
               type="button"
               onClick={() => setWikiOpen(true)}
-              className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 underline-offset-2 transition hover:text-slate-900 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+              className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 dark:text-slate-300 dark:text-slate-400 underline-offset-2 transition hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
             >
               Más info
               <svg
@@ -474,7 +474,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         )}
       </div>
 
-      <footer className="border-t border-slate-100 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
+      <footer className="border-t border-slate-100 dark:border-slate-800 px-5 py-3 text-[10px] leading-relaxed text-slate-400">
         <div className="flex items-baseline justify-between gap-2">
           <span className="min-w-0">
             Base: IGVSB / Provita. Datos: INE, OVV, estimaciones 2026.
@@ -484,7 +484,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             onClick={() => {
               if (confirm('¿Resetear todos los ajustes guardados?')) resetSettings()
             }}
-            className="shrink-0 rounded underline-offset-2 transition-colors hover:text-slate-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+            className="shrink-0 rounded underline-offset-2 transition-colors hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
           >
             Resetear
           </button>
@@ -550,7 +550,7 @@ function PaletteSelector() {
             className={`h-7 rounded-sm border transition ${
               palette === p.id
                 ? 'border-slate-900 ring-1 ring-slate-900'
-                : 'border-slate-200 hover:border-slate-400'
+                : 'border-slate-200 dark:border-slate-800 hover:border-slate-400'
             }`}
             style={{ background: paletteGradient(p.id, custom, previewMid) }}
           />
@@ -560,7 +560,7 @@ function PaletteSelector() {
           onClick={() => setExtraOpen(o => !o)}
           aria-label="Más paletas"
           title="Más paletas"
-          className={`h-7 rounded-sm border border-slate-300 bg-white text-[14px] leading-none text-slate-500 transition hover:border-slate-500 ${
+          className={`h-7 rounded-sm border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-[14px] leading-none text-slate-500 dark:text-slate-300 dark:text-slate-400 transition hover:border-slate-500 ${
             extraOpen ? 'border-slate-900 text-slate-900' : ''
           }`}
         >
@@ -580,7 +580,7 @@ function PaletteSelector() {
               className={`h-7 rounded-sm border transition ${
                 palette === p.id
                   ? 'border-slate-900 ring-1 ring-slate-900'
-                  : 'border-slate-200 hover:border-slate-400'
+                  : 'border-slate-200 dark:border-slate-800 hover:border-slate-400'
               }`}
               style={{ background: paletteGradient(p.id, custom, previewMid) }}
             />
@@ -595,7 +595,7 @@ function PaletteSelector() {
           type="color"
           value={currentStart}
           onChange={e => onChangeStart(e.target.value)}
-          className="h-6 w-6 shrink-0 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          className="h-6 w-6 shrink-0 cursor-pointer rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 p-0"
           aria-label="Color inicial"
         />
         <div className="flex-1 text-center text-[10px] uppercase tracking-wider text-slate-400">
@@ -605,7 +605,7 @@ function PaletteSelector() {
           type="color"
           value={currentEnd}
           onChange={e => onChangeEnd(e.target.value)}
-          className="h-6 w-6 shrink-0 cursor-pointer rounded border border-slate-200 bg-white p-0"
+          className="h-6 w-6 shrink-0 cursor-pointer rounded border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 p-0"
           aria-label="Color final"
         />
       </div>
@@ -637,7 +637,7 @@ function ProjectionSelector() {
         <select
           value={projection}
           onChange={e => setProjection(e.target.value as ProjectionId)}
-          className="w-full appearance-none rounded-md border border-slate-200 bg-white py-1.5 px-2 text-[13px] text-slate-800 focus:border-slate-900 focus:outline-none"
+          className="w-full appearance-none rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-1.5 px-2 text-[13px] text-slate-800 dark:text-slate-200 focus:border-slate-900 focus:outline-none"
         >
           {PROJECTION_OPTIONS.map(p => (
             <option key={p.id} value={p.id}>
@@ -655,7 +655,7 @@ function ProjectionSelector() {
       </div>
 
       {isGlobe && (
-        <div className="space-y-2 rounded-md border border-slate-200 bg-slate-50 p-2.5">
+        <div className="space-y-2 rounded-md border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-2.5">
           <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
             Rotación del globo
           </div>
@@ -683,7 +683,7 @@ function ProjectionSelector() {
           <button
             type="button"
             onClick={() => setRotation([66, -7, 0])}
-            className="text-[10px] uppercase tracking-wider text-slate-400 hover:text-slate-700"
+            className="text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-400 hover:text-slate-700"
             title="Volver al centro inicial sobre Venezuela"
           >
             centrar en Venezuela

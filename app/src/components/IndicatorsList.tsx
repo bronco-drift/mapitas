@@ -137,11 +137,11 @@ export function IndicatorsList() {
       </div>
 
       {archivedRows.length > 0 && (
-        <div className="mt-3 border-t border-slate-200 pt-2">
+        <div className="mt-3 border-t border-slate-200 dark:border-slate-800 pt-2">
           <button
             type="button"
             onClick={() => setArchiveOpen(o => !o)}
-            className="flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-left text-[11px] font-medium text-slate-500 transition outline-none hover:text-slate-700 focus:ring-2 focus:ring-slate-400"
+            className="flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-left text-[11px] font-medium text-slate-500 dark:text-slate-300 dark:text-slate-400 transition outline-none hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 focus:ring-2 focus:ring-slate-400"
             aria-expanded={archiveSectionOpen}
           >
             <span>Archivados · {archivedRows.length}</span>
@@ -231,7 +231,7 @@ function Row({
           : disabled
             ? 'cursor-not-allowed opacity-40'
             : isArchived
-              ? 'cursor-pointer opacity-70 hover:bg-slate-100 hover:opacity-100'
+              ? 'cursor-pointer opacity-70 hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:opacity-100'
               : 'cursor-pointer hover:bg-slate-100'
       }`}
       title={disabled ? cov.reason : undefined}
@@ -282,7 +282,7 @@ function Row({
             className={`rounded p-1 opacity-0 transition focus:opacity-100 focus:ring-2 focus:ring-slate-400 group-hover:opacity-100 ${
               active
                 ? 'text-slate-300 hover:bg-slate-700 hover:text-white'
-                : 'text-slate-400 hover:bg-slate-200 hover:text-slate-700'
+                : 'text-slate-400 dark:text-slate-400 hover:bg-slate-200 hover:text-slate-700'
             }`}
             title={isArchived ? 'Desarchivar' : 'Archivar'}
             aria-label={isArchived ? `Desarchivar ${indicator.label}` : `Archivar ${indicator.label}`}
@@ -569,7 +569,7 @@ function DiasporaPanel() {
         })}
       </div>
 
-      <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5">
+      <div className="rounded-md border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 px-3 py-2.5">
         <div className="text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
           {header.label}
         </div>
@@ -592,7 +592,7 @@ function DiasporaPanel() {
             key={r.iso}
             type="button"
             onClick={() => setSelected({ name: r.name, iso: r.iso, value: r.value })}
-            className="group flex w-full items-center gap-2 rounded px-2 py-1.5 text-left transition outline-none hover:bg-slate-100 focus:ring-2 focus:ring-slate-400"
+            className="group flex w-full items-center gap-2 rounded px-2 py-1.5 text-left transition outline-none hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 focus:ring-2 focus:ring-slate-400"
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline justify-between gap-2">
@@ -615,7 +615,7 @@ function DiasporaPanel() {
         ))}
       </div>
 
-      <div className="rounded-md border border-slate-200 bg-white px-3 py-2 text-[11px] leading-relaxed text-slate-500">
+      <div className="rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-[11px] leading-relaxed text-slate-500">
         {globalMetric === 'porcentaje' && (
           <>
             Porcentaje calculado sobre población total del país (UN 2024).
@@ -632,7 +632,7 @@ function DiasporaPanel() {
               href="https://www.r4v.info/en/refugeeandmigrants"
               target="_blank"
               rel="noreferrer"
-              className="text-slate-700 underline hover:text-slate-900"
+              className="text-slate-700 dark:text-slate-300 underline hover:text-slate-900"
             >
               R4V
             </a>
@@ -645,7 +645,7 @@ function DiasporaPanel() {
               href="https://population.un.org/wpp/"
               target="_blank"
               rel="noreferrer"
-              className="text-slate-700 underline hover:text-slate-900"
+              className="text-slate-700 dark:text-slate-300 underline hover:text-slate-900"
             >
               World Population Prospects 2024
             </a>
@@ -659,7 +659,7 @@ function DiasporaPanel() {
               href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD"
               target="_blank"
               rel="noreferrer"
-              className="text-slate-700 underline hover:text-slate-900"
+              className="text-slate-700 dark:text-slate-300 underline hover:text-slate-900"
             >
               Banco Mundial WDI
             </a>
@@ -674,7 +674,7 @@ function DiasporaPanel() {
               href="https://hdr.undp.org/data-center/country-insights"
               target="_blank"
               rel="noreferrer"
-              className="text-slate-700 underline hover:text-slate-900"
+              className="text-slate-700 dark:text-slate-300 underline hover:text-slate-900"
             >
               PNUD HDR 2023/2024
             </a>

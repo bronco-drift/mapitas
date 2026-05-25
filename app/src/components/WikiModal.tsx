@@ -150,15 +150,15 @@ export function WikiModal({
         type="button"
         onClick={onClose}
         aria-label="Cerrar"
-        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm dark:bg-slate-950/70"
       />
 
-      <div className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl sm:p-7">
+      <div className="relative w-full max-w-lg rounded-2xl bg-white dark:bg-slate-900 p-6 shadow-2xl sm:p-7">
         <button
           type="button"
           onClick={onClose}
           aria-label="Cerrar"
-          className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+          className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-700"
         >
           <svg
             viewBox="0 0 16 16"
@@ -173,7 +173,7 @@ export function WikiModal({
           </svg>
         </button>
 
-        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
           Wikipedia
         </div>
 
@@ -181,18 +181,18 @@ export function WikiModal({
           <>
             <h2
               id="wiki-modal-title"
-              className="mt-2 text-[22px] font-semibold leading-tight tracking-tight text-slate-900"
+              className="mt-2 text-[22px] font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-100"
             >
               {query}
             </h2>
             {subtitle && (
-              <div className="mt-1 text-[12px] text-slate-500">{subtitle}</div>
+              <div className="mt-1 text-[12px] text-slate-500 dark:text-slate-400">{subtitle}</div>
             )}
             <div className="mt-7 space-y-2.5">
-              <div className="h-3 w-3/5 animate-pulse rounded bg-slate-100" />
-              <div className="h-3 w-11/12 animate-pulse rounded bg-slate-100" />
-              <div className="h-3 w-9/12 animate-pulse rounded bg-slate-100" />
-              <div className="h-3 w-10/12 animate-pulse rounded bg-slate-100" />
+              <div className="h-3 w-3/5 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
+              <div className="h-3 w-11/12 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
+              <div className="h-3 w-9/12 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
+              <div className="h-3 w-10/12 animate-pulse rounded bg-slate-100 dark:bg-slate-800" />
             </div>
           </>
         )}
@@ -203,17 +203,17 @@ export function WikiModal({
               <div className="min-w-0 flex-1">
                 <h2
                   id="wiki-modal-title"
-                  className="text-[22px] font-semibold leading-tight tracking-tight text-slate-900"
+                  className="text-[22px] font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-100"
                 >
                   {state.data.displaytitle?.replace(/<[^>]*>/g, '') ?? state.data.title}
                 </h2>
                 {state.data.description && (
-                  <div className="mt-1 text-[12px] text-slate-500">
+                  <div className="mt-1 text-[12px] text-slate-500 dark:text-slate-400">
                     {state.data.description}
                   </div>
                 )}
                 {subtitle && (
-                  <div className="mt-0.5 text-[11px] italic text-slate-400">{subtitle}</div>
+                  <div className="mt-0.5 text-[11px] italic text-slate-400 dark:text-slate-500">{subtitle}</div>
                 )}
               </div>
               {state.data.thumbnail && (
@@ -221,12 +221,12 @@ export function WikiModal({
                   src={state.data.thumbnail.source}
                   alt=""
                   loading="lazy"
-                  className="h-20 w-20 shrink-0 rounded-md object-cover ring-1 ring-slate-200"
+                  className="h-20 w-20 shrink-0 rounded-md object-cover ring-1 ring-slate-200 dark:ring-slate-700"
                 />
               )}
             </div>
 
-            <p className="mt-5 text-[14px] leading-relaxed text-slate-700">
+            <p className="mt-5 text-[14px] leading-relaxed text-slate-700 dark:text-slate-300">
               {state.data.extract}
             </p>
 
@@ -235,7 +235,7 @@ export function WikiModal({
                 href={state.data.content_urls.desktop.page}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-flex items-center gap-1 text-[12px] font-medium text-slate-700 underline-offset-4 hover:text-slate-900 hover:underline"
+                className="mt-5 inline-flex items-center gap-1 text-[12px] font-medium text-slate-700 dark:text-slate-300 underline-offset-4 hover:text-slate-900 dark:hover:text-slate-100 hover:underline"
               >
                 Leer artículo completo
                 <svg
@@ -259,14 +259,14 @@ export function WikiModal({
           <>
             <h2
               id="wiki-modal-title"
-              className="mt-2 text-[22px] font-semibold leading-tight tracking-tight text-slate-900"
+              className="mt-2 text-[22px] font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-100"
             >
               {query}
             </h2>
             {subtitle && (
-              <div className="mt-1 text-[12px] text-slate-500">{subtitle}</div>
+              <div className="mt-1 text-[12px] text-slate-500 dark:text-slate-400">{subtitle}</div>
             )}
-            <p className="mt-5 text-[13px] leading-relaxed text-slate-500">
+            <p className="mt-5 text-[13px] leading-relaxed text-slate-500 dark:text-slate-400">
               Hay varios artículos en Wikipedia con este nombre. Buscalo
               directamente para elegir el correcto.
             </p>
@@ -274,7 +274,7 @@ export function WikiModal({
               href={searchUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-1 text-[12px] font-medium text-slate-700 underline-offset-4 hover:text-slate-900 hover:underline"
+              className="mt-4 inline-flex items-center gap-1 text-[12px] font-medium text-slate-700 dark:text-slate-300 underline-offset-4 hover:text-slate-900 dark:hover:text-slate-100 hover:underline"
             >
               Buscar en Wikipedia
               <svg
@@ -297,14 +297,14 @@ export function WikiModal({
           <>
             <h2
               id="wiki-modal-title"
-              className="mt-2 text-[22px] font-semibold leading-tight tracking-tight text-slate-900"
+              className="mt-2 text-[22px] font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-100"
             >
               {query}
             </h2>
             {subtitle && (
-              <div className="mt-1 text-[12px] text-slate-500">{subtitle}</div>
+              <div className="mt-1 text-[12px] text-slate-500 dark:text-slate-400">{subtitle}</div>
             )}
-            <p className="mt-5 text-[13px] leading-relaxed text-slate-500">
+            <p className="mt-5 text-[13px] leading-relaxed text-slate-500 dark:text-slate-400">
               No encontramos un artículo con este nombre exacto en Wikipedia
               en español.
             </p>
@@ -312,7 +312,7 @@ export function WikiModal({
               href={searchUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-1 text-[12px] font-medium text-slate-700 underline-offset-4 hover:text-slate-900 hover:underline"
+              className="mt-4 inline-flex items-center gap-1 text-[12px] font-medium text-slate-700 dark:text-slate-300 underline-offset-4 hover:text-slate-900 dark:hover:text-slate-100 hover:underline"
             >
               Buscar en Wikipedia
               <svg

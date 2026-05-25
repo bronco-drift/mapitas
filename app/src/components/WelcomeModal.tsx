@@ -69,15 +69,15 @@ export function WelcomeModal() {
         type="button"
         onClick={close}
         aria-label="Cerrar bienvenida"
-        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm dark:bg-slate-950/70"
       />
 
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-7 shadow-2xl sm:p-9">
+      <div className="relative w-full max-w-md rounded-2xl bg-white dark:bg-slate-900 p-7 shadow-2xl sm:p-9">
         <button
           type="button"
           onClick={close}
           aria-label="Cerrar"
-          className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+          className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-slate-400 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 hover:text-slate-700"
         >
           <svg
             viewBox="0 0 16 16"
@@ -97,7 +97,7 @@ export function WelcomeModal() {
         </div>
         <h2
           id="welcome-title"
-          className="mt-2 text-[24px] font-semibold leading-[1.1] tracking-tight text-slate-900 sm:text-[26px]"
+          className="mt-2 text-[24px] font-semibold leading-[1.1] tracking-tight text-slate-900 dark:text-slate-100 sm:text-[26px]"
         >
           Tres pasos para tu primer mapa.
         </h2>
@@ -123,7 +123,7 @@ export function WelcomeModal() {
         <button
           type="button"
           onClick={close}
-          className="mt-7 w-full rounded-full bg-slate-900 px-5 py-2.5 text-[14px] font-medium text-white shadow-sm transition hover:bg-slate-700"
+          className="mt-7 w-full rounded-full bg-slate-900 px-5 py-2.5 text-[14px] font-medium text-white shadow-sm transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300"
         >
           Empezar
         </button>
@@ -137,7 +137,7 @@ function Step({ number, title, body }: { number: string; title: string; body: st
   return (
     <li className="grid grid-cols-[28px_1fr] gap-3">
       <div
-        className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-[12px] font-semibold tabular-nums text-slate-700"
+        className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-[12px] font-semibold tabular-nums text-slate-700"
         aria-hidden
       >
         {number}

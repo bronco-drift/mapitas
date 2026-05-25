@@ -52,8 +52,8 @@ export function DataUploader() {
           onDrop={onDrop}
           className={`flex w-full items-center gap-2 rounded-md border px-2.5 py-2 text-left text-[13px] transition ${
             dragging
-              ? 'border-slate-900 bg-slate-50 text-slate-900'
-              : 'border-dashed border-slate-300 text-slate-600 hover:border-slate-400 hover:bg-slate-50'
+              ? 'border-slate-900 bg-slate-50 dark:bg-slate-900/40 text-slate-900'
+              : 'border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 dark:text-slate-400 hover:border-slate-400 hover:bg-slate-50'
           }`}
         >
           <span className="inline-block h-4 w-4 shrink-0 rounded-full border border-current text-center text-[11px] leading-[14px]">
@@ -81,7 +81,7 @@ export function DataUploader() {
   }
 
   return (
-    <div className="space-y-2 rounded-md bg-slate-50 p-2.5">
+    <div className="space-y-2 rounded-md bg-slate-50 dark:bg-slate-900/40 p-2.5">
       <div className="flex items-baseline justify-between gap-2">
         <div className="min-w-0">
           <div className="truncate text-[13px] font-medium text-slate-800" title={dataset.filename}>
@@ -94,7 +94,7 @@ export function DataUploader() {
         <button
           type="button"
           onClick={clearSource}
-          className="text-[11px] text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
+          className="text-[11px] text-slate-500 dark:text-slate-300 dark:text-slate-400 underline-offset-2 hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 hover:underline"
         >
           quitar
         </button>
@@ -132,7 +132,7 @@ export function DataUploader() {
       </div>
 
       {stats && 'unmatchedRows' in stats && (
-        <div className="border-t border-slate-200 pt-2 text-[11px]">
+        <div className="border-t border-slate-200 dark:border-slate-800 pt-2 text-[11px]">
           <div>
             <span className="font-medium text-slate-700">{stats.matched}</span>
             <span className="text-slate-500"> de {stats.totalRows ?? stats.matched + stats.unmatched} pintadas</span>
@@ -186,7 +186,7 @@ function Select({
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-full rounded border border-slate-300 bg-white px-2 py-1 text-[12px] text-slate-800 focus:border-slate-900 focus:outline-none"
+      className="w-full rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 text-[12px] text-slate-800 dark:text-slate-200 focus:border-slate-900 focus:outline-none"
     >
       <option value="">{placeholder}</option>
       {options.map(c => (

@@ -67,7 +67,7 @@ export function PaintTab() {
 
   if (!ctx) {
     return (
-      <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-[12px] leading-relaxed text-slate-600">
+      <div className="rounded-md border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 px-3 py-3 text-[12px] leading-relaxed text-slate-600">
         El modo Dibujar aplica a estados, municipios o países. Pasá a un
         nivel con varias regiones (Estados o Municipios en Venezuela; o la
         vista Mundo).
@@ -88,7 +88,7 @@ export function PaintTab() {
           onChange={e => setPaintTitle(e.target.value)}
           placeholder="Mi mapa"
           maxLength={80}
-          className="w-full rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-[13px] font-medium tracking-tight text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:border-slate-900 focus:outline-none"
+          className="w-full rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 px-2.5 py-1.5 text-[13px] font-medium tracking-tight text-slate-900 dark:text-slate-100 placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:border-slate-900 focus:outline-none"
           aria-label="Título del mapa"
         />
       </div>
@@ -103,7 +103,7 @@ export function PaintTab() {
             <button
               type="button"
               onClick={() => setPaintActiveColor(null)}
-              className="text-[10px] text-slate-400 hover:text-slate-700"
+              className="text-[10px] text-slate-400 dark:text-slate-400 hover:text-slate-700"
             >
               soltar
             </button>
@@ -130,7 +130,7 @@ export function PaintTab() {
             />
             <span
               aria-hidden
-              className="block h-6 w-6 rounded border border-slate-300 bg-gradient-to-br from-pink-300 via-amber-300 to-cyan-300"
+              className="block h-6 w-6 rounded border border-slate-300 dark:border-slate-700 bg-gradient-to-br from-pink-300 via-amber-300 to-cyan-300"
             />
           </label>
           <span className="text-[11px] text-slate-500">
@@ -144,7 +144,7 @@ export function PaintTab() {
             )}
           </span>
         </div>
-        <p className="mt-2 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-[11px] leading-snug text-slate-500">
+        <p className="mt-2 rounded-md border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 px-2.5 py-1.5 text-[11px] leading-snug text-slate-500">
           {paint.activeColor
             ? 'Hacé click en una región del mapa para pintarla. Click otra vez sobre la misma región la despinta.'
             : 'Elegí un color para empezar a pintar el mapa.'}
@@ -193,7 +193,7 @@ export function PaintTab() {
       <SavedMapsSection />
 
       {/* Acciones */}
-      <div className="space-y-2 border-t border-slate-100 pt-3">
+      <div className="space-y-2 border-t border-slate-100 dark:border-slate-800 pt-3">
         <DownloadPngButton
           downloading={downloading}
           setDownloading={setDownloading}
@@ -209,7 +209,7 @@ export function PaintTab() {
             }
           }}
           disabled={legend.length === 0}
-          className="block w-full text-[11px] text-slate-500 transition enabled:hover:text-slate-900 disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+          className="block w-full text-[11px] text-slate-500 dark:text-slate-300 dark:text-slate-400 transition enabled:hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
         >
           Limpiar mapa
         </button>
@@ -239,7 +239,7 @@ function ColorSwatch({
       className={`relative h-6 w-full rounded-sm border transition ${
         active
           ? 'border-slate-900 ring-2 ring-slate-900 ring-offset-1'
-          : 'border-slate-200 hover:border-slate-500'
+          : 'border-slate-200 dark:border-slate-800 hover:border-slate-500'
       }`}
       style={{ background: color }}
     >
@@ -302,7 +302,7 @@ function LegendRow({
         placeholder="Sin etiqueta"
         maxLength={32}
         className={`min-w-0 flex-1 bg-transparent text-[12px] focus:outline-none ${
-          isActive ? 'text-white placeholder:text-slate-400' : 'text-slate-800 placeholder:text-slate-400'
+          isActive ? 'text-white placeholder:text-slate-400' : 'text-slate-800 dark:text-slate-200 placeholder:text-slate-400'
         }`}
         aria-label={`Etiqueta del color ${color}`}
       />
@@ -320,8 +320,8 @@ function LegendRow({
         title="Despintar todo"
         className={`shrink-0 rounded p-1 opacity-0 transition group-hover:opacity-100 focus:opacity-100 ${
           isActive
-            ? 'text-slate-400 hover:bg-slate-700 hover:text-white'
-            : 'text-slate-400 hover:bg-slate-200 hover:text-slate-700'
+            ? 'text-slate-400 dark:text-slate-400 hover:bg-slate-700 hover:text-white'
+            : 'text-slate-400 dark:text-slate-400 hover:bg-slate-200 hover:text-slate-700'
         }`}
       >
         <svg
@@ -400,7 +400,7 @@ function SavedMapsSection() {
         type="button"
         onClick={handleSave}
         disabled={totalPainted === 0}
-        className="block w-full rounded-md border border-slate-300 bg-white px-3 py-1.5 text-[12px] font-medium text-slate-700 transition enabled:hover:border-slate-500 enabled:hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+        className="block w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 text-[12px] font-medium text-slate-700 dark:text-slate-300 transition enabled:hover:border-slate-500 enabled:hover:text-slate-900 dark:hover:text-slate-100 dark:text-slate-100 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
       >
         {totalPainted === 0 ? 'Pintá algo para guardar' : 'Guardar mapa actual'}
       </button>
@@ -443,7 +443,7 @@ function SavedMapRow({
     Object.keys(slot.assignments.countries).length
 
   return (
-    <div className="group flex items-center gap-2 rounded-md border border-slate-200 px-2.5 py-1.5 transition hover:bg-slate-50">
+    <div className="group flex items-center gap-2 rounded-md border border-slate-200 dark:border-slate-800 px-2.5 py-1.5 transition hover:bg-slate-50">
       <button
         type="button"
         onClick={onLoad}
@@ -463,7 +463,7 @@ function SavedMapRow({
         onClick={onRename}
         aria-label="Renombrar"
         title="Renombrar"
-        className="shrink-0 rounded p-1 text-slate-400 opacity-0 transition hover:bg-slate-200 hover:text-slate-700 group-hover:opacity-100 focus:opacity-100"
+        className="shrink-0 rounded p-1 text-slate-400 dark:text-slate-400 opacity-0 transition hover:bg-slate-200 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 group-hover:opacity-100 focus:opacity-100"
       >
         <svg
           width="13"
@@ -485,7 +485,7 @@ function SavedMapRow({
         onClick={onDelete}
         aria-label="Eliminar"
         title="Eliminar"
-        className="shrink-0 rounded p-1 text-slate-400 opacity-0 transition hover:bg-rose-50 hover:text-rose-600 group-hover:opacity-100 focus:opacity-100"
+        className="shrink-0 rounded p-1 text-slate-400 dark:text-slate-400 opacity-0 transition hover:bg-rose-50 hover:text-rose-600 group-hover:opacity-100 focus:opacity-100"
       >
         <svg
           width="13"
@@ -600,7 +600,7 @@ function DownloadPngButton({
       type="button"
       onClick={handleClick}
       disabled={disabled || downloading}
-      className="block w-full rounded-md bg-slate-900 px-4 py-2 text-[13px] font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+      className="block w-full rounded-md bg-slate-900 px-4 py-2 text-[13px] font-medium text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
     >
       {downloading ? 'Generando…' : 'Descargar PNG'}
     </button>

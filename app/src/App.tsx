@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { Landing } from './components/Landing'
 import { MIDE } from './components/MIDE'
+import { useStore } from './store'
 
 // Lazy load del mapa: ~280kb extra (Leaflet + react-leaflet + Turf cuando se
 // requiera). La landing NO los necesita, así que sólo se descargan cuando
@@ -18,6 +19,26 @@ function getRoute(): Route {
 
 export default function App() {
   const [route, setRoute] = useState<Route>(getRoute)
+  const colorScheme = useStore(s => s.colorScheme)
+
+  // Aplicar/quitar `.dark` en <html> según el colorScheme persistido.
+  // 'system' resuelve a 'dark' si el OS está en dark, vía matchMedia.
+  // Listener al media query: si el user cambia el OS theme y tiene
+  // 'system' seleccionado, la app se ajusta en vivo.
+  useEffect(() => {
+    const html = document.documentElement
+    const apply = () => {
+      const isDark =
+        colorScheme === 'dark' ||
+        (colorScheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      html.classList.toggle('dark', isDark)
+    }
+    apply()
+    if (colorScheme !== 'system') return
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [colorScheme])
 
   useEffect(() => {
     const onHash = () => setRoute(getRoute())

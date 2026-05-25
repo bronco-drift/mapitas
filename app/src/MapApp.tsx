@@ -36,7 +36,7 @@ export function MapApp() {
   const isRegionTest = view === 'region_test'
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden bg-slate-100 md:flex-row">
+    <div className="flex h-full w-full flex-col overflow-hidden bg-slate-100 dark:bg-slate-950 md:flex-row">
       <ControlPanel mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
       <main className="relative flex flex-1 flex-col">
         <TopBar />

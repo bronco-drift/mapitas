@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
+/* Dark mode con clase explícita en lugar de prefers-color-scheme:
+   permite que el user override su preferencia del sistema desde el toggle
+   del TopBar. App.tsx aplica `.dark` al <html> según el colorScheme del
+   store. Tailwind v4 expone el variante via @custom-variant. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Easings exponenciales como pide el playbook. Ease-out-quart por default
      en todas las transiciones tailwind (`transition` shorthand). */
@@ -12,7 +18,48 @@
 html, body, #root {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* color-scheme: light dark permite que el browser ajuste scrollbars,
+     form controls nativos y otros chrome al dark mode automáticamente
+     cuando agregamos la clase `.dark` al <html>. */
   color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+
+  /* Reescribimos las variables de los slate oscuros para que en dark mode
+     sean neutros (sin tinte azul). Esto afecta TODAS las clases
+     `dark:bg-slate-900`, `dark:border-slate-800`, etc. sin tocar las
+     clases una por una. En light mode los valores originales de Tailwind
+     se preservan. Tonos elegidos:
+       -950: #0a0a0a   (fondo principal, casi negro neutro tipo ChatGPT)
+       -900: #161616   (panel y cards, contraste suficiente sobre -950)
+       -800: #262626   (bordes y separadores visibles pero discretos)
+       -700: #404040   (controles secundarios, hover states)
+     Para los textos NO los cambiamos: queremos `slate-100`, `-200`, etc.
+     un poco más blancos (lo que hacemos abajo en la pasada de textos). */
+  --color-slate-950: oklch(0.13 0 0);
+  --color-slate-900: oklch(0.18 0 0);
+  --color-slate-800: oklch(0.24 0 0);
+  --color-slate-700: oklch(0.33 0 0);
+
+  /* Pasada de TEXTO: en dark mode también neutralizamos los slates claros
+     (chroma 0) y subimos un toque la lightness de los grises medios. El user
+     pidió "textos grises no se leen bien, hacerlos más blancos" mostrando una
+     ref de ChatGPT con texto blanco neutro sobre negro puro. El default de
+     Tailwind para slate-400/500 tiene tinte azul y queda apagado sobre el
+     fondo negro casi neutro que ya usamos. Mantenemos la lightness por encima
+     del default solo en los tonos muteados (500/400) para mejorar contraste
+     sin volver todo blanco plano. En light mode estos valores no se aplican. */
+  --color-slate-50:  oklch(0.985 0 0);
+  --color-slate-100: oklch(0.96 0 0);
+  --color-slate-200: oklch(0.92 0 0);
+  --color-slate-300: oklch(0.86 0 0);
+  --color-slate-400: oklch(0.76 0 0); /* antes 0.704 con tinte azul */
+  --color-slate-500: oklch(0.63 0 0); /* antes 0.554 con tinte azul */
+  --color-slate-600: oklch(0.50 0 0);
+}
+html.dark body {
+  background: #0a0a0a;
 }
 
 /* La landing (/) y MIDE (/#/mide) son páginas de scroll vertical normal:
@@ -111,6 +158,12 @@ input[type="range"] {
   padding: 6px 10px;
   font-family: inherit;
 }
+html.dark .leaflet-tooltip {
+  background: rgb(15 23 42 / 0.96); /* slate-900 */
+  border-color: rgb(30 41 59); /* slate-800 */
+  color: rgb(241 245 249); /* slate-100 */
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.4), 0 1px 2px rgb(0 0 0 / 0.2);
+}
 .leaflet-tooltip-top:before,
 .leaflet-tooltip-bottom:before,
 .leaflet-tooltip-left:before,
@@ -131,6 +184,11 @@ input[type="range"] {
   font-weight: 600;
   color: rgb(15 23 42);
   pointer-events: none;
+}
+html.dark .leaflet-tooltip.thematic-label-permanent {
+  background: rgb(15 23 42 / 0.85); /* slate-900 translúcido */
+  color: rgb(241 245 249);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
 }
 
 /* Labels temáticos con styling custom inyectado desde el panel Capas.
