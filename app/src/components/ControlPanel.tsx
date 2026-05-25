@@ -171,7 +171,10 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           prominente y clickeable. Reemplaza el slogan estático "Transparencia
           territorial" por contexto inmediato del mapa que se está viendo.
           Click → modal de cobertura del indicador, o al tab Datos si no hay
-          indicador (CSV propio o vacío). */}
+          indicador (CSV propio o vacío). En modo Pintar lo ocultamos porque
+          el indicador no se ve en el mapa (lienzo limpio) — mostrar su
+          nombre acá confunde. */}
+      {!paintModeActive && (
       <header className="hidden border-b border-slate-100 px-5 py-4 md:block">
         <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
           Mapitas · Reporte
@@ -229,6 +232,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           </button>
         )}
       </header>
+      )}
       {headerModalOpen && activeIndicator && (
         <IndicatorCoverageModal
           indicator={activeIndicator}

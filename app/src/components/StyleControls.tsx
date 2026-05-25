@@ -17,6 +17,7 @@ export function StyleControls() {
   const resetCosmosTweaks = useStore(s => s.resetCosmosTweaks)
   const level = useStore(s => s.level)
   const view = useStore(s => s.view)
+  const paintModeActive = useStore(s => s.paintModeActive)
   const isGlobal = view === 'global'
   // Personalización del tema Cosmos: visible si el user está mirando Cosmos
   // en cualquiera de las dos vistas. Los colores son compartidos entre tema
@@ -123,9 +124,14 @@ export function StyleControls() {
         <div className="space-y-3">
           <Toggle
             label="Sin bordes"
-            hint="Oculta los bordes internos"
-            checked={style.noBorders}
+            hint={
+              paintModeActive
+                ? 'Forzado a OFF en modo Pintar (los bordes separan regiones del mismo color)'
+                : 'Oculta los bordes internos'
+            }
+            checked={paintModeActive ? false : style.noBorders}
             onChange={v => setMapStyle({ noBorders: v })}
+            disabled={paintModeActive}
           />
 
           <Toggle
@@ -459,24 +465,31 @@ function Toggle({
   hint,
   checked,
   onChange,
+  disabled = false,
 }: {
   label: string
   hint?: string
   checked: boolean
   onChange: (v: boolean) => void
+  disabled?: boolean
 }) {
   return (
-    <label className="flex cursor-pointer items-start justify-between gap-3">
+    <label
+      className={`flex items-start justify-between gap-3 ${
+        disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'
+      }`}
+    >
       <div className="min-w-0">
         <div className="text-[12px] text-slate-800">{label}</div>
         {hint && <div className="text-[10px] text-slate-500">{hint}</div>}
       </div>
       <button
         type="button"
-        onClick={() => onChange(!checked)}
+        onClick={() => !disabled && onChange(!checked)}
+        disabled={disabled}
         className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition ${
           checked ? 'bg-slate-900' : 'bg-slate-200'
-        }`}
+        } ${disabled ? 'cursor-not-allowed' : ''}`}
         aria-pressed={checked}
       >
         <span

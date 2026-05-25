@@ -335,11 +335,11 @@ function fillStyleFor(
     // Sin el override el unmatched del indicador se atenúa al 60%.
     const matched = isOnPaintTab || !!paintColor || !!props?._matched
 
-    // Cuando "Sin bordes" está ON: stroke del mismo color del fill, weight
-    // que se ajusta a la opacidad. fillOpacity y opacity comparten valor para
-    // que TODO el polígono (relleno + stroke superpuesto) se atenúe parejo
-    // cuando el user mueve el slider.
-    if (style.noBorders) {
+    // "Sin bordes" se ignora en paint mode: necesitamos los bordes visibles
+    // para distinguir regiones pintadas adyacentes que comparten color.
+    // El toggle del panel sigue editable, pero su valor se ignora mientras
+    // estás dibujando (al salir del modo Pintar vuelve a aplicarse).
+    if (style.noBorders && !isOnPaintTab) {
       const op = matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)
       return {
         fillColor,
