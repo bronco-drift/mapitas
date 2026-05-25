@@ -300,7 +300,7 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         </div>
       )}
 
-      <div className="border-b border-slate-100 dark:border-slate-800 px-4 pb-2 dark:border-slate-800">
+      <div className="border-b border-slate-100 dark:border-slate-800 px-4 pb-2">
         <div className="inline-flex w-full rounded bg-slate-100 dark:bg-slate-800 p-0.5 text-[11px]">
           {visibleTabs.map(t => (
             <button
@@ -309,8 +309,8 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               onClick={() => setTab(t)}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
                 tab === t
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100'
-                  : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-sm font-medium'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
               }`}
             >
               {tabLabel(t)}
@@ -361,7 +361,12 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
         {tab === 'estilo' && (
           <Section title="Apariencia">
             <div className="space-y-4">
-              <PaletteSelector />
+              {/* La paleta del choropleth NO se muestra en modo Pintar:
+                  ahí los colores se eligen libres desde la paleta del
+                  painter (PaintTab), no desde gradientes. Mostrar el
+                  gradiente del indicador en modo Pintar confunde porque
+                  sugiere que afecta al mapa pintado, y no lo hace. */}
+              {!paintModeActive && <PaletteSelector />}
               {isDiaspora && <ProjectionSelector />}
               <StyleControls />
             </div>
@@ -510,7 +515,14 @@ function PaletteSelector() {
   const setPalette = useStore(s => s.setPalette)
   const mapStyle = useStore(s => s.mapStyle)
   const setMapStyle = useStore(s => s.setMapStyle)
-  const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
+  // Incluimos `reverse` en el `custom` para que tanto el preview del gradient
+  // como los stops mostrados como botones swap se inviertan cuando el toggle
+  // "Invertir paleta" está activo.
+  const custom = {
+    start: mapStyle.customStart,
+    end: mapStyle.customEnd,
+    reverse: mapStyle.paletteReverse,
+  }
   const [extraOpen, setExtraOpen] = useState(false)
 
   const [currentStart, currentEnd] = getPaletteStops(palette, custom)
@@ -609,6 +621,38 @@ function PaletteSelector() {
           aria-label="Color final"
         />
       </div>
+
+      {/* Invertir paleta — útil en dark mode (paletas que arrancan muy
+          claras se pierden contra fondo negro) o para dar vuelta la
+          semántica visual del indicador. Botón compacto en lugar de Toggle
+          full-width porque la sección ya está cargada. */}
+      <button
+        type="button"
+        onClick={() => setMapStyle({ paletteReverse: !mapStyle.paletteReverse })}
+        className={`mt-2 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+          mapStyle.paletteReverse
+            ? 'border-slate-900 bg-slate-900 text-white dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900'
+            : 'border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100'
+        }`}
+        aria-pressed={mapStyle.paletteReverse}
+        title="Invierte el orden de los colores de la paleta"
+      >
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
+          {/* Doble flecha horizontal: convención visual de "swap/reverse" */}
+          <path d="M4 5l-2 2 2 2M14 11l2-2-2-2M2 7h12M14 9H2" />
+        </svg>
+        Invertir paleta
+      </button>
 
       <div className="mt-2">
         <RangeEditor />

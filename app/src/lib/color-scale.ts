@@ -27,8 +27,12 @@ const PALETTES: Record<Exclude<PaletteId, 'custom'>, [string, string]> = {
   spectral: ['#9e0142', '#5e4fa2'],
 }
 
-// Para la paleta 'custom', el caller pasa los colores en el opts.
-export type CustomStops = { start: string; end: string }
+// Opts para colorScale: `start/end` solo se usan cuando palette === 'custom'
+// (override de los colores). `reverse` funciona para CUALQUIER paleta
+// (built-in o custom): invierte el orden de los stops, útil cuando la
+// paleta original arranca muy claro y se pierde en dark mode, o para dar
+// vuelta semánticamente "más=mejor" → "más=peor".
+export type CustomStops = { start: string; end: string; reverse?: boolean }
 
 function hexToRgb(hex: string): [number, number, number] {
   const clean = hex.replace('#', '')
@@ -45,10 +49,14 @@ function rgbToHex(r: number, g: number, b: number): string {
 }
 
 function stopsFor(palette: PaletteId, custom?: CustomStops): [string, string] {
-  if (palette === 'custom') {
-    return [custom?.start ?? '#fde68a', custom?.end ?? '#7c2d12']
-  }
-  return PALETTES[palette]
+  const stops: [string, string] =
+    palette === 'custom'
+      ? [custom?.start ?? '#fde68a', custom?.end ?? '#7c2d12']
+      : PALETTES[palette]
+  // reverse vive en `custom` (no en una signature aparte) para no propagar
+  // un param extra por todos los callers — cualquier código que ya pasa
+  // `custom` solo tiene que agregar `reverse: mapStyle.paletteReverse`.
+  return custom?.reverse ? [stops[1], stops[0]] : stops
 }
 
 // Exposed: devuelve los 2 colores actuales de la paleta para mostrarlos en UI
@@ -92,11 +100,15 @@ export function paletteStops(palette: PaletteId, steps = 6, custom?: CustomStops
 
 export function paletteGradient(palette: PaletteId, custom?: CustomStops, midpoint = 0.5): string {
   const [start, end] = stopsFor(palette, custom)
-  if (palette === 'viridis') return 'linear-gradient(90deg, #fde725, #21918c, #440154)'
-  if (palette === 'rdbu') return 'linear-gradient(90deg, #2166ac, #f7f7f7, #b2182b)'
-  if (palette === 'brbg') return 'linear-gradient(90deg, #543005, #f5f5f5, #003c30)'
-  if (palette === 'piyg') return 'linear-gradient(90deg, #c51b7d, #f7f7f7, #276419)'
-  if (palette === 'spectral') return 'linear-gradient(90deg, #9e0142, #ffffbf, #5e4fa2)'
+  // Truco: `270deg` invierte visualmente el gradient sin tener que reescribir
+  // los stops. Aplica a las paletas hardcoded de 3+ stops (viridis, rdbu, etc.).
+  // Para start/end de 2 stops, `stopsFor` ya devuelve invertido.
+  const dir = custom?.reverse ? '270deg' : '90deg'
+  if (palette === 'viridis') return `linear-gradient(${dir}, #fde725, #21918c, #440154)`
+  if (palette === 'rdbu') return `linear-gradient(${dir}, #2166ac, #f7f7f7, #b2182b)`
+  if (palette === 'brbg') return `linear-gradient(${dir}, #543005, #f5f5f5, #003c30)`
+  if (palette === 'piyg') return `linear-gradient(${dir}, #c51b7d, #f7f7f7, #276419)`
+  if (palette === 'spectral') return `linear-gradient(${dir}, #9e0142, #ffffbf, #5e4fa2)`
   // Si midpoint != 0.5, el color del medio es el del gradiente CURVADO en t=0.5
   if (midpoint !== 0.5) {
     const midColor = colorScale(0.5, 0, 1, palette, custom, midpoint)

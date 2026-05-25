@@ -8,6 +8,15 @@ import { useStore } from './store'
 // el user navega a /#/app. Mejora drásticamente el LCP de la home.
 const MapApp = lazy(() => import('./MapApp').then(m => ({ default: m.MapApp })))
 
+// Dev tools: panel flotante de iteración visual de estilos. Lazy SIEMPRE
+// (chunk separado), pero el render depende de `tweakerEnabled` del store.
+// En DEV ese flag arranca true; en prod arranca false hasta que el user lo
+// active desde Configuración. El chunk se descarga sólo cuando el flag pasa
+// a true por primera vez — antes de eso, cero bytes en el cliente.
+const DesignTweakerLazy = lazy(() =>
+  import('./components/DesignTweaker').then(m => ({ default: m.DesignTweaker })),
+)
+
 type Route = 'landing' | 'app' | 'mide'
 
 function getRoute(): Route {
@@ -20,6 +29,7 @@ function getRoute(): Route {
 export default function App() {
   const [route, setRoute] = useState<Route>(getRoute)
   const colorScheme = useStore(s => s.colorScheme)
+  const tweakerEnabled = useStore(s => s.tweakerEnabled)
 
   // Aplicar/quitar `.dark` en <html> según el colorScheme persistido.
   // 'system' resuelve a 'dark' si el OS está en dark, vía matchMedia.
@@ -70,8 +80,11 @@ export default function App() {
     return () => html.classList.remove('app-locked')
   }, [route])
 
-  if (route === 'app') {
-    return (
+  // Contenido principal por ruta. Lo factoreamos para que el DesignTweaker
+  // (panel flotante de dev tools) pueda renderearse siempre como sibling
+  // sin duplicar la lógica de routing.
+  const content =
+    route === 'app' ? (
       <Suspense
         fallback={
           <div className="flex h-full w-full items-center justify-center bg-slate-100 text-sm text-slate-500">
@@ -81,10 +94,23 @@ export default function App() {
       >
         <MapApp />
       </Suspense>
+    ) : route === 'mide' ? (
+      <MIDE />
+    ) : (
+      <Landing />
     )
-  }
-  if (route === 'mide') {
-    return <MIDE />
-  }
-  return <Landing />
+
+  return (
+    <>
+      {content}
+      {/* Panel flotante DesignTweaker — visible cuando tweakerEnabled = true.
+          Se controla desde TopBar → ⚙️ → Configuración → toggle Tweaks.
+          fallback={null} para no mostrar loader: el panel es secundario. */}
+      {tweakerEnabled && (
+        <Suspense fallback={null}>
+          <DesignTweakerLazy />
+        </Suspense>
+      )}
+    </>
+  )
 }

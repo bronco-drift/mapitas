@@ -53,13 +53,27 @@ export type MapStyle = {
   // Si true (default), el rango automático del color recorta outliers
   // usando percentiles 2/98. Si false, usa el min/max raw.
   autoClipExtremes: boolean
+  // Invierte la paleta del choropleth (el primer color pasa a ser el último
+  // y viceversa). Útil en dark mode cuando paletas que arrancan muy claras
+  // se pierden contra el fondo negro, o para dar vuelta la semántica visual
+  // de un indicador (mayor → más oscuro vs mayor → más claro).
+  paletteReverse: boolean
   // Tema visual de la vista Global (d3-geo). No aplica a vista VE.
   // Mantenemos el type literal acá (no import) para que el bundler no
   // arrastre globe-themes al chunk del store.
   globeTheme: 'day' | 'night' | 'editorial' | 'cosmos'
-  // Toggle "Etiquetas": muestra overlay de labels (Carto only_labels) encima
-  // del basemap. Permite tener el mapa limpio por default y nombres a demanda.
+  // Toggle "Todas las etiquetas": overlay de labels (Carto only_labels)
+  // encima del basemap. Muestra todos los nombres (estados, ciudades,
+  // calles) según el zoom. Granularidad gruesa — los siguientes dos
+  // toggles son control más fino.
   showLabels: boolean
+  // "Etiquetas de estado" (VE): renderea el nombre de cada estado/muni
+  // como label permanente sobre su polígono (overlay SVG/Leaflet propio,
+  // no tiles). Funciona en cualquier basemap. Solo aplica vista VE.
+  showStateLabels: boolean
+  // "Etiquetas de país" (Global): análogo a showStateLabels pero en vista
+  // Global — nombre de cada país sobre su polígono. Solo aplica en globo.
+  showCountryLabels: boolean
 }
 
 export type ThematicMeta = {
@@ -319,6 +333,11 @@ type State = {
   // 'system' (lee prefers-color-scheme del browser). Aplicación de la
   // clase `.dark` al <html> vive en App.tsx.
   colorScheme: ColorScheme
+  // Panel flotante DesignTweaker visible o no. Default = true en DEV,
+  // false en producción. El user puede activarlo desde Configuración para
+  // iterar diseño sobre el deploy real. El chunk se lazy-loadea sólo
+  // cuando este flag es true.
+  tweakerEnabled: boolean
   // Rango custom para clasificación visual (null = usa min/max natural)
   customRange: { min: number | null; mid: number | null; max: number | null }
   // IDs de indicadores que el usuario quiere ocultar de la lista principal.
@@ -377,6 +396,7 @@ type Actions = {
   deleteSavedMap: (id: string) => void
   renameSavedMap: (id: string, name: string) => void
   setColorScheme: (s: ColorScheme) => void
+  setTweakerEnabled: (enabled: boolean) => void
   setCountry: (code: 'VE') => void
   setTab: (tab: PanelTab) => void
   loadThematicManifest: () => Promise<void>
@@ -416,8 +436,11 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   noBorders: true,
   countryBorder: true,
   autoClipExtremes: true,
+  paletteReverse: false,
   globeTheme: 'cosmos',
   showLabels: false,
+  showStateLabels: false,
+  showCountryLabels: false,
 }
 
 function clearAll<P extends Adm0Props | Adm1Props | Adm2Props | DiasporaProps>(
@@ -468,6 +491,11 @@ export const useStore = create<State & Actions>()(
   paintModeActive: false,
   savedMaps: [],
   colorScheme: 'system',
+  // import.meta.env.DEV se sustituye en build-time: true en `vite dev`,
+  // false en `vite build`. Así el tweaker arranca encendido para los devs
+  // (yo / Marcel) y apagado para users finales. Quien lo prenda en prod
+  // (via Configuración) persiste su elección en localStorage.
+  tweakerEnabled: import.meta.env.DEV,
   customRange: { min: null, mid: null, max: null },
   archivedIndicators: DEFAULT_ARCHIVED_INDICATORS,
   _persistedSourceId: null,
@@ -665,7 +693,11 @@ export const useStore = create<State & Actions>()(
 
   applyMerge() {
     const { view, level, adm0, adm1, adm2, diaspora, source, palette, mapStyle, customRange, globalMetric } = get()
-    const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
+    const custom = {
+      start: mapStyle.customStart,
+      end: mapStyle.customEnd,
+      reverse: mapStyle.paletteReverse,
+    }
 
     // Vista Global: lógica aparte, no usa indicators ni level. Lee globalMetric
     // para decidir qué pintar (migrantes recibidos / venezolanos totales / %).
@@ -738,6 +770,10 @@ export const useStore = create<State & Actions>()(
     if (patch.autoClipExtremes !== undefined) {
       get().applyMerge()
     }
+    // Invertir paleta → recolorear (afecta el color de cada feature)
+    if (patch.paletteReverse !== undefined) {
+      get().applyMerge()
+    }
   },
 
   setCosmosTweaks(patch) {
@@ -764,14 +800,24 @@ export const useStore = create<State & Actions>()(
   // ─── Painter actions ──────────────────────────────────────────────────
   setPaintMode(active) {
     set({ paintModeActive: active })
-    // Al activar el modo, llevamos al user al tab Pintar (paleta) si está
-    // en uno que ya no será visible. Al desactivar, lo llevamos a Datos.
     if (active) {
-      const t = get().tab
-      if (t !== 'presets' && t !== 'estilo' && t !== 'pintar') {
-        set({ tab: 'pintar' })
+      // Siempre llevamos al user a la tab Pintar al activar el modo. Antes
+      // sólo cambiábamos si NO estaba en una tab válida del modo painter
+      // (presets/estilo/pintar), pero el user quería que Pintar sea SIEMPRE
+      // la primera vista al entrar — es la tab donde está la paleta del
+      // painter y los slots, que es lo central del modo.
+      set({ tab: 'pintar' })
+      // Si no había color seleccionado, ponemos uno por default para que el
+      // primer click pinte. Sin esto, paint.activeColor=null y el primer
+      // click no hace nada — el user tiene que ir al swatcher primero,
+      // confuso. Default: azul cielo (matchea el fallback del color picker
+      // en PaintTab.tsx). Si el user ya tenía un color elegido, respetamos.
+      const paint = get().paint
+      if (!paint.activeColor) {
+        set({ paint: { ...paint, activeColor: '#5b8def' } })
       }
     } else {
+      // Al desactivar, volver a Datos si el tab actual ya no es visible.
       const t = get().tab
       if (t !== 'datos' && t !== 'capas' && t !== 'estilo') {
         set({ tab: 'datos' })
@@ -929,6 +975,10 @@ export const useStore = create<State & Actions>()(
     set({ colorScheme: scheme })
   },
 
+  setTweakerEnabled(enabled) {
+    set({ tweakerEnabled: enabled })
+  },
+
   setCountry(code) {
     set({ country: code })
   },
@@ -1036,7 +1086,7 @@ export const useStore = create<State & Actions>()(
       name: STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
       // Solo serializamos cosas livianas. La geo data se re-fetchea al cargar.
-      version: 15,
+      version: 18,
       // Migraciones:
       //   v1 → v2: view 'diaspora' → 'global' (rename del modo)
       //   v2 → v3: projection default Orthographic + rotation centrada en VE
@@ -1063,6 +1113,9 @@ export const useStore = create<State & Actions>()(
       //   nuevo default; si los tweakeo, se mantiene.
       //   v13 → v14: agregar savedMaps [] (slots de guardado del painter).
       //   v14 → v15: agregar colorScheme 'system' default (modo claro/oscuro).
+      //   v15 → v16: agregar tweakerEnabled (default DEV / false en prod).
+      //   v16 → v17: agregar showStateLabels + showCountryLabels (false default).
+      //   v17 → v18: agregar paletteReverse al mapStyle (false default).
       migrate: (persisted, version) => {
         let obj = persisted as Record<string, unknown>
         if (version < 2 && obj?.view === 'diaspora') {
@@ -1132,6 +1185,33 @@ export const useStore = create<State & Actions>()(
         if (version < 15 && obj.colorScheme == null) {
           obj = { ...obj, colorScheme: 'system' }
         }
+        if (version < 16 && obj.tweakerEnabled == null) {
+          // En upgrade: default false en prod, true en dev. Usuarios que ya
+          // tenían la app no encuentran el panel hasta que lo activen en
+          // Configuración (a menos que sean devs corriendo `vite dev`).
+          obj = { ...obj, tweakerEnabled: import.meta.env.DEV }
+        }
+        if (version < 17) {
+          // Sumamos showStateLabels + showCountryLabels al mapStyle (default
+          // false ambos — los usuarios que ya tenían la app no ven cambio).
+          const ms = (obj.mapStyle as Record<string, unknown> | undefined) ?? {}
+          obj = {
+            ...obj,
+            mapStyle: {
+              ...ms,
+              showStateLabels: ms.showStateLabels ?? false,
+              showCountryLabels: ms.showCountryLabels ?? false,
+            },
+          }
+        }
+        if (version < 18) {
+          // paletteReverse default false — usuarios viejos no ven cambio.
+          const ms = (obj.mapStyle as Record<string, unknown> | undefined) ?? {}
+          obj = {
+            ...obj,
+            mapStyle: { ...ms, paletteReverse: ms.paletteReverse ?? false },
+          }
+        }
         if (version < 13) {
           // Cosmos pasa a default. Solo migramos a usuarios que tenían el
           // default histórico 'day' — los que habían elegido otro tema (night,
@@ -1167,6 +1247,7 @@ export const useStore = create<State & Actions>()(
         paintModeActive: state.paintModeActive,
         savedMaps: state.savedMaps,
         colorScheme: state.colorScheme,
+        tweakerEnabled: state.tweakerEnabled,
         customRange: state.customRange,
         archivedIndicators: state.archivedIndicators,
         projection: state.projection,

@@ -623,15 +623,14 @@ export function WorldMapView() {
             filter={isCosmos && showSphere ? 'url(#cosmos-globe-shadow)' : undefined}
           />
 
-          {/* Países. El <title> nativo del browser fue reemplazado por un
-              tooltip flotante (abajo) para coherencia visual con el resto
-              del producto.
-
-              Bordes fijos en vista Global: negro #000000 a 0.6px, sin
-              respetar el toggle "Sin bordes" ni el color/grosor del panel
-              Estilo. Razón: las divisiones políticas tienen que ser siempre
-              legibles a escala mundial. El user puede ajustar opacidad del
-              borde (atenuarlo) pero no quitarlo del todo. */}
+          {/* Países. Bordes respetan los toggles del panel Estilo (noBorders,
+              lineWidth, borderColor, borderOpacity) — antes estaban hardcoded
+              a negro 0.6px "por legibilidad", pero el user pidió control real.
+              Aplica el mismo patrón anti-gap que MapView/RegionTestView:
+                - noBorders=true → stroke same-color del fill (sin bordes
+                  visibles, tapando slivers que dejaría weight=0)
+                - lineWidth < 0.5 → same-color con weight mínimo 0.5
+                - sino → stroke con borderColor y weight del slider */}
           {(regionGeo ?? diaspora).features.map((f, i) => {
             const props = f.properties as DiasporaProps
             // Override del paint: si el feature está pintado por el user en
@@ -649,9 +648,25 @@ export function WorldMapView() {
               : (props._matched || paintColor)
                 ? mapStyle.fillOpacity
                 : Math.min(mapStyle.fillOpacity * 0.6, 0.5)
-            const stroke = '#000000'
-            const weight = 0.6
-            const strokeOp = mapStyle.borderOpacity
+
+            // Lógica de bordes idéntica a la de MapView/RegionTestView.
+            let stroke: string
+            let weight: number
+            let strokeOp: number
+            if (mapStyle.noBorders) {
+              stroke = fillColor
+              weight = 0.6
+              strokeOp = mapStyle.fillOpacity
+            } else if (mapStyle.lineWidth < 0.5) {
+              stroke = fillColor
+              weight = Math.max(mapStyle.lineWidth, 0.5)
+              strokeOp = mapStyle.borderOpacity
+            } else {
+              stroke = mapStyle.borderColor
+              weight = mapStyle.lineWidth
+              strokeOp = mapStyle.borderOpacity
+            }
+
             const d = pathGen(f as never)
             if (!d) return null
             return (
@@ -691,6 +706,55 @@ export function WorldMapView() {
               />
             )
           })()}
+
+          {/* Etiquetas de país (toggle "Etiquetas de país" del panel Estilo).
+              Texto centrado en el centroide proyectado de cada feature visible.
+              paintOrder="stroke" + stroke blanco grueso = halo de legibilidad
+              sobre fondos arbitrarios (tierra, agua, banderas, etc.) sin
+              acoplar al colorScheme.
+
+              Filtramos: centroides no finitos (NaN cuando el país está detrás
+              del globo en Orthographic con clipAngle), y countries cuyo
+              centroide cae fuera del viewport visible (no tiene sentido
+              renderear texto que el user no ve).
+
+              No throttleamos por bounding-box-size — los países chicos
+              pueden quedar con label encimado, pero el user puede:
+              (a) zoomear, (b) cambiar región, (c) apagar el toggle. */}
+          {mapStyle.showCountryLabels &&
+            (regionGeo ?? diaspora).features.map(f => {
+              const props = f.properties as DiasporaProps
+              const name = props.name
+              if (!name) return null
+              const centroid = pathGen.centroid(f as never)
+              if (
+                !centroid ||
+                !isFinite(centroid[0]) ||
+                !isFinite(centroid[1])
+              ) {
+                return null
+              }
+              return (
+                <text
+                  key={`label-${props.iso_a3 || name}`}
+                  x={centroid[0]}
+                  y={centroid[1]}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={11}
+                  fontWeight={600}
+                  fill="#0f172a"
+                  stroke="#ffffff"
+                  strokeWidth={3}
+                  strokeLinejoin="round"
+                  paintOrder="stroke"
+                  pointerEvents="none"
+                  style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}
+                >
+                  {name}
+                </text>
+              )
+            })}
         </g>
       </svg>
       )}

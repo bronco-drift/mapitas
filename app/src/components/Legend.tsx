@@ -10,7 +10,11 @@ export function Legend() {
 
   if (!stats || stats.matched === 0) return null
 
-  const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
+  const custom = {
+    start: mapStyle.customStart,
+    end: mapStyle.customEnd,
+    reverse: mapStyle.paletteReverse,
+  }
   const stops = paletteStops(palette, 6, custom)
   const min = stats.min
   const max = stats.max

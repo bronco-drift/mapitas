@@ -18,6 +18,12 @@ export function StyleControls() {
   const level = useStore(s => s.level)
   const view = useStore(s => s.view)
   const paintModeActive = useStore(s => s.paintModeActive)
+  // El toggle "Etiquetas de capitales" es un atajo a la capa temática
+  // `ve-state-capitals` que ya existe. Leemos y escribimos su estado
+  // directamente — si el user la toggle desde acá o desde el panel Capas,
+  // los dos toggles se sincronizan porque comparten state.
+  const stateCapitalsLayer = useStore(s => s.thematic['ve-state-capitals'])
+  const toggleThematic = useStore(s => s.toggleThematic)
   const isGlobal = view === 'global'
   // Personalización del tema Cosmos: visible si el user está mirando Cosmos
   // en cualquiera de las dos vistas. Los colores son compartidos entre tema
@@ -107,16 +113,55 @@ export function StyleControls() {
             ))}
           </div>
         )}
-        {!isGlobal && (
-          <div className="mt-3 border-t border-slate-100 dark:border-slate-800 pt-3">
-            <Toggle
-              label="Etiquetas"
-              hint="Mostrar nombres de ciudades sobre el mapa"
-              checked={style.showLabels}
-              onChange={v => setMapStyle({ showLabels: v })}
-            />
+        {/* Sección de Etiquetas — 3 toggles independientes (combinables).
+            Cada uno controla una capa distinta:
+              - Estados/Países: overlay propio (text en SVG/Leaflet, sin tiles)
+              - Capitales: capa temática `ve-state-capitals` (Leaflet en VE)
+              - Todas: tiles only_labels de Carto (Leaflet, solo VE)
+            En vista Global no aplica "Todas" porque no hay tiles ahí. */}
+        <div className="mt-3 space-y-2.5 border-t border-slate-100 dark:border-slate-800 pt-3">
+          <div className="text-[10px] font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            Etiquetas
           </div>
-        )}
+          {isGlobal ? (
+            <Toggle
+              label="Etiquetas de país"
+              hint="Nombre de cada país sobre su polígono"
+              checked={style.showCountryLabels}
+              onChange={v => setMapStyle({ showCountryLabels: v })}
+            />
+          ) : (
+            <>
+              <Toggle
+                label="Etiquetas de estado"
+                hint={
+                  level === 'adm1'
+                    ? 'Nombre de cada estado sobre su polígono'
+                    : level === 'adm2'
+                      ? 'Nombre de cada municipio sobre su polígono'
+                      : 'Cambiá a nivel Estados o Municipios para verlo'
+                }
+                checked={style.showStateLabels}
+                onChange={v => setMapStyle({ showStateLabels: v })}
+                disabled={level === 'adm0'}
+              />
+              <Toggle
+                label="Etiquetas de capitales"
+                hint="Punto + nombre de cada capital de estado"
+                checked={stateCapitalsLayer?.enabled ?? false}
+                onChange={() => toggleThematic('ve-state-capitals')}
+                // Loading: cuando se prende la primera vez, fetcha el geojson.
+                disabled={stateCapitalsLayer?.loading ?? false}
+              />
+              <Toggle
+                label="Todas las etiquetas"
+                hint="Nombres del basemap (ciudades, pueblos, calles según zoom)"
+                checked={style.showLabels}
+                onChange={v => setMapStyle({ showLabels: v })}
+              />
+            </>
+          )}
+        </div>
       </Disclosure>
 
       {/* Polígonos — disclosure default expandido (lo más usado después de Color) */}
@@ -126,12 +171,11 @@ export function StyleControls() {
             label="Sin bordes"
             hint={
               paintModeActive
-                ? 'Forzado a OFF en modo Pintar (los bordes separan regiones del mismo color)'
+                ? 'En modo Pintar: dos regiones adyacentes del mismo color no se distinguen'
                 : 'Oculta los bordes internos'
             }
-            checked={paintModeActive ? false : style.noBorders}
+            checked={style.noBorders}
             onChange={v => setMapStyle({ noBorders: v })}
-            disabled={paintModeActive}
           />
 
           <Toggle

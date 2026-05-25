@@ -1,5 +1,7 @@
+import { useRef, useState } from 'react'
 import { useStore } from '../store'
 import { REGIONS, type RegionId } from '../lib/regions'
+import { SettingsModal } from './SettingsModal'
 
 type Country = {
   code: string
@@ -43,6 +45,11 @@ export function TopBar() {
   const setPaintMode = useStore(s => s.setPaintMode)
   const colorScheme = useStore(s => s.colorScheme)
   const setColorScheme = useStore(s => s.setColorScheme)
+
+  // Settings modal (popover anclado al botón ⚙️). Lo manejamos con state
+  // local porque no afecta a nadie más del UI — sólo la apertura/cierre.
+  const settingsBtnRef = useRef<HTMLButtonElement>(null)
+  const [settingsOpen, setSettingsOpen] = useState(false)
 
   // Toggle cíclico: light → dark → system → light. El ícono refleja el
   // estado actual; el title explica qué pasa al click siguiente. Cycle
@@ -167,6 +174,46 @@ export function TopBar() {
         </span>
       )}
       <div className="ml-auto flex items-center gap-2 md:gap-3">
+        {/* Orden de los botones (izq → der): Pintar, Modo color, Config.
+            Decisión del user: la acción primaria (Pintar) queda primero;
+            las preferencias (color scheme + config) van al extremo derecho.
+
+            Atajo al tab Dibujar. Cuando el tab activo ya es "dibujar", el
+            botón cambia a estado "activo" (fondo oscuro) y deja de actuar
+            como toggle al tab — sirve como indicador visual del modo.
+            Altura fija h-7 (28px) para alinear con los otros botones.
+            En mobile sin label es cuadrado (w-7); en sm+ se expande con
+            padding para el label "Hacer tu propio mapa". */}
+        <button
+          type="button"
+          onClick={() => setPaintMode(!isDibujando)}
+          className={`flex h-7 w-7 items-center justify-center gap-1.5 rounded-md border text-[11px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 sm:w-auto sm:px-2.5 ${
+            isDibujando
+              ? 'border-slate-900 bg-slate-900 text-white hover:bg-slate-700 dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300'
+              : 'border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100'
+          }`}
+          title={isDibujando ? 'Cerrar modo Pintar' : 'Hacer tu propio mapa'}
+          aria-pressed={isDibujando}
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M3 11.5V13h1.5L12 5.5 10.5 4z" />
+            <path d="M9.5 5 11 6.5" />
+          </svg>
+          <span className="hidden sm:inline">
+            {isDibujando ? 'Pintando' : 'Hacer tu propio mapa'}
+          </span>
+        </button>
+
         {/* Toggle de color scheme: cicla light → dark → system. El ícono
             indica el estado actual; el title sugiere el próximo. */}
         <button
@@ -195,40 +242,41 @@ export function TopBar() {
           )}
         </button>
 
-        {/* Atajo al tab Dibujar. Cuando el tab activo ya es "dibujar", el
-            botón cambia a estado "activo" (fondo oscuro) y deja de actuar
-            como toggle al tab — sirve como indicador visual del modo. */}
+        {/* Configuración: cuenta, toggle Tweaks, mis mapas. Popover
+            anclado al botón vía ref → SettingsModal calcula la posición.
+            Ícono: rueda dentada (gear) en fill, bootstrap-icons. Antes
+            usábamos un ícono stroke con líneas radiales que se confundía
+            con el sol/light mode — el gear con dientes es inequívoco. */}
         <button
+          ref={settingsBtnRef}
           type="button"
-          onClick={() => setPaintMode(!isDibujando)}
-          className={`flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 md:px-2.5 ${
-            isDibujando
-              ? 'border-slate-900 bg-slate-900 text-white hover:bg-slate-700 dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300'
-              : 'border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100'
-          }`}
-          title={isDibujando ? 'Cerrar modo Pintar' : 'Hacer tu propio mapa'}
-          aria-pressed={isDibujando}
+          onClick={() => setSettingsOpen(v => !v)}
+          className="flex h-7 w-7 items-center justify-center rounded-md border border-slate-200 text-slate-600 transition hover:border-slate-400 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
+          title="Configuración"
+          aria-label="Abrir configuración"
+          aria-expanded={settingsOpen}
         >
           <svg
-            width="13"
-            height="13"
+            width="14"
+            height="14"
             viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            fill="currentColor"
             aria-hidden
           >
-            <path d="M3 11.5V13h1.5L12 5.5 10.5 4z" />
-            <path d="M9.5 5 11 6.5" />
+            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
           </svg>
-          <span className="hidden sm:inline">
-            {isDibujando ? 'Pintando' : 'Hacer tu propio mapa'}
-          </span>
         </button>
       </div>
       </div>
+
+      {/* Portal: aparece en document.body, position fixed. Renderizado acá
+          adentro del componente solo para que herede el ciclo de vida. */}
+      <SettingsModal
+        open={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        anchorRef={settingsBtnRef}
+      />
     </div>
   )
 }

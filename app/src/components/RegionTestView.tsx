@@ -105,9 +105,12 @@ export function RegionTestView() {
           />
         )}
         <GeoJSON
-          // Re-mount cuando cambia basemap, región o las asignaciones del
-          // painter — necesario para que Leaflet aplique style nuevo.
-          key={`region-geo-${region.id}-${mapStyle.basemap}-${Object.keys(paintAssignments).length}-${JSON.stringify(paintAssignments)}`}
+          // Re-mount cuando cambia basemap, región, asignaciones del painter,
+          // tweaks de estilo que requieren restyle del polígono, o el modo
+          // Pintar (que cambia la lógica de bordes — ver style abajo). Sin
+          // esto, Leaflet conserva el style viejo del layer porque
+          // GeoJSON.style solo se evalúa en mount.
+          key={`region-geo-${region.id}-${mapStyle.basemap}-${mapStyle.lineWidth}-${mapStyle.borderColor}-${mapStyle.noBorders}-${isOnPaintTab}-${Object.keys(paintAssignments).length}-${JSON.stringify(paintAssignments)}`}
           data={regionGeo as never}
           style={feature => {
             const iso = (feature?.properties as DiasporaProps | undefined)?.iso_a3
@@ -117,10 +120,40 @@ export function RegionTestView() {
               (isOnPaintTab
                 ? '#e5e7eb'
                 : (feature?.properties as DiasporaProps | undefined)?._color ?? '#e5e7eb')
+
+            // Decisión: respetamos el state real de los toggles SIEMPRE,
+            // incluso en modo Pintar. Antes había un override que forzaba
+            // bordes en modo Pintar (para que polígonos pintados del mismo
+            // color se distinguieran), pero el user pidió control completo
+            // — incluyendo poder pintar "sin bordes" en regional Leaflet.
+            // Si dos regiones adyacentes quedan del mismo color sin borde,
+            // queda como decisión visual del usuario, no del producto.
+            if (mapStyle.noBorders) {
+              // Stroke same-color del fill: tapa los slivers que deja
+              // Natural Earth 110m entre países (no tiene topología
+              // compartida tipo TopoJSON). Weight de 0.6 hardcoded — el
+              // slider está disabled cuando noBorders=true; usar lineWidth
+              // acá podría dejar weight=0 y reaparecer los gaps.
+              return {
+                fillColor,
+                color: fillColor,
+                weight: 0.6,
+                fillOpacity: mapStyle.fillOpacity,
+                opacity: mapStyle.fillOpacity,
+              }
+            }
+            // Bordes normales — respeta lineWidth/borderColor/borderOpacity.
+            // Para grosores muy bajos (< 0.5) usamos same-color con mínimo
+            // 0.5 de weight para tapar gaps que serían visibles a esa escala.
+            const useFillForStroke = mapStyle.lineWidth < 0.5
+            const strokeColor = useFillForStroke ? fillColor : mapStyle.borderColor
+            const weight = useFillForStroke
+              ? Math.max(mapStyle.lineWidth, 0.5)
+              : mapStyle.lineWidth
             return {
               fillColor,
-              color: '#475569',
-              weight: 0.7,
+              color: strokeColor,
+              weight,
               fillOpacity: mapStyle.fillOpacity,
               opacity: mapStyle.borderOpacity,
             }

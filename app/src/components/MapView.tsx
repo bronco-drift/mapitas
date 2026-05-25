@@ -335,11 +335,12 @@ function fillStyleFor(
     // Sin el override el unmatched del indicador se atenúa al 60%.
     const matched = isOnPaintTab || !!paintColor || !!props?._matched
 
-    // "Sin bordes" se ignora en paint mode: necesitamos los bordes visibles
-    // para distinguir regiones pintadas adyacentes que comparten color.
-    // El toggle del panel sigue editable, pero su valor se ignora mientras
-    // estás dibujando (al salir del modo Pintar vuelve a aplicarse).
-    if (style.noBorders && !isOnPaintTab) {
+    // "Sin bordes" se respeta siempre, incluso en paint mode. Antes lo
+    // ignorábamos durante Pintar para que regiones adyacentes con el mismo
+    // color se distinguieran, pero el user pidió control completo de los
+    // parámetros de borde. Si esa colisión visual aparece, queda como
+    // decisión consciente — el hint del toggle lo aclara.
+    if (style.noBorders) {
       const op = matched ? style.fillOpacity : Math.min(style.fillOpacity * 0.6, 0.5)
       return {
         fillColor,
@@ -950,6 +951,14 @@ export function MapView() {
             interactive={false}
           />
         )}
+        {/* Overlay de etiquetas de estado/muni — toggleable desde Estilo.
+            Renderea el nombre de cada feature como L.marker con divIcon en
+            el centroide. Subcomponente para usar useMap() sin tocar el
+            render principal del coropleta. */}
+        <StateLabelsOverlay
+          data={data as AdmGeoJSON<Adm1Props | Adm2Props> | null}
+          enabled={mapStyle.showStateLabels && level !== 'adm0'}
+        />
       </MapContainer>
 
       {/* Badge de zoom: click abre un slider para ajuste fino (step 0.1). */}
@@ -1111,4 +1120,85 @@ function hexToRgba(hex: string, alpha: number): string {
   const g = parseInt(h.slice(2, 4), 16)
   const b = parseInt(h.slice(4, 6), 16)
   return `rgba(${r},${g},${b},${alpha})`
+}
+
+// Overlay de etiquetas de estado/muni para vista VE. Cuando enabled=true,
+// monta L.markers con divIcon en el centroide de cada feature mostrando su
+// nombre. Subcomponente para usar useMap() limpiamente; el cleanup remueve
+// los markers cuando enabled cambia a false o data cambia (level switch).
+//
+// Por qué markers + divIcon y no <text> en SVG:
+//   - Leaflet ya tiene el sistema de panes y zoom — los markers se ajustan
+//     solos al pan/zoom sin reproyectar nada manualmente.
+//   - divIcon permite HTML/CSS arbitrario para el styling (más flexible
+//     que <text> SVG, mejor en mobile retina).
+//   - interactive=false → no roban los pointer events del mapa abajo,
+//     que es lo que queremos (solo lectura visual).
+function StateLabelsOverlay({
+  data,
+  enabled,
+}: {
+  data: AdmGeoJSON<Adm1Props | Adm2Props> | null
+  enabled: boolean
+}) {
+  const map = useMap()
+  useEffect(() => {
+    if (!enabled || !data) return
+    const markers: L.Marker[] = []
+    for (const feature of data.features) {
+      const props = feature.properties as Record<string, unknown>
+      // Preferimos `name` (la versión amigable). Fallback a nombreOficial y
+      // por último cualquier cosa parecida a un nombre. Si no hay nada
+      // legible, skip (no rendereamos label vacío).
+      const name = (props.name ?? props.nombreOficial ?? props.nombre) as
+        | string
+        | undefined
+      if (!name) continue
+      // Centroide del feature vía bounds del L.geoJSON temporal. No carga
+      // turf — basta el bbox para posicionar un label en un polígono
+      // razonablemente compacto (los estados/munis lo son).
+      let center: L.LatLng
+      try {
+        center = L.geoJSON(feature as never).getBounds().getCenter()
+      } catch {
+        continue
+      }
+      const marker = L.marker(center, {
+        icon: L.divIcon({
+          html: `<span class="state-label-text">${escapeHtml(name)}</span>`,
+          // className vacío para que Leaflet no agregue su .leaflet-div-icon
+          // (que viene con bg blanco + border — interfere con nuestro estilo).
+          className: 'state-label-marker',
+          // iconSize=[0,0] hace que el span se posicione anchorado al center,
+          // y el translateX(-50%) del CSS lo centra horizontalmente.
+          iconSize: [0, 0],
+          iconAnchor: [0, 0],
+        }),
+        interactive: false,
+        keyboard: false,
+      })
+      try {
+        marker.addTo(map)
+        markers.push(marker)
+      } catch {
+        /* map destruyéndose */
+      }
+    }
+    return () => {
+      for (const m of markers) {
+        try {
+          m.remove()
+        } catch {
+          /* map ya destruido */
+        }
+      }
+    }
+  }, [map, data, enabled])
+  return null
+}
+
+function escapeHtml(s: string): string {
+  return s.replace(/[<>&"]/g, c =>
+    c === '<' ? '&lt;' : c === '>' ? '&gt;' : c === '&' ? '&amp;' : '&quot;',
+  )
 }

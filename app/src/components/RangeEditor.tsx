@@ -33,7 +33,11 @@ export function RangeEditor() {
   const source = useStore(s => s.source)
   const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
 
-  const custom = { start: mapStyle.customStart, end: mapStyle.customEnd }
+  const custom = {
+    start: mapStyle.customStart,
+    end: mapStyle.customEnd,
+    reverse: mapStyle.paletteReverse,
+  }
 
   // Valores reales para el histograma — vienen de las features del nivel activo
   const values = useMemo(() => {

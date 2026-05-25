@@ -26,40 +26,37 @@ html, body, #root {
 html.dark {
   color-scheme: dark;
 
-  /* Reescribimos las variables de los slate oscuros para que en dark mode
-     sean neutros (sin tinte azul). Esto afecta TODAS las clases
-     `dark:bg-slate-900`, `dark:border-slate-800`, etc. sin tocar las
-     clases una por una. En light mode los valores originales de Tailwind
-     se preservan. Tonos elegidos:
-       -950: #0a0a0a   (fondo principal, casi negro neutro tipo ChatGPT)
-       -900: #161616   (panel y cards, contraste suficiente sobre -950)
-       -800: #262626   (bordes y separadores visibles pero discretos)
-       -700: #404040   (controles secundarios, hover states)
-     Para los textos NO los cambiamos: queremos `slate-100`, `-200`, etc.
-     un poco más blancos (lo que hacemos abajo en la pasada de textos). */
-  --color-slate-950: oklch(0.13 0 0);
-  --color-slate-900: oklch(0.18 0 0);
-  --color-slate-800: oklch(0.24 0 0);
-  --color-slate-700: oklch(0.33 0 0);
+  /* Valores derivados del DesignTweaker que el user dejó como referencia:
+       fondo: #030303 (casi negro puro)
+       texto: #ffffff (blanco puro)
+     Los slates oscuros se escalan desde el fondo hacia abajo para que los
+     paneles, bordes y hovers queden visibles. Los slates claros del texto
+     suben a blanco puro en slate-100 y van bajando en jerarquía hacia los
+     muteados (slate-500). Chroma 0 = sin tinte azul, neutral tipo ChatGPT.
+     En light mode estos valores no se aplican. */
+  --color-slate-950: oklch(0.05 0 0);  /* ≈ #030303, fondo principal */
+  --color-slate-900: oklch(0.11 0 0);  /* panel y cards */
+  --color-slate-800: oklch(0.18 0 0);  /* bordes y separadores */
+  --color-slate-700: oklch(0.28 0 0);  /* hover/secondary */
 
-  /* Pasada de TEXTO: en dark mode también neutralizamos los slates claros
-     (chroma 0) y subimos un toque la lightness de los grises medios. El user
-     pidió "textos grises no se leen bien, hacerlos más blancos" mostrando una
-     ref de ChatGPT con texto blanco neutro sobre negro puro. El default de
-     Tailwind para slate-400/500 tiene tinte azul y queda apagado sobre el
-     fondo negro casi neutro que ya usamos. Mantenemos la lightness por encima
-     del default solo en los tonos muteados (500/400) para mejorar contraste
-     sin volver todo blanco plano. En light mode estos valores no se aplican. */
-  --color-slate-50:  oklch(0.985 0 0);
-  --color-slate-100: oklch(0.96 0 0);
-  --color-slate-200: oklch(0.92 0 0);
-  --color-slate-300: oklch(0.86 0 0);
-  --color-slate-400: oklch(0.76 0 0); /* antes 0.704 con tinte azul */
-  --color-slate-500: oklch(0.63 0 0); /* antes 0.554 con tinte azul */
-  --color-slate-600: oklch(0.50 0 0);
+  --color-slate-50:  oklch(1.00 0 0);  /* blanco puro */
+  --color-slate-100: oklch(0.99 0 0);  /* títulos */
+  --color-slate-200: oklch(0.94 0 0);  /* body fuerte */
+  --color-slate-300: oklch(0.86 0 0);  /* body */
+  --color-slate-400: oklch(0.76 0 0);  /* muteado */
+  --color-slate-500: oklch(0.62 0 0);  /* muy muteado */
+  --color-slate-600: oklch(0.48 0 0);
 }
 html.dark body {
-  background: #0a0a0a;
+  background: #030303;
+}
+
+/* Sliders nativos en dark mode: el accent default de Tailwind (clase
+   `accent-slate-900`) queda casi negro sobre el fondo casi negro y se
+   pierde. Forzamos un gris medio neutro para TODOS los range inputs en
+   dark sin tocar cada uno. */
+html.dark input[type="range"] {
+  accent-color: oklch(0.7 0 0);
 }
 
 /* La landing (/) y MIDE (/#/mide) son páginas de scroll vertical normal:
@@ -187,6 +184,38 @@ html.dark .leaflet-tooltip {
 }
 html.dark .leaflet-tooltip.thematic-label-permanent {
   background: rgb(15 23 42 / 0.85); /* slate-900 translúcido */
+  color: rgb(241 245 249);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+}
+
+/* Etiquetas de estado/muni (toggle "Etiquetas de estado" del panel Estilo).
+   Markers con divIcon en el centroide de cada feature ADM1/ADM2. El
+   className del marker es neutro (sin bg/border del default leaflet-div-icon),
+   y todo el styling vive en el <span> hijo para que tenga forma propia. */
+.state-label-marker {
+  background: transparent !important;
+  border: none !important;
+}
+.state-label-text {
+  display: inline-block;
+  padding: 1px 6px;
+  background: rgb(255 255 255 / 0.88);
+  border-radius: 3px;
+  color: rgb(15 23 42);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  white-space: nowrap;
+  /* Centramos horizontalmente el span sobre el ancla del marker (iconAnchor
+     [0,0] cae en el centroide del feature). translateY pequeño para que el
+     texto quede ligeramente arriba del centro geométrico, más legible. */
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.12);
+  pointer-events: none;
+  letter-spacing: -0.005em;
+}
+html.dark .state-label-text {
+  background: rgb(15 23 42 / 0.85);
   color: rgb(241 245 249);
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
 }
