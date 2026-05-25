@@ -570,25 +570,39 @@ cada visita.
 
 ---
 
-## Modo oscuro global
+## Modo oscuro — polish + paletas dark-aware del coroplético
 
-Hoy el UI está hardcoded en light (slate-50 / white / slate-900 text).
-Agregar dark mode coherente con la estética Apple/Anthropic:
+Base ya implementada (commit `93bbee0`): toggle 3 estados en TopBar
+(claro/oscuro/sistema, default sistema), persistencia en localStorage,
+slates dark override a OKLCH neutros (sin tinte azul tipo ChatGPT),
+cobertura en panel, modales, controles.
 
-- Fondo principal `bg-slate-950` en lugar de `bg-slate-50`
-- Texto invertido (`text-slate-100` para body, `text-white` para títulos)
-- Bordes `border-slate-800` en lugar de `border-slate-200`
-- Mantener el mapa con basemap activo del user — el "dark" del UI no
-  fuerza basemap oscuro (el user puede tener Carto Dark o Cosmos
-  por su cuenta).
+**Lo que queda**:
 
-Toggle: en panel Estilo o como botón del TopBar. Persistir en
-localStorage. Default: `prefers-color-scheme` del browser.
-
-Cuidado: muchos componentes tienen colores hardcoded inline
-(swatches, badges, modal Wiki, etc.). Pasada de design system con
-clases `dark:` de Tailwind. Ojo con el tema Cosmos del globo, que
-ya tiene su propio dark interno — no debe duplicar.
+1. **Paletas dark-aware del coroplético** (importante). Las paletas
+   actuales (Viridis, OrRd, BuPu, Blues, Greys, etc.) fueron diseñadas
+   para fondo blanco. En dark mode pierden legibilidad: las que arrancan
+   muy claras (amarillos, naranjas pálidos, blancos casi-blancos) se
+   "comen" con el fondo `#0a0a0a` y desaparece el extremo bajo del rango.
+   Opciones:
+   - Paletas dark separadas (ej. Viridis arranca en oklch(0.3) en vez de
+     oklch(0.95)) y el sistema elige según `colorScheme`.
+   - Reverse automático en dark mode (oscuro→claro en vez de claro→oscuro).
+     Más simple pero no resuelve paletas categóricas.
+   - Overlay de luminosidad sobre la paleta original. Hack, no recomendado.
+   - **Recomendado**: definir variantes `palette.dark` opcional en
+     `data/palettes.ts`. Si existe, usar; si no, fallback a la light.
+2. **Polish pass** general:
+   - Revisar dark variants en componentes que no testeé visualmente
+     (RangeEditor histograma, PaintTab swatches, IndicatorCoverageModal,
+     WelcomeModal).
+   - Tooltips de Leaflet ya están en dark; verificar tooltips temáticos
+     custom (`thematic-label-custom`) en dark mode.
+   - Focus rings: hoy `ring-slate-300` en light, falta variante dark.
+   - Selección activa de items (border-slate-900 en light) puede quedar
+     invisible en dark — revisar `bg-slate-100 dark:bg-slate-800`
+     contraste con borde activo.
+3. **Modo oscuro en landings**: ver item separado más abajo.
 
 ---
 
@@ -640,6 +654,240 @@ oficial sin esfuerzo extra.
 NOTA: relacionado con "Mejorar borde de Venezuela en vista Global"
 (sección de arriba) — los dos abordan el problema de "VE no se ve igual
 de bien fuera de su vista propia".
+
+---
+
+## Modo oscuro en landings (¿aporta?)
+
+La app (`/#/app`) ya tiene dark mode (commit `93bbee0`). Las landings
+(`/` y `/#/mide`) siguen en light hardcoded.
+
+Pregunta abierta: **¿vale la pena extenderlo?** Argumentos:
+
+- A favor: coherencia visual con la app. Si el user tiene SO en dark y
+  entra primero a la landing, ver dark desde el primer paint reduce
+  fricción.
+- En contra: las landings son **piezas editoriales**, no UI funcional.
+  Su diseño está pensado con foto/contraste/jerarquía específica para
+  un solo modo. Versionarlas en dark requiere repensar cada bloque
+  (gradientes, tipografía sobre foto, callouts, etc.) — es más trabajo
+  de design que de implementación, y el "dark de la landing" puede
+  terminar siendo peor que el light original.
+
+Decisión a tomar después de un experimento: ver cómo se ve la landing
+con `prefers-color-scheme: dark` haciendo simplemente invert básico
+(bg-white→bg-slate-950, text-slate-900→text-slate-100). Si queda
+decente con poco esfuerzo, sumarlo. Si requiere rediseño completo de
+cada sección, postergar indefinidamente o **no hacerlo**.
+
+Apple no hace dark mode en su landing principal (apple.com) — es light.
+Solo el sistema operativo y apps tienen dark. Anthropic.com sí
+soporta dark mode. Hay precedente para ambas decisiones.
+
+---
+
+## Bug zoom mapa global no va al centro
+
+En vista Global (d3-geo, `WorldMapView.tsx`), hacer zoom con scroll
+del mouse **no va hacia el centro del viewport** sino hacia donde
+queda el cursor relativo al SVG, pero el cálculo está descalibrado:
+el mapa se desplaza después del zoom en vez de quedarse anclado al
+punto bajo el cursor.
+
+Reproducir: abrir vista Global, scrollear con mouse al centro del
+mapa. Esperado: zoom apunta al centro. Observado: zoom desplaza el
+mapa.
+
+Diagnóstico probable: el `d3-zoom` (o el handler manual de
+PointerEvents si así está hecho) usa coordenadas del browser pero
+no resta el offset del bounding rect del SVG, o lo hace mal cuando
+el viewport tiene `transform` aplicado por algún padre.
+
+Investigar: `app/src/components/WorldMapView.tsx` — ver cómo está
+montado el zoom y comparar contra el ejemplo canónico de
+`d3-zoom` + `geoIdentity`.
+
+---
+
+## Sacar "local" de la barra
+
+En el TopBar aparece la palabra **"local"** en algún lado (probablemente
+badge BETA o nombre del entorno en dev). En producción no debería
+aparecer. Revisar `TopBar.tsx` y `MapApp.tsx` para ver de dónde sale
+y quitar / condicionar a `import.meta.env.DEV` si es un dev-only marker.
+
+---
+
+## Mostrar MIDE en la barra de la landing principal
+
+Hoy el callout de MIDE en la landing principal está en el body
+(tarea #110 ya completada). El user quiere que aparezca también en
+la **barra de navegación de la landing** — link/badge "Proyecto MIDE"
+junto a los demás items del TopBar.
+
+Implementación: editar el TopBar de la landing principal (`/`)
+para sumar un link a `#/mide`. Estética sutil tipo "Proyecto MIDE →"
+o un chip discreto. Verificar contraste y orden con el resto de
+los links.
+
+---
+
+## Zoom rápido a lugares específicos (Caracas, La Guaira, etc.)
+
+Hoy para mirar lugares pequeños y específicos hay que hacer pan+zoom
+manual desde la vista nacional. Para ciudades clave (Caracas, La Guaira,
+Maracaibo, Valencia, Maracay, Mérida, Cumaná, Puerto Ordaz, Barquisimeto)
+el usuario debería poder saltar directo.
+
+**UX propuesta**: caja o picker discreto en el ControlPanel o TopBar
+con lista de "lugares" curada. Click → `fitBounds` animado al rectángulo
+de la ciudad. Bonus: dropdown searcheable si la lista crece.
+
+Datos:
+1. Bounds rectangulares por ciudad en `data/places.ts` (lat/lng mínimo
+   y máximo). Empezar con ~10 lugares de demanda alta.
+2. Alternativa: reutilizar los polígonos de munis principales (`Caracas`
+   = Libertador DC + Sucre + Chacao + Baruta + El Hatillo) y `fitBounds`
+   sobre la unión. Más exacto pero más caro.
+
+Trigger explícito para crecer la lista: cuando aparezcan 2+ pedidos de
+"no encuentro X". Hasta ahí, lista chica curada es lo correcto.
+
+---
+
+## Mapas en relieve (relief / terrain basemap)
+
+Hoy los basemaps son flat (Carto, OSM, satélite). Para Venezuela el
+relieve importa contextualmente: cordillera de los Andes, macizo
+guayanés, llanos. Sin relief, dos estados con perfil topográfico
+opuesto se ven idénticos.
+
+**Opciones evaluadas**:
+
+| Fuente | Calidad | Costo | Static-first |
+|--------|---------|-------|--------------|
+| Mapbox Outdoors | Alta | Paid (free tier 50k loads) | Tiles externos |
+| OpenTopoMap | Media-alta | Free | Tiles externos |
+| Esri World Topographic | Media | Free uso comercial limitado | Tiles externos |
+| Stadia Maps Stamen Terrain | Alta | Free <200k req/mes | Tiles externos |
+
+Recomendación: empezar con **OpenTopoMap** (free + suficiente calidad
+para contexto). Si se nota lentitud o quiebran los tiles, evaluar
+Stadia Stamen Terrain.
+
+Implementación: sumar entry al catálogo de basemaps en `data/basemaps.ts`
+con URL del tile server. Sin cambios de código.
+
+---
+
+## Refactor UX/UI — bajar fricción de visualizar y dibujar
+
+El UI actual funciona pero **acumuló opciones y patrones que no se
+revisaron juntos**. Para un visitante nuevo hay demasiado para
+decidir antes de ver el primer mapa pintado, y para el painter el
+flujo "elegir indicador → ajustar paleta → pintar" tiene fricción
+en cada step.
+
+**Trabajo**:
+
+1. Auditar friction points en los dos flujos principales:
+   - **Visualizar reporte**: primer click hasta "estoy viendo el dato
+     que quería"
+   - **Dibujar**: primer click hasta "ya pinté algo y se ve cómo quiero"
+2. Cada step que requiere >1 decisión, evaluar si:
+   - Tiene un default razonable que se pueda elegir por nosotros
+   - Se puede mover a "Avanzado" (ver item siguiente)
+   - Se puede eliminar (ver siguiente al siguiente)
+3. Pasada de `/impeccable critique` sobre los dos flujos con foco en
+   first-time UX y reincidencia.
+
+Relacionado con: "Defaults + reordenar sección Estilos" (ya en backlog,
+sección de arriba) y los dos items siguientes (Simple/Avanzado, Audit
+de features).
+
+---
+
+## Modo Simple / Avanzado con toggle
+
+Hoy todas las opciones de estilo siempre visibles. Mucha cognición
+upfront para users que sólo quieren ver un mapa.
+
+**Propuesta**:
+
+- **Modo Simple** (default para visitantes nuevos):
+  - Indicador
+  - Nivel (estados / munis)
+  - Paleta (4-5 paletas curadas en vez de las 16)
+  - Toggle mostrar/ocultar bordes
+- **Modo Avanzado** (toggle persistente en localStorage):
+  - Todo lo demás: midpoint slider, opacidades, basemap, capas
+    temáticas, labels, ajustes finos, etc.
+
+UX del toggle: link discreto al final del panel "Modo avanzado →"
+que expande el resto. Mantener todos los controles funcionando igual;
+sólo cambia qué se ve por default.
+
+**Beneficio**: visitante nuevo ve 4 controles en vez de 20+. Power
+user activa avanzado una vez y ya queda persistido.
+
+**Cuidado**: no esconder cosas que el usuario eventualmente NECESITA
+encontrar (subir CSV, paleta personalizada). Esas deben quedar
+descubribles aunque estén en avanzado — un hint del tipo "¿buscás X?
+está en Modo avanzado" si detectamos intento.
+
+---
+
+## Audit de features — ¿qué podemos sacar?
+
+Acumulamos features incrementalmente. Algunas pueden no estar siendo
+usadas o agregar complejidad sin pagar suficiente valor.
+
+**Candidatos a evaluar** (no necesariamente a sacar — primero medir):
+
+- **Slider de midpoint**: ¿cuántos users lo mueven realmente?
+- **16 paletas**: probablemente 4-5 cubren 90% de los casos. Curar.
+- **Slider de opacidad de borde** además del de relleno: ¿útil o ruido?
+- **Toggle "Sin bordes"** además del slider de grosor 0: ¿redundante?
+- **Tab "Capas"** con 8+ capas temáticas: en mobile ocupa pantalla
+  entera. ¿Cuáles se usan?
+- **Basemap "Contornos países"**: nicho — ¿qué % lo selecciona?
+- **Vista Test Leaflet** (regiones experimentales): ¿sigue siendo
+  experimento o ya quedó como feature? Decidir o sacar.
+
+**Cómo medir** sin agregar analytics invasivo:
+1. Sumar Plausible o Umami (privacy-first, anónimo) con eventos
+   custom para feature usage. Configurable en 1 commit.
+2. Mirar después de 2-4 semanas qué se usa.
+3. Para todo lo que no llega a 5% de sesiones, evaluar sacar o esconder
+   detrás de Modo Avanzado.
+
+Trigger: hacerlo **después** del refactor UX (item arriba) para que
+no estemos sacando cosas que justo se podrían rescatar mejorando su
+descubribilidad.
+
+---
+
+## Mobile: agrandar área del mapa, achicar lista
+
+Hoy en mobile el bottom drawer tiene altura ~45vh y la lista de
+indicadores adentro ocupa mucho espacio vertical. Cuando el user
+está dibujando (Pintar) o explorando, ve poco mapa.
+
+**Cambios propuestos**:
+
+1. **Drawer más bajo por default** en mobile (~30-35vh en vez de 45).
+   Mantener el drag handle para expandirlo cuando haga falta.
+2. **Lista de indicadores más densa**: reducir padding vertical de cada
+   item (16px → 8px), tamaño de label (14px → 13px), descripción colapsada
+   por default (tap para expandir).
+3. **Cuando está activo el modo Pintar** en mobile, el drawer debería
+   minimizarse aún más (~25vh) y mostrar sólo el color picker y el
+   pincel. Volver al tamaño completo al salir del modo.
+4. **Botón flotante "Mapa" / "Panel"** persistente para alternar full-map
+   vs full-panel rápido (toggle binario), en vez de drag manual.
+
+Beneficio principal: dibujar se vuelve usable en mobile. Hoy es
+incómodo porque el drawer ocupa casi la mitad de la pantalla.
 
 ---
 
