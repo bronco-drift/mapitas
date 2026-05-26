@@ -524,20 +524,27 @@ function Toggle({
       }`}
     >
       <div className="min-w-0">
-        <div className="text-[12px] text-slate-800">{label}</div>
-        {hint && <div className="text-[10px] text-slate-500">{hint}</div>}
+        <div className="text-[12px] text-slate-800 dark:text-slate-100">{label}</div>
+        {hint && <div className="text-[10px] text-slate-500 dark:text-slate-400">{hint}</div>}
       </div>
       <button
         type="button"
         onClick={() => !disabled && onChange(!checked)}
         disabled={disabled}
+        // Track del toggle. Cuando ON en dark, antes era bg-slate-900 (casi
+        // negro = invisible sobre panel del mismo color). Ahora usa
+        // slate-100 (claro) en dark para que SE VEA contraste. Knob abajo
+        // invierte: blanco en light, slate-900 en dark, queda visible
+        // sobre cualquier track.
         className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition ${
-          checked ? 'bg-slate-900' : 'bg-slate-200'
+          checked
+            ? 'bg-slate-900 dark:bg-slate-100'
+            : 'bg-slate-200 dark:bg-slate-700'
         } ${disabled ? 'cursor-not-allowed' : ''}`}
         aria-pressed={checked}
       >
         <span
-          className={`inline-block h-3 w-3 transform rounded-full bg-white dark:bg-slate-900 transition ${
+          className={`inline-block h-3 w-3 transform rounded-full bg-white shadow-sm transition dark:bg-slate-900 ${
             checked ? 'translate-x-3.5' : 'translate-x-0.5'
           }`}
         />

@@ -207,26 +207,33 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
             className="group mt-1.5 block w-full text-left transition focus:outline-none"
             aria-label={`Ver cobertura del reporte: ${activeIndicator.label}`}
           >
-            <div className="flex items-baseline gap-2">
-              <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:text-slate-100 dark:group-hover:text-blue-400">
+            <div className="flex items-center gap-1.5">
+              <h1 className="text-[18px] font-semibold leading-[1.15] tracking-tight text-slate-900 group-hover:text-blue-600 dark:text-slate-100 dark:group-hover:text-blue-400">
                 {activeIndicator.label}
               </h1>
+              {/* Info icon — antes era una flecha sutil casi invisible. Un
+                  círculo "i" comunica "esto abre más detalle" mejor que el
+                  chevron, y queda visible en ambos modos. */}
               <svg
                 viewBox="0 0 16 16"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1.75"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-3 w-3 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-600"
+                className="h-3.5 w-3.5 shrink-0 text-slate-400 transition group-hover:text-blue-600 dark:text-slate-500 dark:group-hover:text-blue-400"
                 aria-hidden="true"
               >
-                <path d="M3 8h10M9 4l4 4-4 4" />
+                <circle cx="8" cy="8" r="6.5" />
+                <path d="M8 11v-3M8 5.5h0" />
               </svg>
             </div>
-            <p className="mt-1 text-[11px] leading-snug text-slate-500">
+            <p className="mt-1 text-[11px] leading-snug text-slate-500 dark:text-slate-400">
               {activeIndicator.year > 0 ? `${activeIndicator.year} · ` : ''}
               {activeIndicator.source}
+              <span className="ml-1 text-slate-400 dark:text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400">
+                · Ver cobertura
+              </span>
             </p>
           </button>
         ) : source?.kind === 'upload' ? (
@@ -268,12 +275,14 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
           el "nivel" es siempre el país receptor. */}
       {!isDiaspora && (
         <div className="px-4 pt-2 pb-1.5">
-          <div className="inline-flex w-full rounded bg-slate-100 dark:bg-slate-800 p-0.5 text-[11px] dark:bg-slate-800/60">
+          <div className="inline-flex w-full rounded bg-slate-100 p-0.5 text-[11px] dark:bg-slate-800">
             <button
               type="button"
               onClick={() => setLevel('adm0')}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-                level === 'adm0' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100' : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
+                level === 'adm0'
+                  ? 'bg-white text-slate-900 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100'
+                  : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               País
@@ -282,7 +291,9 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               type="button"
               onClick={() => setLevel('adm1')}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-                level === 'adm1' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100' : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
+                level === 'adm1'
+                  ? 'bg-white text-slate-900 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100'
+                  : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               Estados
@@ -291,7 +302,9 @@ export function ControlPanel({ mobileOpen = false, onMobileClose }: Props) {
               type="button"
               onClick={() => setLevel('adm2')}
               className={`flex-1 rounded-sm px-2 py-0.5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-                level === 'adm2' ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100' : 'text-slate-500 dark:text-slate-300 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 dark:text-slate-300 dark:text-slate-300 dark:text-slate-400 dark:hover:text-slate-200'
+                level === 'adm2'
+                  ? 'bg-white text-slate-900 shadow-sm font-medium dark:bg-slate-700 dark:text-slate-100'
+                  : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               Municipios

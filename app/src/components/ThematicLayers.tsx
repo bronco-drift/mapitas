@@ -56,15 +56,43 @@ export function ThematicLayersList() {
                   style={{ background: enabled ? effectiveColor : 'transparent' }}
                 />
                 <span className="min-w-0 flex-1">
-                  <div className={`truncate ${enabled ? 'text-slate-900' : 'text-slate-700'}`}>
+                  <div
+                    className={`truncate ${
+                      enabled
+                        ? 'text-slate-900'
+                        : 'text-slate-700 dark:text-slate-300'
+                    }`}
+                  >
                     {meta.label}
                   </div>
-                  <div className="text-[10px] text-slate-400">
+                  <div
+                    className={`text-[10px] ${
+                      enabled || expanded
+                        ? 'text-slate-500 dark:text-slate-600'
+                        : 'text-slate-400'
+                    }`}
+                  >
                     {meta.featureCount} · {meta.sizeKB} KB
-                    {hasOverride && <span className="ml-1 text-slate-500">· editado</span>}
+                    {hasOverride && (
+                      <span
+                        className={`ml-1 ${
+                          enabled || expanded
+                            ? 'text-slate-600 dark:text-slate-700'
+                            : 'text-slate-500'
+                        }`}
+                      >
+                        · editado
+                      </span>
+                    )}
                   </div>
                 </span>
-                <span className="text-[10px] text-slate-400">
+                <span
+                  className={`text-[10px] ${
+                    enabled || expanded
+                      ? 'text-slate-500 dark:text-slate-600'
+                      : 'text-slate-400'
+                  }`}
+                >
                   {loading ? '…' : enabled ? 'on' : ''}
                 </span>
               </button>
@@ -341,11 +369,13 @@ function ToggleInline({ checked, onChange }: { checked: boolean; onChange: (v: b
       onClick={() => onChange(!checked)}
       aria-pressed={checked}
       className={`relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
-        checked ? 'bg-slate-900' : 'bg-slate-300'
+        checked
+          ? 'bg-slate-900 dark:bg-slate-100'
+          : 'bg-slate-300 dark:bg-slate-700'
       }`}
     >
       <span
-        className={`inline-block h-3 w-3 transform rounded-full bg-white dark:bg-slate-900 shadow transition ${
+        className={`inline-block h-3 w-3 transform rounded-full bg-white shadow-sm transition dark:bg-slate-900 ${
           checked ? 'translate-x-3.5' : 'translate-x-0.5'
         }`}
       />

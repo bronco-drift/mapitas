@@ -69,9 +69,19 @@ export function RegionTestView() {
     isPaintingRef.current = isPainting
   }, [isPainting])
 
-  const basemap = getBasemap(mapStyle.basemap)
-  const showTiles =
-    !!basemap.url && !mapStyle.isolateCountry && mapStyle.basemap !== 'solid'
+  // En vistas regionales no rendereamos los basemaps vectoriales propios
+  // (world-outlines / cosmos): esos están pensados para el viewport de
+  // Venezuela en MapView. Para no dejar al user con un mapa vacío sobre
+  // fondo plano, fallback a 'carto-light-nolabels' (tiles sin nombres)
+  // cuando el basemap activo es uno de los vectoriales o sólido.
+  const effectiveBasemapId =
+    mapStyle.basemap === 'world-outlines' ||
+    mapStyle.basemap === 'cosmos' ||
+    mapStyle.basemap === 'solid'
+      ? 'carto-light-nolabels'
+      : mapStyle.basemap
+  const basemap = getBasemap(effectiveBasemapId)
+  const showTiles = !!basemap.url && !mapStyle.isolateCountry
   const bgColor = mapStyle.transparentBg ? 'transparent' : mapStyle.bgColor
 
   if (!diaspora || !regionGeo) {

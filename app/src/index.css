@@ -39,12 +39,18 @@ html.dark {
   --color-slate-800: oklch(0.18 0 0);  /* bordes y separadores */
   --color-slate-700: oklch(0.28 0 0);  /* hover/secondary */
 
-  --color-slate-50:  oklch(1.00 0 0);  /* blanco puro */
-  --color-slate-100: oklch(0.99 0 0);  /* títulos */
-  --color-slate-200: oklch(0.94 0 0);  /* body fuerte */
-  --color-slate-300: oklch(0.86 0 0);  /* body */
-  --color-slate-400: oklch(0.76 0 0);  /* muteado */
-  --color-slate-500: oklch(0.62 0 0);  /* muy muteado */
+  /* Textos en dark: shift toda la escala hacia abajo para que slate-100
+     (el más usado para titles) sea #ededed en lugar de blanco puro.
+     Blanco puro sobre #030303 era demasiado contraste — el user reportó
+     que los grises actuales "no se leen bien" porque el rango entre
+     muteados y primarios era muy comprimido. Ahora hay más diferenciación
+     entre niveles, todos legibles. */
+  --color-slate-50:  oklch(0.96 0 0);  /* casi blanco */
+  --color-slate-100: oklch(0.93 0 0);  /* ≈ #ededed, títulos y body principal */
+  --color-slate-200: oklch(0.87 0 0);  /* body fuerte */
+  --color-slate-300: oklch(0.80 0 0);  /* body normal */
+  --color-slate-400: oklch(0.72 0 0);  /* muteado */
+  --color-slate-500: oklch(0.60 0 0);  /* muy muteado */
   --color-slate-600: oklch(0.48 0 0);
 }
 html.dark body {

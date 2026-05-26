@@ -422,7 +422,7 @@ const DEFAULT_ENABLED_THEMATIC = ['internacionales-maritimos']
 
 export const DEFAULT_MAP_STYLE: MapStyle = {
   lineWidth: 0.6,
-  borderColor: '#475569',
+  borderColor: '#3B3B3B',
   bgColor: '#f1f5f9',
   isolateCountry: false,
   stateOverlayInMuni: false,
@@ -433,7 +433,7 @@ export const DEFAULT_MAP_STYLE: MapStyle = {
   fillOpacity: 0.95,
   borderOpacity: 1,
   transparentBg: false,
-  noBorders: true,
+  noBorders: false,
   countryBorder: true,
   autoClipExtremes: true,
   paletteReverse: false,
@@ -491,11 +491,10 @@ export const useStore = create<State & Actions>()(
   paintModeActive: false,
   savedMaps: [],
   colorScheme: 'system',
-  // import.meta.env.DEV se sustituye en build-time: true en `vite dev`,
-  // false en `vite build`. Así el tweaker arranca encendido para los devs
-  // (yo / Marcel) y apagado para users finales. Quien lo prenda en prod
-  // (via Configuración) persiste su elección en localStorage.
-  tweakerEnabled: import.meta.env.DEV,
+  // Tweaker apagado por default en ambos modos (DEV y prod). Quien lo
+  // quiera usar lo prende desde Settings → Diseño → Mostrar Tweaks. Antes
+  // estaba ON en DEV y aparecía sin pedirlo cada sesión.
+  tweakerEnabled: false,
   customRange: { min: null, mid: null, max: null },
   archivedIndicators: DEFAULT_ARCHIVED_INDICATORS,
   _persistedSourceId: null,

@@ -1010,20 +1010,20 @@ function ZoomControl({
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
-        className={`flex items-center gap-1.5 rounded-md bg-white/95 px-2 py-1 text-[10px] font-medium uppercase tracking-wider tabular-nums shadow-sm ring-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 ${
+        className={`flex items-center gap-1.5 rounded-md bg-white/95 px-2 py-1 text-[10px] font-medium uppercase tracking-wider tabular-nums shadow-sm ring-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:bg-slate-900/95 ${
           open
-            ? 'text-slate-900 ring-slate-400'
-            : 'text-slate-600 ring-slate-200/80 hover:text-slate-900'
+            ? 'text-slate-900 ring-slate-400 dark:text-slate-100 dark:ring-slate-500'
+            : 'text-slate-600 ring-slate-200/80 hover:text-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:text-slate-100'
         }`}
         aria-expanded={open}
         aria-label="Ajustar zoom"
       >
-        Zoom <span className="text-slate-900">{zoom.toFixed(1)}</span>
+        Zoom <span className="text-slate-900 dark:text-slate-100">{zoom.toFixed(1)}</span>
       </button>
 
       {open && (
         <div
-          className="absolute right-0 top-full mt-1.5 w-48 rounded-md bg-white p-3 shadow-lg ring-1 ring-slate-200"
+          className="absolute right-0 top-full mt-1.5 w-48 rounded-md bg-white p-3 shadow-lg ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-700"
           onMouseDown={e => e.stopPropagation()}
         >
           <input
@@ -1036,9 +1036,9 @@ function ZoomControl({
             className="w-full accent-slate-900"
             aria-label="Nivel de zoom"
           />
-          <div className="mt-1 flex items-baseline justify-between text-[10px] tabular-nums text-slate-400">
+          <div className="mt-1 flex items-baseline justify-between text-[10px] tabular-nums text-slate-400 dark:text-slate-500">
             <span>{minZoom}</span>
-            <span className="font-medium text-slate-700">{zoom.toFixed(1)}</span>
+            <span className="font-medium text-slate-700 dark:text-slate-200">{zoom.toFixed(1)}</span>
             <span>{maxZoom}</span>
           </div>
         </div>

@@ -1,10 +1,11 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { useStore } from './store'
 import { MapView } from './components/MapView'
 import { ControlPanel } from './components/ControlPanel'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { TopBar } from './components/TopBar'
 import { WelcomeModal } from './components/WelcomeModal'
+import { getIndicatorCoverage } from './data/indicators'
 
 // Lazy load del WorldMapView: trae d3-geo + d3-zoom (~70KB) solo cuando
 // el user entra a vista Global. La vista Venezuela (default) no paga ese costo.
@@ -25,6 +26,10 @@ export function MapApp() {
   const loadGeoData = useStore(s => s.loadGeoData)
   const loadThematicManifest = useStore(s => s.loadThematicManifest)
   const adm1 = useStore(s => s.adm1)
+  const adm2 = useStore(s => s.adm2)
+  const level = useStore(s => s.level)
+  const setLevel = useStore(s => s.setLevel)
+  const source = useStore(s => s.source)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
@@ -34,6 +39,30 @@ export function MapApp() {
 
   const isGlobal = view === 'global'
   const isRegionTest = view === 'region_test'
+
+  // Empty state: cuando el indicador activo NO aplica al nivel actual,
+  // el mapa queda gris sin explicación. Renderemos un overlay sutil sobre
+  // el mapa con el motivo + CTA al nivel donde sí aplica. Solo en vista
+  // Venezuela (en global/regional la cobertura aplica distinta).
+  const activeIndicator = source?.kind === 'indicator' ? source.indicator : null
+  const coverage = useMemo(() => {
+    if (!activeIndicator) return null
+    const adm1Count = adm1?.features.length ?? 26
+    const adm2Count = adm2?.features.length ?? 336
+    return getIndicatorCoverage(activeIndicator, level, { adm1Count, adm2Count })
+  }, [activeIndicator, level, adm1, adm2])
+  const showEmptyState =
+    !isGlobal &&
+    !isRegionTest &&
+    coverage != null &&
+    !coverage.applies &&
+    !!activeIndicator?.restrictedTo
+  const ctaTargetLevel = activeIndicator?.restrictedTo
+  const ctaLabel =
+    ctaTargetLevel === 'adm0' ? 'Ver en País'
+    : ctaTargetLevel === 'adm1' ? 'Ver en Estados'
+    : ctaTargetLevel === 'adm2' ? 'Ver en Municipios'
+    : ''
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden bg-slate-100 dark:bg-slate-950 md:flex-row">
@@ -69,6 +98,30 @@ export function MapApp() {
                 <MapView />
               </ErrorBoundary>
             )
+          )}
+
+          {/* Empty state overlay: el indicador activo no aplica al nivel
+              actual (ej. "Banderas munis" en nivel Estados). En lugar de
+              dejar al user con un mapa gris sin explicación, mostramos el
+              motivo + CTA directo al nivel donde sí aplica. */}
+          {showEmptyState && coverage && ctaTargetLevel && (
+            <div className="absolute inset-0 z-[900] flex items-center justify-center bg-white/85 px-4 backdrop-blur-sm dark:bg-slate-950/85">
+              <div className="max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl dark:bg-slate-900">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                  Reporte no aplica
+                </div>
+                <p className="mt-2 text-[14px] leading-snug text-slate-700 dark:text-slate-200">
+                  {coverage.reason}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setLevel(ctaTargetLevel)}
+                  className="mt-4 inline-flex rounded-full bg-slate-900 px-4 py-2 text-[13px] font-medium text-white shadow-sm transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300"
+                >
+                  {ctaLabel}
+                </button>
+              </div>
+            </div>
           )}
         </div>
       </main>

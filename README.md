@@ -4,8 +4,8 @@ Plataforma de **transparencia territorial** estática para Venezuela. Sube un CS
 
 ## Características
 
-- **27 estados** (24 oficiales + Distrito Capital + Dependencias Federales + Estado Guayana Esequiba) con nomenclatura oficial (Gaceta) y nombres cortos
-- **337 municipios** con `parentState`, `compoundKey` y normalización de nombres
+- **26 estados** (23 oficiales + Distrito Capital + Dependencias Federales + Estado Guayana Esequiba) con nomenclatura oficial (Gaceta) y nombres cortos
+- **336 municipios** con `parentState`, `compoundKey` y normalización de nombres
 - **7 indicadores pre-cargados**: Población 2024/2026, IDH, PIB total, PIB per cápita, Área, Tasa de homicidios
 - **11 capas temáticas** del catálogo Provita / IGVSB (Áreas Protegidas, Territorios Indígenas, Cuencas, Vialidad, Lotes Petroleros, Energía, etc.) — lazy-loaded
 - **Cruce de CSV** con detección automática de columnas + fuzzy matching de nombres

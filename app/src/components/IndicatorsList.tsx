@@ -22,7 +22,8 @@ import diasporaReceivers from '../data/diaspora-receivers.json'
 import type { DiasporaProps } from '../lib/types'
 
 // Defaults razonables si los geo todavía no cargaron (primer render).
-// 26 estados + Esequibo, 336 munis del adm2 post-fix.
+// 26 estados (incluye Distrito Capital, Dependencias Federales y Esequibo)
+// y 336 municipios del adm2 post-fix. Canónico contra master JSON.
 const FALLBACK_TOTALS = { adm1Count: 26, adm2Count: 336 }
 
 type RowMeta = {
@@ -264,7 +265,9 @@ function Row({
         </div>
         <div
           className={`mt-0.5 truncate text-[11px] ${
-            active ? 'text-slate-300' : 'text-slate-500'
+            active
+              ? 'text-slate-300 dark:text-slate-600'
+              : 'text-slate-500 dark:text-slate-400'
           }`}
         >
           {disabled ? cov.reason : `${indicator.unit} · ${indicator.year}`}
@@ -281,8 +284,8 @@ function Row({
             }}
             className={`rounded p-1 opacity-0 transition focus:opacity-100 focus:ring-2 focus:ring-slate-400 group-hover:opacity-100 ${
               active
-                ? 'text-slate-300 hover:bg-slate-700 hover:text-white'
-                : 'text-slate-400 dark:text-slate-400 hover:bg-slate-200 hover:text-slate-700'
+                ? 'text-slate-300 hover:bg-slate-700 hover:text-white dark:text-slate-600 dark:hover:bg-slate-300 dark:hover:text-slate-900'
+                : 'text-slate-400 dark:text-slate-500 hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200'
             }`}
             title={isArchived ? 'Desarchivar' : 'Archivar'}
             aria-label={isArchived ? `Desarchivar ${indicator.label}` : `Archivar ${indicator.label}`}
@@ -293,7 +296,9 @@ function Row({
         <span
           aria-hidden
           className={`mt-1 inline-block h-2 w-2 shrink-0 rounded-full border ${
-            active ? 'border-white bg-white' : 'border-slate-300'
+            active
+              ? 'border-white bg-white dark:border-slate-900 dark:bg-slate-900'
+              : 'border-slate-300 dark:border-slate-600'
           }`}
         />
       </div>

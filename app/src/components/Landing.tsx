@@ -181,7 +181,7 @@ export function Landing() {
               </div>
               <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-slate-700">
                 <li className="flex gap-2"><Dot /> 25+ indicadores oficiales pre-cargados</li>
-                <li className="flex gap-2"><Dot /> 27 estados y 337 municipios</li>
+                <li className="flex gap-2"><Dot /> 26 estados y 336 municipios</li>
                 <li className="flex gap-2"><Dot /> 11 capas temáticas Provita / IGVSB</li>
                 <li className="flex gap-2"><Dot /> Series temporales INE 1990–2050</li>
                 <li className="flex gap-2"><Dot /> Esequibo y Dependencias Federales</li>

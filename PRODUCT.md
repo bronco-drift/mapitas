@@ -249,15 +249,14 @@ Decisiones que el código revela pero que merecen estar explícitas:
 
 > **Hallazgos del audit de código para la biblia de la IA**:
 
-### 9.1 Conteos de estados/municipios divergen entre documentos
+### 9.1 Conteos de estados/municipios (resuelto)
 
-| Fuente | Estados | Municipios |
-|---|---|---|
-| `README.md` | 27 | 337 |
-| `Landing.tsx` (UI pública) | 23 | 335 |
-| `IndicatorsList.tsx` (fallback) | 26 + Esequibo | 336 |
+Canónico definido contra `data/master/` (fuente de verdad):
 
-**Acción sugerida**: definir el número canónico, actualizar las 3 fuentes.
+- **26 estados** (23 oficiales + Distrito Capital + Dependencias Federales + Estado Guayana Esequiba)
+- **336 municipios**
+
+Todas las fuentes públicas (`README.md`, `Landing.tsx`, `IndicatorsList.tsx`) actualizadas para reflejar estos números.
 
 ### 9.2 Conteo de paletas divergen
 

@@ -192,7 +192,7 @@ export function TopBar() {
               ? 'border-slate-900 bg-slate-900 text-white hover:bg-slate-700 dark:border-slate-100 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300'
               : 'border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100'
           }`}
-          title={isDibujando ? 'Cerrar modo Pintar' : 'Hacer tu propio mapa'}
+          title={isDibujando ? 'Cerrar modo Pintar' : 'Hacer tu propio mapa coloreando regiones'}
           aria-pressed={isDibujando}
         >
           <svg
@@ -210,7 +210,7 @@ export function TopBar() {
             <path d="M9.5 5 11 6.5" />
           </svg>
           <span className="hidden sm:inline">
-            {isDibujando ? 'Pintando' : 'Hacer tu propio mapa'}
+            {isDibujando ? 'Pintando' : 'Pintar'}
           </span>
         </button>
 
